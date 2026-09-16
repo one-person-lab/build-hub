@@ -1,0 +1,5 @@
+import CatalogView from "@/components/CatalogView";
+
+export default function Home() {
+  return <CatalogView catalogKey="frontend" />;
+}

@@ -1,0 +1,122 @@
+/* BuildHub 克隆站全局补充：原站由 JS 注入的默认主题色，这里静态声明 */
+:root {
+  --theme-brand: #0f766e;
+  --theme-brand-hover: #115e59;
+}
+:root[data-color-mode="dark"] {
+  --theme-dark-brand: #7b93ea;
+}
+
+/* React 包裹层不产生盒子，保持 .detail-body 直接子元素布局 */
+.detail-body > .vh-section-wrap {
+  display: contents;
+}
+
+/* RawPage（练习/路线/反 AI 味儿等）整页容器与原站 main 布局一致 */
+.vh-raw-page {
+  min-height: 60vh;
+}
+
+/* 分类区滚动时给 sticky 顶部筛选栏留出空间，避免标题被遮挡 */
+.cat-section {
+  scroll-margin-top: 132px;
+}
+
+/* 课程路由：整屏两栏布局，由正文内部滚动；不显示页脚（与原站一致）。
+   用 :has() 让 SSR 首屏就生效，避免 JS 加 class 前的高度跳动。 */
+.site-shell:has(> main.course-shell-main),
+.site-shell.is-course-route {
+  height: 100dvh;
+  min-height: 0;
+  overflow: hidden;
+}
+.site-shell:has(> main.course-shell-main) > main,
+.site-shell.is-course-route > main {
+  min-height: 0;
+  flex: 1 1 auto;
+  overflow-y: auto;
+}
+.site-shell:has(> main.course-shell-main) > main:has(.course-reader-app),
+.site-shell.is-course-reader > main {
+  overflow: hidden;
+}
+/* SiteFooter 组件外层包裹不产生盒子，让 .site-footer 直接参与 .site-shell 的纵向 flex 布局 */
+.site-shell > div:has(> .site-footer) {
+  display: contents;
+}
+.site-shell.is-course-route .site-footer,
+.site-shell:has(> main.course-shell-main) .site-footer {
+  display: none;
+}
+
+/* ===== 图标库展示（Lucide）：对齐现有卡片语言 ===== */
+.icon-grid-wrap { padding: 0; }
+.icon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+  gap: 8px;
+  padding: 14px;
+}
+.icon-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 6px;
+  border: 1px solid var(--vh-card-border, #e7e9ee);
+  border-radius: 10px;
+  background: var(--vh-card-bg, #ffffff);
+  color: var(--theme-brand, #0f766e);
+  transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease, color .12s ease;
+}
+.icon-cell:hover {
+  transform: translateY(-2px);
+  border-color: var(--theme-brand, #0f766e);
+  box-shadow: 0 6px 16px rgba(15, 118, 110, .14);
+}
+.icon-cell .icon-svg { display: flex; }
+.icon-cell .icon-svg svg { width: 22px; height: 22px; display: block; }
+.icon-name {
+  font-size: 11px;
+  line-height: 1.2;
+  color: var(--vh-text-muted, #6b7280);
+  text-align: center;
+  word-break: break-all;
+}
+
+/* 详情页「适用风格与场景」卡片 */
+.scene-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+  padding: 4px 0 8px;
+}
+.scene-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px 16px;
+  border: 1px solid var(--vh-card-border, #e7e9ee);
+  border-radius: 12px;
+  background: var(--vh-card-bg, #ffffff);
+}
+.scene-head { font-weight: 600; color: var(--theme-brand, #0f766e); font-size: 14px; }
+.scene-body { font-size: 13px; line-height: 1.6; color: #4b5563; }
+
+/* 深色模式适配 */
+:root[data-color-mode="dark"] .icon-cell {
+  background: var(--vh-card-bg-dark, #16181d);
+  border-color: var(--vh-card-border-dark, #2a2d34);
+  color: var(--theme-dark-brand, #7b93ea);
+}
+:root[data-color-mode="dark"] .icon-cell:hover {
+  border-color: var(--theme-dark-brand, #7b93ea);
+  box-shadow: 0 6px 16px rgba(123, 147, 234, .14);
+}
+:root[data-color-mode="dark"] .icon-name { color: #9aa1ad; }
+:root[data-color-mode="dark"] .scene-card {
+  background: #16181d;
+  border-color: #2a2d34;
+}
+:root[data-color-mode="dark"] .scene-head { color: var(--theme-dark-brand, #7b93ea); }
+:root[data-color-mode="dark"] .scene-body { color: #aab1bd; }

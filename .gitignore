@@ -1,0 +1,26 @@
+# dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# next.js build output
+.next/
+out/
+build/
+dist/
+
+# misc
+.DS_Store
+*.log
+npm-debug.log*
+.env
+.env.local
+.env*.local
+
+# local agent / workspace memory (not part of the repo)
+.workbuddy/
+
+# coverage / temp
+coverage/
+.turbo/
+*.tsbuildinfo
