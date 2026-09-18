@@ -3,7 +3,7 @@ import PracticeView from "@/components/PracticeView";
 import { getRawTitle } from "@/components/RawPageView";
 
 export const metadata: Metadata = {
-  title: getRawTitle("practice", "en") ?? "Term Practice",
+  title: getRawTitle("practice", "en") ?? "Concept Practice",
 };
 
 export default function EnPracticePage() {

@@ -66,13 +66,13 @@ export function useFlatTerms(locale: "zh" | "en"): FlatTerm[] {
 const UI = {
   zh: {
     placeholder: "搜索图鉴：试试「图标」「付费墙」…",
-    aria: "搜索术语",
+    aria: "搜索概念",
     empty: "没有匹配的条目",
     hint: ["↑↓ 选择", "↵ 打开"],
   },
   en: {
     placeholder: "Search the index: try “icon”, “paywall”…",
-    aria: "Search terms",
+    aria: "Search concepts",
     empty: "No matching entries",
     hint: ["↑↓ select", "↵ open"],
   },

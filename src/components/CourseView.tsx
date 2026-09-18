@@ -141,7 +141,7 @@ export default function CourseReaderView({ chapterKey }: { chapterKey: string })
                 role="separator"
                 aria-orientation="vertical"
                 aria-controls="course-term-panel"
-                aria-label="调整正文和术语面板宽度"
+                aria-label="调整正文和概念面板宽度"
                 aria-valuemin={MIN_SHARE}
                 aria-valuemax={MAX_SHARE}
                 aria-valuenow={Math.round(share)}
@@ -165,7 +165,7 @@ export default function CourseReaderView({ chapterKey }: { chapterKey: string })
               <div id="course-term-panel">
                 <aside
                   className="course-term-panel"
-                  aria-label={`${term.name}术语详情`}
+                  aria-label={`${term.name}概念详情`}
                   role="complementary"
                 >
                   <div className="course-term-toolbar">
@@ -173,10 +173,10 @@ export default function CourseReaderView({ chapterKey }: { chapterKey: string })
                       <strong>{term.name}</strong>
                     </div>
                     <div className="course-term-actions">
-                      <a href={"/" + term.slug}>完整术语页 ↗</a>
+                      <a href={"/" + term.slug}>完整概念页 ↗</a>
                       <button
                         type="button"
-                        aria-label="关闭术语详情"
+                        aria-label="关闭概念详情"
                         onClick={() => setTermId(null)}
                       >
                         <i className="ti ti-x" aria-hidden="true" />

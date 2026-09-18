@@ -71,7 +71,7 @@ const matchesPlatform = (t: Term, f: PlatformFilter) =>
   f === "all" || platformOf(t) === "cross" || platformOf(t) === f;
 
 const UI_TEXT = {
-  zh: { favorites: "收藏", termCount: "个条目", favoriteTerm: "收藏术语", platform: "平台", liveToc: "实时目录" },
+  zh: { favorites: "收藏", termCount: "个条目", favoriteTerm: "收藏概念", platform: "平台", liveToc: "实时目录" },
   en: { favorites: "Favorites", termCount: "entries", favoriteTerm: "Add to favorites", platform: "Platform", liveToc: "On this page" },
 };
 
@@ -205,7 +205,7 @@ export default function CatalogView({
     <div className="catalog-page catalog-directory-page">
       <div className="catalog-layout catalog-directory-layout">
         <span className="catalog-finder-sentinel" aria-hidden="true" />
-        <section className="catalog-finder" aria-label="筛选术语">
+        <section className="catalog-finder" aria-label="筛选概念">
           <div className="catalog-finder-row">
             <div className="catalog-filter-list">
               {TAB_ORDER.map((key) => {
