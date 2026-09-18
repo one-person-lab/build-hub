@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import catalogsData from "@/data/catalogs.json";
 import enCatalogsData from "@/data/en-catalogs.json";
+import CardDemoThumb from "@/components/CardDemoThumb";
 import type { Platform } from "@/lib/types";
 import "./AssetLibraryView.css";
 
@@ -70,8 +71,8 @@ const matchesPlatform = (t: Term, f: PlatformFilter) =>
   f === "all" || platformOf(t) === "cross" || platformOf(t) === f;
 
 const UI_TEXT = {
-  zh: { favorites: "收藏", termCount: "个条目", favoriteTerm: "收藏术语", platform: "平台" },
-  en: { favorites: "Favorites", termCount: "entries", favoriteTerm: "Add to favorites", platform: "Platform" },
+  zh: { favorites: "收藏", termCount: "个条目", favoriteTerm: "收藏术语", platform: "平台", liveToc: "实时目录" },
+  en: { favorites: "Favorites", termCount: "entries", favoriteTerm: "Add to favorites", platform: "Platform", liveToc: "On this page" },
 };
 
 const STAR_PATH =
@@ -94,7 +95,7 @@ export default function CatalogView({
     () => CATALOGS.find((c) => c.key === catalogKey) ?? CATALOGS[0],
     [CATALOGS, catalogKey]
   );
-  const [activeSidebar, setActiveSidebar] = useState<string | null>(null);
+  const [activeGroup, setActiveGroup] = useState<string | null>(null);
   const [favorites, setFavorites] = useState<Set<string>>(new Set());
   const [platformFilter, setPlatformFilter] = useState<PlatformFilter>("all");
 
@@ -143,36 +144,28 @@ export default function CatalogView({
     });
   };
 
-  // Scroll spy：根据当前进入视口的分类标题高亮左侧导航
+  // Scroll spy：根据当前进入视口的分组 section 高亮左侧实时目录
   useEffect(() => {
-    if (catalog.sidebar.length === 0) return;
-    const watched = groups
-      .map((g) => ({
-        label: g.id.replace("cat-", ""),
-        el: document.getElementById(g.id)?.querySelector<HTMLElement>(".cat-title"),
-      }))
-      .filter((x): x is { label: string; el: HTMLElement } => Boolean(x.el));
-    if (watched.length === 0) return;
-
-    const labelByEl = new Map<HTMLElement, string>();
-    watched.forEach(({ label, el }) => labelByEl.set(el, label));
-
-    const pickTopmost = (entries: IntersectionObserverEntry[]) => {
-      const visible = entries.filter((e) => e.isIntersecting).map((e) => e.target as HTMLElement);
-      if (visible.length === 0) return;
-      const topmost = visible.reduce((a, b) =>
-        a.getBoundingClientRect().top < b.getBoundingClientRect().top ? a : b
-      );
-      setActiveSidebar(labelByEl.get(topmost) ?? null);
-    };
-
-    const observer = new IntersectionObserver(pickTopmost, {
-      rootMargin: "-132px 0px -55% 0px",
-      threshold: 0,
-    });
-    watched.forEach(({ el }) => observer.observe(el));
+    const sections = groups
+      .map((g) => document.getElementById(g.id))
+      .filter((el): el is HTMLElement => Boolean(el));
+    if (sections.length === 0) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .map((e) => e.target as HTMLElement);
+        if (visible.length === 0) return;
+        const topmost = visible.reduce((a, b) =>
+          a.getBoundingClientRect().top < b.getBoundingClientRect().top ? a : b
+        );
+        setActiveGroup(topmost.id);
+      },
+      { rootMargin: "-150px 0px -55% 0px", threshold: 0 }
+    );
+    sections.forEach((s) => observer.observe(s));
     return () => observer.disconnect();
-  }, [catalog.key, groups, catalog.sidebar.length]);
+  }, [catalog.key, groups]);
 
   // 顶部筛选栏粘住时切到带背景的状态（原站 .catalog-finder.is-stuck：
   // ::before 淡入毛玻璃底 + 底边线 + 阴影，避免正文从栏下穿过）。
@@ -185,7 +178,7 @@ export default function CatalogView({
       const v = parseFloat(
         getComputedStyle(document.documentElement).getPropertyValue("--site-nav-height")
       );
-      return Number.isFinite(v) && v > 0 ? v : 60;
+      return Number.isFinite(v) && v > 0 ? v : 56;
     };
     let raf = 0;
     const update = () => {
@@ -207,37 +200,10 @@ export default function CatalogView({
     };
   }, [catalog.key]);
 
-  // 原站通过 JS 按容器实际宽度动态计算 --preview-scale（fit-to-width），
-  // 这里用 ResizeObserver 复刻同样的行为
-  useEffect(() => {
-    const fit = (el: HTMLElement) => {
-      const canvas = el.querySelector<HTMLElement>(".scaled-preview-canvas");
-      if (!canvas) return;
-      const w = parseFloat(getComputedStyle(canvas).width) || 640;
-      if (el.clientWidth > 0 && w > 0) {
-        el.style.setProperty("--preview-scale", String(el.clientWidth / w));
-      }
-    };
-    const els = Array.from(
-      document.querySelectorAll<HTMLElement>(".scaled-preview")
-    );
-    els.forEach(fit);
-    const ro = new ResizeObserver((entries) => {
-      for (const e of entries) fit(e.target as HTMLElement);
-    });
-    els.forEach((el) => ro.observe(el));
-    return () => ro.disconnect();
-  }, [catalog.key, groups]);
-
   return (
     <main>
     <div className="catalog-page catalog-directory-page">
-      <div
-        className={
-          "catalog-layout catalog-directory-layout" +
-          (catalog.sidebar.length > 0 ? "" : " catalog-layout-full")
-        }
-      >
+      <div className="catalog-layout catalog-directory-layout">
         <span className="catalog-finder-sentinel" aria-hidden="true" />
         <section className="catalog-finder" aria-label="筛选术语">
           <div className="catalog-finder-row">
@@ -290,31 +256,27 @@ export default function CatalogView({
             </div>
           )}
         </section>
-        {catalog.sidebar.length > 0 && (
-          <aside className="catalog-sidebar">
-            <nav className="cat-chips" aria-label="术语目录">
-              {catalog.sidebar.map((label) => {
-                const gid = "cat-" + label;
-                return (
-                  <button
-                    key={label}
-                    type="button"
-                    className="catalog-filter-chip"
-                    aria-pressed={activeSidebar === label}
-                    onClick={() => {
-                      setActiveSidebar(label);
-                      document
-                        .getElementById(gid)
-                        ?.scrollIntoView({ behavior: "smooth", block: "start" });
-                    }}
-                  >
-                    {label}
-                  </button>
-                );
-              })}
-            </nav>
-          </aside>
-        )}
+        <aside className="cat-live-toc" aria-label={T.liveToc}>
+          <nav className="cat-live-toc-nav">
+            {groups.map((g) => (
+              <button
+                key={g.id}
+                type="button"
+                className={
+                  "cat-live-toc-item" + (activeGroup === g.id ? " is-active" : "")
+                }
+                onClick={() =>
+                  document
+                    .getElementById(g.id)
+                    ?.scrollIntoView({ behavior: "smooth", block: "start" })
+                }
+              >
+                <span>{g.title}</span>
+                <em>{g.count}</em>
+              </button>
+            ))}
+          </nav>
+        </aside>
         <div className="grid-wrap">
           <header className="catalog-heading">
             <h1>{catalog.title}</h1>
@@ -357,6 +319,7 @@ export default function CatalogView({
                     style={{ cursor: "pointer" }}
                     onClick={() => router.push(detailBase + t.slug)}
                   >
+                    <CardDemoThumb demoHtml={t.demoHtml} demoClass={t.demoClass} />
                     <div className="card-head">
                       <a
                         className="card-title-group card-title-link"
@@ -385,15 +348,6 @@ export default function CatalogView({
                       </button>
                     </div>
                     <div className="card-tagline card-quote">{t.tagline}</div>
-                    {t.demoHtml ? (
-                      <div
-                        className={t.demoClass || "card-demo"}
-                        aria-hidden="true"
-                        dangerouslySetInnerHTML={{ __html: t.demoHtml }}
-                      />
-                    ) : (
-                      <div className="card-demo" aria-hidden="true" />
-                    )}
                   </article>
                 ))}
               </div>

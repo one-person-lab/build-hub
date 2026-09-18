@@ -22,9 +22,10 @@ body { background: var(--ground); }
   min-height: 60vh;
 }
 
-/* 分类区滚动时给 sticky 顶部筛选栏留出空间，避免标题被遮挡 */
-.cat-section {
-  scroll-margin-top: 132px;
+/* 分类区滚动时给 sticky 顶栏（导航 56 + 单行筛选条 ≈52）让位 */
+.cat-section,
+.catalog-directory-layout .cat-section {
+  scroll-margin-top: 112px;
 }
 
 /* 课程路由：整屏两栏布局，由正文内部滚动；不显示页脚（与原站一致）。
@@ -175,9 +176,10 @@ body { background: var(--ground); }
 .catalog-platform-row .catalog-filter-chip[aria-pressed="true"] {
   border-color: transparent;
 }
-/* 筛选栏变成两行，锚点滚动要相应多让位 */
-.catalog-layout:has(.catalog-platform-row) .cat-section {
-  scroll-margin-top: 162px;
+/* 筛选栏变成两行（导航 56 + 两行条 ≈90），锚点与目录相应多让位 */
+.catalog-layout:has(.catalog-platform-row) .cat-section,
+.catalog-directory-layout:has(.catalog-platform-row) .cat-section {
+  scroll-margin-top: 152px;
 }
 @media (max-width: 760px) {
   .catalog-platform-row .catalog-filter-chip { min-height: 32px; }
@@ -346,4 +348,55 @@ html[data-color-mode="light"] .rd-pill { background: var(--text); border-color: 
   position: absolute; top: 12px; right: 12px; width: 26px; height: 26px;
   border-radius: 8px; border: 1px solid var(--border); background: none;
   color: var(--text-2); cursor: pointer;
+}
+
+/* ===== 列表页图鉴化：缩略取景框（样张 .rd-thumb → .card-thumb） =====
+   demo 永远按浅色设计，垫白底避免深色态色偏 */
+.catalog-page { background: var(--ground); }
+.card:has(.card-thumb) { padding: 14px 14px 16px; }
+.card-thumb {
+  margin: -14px -14px 0;
+  border-bottom: 1px solid var(--border);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  overflow: hidden;
+  background: #fff;
+}
+.card-thumb > .card-demo { border-radius: 0; border-width: 0; min-height: 0; }
+.card-thumb > .card-demo:not(.scaled-preview) { height: 152px; overflow: hidden; }
+.card:hover .card-thumb { border-bottom-color: transparent; }
+
+/* ===== 左侧安静版实时目录（样张 .rd-toc → .cat-live-toc） ===== */
+.cat-live-toc {
+  position: sticky; top: 108px;
+  max-height: calc(100vh - 128px); overflow: auto;
+  padding: 24px 0 24px 6px; scrollbar-width: thin;
+}
+.cat-live-toc-nav { display: flex; flex-direction: column; gap: 4px; }
+.cat-live-toc-item {
+  position: relative; display: flex; align-items: baseline; justify-content: space-between; gap: 8px;
+  border: 0; background: none; cursor: pointer; text-align: left;
+  padding: 5px 4px 5px 14px; font-size: 12.5px; line-height: 1.45;
+  color: var(--text-3); transition: color .25s ease;
+}
+.cat-live-toc-item:hover { color: var(--text-2); }
+.cat-live-toc-item.is-active { color: var(--text); font-weight: 650; }
+.cat-live-toc-item::before {
+  content: ""; position: absolute; left: 0; top: 50%;
+  width: 4px; height: 4px; margin-top: -2px; border-radius: 50%;
+  background: var(--brand); opacity: 0;
+  transform: scale(.4); transition: opacity .3s ease, transform .3s var(--ease, ease);
+}
+.cat-live-toc-item.is-active::before { opacity: 1; transform: scale(1); }
+.cat-live-toc-item em {
+  font-style: normal; font-size: 10.5px; color: var(--text-3); opacity: .55;
+  font-variant-numeric: tabular-nums; transition: opacity .25s ease;
+}
+.cat-live-toc-item.is-active em { opacity: .9; }
+/* 两行筛选条时目录下移 */
+.catalog-layout:has(.catalog-platform-row) .cat-live-toc {
+  top: 152px;
+}
+@media (max-width: 980px) {
+  .cat-live-toc { display: none; }
+  .catalog-layout { grid-template-columns: minmax(0, 1fr); }
 }
