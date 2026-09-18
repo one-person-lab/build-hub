@@ -1,11 +1,16 @@
-/* BuildHub 克隆站全局补充：原站由 JS 注入的默认主题色，这里静态声明 */
+/* BuildHub 克隆站全局补充：原站由 JS 注入的默认主题色，这里静态声明（默认=图鉴金，可被 vh-theme-color 覆盖） */
 :root {
-  --theme-brand: #0f766e;
-  --theme-brand-hover: #115e59;
+  --theme-brand: #8a6a1f;
+  --theme-brand-hover: #6f5518;
 }
 :root[data-color-mode="dark"] {
-  --theme-dark-brand: #7b93ea;
+  --theme-dark-brand: #e8c767;
 }
+
+/* 图鉴风：页面底与卡面分离 */
+:root { --ground: #f7f7f8; }
+:root[data-color-mode="dark"] { --ground: #14151a; }
+body { background: var(--ground); }
 
 /* React 包裹层不产生盒子，保持 .detail-body 直接子元素布局 */
 .detail-body > .vh-section-wrap {

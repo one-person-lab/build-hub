@@ -75,6 +75,7 @@ const NAV_UI: Record<
 };
 
 const THEME_COLORS = [
+  { name: "图鉴金", value: "#8a6a1f", hover: "#6f5518", dark: "#e8c767" },
   { name: "靛蓝", value: "#3559d8", hover: "#2a46b4", dark: "#7b93ea" },
   { name: "紫罗兰", value: "#7c3aed", hover: "#6d28d9", dark: "#a78bfa" },
   { name: "黛绿", value: "#0f766e", hover: "#115e59", dark: "#2dd4bf" },
@@ -124,7 +125,7 @@ export default function SiteNav() {
 
     const savedColor = localStorage.getItem("vh-theme-color");
     const matched = THEME_COLORS.find((c) => c.value === savedColor);
-    const initial = matched ?? THEME_COLORS[2]; // 黛绿
+    const initial = matched ?? THEME_COLORS[0]; // 图鉴金
     setThemeColor(initial.value);
     applyThemeColor(initial.value, initial.hover, initial.dark);
   }, []);
