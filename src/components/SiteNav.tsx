@@ -29,16 +29,18 @@ function applyThemeColor(value: string, hover: string, dark: string) {
 
 const SECTIONS: Record<Locale, { href: string; label: string }[]> = {
   zh: [
-    { href: "/topics/frontend", label: "术语" },
+    { href: "/topics/frontend", label: "概念" },
     { href: "/skills", label: "技能" },
     { href: "/products", label: "产品" },
     { href: "/prompts", label: "提示词" },
+    { href: "/topics/assets", label: "素材库" },
   ],
   en: [
-    { href: "/en/topics/frontend", label: "Terms" },
+    { href: "/en/topics/frontend", label: "Concepts" },
     { href: "/en/skills", label: "Skills" },
     { href: "/en/products", label: "Showcase" },
     { href: "/en/prompts", label: "Prompts" },
+    { href: "/en/topics/assets", label: "Assets" },
   ],
 };
 
@@ -49,7 +51,6 @@ const UI = {
     toDark: "切换到黑夜模式",
     toLight: "切换到白昼模式",
     themeColor: "主题色",
-    assets: "素材库",
     community: "交流群",
     changelog: "更新日志",
     practice: "练习",
@@ -65,7 +66,6 @@ const UI = {
     toDark: "Switch to dark mode",
     toLight: "Switch to light mode",
     themeColor: "Theme color",
-    assets: "Assets",
     community: "Community",
     changelog: "Changelog",
     practice: "Practice",
@@ -212,9 +212,6 @@ export default function SiteNav() {
             </a>
           ))}
         </div>
-        <a href={`${base}/topics/assets`} className="rd-pill">
-          {U.assets}
-        </a>
         <div className="rd-nav-right">
           <button className="rd-searchbtn" onClick={() => setPalette(true)}>
             <span aria-hidden>⌕</span>
@@ -286,9 +283,6 @@ export default function SiteNav() {
                     {s.label}
                   </button>
                 ))}
-                <button className="nv-mob-only" onClick={() => (window.location.href = `${base}/topics/assets`)}>
-                  {U.assets}
-                </button>
                 <span className="rd-menu-sep" aria-hidden />
                 <button
                   onClick={() => {

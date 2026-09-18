@@ -85,8 +85,8 @@ export default function TermDetail({
           next: "Next entry",
         }
       : {
-          allEntries: "术语图鉴",
-          backAll: "返回术语图鉴",
+          allEntries: "概念图鉴",
+          backAll: "返回概念图鉴",
           fav: "收藏术语",
           copyMd: "复制为 Markdown",
           copied: "已复制",

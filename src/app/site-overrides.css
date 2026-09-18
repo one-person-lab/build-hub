@@ -207,11 +207,6 @@ body { background: var(--ground); }
 }
 .rd-sections a:hover { color: var(--text); background: var(--accent-light); }
 .rd-sections a.is-active { color: var(--text); font-weight: 700; }
-.rd-pill {
-  font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 999px;
-  border: 1px solid var(--brand); color: var(--brand); text-decoration: none;
-}
-html[data-color-mode="light"] .rd-pill { background: var(--text); border-color: var(--text); color: var(--bg); }
 .rd-nav-right { margin-left: auto; display: flex; align-items: center; gap: 12px; }
 .rd-searchbtn {
   display: flex; align-items: center; gap: 8px;
@@ -267,7 +262,7 @@ html[data-color-mode="light"] .rd-pill { background: var(--text); border-color: 
 }
 @media (max-width: 900px) {
   .nav.rd-nav { gap: 10px; padding: 0 14px; }
-  .rd-sections, .rd-pill, .rd-searchlabel, .rd-searchbtn kbd { display: none; }
+  .rd-sections, .rd-searchlabel, .rd-searchbtn kbd { display: none; }
   .rd-searchbtn { width: auto; padding: 7px 11px; }
   .rd-nav-right { gap: 8px; }
   .nv-mob-only { display: block; }
