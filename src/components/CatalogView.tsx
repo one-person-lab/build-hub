@@ -56,6 +56,9 @@ const TAB_LABELS: Record<string, Record<string, string>> = {
   },
 };
 const TAB_ORDER = Object.keys(TAB_LABELS.zh);
+// 素材库是独立顶级 tab：概念页不出现素材库 chip，素材库页也不出现概念 chips
+const tabsFor = (catalogKey: string) =>
+  catalogKey === "assets" ? ["assets"] : TAB_ORDER.filter((k) => k !== "assets");
 
 export type Locale = "zh" | "en";
 
@@ -71,8 +74,8 @@ const matchesPlatform = (t: Term, f: PlatformFilter) =>
   f === "all" || platformOf(t) === "cross" || platformOf(t) === f;
 
 const UI_TEXT = {
-  zh: { favorites: "收藏", termCount: "个条目", favoriteTerm: "收藏概念", platform: "平台", liveToc: "实时目录" },
-  en: { favorites: "Favorites", termCount: "entries", favoriteTerm: "Add to favorites", platform: "Platform", liveToc: "On this page" },
+  zh: { favorites: "收藏", termCount: "个条目", favoriteTerm: "收藏概念", platform: "平台", liveToc: "实时目录", filterConcepts: "筛选概念", filterAssets: "筛选素材" },
+  en: { favorites: "Favorites", termCount: "entries", favoriteTerm: "Add to favorites", platform: "Platform", liveToc: "On this page", filterConcepts: "Filter concepts", filterAssets: "Filter assets" },
 };
 
 const STAR_PATH =
@@ -205,10 +208,10 @@ export default function CatalogView({
     <div className="catalog-page catalog-directory-page">
       <div className="catalog-layout catalog-directory-layout">
         <span className="catalog-finder-sentinel" aria-hidden="true" />
-        <section className="catalog-finder" aria-label="筛选概念">
+        <section className="catalog-finder" aria-label={catalog.key === "assets" ? T.filterAssets : T.filterConcepts}>
           <div className="catalog-finder-row">
             <div className="catalog-filter-list">
-              {TAB_ORDER.map((key) => {
+              {tabsFor(catalog.key).map((key) => {
                 const c = CATALOGS.find((x) => x.key === key);
                 const total =
                   c?.tabs.find((t) => L[key] === t.label)?.count ??
