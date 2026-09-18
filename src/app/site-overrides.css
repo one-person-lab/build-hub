@@ -526,3 +526,16 @@ html[data-color-mode="light"] .rd-card:hover {
   border-bottom: 1px solid var(--border);
   box-shadow: none;
 }
+/* 带子与下方卡片区同宽：跳过左侧实时目录列（156 + 28 gap） */
+.catalog-directory-layout .catalog-finder:before {
+  left: 184px;
+  width: calc(100% - 184px);
+  transform: none;
+}
+@media (max-width: 980px) {
+  .catalog-directory-layout .catalog-finder:before {
+    left: 50%;
+    width: 100%;
+    transform: translateX(-50%);
+  }
+}
