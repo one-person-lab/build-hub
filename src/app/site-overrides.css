@@ -510,3 +510,19 @@ html[data-color-mode="light"] .rd-card:hover {
   color: inherit;
   opacity: 0.72;
 }
+
+/* 吸顶筛选条：贴地色的窄玻璃带（对齐样张 .rd-chips），不要整块白底 */
+.catalog-finder {
+  padding: 9px 14px;
+}
+.catalog-finder.is-stuck {
+  padding-block: 7px;
+}
+.catalog-finder-row {
+  min-height: 0;
+}
+.catalog-finder:before {
+  background: color-mix(in srgb, var(--ground) 92%, transparent);
+  border-bottom: 1px solid var(--border);
+  box-shadow: none;
+}
