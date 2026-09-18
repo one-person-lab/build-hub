@@ -4,6 +4,8 @@ import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import catalogsData from "@/data/catalogs.json";
 import enCatalogsData from "@/data/en-catalogs.json";
+import assetsData from "@/data/assets.json";
+import enAssetsData from "@/data/en-assets.json";
 import CardDemoThumb from "@/components/CardDemoThumb";
 import type { Platform } from "@/lib/types";
 import "./AssetLibraryView.css";
@@ -29,6 +31,19 @@ type Catalog = {
 
 const ZH_CATALOGS = catalogsData as unknown as Catalog[];
 const EN_CATALOGS = enCatalogsData as unknown as Catalog[];
+
+type AssetStyle = {
+  id: string;
+  name: string;
+  en: string;
+  tagline: string;
+  cases: { brand: string; image: string; bg?: string }[];
+};
+type AssetLibrary = {
+  categories: { key: string; label: string; styles: AssetStyle[] }[];
+};
+const ZH_ASSETS = assetsData as unknown as AssetLibrary;
+const EN_ASSETS = enAssetsData as unknown as AssetLibrary;
 
 // tab 标签与 catalog key 顺序一一对应
 const TAB_LABELS: Record<string, Record<string, string>> = {
@@ -127,6 +142,21 @@ export default function CatalogView({
     [catalog, activePlatform]
   );
 
+  // 素材库页：把「App 图标风格」作为虚拟分组并入左侧目录与 scroll spy
+  const iconStyleCat =
+    catalog.key === "assets"
+      ? (locale === "en" ? EN_ASSETS : ZH_ASSETS).categories.find(
+          (c) => c.key === "app-icon-style"
+        )
+      : undefined;
+  const tocGroups = useMemo(
+    () =>
+      iconStyleCat
+        ? [...groups, { id: "app-icon-style", title: iconStyleCat.label, count: iconStyleCat.styles.length }]
+        : groups,
+    [groups, iconStyleCat]
+  );
+
   // 收藏持久化
   useEffect(() => {
     try {
@@ -149,7 +179,7 @@ export default function CatalogView({
 
   // Scroll spy：根据当前进入视口的分组 section 高亮左侧实时目录
   useEffect(() => {
-    const sections = groups
+    const sections = tocGroups
       .map((g) => document.getElementById(g.id))
       .filter((el): el is HTMLElement => Boolean(el));
     if (sections.length === 0) return;
@@ -168,7 +198,7 @@ export default function CatalogView({
     );
     sections.forEach((s) => observer.observe(s));
     return () => observer.disconnect();
-  }, [catalog.key, groups]);
+  }, [catalog.key, tocGroups]);
 
   // 顶部筛选栏粘住时切到带背景的状态（原站 .catalog-finder.is-stuck：
   // ::before 淡入毛玻璃底 + 底边线 + 阴影，避免正文从栏下穿过）。
@@ -261,7 +291,7 @@ export default function CatalogView({
         </section>
         <aside className="cat-live-toc" aria-label={T.liveToc}>
           <nav className="cat-live-toc-nav">
-            {groups.map((g) => (
+            {tocGroups.map((g) => (
               <button
                 key={g.id}
                 type="button"
@@ -284,27 +314,6 @@ export default function CatalogView({
           <header className="catalog-heading">
             <h1>{catalog.title}</h1>
           </header>
-          {catalog.key === "assets" && (
-            <a
-              className="card asset-promo-card"
-              href={locale === "en" ? "/en/assets" : "/assets"}
-            >
-              <div className="card-head">
-                <h3>
-                  {locale === "en" ? "Logo & app icon styles" : "Logo & App 图标风格库"}
-                  <span>
-                    {locale === "en" ? "Real cases + prompts" : "真实案例 + 提示词"}
-                  </span>
-                </h3>
-                <span className="card-title-group">→</span>
-              </div>
-              <div className="card-tagline card-quote">
-                {locale === "en"
-                  ? "Market-proven logo and app-icon styles: real brand and App Store cases with a copy-ready AI prompt for each."
-                  : "经市场验证的 Logo 与 App 图标设计风格：每个风格配真实品牌 / App Store 案例拆解和可直接复制的生图提示词。"}
-              </div>
-            </a>
-          )}
           {groups.map((g) => (
             <section className="cat-section" id={g.id} key={g.id}>
               <div className="cat-title">
@@ -356,6 +365,63 @@ export default function CatalogView({
               </div>
             </section>
           ))}
+          {iconStyleCat && (
+            <section className="cat-section" id="app-icon-style">
+              <div className="cat-title">
+                {iconStyleCat.label}
+                <span>
+                  {iconStyleCat.styles.length} {T.termCount}
+                </span>
+              </div>
+              <div className="grid">
+                {iconStyleCat.styles.map((s) => (
+                  <article
+                    className="card"
+                    data-id={s.id}
+                    key={s.id}
+                    style={{ cursor: "pointer" }}
+                    onClick={() => router.push(`${detailBase}assets/${s.id}`)}
+                  >
+                    <div className="card-thumb">
+                      <div className="asset-case-strip" aria-hidden="true">
+                        {s.cases.slice(0, 3).map((cs) => (
+                          <img src={cs.image} alt="" loading="lazy" key={cs.brand} />
+                        ))}
+                      </div>
+                    </div>
+                    <div className="card-head">
+                      <a
+                        className="card-title-group card-title-link"
+                        href={`${detailBase}assets/${s.id}`}
+                        aria-label={s.name}
+                      >
+                        <h3>
+                          {s.name}
+                          {s.en ? <span>{s.en}</span> : null}
+                        </h3>
+                      </a>
+                      <button
+                        type="button"
+                        className="favorite-button"
+                        aria-label={T.favoriteTerm}
+                        aria-pressed={favorites.has(s.id)}
+                        title={T.favoriteTerm}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleFavorite(s.id);
+                        }}
+                      >
+                        <svg viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+                          <path d={STAR_PATH} />
+                        </svg>
+                      </button>
+                    </div>
+                    <div className="card-tagline card-quote">{s.tagline}</div>
+                  </article>
+                ))}
+              </div>
+            </section>
+          )}
         </div>
       </div>
     </div>
