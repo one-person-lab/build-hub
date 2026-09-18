@@ -27,13 +27,15 @@ const NAV_ITEMS: Record<Locale, { href: string; label: string }[]> = {
     { href: "/practice", label: "练习" },
     { href: "/courses", label: "课程" },
     { href: "/anti-ai-flavor", label: "防止 AI 味儿" },
-    { href: "/changelog", label: "更新" },
+    { href: "/skills", label: "技能库" },
+    { href: "/prompts", label: "提示词" },
   ],
   en: [
     { href: "/en", label: "Terms" },
     { href: "/en/practice", label: "Practice" },
     { href: "/en/anti-ai-flavor", label: "AI Slop" },
-    { href: "/en/changelog", label: "Updates" },
+    { href: "/en/skills", label: "Skill Library" },
+    { href: "/en/prompts", label: "Prompts" },
   ],
 };
 
@@ -200,6 +202,9 @@ export default function SiteNav() {
   const isCurrent = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
+  const skillHref = locale === "en" ? "/en/vibehub-skill" : "/vibehub-skill";
+  const skillCurrent = pathname === skillHref;
+
   return (
     <>
       <nav className="nav">
@@ -234,12 +239,15 @@ export default function SiteNav() {
             </a>
           ))}
           <a
-            className="nav-skill-link"
-            href={locale === "en" ? "/en/vibehub-skill" : "/vibehub-skill"}
-            aria-label="Skill"
+            className={
+              "nav-skill-link" + (skillCurrent ? " is-current" : "")
+            }
+            href={skillHref}
+            aria-label="BuildHub Skill"
+            aria-current={skillCurrent ? "page" : undefined}
           >
             <i className="ti ti-ai-agent" aria-hidden="true" />
-            <span>Skill</span>
+            <span>BuildHub Skill</span>
           </a>
           <button
             className="nav-primary-item nav-community-entry"
