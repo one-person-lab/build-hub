@@ -9,6 +9,8 @@ export type TermSection = {
   stageHtml?: string;
 };
 
+export type Platform = "web" | "ios" | "cross";
+
 export type Term = {
   slug: string;
   name: string;
@@ -18,6 +20,7 @@ export type Term = {
   summaryLead: string;
   summaryRest: string;
   aliases: string[];
+  platform?: Platform;
   demoHtml: string;
   sections: TermSection[];
   prev: string | null;
@@ -29,6 +32,7 @@ export type CatalogTerm = {
   name: string;
   en: string;
   tagline: string;
+  platform?: Platform;
   demoHtml: string;
   demoClass: string;
 };

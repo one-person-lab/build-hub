@@ -236,6 +236,44 @@
       ]
     },
     {
+      "key": "mobile",
+      "label": "移动开发",
+      "skills": [
+        {
+          "id": "build-ios-apps",
+          "name": "Build iOS Apps",
+          "category": "mobile",
+          "tagline": "OpenAI 官方的 iOS 技能包：9 个技能管完写、跑、调、查性能",
+          "overview": "Codex 插件市场里最实用的 iOS 条目，出自 OpenAI 官方仓库 openai/plugins。注意它是一个「插件」而不是单个技能：把 9 个标准 Agent Skills 和一份 XcodeBuildMCP 配置打包在一起，覆盖 SwiftUI 写 UI 与重构、App Intents、性能审计、ETTrace 抓样、内存泄漏排查、模拟器调试和预览镜像。插件清单是 Codex 专用格式，整体只能在 Codex 的 /plugins 市场里装；但包内每个技能都是普通 SKILL.md，Claude Code、Cursor 这些照样能单独安装。跑起来仍需 macOS + Xcode。",
+          "features": [
+            "9 个技能：ios-app-intents / ios-debugger-agent / ios-simulator-browser / ios-ettrace-performance / ios-memgraph-leaks / swiftui-liquid-glass / swiftui-performance-audit / swiftui-ui-patterns / swiftui-view-refactor",
+            "真能跑起来调试：让 Agent 自己在模拟器上编译、启动、读日志、点 UI，而不是只改代码",
+            "性能与内存有专门打法：ETTrace 符号化采样、memgraph 对比定位泄漏；SwiftUI 按 iOS 26+ 现行范式改（含 Liquid Glass 迁移）、拆千行大 view",
+            "插件自带 XcodeBuildMCP；单独装某个技能时得自己接上这个 MCP，调试和模拟器那两个才可用"
+          ],
+          "useCases": [
+            "用 AI 写 SwiftUI，但它只会改代码，跑不起来也看不到模拟器报错",
+            "App 卡顿或内存持续上涨，想让 Agent 抓 profile 和 memgraph 帮忙定位",
+            "老代码迁移 Liquid Glass 等新范式、拆分上千行的 view，或给 App 加 Siri / 快捷指令入口"
+          ],
+          "bestFor": "做 iOS/SwiftUI 的人，尤其是要 Agent 自己编译、跑模拟器、调试而不只是产出代码的独立开发者。",
+          "pricing": "开源免费（MIT）",
+          "platform": "技能通用（Codex / Claude Code / Cursor 等）；插件本体仅 Codex",
+          "author": "OpenAI",
+          "repo": "https://github.com/openai/plugins",
+          "install": "npx skills add https://github.com/openai/plugins/tree/main/plugins/build-ios-apps",
+          "tags": [
+            "iOS",
+            "SwiftUI",
+            "Xcode",
+            "官方出品",
+            "技能包"
+          ],
+          "logo": "https://github.com/openai.png"
+        }
+      ]
+    },
+    {
       "key": "video",
       "label": "视频创作",
       "skills": [

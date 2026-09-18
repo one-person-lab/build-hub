@@ -236,6 +236,44 @@
       ]
     },
     {
+      "key": "mobile",
+      "label": "Mobile",
+      "skills": [
+        {
+          "id": "build-ios-apps",
+          "name": "Build iOS Apps",
+          "category": "mobile",
+          "tagline": "OpenAI's official iOS skill pack: 9 skills for writing, running, debugging and profiling",
+          "overview": "The most useful iOS entry in the Codex plugin marketplace, shipped from OpenAI's official openai/plugins repo. Note it is a plugin, not a single skill: it bundles 9 standard Agent Skills plus an XcodeBuildMCP config, covering SwiftUI UI work and refactors, App Intents, performance audits, ETTrace captures, leak hunting, simulator debugging and preview mirroring. The plugin manifest itself is Codex-only and installs from Codex's /plugins marketplace, but every skill inside is a normal SKILL.md, so Claude Code, Cursor and the rest can install them individually. You still need macOS and Xcode.",
+          "features": [
+            "9 skills: ios-app-intents / ios-debugger-agent / ios-simulator-browser / ios-ettrace-performance / ios-memgraph-leaks / swiftui-liquid-glass / swiftui-performance-audit / swiftui-ui-patterns / swiftui-view-refactor",
+            "A real build-run-debug loop: the agent compiles, boots the simulator, reads logs and taps the UI instead of only editing code",
+            "Focused performance and memory playbooks: symbolicated ETTrace captures, diffed iOS memgraphs, plus SwiftUI rewritten to current iOS 26+ patterns (Liquid Glass included) and thousand-line views split up",
+            "The plugin wires XcodeBuildMCP for you; install skills one by one and you have to add that MCP yourself for the debug and simulator ones"
+          ],
+          "useCases": [
+            "AI writes SwiftUI but can't run it or read simulator errors",
+            "The app stutters or its memory keeps climbing and you want profiles and memgraphs to pinpoint why",
+            "Migrating old code to Liquid Glass, breaking up huge views, or exposing actions to Siri and Shortcuts"
+          ],
+          "bestFor": "iOS/SwiftUI builders who want the agent to compile, run and debug on the simulator rather than just emit code.",
+          "pricing": "Free & open source (MIT)",
+          "platform": "Skills are portable (Codex / Claude Code / Cursor etc.); the plugin bundle is Codex-only",
+          "author": "OpenAI",
+          "repo": "https://github.com/openai/plugins",
+          "install": "npx skills add https://github.com/openai/plugins/tree/main/plugins/build-ios-apps",
+          "tags": [
+            "iOS",
+            "SwiftUI",
+            "Xcode",
+            "official",
+            "skill pack"
+          ],
+          "logo": "https://github.com/openai.png"
+        }
+      ]
+    },
+    {
       "key": "video",
       "label": "Video",
       "skills": [

@@ -149,3 +149,31 @@
 }
 :root[data-color-mode="dark"] .scene-head { color: var(--theme-dark-brand, #7b93ea); }
 :root[data-color-mode="dark"] .scene-body { color: #aab1bd; }
+
+/* 目录里的平台筛选行（全部 / Web / iOS）：比上方 catalog 标签更轻一档，避免抢层级 */
+.catalog-platform-row {
+  min-height: 30px;
+  gap: 8px;
+}
+.catalog-platform-label {
+  flex: none;
+  color: var(--text-3);
+  font-size: 11.5px;
+}
+.catalog-platform-row .catalog-filter-chip {
+  min-height: 27px;
+  padding: 2px 10px;
+  font-size: 12px;
+  border: 1px solid var(--border-light);
+  border-radius: 999px;
+}
+.catalog-platform-row .catalog-filter-chip[aria-pressed="true"] {
+  border-color: transparent;
+}
+/* 筛选栏变成两行，锚点滚动要相应多让位 */
+.catalog-layout:has(.catalog-platform-row) .cat-section {
+  scroll-margin-top: 162px;
+}
+@media (max-width: 760px) {
+  .catalog-platform-row .catalog-filter-chip { min-height: 32px; }
+}

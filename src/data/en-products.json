@@ -150,6 +150,26 @@
           "url": "https://appllama.io",
           "logo": "https://appllama.io/branding/logo-icon-500.webp",
           "tags": ["design library", "iOS", "paywall"]
+        },
+        {
+          "id": "bencho",
+          "name": "Bencho",
+          "category": "design",
+          "type": "web",
+          "tagline": "A library of interactive UI blocks you can actually play with",
+          "overview": "Bencho collects dozens of finely crafted micro-interaction components — magnetic select, slide to confirm, liquid toggle, pull to refresh. Every block runs live on the page rather than sitting as a screenshot: try it on the spot, hit Edit to tweak parameters in the workbench, and copy it from the Code pane when you like it. All blocks are MIT-licensed — commercial use, no attribution. Built solo by Lorenzo Cabra, with new blocks every week.",
+          "highlights": [
+            "«Everything is live, not mocked»: play with each block before taking it",
+            "Every block ships an Edit workbench and a «Show me how» breakdown",
+            "The whole block library is MIT — lift it into shipped products, no credit needed",
+            "A solo builder's weekly-updated masterclass in micro-interaction taste"
+          ],
+          "bestFor": "Developers and designers who want their own UI to feel alive, or who collect micro-interaction inspiration.",
+          "pricing": "Completely free; blocks MIT-licensed",
+          "platform": "Web",
+          "url": "https://bencho.dev",
+          "logo": "https://bencho.dev/apple-touch-icon.png",
+          "tags": ["UI blocks", "Micro-interactions", "Open source"]
         }
       ]
     },

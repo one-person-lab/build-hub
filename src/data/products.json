@@ -150,6 +150,26 @@
           "url": "https://appllama.io",
           "logo": "https://appllama.io/branding/logo-icon-500.webp",
           "tags": ["设计库", "iOS", "付费墙"]
+        },
+        {
+          "id": "bencho",
+          "name": "Bencho",
+          "category": "design",
+          "type": "web",
+          "tagline": "能直接上手玩的交互 UI blocks 库",
+          "overview": "Bencho 收录了几十个精细的微交互 UI 组件：磁性选择、滑动确认、液体开关、下拉刷新……每个 block 都是页面里真实运行的活组件而不是截图，当场就能拖着玩；点 Edit 进工作台改参数，看中了从 Code 面板一键复制。所有 block 以 MIT 授权，可商用、无需署名。由独立开发者 Lorenzo Cabra 一人制作，每周上新。",
+          "highlights": [
+            "「Everything is live, not mocked」：全是活组件，试玩后再取用",
+            "每个 block 配 Edit 工作台和「Show me how」拆解，像当场拆别人成品",
+            "整库 block 代码 MIT 授权，商用产品直接搬，不问作者不署名",
+            "一人独立开发、周更，连站点的微文案都讲究，本身就是品味样本"
+          ],
+          "bestFor": "想让自己的界面「活起来」的开发者与设计师，或收集微交互灵感的人。",
+          "pricing": "完全免费，blocks 以 MIT 开源",
+          "platform": "Web",
+          "url": "https://bencho.dev",
+          "logo": "https://bencho.dev/apple-touch-icon.png",
+          "tags": ["UI 组件", "微交互", "开源"]
         }
       ]
     },

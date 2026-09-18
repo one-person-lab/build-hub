@@ -1,0 +1,692 @@
+{
+  "title": "Asset Library",
+  "subtitle": "Market-proven logo and app-icon design styles. Every style comes with a breakdown of real commercial cases (where the look comes from and why it works) plus a copy-ready AI image prompt — drop in your brand name and go.",
+  "categories": [
+    {
+      "key": "logo-style",
+      "label": "Logo Styles",
+      "styles": [
+        {
+          "id": "logo-minimal-wordmark",
+          "name": "Minimal Wordmark",
+          "en": "",
+          "tagline": "No icon, no tricks — the name is the logo",
+          "intro": "A text-only logo with no icon and no shape. The typeface is usually custom-built (Google's Product Sans, Uber's Uber Type), so the letterforms themselves are the brand asset. This is the default choice of the world's largest platforms: the simpler the mark, the easier it stays consistent across every size and every language.",
+          "why": [
+            "Zero ambiguity: users read the brand name itself instead of decoding a shape first",
+            "Works at every scale: from a 16px favicon to a building sign, no redesign needed — a big advantage in app stores",
+            "Custom type is a moat: anyone can copy your name, nobody can copy your licensed letterforms",
+            "Cheap to localize: entering a new market means swapping text, not the visual system"
+          ],
+          "fits": [
+            "Tech platforms and tools",
+            "SaaS / developer products",
+            "Brands going global"
+          ],
+          "cases": [
+            {
+              "brand": "Google",
+              "note": "The 2015 colorful wordmark, set in custom Product Sans, still in use today.",
+              "image": "/assets/logos/google_2015.svg",
+              "source": "https://commons.wikimedia.org/wiki/File:Google_2015_logo.svg",
+              "sourceLabel": "Wikimedia Commons"
+            },
+            {
+              "brand": "Uber",
+              "note": "The 2018 all-lowercase wordmark in custom Uber Type, identified purely by weight contrast.",
+              "image": "/assets/logos/uber_2018.svg",
+              "source": "https://commons.wikimedia.org/wiki/File:Uber_logo_2018.svg",
+              "sourceLabel": "Wikimedia Commons"
+            },
+            {
+              "brand": "Spotify",
+              "note": "Wordmark plus roundel in the modern system, Circular-derived type; the green is the brand.",
+              "image": "/assets/logos/spotify_2024.svg",
+              "source": "https://commons.wikimedia.org/wiki/File:Spotify_2024_logo.svg",
+              "sourceLabel": "Wikimedia Commons"
+            }
+          ],
+          "prompt": "Design a logotype for {{BRAND_NAME}}: a clean geometric sans-serif wordmark, single solid color ({{COLOR}}), no icon, no gradient, no effects. Even letter spacing, neutral and friendly tone, must stay legible at 16px. Flat vector style on a pure white background.",
+          "promptHint": "Replace {{BRAND_NAME}} with your brand and {{COLOR}} with a hex value (e.g. #111827). Works with GPT-Image, Nano Banana, Gemini, and doubles as a design brief for a human designer."
+        },
+        {
+          "id": "logo-negative-space",
+          "name": "Negative Space",
+          "en": "",
+          "tagline": "Hide a shape between the letters — those who spot it remember you forever",
+          "intro": "Use the empty space between letters to form a hiddenshape as a bonus. The canonical example is the forward arrow living between the E and x in FedEx. Nothing is added to the design, yet it creates a moment of discovery — the second a viewer figures it out themselves, the memory sticks far harder than any explicit symbol.",
+          "why": [
+            "Two readings: first the name, then the hidden shape — the second surprise is the shareable one",
+            "Restrained sophistication: theshape dissolves into the wordmark, keeping the mark minimal",
+            "Built-in social currency: 'did you notice the arrow in FedEx?' does the marketing for you",
+            "Best for established brands: it pays off only when viewers linger — risky for cold starts"
+          ],
+          "fits": [
+            "Logistics, finance, consulting — trust-driven industries",
+            "Mature brands chasing detail-level craft"
+          ],
+          "cases": [
+            {
+              "brand": "FedEx",
+              "note": "The gap between E and x forms a forward arrow — designed by Lindon Leader of Landor in 1994, the textbook negative-space case.",
+              "image": "/assets/logos/fedex_2016.svg",
+              "source": "https://en.wikipedia.org/wiki/File:FedEx_Corporation_-_2016_Logo.svg",
+              "sourceLabel": "Wikipedia"
+            },
+            {
+              "brand": "Amazon",
+              "note": "The arrow runs from a to z — everything under one roof — and doubles as a smile.",
+              "image": "/assets/logos/amazon_current.svg",
+              "source": "https://commons.wikimedia.org/wiki/File:Amazon_logo.svg",
+              "sourceLabel": "Wikimedia Commons"
+            }
+          ],
+          "prompt": "Design a wordmark logo for {{BRAND_NAME}} that hides a subtle symbol in its negative space: the hidden shape should reference {{HIDDEN_MEANING, e.g. speed, growth, a location pin}} and appear only in the space between two letterforms. Single solid color {{COLOR}}, flat vector, white background, no shadows. The hidden shape must be formed by the negative space itself, never drawn as a separate icon.",
+          "promptHint": "Put one abstract concept (speed, growth, connection) in {{HIDDEN_MEANING}}. After generating, zoom in: the shape must be made of empty space, not a pasted-on icon — otherwise it isn't this style."
+        },
+        {
+          "id": "logo-circular-badge",
+          "name": "Circular Badge",
+          "en": "",
+          "tagline": "A stamp-like circle that carries heritage and a quality promise",
+          "intro": "A centralshape inside a ring, brand name curved around it — like a certification stamp you could press onto a crate. Starbucks dropped even the outer text in 2011, leaving just the siren; BMW's roundel has kept its circular structure for a century. Badges age extremely well because they imply 'this brand has a past'.",
+          "why": [
+            "Stamp psychology: circular badges read as certification, guarantee and lineage",
+            "Physical-friendly: lids, caps, embroidery, branding irons — any round surface takes it directly",
+            "Survives single color: shrink it, foil-stamp it, knock it out in white — it still works",
+            "Appreciates with age: badges accumulate trust over time, trend marks expire"
+          ],
+          "fits": [
+            "Food, coffee and craft beverages",
+            "Automotive and machinery",
+            "Outdoor and handmade brands"
+          ],
+          "cases": [
+            {
+              "brand": "Starbucks",
+              "note": "The 2011 siren roundel: brand name and outer text removed — pureshape confidence beyond words.",
+              "image": "/assets/logos/starbucks_2011.svg",
+              "source": "https://en.wikipedia.org/wiki/File:Starbucks_Corporation_Logo_2011.svg",
+              "sourceLabel": "Wikipedia"
+            },
+            {
+              "brand": "BMW",
+              "note": "The blue-and-white quartered roundel — one of the most recognizable badges in motoring, unchanged in structure for a century.",
+              "image": "/assets/logos/bmw_roundel.svg",
+              "source": "https://commons.wikimedia.org/wiki/File:BMW.svg",
+              "sourceLabel": "Wikimedia Commons"
+            },
+            {
+              "brand": "Patagonia",
+              "note": "A mountain-ridge badge with the name — outdoor fans call it 'the medal on your jacket'.",
+              "image": "/assets/logos/patagonia_current.svg",
+              "source": "https://commons.wikimedia.org/wiki/File:Patagonia_(Unternehmen)_logo.svg",
+              "sourceLabel": "Wikimedia Commons"
+            }
+          ],
+          "prompt": "Design a circular badge logo for {{BRAND_NAME}}: a ring-shaped emblem with {{CENTER_SUBJECT, e.g. a mountain ridge line, a wave, a rooster}} at the center, the brand name curved along the ring, maximum 2 colors ({{COLOR_1}}, {{COLOR_2}}), stamp-like flat style. It must stay readable at 24mm print size and work as a single-color white version. No photorealistic gradients.",
+          "promptHint": "Fill {{CENTER_SUBJECT}} with a concrete object tied to what the business does (mountains, waves, wheat). Always ask for a one-color version too — a badge's durability is decided by how it looks in single color."
+        },
+        {
+          "id": "logo-combo-mark",
+          "name": "Combination Mark",
+          "en": "",
+          "tagline": "The icon carries memory, the wordmark carries the name",
+          "intro": "One abstract symbol paired with one wordmark, lockable side by side or split apart: the symbol for avatars and favicons, the wordmark for contracts and navigation. This has been the internet industry's default configuration for a decade — Slack's hashtag and Airbnb's Bélo both stood on their own as symbols first, then bound to the name.",
+          "why": [
+            "Two memory channels: theshape handles 'I've seen this', the text handles 'what it's called' — highest recall",
+            "Scene-adaptive: symbol for narrow containers (app icons), full lockup for formal contexts",
+            "Symbol-first spread: in feeds, the shape gets recognized faster than wordmarks",
+            "Caveat: young brands should not go symbol-only — before users know your name, a shape is a dead asset"
+          ],
+          "fits": [
+            "SaaS and platform products",
+            "App-first internet brands",
+            "Companies with many touchpoints (web / apps / documents)"
+          ],
+          "cases": [
+            {
+              "brand": "Slack",
+              "note": "The four-color hashtag comes from the idea of channels; symbol and wordmark work fully independently.",
+              "image": "/assets/logos/slack_logo.svg",
+              "source": "https://en.wikipedia.org/wiki/File:Slack_Technologies_Logo.svg",
+              "sourceLabel": "Wikipedia"
+            },
+            {
+              "brand": "Airbnb",
+              "note": "The Bélo plus wordmark lockup: one symbol for people, places, love and belonging — launched in 2014 with a full usage guide.",
+              "image": "/assets/logos/airbnb.svg",
+              "source": "https://commons.wikimedia.org/wiki/File:Airbnb_Logo.svg",
+              "sourceLabel": "Wikimedia Commons"
+            },
+            {
+              "brand": "Apple",
+              "note": "The 1977 rainbow apple: the early proof that a symbol can stand alone without the name.",
+              "image": "/assets/logos/apple_rainbow.svg",
+              "source": "https://commons.wikimedia.org/wiki/File:Apple_Computer_Logo_rainbow.svg",
+              "sourceLabel": "Wikimedia Commons"
+            }
+          ],
+          "prompt": "Create a combination logo for {{BRAND_NAME}}: a simple abstract symbol based on {{SYMBOL_CONCEPT, e.g. a hashtag for chat channels, a nested chevron for layers}} paired with a horizontal wordmark in a modern grotesque font. The symbol must work alone as an app icon; the wordmark must work alone in documents. 2-4 flat colors, generous clear space, white background, vector style.",
+          "promptHint": "Give {{SYMBOL_CONCEPT}} an abstract idea tied to the product so the symbol has a reason to exist. Test the output twice: symbol alone — recognizable? Wordmark alone — readable?"
+        },
+        {
+          "id": "logo-gradient-geometric",
+          "name": "Geometric Gradient",
+          "en": "",
+          "tagline": "Shapes plus tech-color gradients: instantly reads as 'product company'",
+          "intro": "Basic geometric primitives (rounded rectangles, circles) assembled into a letter or abstract mark, with 2-5 saturated brand colors or a gradient. Stripe, Figma and Discord defined the SaaS-era aesthetic with this language: the palette itself is the design system's spec sheet.",
+          "why": [
+            "Color as asset: Figma's five colors, Discord's blurple — hex codes become brand property",
+            "Dark-UI native: gradients glow on dark backgrounds, a perfect fit for developer tools",
+            "Extensible: the geometric units recombine into illustrations, icons and loading animations",
+            "Risk: trend-heavy — dozens of lookalike product marks shipped around 2016; keep shape differentiation sharp"
+          ],
+          "fits": [
+            "Developer and design tools",
+            "AI products",
+            "Consumer tech for younger audiences"
+          ],
+          "cases": [
+            {
+              "brand": "Stripe",
+              "note": "The purple slashed-S plus wordmark — 'Stripe purple' became the payment industry's default association.",
+              "image": "/assets/logos/stripe_2016.svg",
+              "source": "https://en.wikipedia.org/wiki/File:Stripe_Logo,_revised_2016.svg",
+              "sourceLabel": "Wikipedia"
+            },
+            {
+              "brand": "Figma",
+              "note": "Five rounded geometric blocks form the F; each color maps to a canvas concept — the color system is the product philosophy.",
+              "image": "/assets/logos/figma_current.svg",
+              "source": "https://commons.wikimedia.org/wiki/File:Figma-logo.svg",
+              "sourceLabel": "Wikimedia Commons"
+            },
+            {
+              "brand": "Discord",
+              "note": "The 2021 wordmark plus gamepad-face symbol, with blurple running through every touchpoint.",
+              "image": "/assets/logos/discord_2021.svg",
+              "source": "https://commons.wikimedia.org/wiki/File:Discord_colour_textlogo_(2021).svg",
+              "sourceLabel": "Wikimedia Commons"
+            }
+          ],
+          "prompt": "Design a geometric logo mark for {{BRAND_NAME}} built from {{N}} simple shapes (circles and rounded rectangles) that reads as an abstract {{LETTER_OR_OBJECT, e.g. the letter S, a spark}}. Use a subtle two-tone gradient from {{COLOR_A}} to {{COLOR_B}}, plus a neutral sans wordmark. Must look right on both dark and light backgrounds. Flat vector, no bevels or 3D effects.",
+          "promptHint": "Setting {{LETTER_OR_OBJECT}} to the brand's initial letter works best for geometric assembly. Ask the model to render it on both dark and light backgrounds before choosing."
+        },
+        {
+          "id": "logo-mascot",
+          "name": "Mascot Character",
+          "en": "",
+          "tagline": "Turn the brand into a character with a personality, not just a mark",
+          "intro": "The brand becomes a drawable character: Duolingo's owl Duo runs the company's social media with 'threatening-you-into-studying' gags, and Michelin's Bibendum has been standing since 1898. Of all logo structures, the mascot is the only one that can make faces — born for content distribution.",
+          "why": [
+            "Emotional asset: a character has expressions and moods, producing content instead of just displaying a logo",
+            "Trust shortcut: in education and service, a likeable character collapses psychological distance",
+            "Merch and IP-ready: stickers, plush toys, collaborations — characters commercialize naturally",
+            "Maintenance cost: characters need ongoing operation (persona, illustration guidelines); stop and they age"
+          ],
+          "fits": [
+            "Education and language learning",
+            "Restaurant chains",
+            "Consumer brands running heavy social media"
+          ],
+          "cases": [
+            {
+              "brand": "Duolingo",
+              "note": "Owl Duo: the mascot became the social-media lead character — the persona itself is a growth strategy.",
+              "image": "/assets/logos/duolingo_owl.svg",
+              "source": "https://commons.wikimedia.org/wiki/File:Duolingo_Owl_signature.svg",
+              "sourceLabel": "Wikimedia Commons"
+            },
+            {
+              "brand": "Michelin",
+              "note": "Bibendum, born 1898 — a figure made of stacked tires, among the longest-lived mascots in commercial history.",
+              "image": "/assets/logos/michelin_2017.svg",
+              "source": "https://en.wikipedia.org/wiki/File:Michelin_(2017).svg",
+              "sourceLabel": "Wikipedia"
+            }
+          ],
+          "prompt": "Draw a friendly mascot logo for {{BRAND_NAME}}: a single cartoon character ({{ANIMAL_OR_PERSON, e.g. an owl, a chef}}) with bold outlines, 2-3 flat colors, expressive eyes conveying {{TRAIT, e.g. playful persistence}}, simple enough to be embroidered or made into a sticker. Optional brand name curved below. No shading, no fur detail, flat vector style.",
+          "promptHint": "Put a personality trait users should feel into {{TRAIT}}. Shrink the result to 32px: a mascot that turns to mush won't survive as an app icon."
+        },
+        {
+          "id": "logo-serif-luxury",
+          "name": "Luxury Serif",
+          "en": "",
+          "tagline": "Black and white, hairline serifs, wide space — restraint is the price tag",
+          "intro": "High-contrast Didone serifs (Didot / Bodoni family), pure black and white, zero ornament. Tiffany and Vogue wordmarks and Rolex's crown have barely changed in decades. The language borrows from classical print and haute-couture typography: by chasing no trend, it becomes the anti-trend.",
+          "why": [
+            "Class association: hairline serifs automatically evoke fashion magazines, bespoke ateliers and classic taste",
+            "Never expires: precisely because it rides no contemporary trend, it needs no rebrand",
+            "Print-friendly: single color suffices — blind emboss, foil, embroidery all compatible",
+            "Hard constraint: on mass-market budget products it reads as pretentious — typeface temperament must match price point"
+          ],
+          "fits": [
+            "Fashion, jewelry and beauty",
+            "Luxury hotels and dining",
+            "Law firms and private banking"
+          ],
+          "cases": [
+            {
+              "brand": "Tiffany & Co.",
+              "note": "A high-contrast serif wordmark in the same classical lineage as Vogue: the blue box carries the color, the letterforms carry the restraint.",
+              "image": "/assets/logos/tiffany.svg",
+              "source": "https://commons.wikimedia.org/wiki/File:Tiffany_%26_Co._2024_logo.svg",
+              "sourceLabel": "Wikimedia Commons"
+            },
+            {
+              "brand": "Vogue",
+              "note": "A Didot-family high-contrast wordmark — the typographic archetype of all fashion publishing.",
+              "image": "/assets/logos/vogue_logo.svg",
+              "source": "https://en.wikipedia.org/wiki/File:VOGUE_LOGO.svg",
+              "sourceLabel": "Wikipedia"
+            },
+            {
+              "brand": "Rolex",
+              "note": "Crown plus all-caps serif wordmark: recognition carried entirely by letterform and proportion, no decoration.",
+              "image": "/assets/logos/rolex_logo.png",
+              "source": "https://commons.wikimedia.org/wiki/File:Logo_da_Rolex.png",
+              "sourceLabel": "Wikimedia Commons"
+            }
+          ],
+          "prompt": "Create a luxury wordmark for {{BRAND_NAME}} in a high-contrast Didone serif (thin hairlines, strong stems), all capitals, wide letter spacing, pure black on white. Optionally add an interlocked monogram of the initials {{INITIALS}}. No gradients, no ornaments, no gold: the premium feel must come from typographic restraint alone.",
+          "promptHint": "Image models love to 'add ornament' whenever they hear serif — the prompt already forbids it; still check the output for stray flourish strokes."
+        },
+        {
+          "id": "logo-terminal-geek",
+          "name": "Terminal / Dev-Native",
+          "en": "",
+          "tagline": "A tiny black-and-white glyph with monospace energy: 'built for developers'",
+          "intro": "One minimal geometric glyph (Vercel's triangle) plus a lowercase sans wordmark, in pure black and white or a single accent color (Supabase green). The aesthetic descends from terminals and ASCII culture: the anti-marketing posture is itself a filter — developers see 'not flashy' and conclude 'this team gets engineering'.",
+          "why": [
+            "In-group signal: stark black and white is developer culture's handshake, implying the product respects the craft",
+            "Survives tiny sizes: favicons, terminals, README badges — exactly its core distribution surfaces",
+            "Dark-mode native: the product UI is dark anyway, so the logo inverts to white and just works",
+            "Risk: hard to break out — to mainstream consumers it can read as cold"
+          ],
+          "fits": [
+            "Developer tools and open-source projects",
+            "AI and infrastructure products",
+            "SaaS sold to engineers"
+          ],
+          "cases": [
+            {
+              "brand": "Vercel",
+              "note": "A single black equilateral triangle: among the stingiest — and most self-consistent — glyphs in logo history.",
+              "image": "/assets/logos/vercel_black.svg",
+              "source": "https://commons.wikimedia.org/wiki/File:Vercel_logo_black.svg",
+              "sourceLabel": "Wikimedia Commons"
+            },
+            {
+              "brand": "Linear",
+              "note": "A hairline wordmark on dark ground — 'Linear aesthetics' became shorthand for product polish.",
+              "image": "/assets/logos/linear.png",
+              "source": "https://en.wikipedia.org/wiki/File:Linear_light_wordmark_dark_background_by_Linear_Orbit_Inc.png",
+              "sourceLabel": "Wikipedia",
+              "bg": "#12131A"
+            },
+            {
+              "brand": "Supabase",
+              "note": "A green lightning glyph — the signature color of the open-source database world, single-color by design.",
+              "image": "/assets/logos/supabase_logo.svg",
+              "source": "https://simpleicons.org/?q=supabase",
+              "sourceLabel": "Simple Icons"
+            }
+          ],
+          "prompt": "Design a developer-brand logo for {{BRAND_NAME}}: a single geometric glyph ({{SHAPE, e.g. an upward triangle, a terminal cursor block}}) in pure black or one accent color ({{ACCENT}}) on a plain background, plus a lowercase sans wordmark with a monospace feel. It must render cleanly at 16px favicon size and invert to white for dark mode. Flat, no gradients, no effects.",
+          "promptHint": "Ask for both white-on-black and black-on-white versions — half the value of a terminal-style logo is its inverted form."
+        }
+      ]
+    },
+    {
+      "key": "app-icon-style",
+      "label": "App Icon Styles",
+      "styles": [
+        {
+          "id": "icon-solid-glyph",
+          "name": "Solid Glyph",
+          "en": "",
+          "tagline": "One flat color, one symbol — still readable at 16px",
+          "intro": "A single background color and one high-contrast symbol: no gradients, no text. This is the most noise-proof move in an icon ocean — among dozens of App Store icons, a solid block plus a simple shape is read in 0.1 seconds. Spotify green, Things orange, Claude cream: the color itself is the entry point.",
+          "why": [
+            "Color asset: keep one exclusive hue and users find you by scanning",
+            "Never smudges at tiny sizes: few strokes means notification bar, watch and dark mode all work",
+            "Merch-friendly: a clean color block on any backdrop, zero-cost marketing art",
+            "Constraint: the hue must be near-exclusive — a color clash means sharing traffic"
+          ],
+          "fits": [
+            "Utility and productivity apps",
+            "Music and content platforms",
+            "AI products"
+          ],
+          "cases": [
+            {
+              "brand": "Spotify",
+              "note": "Black sound-wave arcs on green; only the stroke weight has ever been tweaked, and the 'green = music' grip has never been taken.",
+              "image": "/assets/icons/spotify.jpg",
+              "source": "https://apps.apple.com/us/app/spotify-music-and-podcasts/id324684580",
+              "sourceLabel": "App Store"
+            },
+            {
+              "brand": "Things 3",
+              "note": "One white arrow on orange — a paid productivity tool dares to use a toy-bright color because the glyph is absolutely simple.",
+              "image": "/assets/icons/things3.jpg",
+              "source": "https://apps.apple.com/us/app/things-3/id904237743",
+              "sourceLabel": "App Store"
+            },
+            {
+              "brand": "Claude",
+              "note": "An orange starburst on cream: while every AI product went dark, the warm hand-drawn feel became the identifier.",
+              "image": "/assets/icons/claude.jpg",
+              "source": "https://apps.apple.com/us/app/claude-by-anthropic/id6473753684",
+              "sourceLabel": "App Store"
+            }
+          ],
+          "prompt": "Design an app icon for {{APP_NAME}}: one flat solid background ({{COLOR_1}}), one high-contrast centered glyph ({{COLOR_2}}), no gradients, no text, no shadows. The glyph must stay legible at 29x29 px. Rounded-square iOS icon format, 1024x1024, generous padding, flat vector style.",
+          "promptHint": "Pick a {{COLOR_1}} you can own long-term and max out the contrast with {{COLOR_2}}; shrink to 29px and check it still reads."
+        },
+        {
+          "id": "icon-gradient",
+          "name": "Gradient",
+          "en": "",
+          "tagline": "The gradient 'premium feel' is the most validated recipe there is",
+          "intro": "A colorful gradient base plus a white line glyph — since Instagram this has all but become the uniform of consumer breakout apps. The gradient gives a static icon light and depth while the white foreground keeps the glyph clean. Only To-C products dare saturated gradients — the signal is 'popular, energetic, worth opening'.",
+          "why": [
+            "Free premium: one gradient replaces a whole skeuomorphic highlight stack — the icon instantly costs more",
+            "White foreground is lazy-proof: the glyph never has to blend with the base",
+            "Works on light and dark wallpapers: gradients carry their own light",
+            "Constraint: hue real estate is crowded — avoid the ranges Instagram / Apple Music already own"
+          ],
+          "fits": [
+            "Social and content communities",
+            "Music and video",
+            "Consumer-facing AI"
+          ],
+          "cases": [
+            {
+              "brand": "Instagram",
+              "note": "Swapped the skeuomorphic camera for a pink-orange-yellow gradient and within months 'candy' became its unofficial nickname.",
+              "image": "/assets/icons/instagram.jpg",
+              "source": "https://apps.apple.com/us/app/instagram/id389801252",
+              "sourceLabel": "App Store"
+            },
+            {
+              "brand": "Google Gemini",
+              "note": "A blue-violet gradient sparkle — Google unified its entire AI line under this breathing light effect.",
+              "image": "/assets/icons/gemini.jpg",
+              "source": "https://apps.apple.com/us/app/google-gemini/id6477489729",
+              "sourceLabel": "App Store"
+            },
+            {
+              "brand": "Apple Music",
+              "note": "A white note on pink gradient: the most 'neon' tile in Apple's own grid, aimed straight at young music scenes.",
+              "image": "/assets/icons/apple_music.jpg",
+              "source": "https://apps.apple.com/us/app/apple-music/id1108187390",
+              "sourceLabel": "App Store"
+            },
+            {
+              "brand": "Telegram",
+              "note": "A paper plane on blue-cyan gradient, camped opposite WhatsApp green; the gradient gives the plane volume.",
+              "image": "/assets/icons/telegram.jpg",
+              "source": "https://apps.apple.com/us/app/telegram-messenger/id686449807",
+              "sourceLabel": "App Store"
+            }
+          ],
+          "prompt": "Design an app icon for {{APP_NAME}}: a smooth diagonal gradient background ({{COLOR_1}} to {{COLOR_2}}, optional third hue), a single white outline glyph of {{SUBJECT}} centered, no text, soft light sheen, rounded-square iOS icon format, 1024x1024, flat modern style like a top-charting consumer app.",
+          "promptHint": "Check your gradient hues aren't already Instagram / Apple Music / Telegram territory; keep the white glyph under three main curves."
+        },
+        {
+          "id": "icon-lettermark",
+          "name": "Lettermark",
+          "en": "",
+          "tagline": "One letter fills the screen — even a rename can't dislodge it",
+          "intro": "Turn the brand's initial into the only graphic: Uber's U, X's X, Netflix's N. The lettermark is the privilege of category-defining platforms — users already know the word, so the icon just repeats it. The letter fills the canvas with almost no ornament: the most confident posture in any list.",
+          "why": [
+            "Zero learning cost: icon and name are the same thing — remembering one remembers the other",
+            "Rename-proof: Twitter → X changed only the letter and the whole visual system survived",
+            "Composition is inherently stable: one big centered character never smudges",
+            "Constraint: for a startup, a lettermark just magnifies a name nobody knows"
+          ],
+          "fits": [
+            "Category-leading platforms",
+            "Products that completed a rebrand",
+            "Short, strong names"
+          ],
+          "cases": [
+            {
+              "brand": "Uber",
+              "note": "A white U on black, distilled from a busy map glyph to a single letter — the act of restraint was itself the confidence statement.",
+              "image": "/assets/icons/uber.jpg",
+              "source": "https://apps.apple.com/us/app/uber-request-a-ride/id368677368",
+              "sourceLabel": "App Store"
+            },
+            {
+              "brand": "X",
+              "note": "The Twitter bird retired and the letter X took everything — the largest-ever 'rename without moving the visual center' experiment.",
+              "image": "/assets/icons/x_app.jpg",
+              "source": "https://apps.apple.com/us/app/x/id333903271",
+              "sourceLabel": "App Store"
+            },
+            {
+              "brand": "Airbnb",
+              "note": "The gradient Bélo on white: one mark that is simultaneously the letter A, a heart, a person and a location pin.",
+              "image": "/assets/icons/airbnb.jpg",
+              "source": "https://apps.apple.com/us/app/airbnb/id401626263",
+              "sourceLabel": "App Store"
+            },
+            {
+              "brand": "Netflix",
+              "note": "A folded red N on black, film-strip depth built into the strokes — the brand color is the channel color.",
+              "image": "/assets/icons/netflix.jpg",
+              "source": "https://apps.apple.com/us/app/netflix/id363590051",
+              "sourceLabel": "App Store"
+            }
+          ],
+          "prompt": "Design an app icon for {{APP_NAME}}: a single bold letter \"{{LETTER}}\" filling the canvas, custom geometric sans-serif, {{COLOR_1}} background with {{COLOR_2}} letter (or inverted), no extra ornament, the letter may carry one subtle fold or gradient detail, rounded-square iOS icon format, 1024x1024.",
+          "promptHint": "The letter should span at least 60% of the width to 'fill the screen'; at most one decorative detail, and it must vanish cleanly at 29px."
+        },
+        {
+          "id": "icon-mascot",
+          "name": "Mascot",
+          "en": "",
+          "tagline": "Put the character's face on the icon — the bond forms before the app even opens",
+          "intro": "A mascot icon fits an expressive character into 1024px: Duolingo's owl, Reddit's Snoo, bilibili's little TV. Characters carry personality and fan-art space; users open the app 'to see what it's doing today' — the favorite weapon of retention-obsessed categories (learning, community, youth culture).",
+          "why": [
+            "Emotional entry: costumes swap with holidays and events — the icon itself becomes content",
+            "Memory beats geometry: humans remember faces far better than shapes, it pops out of any list",
+            "Social amplifier: sticker packs, merch, animation — the icon is just the starting point",
+            "Constraint: once a character lands it's nearly impossible to replace; budget for the IP early"
+          ],
+          "fits": [
+            "Language and habit building",
+            "Community and content platforms",
+            "Youth and ACG-oriented products"
+          ],
+          "cases": [
+            {
+              "brand": "Duolingo",
+              "note": "Duo the owl permanently headlines the 'scariest study nag' meme — the icon is the marketing, at half budget.",
+              "image": "/assets/icons/duolingo.jpg",
+              "source": "https://apps.apple.com/us/app/duolingo-language-lessons/id570060128",
+              "sourceLabel": "App Store"
+            },
+            {
+              "brand": "Reddit",
+              "note": "Snoo, the antenna-topped white figure on orange: the whole community vibe rests on that harmless face, barely redrawn for years.",
+              "image": "/assets/icons/reddit.jpg",
+              "source": "https://apps.apple.com/us/app/reddit/id1064216828",
+              "sourceLabel": "App Store"
+            },
+            {
+              "brand": "bilibili",
+              "note": "A pink little TV — chassis plus two antennae say 'ACG community' completely.",
+              "image": "/assets/icons/bilibili.jpg",
+              "source": "https://apps.apple.com/cn/app/%E5%93%94%E5%93%A9%E5%93%94%E5%93%A9-%E5%BC%B9%E5%B9%95%E7%95%AA%E5%89%A7%E7%9B%B4%E6%92%AD%E9%AB%98%E6%B8%85%E8%A7%86%E9%A2%91/id736536022",
+              "sourceLabel": "App Store"
+            }
+          ],
+          "prompt": "Design an app icon for {{APP_NAME}}: a friendly {{CREATURE}} mascot face centered on a {{COLOR_1}} background, big eyes, simple rounded shapes, flat illustration style with soft shading, no text, must stay readable at 29x29 px, rounded-square iOS icon format, 1024x1024.",
+          "promptHint": "Head only, no full body; bind {{CREATURE}} to the product's temperament (learning = owl, community = little robot) and give the eyes at least a third of the face width."
+        },
+        {
+          "id": "icon-textured",
+          "name": "Rich Texture",
+          "en": "",
+          "tagline": "A stroke of paint, a sliver of light — an icon built like a small artwork",
+          "intro": "Real light, paint and material turn the icon into a miniature artwork: Procreate's rainbow brush stroke, Genshin's metal crest. The textured route keeps getting validated in the two experience-heavy categories — creative tools and games: the more the icon looks like a poster, the more users trust the product's quality.",
+          "why": [
+            "Quality signal: brushwork and lighting declare 'this is for people who do serious work'",
+            "Instant standout: most of the list is flat color blocks, one textured icon jumps out",
+            "Emotional density: games pre-stage their world, tools pay homage to craft",
+            "Constraint: detail dies at small sizes — ship a simplified variant for notification bars"
+          ],
+          "fits": [
+            "Drawing and creative tools",
+            "Games",
+            "Craft-forward brands"
+          ],
+          "cases": [
+            {
+              "brand": "Procreate Pocket",
+              "note": "One wet rainbow stroke on black — the 'sharpen your tools' manifesto compressed into a single brush mark.",
+              "image": "/assets/icons/procreate_pocket.jpg",
+              "source": "https://apps.apple.com/us/app/procreate-pocket/id916366645",
+              "sourceLabel": "App Store"
+            },
+            {
+              "brand": "Genshin Impact",
+              "note": "A platinum-gradient metal crest: the game's Teyvat worldview rendered as a collectible badge.",
+              "image": "/assets/icons/genshin.jpg",
+              "source": "https://apps.apple.com/cn/app/%E5%8E%9F%E7%A5%9E-%E8%87%B3%E5%86%AC%E5%BC%80%E6%94%BE/id1467190251",
+              "sourceLabel": "App Store"
+            }
+          ],
+          "prompt": "Design an app icon for {{APP_NAME}}: a single dramatic {{TEXTURE_SUBJECT}} (brush stroke / emblem / artifact) with realistic lighting and rich color on a dark {{COLOR_1}} background, poster-quality rendering, centered composition, no text, rounded-square iOS icon format, 1024x1024.",
+          "promptHint": "Render two versions: the 1024 detail cut and a 29px simplified cut; keep exactly one textured subject — cut the second element."
+        },
+        {
+          "id": "icon-colorful-geometric",
+          "name": "Colorful Geometric",
+          "en": "",
+          "tagline": "Three or four colors assembled into one shape — the professional tool uniform",
+          "intro": "Several saturated blocks assembled into a single mark: Figma's four-color bars, Slack's colored hash, Google Photos' four-color pinwheel. Multicolor geometry is the safest language for collaboration and productivity tools — each color can map to a product module, making the icon a legend for the information architecture.",
+          "why": [
+            "Color as function: icon palette maps one-to-one to the in-app palette, closing the recognition loop",
+            "Breaks the serious-tool monotony: professional apps can't be cutesy, but they can be multicolor",
+            "Structure that splits: one mark of interlocking parts feeds motion, loaders and brand kits alike",
+            "Constraint: hold the palette to 3-5 colors — beyond that it's a paint aisle"
+          ],
+          "fits": [
+            "Design and collaboration tools",
+            "Productivity suites",
+            "Platform products"
+          ],
+          "cases": [
+            {
+              "brand": "Figma",
+              "note": "Four colored rounded bars assemble an outline — the colors of the product panels are the colors of the icon.",
+              "image": "/assets/icons/figma.jpg",
+              "source": "https://apps.apple.com/us/app/figma/id1152747299",
+              "sourceLabel": "App Store"
+            },
+            {
+              "brand": "Slack",
+              "note": "A colored hash: the abstract idea of 'channel' drawn directly as four arcs.",
+              "image": "/assets/icons/slack.jpg",
+              "source": "https://apps.apple.com/us/app/slack/id618783545",
+              "sourceLabel": "App Store"
+            },
+            {
+              "brand": "Google Photos",
+              "note": "A four-color pinwheel — 'photos auto-arranged into albums' rotated into a single shape.",
+              "image": "/assets/icons/google_photos.jpg",
+              "source": "https://apps.apple.com/us/app/google-photos-backup-edit/id962194608",
+              "sourceLabel": "App Store"
+            }
+          ],
+          "prompt": "Design an app icon for {{APP_NAME}}: one unified mark assembled from 3-4 rounded geometric shapes, each in a distinct saturated color ({{COLOR_1}}, {{COLOR_2}}, {{COLOR_3}}, optional {{COLOR_4}}), on a white or very light background, flat vector, precise alignment, no text, rounded-square iOS icon format, 1024x1024.",
+          "promptHint": "Fix 3-4 HEX values before writing the prompt; the shapes must overlap or interlock — laid out separately they become a swatch strip."
+        },
+        {
+          "id": "icon-minimal-light",
+          "name": "Minimal Light",
+          "en": "",
+          "tagline": "One blank amid a screen of color steals the show",
+          "intro": "White background plus a single thin dark glyph — trading away color presence for 'premium and calm': Notion's serifed N, Threads' tangled line. In an ocean of colorful icons, white is contrarianly loud; it also promises the product UI is just as clean — the icon is the trailer for the product's temperament.",
+          "why": [
+            "Contrarian placement: a white block pops hardest on dark wallpapers and turns 'papery' on light ones",
+            "Temperament trailer: white plus hairline = restrained, professional, document-like — expectation management for free",
+            "Never dates: black on white carries no trend-color risk, no redraw for a decade",
+            "Constraint: the glyph must be distinctive, or white-on-black reads as a built-in system app"
+          ],
+          "fits": [
+            "Notes and knowledge management",
+            "Reading and writing tools",
+            "Professional products after a composed feel"
+          ],
+          "cases": [
+            {
+              "brand": "Notion",
+              "note": "A black serifed N on white — one letter that borrows the entire 'paper and pen' tradition.",
+              "image": "/assets/icons/notion.jpg",
+              "source": "https://apps.apple.com/us/app/notion-notes-tasks-ai/id1232780281",
+              "sourceLabel": "App Store"
+            },
+            {
+              "brand": "Threads",
+              "note": "A single tangled curve on white: Meta's way of drawing a line from Instagram's rainbow gradient.",
+              "image": "/assets/icons/threads.jpg",
+              "source": "https://apps.apple.com/us/app/threads/id6446901002",
+              "sourceLabel": "App Store"
+            }
+          ],
+          "prompt": "Design an app icon for {{APP_NAME}}: pure white background, one thin elegant {{COLOR_1}} glyph of {{SUBJECT}} (single continuous line preferred), generous negative space, editorial minimal style, no gradients, no text, rounded-square iOS icon format, 1024x1024.",
+          "promptHint": "Keep stroke weight above 1/40 of the canvas width or it breaks at small sizes; if the glyph is generic, add one proprietary detail (like Notion's serif foot)."
+        },
+        {
+          "id": "icon-dark-tech",
+          "name": "Dark Tech",
+          "en": "",
+          "tagline": "A cold gleam on black — engineers spot their own at a glance",
+          "intro": "Near-black base plus a high-contrast glyph or subtle glow: Linear, Obsidian, ChatGPT. The dark icon broke out of developer tools and is now the default skin of 'AI-native' — it assumes the user keeps dark mode on all day, and the icon is one cold gleam in the dark ocean.",
+          "why": [
+            "Native to dark mode: developers and AI users live in dark UIs — no inversion needed",
+            "Cold filter: black carries a 'capabilities, not marketing' air that screens out non-target users",
+            "Glow memory: one gradient gleam is the entire decoration — restraint is the identifier",
+            "Constraint: risky for mass consumer apps — black triggers 'professional software anxiety'"
+          ],
+          "fits": [
+            "Developer tools",
+            "AI-native products",
+            "Productivity and knowledge management"
+          ],
+          "cases": [
+            {
+              "brand": "Linear",
+              "note": "Concentric colored arcs on near-black — 'Linear aesthetics' has become the name of a design school.",
+              "image": "/assets/icons/linear.jpg",
+              "source": "https://apps.apple.com/us/app/linear-mobile/id1645587184",
+              "sourceLabel": "App Store"
+            },
+            {
+              "brand": "Obsidian",
+              "note": "A glowing crystal on deep purple: the knowledge tool carves the 'mined ore' metaphor right into the icon.",
+              "image": "/assets/icons/obsidian.jpg",
+              "source": "https://apps.apple.com/us/app/obsidian-connected-notes/id1557175442",
+              "sourceLabel": "App Store"
+            },
+            {
+              "brand": "ChatGPT",
+              "note": "A white knot-flower on black — the most imitated silhouette of the AI era.",
+              "image": "/assets/icons/chatgpt.jpg",
+              "source": "https://apps.apple.com/us/app/chatgpt/id6448311069",
+              "sourceLabel": "App Store"
+            }
+          ],
+          "prompt": "Design an app icon for {{APP_NAME}}: near-black background (#0B0B0F), a single minimal glyph of {{SUBJECT}} in white or a subtle {{COLOR_1}} glow gradient, thin precise strokes, dark-mode native, no text, no drop shadow, rounded-square iOS icon format, 1024x1024.",
+          "promptHint": "One glow color, one direction only; also export a pure-white inverted variant for light contexts."
+        }
+      ]
+    }
+  ]
+}

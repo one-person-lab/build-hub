@@ -1,0 +1,692 @@
+{
+  "title": "素材库",
+  "subtitle": "经市场验证的 Logo 与 App 图标设计风格。每个风格都配真实商业案例拆解（图从哪来、为什么有效），以及一段可直接复制的 AI 生图提示词——填上你的品牌名就能出稿。",
+  "categories": [
+    {
+      "key": "logo-style",
+      "label": "Logo 风格",
+      "styles": [
+        {
+          "id": "logo-minimal-wordmark",
+          "name": "极简字标",
+          "en": "Minimal Wordmark",
+          "tagline": "不靠图形靠字体，一眼读到你叫什么",
+          "intro": "只用一个文字 Logo，不加任何图标。字体通常是品牌定制（Google 的 Product Sans、Uber 的 Uber Type），字形本身就是品牌资产。这是全球头部平台最主流的选择：越简单，越容易在所有尺寸、所有语言环境下保持一致。",
+          "why": [
+            "零歧义：用户第一眼读到的是品牌名本身，不需要先猜一个图形的含义",
+            "全尺寸可用：从 16px 的浏览器标签到楼宇招牌都不必重新设计，App 商店场景尤其占优",
+            "定制字体是护城河：名字抄得走，字形受版权保护，气质抄不走",
+            "跨语言成本低：进入新市场只换文字，不换视觉系统"
+          ],
+          "fits": [
+            "科技平台与工具",
+            "SaaS / 开发者产品",
+            "面向全球市场的品牌"
+          ],
+          "cases": [
+            {
+              "brand": "Google",
+              "note": "2015 年启用的彩色字标，字体为定制 Product Sans，沿用至今。",
+              "image": "/assets/logos/google_2015.svg",
+              "source": "https://commons.wikimedia.org/wiki/File:Google_2015_logo.svg",
+              "sourceLabel": "Wikimedia Commons"
+            },
+            {
+              "brand": "Uber",
+              "note": "2018 年重塑的全小写字标，定制 Uber Type 字体，靠字重差异做识别。",
+              "image": "/assets/logos/uber_2018.svg",
+              "source": "https://commons.wikimedia.org/wiki/File:Uber_logo_2018.svg",
+              "sourceLabel": "Wikimedia Commons"
+            },
+            {
+              "brand": "Spotify",
+              "note": "字标与圆标并用的现代版本，Circular 系定制字体，绿色即品牌。",
+              "image": "/assets/logos/spotify_2024.svg",
+              "source": "https://commons.wikimedia.org/wiki/File:Spotify_2024_logo.svg",
+              "sourceLabel": "Wikimedia Commons"
+            }
+          ],
+          "prompt": "Design a logotype for {{BRAND_NAME}}: a clean geometric sans-serif wordmark, single solid color ({{COLOR}}), no icon, no gradient, no effects. Even letter spacing, neutral and friendly tone, must stay legible at 16px. Flat vector style on a pure white background.",
+          "promptHint": "把 {{BRAND_NAME}} 换成品牌名、{{COLOR}} 给一个色值（如 #111827）。适合 GPT-Image、Nano Banana、Gemini 等生图模型，也可以直接当设计 brief 发给设计师。"
+        },
+        {
+          "id": "logo-negative-space",
+          "name": "负空间巧思",
+          "en": "Negative Space",
+          "tagline": "藏一个图形在字母之间，看懂的人会记你一辈子",
+          "intro": "利用字母之间的空白「顺便」形成一个隐藏图形。最著名的案例是 FedEx 的 E 与 x 之间藏着一枚前进箭头。它不增加任何视觉元素，却制造出「发现感」——用户自己看破的那一瞬间，记忆强度远超直白的展示。",
+          "why": [
+            "双重阅读：第一遍读名字，第二遍发现图形，第二次的惊喜就是传播素材",
+            "克制的高级感：图形完全融入字标，整体依然极简",
+            "自带社交货币：「你注意到 FedEx 里的箭头了吗」这句话本身就在替品牌做传播",
+            "适合成熟品牌：需要用户愿意停留注视才有回报，冷启动阶段慎用"
+          ],
+          "fits": [
+            "物流、金融、咨询等信赖型行业",
+            "已有知名度、追求细节质感的成熟品牌"
+          ],
+          "cases": [
+            {
+              "brand": "FedEx",
+              "note": "E 与 x 之间的负空间构成一枚前进箭头，1994 年由 Landor 的 Lindon Leader 设计，是负空间手法的教科书案例。",
+              "image": "/assets/logos/fedex_2016.svg",
+              "source": "https://en.wikipedia.org/wiki/File:FedEx_Corporation_-_2016_Logo.svg",
+              "sourceLabel": "Wikipedia"
+            },
+            {
+              "brand": "Amazon",
+              "note": "箭头从 a 指向 z：暗示「从 A 到 Z 一站式买齐」，同时构成一个微笑。",
+              "image": "/assets/logos/amazon_current.svg",
+              "source": "https://commons.wikimedia.org/wiki/File:Amazon_logo.svg",
+              "sourceLabel": "Wikimedia Commons"
+            }
+          ],
+          "prompt": "Design a wordmark logo for {{BRAND_NAME}} that hides a subtle symbol in its negative space: the hidden shape should reference {{HIDDEN_MEANING, e.g. speed, growth, a location pin}} and appear only in the space between two letterforms. Single solid color {{COLOR}}, flat vector, white background, no shadows. The hidden shape must be formed by the negative space itself, never drawn as a separate icon.",
+          "promptHint": "{{HIDDEN_MEANING}} 填一个想传达的抽象概念（速度、增长、连接）。生成后务必放大检查：藏的是「空白」而不是贴上去的小图形，否则就不是这个风格。"
+        },
+        {
+          "id": "logo-circular-badge",
+          "name": "圆形徽章",
+          "en": "Circular Badge",
+          "tagline": "一枚盖章的圆，自带历史感与品质承诺",
+          "intro": "把主体图形放进圆环，品牌名沿环排布，像一枚可以盖在货物上的认证章。星巴克 2011 年甚至去掉了外圈文字只留海妖，BMW 的蓝白圆标百年未变——徽章的寿命极长，因为它暗示的是「这个品牌有来头」。",
+          "why": [
+            "印章心智：圆形徽章天然联想认证、品质担保与传承",
+            "实体友好：杯盖、瓶盖、刺绣、烙印，任何圆形载体直接可用",
+            "单色不塌：缩印、烫金、压成纯白版本依然成立",
+            "越旧越值钱：徽章随时间累积信任，不像潮流标会过期"
+          ],
+          "fits": [
+            "餐饮、咖啡与精酿",
+            "汽车与机械",
+            "户外与手工品牌"
+          ],
+          "cases": [
+            {
+              "brand": "Starbucks",
+              "note": "2011 年简化后的海妖圆标：去掉品牌名和外环文字，图形自信到不需要解释。",
+              "image": "/assets/logos/starbucks_2011.svg",
+              "source": "https://en.wikipedia.org/wiki/File:Starbucks_Corporation_Logo_2011.svg",
+              "sourceLabel": "Wikipedia"
+            },
+            {
+              "brand": "BMW",
+              "note": "蓝白四分圆标，百年保持圆形结构，汽车业最易识别的徽章之一。",
+              "image": "/assets/logos/bmw_roundel.svg",
+              "source": "https://commons.wikimedia.org/wiki/File:BMW.svg",
+              "sourceLabel": "Wikimedia Commons"
+            },
+            {
+              "brand": "Patagonia",
+              "note": "山脊线徽章加品牌名，户外圈戏称「冲锋衣上的勋章」。",
+              "image": "/assets/logos/patagonia_current.svg",
+              "source": "https://commons.wikimedia.org/wiki/File:Patagonia_(Unternehmen)_logo.svg",
+              "sourceLabel": "Wikimedia Commons"
+            }
+          ],
+          "prompt": "Design a circular badge logo for {{BRAND_NAME}}: a ring-shaped emblem with {{CENTER_SUBJECT, e.g. a mountain ridge line, a wave, a rooster}} at the center, the brand name curved along the ring, maximum 2 colors ({{COLOR_1}}, {{COLOR_2}}), stamp-like flat style. It must stay readable at 24mm print size and work as a single-color white version. No photorealistic gradients.",
+          "promptHint": "{{CENTER_SUBJECT}} 填一个能代表品牌业务的具体物象（山、海浪、麦穗）。要求模型同时给出「纯单色版」，徽章的耐用性全看单色是否成立。"
+        },
+        {
+          "id": "logo-combo-mark",
+          "name": "图形 + 字标组合",
+          "en": "Combination Mark",
+          "tagline": "图标管记忆，文字管认读，两种场景各取所需",
+          "intro": "一个抽象符号配一个标准字，可横排可拆用：头像和 favicon 用符号，合同和导航用字标。这是过去十年互联网公司最通用的构型——Slack 的井号、Airbnb 的 Bélo 都是先立住一个符号，再与字标绑定。",
+          "why": [
+            "双通道记忆：图形负责「我见过」，文字负责「它叫什么」，召回率最高",
+            "场景自适应：窄容器（App 图标）用符号，正式场合用全标",
+            "符号先行的传播：信息流里图形比字标更快被认出",
+            "注意：新品牌慎用无字纯符号——用户连名字都没记住时，图形是无效资产"
+          ],
+          "fits": [
+            "SaaS 与平台型产品",
+            "App 优先的互联网品牌",
+            "多触点的公司（网页 / 应用 / 合同文书）"
+          ],
+          "cases": [
+            {
+              "brand": "Slack",
+              "note": "四色井号源自「频道」概念，符号与字标可完全拆开使用。",
+              "image": "/assets/logos/slack_logo.svg",
+              "source": "https://en.wikipedia.org/wiki/File:Slack_Technologies_Logo.svg",
+              "sourceLabel": "Wikipedia"
+            },
+            {
+              "brand": "Airbnb",
+              "note": "Bélo + 字标完整组合：一个符号同时表达人、地点、爱与归属，2014 年发布时配套了整套使用规范。",
+              "image": "/assets/logos/airbnb.svg",
+              "source": "https://commons.wikimedia.org/wiki/File:Airbnb_Logo.svg",
+              "sourceLabel": "Wikimedia Commons"
+            },
+            {
+              "brand": "Apple",
+              "note": "1977 年的彩虹苹果：「符号独立于名字成立」的早期范本。",
+              "image": "/assets/logos/apple_rainbow.svg",
+              "source": "https://commons.wikimedia.org/wiki/File:Apple_Computer_Logo_rainbow.svg",
+              "sourceLabel": "Wikimedia Commons"
+            }
+          ],
+          "prompt": "Create a combination logo for {{BRAND_NAME}}: a simple abstract symbol based on {{SYMBOL_CONCEPT, e.g. a hashtag for chat channels, a nested chevron for layers}} paired with a horizontal wordmark in a modern grotesque font. The symbol must work alone as an app icon; the wordmark must work alone in documents. 2-4 flat colors, generous clear space, white background, vector style.",
+          "promptHint": "{{SYMBOL_CONCEPT}} 填一个与产品功能相关的抽象概念，让符号「有出处」。生成后分别检查：单独用符号认不认得出、单独用字标读不读得顺。"
+        },
+        {
+          "id": "logo-gradient-geometric",
+          "name": "几何渐变彩色",
+          "en": "Geometric Gradient",
+          "tagline": "用几何形和科技色渐变，一眼「这是做产品的」",
+          "intro": "由基础几何形（圆角矩形、圆）拼出字母或抽象符号，配 2-5 个高饱和品牌色或一段渐变。Stripe、Figma、Discord 用这套语言定义了 SaaS 时代的审美：色板本身就是设计系统的说明书。",
+          "why": [
+            "色即品牌：Figma 五色、Discord 的 blurple，色值直接成为品牌资产",
+            "暗色界面友好：渐变在深色背景上发光，天然适配开发者工具场景",
+            "可拆解延展：几何单元能变成插画、图标、加载动画，整套视觉不用重画",
+            "风险：潮流化明显，2016 年前后大量同质产品标，要靠形状差异保住识别"
+          ],
+          "fits": [
+            "开发者工具与设计工具",
+            "AI 产品",
+            "面向年轻用户的消费科技"
+          ],
+          "cases": [
+            {
+              "brand": "Stripe",
+              "note": "紫色斜杠 S 加字标，「Stripe 紫」成了支付行业的默认联想色。",
+              "image": "/assets/logos/stripe_2016.svg",
+              "source": "https://en.wikipedia.org/wiki/File:Stripe_Logo,_revised_2016.svg",
+              "sourceLabel": "Wikipedia"
+            },
+            {
+              "brand": "Figma",
+              "note": "五个圆角几何块拼出 F，每块颜色对应画布概念，色彩系统即产品理念。",
+              "image": "/assets/logos/figma_current.svg",
+              "source": "https://commons.wikimedia.org/wiki/File:Figma-logo.svg",
+              "sourceLabel": "Wikimedia Commons"
+            },
+            {
+              "brand": "Discord",
+              "note": "2021 版字标加游戏手柄脸符号，blurple 贯穿所有触点。",
+              "image": "/assets/logos/discord_2021.svg",
+              "source": "https://commons.wikimedia.org/wiki/File:Discord_colour_textlogo_(2021).svg",
+              "sourceLabel": "Wikimedia Commons"
+            }
+          ],
+          "prompt": "Design a geometric logo mark for {{BRAND_NAME}} built from {{N}} simple shapes (circles and rounded rectangles) that reads as an abstract {{LETTER_OR_OBJECT, e.g. the letter S, a spark}}. Use a subtle two-tone gradient from {{COLOR_A}} to {{COLOR_B}}, plus a neutral sans wordmark. Must look right on both dark and light backgrounds. Flat vector, no bevels or 3D effects.",
+          "promptHint": "{{LETTER_OR_OBJECT}} 建议填品牌首字母，几何拼字母最容易出效果。让模型同时输出深色、浅色两张背景效果图再挑选。"
+        },
+        {
+          "id": "logo-mascot",
+          "name": "吉祥物角色",
+          "en": "Mascot Character",
+          "tagline": "让品牌变成一个有性格的角色，而不是一个标",
+          "intro": "把品牌人格化成一个可画的角色：Duolingo 的猫头鹰 Duo 用「凶萌催学」的梗运营全平台，米其林必比登从 1898 年站到今天。吉祥物是几种构型里唯一能「做表情」的，天生为内容传播而生。",
+          "why": [
+            "情绪资产：角色有表情、有脾气，能持续产出内容，而不只是「展示 logo」",
+            "信任捷径：教育与服务业里，可爱的角色直接降低心理距离",
+            "周边与 IP 化：贴纸、玩偶、联名，角色天然可商品化",
+            "维护成本：角色需要持续运营（人设、插画规范），停下来就显旧"
+          ],
+          "fits": [
+            "教育与语言学习",
+            "餐饮连锁",
+            "重社媒运营的 C 端品牌"
+          ],
+          "cases": [
+            {
+              "brand": "Duolingo",
+              "note": "猫头鹰 Duo：品牌把吉祥物做成了社媒主角，「凶萌催学」本身就是增长策略。",
+              "image": "/assets/logos/duolingo_owl.svg",
+              "source": "https://commons.wikimedia.org/wiki/File:Duolingo_Owl_signature.svg",
+              "sourceLabel": "Wikimedia Commons"
+            },
+            {
+              "brand": "Michelin",
+              "note": "必比登 Bibendum 始于 1898 年，由轮胎叠成的人形，商业史上寿命最长的吉祥物之一。",
+              "image": "/assets/logos/michelin_2017.svg",
+              "source": "https://en.wikipedia.org/wiki/File:Michelin_(2017).svg",
+              "sourceLabel": "Wikipedia"
+            }
+          ],
+          "prompt": "Draw a friendly mascot logo for {{BRAND_NAME}}: a single cartoon character ({{ANIMAL_OR_PERSON, e.g. an owl, a chef}}) with bold outlines, 2-3 flat colors, expressive eyes conveying {{TRAIT, e.g. playful persistence}}, simple enough to be embroidered or made into a sticker. Optional brand name curved below. No shading, no fur detail, flat vector style.",
+          "promptHint": "{{TRAIT}} 填一个希望用户感受到的性格词。生成后把角色缩到 32px 看一眼：细节糊掉的吉祥物到了 App 图标里就废了。"
+        },
+        {
+          "id": "logo-serif-luxury",
+          "name": "衬线奢华字标",
+          "en": "Luxury Serif",
+          "tagline": "黑白、细衬线、大留白，克制本身就是价格标签",
+          "intro": "高对比度衬线体（Didot / Bodoni 系）、纯黑白、零装饰。Tiffany 与 Vogue 的字标、Rolex 的皇冠，几十年没有本质变化。这套语言借的是古典印刷与高级定制的字排传统：不追潮流，本身就是潮流的反面。",
+          "why": [
+            "阶层联想：细衬线自动关联时尚杂志、定制工坊与经典审美",
+            "永不过期：正因为不蹭任何当代趋势，几十年不必重塑",
+            "印刷友好：单色即可，压印、烫金、刺绣全兼容",
+            "反面约束：大众平价产品用它会显得「端着」，字体气质必须与价格带一致"
+          ],
+          "fits": [
+            "时尚、珠宝与美妆",
+            "高端酒店与餐饮",
+            "律所、私行等信赖型专业机构"
+          ],
+          "cases": [
+            {
+              "brand": "Tiffany & Co.",
+              "note": "高对比衬线字标，与 Vogue 同属古典字排谱系：蓝色盒子负责颜色，字标负责克制。",
+              "image": "/assets/logos/tiffany.svg",
+              "source": "https://commons.wikimedia.org/wiki/File:Tiffany_%26_Co._2024_logo.svg",
+              "sourceLabel": "Wikimedia Commons"
+            },
+            {
+              "brand": "Vogue",
+              "note": "Didot 系高对比衬线字标，整个时尚出版的字体原型。",
+              "image": "/assets/logos/vogue_logo.svg",
+              "source": "https://en.wikipedia.org/wiki/File:VOGUE_LOGO.svg",
+              "sourceLabel": "Wikipedia"
+            },
+            {
+              "brand": "Rolex",
+              "note": "皇冠加全大写衬线字标，识别全靠字形与比例，没有多余装饰。",
+              "image": "/assets/logos/rolex_logo.png",
+              "source": "https://commons.wikimedia.org/wiki/File:Logo_da_Rolex.png",
+              "sourceLabel": "Wikimedia Commons"
+            }
+          ],
+          "prompt": "Create a luxury wordmark for {{BRAND_NAME}} in a high-contrast Didone serif (thin hairlines, strong stems), all capitals, wide letter spacing, pure black on white. Optionally add an interlocked monogram of the initials {{INITIALS}}. No gradients, no ornaments, no gold: the premium feel must come from typographic restraint alone.",
+          "promptHint": "生图模型常在「衬线 = 加装饰」上翻车，提示词里已写明 no ornaments，出稿后重点检查有没有多出花体笔画。"
+        },
+        {
+          "id": "logo-terminal-geek",
+          "name": "终端极客风",
+          "en": "Terminal / Dev-Native",
+          "tagline": "黑白一个小符号加等宽气质，说「我是给开发者做的」",
+          "intro": "一个极简几何符号（Vercel 的三角形）加小写无衬线字标，纯黑白或只留一个强调色（Supabase 绿）。这套审美来自终端和 ASCII 文化：反营销的姿态本身就是筛选器——开发者看到「不花哨」，反而产生信任。",
+          "why": [
+            "群体识别：黑白极简是开发者社区的同类信号，暗示产品懂工程",
+            "极小尺寸生存：favicon、终端、README 徽章里都清晰，这恰是核心分发场景",
+            "暗色模式原生：产品界面天然是深色，logo 反白即用",
+            "风险：出圈难，面向大众消费者时会显得冷淡"
+          ],
+          "fits": [
+            "开发者工具与开源项目",
+            "AI 与基础设施产品",
+            "面向工程师的 SaaS"
+          ],
+          "cases": [
+            {
+              "brand": "Vercel",
+              "note": "一个黑色等边三角形：logo 史上最小气也最自洽的符号之一。",
+              "image": "/assets/logos/vercel_black.svg",
+              "source": "https://commons.wikimedia.org/wiki/File:Vercel_logo_black.svg",
+              "sourceLabel": "Wikimedia Commons"
+            },
+            {
+              "brand": "Linear",
+              "note": "深色底上的细字标，「Linear 审美」已成为产品圈精致感的代名词。",
+              "image": "/assets/logos/linear.png",
+              "source": "https://en.wikipedia.org/wiki/File:Linear_light_wordmark_dark_background_by_Linear_Orbit_Inc.png",
+              "sourceLabel": "Wikipedia",
+              "bg": "#12131A"
+            },
+            {
+              "brand": "Supabase",
+              "note": "绿色闪电符号，开源数据库的代表色，单色即用。",
+              "image": "/assets/logos/supabase_logo.svg",
+              "source": "https://simpleicons.org/?q=supabase",
+              "sourceLabel": "Simple Icons"
+            }
+          ],
+          "prompt": "Design a developer-brand logo for {{BRAND_NAME}}: a single geometric glyph ({{SHAPE, e.g. an upward triangle, a terminal cursor block}}) in pure black or one accent color ({{ACCENT}}) on a plain background, plus a lowercase sans wordmark with a monospace feel. It must render cleanly at 16px favicon size and invert to white for dark mode. Flat, no gradients, no effects.",
+          "promptHint": "让模型同时输出黑底白字、白底黑字两版——终端风 logo 的一半价值在反白版本。"
+        }
+      ]
+    },
+    {
+      "key": "app-icon-style",
+      "label": "App 图标风格",
+      "styles": [
+        {
+          "id": "icon-solid-glyph",
+          "name": "纯色底中心符号",
+          "en": "Solid Glyph",
+          "tagline": "一块纯色加一个符号，缩到 16px 也认得出",
+          "intro": "整个图标只有一种底色和一个高对比符号，没有渐变、没有文字。这是图标海里最「抗噪」的做法：在 App Store 一屏几十个图标中间，纯色块 + 简单形状 0.1 秒就能被读完。Spotify 的绿、Things 的橙、Claude 的米黄——颜色本身就是入口。",
+          "why": [
+            "色彩资产：长期用同一个色号，用户扫一眼列表就能找到你",
+            "极小尺寸不糊：符号笔画少，通知栏、手表、深色模式全部成立",
+            "物料友好：任何背景上都是一个干净的色块，营销图零成本",
+            "约束：色号必须接近独占，撞色等于互相导流"
+          ],
+          "fits": [
+            "工具与效率应用",
+            "音乐与内容平台",
+            "AI 产品"
+          ],
+          "cases": [
+            {
+              "brand": "Spotify",
+              "note": "绿底黑色声波弧线，多年只微调过弧的粗细，「绿色 = 音乐」的心智至今没被抢走。",
+              "image": "/assets/icons/spotify.jpg",
+              "source": "https://apps.apple.com/us/app/spotify-music-and-podcasts/id324684580",
+              "sourceLabel": "App Store"
+            },
+            {
+              "brand": "Things 3",
+              "note": "橙底一个白色箭头，付费效率工具敢用这么亮的颜色，靠的是符号的绝对简洁。",
+              "image": "/assets/icons/things3.jpg",
+              "source": "https://apps.apple.com/us/app/things-3/id904237743",
+              "sourceLabel": "App Store"
+            },
+            {
+              "brand": "Claude",
+              "note": "米黄底橙色放射线，AI 产品集体用深色的时候反着来，温暖的手写感成了识别点。",
+              "image": "/assets/icons/claude.jpg",
+              "source": "https://apps.apple.com/us/app/claude-by-anthropic/id6473753684",
+              "sourceLabel": "App Store"
+            }
+          ],
+          "prompt": "Design an app icon for {{APP_NAME}}: one flat solid background ({{COLOR_1}}), one high-contrast centered glyph ({{COLOR_2}}), no gradients, no text, no shadows. The glyph must stay legible at 29x29 px. Rounded-square iOS icon format, 1024x1024, generous padding, flat vector style.",
+          "promptHint": "{{COLOR_1}} 选一个能长期独占的色号，{{COLOR_2}} 与底色对比拉满；生成后缩到 29px 检查是否还认得出。"
+        },
+        {
+          "id": "icon-gradient",
+          "name": "渐变底",
+          "en": "Gradient",
+          "tagline": "渐变的「高级感」是被验证过最多的配方",
+          "intro": "彩色渐变打底 + 白色线条符号，Instagram 之后这几乎成了消费级明星应用的制服。渐变让静态图标有光影和质感，白色前景保证符号干净。敢用高饱和渐变的基本都是 To C 产品——它传递的信号是「流行、有活力、值得打开」。",
+          "why": [
+            "质感免费：一层渐变顶得上拟物时代一堆高光，图标立刻「贵」起来",
+            "白色前景最省事：符号不用考虑与底色融合，永远清晰",
+            "深浅壁纸通吃：渐变自带明暗变化，不吃环境色",
+            "反面约束：渐变色相内卷严重，要避开 Instagram / Apple Music 已占领的区间"
+          ],
+          "fits": [
+            "社交与内容社区",
+            "音乐与影像",
+            "面向大众的消费级 AI"
+          ],
+          "cases": [
+            {
+              "brand": "Instagram",
+              "note": "从拟物相机换成粉橙黄渐变只用了几个月，「彩虹糖」就成了它的非官方昵称。",
+              "image": "/assets/icons/instagram.jpg",
+              "source": "https://apps.apple.com/us/app/instagram/id389801252",
+              "sourceLabel": "App Store"
+            },
+            {
+              "brand": "Google Gemini",
+              "note": "蓝紫渐变四角星，Google 把整条 AI 产品线的图标统一成这个会呼吸的光效。",
+              "image": "/assets/icons/gemini.jpg",
+              "source": "https://apps.apple.com/us/app/google-gemini/id6477489729",
+              "sourceLabel": "App Store"
+            },
+            {
+              "brand": "Apple Music",
+              "note": "粉红渐变底白色音符，苹果全家桶里最「霓虹」的一个，直指年轻音乐场景。",
+              "image": "/assets/icons/apple_music.jpg",
+              "source": "https://apps.apple.com/us/app/apple-music/id1108187390",
+              "sourceLabel": "App Store"
+            },
+            {
+              "brand": "Telegram",
+              "note": "蓝青渐变纸飞机，和 WhatsApp 的绿形成阵营区隔，渐变让纸飞机有了体积感。",
+              "image": "/assets/icons/telegram.jpg",
+              "source": "https://apps.apple.com/us/app/telegram-messenger/id686449807",
+              "sourceLabel": "App Store"
+            }
+          ],
+          "prompt": "Design an app icon for {{APP_NAME}}: a smooth diagonal gradient background ({{COLOR_1}} to {{COLOR_2}}, optional third hue), a single white outline glyph of {{SUBJECT}} centered, no text, soft light sheen, rounded-square iOS icon format, 1024x1024, flat modern style like a top-charting consumer app.",
+          "promptHint": "先确认渐变色相没被 Instagram / Apple Music / Telegram 占用；白色符号笔画不超过三条主曲线。"
+        },
+        {
+          "id": "icon-lettermark",
+          "name": "字母字标",
+          "en": "Lettermark",
+          "tagline": "一个字母吃掉整个屏幕，改名都换不掉它",
+          "intro": "把品牌首字母做成唯一图形：Uber 的 U、X 的 X、Netflix 的 N。字母图标是「名字即品类」的头部产品特权——用户已经认识这个词，图标只需要重复一遍。字母占满画布、几乎无装饰，是列表页里最有底气的样子。",
+          "why": [
+            "零学习成本：图标和名字是同一个东西，记图标 = 记名字",
+            "重命名免疫：Twitter → X 只换了字母，视觉系统整体存活",
+            "构图天然稳：一个居中大字符，任何尺寸都不会糊",
+            "反面约束：初创品牌用字母图标 = 把没人认识的名字放大一万倍"
+          ],
+          "fits": [
+            "行业头部平台",
+            "完成品牌更名的产品",
+            "名字短且强的产品"
+          ],
+          "cases": [
+            {
+              "brand": "Uber",
+              "note": "黑底白 U，从花哨地图标收敛成一个字母——收敛这个动作本身就是品牌自信的宣言。",
+              "image": "/assets/icons/uber.jpg",
+              "source": "https://apps.apple.com/us/app/uber-request-a-ride/id368677368",
+              "sourceLabel": "App Store"
+            },
+            {
+              "brand": "X",
+              "note": "Twitter 蓝鸟退休，字母 X 接管一切，史上最大规模「改名不换视觉重心」实验。",
+              "image": "/assets/icons/x_app.jpg",
+              "source": "https://apps.apple.com/us/app/x/id333903271",
+              "sourceLabel": "App Store"
+            },
+            {
+              "brand": "Airbnb",
+              "note": "白底彩色渐变 Bélo：一个符号同时是字母 A、心形、人形和地点标记。",
+              "image": "/assets/icons/airbnb.jpg",
+              "source": "https://apps.apple.com/us/app/airbnb/id401626263",
+              "sourceLabel": "App Store"
+            },
+            {
+              "brand": "Netflix",
+              "note": "黑底红色折叠 N，把胶片质感做进字母笔画里，品牌色即频道色。",
+              "image": "/assets/icons/netflix.jpg",
+              "source": "https://apps.apple.com/us/app/netflix/id363590051",
+              "sourceLabel": "App Store"
+            }
+          ],
+          "prompt": "Design an app icon for {{APP_NAME}}: a single bold letter \"{{LETTER}}\" filling the canvas, custom geometric sans-serif, {{COLOR_1}} background with {{COLOR_2}} letter (or inverted), no extra ornament, the letter may carry one subtle fold or gradient detail, rounded-square iOS icon format, 1024x1024.",
+          "promptHint": "字母占画面宽度 60% 以上才有「吃掉屏幕」的气势；装饰细节最多一处，缩到 29px 必须消失得干净。"
+        },
+        {
+          "id": "icon-mascot",
+          "name": "吉祥物角色",
+          "en": "Mascot",
+          "tagline": "把角色的脸放进图标，没打开应用就先建立感情",
+          "intro": "吉祥物图标把一个有表情的角色放进 1024px 里：多邻国的猫头鹰、Reddit 的 Snoo、B 站的小电视。角色自带人格和二次创作空间，用户会为了「看看它今天什么样」点开应用——这是留存导向最重的品类（学习、社区、泛二次元）最爱的武器。",
+          "why": [
+            "情感入口：表情和姿态可以随节日换装，图标本身变成内容",
+            "记忆度碾压：人对脸的记忆力远超几何图形，列表里一眼抓到",
+            "社媒放大器：吉祥物可以出表情包、周边、动画，图标只是起点",
+            "反面约束：角色一旦立住就很难换，前期要养得起 IP 投入"
+          ],
+          "fits": [
+            "语言与习惯养成",
+            "社区与内容平台",
+            "泛二次元与年轻向产品"
+          ],
+          "cases": [
+            {
+              "brand": "Duolingo",
+              "note": "绿猫头鹰 Duo 常年霸占「最吓人催学」梗，图标即话题，营销预算省一半。",
+              "image": "/assets/icons/duolingo.jpg",
+              "source": "https://apps.apple.com/us/app/duolingo-language-lessons/id570060128",
+              "sourceLabel": "App Store"
+            },
+            {
+              "brand": "Reddit",
+              "note": "橙底白色天线小人 Snoo，社区感全靠这张人畜无害的脸，多年没大改。",
+              "image": "/assets/icons/reddit.jpg",
+              "source": "https://apps.apple.com/us/app/reddit/id1064216828",
+              "sourceLabel": "App Store"
+            },
+            {
+              "brand": "哔哩哔哩",
+              "note": "粉色小电视，机身 + 天线两个元素就把二次元社区的身份讲完。",
+              "image": "/assets/icons/bilibili.jpg",
+              "source": "https://apps.apple.com/cn/app/%E5%93%94%E5%93%A9%E5%93%94%E5%93%A9-%E5%BC%B9%E5%B9%95%E7%95%AA%E5%89%A7%E7%9B%B4%E6%92%AD%E9%AB%98%E6%B8%85%E8%A7%86%E9%A2%91/id736536022",
+              "sourceLabel": "App Store"
+            }
+          ],
+          "prompt": "Design an app icon for {{APP_NAME}}: a friendly {{CREATURE}} mascot face centered on a {{COLOR_1}} background, big eyes, simple rounded shapes, flat illustration style with soft shading, no text, must stay readable at 29x29 px, rounded-square iOS icon format, 1024x1024.",
+          "promptHint": "只放头部不放全身；{{CREATURE}} 与产品气质绑定（学习 = 猫头鹰、社区 = 小机器人），眼睛至少占脸宽三分之一。"
+        },
+        {
+          "id": "icon-textured",
+          "name": "重彩质感",
+          "en": "Rich Texture",
+          "tagline": "一笔颜料、一缕光影，图标里塞进「作品感」",
+          "intro": "用真实的光影、笔触、材质把图标做成一幅小作品：Procreate 的那一笔彩虹、原神的金属纹章。质感路线在创作工具和游戏两大「重体验」品类里反复被验证——图标越像海报，用户越相信产品本身的品质。",
+          "why": [
+            "品质暗示：笔触和光影直接宣称「这是给认真做事的人用的」",
+            "高辨识度：列表页里多数图标是扁平色块，一个质感图标立刻跳出",
+            "情绪浓度：游戏用图标预演世界观，工具用图标致敬手艺",
+            "反面约束：细节多意味着小尺寸牺牲，通知栏场景必须备简化版"
+          ],
+          "fits": [
+            "绘画与创作工具",
+            "游戏",
+            "强调工艺感的品牌"
+          ],
+          "cases": [
+            {
+              "brand": "Procreate Pocket",
+              "note": "黑底一道湿彩笔触，「工欲善其事」的宣言被压缩进一笔颜料里。",
+              "image": "/assets/icons/procreate_pocket.jpg",
+              "source": "https://apps.apple.com/us/app/procreate-pocket/id916366645",
+              "sourceLabel": "App Store"
+            },
+            {
+              "brand": "原神",
+              "note": "白金渐变金属纹章，把提瓦特世界观做成一枚可收藏的徽章。",
+              "image": "/assets/icons/genshin.jpg",
+              "source": "https://apps.apple.com/cn/app/%E5%8E%9F%E7%A5%9E-%E8%87%B3%E5%86%AC%E5%BC%80%E6%94%BE/id1467190251",
+              "sourceLabel": "App Store"
+            }
+          ],
+          "prompt": "Design an app icon for {{APP_NAME}}: a single dramatic {{TEXTURE_SUBJECT}} (brush stroke / emblem / artifact) with realistic lighting and rich color on a dark {{COLOR_1}} background, poster-quality rendering, centered composition, no text, rounded-square iOS icon format, 1024x1024.",
+          "promptHint": "生成两版：1024 细节版 + 29px 简化版；质感主体只留一个，第二个元素一律砍掉。"
+        },
+        {
+          "id": "icon-colorful-geometric",
+          "name": "多彩几何",
+          "en": "Colorful Geometric",
+          "tagline": "三四种颜色拼一个形，专业工具的标准制服",
+          "intro": "多个高饱和色块拼成一个统一符号：Figma 的四色圆角条、Slack 的彩色井号、Google 相册的四色风车。多彩几何是协作与生产力工具最安全的语言——每个颜色可以对应产品里的一个模块，图标顺便成了信息架构的说明书。",
+          "why": [
+            "颜色即功能：图标配色和产品界面配色一一对应，认知闭环",
+            "打破单调：专业工具不敢卖萌，但可以用多色表达活力",
+            "结构可拆：几块拼一个形，动效、加载图、品牌物料全套同源",
+            "反面约束：色板严格控制在 3-5 色，超过就变杂货铺"
+          ],
+          "fits": [
+            "设计与协作工具",
+            "生产力套件",
+            "平台型产品"
+          ],
+          "cases": [
+            {
+              "brand": "Figma",
+              "note": "四色圆角条拼出轮廓，产品面板的颜色就是图标的颜色。",
+              "image": "/assets/icons/figma.jpg",
+              "source": "https://apps.apple.com/us/app/figma/id1152747299",
+              "sourceLabel": "App Store"
+            },
+            {
+              "brand": "Slack",
+              "note": "彩色井号 #，「频道」这个抽象概念被四段圆弧直接画了出来。",
+              "image": "/assets/icons/slack.jpg",
+              "source": "https://apps.apple.com/us/app/slack/id618783545",
+              "sourceLabel": "App Store"
+            },
+            {
+              "brand": "Google Photos",
+              "note": "四色风车叶片，把「照片自动整理成册」转成了一个会动的形。",
+              "image": "/assets/icons/google_photos.jpg",
+              "source": "https://apps.apple.com/us/app/google-photos-backup-edit/id962194608",
+              "sourceLabel": "App Store"
+            }
+          ],
+          "prompt": "Design an app icon for {{APP_NAME}}: one unified mark assembled from 3-4 rounded geometric shapes, each in a distinct saturated color ({{COLOR_1}}, {{COLOR_2}}, {{COLOR_3}}, optional {{COLOR_4}}), on a white or very light background, flat vector, precise alignment, no text, rounded-square iOS icon format, 1024x1024.",
+          "promptHint": "先定 3-4 个带色号的 HEX 再写提示词；形状之间必须有重叠或咬合，散着摆就成了调色板。"
+        },
+        {
+          "id": "icon-minimal-light",
+          "name": "白底极简",
+          "en": "Minimal Light",
+          "tagline": "满屏彩色里的一个留白，反而最抢戏",
+          "intro": "白底 + 一个细黑符号，主动放弃色彩存在感来换「高级与冷静」：Notion 的花体 N、Threads 的缠绕线条。在彩色图标海里，白色是反向显眼的；它同时暗示产品界面本身也是干净的——图标就是产品气质的预告片。",
+          "why": [
+            "反差占位：深色壁纸桌面上白块最跳，浅色桌面上融出「纸感」",
+            "气质预告：白底细线 = 克制、专业、文档感，预期管理零成本",
+            "永不过时：黑白没有流行色风险，十年不用重画",
+            "反面约束：符号必须足够独特，否则白底黑字会被当成系统自带应用"
+          ],
+          "fits": [
+            "笔记与知识管理",
+            "阅读与写作工具",
+            "追求冷静气质的专业产品"
+          ],
+          "cases": [
+            {
+              "brand": "Notion",
+              "note": "白底黑色衬线花体 N，一个字母把「纸与笔」的传统全借了过来。",
+              "image": "/assets/icons/notion.jpg",
+              "source": "https://apps.apple.com/us/app/notion-notes-tasks-ai/id1232780281",
+              "sourceLabel": "App Store"
+            },
+            {
+              "brand": "Threads",
+              "note": "白底一条缠绕的曲线，Meta 用它和 Instagram 的彩虹渐变划清界限。",
+              "image": "/assets/icons/threads.jpg",
+              "source": "https://apps.apple.com/us/app/threads/id6446901002",
+              "sourceLabel": "App Store"
+            }
+          ],
+          "prompt": "Design an app icon for {{APP_NAME}}: pure white background, one thin elegant {{COLOR_1}} glyph of {{SUBJECT}} (single continuous line preferred), generous negative space, editorial minimal style, no gradients, no text, rounded-square iOS icon format, 1024x1024.",
+          "promptHint": "线条粗细不低于画面宽度 1/40，否则小尺寸会断；符号不够独特时加一个专属细节（如 Notion 的衬线脚）。"
+        },
+        {
+          "id": "icon-dark-tech",
+          "name": "深色科技",
+          "en": "Dark Tech",
+          "tagline": "黑底上一道冷光，工程师一眼认出是自己人",
+          "intro": "近黑底色 + 高对比符号或渐变微光：Linear、Obsidian、ChatGPT。深色图标从开发者工具出圈，如今是「AI 原生」的默认皮肤——它假设用户全天开着深色模式，图标是暗色海洋里的一点冷光。",
+          "why": [
+            "深色模式原配：开发者与 AI 用户默认深色 UI，图标不需要反色适配",
+            "冷峻筛选：黑色自带「不谈营销只谈能力」的气场，天然过滤非目标用户",
+            "光效记忆：一点渐变微光就是全部装饰，克制即识别",
+            "反面约束：大众消费产品慎用，黑底会让普通用户产生「专业软件恐惧」"
+          ],
+          "fits": [
+            "开发者工具",
+            "AI 原生产品",
+            "效率与知识管理"
+          ],
+          "cases": [
+            {
+              "brand": "Linear",
+              "note": "近黑底彩色同心弧，「Linear 美学」已经成了一个设计流派的名字。",
+              "image": "/assets/icons/linear.jpg",
+              "source": "https://apps.apple.com/us/app/linear-mobile/id1645587184",
+              "sourceLabel": "App Store"
+            },
+            {
+              "brand": "Obsidian",
+              "note": "深紫底发光水晶，知识工具把「矿藏」的隐喻直接刻进图标。",
+              "image": "/assets/icons/obsidian.jpg",
+              "source": "https://apps.apple.com/us/app/obsidian-connected-notes/id1557175442",
+              "sourceLabel": "App Store"
+            },
+            {
+              "brand": "ChatGPT",
+              "note": "黑底白色线绳花，AI 时代被模仿最多的一个轮廓。",
+              "image": "/assets/icons/chatgpt.jpg",
+              "source": "https://apps.apple.com/us/app/chatgpt/id6448311069",
+              "sourceLabel": "App Store"
+            }
+          ],
+          "prompt": "Design an app icon for {{APP_NAME}}: near-black background (#0B0B0F), a single minimal glyph of {{SUBJECT}} in white or a subtle {{COLOR_1}} glow gradient, thin precise strokes, dark-mode native, no text, no drop shadow, rounded-square iOS icon format, 1024x1024.",
+          "promptHint": "光效只允许一种颜色、一个方向；同时导出纯白反色版给浅色场景用。"
+        }
+      ]
+    }
+  ]
+}

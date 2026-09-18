@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import catalogsData from "@/data/catalogs.json";
 import enCatalogsData from "@/data/en-catalogs.json";
+import type { Platform } from "@/lib/types";
 import "./AssetLibraryView.css";
 
 type Term = {
@@ -11,6 +12,7 @@ type Term = {
   name: string;
   en: string;
   tagline: string;
+  platform?: Platform;
   demoHtml: string;
   demoClass: string;
 };
@@ -56,9 +58,20 @@ const TAB_ORDER = Object.keys(TAB_LABELS.zh);
 
 export type Locale = "zh" | "en";
 
+type PlatformFilter = "all" | "web" | "ios";
+const PLATFORM_ORDER: PlatformFilter[] = ["all", "web", "ios"];
+const PLATFORM_LABELS: Record<Locale, Record<PlatformFilter, string>> = {
+  zh: { all: "全部", web: "Web", ios: "iOS" },
+  en: { all: "All", web: "Web", ios: "iOS" },
+};
+// 词条未标注 platform 时按「web」处理，cross 两边都算
+const platformOf = (t: Term): Platform => t.platform ?? "web";
+const matchesPlatform = (t: Term, f: PlatformFilter) =>
+  f === "all" || platformOf(t) === "cross" || platformOf(t) === f;
+
 const UI_TEXT = {
-  zh: { favorites: "收藏", termCount: "个条目", favoriteTerm: "收藏术语" },
-  en: { favorites: "Favorites", termCount: "entries", favoriteTerm: "Add to favorites" },
+  zh: { favorites: "收藏", termCount: "个条目", favoriteTerm: "收藏术语", platform: "平台" },
+  en: { favorites: "Favorites", termCount: "entries", favoriteTerm: "Add to favorites", platform: "Platform" },
 };
 
 const STAR_PATH =
@@ -74,6 +87,7 @@ export default function CatalogView({
   const router = useRouter();
   const CATALOGS = locale === "en" ? EN_CATALOGS : ZH_CATALOGS;
   const L = TAB_LABELS[locale];
+  const PL = PLATFORM_LABELS[locale];
   const T = UI_TEXT[locale];
   const detailBase = locale === "en" ? "/en/" : "/";
   const catalog = useMemo(
@@ -82,6 +96,32 @@ export default function CatalogView({
   );
   const [activeSidebar, setActiveSidebar] = useState<string | null>(null);
   const [favorites, setFavorites] = useState<Set<string>>(new Set());
+  const [platformFilter, setPlatformFilter] = useState<PlatformFilter>("all");
+
+  // 平台筛选：只有当前目录里确实存在非 Web 词条时才出现，未标注视为 Web
+  const platformEnabled = useMemo(
+    () => catalog.groups.some((g) => g.terms.some((t) => platformOf(t) !== "web")),
+    [catalog]
+  );
+  const activePlatform = platformEnabled ? platformFilter : "all";
+  const platformCounts = useMemo(() => {
+    const terms = catalog.groups.flatMap((g) => g.terms);
+    return {
+      all: terms.length,
+      web: terms.filter((t) => matchesPlatform(t, "web")).length,
+      ios: terms.filter((t) => matchesPlatform(t, "ios")).length,
+    } as Record<PlatformFilter, number>;
+  }, [catalog]);
+  const groups = useMemo(
+    () =>
+      catalog.groups
+        .map((g) => {
+          const terms = g.terms.filter((t) => matchesPlatform(t, activePlatform));
+          return { ...g, terms, count: terms.length };
+        })
+        .filter((g) => g.count > 0),
+    [catalog, activePlatform]
+  );
 
   // 收藏持久化
   useEffect(() => {
@@ -106,13 +146,16 @@ export default function CatalogView({
   // Scroll spy：根据当前进入视口的分类标题高亮左侧导航
   useEffect(() => {
     if (catalog.sidebar.length === 0) return;
-    const titles = catalog.groups
-      .map((g) => document.getElementById(g.id)?.querySelector<HTMLElement>(".cat-title"))
-      .filter(Boolean) as HTMLElement[];
-    if (titles.length === 0) return;
+    const watched = groups
+      .map((g) => ({
+        label: g.id.replace("cat-", ""),
+        el: document.getElementById(g.id)?.querySelector<HTMLElement>(".cat-title"),
+      }))
+      .filter((x): x is { label: string; el: HTMLElement } => Boolean(x.el));
+    if (watched.length === 0) return;
 
     const labelByEl = new Map<HTMLElement, string>();
-    titles.forEach((el, i) => labelByEl.set(el, catalog.groups[i].id.replace("cat-", "")));
+    watched.forEach(({ label, el }) => labelByEl.set(el, label));
 
     const pickTopmost = (entries: IntersectionObserverEntry[]) => {
       const visible = entries.filter((e) => e.isIntersecting).map((e) => e.target as HTMLElement);
@@ -127,9 +170,9 @@ export default function CatalogView({
       rootMargin: "-132px 0px -55% 0px",
       threshold: 0,
     });
-    titles.forEach((el) => observer.observe(el));
+    watched.forEach(({ el }) => observer.observe(el));
     return () => observer.disconnect();
-  }, [catalog.key, catalog.groups, catalog.sidebar.length]);
+  }, [catalog.key, groups, catalog.sidebar.length]);
 
   // 顶部筛选栏粘住时切到带背景的状态（原站 .catalog-finder.is-stuck：
   // ::before 淡入毛玻璃底 + 底边线 + 阴影，避免正文从栏下穿过）。
@@ -184,7 +227,7 @@ export default function CatalogView({
     });
     els.forEach((el) => ro.observe(el));
     return () => ro.disconnect();
-  }, [catalog.key]);
+  }, [catalog.key, groups]);
 
   return (
     <main>
@@ -227,6 +270,25 @@ export default function CatalogView({
               </button>
             </div>
           </div>
+          {platformEnabled && (
+            <div className="catalog-finder-row catalog-platform-row">
+              <span className="catalog-platform-label">{T.platform}</span>
+              <div className="catalog-filter-list">
+                {PLATFORM_ORDER.map((k) => (
+                  <button
+                    key={k}
+                    type="button"
+                    className="catalog-filter-chip"
+                    aria-pressed={activePlatform === k}
+                    onClick={() => setPlatformFilter(k)}
+                  >
+                    {PL[k]}
+                    <span>{platformCounts[k]}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
         </section>
         {catalog.sidebar.length > 0 && (
           <aside className="catalog-sidebar">
@@ -264,21 +326,21 @@ export default function CatalogView({
             >
               <div className="card-head">
                 <h3>
-                  {locale === "en" ? "Logo style library" : "Logo 风格库"}
+                  {locale === "en" ? "Logo & app icon styles" : "Logo & App 图标风格库"}
                   <span>
-                    {locale === "en" ? "Brand cases + prompts" : "品牌案例 + 提示词"}
+                    {locale === "en" ? "Real cases + prompts" : "真实案例 + 提示词"}
                   </span>
                 </h3>
                 <span className="card-title-group">→</span>
               </div>
               <div className="card-tagline card-quote">
                 {locale === "en"
-                  ? "Market-proven logo styles: real brand breakdowns with a copy-ready AI prompt for each."
-                  : "经市场验证的 Logo 设计风格：每个风格配真实品牌案例拆解和可直接复制的生图提示词。"}
+                  ? "Market-proven logo and app-icon styles: real brand and App Store cases with a copy-ready AI prompt for each."
+                  : "经市场验证的 Logo 与 App 图标设计风格：每个风格配真实品牌 / App Store 案例拆解和可直接复制的生图提示词。"}
               </div>
             </a>
           )}
-          {catalog.groups.map((g) => (
+          {groups.map((g) => (
             <section className="cat-section" id={g.id} key={g.id}>
               <div className="cat-title">
                 {g.title}
