@@ -485,3 +485,28 @@ html[data-color-mode="light"] .rd-card:hover {
   .rd-h1 { font-size: 28px; }
   .rd-home-main { padding: 28px 16px 56px; }
 }
+
+/* —— 筛选胶囊统一（对齐样张 .rd-chip：描边药丸，active 实心金） —— */
+.catalog-filter-chip {
+  min-height: 30px;
+  padding: 5px 13px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: none;
+  color: var(--text-2);
+}
+.catalog-filter-chip:hover {
+  color: var(--text);
+  background: none;
+  border-color: var(--border-hover, var(--border));
+}
+.catalog-filter-chip[aria-pressed="true"] {
+  background: var(--brand);
+  border-color: var(--brand);
+  color: var(--on-brand);
+  font-weight: 700;
+}
+.catalog-filter-chip[aria-pressed="true"] span {
+  color: inherit;
+  opacity: 0.72;
+}
