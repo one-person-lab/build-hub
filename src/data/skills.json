@@ -1,0 +1,519 @@
+{
+  "title": "技能库",
+  "subtitle": "时下最流行的 Skill 合集，按用途分类。点卡片看详细解读，官网入口放在详情页里。",
+  "categories": [
+    {
+      "key": "video",
+      "label": "视频",
+      "skills": [
+        {
+          "id": "remotion",
+          "name": "Remotion",
+          "category": "video",
+          "tagline": "用 React 写视频的开源引擎",
+          "overview": "Remotion 让你用写 React 组件的方式生成视频——时间轴、画面、音频都是代码，每一帧都能精确控制。它把做视频变成写程序，特别适合可复用、可批量生产的视频。",
+          "features": [
+            "用 React 组件描述视频，每一帧都由代码渲染",
+            "内置 100+ 原语：文本、形状、音频、字幕、3D（Three.js）",
+            "参数化渲染，一套模板批量产出不同版本的视频",
+            "可本地渲染，或用 Remotion 云渲染队列并发出片"
+          ],
+          "useCases": [
+            "产品功能演示、App 介绍短片",
+            "社媒短视频与动态海报",
+            "数据驱动的批量视频（千人千面）"
+          ],
+          "bestFor": "会用 React 的开发者，想把视频做成可编程资产时首选。",
+          "pricing": "开源免费（MIT）；云渲染按量计费",
+          "platform": "Web / Node.js / CLI",
+          "author": "Remotion",
+          "official": "https://www.remotion.dev",
+          "repo": "https://github.com/remotion-dev/remotion",
+          "tags": ["React", "视频生成", "动效", "Node.js"]
+        },
+        {
+          "id": "runway",
+          "name": "Runway",
+          "category": "video",
+          "tagline": "AI 视频生成与编辑",
+          "overview": "Runway 是面向创作者的 AI 视频工具，用文字、图片就能生成和编辑视频，旗下 Gen 系列模型支持文生视频、图生视频，也提供擦除物体、运动笔刷等编辑能力，适合快速出片。",
+          "features": [
+            "文本 / 图片生成视频（Gen 系列模型）",
+            "智能擦除物体、扩图、运动笔刷",
+            "视频转模版、口型同步等创作工具",
+            "网页端与桌面端均可使用"
+          ],
+          "useCases": [
+            "社媒短片、广告素材的快速原型",
+            "把静态图变成动态镜头",
+            "删除穿帮物体、补拍缺失画面"
+          ],
+          "bestFor": "想用 AI 快速出视频、不一定会剪辑的设计师与营销人。",
+          "pricing": "免费额度 + 订阅（Standard 约 12 美元/月起，按积分计费）",
+          "platform": "Web / 桌面 App",
+          "author": "Runway",
+          "official": "https://runwayml.com",
+          "tags": ["AI 视频", "文生视频", "剪辑"]
+        },
+        {
+          "id": "heygen",
+          "name": "HeyGen",
+          "category": "video",
+          "tagline": "AI 数字人视频",
+          "overview": "HeyGen 让你上传脚本，由 AI 数字人出镜生成口播视频，支持多种形象、多语言配音与声音/形象克隆。做培训、营销、多语种内容很省力。",
+          "features": [
+            "AI 数字人出镜口播",
+            "120+ 语言翻译配音与口型同步",
+            "形象 / 声音克隆（Avatar IV）",
+            "模板化批量生成"
+          ],
+          "useCases": [
+            "产品教学、企业内部培训",
+            "多语言营销视频",
+            "真人出镜成本高时的替代方案"
+          ],
+          "bestFor": "需要批量做真人讲解感视频、又不想每次请人拍摄的团队。",
+          "pricing": "免费试用 + 订阅（按席位 / 分钟计费）",
+          "platform": "Web",
+          "author": "HeyGen",
+          "official": "https://www.heygen.com",
+          "tags": ["数字人", "口播", "多语言"]
+        },
+        {
+          "id": "manim",
+          "name": "Manim",
+          "category": "video",
+          "tagline": "数学动画引擎（Python）",
+          "overview": "Manim 是用 Python 写脚本生成数学与算法动画的引擎，3Blue1Brown 的视频就是它做的。你描述对象如何变化，它渲染出精确的动画，非常适合科普与教学。",
+          "features": [
+            "用代码声明数学对象的变换与动画",
+            "高质量 LaTeX 公式渲染",
+            "丰富的几何、函数、三维场景支持",
+            "社区版活跃，示例与教程多"
+          ],
+          "useCases": [
+            "数学 / 算法科普视频",
+            "课件与讲座动画",
+            "技术博客的动态图示"
+          ],
+          "bestFor": "愿意写代码、想把抽象概念讲清楚的老师与科普作者。",
+          "pricing": "开源免费（MIT）",
+          "platform": "Python / CLI",
+          "author": "Manim Community",
+          "repo": "https://github.com/ManimCommunity/manim",
+          "official": "https://www.manim.community",
+          "tags": ["Python", "数学动画", "教学"]
+        },
+        {
+          "id": "moviepy",
+          "name": "MoviePy",
+          "category": "video",
+          "tagline": "Python 视频剪辑库",
+          "overview": "MoviePy 是一个用 Python 做视频编辑的库，可以剪辑、拼接、加字幕、转场、合成音频，适合把重复性的剪辑工作脚本化、批量化。",
+          "features": [
+            "剪辑、拼接、变速、旋转等基础编辑",
+            "加字幕、水印、音频混音",
+            "与 NumPy 配合做逐帧处理",
+            "流水线化批量处理视频"
+          ],
+          "useCases": [
+            "批量加片头片尾、水印",
+            "自动化生成预告 / 集锦",
+            "视频素材的规整与转码"
+          ],
+          "bestFor": "想用脚本代替重复手动剪辑的 Python 开发者。",
+          "pricing": "开源免费（MIT）",
+          "platform": "Python",
+          "author": "MoviePy",
+          "repo": "https://github.com/Zulko/moviepy",
+          "official": "https://zulko.github.io/moviepy/",
+          "tags": ["Python", "视频剪辑", "自动化"]
+        }
+      ]
+    },
+    {
+      "key": "motion",
+      "label": "动效",
+      "skills": [
+        {
+          "id": "motion",
+          "name": "Motion",
+          "category": "motion",
+          "tagline": "React 动画库（原 Framer Motion）",
+          "overview": "Motion（前身 Framer Motion）是 React 生态最流行的动画库，用声明式 API 给组件加入场、布局、滚动与手势动画，学习成本低、社区庞大。",
+          "features": [
+            "声明式动画与过渡（animate、variants）",
+            "布局动画（layout）自动处理位移",
+            "滚动驱动、手势交互",
+            "同时支持 React 与原生（Motion One）"
+          ],
+          "useCases": [
+            "页面 / 卡片的入场与交互动效",
+            "列表、步骤条等状态切换",
+            "滚动叙事与微交互"
+          ],
+          "bestFor": "用 React 做产品、想要顺滑动效又不想从零写 CSS 的团队。",
+          "pricing": "开源免费（MIT，多数商业可用）；Pro 含付费高级能力",
+          "platform": "React / Web",
+          "author": "Motion",
+          "repo": "https://github.com/motiondivision/motion",
+          "official": "https://motion.dev",
+          "tags": ["React", "动画", "交互"]
+        },
+        {
+          "id": "gsap",
+          "name": "GSAP",
+          "category": "motion",
+          "tagline": "专业级 Web 动画引擎",
+          "overview": "GSAP 是老牌专业 Web 动画引擎，用时间轴精确控制 DOM、SVG、Canvas 动画，性能好、兼容广，是复杂动效与广告动画的首选。",
+          "features": [
+            "时间轴精确定序与编排",
+            "强大的 SVG / 路径动画（MotionPath）",
+            "滚动触发（ScrollTrigger）",
+            "跨浏览器一致、性能优秀"
+          ],
+          "useCases": [
+            "落地页 / 品牌站的复杂动效",
+            "SVG 图形与数据可视化动画",
+            "滚动叙事长页"
+          ],
+          "bestFor": "对动效精度与兼容性要求高的专业前端。",
+          "pricing": "个人 / 非营利免费；商业 Standard 订阅；部分插件收费",
+          "platform": "Web（DOM / SVG / Canvas / WebGL）",
+          "author": "GreenSock",
+          "repo": "https://github.com/greensock/GSAP",
+          "official": "https://gsap.com",
+          "tags": ["动画", "时间轴", "SVG"]
+        },
+        {
+          "id": "lottie",
+          "name": "Lottie",
+          "category": "motion",
+          "tagline": "轻量矢量动画（LottieFiles）",
+          "overview": "Lottie 把设计师在 AE 等工具里做的动画导出成轻量 JSON，前端用 lottie-web 原生播放，体积小、跨端一致，是设计稿即动画的标配方案。",
+          "features": [
+            "矢量 JSON 动画，体积小、清晰",
+            "多端一致还原（Web / iOS / Android）",
+            "LottieFiles 提供海量现成动画",
+            "可交互控制播放进度"
+          ],
+          "useCases": [
+            "App 加载、成功等微动效",
+            "空状态、引导动画",
+            "营销页的轻量装饰动效"
+          ],
+          "bestFor": "需要把设计动效低成本、保真地落地的团队。",
+          "pricing": "LottieFiles 基础免费 + 团队订阅",
+          "platform": "Web / iOS / Android",
+          "author": "LottieFiles",
+          "official": "https://lottiefiles.com",
+          "tags": ["矢量动画", "JSON", "跨端"]
+        },
+        {
+          "id": "rive",
+          "name": "Rive",
+          "category": "motion",
+          "tagline": "实时交互动画工具",
+          "overview": "Rive 让设计师与开发者协作做可交互、带状态的动画——按钮、角色、游戏元素都能实时响应，运行时跨平台，比 Lottie 更偏交互。",
+          "features": [
+            "状态机驱动的交互动画",
+            "实时响应输入，无需逐段导出",
+            "多平台运行时（含 Flutter、游戏）",
+            "设计稿与代码协作流畅"
+          ],
+          "useCases": [
+            "可交互按钮、开关、菜单",
+            "游戏 / 角色表情与动作",
+            "App 内动态插画"
+          ],
+          "bestFor": "想要活的、可交互动画而不只是播一段视频的团队。",
+          "pricing": "免费档 + 团队 / 企业订阅",
+          "platform": "Web / iOS / Android / Flutter / 游戏",
+          "author": "Rive",
+          "repo": "https://github.com/rive-app/rive-react",
+          "official": "https://rive.app",
+          "tags": ["交互动画", "实时", "跨平台"]
+        }
+      ]
+    },
+    {
+      "key": "media",
+      "label": "自媒体发布",
+      "skills": [
+        {
+          "id": "buffer",
+          "name": "Buffer",
+          "category": "media",
+          "tagline": "多平台定时发布",
+          "overview": "Buffer 是老牌社交媒体的定时发布与排期工具，把内容排到 X、Instagram、LinkedIn、Facebook 等，用统一日历管理，适合个人和小团队保持更新节奏。",
+          "features": [
+            "多平台统一排期与日历",
+            "草稿协作与审批",
+            "基础数据分析",
+            "浏览器插件随手存素材"
+          ],
+          "useCases": [
+            "个人 IP 的日常更新排期",
+            "小团队多账号管理",
+            "内容规划的日历视图"
+          ],
+          "bestFor": "想稳定、省心地维持多平台更新的个人与小企业。",
+          "pricing": "免费档 + 付费订阅（按频道数）",
+          "platform": "Web / 移动端 / 浏览器插件",
+          "author": "Buffer",
+          "official": "https://buffer.com",
+          "tags": ["定时发布", "多平台", "排期"]
+        },
+        {
+          "id": "typefully",
+          "name": "Typefully",
+          "category": "media",
+          "tagline": "长文 / 线程写作与发布",
+          "overview": "Typefully 专注写作体验，帮你顺畅地写 X 线程和 Newsletter，写完一键排期发布，还带草稿协作与基础分析，深受写作者喜欢。",
+          "features": [
+            "沉浸式写作界面",
+            "一键发 X 线程、Newsletter",
+            "草稿协作与定时",
+            "自动生成线程预览图"
+          ],
+          "useCases": [
+            "长线程观点的撰写",
+            "个人 Newsletter 发行",
+            "把一篇长文拆成多条推文"
+          ],
+          "bestFor": "以写为核心、靠内容涨粉的创作者。",
+          "pricing": "免费档 + 付费订阅",
+          "platform": "Web",
+          "author": "Typefully",
+          "official": "https://typefully.com",
+          "tags": ["线程", "写作", "Newsletter"]
+        },
+        {
+          "id": "hypefury",
+          "name": "Hypefury",
+          "category": "media",
+          "tagline": "Twitter 增长与变现",
+          "overview": "Hypefury 面向想认真做 Twitter 增长的人，提供定时发推、自动转发、把推文引流到邮箱或产品等能力，帮助你把粉丝变成订阅与收入。",
+          "features": [
+            "定时发推与自动转发",
+            "自动把高表现推文引流到链接",
+            "线索（lead）收集与落地",
+            "增长模板与建议"
+          ],
+          "useCases": [
+            "个人 IP 的稳定输出",
+            "把流量导到 Newsletter / 产品",
+            "打造可变现的内容机器"
+          ],
+          "bestFor": "想用 Twitter 系统性涨粉并变现的创作者。",
+          "pricing": "付费订阅（有免费试用）",
+          "platform": "Web",
+          "author": "Hypefury",
+          "official": "https://hypefury.com",
+          "tags": ["Twitter", "增长", "变现"]
+        },
+        {
+          "id": "opus",
+          "name": "Opus Clip",
+          "category": "media",
+          "tagline": "长视频一键剪短视频",
+          "overview": "Opus Clip 用 AI 把长视频（播客、直播、课程）自动切成多条适合 TikTok / Reels / Shorts 的竖屏短片段，自动加字幕与高光，省去手动剪。",
+          "features": [
+            "自动识别高光并切片",
+            "竖屏适配 + 自动字幕",
+            "一键多平台格式",
+            "按主题聚类片段"
+          ],
+          "useCases": [
+            "播客 / 直播转短视频",
+            "课程切片做引流",
+            "长内容的一鱼多吃"
+          ],
+          "bestFor": "有长视频素材、想低成本铺短视频矩阵的人。",
+          "pricing": "免费档 + 付费订阅（按分钟）",
+          "platform": "Web",
+          "author": "Opus",
+          "official": "https://www.opus.pro",
+          "tags": ["短视频", "AI 剪辑", "竖屏"]
+        },
+        {
+          "id": "repurpose",
+          "name": "Repurpose.io",
+          "category": "media",
+          "tagline": "内容自动跨平台分发",
+          "overview": "Repurpose.io 把你在 TikTok / Reels / YouTube 等平台发的内容自动转发到其他平台，设置一次后持续同步，省掉手动搬运。",
+          "features": [
+            "跨平台自动转发",
+            "一次设置持续同步",
+            "支持短视频与直播切片",
+            "连接主流社媒账号"
+          ],
+          "useCases": [
+            "多平台同步分发",
+            "直播切片自动铺号",
+            "减少重复上传的人工"
+          ],
+          "bestFor": "同时运营多个社媒账号、怕漏发的人。",
+          "pricing": "付费订阅（有免费试用）",
+          "platform": "Web",
+          "author": "Repurpose.io",
+          "official": "https://repurpose.io",
+          "tags": ["自动分发", "跨平台", "搬运"]
+        }
+      ]
+    },
+    {
+      "key": "devdesign",
+      "label": "开发 / 设计",
+      "skills": [
+        {
+          "id": "cursor",
+          "name": "Cursor",
+          "category": "devdesign",
+          "tagline": "AI 原生代码编辑器",
+          "overview": "Cursor 是基于 VS Code 的 AI 代码编辑器，能读懂整个代码库，用对话式方式改代码、补完、重构，是当下最火的 AI 编程工具之一。",
+          "features": [
+            "基于全仓库上下文的对话编辑",
+            "Tab 多行智能补完",
+            "多文件重构与终端命令生成",
+            "内置多模型（含 Claude、GPT）"
+          ],
+          "useCases": [
+            "日常编码与重构",
+            "读不懂的仓库快速上手",
+            "批量改样板代码"
+          ],
+          "bestFor": "想让 AI 真正参与写代码的开发者。",
+          "pricing": "免费档 + Pro / Team 订阅（按用量）",
+          "platform": "macOS / Windows / Linux",
+          "author": "Cursor",
+          "official": "https://cursor.com",
+          "tags": ["AI 编辑器", "Copilot", "重构"]
+        },
+        {
+          "id": "v0",
+          "name": "v0",
+          "category": "devdesign",
+          "tagline": "用提示词生成 UI",
+          "overview": "v0 是 Vercel 出的 AI 界面生成器，输入描述就能产出 React + Tailwind 的组件和页面，可以继续对话微调并导出代码，适合快速起原型。",
+          "features": [
+            "提示词生成 React + Tailwind UI",
+            "对话式微调",
+            "一键复制 / 导出代码",
+            "与 Next.js 部署衔接"
+          ],
+          "useCases": [
+            "从想法快速出 UI 原型",
+            "生成可复用的组件",
+            "给设计稿快速落地"
+          ],
+          "bestFor": "想用自然语言把界面说出来的前端与产品。",
+          "pricing": "免费额度 + 订阅（按生成积分）",
+          "platform": "Web",
+          "author": "Vercel",
+          "official": "https://v0.dev",
+          "tags": ["UI 生成", "React", "Tailwind"]
+        },
+        {
+          "id": "figma",
+          "name": "Figma",
+          "category": "devdesign",
+          "tagline": "协作式界面设计",
+          "overview": "Figma 是浏览器里的界面设计与原型工具，团队实时协作，开发者可直接取标注与代码，几乎是行业标准。",
+          "features": [
+            "实时多人协作",
+            "设计稿 + 可点击原型",
+            "Dev Mode 取标注与代码",
+            "组件库与设计系统"
+          ],
+          "useCases": [
+            "产品 UI 设计",
+            "原型评审",
+            "设计系统管理"
+          ],
+          "bestFor": "几乎所有做数字产品的团队。",
+          "pricing": "免费档 + 专业 / 团队订阅",
+          "platform": "Web / 桌面 App",
+          "author": "Figma",
+          "official": "https://www.figma.com",
+          "tags": ["UI 设计", "原型", "协作"]
+        },
+        {
+          "id": "tailwind",
+          "name": "Tailwind CSS",
+          "category": "devdesign",
+          "tagline": "原子化 CSS 框架",
+          "overview": "Tailwind CSS 用 utility class 直接在 HTML 里写样式，不用在 CSS 文件间来回切，开发界面速度快、风格统一，是当前最主流的 CSS 方案之一。",
+          "features": [
+            "原子化 class，少切文件",
+            "内置设计令牌与响应式",
+            "配合 shadcn 等生态成熟",
+            "产出体积可控（purge）"
+          ],
+          "useCases": [
+            "从零搭界面",
+            "设计系统落地",
+            "快速做响应式页面"
+          ],
+          "bestFor": "想提速前端样式开发、又不喜欢起名写类的团队。",
+          "pricing": "开源免费（MIT）；Tailwind UI 为付费组件",
+          "platform": "Web / 任意前端",
+          "author": "Tailwind Labs",
+          "repo": "https://github.com/tailwindlabs/tailwindcss",
+          "official": "https://tailwindcss.com",
+          "tags": ["CSS", "原子化", "前端"]
+        },
+        {
+          "id": "shadcn",
+          "name": "shadcn/ui",
+          "category": "devdesign",
+          "tagline": "可复制的 React 组件库",
+          "overview": "shadcn/ui 不让你 npm 安装一个黑盒组件库，而是把组件源码直接拷进项目（基于 Radix + Tailwind），你可以随便改，不被锁死。",
+          "features": [
+            "组件源码可复制进项目",
+            "基于 Radix，可访问性好",
+            "与 Tailwind 深度契合",
+            "CLI 一键添加组件"
+          ],
+          "useCases": [
+            "快速搭后台 / 产品界面",
+            "需要可控、可改的组件",
+            "统一团队组件规范"
+          ],
+          "bestFor": "用 React + Tailwind、想要自己的组件库而非黑盒的团队。",
+          "pricing": "开源免费（MIT 等）",
+          "platform": "React / Next.js",
+          "author": "shadcn",
+          "repo": "https://github.com/shadcn-ui/ui",
+          "official": "https://ui.shadcn.com",
+          "tags": ["React", "组件库", "Tailwind"]
+        },
+        {
+          "id": "excalidraw",
+          "name": "Excalidraw",
+          "category": "devdesign",
+          "tagline": "手绘风白板",
+          "overview": "Excalidraw 是开源在线白板，手绘风格画架构图、流程、线框，适合随手梳理思路与远程协作，深受工程师喜欢。",
+          "features": [
+            "手绘风格图形与连线",
+            "实时协作与分享链接",
+            "导出 PNG / SVG",
+            "丰富的社区图形库"
+          ],
+          "useCases": [
+            "架构 / 流程草图",
+            "会议脑暴",
+            "线框与原型草图"
+          ],
+          "bestFor": "喜欢画出来而不是写文档来理清思路的人。",
+          "pricing": "开源免费（MIT）；Excalidraw+ 有付费协作",
+          "platform": "Web / 桌面",
+          "author": "Excalidraw",
+          "repo": "https://github.com/excalidraw/excalidraw",
+          "official": "https://excalidraw.com",
+          "tags": ["白板", "手绘", "梳理"]
+        }
+      ]
+    }
+  ]
+}

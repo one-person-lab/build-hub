@@ -1,0 +1,140 @@
+/* 技能库 SkillLibraryView —— 复用 .catalog-page/.grid/.card 等原站 class，
+   仅补充卡片内部与筛选区细节样式 */
+
+.skill-lib-head {
+  margin: 4px 0 14px;
+}
+.skill-lib-head h1 {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 0 0 8px;
+  color: var(--text);
+}
+.skill-lib-head p {
+  margin: 0;
+  color: var(--text-soft, #6b7280);
+  font-size: 15px;
+  line-height: 1.65;
+  max-width: 720px;
+}
+
+.skill-lib-finder {
+  margin: 10px 0 4px;
+}
+.skill-lib-chip {
+  cursor: pointer;
+}
+
+.skill-lib-cat {
+  margin-top: 8px;
+}
+.skill-lib-empty {
+  color: var(--text-soft, #6b7280);
+  font-size: 14px;
+  padding: 22px 0;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-lg);
+  text-align: center;
+  background: color-mix(in srgb, var(--bg) 55%, transparent);
+  margin: 0 0 8px;
+}
+
+.skill-card-wrap {
+  display: flex;
+  flex-direction: column;
+}
+.skill-card {
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease),
+    border-color 0.25s;
+}
+.skill-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-card);
+  border-color: var(--theme-brand);
+}
+.skill-card .card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.skill-card-title {
+  font-size: 18px;
+  font-weight: 650;
+  margin: 0;
+  margin-right: auto;
+  color: var(--text);
+}
+.skill-card-avatar {
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.skill-card-avatar .skill-avatar-initial {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--theme-brand);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--theme-brand) 28%, transparent);
+}
+.skill-card-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #fff;
+}
+.skill-card-arrow {
+  color: var(--theme-brand);
+  font-size: 18px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.skill-card-desc {
+  margin: 10px 0 0;
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: var(--text-soft, #6b7280);
+}
+.skill-card-tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 14px 0 0;
+  padding: 0;
+}
+.skill-card-tags li {
+  font-size: 12px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--theme-brand) 12%, transparent);
+  color: var(--theme-dark-brand, var(--theme-brand));
+  border: 1px solid color-mix(in srgb, var(--theme-brand) 22%, transparent);
+}
+
+.skill-card-more {
+  margin-top: 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--theme-brand);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.skill-card:hover .skill-card-more {
+  gap: 8px;
+  transition: gap 0.2s var(--ease);
+}
