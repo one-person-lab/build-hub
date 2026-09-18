@@ -1,5 +1,5 @@
-import CatalogView from "@/components/CatalogView";
+import HomeView from "@/components/HomeView";
 
 export default function Home() {
-  return <CatalogView catalogKey="frontend" />;
+  return <HomeView />;
 }

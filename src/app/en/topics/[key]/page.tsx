@@ -6,7 +6,7 @@ import type { Catalog } from "@/lib/types";
 const CATALOGS = enCatalogsData as Catalog[];
 
 export function generateStaticParams() {
-  return CATALOGS.filter((c) => c.key !== "frontend").map((c) => ({ key: c.key }));
+  return CATALOGS.map((c) => ({ key: c.key }));
 }
 
 export default async function EnTopicPage({

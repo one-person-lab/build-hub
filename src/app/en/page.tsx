@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import CatalogView from "@/components/CatalogView";
+import HomeView from "@/components/HomeView";
 
 export const metadata: Metadata = {
   title: "BuildHub | Vibe Coding Terms",
@@ -8,5 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function EnHome() {
-  return <CatalogView catalogKey="frontend" locale="en" />;
+  return <HomeView locale="en" />;
 }

@@ -29,13 +29,13 @@ function applyThemeColor(value: string, hover: string, dark: string) {
 
 const SECTIONS: Record<Locale, { href: string; label: string }[]> = {
   zh: [
-    { href: "/", label: "术语" },
+    { href: "/topics/frontend", label: "术语" },
     { href: "/skills", label: "技能" },
     { href: "/products", label: "产品" },
     { href: "/prompts", label: "提示词" },
   ],
   en: [
-    { href: "/en", label: "Terms" },
+    { href: "/en/topics/frontend", label: "Terms" },
     { href: "/en/skills", label: "Skills" },
     { href: "/en/products", label: "Showcase" },
     { href: "/en/prompts", label: "Prompts" },
