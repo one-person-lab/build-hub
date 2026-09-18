@@ -2,77 +2,10 @@
 
 import { useEffect, useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import termsData from "@/data/terms.json";
-import enTermsData from "@/data/en-terms.json";
-
-type TermLite = { slug: string; name: string; en: string; summaryLead: string };
-
-const toLite = (data: unknown) =>
-  (data as TermLite[]).map((t) => ({
-    slug: t.slug,
-    name: t.name,
-    en: t.en,
-    summaryLead: t.summaryLead,
-  }));
-
-const TERMS_ZH = toLite(termsData);
-const TERMS_EN = toLite(enTermsData);
+import CommandPalette from "@/components/CommandPalette";
+import ProModal from "@/components/ProModal";
 
 type Locale = "zh" | "en";
-
-// 英文站没有课程（原站 /en/courses 会 307 回 /courses）
-const NAV_ITEMS: Record<Locale, { href: string; label: string }[]> = {
-  zh: [
-    { href: "/", label: "术语" },
-    { href: "/practice", label: "练习" },
-    { href: "/courses", label: "课程" },
-    { href: "/products", label: "产品图鉴" },
-    { href: "/skills", label: "技能库" },
-    { href: "/prompts", label: "提示词" },
-  ],
-  en: [
-    { href: "/en", label: "Terms" },
-    { href: "/en/practice", label: "Practice" },
-    { href: "/en/products", label: "Showcase" },
-    { href: "/en/skills", label: "Skill Library" },
-    { href: "/en/prompts", label: "Prompts" },
-  ],
-};
-
-const NAV_UI: Record<
-  Locale,
-  {
-    tagline: string;
-    searchPlaceholder: string;
-    searchLabel: string;
-    chooseLanguage: string;
-    themeColor: string;
-    toDark: string;
-    toLight: string;
-    community: string;
-  }
-> = {
-  zh: {
-    tagline: "BuildHub · Vibe Coding 术语图鉴",
-    searchPlaceholder: "搜索术语：试试「按钮」「登录弹窗」「返回顶部」…",
-    searchLabel: "搜索组件、技术栈和 AI 术语",
-    chooseLanguage: "选择语言",
-    themeColor: "主题色",
-    toDark: "切换到黑夜模式",
-    toLight: "切换到白昼模式",
-    community: "交流群",
-  },
-  en: {
-    tagline: "BuildHub · Your Vibe Coding Guide",
-    searchPlaceholder: "Search terms: try button, hover, dark mode…",
-    searchLabel: "Search terms and components",
-    chooseLanguage: "Choose language",
-    themeColor: "Theme color",
-    toDark: "Switch to dark mode",
-    toLight: "Switch to light mode",
-    community: "Community",
-  },
-};
 
 const THEME_COLORS = [
   { name: "图鉴金", value: "#8a6a1f", hover: "#6f5518", dark: "#e8c767" },
@@ -94,25 +27,74 @@ function applyThemeColor(value: string, hover: string, dark: string) {
   localStorage.setItem("vh-theme-color", value);
 }
 
+const SECTIONS: Record<Locale, { href: string; label: string }[]> = {
+  zh: [
+    { href: "/", label: "术语" },
+    { href: "/skills", label: "技能" },
+    { href: "/products", label: "产品" },
+    { href: "/prompts", label: "提示词" },
+  ],
+  en: [
+    { href: "/en", label: "Terms" },
+    { href: "/en/skills", label: "Skills" },
+    { href: "/en/products", label: "Showcase" },
+    { href: "/en/prompts", label: "Prompts" },
+  ],
+};
+
+const UI = {
+  zh: {
+    searchLabel: "搜索图鉴…",
+    goPro: "Go Pro",
+    toDark: "切换到黑夜模式",
+    toLight: "切换到白昼模式",
+    themeColor: "主题色",
+    assets: "素材库",
+    community: "交流群",
+    changelog: "更新日志",
+    practice: "练习",
+    courses: "课程",
+    skill: "BuildHub Skill",
+    oil: "Oil 的个人网站",
+    language: "语言",
+    favorites: "收藏",
+  },
+  en: {
+    searchLabel: "Search the index…",
+    goPro: "Go Pro",
+    toDark: "Switch to dark mode",
+    toLight: "Switch to light mode",
+    themeColor: "Theme color",
+    assets: "Assets",
+    community: "Community",
+    changelog: "Changelog",
+    practice: "Practice",
+    courses: "Courses",
+    skill: "BuildHub Skill",
+    oil: "Oil's website",
+    language: "Language",
+    favorites: "Favorites",
+  },
+};
+
 export default function SiteNav() {
   const pathname = usePathname();
   const router = useRouter();
   const [dark, setDark] = useState(false);
-  const [q, setQ] = useState("");
-  const [focused, setFocused] = useState(false);
+  const [palette, setPalette] = useState(false);
+  const [pro, setPro] = useState(false);
+  const [menu, setMenu] = useState(false);
   const [themeOpen, setThemeOpen] = useState(false);
   const [themeColor, setThemeColor] = useState<string | null>(null);
   const [communityOpen, setCommunityOpen] = useState(false);
-  const [langOpen, setLangOpen] = useState(false);
-  const boxRef = useRef<HTMLDivElement>(null);
+  const [favCount, setFavCount] = useState(0);
+  const menuRef = useRef<HTMLDivElement>(null);
   const themeRef = useRef<HTMLDivElement>(null);
-  const langRef = useRef<HTMLDivElement>(null);
 
-  // 当前语言直接由 URL 前缀决定，切换语言即切换路由
   const locale: Locale =
     pathname === "/en" || pathname.startsWith("/en/") ? "en" : "zh";
-  const NAV = NAV_ITEMS[locale];
-  const U = NAV_UI[locale];
+  const U = UI[locale];
+  const base = locale === "en" ? "/en" : "";
 
   useEffect(() => {
     const saved = localStorage.getItem("vh-color-mode");
@@ -130,28 +112,34 @@ export default function SiteNav() {
     applyThemeColor(initial.value, initial.hover, initial.dark);
   }, []);
 
-  function toggleMode() {
-    const next = !dark;
-    setDark(next);
-    document.documentElement.dataset.colorMode = next ? "dark" : "light";
-    localStorage.setItem("vh-color-mode", next ? "dark" : "light");
-  }
+  useEffect(() => {
+    document.documentElement.lang = locale === "en" ? "en-US" : "zh-CN";
+  }, [locale]);
 
   useEffect(() => {
-    function onClick(e: MouseEvent) {
-      if (boxRef.current && !boxRef.current.contains(e.target as Node)) {
-        setFocused(false);
-      }
-      if (themeRef.current && !themeRef.current.contains(e.target as Node)) {
-        setThemeOpen(false);
-      }
-      if (langRef.current && !langRef.current.contains(e.target as Node)) {
-        setLangOpen(false);
+    function onKey(e: KeyboardEvent) {
+      const inField =
+        e.target instanceof HTMLElement &&
+        (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA");
+      if (
+        (e.key === "/" && !inField && !palette) ||
+        ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k")
+      ) {
+        e.preventDefault();
+        setPalette(true);
       }
     }
-    document.addEventListener("click", onClick);
-    return () => document.removeEventListener("click", onClick);
-  }, []);
+    function onClick(e: MouseEvent) {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) setMenu(false);
+      if (themeRef.current && !themeRef.current.contains(e.target as Node)) setThemeOpen(false);
+    }
+    window.addEventListener("keydown", onKey);
+    window.addEventListener("mousedown", onClick);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      window.removeEventListener("mousedown", onClick);
+    };
+  }, [palette]);
 
   // 交流群弹窗：ESC 关闭 + 锁定页面滚动
   useEffect(() => {
@@ -168,10 +156,26 @@ export default function SiteNav() {
     };
   }, [communityOpen]);
 
+  function toggleMode() {
+    const next = !dark;
+    setDark(next);
+    document.documentElement.dataset.colorMode = next ? "dark" : "light";
+    localStorage.setItem("vh-color-mode", next ? "dark" : "light");
+  }
+
+  function openMenu() {
+    try {
+      setFavCount(JSON.parse(localStorage.getItem("vh-favorites") || "[]").length);
+    } catch {
+      setFavCount(0);
+    }
+    setMenu((v) => !v);
+  }
+
   // 语言：URL 前缀 /en 决定当前语言，cookie 仅作记录
   function switchLang(next: Locale) {
     document.cookie = `vibehub-locale=${next}; path=/; max-age=31536000`;
-    setLangOpen(false);
+    setMenu(false);
     if (next === "en") {
       router.push(pathname === "/" ? "/en" : `/en${pathname}`);
     } else {
@@ -180,264 +184,158 @@ export default function SiteNav() {
     }
   }
 
-  // <html lang> 跟随语言
-  useEffect(() => {
-    document.documentElement.lang = locale === "en" ? "en-US" : "zh-CN";
-  }, [locale]);
-
-  const ql = q.trim().toLowerCase();
-  const searchPool = locale === "en" ? TERMS_EN : TERMS_ZH;
-  const results =
-    ql.length > 0
-      ? searchPool
-          .filter(
-            (t) =>
-              t.name.toLowerCase().includes(ql) ||
-              t.en.toLowerCase().includes(ql) ||
-              t.slug.includes(ql)
-          )
-          .slice(0, 10)
-      : [];
-  const detailBase = locale === "en" ? "/en/" : "/";
-
   const isCurrent = (href: string) =>
-    href === "/" ? pathname === "/" : pathname.startsWith(href);
+    href === "/" || href === "/en"
+      ? pathname === href
+      : pathname === href || pathname.startsWith(href + "/");
 
   const skillHref = locale === "en" ? "/en/vibehub-skill" : "/vibehub-skill";
-  const skillCurrent = pathname === skillHref;
 
   return (
     <>
-      <nav className="nav">
-      <div className="nav-left">
-        <a className="vh-logo" href="/" aria-label="BuildHub" data-locale={locale}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            className="vh-logo-mark"
-            src="/assets/buildhub-logo.png"
-            alt=""
-            width={20}
-            height={20}
-          />
-          <span className="vh-logo-stage" aria-hidden="true">
-            <span className="vh-word vh-word-brand">
-              Build<b>Hub</b>
-            </span>
-            <span className="vh-word vh-word-tagline">{U.tagline}</span>
+      <nav className="nav rd-nav">
+        <a href={base || "/"} className="rd-brand" aria-label="BuildHub">
+          <span className="rd-logo" aria-hidden>
+            ✦
           </span>
+          BuildHub
         </a>
-        <div className="nav-primary">
-          {NAV.map((it) => (
+        <div className="rd-sections" aria-label="内容分区">
+          {SECTIONS[locale].map((s) => (
             <a
-              key={it.href}
-              className={
-                "nav-primary-item" + (isCurrent(it.href) ? " is-current" : "")
-              }
-              href={it.href}
-              aria-current={isCurrent(it.href) ? "page" : undefined}
+              key={s.href}
+              href={s.href}
+              className={isCurrent(s.href) ? "is-active" : ""}
+              aria-current={isCurrent(s.href) ? "page" : undefined}
             >
-              {it.label}
+              {s.label}
             </a>
           ))}
-          <a
-            className={
-              "nav-skill-link" + (skillCurrent ? " is-current" : "")
-            }
-            href={skillHref}
-            aria-label="BuildHub Skill"
-            aria-current={skillCurrent ? "page" : undefined}
-          >
-            <i className="ti ti-ai-agent" aria-hidden="true" />
-            <span>BuildHub Skill</span>
-          </a>
-          <button
-            className="nav-primary-item nav-community-entry"
-            type="button"
-            aria-label={U.community}
-            aria-haspopup="dialog"
-            aria-expanded={communityOpen}
-            aria-controls="community-dialog"
-            onClick={() => setCommunityOpen(true)}
-          >
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M8.5 11.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm7.2-1.2a2.8 2.8 0 1 0 0-5.6 2.8 2.8 0 0 0 0 5.6ZM2.8 19c.4-3.4 2.3-5.2 5.7-5.2s5.3 1.8 5.7 5.2H2.8Zm11.2-5.6c3.9-.5 6.2 1.4 6.6 4.6h-4.8" />
-            </svg>
-            <span className="nav-community-label">{U.community}</span>
-          </button>
         </div>
-      </div>
-      <div className="nav-right">
-        <div className="nav-search">
-          <div className="search-box" ref={boxRef} style={{ position: "relative" }}>
-            <span className="search-icon">⌕</span>
-            <input
-              placeholder={U.searchPlaceholder}
-              aria-label={U.searchLabel}
-              value={q}
-              onChange={(e) => setQ(e.target.value)}
-              onFocus={() => setFocused(true)}
+        <a href={`${base}/topics/assets`} className="rd-pill">
+          {U.assets}
+        </a>
+        <div className="rd-nav-right">
+          <button className="rd-searchbtn" onClick={() => setPalette(true)}>
+            <span aria-hidden>⌕</span>
+            <span className="rd-searchlabel">{U.searchLabel}</span>
+            <kbd>/</kbd>
+          </button>
+          <button className="rd-gopro" onClick={() => setPro(true)}>
+            {U.goPro}
+          </button>
+          <div className="nav-theme" ref={themeRef}>
+            <button
+              className="nav-circle"
+              type="button"
+              title={U.themeColor}
+              aria-label={U.themeColor}
+              aria-haspopup="menu"
+              aria-expanded={themeOpen}
+              onClick={() => setThemeOpen((v) => !v)}
             />
-            {focused && results.length > 0 && (
-              <div
-                style={{
-                  position: "absolute",
-                  top: "calc(100% + 6px)",
-                  left: 0,
-                  right: 0,
-                  background: "var(--bg)",
-                  border: "1px solid var(--border)",
-                  borderRadius: 12,
-                  boxShadow: "var(--shadow-card)",
-                  overflow: "hidden",
-                  zIndex: 100,
-                }}
-              >
-                {results.map((r) => (
-                  <a
-                    key={r.slug}
-                    href={detailBase + r.slug}
+            {themeOpen && (
+              <div className="nav-popover right" role="menu" aria-label={U.themeColor}>
+                {THEME_COLORS.map((c) => (
+                  <button
+                    key={c.value}
+                    className={"ts-dot" + (themeColor === c.value ? " on" : "")}
+                    type="button"
+                    title={c.name}
+                    aria-label={c.name}
+                    role="menuitemradio"
+                    aria-checked={themeColor === c.value}
+                    style={{ ["--c" as unknown as string]: c.value }}
                     onClick={() => {
-                      setFocused(false);
-                      setQ("");
+                      setThemeColor(c.value);
+                      applyThemeColor(c.value, c.hover, c.dark);
+                      setThemeOpen(false);
                     }}
-                    style={{
-                      display: "block",
-                      padding: "10px 14px",
-                      borderBottom: "1px solid var(--border-light)",
-                      textDecoration: "none",
-                      color: "var(--text)",
-                      fontSize: 14,
-                    }}
-                  >
-                    <strong>
-                      {r.name} <span style={{ color: "var(--text-soft, #888)" }}>{r.en}</span>
-                    </strong>
-                    <div
-                      style={{
-                        fontSize: 12,
-                        color: "var(--text-soft, #888)",
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                        whiteSpace: "nowrap",
-                      }}
-                    >
-                      {r.summaryLead}
-                    </div>
-                  </a>
+                  />
                 ))}
               </div>
             )}
           </div>
-        </div>
-        <div className="nav-language" ref={langRef}>
           <button
-            className="nav-lang"
             type="button"
-            aria-label={U.chooseLanguage}
-            aria-haspopup="menu"
-            aria-expanded={langOpen}
-            onClick={() => setLangOpen((v) => !v)}
+            className="nav-color-mode"
+            aria-label={dark ? U.toLight : U.toDark}
+            title={dark ? U.toLight : U.toDark}
+            onClick={toggleMode}
           >
-            <span>{locale === "en" ? "English" : "中文"}</span>
-            <i aria-hidden="true" />
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+              <g className="color-mode-sun" strokeLinecap="round">
+                <circle cx="12" cy="12" r="4" />
+                <path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
+              </g>
+              <path
+                className="color-mode-moon"
+                strokeLinejoin="round"
+                d="M20.5 14.1A8.7 8.7 0 0 1 9.9 3.5a8.8 8.8 0 1 0 10.6 10.6Z"
+              />
+            </svg>
           </button>
-          {langOpen && (
-            <div
-              className="nav-popover nav-language-popover right"
-              role="menu"
-              aria-label={U.chooseLanguage}
-            >
-              <button
-                className={
-                  "nav-language-option" + (locale === "zh" ? " is-selected" : "")
-                }
-                type="button"
-                role="menuitemradio"
-                aria-checked={locale === "zh"}
-                onClick={() => switchLang("zh")}
-              >
-                <span>中文</span>
-                <i aria-hidden="true">{locale === "zh" ? "✓" : ""}</i>
-              </button>
-              <button
-                className={
-                  "nav-language-option" + (locale === "en" ? " is-selected" : "")
-                }
-                type="button"
-                role="menuitemradio"
-                aria-checked={locale === "en"}
-                onClick={() => switchLang("en")}
-              >
-                <span>English</span>
-                <i aria-hidden="true">{locale === "en" ? "✓" : ""}</i>
-              </button>
-            </div>
-          )}
-        </div>
-        <div className="nav-theme" ref={themeRef}>
-          <button
-            className="nav-circle"
-            type="button"
-            title={U.themeColor}
-            aria-label={U.themeColor}
-            aria-haspopup="menu"
-            aria-expanded={themeOpen}
-            onClick={() => setThemeOpen((v) => !v)}
-          />
-          {themeOpen && (
-            <div className="nav-popover right" role="menu" aria-label={U.themeColor}>
-              {THEME_COLORS.map((c) => (
+          <div ref={menuRef} className="rd-avatar-wrap">
+            <button className="rd-avatar" onClick={openMenu} aria-label="账号与更多" aria-haspopup="menu" aria-expanded={menu}>
+              ✦
+            </button>
+            {menu ? (
+              <div className="rd-menu" role="menu">
+                {SECTIONS[locale].map((s) => (
+                  <button key={s.href} className="nv-mob-only" onClick={() => (window.location.href = s.href)}>
+                    {s.label}
+                  </button>
+                ))}
+                <button className="nv-mob-only" onClick={() => (window.location.href = `${base}/topics/assets`)}>
+                  {U.assets}
+                </button>
+                <span className="rd-menu-sep" aria-hidden />
                 <button
-                  key={c.value}
-                  className={"ts-dot" + (themeColor === c.value ? " on" : "")}
-                  type="button"
-                  title={c.name}
-                  aria-label={c.name}
-                  role="menuitemradio"
-                  aria-checked={themeColor === c.value}
-                  style={{ ["--c" as unknown as string]: c.value }}
                   onClick={() => {
-                    setThemeColor(c.value);
-                    applyThemeColor(c.value, c.hover, c.dark);
-                    setThemeOpen(false);
+                    setMenu(false);
+                    setCommunityOpen(true);
                   }}
-                />
-              ))}
-            </div>
-          )}
+                >
+                  {U.community}
+                </button>
+                <button onClick={() => (window.location.href = `${base}/changelog`)}>{U.changelog}</button>
+                <button onClick={() => (window.location.href = `${base}/practice`)}>{U.practice}</button>
+                {locale === "zh" && (
+                  <button onClick={() => (window.location.href = "/courses")}>{U.courses}</button>
+                )}
+                <button onClick={() => (window.location.href = skillHref)}>{U.skill}</button>
+                <a href="https://oiloil.org/" target="_blank" rel="noreferrer">
+                  {U.oil}
+                </a>
+                <span className="rd-menu-sep" aria-hidden />
+                <div className="rd-menu-fav">
+                  <span>★ {U.favorites}</span>
+                  <b>{favCount}</b>
+                </div>
+                <div className="rd-menu-lang">
+                  <button
+                    className={locale === "zh" ? "is-selected" : ""}
+                    role="menuitemradio"
+                    aria-checked={locale === "zh"}
+                    onClick={() => switchLang("zh")}
+                  >
+                    中文
+                  </button>
+                  <button
+                    className={locale === "en" ? "is-selected" : ""}
+                    role="menuitemradio"
+                    aria-checked={locale === "en"}
+                    onClick={() => switchLang("en")}
+                  >
+                    English
+                  </button>
+                </div>
+              </div>
+            ) : null}
+          </div>
         </div>
-        <button
-          type="button"
-          className="nav-color-mode"
-          aria-label={dark ? U.toLight : U.toDark}
-          title={dark ? U.toLight : U.toDark}
-          onClick={toggleMode}
-        >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
-            <g className="color-mode-sun" strokeLinecap="round">
-              <circle cx="12" cy="12" r="4" />
-              <path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
-            </g>
-            <path
-              className="color-mode-moon"
-              strokeLinejoin="round"
-              d="M20.5 14.1A8.7 8.7 0 0 1 9.9 3.5a8.8 8.8 0 1 0 10.6 10.6Z"
-            />
-          </svg>
-        </button>
-        <a
-          className="nav-oil-link"
-          href="https://oiloil.org/"
-          target="_blank"
-          rel="noreferrer"
-          title="Oil 的个人网站"
-          aria-label="访问 Oil 的个人网站"
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/assets/oil-favicon.png" alt="" width={20} height={20} />
-          <span>Oil</span>
-        </a>
-      </div>
+        {palette ? <CommandPalette locale={locale} onClose={() => setPalette(false)} /> : null}
+        {pro ? <ProModal locale={locale} onClose={() => setPro(false)} /> : null}
       </nav>
       {communityOpen && (
         <div
