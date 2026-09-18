@@ -24,3 +24,6 @@ npm-debug.log*
 coverage/
 .turbo/
 *.tsbuildinfo
+
+# git worktrees（样张/实验分支隔离目录）
+.worktrees/
