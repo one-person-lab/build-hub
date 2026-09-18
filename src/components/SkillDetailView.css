@@ -108,13 +108,11 @@
 }
 .skill-detail-cat {
   display: inline-block;
+  margin-bottom: 4px;
   font-size: 12px;
-  font-weight: 600;
-  padding: 3px 10px;
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--theme-brand) 12%, transparent);
-  color: var(--theme-dark-brand, var(--theme-brand));
-  border: 1px solid color-mix(in srgb, var(--theme-brand) 22%, transparent);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--brand);
 }
 .skill-detail-name {
   font-size: 34px;

@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import TermBody, { type Term } from "./TermBody";
+import { useFlatTerms } from "./CommandPalette";
 
 function buildMarkdown(t: Term, locale: "zh" | "en" = "zh"): string {
   const lines: string[] = [];
@@ -66,6 +67,11 @@ export default function TermDetail({
   const router = useRouter();
   const { favorites, toggle } = useFavorites();
   const isFav = useMemo(() => favorites.has(term.slug), [favorites, term.slug]);
+  const flatTerms = useFlatTerms(locale);
+  const zone = useMemo(
+    () => flatTerms.find((t) => t.slug === term.slug)?.zone,
+    [flatTerms, term.slug]
+  );
 
   const T =
     locale === "en"
@@ -182,7 +188,7 @@ export default function TermDetail({
           </div>
         )}
 
-        <TermBody term={term} locale={locale} />
+        <TermBody term={term} locale={locale} kicker={zone} />
       </div>
     </main>
   );

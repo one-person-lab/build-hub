@@ -22,10 +22,12 @@ export default function TermBody({
   term,
   withDemo = true,
   locale = "zh",
+  kicker,
 }: {
   term: Term;
   withDemo?: boolean;
   locale?: "zh" | "en";
+  kicker?: string;
 }) {
   const alsoCalled = locale === "en" ? "Also called" : "也常被叫作";
   const listenLabel =
@@ -35,6 +37,9 @@ export default function TermBody({
   return (
     <div className={"detail-body detail-entry-" + term.slug}>
       <section className="detail-hero" id="detail-hero">
+        {kicker ? (
+          <span className="detail-kicker rd-kicker">{kicker}</span>
+        ) : null}
         <div className="dh-head">
           <h1>
             {term.name}

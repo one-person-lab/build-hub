@@ -400,3 +400,16 @@ html[data-color-mode="light"] .rd-pill { background: var(--text); border-color: 
   .cat-live-toc { display: none; }
   .catalog-layout { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* —— 详情页图鉴外壳（Task 4）：h1 上方统一金色分类小标 —— */
+.rd-kicker,
+.detail-kicker {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--brand);
+}
+.detail-kicker {
+  display: block;
+  margin-bottom: 8px;
+}

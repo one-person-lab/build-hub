@@ -21,6 +21,10 @@
 .asset-detail-hero {
   margin-bottom: 8px;
 }
+.asset-detail-cat {
+  display: block;
+  margin-bottom: 6px;
+}
 .asset-detail-name {
   font-size: 30px;
   font-weight: 700;

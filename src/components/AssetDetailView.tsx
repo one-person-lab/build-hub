@@ -27,6 +27,8 @@ export type AssetStyle = {
 const UI_TEXT = {
   zh: {
     back: "返回素材库",
+    catLogo: "Logo 风格",
+    catIcon: "App 图标风格",
     cases: "市场验证案例",
     casesHint: "以下品牌 logo 仅作风格参考，版权归各品牌所有，来源见各图链接。",
     casesHintIcon: "以下图标均为 App Store 在架应用官方图标，仅作风格参考，版权归各应用所有，来源见各图链接。",
@@ -42,6 +44,8 @@ const UI_TEXT = {
   },
   en: {
     back: "Back to Assets",
+    catLogo: "Logo style",
+    catIcon: "App icon style",
     cases: "Proven in the market",
     casesHint:
       "Brand logos shown for style reference only; copyright belongs to each brand. Sources linked per image.",
@@ -85,6 +89,7 @@ export default function AssetDetailView({
           </a>
 
           <header className="asset-detail-hero">
+            <span className="asset-detail-cat rd-kicker">{isIcon ? T.catIcon : T.catLogo}</span>
             <h1 className="asset-detail-name">
               {style.name}
               <span>{style.en}</span>
