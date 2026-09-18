@@ -49,7 +49,7 @@ export default async function AssetDetailPage({
     <AssetDetailView
       style={hit.style}
       locale="zh"
-      backHref="/assets"
+      backHref="/topics/assets"
       related={related}
       kind={hit.cat.key === "app-icon-style" ? "app-icon" : "logo"}
     />
