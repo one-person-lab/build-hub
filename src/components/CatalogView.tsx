@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import catalogsData from "@/data/catalogs.json";
 import enCatalogsData from "@/data/en-catalogs.json";
+import "./AssetLibraryView.css";
 
 type Term = {
   slug: string;
@@ -37,6 +38,7 @@ const TAB_LABELS: Record<string, Record<string, string>> = {
     ai: "AI",
     git: "Git",
     design: "设计风格",
+    assets: "素材库",
   },
   en: {
     frontend: "Frontend",
@@ -47,6 +49,7 @@ const TAB_LABELS: Record<string, Record<string, string>> = {
     ai: "AI",
     git: "Git",
     design: "Design Styles",
+    assets: "Assets",
   },
 };
 const TAB_ORDER = Object.keys(TAB_LABELS.zh);
@@ -254,6 +257,27 @@ export default function CatalogView({
           <header className="catalog-heading">
             <h1>{catalog.title}</h1>
           </header>
+          {catalog.key === "assets" && (
+            <a
+              className="card asset-promo-card"
+              href={locale === "en" ? "/en/assets" : "/assets"}
+            >
+              <div className="card-head">
+                <h3>
+                  {locale === "en" ? "Logo style library" : "Logo 风格库"}
+                  <span>
+                    {locale === "en" ? "Brand cases + prompts" : "品牌案例 + 提示词"}
+                  </span>
+                </h3>
+                <span className="card-title-group">→</span>
+              </div>
+              <div className="card-tagline card-quote">
+                {locale === "en"
+                  ? "Market-proven logo styles: real brand breakdowns with a copy-ready AI prompt for each."
+                  : "经市场验证的 Logo 设计风格：每个风格配真实品牌案例拆解和可直接复制的生图提示词。"}
+              </div>
+            </a>
+          )}
           {catalog.groups.map((g) => (
             <section className="cat-section" id={g.id} key={g.id}>
               <div className="cat-title">

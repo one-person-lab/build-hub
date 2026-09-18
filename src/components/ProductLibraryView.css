@@ -1,17 +1,17 @@
-/* 技能库 SkillLibraryView —— 复用 .catalog-page/.grid/.card 等原站 class，
+/* 产品图鉴 ProductLibraryView —— 复用 .catalog-page/.grid/.card 等公共 class，
    仅补充卡片内部与筛选区细节样式 */
 
-.skill-lib-head {
+.product-lib-head {
   margin: 4px 0 14px;
 }
-.skill-lib-head h1 {
+.product-lib-head h1 {
   font-size: 28px;
   font-weight: 700;
   letter-spacing: -0.01em;
   margin: 0 0 8px;
   color: var(--text);
 }
-.skill-lib-head p {
+.product-lib-head p {
   margin: 0;
   color: var(--text-soft, #6b7280);
   font-size: 15px;
@@ -19,17 +19,17 @@
   max-width: 720px;
 }
 
-.skill-lib-finder {
+.product-lib-finder {
   margin: 10px 0 4px;
 }
-.skill-lib-chip {
+.product-lib-chip {
   cursor: pointer;
 }
 
-.skill-lib-cat {
+.product-lib-cat {
   margin-top: 8px;
 }
-.skill-lib-empty {
+.product-lib-empty {
   color: var(--text-soft, #6b7280);
   font-size: 14px;
   padding: 22px 0;
@@ -40,35 +40,35 @@
   margin: 0 0 8px;
 }
 
-.skill-card-wrap {
+.product-card-wrap {
   display: flex;
   flex-direction: column;
 }
-.skill-card {
+.product-card {
   text-decoration: none;
   color: inherit;
   transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease),
     border-color 0.25s;
 }
-.skill-card:hover {
+.product-card:hover {
   transform: translateY(-3px);
   box-shadow: var(--shadow-card);
   border-color: var(--theme-brand);
 }
-.skill-card .card-head {
+.product-card .card-head {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 8px;
 }
-.skill-card-title {
+.product-card-title {
   font-size: 18px;
   font-weight: 650;
   margin: 0;
   margin-right: auto;
   color: var(--text);
 }
-.skill-card-avatar {
+.product-card-avatar {
   flex-shrink: 0;
   width: 38px;
   height: 38px;
@@ -78,7 +78,7 @@
   align-items: center;
   justify-content: center;
 }
-.skill-card-avatar .skill-avatar-initial {
+.product-card-avatar .skill-avatar-initial {
   width: 100%;
   height: 100%;
   display: flex;
@@ -90,36 +90,19 @@
   font-weight: 700;
   box-shadow: 0 4px 12px color-mix(in srgb, var(--theme-brand) 28%, transparent);
 }
-.skill-card-avatar img {
+.product-card-avatar img {
   width: 100%;
   height: 100%;
   object-fit: contain;
   background: #fff;
 }
-.skill-card-arrow {
+.product-card-arrow {
   color: var(--theme-brand);
   font-size: 18px;
   line-height: 1;
   flex-shrink: 0;
 }
-.skill-card-installs {
-  flex-shrink: 0;
-  font-size: 11.5px;
-  font-weight: 600;
-  font-variant-numeric: tabular-nums;
-  padding: 2px 8px;
-  border-radius: 999px;
-  color: var(--text-soft, #6b7280);
-  background: color-mix(in srgb, var(--text) 6%, transparent);
-  border: 1px solid var(--border-light, var(--border));
-}
-.skill-card-desc {
-  margin: 10px 0 0;
-  font-size: 13.5px;
-  line-height: 1.65;
-  color: var(--text-soft, #6b7280);
-}
-.skill-card-tags {
+.product-card-tags {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
@@ -127,7 +110,7 @@
   margin: 14px 0 0;
   padding: 0;
 }
-.skill-card-tags li {
+.product-card-tags li {
   font-size: 12px;
   padding: 3px 10px;
   border-radius: 999px;
@@ -135,8 +118,14 @@
   color: var(--theme-dark-brand, var(--theme-brand));
   border: 1px solid color-mix(in srgb, var(--theme-brand) 22%, transparent);
 }
+.product-card-tags li.product-card-type {
+  background: color-mix(in srgb, var(--green, #16a34a) 10%, transparent);
+  color: var(--green, #16a34a);
+  border-color: color-mix(in srgb, var(--green, #16a34a) 25%, transparent);
+  font-weight: 600;
+}
 
-.skill-card-more {
+.product-card-more {
   margin-top: 14px;
   font-size: 13px;
   font-weight: 600;
@@ -145,7 +134,7 @@
   align-items: center;
   gap: 4px;
 }
-.skill-card:hover .skill-card-more {
+.product-card:hover .product-card-more {
   gap: 8px;
   transition: gap 0.2s var(--ease);
 }

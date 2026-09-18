@@ -1,7 +1,240 @@
 {
   "title": "Skill Library",
-  "subtitle": "A curated set of the most popular skills right now, grouped by use case. Tap a card for the full breakdown — the official site link lives inside each detail page.",
+  "subtitle": "A curated set of mainstream Agent Skills that actually earn their place, grouped by purpose. Every entry ships a one-click install command. Our own open-source skills will join over time.",
   "categories": [
+    {
+      "key": "meta",
+      "label": "Meta",
+      "skills": [
+        {
+          "id": "find-skills",
+          "name": "find-skills",
+          "category": "meta",
+          "tagline": "The skill that lets your agent find other skills",
+          "overview": "Tell your agent «I want to do X» and it searches the skills.sh catalog, proposes the matching skill and its install command, then installs it only after you confirm. Solves the biggest gap: not knowing what skills exist.",
+          "features": [
+            "Turns natural-language needs into skill searches",
+            "Covers the full skills.sh catalog",
+            "Shows the install command and waits for your confirmation",
+            "Works with Claude Code, Cursor, Codex and more"
+          ],
+          "useCases": [
+            "You want a capability but don't know a skill exists for it",
+            "Ramping up on a new stack and its best practices",
+            "Adding vertical capabilities to a project on demand"
+          ],
+          "bestFor": "Install this one first — then you never have to memorize install commands.",
+          "pricing": "Free & open source",
+          "platform": "Claude Code / Cursor / Codex etc.",
+          "author": "Vercel Labs",
+          "repo": "https://github.com/vercel-labs/skills",
+          "install": "npx skills add vercel-labs/skills/find-skills",
+          "installs": "3.5M",
+          "tags": [
+            "meta",
+            "discovery",
+            "skills.sh"
+          ],
+          "logo": "https://github.com/vercel-labs.png"
+        },
+        {
+          "id": "skill-creator",
+          "name": "skill-creator",
+          "category": "meta",
+          "tagline": "An official skill for authoring your own skills",
+          "overview": "Anthropic's official skill-authoring assistant: it interviews you to distill requirements, generates a well-formed SKILL.md and directory layout, and handles validation and packaging. The first stop for turning your workflow into a reusable skill.",
+          "features": [
+            "Interview-style prompts that surface tacit knowledge",
+            "Generates standard SKILL.md and folder structure",
+            "Built-in validation and packaging",
+            "Follows official best-practice templates"
+          ],
+          "useCases": [
+            "Codifying team conventions into a skill",
+            "Persisting a repetitive personal workflow",
+            "Building and publishing an open-source skill"
+          ],
+          "bestFor": "Anyone who wants «how I work» to become reusable agent capability.",
+          "pricing": "Free & open source",
+          "platform": "Claude Code / Cursor / Codex etc.",
+          "author": "Anthropic",
+          "repo": "https://github.com/anthropics/skills",
+          "install": "npx skills add https://github.com/anthropics/skills --skill skill-creator",
+          "tags": [
+            "meta",
+            "authoring",
+            "official"
+          ],
+          "logo": "https://github.com/anthropics.png"
+        }
+      ]
+    },
+    {
+      "key": "workflow",
+      "label": "Engineering Workflow",
+      "skills": [
+        {
+          "id": "superpowers",
+          "name": "Superpowers",
+          "category": "workflow",
+          "tagline": "Gives agents «brainstorm → plan → test → build» discipline",
+          "overview": "Jesse Vincent's (obra) collection of engineering workflow skills: brainstorming, implementation plans, TDD, systematic debugging, requesting and receiving code review… It makes AI coding follow disciplined process instead of typing at full speed. The most-installed workflow pack on skills.sh.",
+          "features": [
+            "Enforces «brainstorm, then plan, then code»",
+            "TDD: failing tests first, implementation second",
+            "Systematic debugging: reproduce → hypothesize → verify",
+            "Parallel subagents and code-review workflows"
+          ],
+          "useCases": [
+            "Tired of ten-thousand-line one-shot generations",
+            "Multi-day features that need context management",
+            "Aligning AI output with team engineering standards"
+          ],
+          "bestFor": "Required reading if you use AI coding seriously.",
+          "pricing": "Free & open source",
+          "platform": "Claude Code / Cursor / Codex etc.",
+          "author": "Jesse Vincent (obra)",
+          "repo": "https://github.com/obra/superpowers",
+          "install": "npx skills add obra/superpowers",
+          "installs": "3.2M",
+          "tags": [
+            "workflow",
+            "TDD",
+            "debugging",
+            "code review"
+          ],
+          "logo": "https://github.com/obra.png"
+        },
+        {
+          "id": "grill-me",
+          "name": "grill-me",
+          "category": "workflow",
+          "tagline": "Let the agent grill your plan before you build it",
+          "overview": "Matt Pocock's skill: before any code, the agent fires question after question at your idea — surfacing vague requirements, hidden assumptions and unconsidered edge cases — and only lets you go once the plan holds up. Changing your mind before coding is the cheapest fix there is.",
+          "features": [
+            "Interrogates the plan point by point",
+            "Forces requirements, boundaries and acceptance criteria to be explicit",
+            "Low-cost course correction before implementation",
+            "Great substitute for a review partner when solo"
+          ],
+          "useCases": [
+            "You're only 50% sure but itching to start",
+            "Self-checking a PRD or tech design",
+            "Rehearsing risky refactors and migrations"
+          ],
+          "bestFor": "People who want AI to build the right thing, not just build the thing right.",
+          "pricing": "Free & open source",
+          "platform": "Claude Code / Cursor / Codex etc.",
+          "author": "Matt Pocock",
+          "repo": "https://github.com/mattpocock/skills",
+          "install": "npx skills add mattpocock/skills/grill-me",
+          "installs": "1.2M",
+          "tags": [
+            "requirements",
+            "plan review",
+            "planning"
+          ],
+          "logo": "https://github.com/mattpocock.png"
+        }
+      ]
+    },
+    {
+      "key": "design",
+      "label": "Design & Frontend",
+      "skills": [
+        {
+          "id": "frontend-design",
+          "name": "frontend-design",
+          "category": "design",
+          "tagline": "Anthropic's cure for AI-generated «template face» UIs",
+          "overview": "Anthropic's official frontend design skill: it requires the agent to commit to a distinct visual style, bold typography, restrained motion and high information density — targeting the unmistakable «made by AI» look.",
+          "features": [
+            "Rejects the generic default-Tailwind face",
+            "Insists on design personality and site-wide coherence",
+            "Concrete rules for type pairing and layout rhythm",
+            "Motion only where it genuinely earns its place"
+          ],
+          "useCases": [
+            "Every AI-generated page looks the same",
+            "Landing pages and dashboards that need brand feel",
+            "Giving your agent an eye for design"
+          ],
+          "bestFor": "Standard equipment for anyone building UIs with AI.",
+          "pricing": "Free & open source",
+          "platform": "Claude Code / Cursor / Codex etc.",
+          "author": "Anthropic",
+          "repo": "https://github.com/anthropics/skills",
+          "install": "npx skills add https://github.com/anthropics/skills --skill frontend-design",
+          "installs": "897.6K",
+          "tags": [
+            "frontend",
+            "UI design",
+            "anti-slop"
+          ],
+          "logo": "https://github.com/anthropics.png"
+        },
+        {
+          "id": "web-design-guidelines",
+          "name": "web-design-guidelines",
+          "category": "design",
+          "tagline": "A design-standard physical for your interface",
+          "overview": "Vercel's interface-guidelines skill: hundreds of actionable rules on spacing, hierarchy, forms, accessibility and interaction states. The agent audits existing UI against the checklist and outputs a concrete fix list.",
+          "features": [
+            "100+ actionable interface rules",
+            "Element-level audits of existing pages",
+            "Covers accessibility and responsiveness",
+            "Findings specific enough to fix directly"
+          ],
+          "useCases": [
+            "Pre-launch UI walkthroughs",
+            "Systematically upgrading AI-generated pages",
+            "When you'd rather not learn a11y from scratch"
+          ],
+          "bestFor": "Teams that want good-UI intuition turned into an executable checklist.",
+          "pricing": "Free & open source",
+          "platform": "Claude Code / Cursor / Codex etc.",
+          "author": "Vercel Labs",
+          "repo": "https://github.com/vercel-labs/agent-skills",
+          "install": "npx skills add vercel-labs/agent-skills/web-design-guidelines",
+          "tags": [
+            "design guidelines",
+            "audit",
+            "a11y"
+          ],
+          "logo": "https://github.com/vercel-labs.png"
+        },
+        {
+          "id": "vercel-react-best-practices",
+          "name": "vercel-react-best-practices",
+          "category": "design",
+          "tagline": "React performance rules wired into your agent's muscle memory",
+          "overview": "The Vercel team's React / Next.js performance and quality best practices. The agent follows them while generating code — from server-component boundaries to avoiding needless re-renders — like a code reviewer from the React core team on every diff.",
+          "features": [
+            "RSC / client-component boundary decision rules",
+            "Patterns against re-renders and request waterfalls",
+            "Aligned with official Next.js recommendations",
+            "Applies at generation time, not just in after-the-fact review"
+          ],
+          "useCases": [
+            "Inconsistent quality in AI-written React",
+            "Next.js performance work",
+            "Unifying frontend code standards across a team"
+          ],
+          "bestFor": "Everyone writing React / Next.js with AI.",
+          "pricing": "Free & open source",
+          "platform": "Claude Code / Cursor / Codex etc.",
+          "author": "Vercel Labs",
+          "repo": "https://github.com/vercel-labs/agent-skills",
+          "install": "npx skills add vercel-labs/agent-skills/vercel-react-best-practices",
+          "tags": [
+            "React",
+            "Next.js",
+            "performance"
+          ],
+          "logo": "https://github.com/vercel-labs.png"
+        }
+      ]
+    },
     {
       "key": "video",
       "label": "Video",
@@ -10,508 +243,194 @@
           "id": "remotion",
           "name": "Remotion",
           "category": "video",
-          "tagline": "Make videos with React",
-          "overview": "Remotion lets you generate video by writing React components — the timeline, frames and audio are all code, and every frame is precisely controllable. It turns video production into programming, ideal for reusable, batch-generated video.",
+          "tagline": "Agents writing video in React — by the official rules",
+          "overview": "Remotion's official Agent Skills pack: best practices (remotion-best-practices), creation (remotion-create) and rendering (remotion-render) teach the agent to author video as React components the official way and render real files — dodging every classic AI-written Remotion pitfall.",
           "features": [
-            "Describe video as React components, rendered frame by frame",
-            "100+ primitives: text, shapes, audio, captions, 3D (Three.js)",
-            "Parametric rendering — one template, many video variants",
-            "Render locally or via Remotion's cloud render queue"
+            "Official pack: best practices / create / render end to end",
+            "Keeps agents away from common Remotion anti-patterns",
+            "Parameterized compositions for batch-generating videos",
+            "Produces real video files, CI-renderable"
           ],
           "useCases": [
-            "Product demos and app intro clips",
-            "Social shorts and animated posters",
-            "Data-driven batch video (one-to-many)"
+            "Product demo videos as code",
+            "Data-driven templated videos (swap data each episode)",
+            "Treating video as an engineering pipeline, not manual craft"
           ],
-          "bestFor": "Developers comfortable with React who want video as a programmable asset.",
-          "pricing": "Open source (MIT); cloud rendering pay-as-you-go",
+          "bestFor": "People turning video into programmable assets with AI writing Remotion by the book.",
+          "pricing": "Free & open source (free for individuals/small teams; enterprises need a license)",
           "platform": "Web / Node.js / CLI",
           "author": "Remotion",
-          "official": "https://www.remotion.dev",
-          "repo": "https://github.com/remotion-dev/remotion",
-          "tags": ["React", "Video", "Motion", "Node.js"]
-        },
-        {
-          "id": "runway",
-          "name": "Runway",
-          "category": "video",
-          "tagline": "AI video generation & editing",
-          "overview": "Runway is a creator-focused AI video tool: generate and edit video from text or images. Its Gen models do text-to-video and image-to-video, plus object removal and motion brush — great for fast turnarounds.",
-          "features": [
-            "Text / image to video (Gen series models)",
-            "Smart object removal, outpainting, motion brush",
-            "Video-to-template, lip-sync and more creative tools",
-            "Available on web and desktop"
+          "repo": "https://github.com/remotion-dev/skills",
+          "install": "npx skills add remotion-dev/skills",
+          "tags": [
+            "video",
+            "React",
+            "official skill"
           ],
-          "useCases": [
-            "Quick prototypes for social clips and ad creatives",
-            "Turning still images into moving shots",
-            "Removing unwanted objects or filling missing frames"
-          ],
-          "bestFor": "Designers and marketers who want AI video fast without editing skills.",
-          "pricing": "Free credits + subscription (Standard from ~$12/mo, credit-based)",
-          "platform": "Web / Desktop App",
-          "author": "Runway",
-          "official": "https://runwayml.com",
-          "tags": ["AI Video", "Text-to-Video", "Editing"]
-        },
-        {
-          "id": "heygen",
-          "name": "HeyGen",
-          "category": "video",
-          "tagline": "AI avatar videos",
-          "overview": "HeyGen turns a script into a talking-head video with an AI avatar, with multilingual voiceover and avatar/voice cloning. Handy for training, marketing and multilingual content.",
-          "features": [
-            "AI avatar talking-head videos",
-            "120+ languages with translated voiceover and lip-sync",
-            "Avatar / voice cloning (Avatar IV)",
-            "Template-based batch generation"
-          ],
-          "useCases": [
-            "Product tutorials and internal training",
-            "Multilingual marketing videos",
-            "Alternative when live shooting is costly"
-          ],
-          "bestFor": "Teams that need lots of presenter-style video without repeated filming.",
-          "pricing": "Free trial + subscription (per seat / minute)",
-          "platform": "Web",
-          "author": "HeyGen",
-          "official": "https://www.heygen.com",
-          "tags": ["Avatar", "Voiceover", "Multilingual"]
-        },
-        {
-          "id": "manim",
-          "name": "Manim",
-          "category": "video",
-          "tagline": "Math animation engine (Python)",
-          "overview": "Manim is a Python engine for scripted math and algorithm animations — the same one 3Blue1Brown uses. You describe how objects change and it renders precise animation, perfect for explainers and teaching.",
-          "features": [
-            "Declare object transformations and animation in code",
-            "High-quality LaTeX formula rendering",
-            "Rich geometry, functions and 3D scene support",
-            "Active community edition with many examples"
-          ],
-          "useCases": [
-            "Math / algorithm explainer videos",
-            "Lecture and courseware animation",
-            "Dynamic figures for technical blogs"
-          ],
-          "bestFor": "Teachers and science communicators willing to code to make ideas clear.",
-          "pricing": "Open source (MIT)",
-          "platform": "Python / CLI",
-          "author": "Manim Community",
-          "repo": "https://github.com/ManimCommunity/manim",
-          "official": "https://www.manim.community",
-          "tags": ["Python", "Math Animation", "Education"]
-        },
-        {
-          "id": "moviepy",
-          "name": "MoviePy",
-          "category": "video",
-          "tagline": "Video editing for Python",
-          "overview": "MoviePy is a Python library for video editing — cut, concatenate, caption, transition and mix audio. Great for scripting and batching repetitive editing work.",
-          "features": [
-            "Basic editing: cut, concat, speed, rotate",
-            "Captions, watermarks, audio mixing",
-            "Per-frame processing with NumPy",
-            "Pipeline batch processing of video"
-          ],
-          "useCases": [
-            "Batch add intros/outros and watermarks",
-            "Auto-generate trailers / highlight reels",
-            "Normalize and transcode assets"
-          ],
-          "bestFor": "Python developers who'd rather script than manually edit.",
-          "pricing": "Open source (MIT)",
-          "platform": "Python",
-          "author": "MoviePy",
-          "repo": "https://github.com/Zulko/moviepy",
-          "official": "https://zulko.github.io/moviepy/",
-          "tags": ["Python", "Editing", "Automation"]
+          "logo": "https://github.com/remotion-dev.png"
         }
       ]
     },
     {
-      "key": "motion",
-      "label": "Motion",
+      "key": "documents",
+      "label": "Documents",
       "skills": [
         {
-          "id": "motion",
-          "name": "Motion",
-          "category": "motion",
-          "tagline": "Animation for React (ex Framer Motion)",
-          "overview": "Motion (formerly Framer Motion) is the most popular animation library in the React ecosystem. Its declarative API adds enter, layout, scroll and gesture animations with a low learning curve and a huge community.",
+          "id": "pdf",
+          "name": "pdf",
+          "category": "documents",
+          "tagline": "Teaches the agent to really read, write and edit PDFs",
+          "overview": "Part of Anthropic's official document suite: extract text and tables, merge and split, fill forms and generate new PDFs — all the PDF grunt work stays inside the conversation.",
           "features": [
-            "Declarative animation and transitions (animate, variants)",
-            "Layout animation handles position changes automatically",
-            "Scroll-driven and gesture interactions",
-            "React and vanilla (Motion One) support"
+            "Extract text, tables and structured content",
+            "Merge, split and rotate pages",
+            "Read and fill PDF forms",
+            "Generate new PDFs from data or Markdown"
           ],
           "useCases": [
-            "Enter and interaction motion for pages / cards",
-            "State changes like lists and steppers",
-            "Scroll storytelling and micro-interactions"
+            "Batch processing of contracts and invoices",
+            "Form digitization",
+            "Recurring statement-style reports"
           ],
-          "bestFor": "React product teams wanting smooth motion without hand-writing CSS.",
-          "pricing": "Open source (MIT, most commercial use OK); Pro adds paid extras",
-          "platform": "React / Web",
-          "author": "Motion",
-          "repo": "https://github.com/motiondivision/motion",
-          "official": "https://motion.dev",
-          "tags": ["React", "Animation", "Interaction"]
+          "bestFor": "Anyone who opens more than one PDF a week.",
+          "pricing": "Free & open source",
+          "platform": "Claude Code / Cursor / Codex etc.",
+          "author": "Anthropic",
+          "repo": "https://github.com/anthropics/skills",
+          "install": "npx skills add https://github.com/anthropics/skills --skill pdf",
+          "tags": [
+            "PDF",
+            "office automation",
+            "official"
+          ],
+          "logo": "https://github.com/anthropics.png"
         },
         {
-          "id": "gsap",
-          "name": "GSAP",
-          "category": "motion",
-          "tagline": "Pro-grade web animation engine",
-          "overview": "GSAP is a long-standing professional web animation engine. A timeline precisely controls DOM, SVG and Canvas animation with great performance and compatibility — the go-to for complex motion and ad animation.",
+          "id": "docx",
+          "name": "docx",
+          "category": "documents",
+          "tagline": "Generate and edit Word documents in conversation",
+          "overview": "Anthropic's official Word skill: create and edit .docx with real styles, tables and revision handling — a properly formatted Word file, not plain text pasted into one.",
           "features": [
-            "Timeline sequencing and choreography",
-            "Strong SVG / path animation (MotionPath)",
-            "Scroll triggering (ScrollTrigger)",
-            "Cross-browser consistent, high performance"
+            "Create and edit .docx files",
+            "Preserve and apply styles, heading levels and tables",
+            "Read tracked revisions",
+            "Generate well-typeset documents from structured content"
           ],
           "useCases": [
-            "Complex motion on landing / brand sites",
-            "SVG graphics and data-viz animation",
-            "Long scroll-story pages"
+            "Auto-drafting weekly reports and proposals",
+            "Batch formatting and template filling",
+            "Turning conversations into formal deliverables"
           ],
-          "bestFor": "Professional front-end engineers demanding precision and compatibility.",
-          "pricing": "Free for personal / non-profit; commercial Standard subscription; some plugins paid",
-          "platform": "Web (DOM / SVG / Canvas / WebGL)",
-          "author": "GreenSock",
-          "repo": "https://github.com/greensock/GSAP",
-          "official": "https://gsap.com",
-          "tags": ["Animation", "Timeline", "SVG"]
+          "bestFor": "Consultants, PMs and ops people whose deliverable is a Word file.",
+          "pricing": "Free & open source",
+          "platform": "Claude Code / Cursor / Codex etc.",
+          "author": "Anthropic",
+          "repo": "https://github.com/anthropics/skills",
+          "install": "npx skills add https://github.com/anthropics/skills --skill docx",
+          "tags": [
+            "Word",
+            "office automation",
+            "official"
+          ],
+          "logo": "https://github.com/anthropics.png"
         },
         {
-          "id": "lottie",
-          "name": "Lottie",
-          "category": "motion",
-          "tagline": "Lightweight vector animation",
-          "overview": "Lottie exports animations designers make in AE into lightweight JSON that front-ends play natively with lottie-web — small, crisp and consistent across platforms. The standard design-to-animation pipeline.",
+          "id": "xlsx",
+          "name": "xlsx",
+          "category": "documents",
+          "tagline": "Let the agent open Excel for you",
+          "overview": "Anthropic's official spreadsheet skill: read, clean and edit .xlsx workbooks, write real formulas and build tabular reports from data — spreadsheet work stops being «you describe, I imagine».",
           "features": [
-            "Vector JSON animation: small and sharp",
-            "Consistent across Web / iOS / Android",
-            "LottieFiles hosts a huge library of ready animations",
-            "Interactive playback control"
+            "Read and write multi-sheet .xlsx workbooks",
+            "Writes live formulas, not hardcoded values",
+            "Batch data cleaning and transformation",
+            "Generate report files from data"
           ],
           "useCases": [
-            "App loading / success micro-motion",
-            "Empty states and onboarding animation",
-            "Light decorative motion on marketing pages"
+            "Finance and ops spreadsheet grinding",
+            "Data cleaning and format unification",
+            "Automated recurring reports"
           ],
-          "bestFor": "Teams that need to ship design motion cheaply and faithfully.",
-          "pricing": "LottieFiles basic free + team subscription",
-          "platform": "Web / iOS / Android",
-          "author": "LottieFiles",
-          "official": "https://lottiefiles.com",
-          "tags": ["Vector", "JSON", "Cross-platform"]
+          "bestFor": "Finance, ops and data folks wrestling with spreadsheets.",
+          "pricing": "Free & open source",
+          "platform": "Claude Code / Cursor / Codex etc.",
+          "author": "Anthropic",
+          "repo": "https://github.com/anthropics/skills",
+          "install": "npx skills add https://github.com/anthropics/skills --skill xlsx",
+          "tags": [
+            "Excel",
+            "reports",
+            "official"
+          ],
+          "logo": "https://github.com/anthropics.png"
         },
         {
-          "id": "rive",
-          "name": "Rive",
-          "category": "motion",
-          "tagline": "Real-time interactive animation",
-          "overview": "Rive lets designers and developers collaborate on interactive, stateful animation — buttons, characters and game elements respond in real time, with a cross-platform runtime. More interactive than Lottie.",
+          "id": "pptx",
+          "name": "pptx",
+          "category": "documents",
+          "tagline": "Turn an outline into slides you can present",
+          "overview": "Anthropic's official presentation skill: generate and edit .pptx, convert Markdown outlines or documents into clean slides, and reuse template layouts and themes.",
           "features": [
-            "State-machine driven interactive animation",
-            "Real-time response to input, no per-clip export",
-            "Multi-platform runtime (incl. Flutter, games)",
-            "Smooth design-to-code collaboration"
+            "Create and edit .pptx files",
+            "Paginate from outlines or document content",
+            "Reuse template layouts and themes",
+            "Layout control for text boxes, images and tables"
           ],
           "useCases": [
-            "Interactive buttons, toggles, menus",
-            "Game / character expressions and actions",
-            "Dynamic in-app illustrations"
+            "First drafts of review decks",
+            "Converting long docs into presentations",
+            "Batch-replacing template content"
           ],
-          "bestFor": "Teams wanting living, interactive animation rather than a played clip.",
-          "pricing": "Free tier + team / enterprise subscription",
-          "platform": "Web / iOS / Android / Flutter / Games",
-          "author": "Rive",
-          "repo": "https://github.com/rive-app/rive-react",
-          "official": "https://rive.app",
-          "tags": ["Interactive", "Real-time", "Cross-platform"]
+          "bestFor": "Anyone who has to write the report and build the slides.",
+          "pricing": "Free & open source",
+          "platform": "Claude Code / Cursor / Codex etc.",
+          "author": "Anthropic",
+          "repo": "https://github.com/anthropics/skills",
+          "install": "npx skills add https://github.com/anthropics/skills --skill pptx",
+          "tags": [
+            "PowerPoint",
+            "presentations",
+            "official"
+          ],
+          "logo": "https://github.com/anthropics.png"
         }
       ]
     },
     {
-      "key": "media",
-      "label": "Self-media",
+      "key": "automation",
+      "label": "Browser Automation",
       "skills": [
         {
-          "id": "buffer",
-          "name": "Buffer",
-          "category": "media",
-          "tagline": "Multi-platform scheduling",
-          "overview": "Buffer is a long-standing social scheduling tool. Queue posts across X, Instagram, LinkedIn, Facebook and more from one calendar — good for individuals and small teams keeping a steady cadence.",
+          "id": "agent-browser",
+          "name": "agent-browser",
+          "category": "automation",
+          "tagline": "Hands that let the agent drive a real browser",
+          "overview": "Vercel's browser automation skill: the agent opens pages, clicks, fills forms, takes screenshots and reads console errors and network requests — it verifies its own frontend work instead of guessing from descriptions.",
           "features": [
-            "Unified scheduling and calendar across platforms",
-            "Draft collaboration and approval",
-            "Basic analytics",
-            "Browser extension to save ideas on the fly"
+            "Natural-language clicks, typing and scrolling",
+            "Screenshots and DOM snapshots for self-verification",
+            "Reads console errors and network requests",
+            "Useful for acceptance testing, regression and data collection"
           ],
           "useCases": [
-            "Daily posting cadence for a personal IP",
-            "Small-team multi-account management",
-            "Calendar view of content planning"
+            "Agents testing the pages they just wrote",
+            "Reproducing a bug's exact click path",
+            "Web workflow automation and scraping"
           ],
-          "bestFor": "Individuals and small businesses wanting steady, low-effort multi-platform posting.",
-          "pricing": "Free tier + paid subscription (per channels)",
-          "platform": "Web / Mobile / Browser extension",
-          "author": "Buffer",
-          "official": "https://buffer.com",
-          "tags": ["Scheduling", "Multi-platform", "Calendar"]
-        },
-        {
-          "id": "typefully",
-          "name": "Typefully",
-          "category": "media",
-          "tagline": "Threads & newsletter writing",
-          "overview": "Typefully focuses on the writing experience: draft X threads and newsletters smoothly, then schedule and publish in one click, with draft collaboration and basic analytics. A favorite among writers.",
-          "features": [
-            "Distraction-free writing interface",
-            "One-click X threads and newsletters",
-            "Draft collaboration and scheduling",
-            "Auto-generated thread preview images"
+          "bestFor": "People who want the «write code → verify in browser» loop closed by AI.",
+          "pricing": "Free & open source",
+          "platform": "Claude Code / Cursor / Codex etc.",
+          "author": "Vercel Labs",
+          "repo": "https://github.com/vercel-labs/agent-browser",
+          "install": "npx skills add vercel-labs/agent-browser/agent-browser",
+          "installs": "879.2K",
+          "tags": [
+            "browser",
+            "automation",
+            "testing"
           ],
-          "useCases": [
-            "Writing long-form threaded takes",
-            "Personal newsletter publishing",
-            "Splitting one long read into multiple tweets"
-          ],
-          "bestFor": "Writers whose core is content and who grow through it.",
-          "pricing": "Free tier + paid subscription",
-          "platform": "Web",
-          "author": "Typefully",
-          "official": "https://typefully.com",
-          "tags": ["Threads", "Writing", "Newsletter"]
-        },
-        {
-          "id": "hypefury",
-          "name": "Hypefury",
-          "category": "media",
-          "tagline": "Twitter growth & monetization",
-          "overview": "Hypefury is for people serious about Twitter growth: scheduled tweets, auto-retweets, and routing high-performing tweets to your email or product — turning followers into subscriptions and revenue.",
-          "features": [
-            "Scheduled tweets and auto-retweets",
-            "Auto-route top tweets to a link",
-            "Lead collection and landing",
-            "Growth templates and suggestions"
-          ],
-          "useCases": [
-            "Steady output for a personal IP",
-            "Funnel traffic to newsletter / product",
-            "Build a monetizable content engine"
-          ],
-          "bestFor": "Creators using Twitter to grow and monetize systematically.",
-          "pricing": "Paid subscription (free trial)",
-          "platform": "Web",
-          "author": "Hypefury",
-          "official": "https://hypefury.com",
-          "tags": ["Twitter", "Growth", "Monetization"]
-        },
-        {
-          "id": "opus",
-          "name": "Opus Clip",
-          "category": "media",
-          "tagline": "Long video → short clips",
-          "overview": "Opus Clip uses AI to cut long videos (podcasts, streams, courses) into multiple vertical shorts for TikTok / Reels / Shorts, with auto-captions and highlights — no manual editing.",
-          "features": [
-            "Auto-detect highlights and slice",
-            "Vertical fit + auto-captions",
-            "One-click multi-platform formats",
-            "Cluster clips by topic"
-          ],
-          "useCases": [
-            "Podcast / stream to shorts",
-            "Course clipping for lead-gen",
-            "Repurpose long content many ways"
-          ],
-          "bestFor": "People with long footage who want a low-cost short-video pipeline.",
-          "pricing": "Free tier + paid subscription (per minutes)",
-          "platform": "Web",
-          "author": "Opus",
-          "official": "https://www.opus.pro",
-          "tags": ["Shorts", "AI Editing", "Vertical"]
-        },
-        {
-          "id": "repurpose",
-          "name": "Repurpose.io",
-          "category": "media",
-          "tagline": "Auto cross-post content",
-          "overview": "Repurpose.io auto-forwards what you post on TikTok / Reels / YouTube to other platforms. Set it up once and it keeps syncing — no manual re-upload.",
-          "features": [
-            "Cross-platform auto-forwarding",
-            "Set once, keep syncing",
-            "Supports shorts and stream clips",
-            "Connects major social accounts"
-          ],
-          "useCases": [
-            "Multi-platform sync distribution",
-            "Auto-deploy live clips across accounts",
-            "Cut repetitive manual uploads"
-          ],
-          "bestFor": "People running multiple social accounts who fear missing a post.",
-          "pricing": "Paid subscription (free trial)",
-          "platform": "Web",
-          "author": "Repurpose.io",
-          "official": "https://repurpose.io",
-          "tags": ["Auto-publish", "Cross-platform", "Repurpose"]
-        }
-      ]
-    },
-    {
-      "key": "devdesign",
-      "label": "Dev / Design",
-      "skills": [
-        {
-          "id": "cursor",
-          "name": "Cursor",
-          "category": "devdesign",
-          "tagline": "AI-native code editor",
-          "overview": "Cursor is a VS Code-based AI code editor that reads your whole codebase and edits, completes and refactors by conversation. One of the hottest AI coding tools right now.",
-          "features": [
-            "Conversation editing with full-repo context",
-            "Multi-line Tab completion",
-            "Multi-file refactor and terminal command generation",
-            "Built-in models (incl. Claude, GPT)"
-          ],
-          "useCases": [
-            "Daily coding and refactoring",
-            "Ramp up on an unfamiliar repo fast",
-            "Batch boilerplate changes"
-          ],
-          "bestFor": "Developers who want AI to actually write code.",
-          "pricing": "Free tier + Pro / Team subscription (usage-based)",
-          "platform": "macOS / Windows / Linux",
-          "author": "Cursor",
-          "official": "https://cursor.com",
-          "tags": ["AI Editor", "Copilot", "Refactor"]
-        },
-        {
-          "id": "v0",
-          "name": "v0",
-          "category": "devdesign",
-          "tagline": "Generate UI from prompts",
-          "overview": "v0 is Vercel's AI UI generator: describe what you want and get React + Tailwind components and pages, then refine by chat and export the code — great for fast prototypes.",
-          "features": [
-            "Prompt-generated React + Tailwind UI",
-            "Conversational refinement",
-            "One-click copy / export code",
-            "Ties into Next.js deployment"
-          ],
-          "useCases": [
-            "Fast UI prototype from an idea",
-            "Generate reusable components",
-            "Quickly realize a design"
-          ],
-          "bestFor": "Front-end and product people who want to speak interfaces into being.",
-          "pricing": "Free credits + subscription (generation-based)",
-          "platform": "Web",
-          "author": "Vercel",
-          "official": "https://v0.dev",
-          "tags": ["UI Gen", "React", "Tailwind"]
-        },
-        {
-          "id": "figma",
-          "name": "Figma",
-          "category": "devdesign",
-          "tagline": "Collaborative interface design",
-          "overview": "Figma is a browser-based interface design and prototyping tool with real-time team collaboration and code inspection for developers — nearly an industry standard.",
-          "features": [
-            "Real-time multi-player collaboration",
-            "Design + clickable prototypes",
-            "Dev Mode for specs and code",
-            "Component libraries and design systems"
-          ],
-          "useCases": [
-            "Product UI design",
-            "Prototype review",
-            "Design system management"
-          ],
-          "bestFor": "Practically every team building digital products.",
-          "pricing": "Free tier + Pro / Team subscription",
-          "platform": "Web / Desktop App",
-          "author": "Figma",
-          "official": "https://www.figma.com",
-          "tags": ["UI Design", "Prototype", "Collaboration"]
-        },
-        {
-          "id": "tailwind",
-          "name": "Tailwind CSS",
-          "category": "devdesign",
-          "tagline": "Utility-first CSS framework",
-          "overview": "Tailwind CSS writes styles directly in HTML with utility classes — no hopping between CSS files. Fast, consistent interface work, and one of the most popular CSS approaches today.",
-          "features": [
-            "Utility classes, fewer file switches",
-            "Built-in design tokens and responsiveness",
-            "Mature ecosystem with shadcn etc.",
-            "Controllable output size (purge)"
-          ],
-          "useCases": [
-            "Build interfaces from scratch",
-            "Land a design system",
-            "Quick responsive pages"
-          ],
-          "bestFor": "Teams wanting faster styling without naming and writing classes.",
-          "pricing": "Open source (MIT); Tailwind UI is paid components",
-          "platform": "Web / any front-end",
-          "author": "Tailwind Labs",
-          "repo": "https://github.com/tailwindlabs/tailwindcss",
-          "official": "https://tailwindcss.com",
-          "tags": ["CSS", "Utility-first", "Frontend"]
-        },
-        {
-          "id": "shadcn",
-          "name": "shadcn/ui",
-          "category": "devdesign",
-          "tagline": "Copy-paste React components",
-          "overview": "shadcn/ui doesn't have you npm-install a black-box component library — it copies component source into your project (built on Radix + Tailwind) so you can change anything and aren't locked in.",
-          "features": [
-            "Component source copied into your project",
-            "Radix-based, accessible",
-            "Deeply Tailwind-friendly",
-            "CLI to add components in one command"
-          ],
-          "useCases": [
-            "Quick admin / product UI",
-            "Need controllable, editable components",
-            "Unify team component conventions"
-          ],
-          "bestFor": "React + Tailwind teams wanting their own components, not a black box.",
-          "pricing": "Open source (MIT etc.)",
-          "platform": "React / Next.js",
-          "author": "shadcn",
-          "repo": "https://github.com/shadcn-ui/ui",
-          "official": "https://ui.shadcn.com",
-          "tags": ["React", "Components", "Tailwind"]
-        },
-        {
-          "id": "excalidraw",
-          "name": "Excalidraw",
-          "category": "devdesign",
-          "tagline": "Hand-drawn whiteboard",
-          "overview": "Excalidraw is an open-source online whiteboard with a hand-drawn style for architecture diagrams, flows and wireframes — great for quick thinking and remote collaboration, loved by engineers.",
-          "features": [
-            "Hand-drawn shapes and connectors",
-            "Real-time collaboration and share links",
-            "Export PNG / SVG",
-            "Rich community shape libraries"
-          ],
-          "useCases": [
-            "Architecture / flow sketches",
-            "Meeting brainstorms",
-            "Wireframe and prototype sketches"
-          ],
-          "bestFor": "People who'd rather draw than write docs to sort out an idea.",
-          "pricing": "Open source (MIT); Excalidraw+ adds paid collaboration",
-          "platform": "Web / Desktop",
-          "author": "Excalidraw",
-          "repo": "https://github.com/excalidraw/excalidraw",
-          "official": "https://excalidraw.com",
-          "tags": ["Whiteboard", "Sketch", "Brainstorm"]
+          "logo": "https://github.com/vercel-labs.png"
         }
       ]
     }

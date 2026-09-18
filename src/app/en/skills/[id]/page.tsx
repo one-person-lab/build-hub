@@ -17,6 +17,9 @@ type RawSkill = {
   author?: string;
   official?: string;
   repo?: string;
+  install?: string;
+  installs?: string;
+  logo?: string;
   tags?: string[];
 };
 type RawCategory = { key: string; label: string; skills: RawSkill[] };

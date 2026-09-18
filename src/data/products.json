@@ -1,0 +1,274 @@
+{
+  "title": "产品图鉴",
+  "subtitle": "我们观察到的一些优秀产品：网站、桌面工具和 App。不写软文，只说它们好在哪、适合谁。",
+  "categories": [
+    {
+      "key": "ai",
+      "label": "AI 工具",
+      "products": [
+        {
+          "id": "cursor",
+          "name": "Cursor",
+          "category": "ai",
+          "type": "app",
+          "tagline": "真正读懂你代码库的 AI 编辑器",
+          "overview": "Cursor 基于 VS Code 分叉，把一件事做到极致：让 AI 成为编程的主角。它会对整个仓库建立索引，所以答疑和改代码时看得见跨文件上下文；Agent 模式还能自主跑终端、拆任务，端到端完成一个功能。",
+          "highlights": [
+            "全仓库索引，AI 回答带着整个项目的上下文",
+            "Tab 补全接近「预测重构」，常常比你快一行",
+            "Agent 能自己跑命令、修测试、交付完整改动",
+            "VS Code 插件与键位直接可用，迁移成本几乎为零"
+          ],
+          "bestFor": "想把 AI 用在真实项目里、而不只是在聊天框里玩的开发者。",
+          "pricing": "个人版免费，Pro 约 $20/月",
+          "platform": "macOS / Windows / Linux",
+          "url": "https://cursor.com",
+          "logo": "https://cursor.com/favicon.ico",
+          "tags": ["AI 编程", "编辑器", "开发者工具"]
+        },
+        {
+          "id": "perplexity",
+          "name": "Perplexity",
+          "category": "ai",
+          "type": "both",
+          "tagline": "会引用来源的搜索引擎",
+          "overview": "不给一堆蓝链，而是直接给出综合好的答案并标注引用来源。信息实时抓自网页，可以对话式连续追问，Pro 模式会替你做多轮深度检索。",
+          "highlights": [
+            "每个观点都带引用，可逐条点开核实",
+            "答案基于实时网页，不吃模型训练数据的过期红利",
+            "对话式追问，一个话题能连续挖到底",
+            "学术、财经、本地生活等垂直场景都有专门模式"
+          ],
+          "bestFor": "查资料频繁、又在意信息来源和新颖度的人。",
+          "pricing": "基础免费，Pro 约 $20/月",
+          "platform": "Web / iOS / Android",
+          "url": "https://www.perplexity.ai",
+          "tags": ["搜索", "AI", "研究"]
+        },
+        {
+          "id": "buildhub",
+          "name": "BuildHub",
+          "category": "ai",
+          "type": "web",
+          "tagline": "Vibe Coding 术语图鉴，看懂了再动手",
+          "overview": "BuildHub 就是本站自己：用大白话加可交互示例讲清前端、后端、产品、AI、Git 的高频术语，配套练习、技能库、提示词与产品图鉴。为「想用 AI 做产品，却被黑话挡在门外」的人而做。",
+          "highlights": [
+            "每个术语配一个能直接在页面上玩的交互示例",
+            "中英双语整站，切换无门槛",
+            "技能库条目全部带验证过的安装命令，看完即用",
+            "整站开源，从术语到代码都可参与共建"
+          ],
+          "bestFor": "被专业术语劝退过、又想认真用 AI 做点东西的人。",
+          "pricing": "完全免费，开源",
+          "platform": "Web",
+          "url": "https://github.com/one-person-lab/build-hub",
+          "logo": "/assets/buildhub-logo.png",
+          "tags": ["术语图鉴", "学习", "开源"]
+        }
+      ]
+    },
+    {
+      "key": "design",
+      "label": "设计创意",
+      "products": [
+        {
+          "id": "figma",
+          "name": "Figma",
+          "category": "design",
+          "type": "both",
+          "tagline": "在浏览器里做设计，在同一个链接里协作",
+          "overview": "把专业设计工具从桌面搬进浏览器，多人同时打开一个文件、光标互相看得见，像协作文档一样做设计。组件体系、自动布局、原型交互一应俱全，Dev Mode 让工程师直接看标注取代码。",
+          "highlights": [
+            "实时多人协作 + 评论定位，终结「设计稿 v9 最终版」",
+            "自动布局、组件变体的心智模型接近写代码，开发者无缝理解",
+            "浏览器即用，无需安装，团队成员零门槛进入",
+            "社区文件与插件生态巨大，图标、插画、规范拿来就用"
+          ],
+          "bestFor": "所有做产品的团队——设计师的母语工具，工程师也值得打开看看。",
+          "pricing": "个人免费，团队版按席位付费",
+          "platform": "Web / macOS / Windows",
+          "url": "https://www.figma.com",
+          "logo": "https://static.figma.com/app/icon/2/icon-128.png",
+          "tags": ["UI 设计", "协作", "设计系统"]
+        },
+        {
+          "id": "framer",
+          "name": "Framer",
+          "category": "design",
+          "type": "web",
+          "tagline": "把画布拖一拖，就是一个能上线的网站",
+          "overview": "从设计工具进化来的建站产品：画布上所见即所得，发布出来是真网站而不是图片，CMS、断点适配、滚动动画都是原生能力。独立开发者和初创团队做官网的首选之一。",
+          "highlights": [
+            "所见即所得，设计稿即线上站点，没有还原环节",
+            "发布的是真实性能合格的网站，支持 CMS 与交互",
+            "断点、滚动效果、组件动效全部可视化配置",
+            "支持从 Figma 设计稿导入，衔接既有工作流"
+          ],
+          "bestFor": "想一天内上线高质量官网 / 落地页、又不想手写 CSS 的人。",
+          "pricing": "有免费档，绑定自有域名需付费",
+          "platform": "Web",
+          "url": "https://www.framer.com",
+          "logo": "https://framerusercontent.com/images/Io89FonxEaWg4nxvQQllVLwPUUI.png",
+          "tags": ["建站", "无代码", "动效"]
+        },
+        {
+          "id": "screen-studio",
+          "name": "Screen Studio",
+          "category": "design",
+          "type": "app",
+          "tagline": "录屏也能拍出产品广告片的质感",
+          "overview": "macOS 录屏工具，光标移动时自动平滑推近、加运动模糊与精致背景，不懂剪辑也能产出高级感的产品演示视频。把「录屏丑」这个人人默许的小痛点，做成了一个付费产品。",
+          "highlights": [
+            "自动跟随光标的平滑变焦，无需手动打关键帧",
+            "内置背景、窗口阴影、动态字幕，默认就好看",
+            "导出即发布质量，跳过 After Effects 后期",
+            "买断制、有免费试用，小工具商业化的正面示范"
+          ],
+          "bestFor": "经常要发产品演示视频的独立开发者和市场同学。",
+          "pricing": "买断制约 $89 起，可免费试用",
+          "platform": "macOS",
+          "url": "https://screen.studio",
+          "logo": "https://screen.studio/icon.png",
+          "tags": ["录屏", "视频", "产品演示"]
+        },
+        {
+          "id": "appllama",
+          "name": "Appllama",
+          "category": "design",
+          "type": "web",
+          "tagline": "拆解全球优秀 App 的设计与付费墙",
+          "overview": "面向 iOS 应用的设计库：收录 1200+ 头部应用的真实界面、Onboarding 流程和 Paywall 设计，可按场景检索分析。它回答的不是「界面好不好看」，而是「什么样的设计让用户掏钱」——还提供 MCP 接口，AI 助手可以直接调用这个设计库。",
+          "highlights": [
+            "全部真实截图，按流程组织：onboarding、paywall、升级页",
+            "聚焦「营收驱动设计」的标书库，市面上少见",
+            "提供 MCP，AI 编程助手可在写设计时直接参考头部 App",
+            "新应用持续更新，Pro 档个人可负担"
+          ],
+          "bestFor": "做订阅制 App、想知道头部产品到底怎么收费的独立开发者和设计师。",
+          "pricing": "部分免费；Pro $10/月，Team $16/席位",
+          "platform": "Web",
+          "url": "https://appllama.io",
+          "logo": "https://appllama.io/branding/logo-icon-500.webp",
+          "tags": ["设计库", "iOS", "付费墙"]
+        }
+      ]
+    },
+    {
+      "key": "productivity",
+      "label": "效率工具",
+      "products": [
+        {
+          "id": "linear",
+          "name": "Linear",
+          "category": "productivity",
+          "type": "both",
+          "tagline": "项目管理工具里的「品味」担当",
+          "overview": "极快的键盘操作、克制的界面、自带方法论的迭代流程——Linear 让 issue 管理从「不得不填的表单」变成一种享受，很多产品团队甚至把它的设计当作品味基准来研究。",
+          "highlights": [
+            "秒级响应 + 全键盘流，工具不再拖慢思考",
+            "Cycles、Roadmap 把现代研发方法论直接固化进产品",
+            "Git 分支状态自动同步，代码与任务不断线",
+            "界面与动效克制精准，是 UI 教科书级别的存在"
+          ],
+          "bestFor": "重视效率与审美的产品、研发团队；也想看看「好软件」长什么样。",
+          "pricing": "小团队免费，按成员数付费",
+          "platform": "Web / macOS / iOS",
+          "url": "https://linear.app",
+          "logo": "https://linear.app/favicon.ico",
+          "tags": ["项目管理", "研发协作", "键盘流"]
+        },
+        {
+          "id": "raycast",
+          "name": "Raycast",
+          "category": "productivity",
+          "type": "app",
+          "tagline": "你 Mac 的第二大脑",
+          "overview": "替代 Spotlight 的启动器：一条命令呼出一切——窗口管理、剪贴板历史、QuickLinks，还有连接 GitHub、Notion、日历的扩展商店，AI 命令可以处理任意选中文字。用上之后很难回得去。",
+          "highlights": [
+            "一个命令面板接管全系统操作，手指不离键盘",
+            "AI 常驻：选中任意文本即可问、译、改写",
+            "扩展商店覆盖常用 SaaS，商店本身由社区共建",
+            "Snippets、窗口布局等小功能单独看都是精品"
+          ],
+          "bestFor": "所有想在 Mac 上把键盘效率拉满的人。",
+          "pricing": "基础功能免费，Pro 付费",
+          "platform": "macOS",
+          "url": "https://www.raycast.com",
+          "logo": "https://raycast.com/favicon-production.png",
+          "tags": ["启动器", "效率", "macOS"]
+        }
+      ]
+    },
+    {
+      "key": "media",
+      "label": "自媒体运营",
+      "products": [
+        {
+          "id": "buffer",
+          "name": "Buffer",
+          "category": "media",
+          "type": "both",
+          "tagline": "一个后台排程管理所有社媒账号",
+          "overview": "最老牌的社媒排程工具之一：连接 X、LinkedIn、Instagram 等平台，把内容排进队列统一发布，再用数据反馈调整节奏。对个人创作者和小团队，它把「多平台运营」压缩成一个日历视图。",
+          "highlights": [
+            "一个队列管多平台，发布节奏可视化",
+            "自带数据看板，直接看出哪条内容有效",
+            "浏览器扩展把看到的链接一键转成待发内容",
+            "免费档对个人创作者足够用"
+          ],
+          "bestFor": "需要稳定输出内容、但不想被各平台登录提醒绑架的创作者。",
+          "pricing": "个人免费，团队按渠道付费",
+          "platform": "Web / iOS / Android",
+          "url": "https://buffer.com",
+          "logo": "https://buffer.com/favicon.ico",
+          "tags": ["社媒运营", "排程发布", "数据分析"]
+        }
+      ]
+    },
+    {
+      "key": "inspiration",
+      "label": "灵感网站",
+      "products": [
+        {
+          "id": "are-na",
+          "name": "Are.na",
+          "category": "inspiration",
+          "type": "both",
+          "tagline": "设计师们私藏的收集库",
+          "overview": "没有点赞数、没有算法推荐、没有广告，只有人手工整理的「通道」（Channels）。收集素材这件事在这里被当成一种思考方式，社区审美浓度极高，是最接近「互联网图书馆」气质的网站。",
+          "highlights": [
+            "无算法流，喂给你的全是人整理过的东西",
+            "通道 + 小方块的组织方式，收集本身即输出",
+            "设计师、艺术家、写作者密度很高的社区",
+            "反增长叙事的克制产品，值得研究它「不做什么」"
+          ],
+          "bestFor": "想找灵感、又想逃离算法投喂的设计师、写作者和产品经理。",
+          "pricing": "免费可用，Pro 订阅解锁高级功能",
+          "platform": "Web / iOS / Android",
+          "url": "https://www.are.na",
+          "logo": "https://are.na/favicon.ico",
+          "tags": ["灵感", "收集", "社区"]
+        },
+        {
+          "id": "radio-garden",
+          "name": "Radio Garden",
+          "category": "inspiration",
+          "type": "web",
+          "tagline": "转动地球仪，听地球任何角落的电台",
+          "overview": "把全球数千个电台的实时直播流铺在 3D 地球上，转到哪听到哪。技术上并不神秘，但「呈现方式」本身就是产品——它是「数据可视化如何制造魔法」的最佳案例之一。",
+          "highlights": [
+            "3D 地球 + 声音的空间化交互，旋转的瞬间就打动用户",
+            "内容是全球实时电台，永远不重样",
+            "网页打开即玩，零安装零门槛",
+            "示范了「同一份数据，换一种呈现就是新品类」"
+          ],
+          "bestFor": "想做「有惊喜感」产品的人去看交互，其他人拿它当睡前电台。",
+          "pricing": "免费",
+          "platform": "Web",
+          "url": "https://radio.garden",
+          "tags": ["广播", "交互", "小而美"]
+        }
+      ]
+    }
+  ]
+}

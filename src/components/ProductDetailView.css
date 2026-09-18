@@ -1,36 +1,28 @@
-/* 技能详情页 SkillDetailView —— 复用 .catalog-page/.grid-wrap 等原站 class，
-   详情布局参考主流工具展示方式（Hero + CTA / 元信息 / 介绍 / 特性 / 场景 / 适合谁） */
+/* 产品详情页 ProductDetailView —— 复用 .catalog-page/.grid-wrap 等公共 class，
+   布局与技能详情页保持同一套视觉语言 */
 
-.skill-detail {
+.product-detail {
   max-width: 860px;
 }
 
-.skill-detail-cover {
+.product-detail-cover {
   width: 100%;
   height: 180px;
   border-radius: 16px;
   overflow: hidden;
   margin-bottom: 18px;
-  background: var(--bg);
-}
-.skill-detail-cover img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-.skill-detail-cover-gradient {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 12px;
   background: linear-gradient(
     120deg,
     var(--theme-brand) 0%,
     color-mix(in srgb, var(--theme-brand) 55%, #6d28d9) 100%
   );
-  position: relative;
 }
-.skill-detail-cover-gradient::after {
+.product-detail-cover::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -41,7 +33,7 @@
     ),
     radial-gradient(90% 90% at 90% 90%, rgba(0, 0, 0, 0.22), transparent 60%);
 }
-.skill-detail-cover-cat {
+.product-detail-cover-cat {
   position: relative;
   z-index: 1;
   font-size: 22px;
@@ -49,8 +41,19 @@
   letter-spacing: 0.04em;
   color: rgba(255, 255, 255, 0.92);
 }
+.product-detail-cover-type {
+  position: relative;
+  z-index: 1;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.12);
+}
 
-.skill-detail-back {
+.product-detail-back {
   display: inline-block;
   margin: 4px 0 18px;
   font-size: 14px;
@@ -59,11 +62,11 @@
   text-decoration: none;
   transition: color 0.2s var(--ease);
 }
-.skill-detail-back:hover {
+.product-detail-back:hover {
   color: var(--theme-brand);
 }
 
-.skill-detail-hero {
+.product-detail-hero {
   display: flex;
   gap: 24px;
   align-items: flex-start;
@@ -72,7 +75,7 @@
   padding-bottom: 22px;
   border-bottom: 1px solid var(--border-light);
 }
-.skill-detail-avatar {
+.product-detail-avatar {
   flex-shrink: 0;
   width: 76px;
   height: 76px;
@@ -84,7 +87,7 @@
   font-size: 34px;
   font-weight: 750;
 }
-.skill-detail-avatar .skill-avatar-initial {
+.product-detail-avatar .skill-avatar-initial {
   width: 100%;
   height: 100%;
   display: flex;
@@ -96,17 +99,17 @@
   font-weight: inherit;
   box-shadow: 0 8px 22px color-mix(in srgb, var(--theme-brand) 32%, transparent);
 }
-.skill-detail-avatar img {
+.product-detail-avatar img {
   width: 100%;
   height: 100%;
   object-fit: contain;
   background: #fff;
 }
-.skill-detail-hero-main {
+.product-detail-hero-main {
   flex: 1 1 420px;
   min-width: 0;
 }
-.skill-detail-cat {
+.product-detail-cat {
   display: inline-block;
   font-size: 12px;
   font-weight: 600;
@@ -116,19 +119,19 @@
   color: var(--theme-dark-brand, var(--theme-brand));
   border: 1px solid color-mix(in srgb, var(--theme-brand) 22%, transparent);
 }
-.skill-detail-name {
+.product-detail-name {
   font-size: 34px;
   font-weight: 750;
   letter-spacing: -0.02em;
   margin: 12px 0 8px;
   color: var(--text);
 }
-.skill-detail-tagline {
+.product-detail-tagline {
   font-size: 17px;
   color: var(--text-soft, #6b7280);
   margin: 0 0 14px;
 }
-.skill-detail-tags {
+.product-detail-tags {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
@@ -136,7 +139,7 @@
   margin: 0;
   padding: 0;
 }
-.skill-detail-tags li {
+.product-detail-tags li {
   font-size: 12px;
   padding: 3px 10px;
   border-radius: 999px;
@@ -145,13 +148,13 @@
   border: 1px solid color-mix(in srgb, var(--theme-brand) 20%, transparent);
 }
 
-.skill-detail-cta {
+.product-detail-cta {
   display: flex;
   flex-direction: column;
   gap: 10px;
   flex-shrink: 0;
 }
-.skill-cta {
+.product-cta {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -164,138 +167,57 @@
   white-space: nowrap;
   transition: all 0.2s var(--ease);
 }
-.skill-cta-primary {
+.product-cta-primary {
   color: #fff;
   background: var(--theme-brand);
   border: 1px solid var(--theme-brand);
 }
-.skill-cta-primary:hover {
+.product-cta-primary:hover {
   background: var(--theme-brand-hover, var(--theme-brand));
   border-color: var(--theme-brand-hover, var(--theme-brand));
 }
-.skill-cta-secondary {
-  color: var(--theme-brand);
-  background: var(--bg);
-  border: 1px solid var(--border);
-}
-.skill-cta-secondary:hover {
-  border-color: var(--theme-brand);
-  background: color-mix(in srgb, var(--theme-brand) 8%, transparent);
-}
 
-.skill-detail-meta {
+.product-detail-meta {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
   margin: 22px 0 8px;
 }
-.skill-detail-meta > div {
+.product-detail-meta > div {
   background: color-mix(in srgb, var(--bg) 60%, transparent);
   border: 1px solid var(--border-light);
   border-radius: 12px;
   padding: 12px 14px;
 }
-.skill-detail-meta dt {
+.product-detail-meta dt {
   font-size: 12px;
   color: var(--text-soft, #6b7280);
   margin-bottom: 4px;
 }
-.skill-detail-meta dd {
+.product-detail-meta dd {
   margin: 0;
   font-size: 14px;
   font-weight: 600;
   color: var(--text);
 }
 
-.skill-detail-section {
+.product-detail-section {
   margin-top: 30px;
 }
-.skill-detail-section > h2 {
+.product-detail-section > h2 {
   font-size: 19px;
   font-weight: 700;
   margin: 0 0 14px;
   color: var(--text);
 }
-
-/* 安装命令块：代码 + 一键复制 */
-.skill-install-row {
-  display: flex;
-  align-items: stretch;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-.skill-install-cmd {
-  flex: 1 1 320px;
-  min-width: 0;
-  overflow-x: auto;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: 13.5px;
-  line-height: 1.6;
-  color: var(--text);
-  background: color-mix(in srgb, var(--text) 5%, var(--bg));
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 14px 16px;
-  white-space: pre;
-}
-.skill-install-row .copy-btn {
-  align-self: center;
-}
-.copy-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 650;
-  padding: 9px 16px;
-  border-radius: 10px;
-  white-space: nowrap;
-  color: var(--theme-brand);
-  background: var(--bg);
-  border: 1px solid var(--border);
-  transition: all 0.2s var(--ease);
-}
-.copy-btn:hover {
-  border-color: var(--theme-brand);
-  background: color-mix(in srgb, var(--theme-brand) 8%, transparent);
-}
-.copy-btn:focus-visible {
-  outline: 2px solid var(--theme-brand);
-  outline-offset: 2px;
-}
-.copy-btn-icon {
-  font-size: 13px;
-  line-height: 1;
-}
-.copy-btn-primary {
-  color: #fff;
-  background: var(--theme-brand);
-  border-color: var(--theme-brand);
-}
-.copy-btn-primary:hover {
-  background: var(--theme-brand-hover, var(--theme-brand));
-  border-color: var(--theme-brand-hover, var(--theme-brand));
-}
-.copy-btn.is-copied {
-  color: #fff;
-  background: var(--theme-brand);
-  border-color: var(--theme-brand);
-}
-.copy-btn.is-failed {
-  color: #e11d48;
-  border-color: #e11d48;
-  background: var(--bg);
-}
-.skill-detail-overview {
+.product-detail-overview {
   font-size: 15.5px;
   line-height: 1.8;
   color: var(--text);
   margin: 0;
 }
 
-.skill-detail-features {
+.product-detail-highlights {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -303,7 +225,7 @@
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 12px;
 }
-.skill-detail-features li {
+.product-detail-highlights li {
   display: flex;
   gap: 10px;
   align-items: flex-start;
@@ -315,7 +237,7 @@
   border-radius: 12px;
   padding: 14px 16px;
 }
-.skill-detail-check {
+.product-detail-check {
   flex-shrink: 0;
   width: 20px;
   height: 20px;
@@ -329,25 +251,14 @@
   margin-top: 1px;
 }
 
-.skill-detail-usecases {
-  margin: 0;
-  padding-left: 20px;
-  color: var(--text);
-}
-.skill-detail-usecases li {
-  font-size: 14.5px;
-  line-height: 1.7;
-  margin-bottom: 6px;
-}
-
-.skill-detail-best {
+.product-detail-best {
   margin-top: 28px;
   border-left: 3px solid var(--theme-brand);
   background: color-mix(in srgb, var(--theme-brand) 8%, transparent);
   border-radius: 0 12px 12px 0;
   padding: 16px 18px;
 }
-.skill-detail-best-label {
+.product-detail-best-label {
   display: block;
   font-size: 12px;
   font-weight: 700;
@@ -355,19 +266,19 @@
   color: var(--theme-dark-brand, var(--theme-brand));
   margin-bottom: 6px;
 }
-.skill-detail-best p {
+.product-detail-best p {
   margin: 0;
   font-size: 15px;
   line-height: 1.7;
   color: var(--text);
 }
 
-.skill-detail-related {
+.product-detail-related {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
 }
-.skill-detail-related-item {
+.product-detail-related-item {
   font-size: 14px;
   font-weight: 600;
   text-decoration: none;
@@ -378,17 +289,17 @@
   background: var(--bg);
   transition: all 0.2s var(--ease);
 }
-.skill-detail-related-item:hover {
+.product-detail-related-item:hover {
   border-color: var(--theme-brand);
   background: color-mix(in srgb, var(--theme-brand) 8%, transparent);
 }
-.skill-detail-related-item.is-current {
+.product-detail-related-item.is-current {
   color: #fff;
   background: var(--theme-brand);
   border-color: var(--theme-brand);
 }
 
-.skill-detail-links {
+.product-detail-links {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
@@ -398,26 +309,26 @@
 }
 
 @media (max-width: 640px) {
-  .skill-detail-name {
+  .product-detail-name {
     font-size: 28px;
   }
-  .skill-detail-cover {
+  .product-detail-cover {
     height: 130px;
   }
-  .skill-detail-avatar {
+  .product-detail-avatar {
     width: 60px;
     height: 60px;
     font-size: 28px;
     border-radius: 15px;
   }
-  .skill-detail-meta {
+  .product-detail-meta {
     grid-template-columns: 1fr;
   }
-  .skill-detail-cta {
+  .product-detail-cta {
     flex-direction: row;
     width: 100%;
   }
-  .skill-cta {
+  .product-cta {
     flex: 1;
   }
 }

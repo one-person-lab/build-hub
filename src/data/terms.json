@@ -58,7 +58,7 @@
       }
     ],
     "prev": "accessibility",
-    "next": "state"
+    "next": "icon-library"
   },
   {
     "slug": "state",
@@ -90,7 +90,7 @@
         "html": "<section class=\"references-section\"><div class=\"section-title\">延伸阅读 · 权威出处</div><div class=\"reference-list\"><a class=\"reference-link\" href=\"https://react.dev/learn/state-a-components-memory\" target=\"_blank\" rel=\"noopener noreferrer\"><span class=\"reference-title\">状态：组件的记忆</span><span class=\"reference-source\">React ↗</span></a></div></section>"
       }
     ],
-    "prev": "component",
+    "prev": "phosphor-icons",
     "next": "markdown"
   },
   {
@@ -20237,7 +20237,7 @@
         "html": "<section class=\"references-section\"><div class=\"section-title\">延伸阅读 · 权威出处</div><div class=\"reference-list\"><a class=\"reference-link\" href=\"https://www.nngroup.com/articles/visual-hierarchy-ux-definition/\" target=\"_blank\" rel=\"noopener noreferrer\"><span class=\"reference-title\">UX 中的视觉层级</span><span class=\"reference-source\">NN/g ↗</span></a></div></section>"
       }
     ],
-    "prev": "style-art-deco",
+    "prev": "style-paywall",
     "next": "style-apple"
   },
   {
@@ -22397,6 +22397,42 @@
       }
     ],
     "prev": "style-bauhaus",
+    "next": "style-paywall"
+  },
+  {
+    "slug": "style-paywall",
+    "name": "付费墙设计",
+    "en": "App Paywall",
+    "quoteLabel": "你可能会说",
+    "quote": "就想要那种头部 App 里让人愿意付费的升级页、试用页，排版和话术都一个套路。",
+    "summaryLead": "付费墙设计是把「付不付」这一瞬间做成整个 App 里被最仔细设计过的一页",
+    "summaryRest": "头部订阅 App 的付费墙高度一致：一句价值主张、3–5 条具体权益、月付/年付的价格锚点、带「随时取消」安心话术的免费试用，以及一个不显眼的出口。Appllama 收录了 1200+ 头部 iOS 应用的真实付费墙与 Onboarding 流程，是这套设计的标准参照库。",
+    "aliases": [
+      "付费墙",
+      "Paywall",
+      "升级页设计",
+      "订阅转化页"
+    ],
+    "demoHtml": "",
+    "sections": [
+      {
+        "title": "设计原则 · Principles",
+        "html": "<section class=\"principles-section\"><div class=\"section-title\">设计原则 · Principles</div><div class=\"usage-box use principles-box\"><ul><li class=\"has-usage-mock\"><div class=\"usage-text\">一句价值主张开场：先讲升级后的自己，再讲功能</div></li><li class=\"has-usage-mock\"><div class=\"usage-text\">权益要可数、具体：3–5 条，每条带图标，不写空话</div></li><li class=\"has-usage-mock\"><div class=\"usage-text\">用年框锚定月价：年付高亮，标出「省 40%」</div></li><li class=\"has-usage-mock\"><div class=\"usage-text\">试用配安心话术：「不收费 · 可随时取消」紧贴按钮</div></li><li class=\"has-usage-mock\"><div class=\"usage-text\">给出口，但不给注意力：右上淡灰 ✕、底部小字降级</div></li></ul></div></section>"
+      },
+      {
+        "title": "容易混淆？这样区分",
+        "html": "<section class=\"distinctions\"><div class=\"section-title\">容易混淆？这样区分</div><div class=\"distinction-grid\"><div class=\"distinction-card\"><div class=\"distinction-head\"><span>付费墙</span><b>≠</b><span>弹窗广告</span></div><p>付费墙出现在用户需求最热的时刻，讲的是价值；弹窗是无差别打断，讲的是曝光。判断标准：你自己愿不愿意为这一页里的东西付钱。</p></div><div class=\"distinction-card\"><div class=\"distinction-head\"><span>付费墙</span><b>≠</b><span>定价页</span></div><p>定价页帮人比较方案，常有十几个档位和全部条款；付费墙只推进一次决策——一个主按钮、两三个档位，不做分流。</p></div></div></section>"
+      },
+      {
+        "title": "AI 提示词 · Prompt",
+        "html": "<section class=\"prompt-section prompt-section-dialogue\"><div class=\"section-title\">AI 提示词 · Prompt</div><div class=\"prompt-box prompt-box-dialogue\"><blockquote><p>做一个 App 的订阅升级页：一句价值主张标题，3 条带图标的权益点；月付/年付两档并排，年付高亮并标「省 40%」；主按钮「开始 7 天免费试用」用渐变强调，按钮下方加「不收费 · 可随时取消」；右上角一个淡灰的 ✕ 关闭入口；没有真实文案的地方留占位并标「待补充」。</p></blockquote></div></section>"
+      },
+      {
+        "title": "延伸阅读 · 权威出处",
+        "html": "<section class=\"references-section\"><div class=\"section-title\">延伸阅读 · 权威出处</div><div class=\"reference-list\"><a class=\"reference-link\" href=\"https://appllama.io/\" target=\"_blank\" rel=\"noopener noreferrer\"><span class=\"reference-title\">Appllama · 头部 App 付费墙库</span><span class=\"reference-source\">appllama.io ↗</span></a><a class=\"reference-link\" href=\"/products/appllama\" target=\"_blank\" rel=\"noopener noreferrer\"><span class=\"reference-title\">产品图鉴已收录：Appllama</span><span class=\"reference-source\">BuildHub ↗</span></a><a class=\"reference-link\" href=\"https://developer.apple.com/app-store/subscriptions/\" target=\"_blank\" rel=\"noopener noreferrer\"><span class=\"reference-title\">App Store 订阅规范</span><span class=\"reference-source\">developer.apple.com ↗</span></a></div></section>"
+      }
+    ],
+    "prev": "style-art-deco",
     "next": "style-minimal"
   },
   {
@@ -22437,7 +22473,7 @@
       }
     ],
     "prev": "component",
-    "next": "state"
+    "next": "phosphor-icons"
   },
   {
     "slug": "phosphor-icons",

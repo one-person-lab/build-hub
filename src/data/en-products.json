@@ -1,0 +1,274 @@
+{
+  "title": "Showcase",
+  "subtitle": "A collection of products we admire: websites, desktop tools and apps. No sponsored posts — just why they are good and who they fit.",
+  "categories": [
+    {
+      "key": "ai",
+      "label": "AI Tools",
+      "products": [
+        {
+          "id": "cursor",
+          "name": "Cursor",
+          "category": "ai",
+          "type": "app",
+          "tagline": "The AI editor that actually reads your codebase",
+          "overview": "A VS Code fork built around one obsession: making AI the main character of coding. It indexes your whole repository, so answers and edits carry real cross-file context; Agent mode runs the terminal and breaks down tasks end to end.",
+          "highlights": [
+            "Whole-repo indexing — every answer comes with project context",
+            "Tab completion feels like predicting refactors, often one line ahead of you",
+            "Agent runs commands, fixes tests and ships complete changes",
+            "VS Code extensions and keybindings work out of the box"
+          ],
+          "bestFor": "Developers who want AI inside real projects, not just in a chat box.",
+          "pricing": "Free for personal use; Pro around $20/mo",
+          "platform": "macOS / Windows / Linux",
+          "url": "https://cursor.com",
+          "logo": "https://cursor.com/favicon.ico",
+          "tags": ["AI coding", "Editor", "Dev tools"]
+        },
+        {
+          "id": "perplexity",
+          "name": "Perplexity",
+          "category": "ai",
+          "type": "both",
+          "tagline": "A search engine that cites its sources",
+          "overview": "Instead of ten blue links, you get a synthesized answer with citations. It fetches live web pages, supports follow-up questions like a conversation, and Pro mode runs multi-step deep research for you.",
+          "highlights": [
+            "Every claim carries a citation you can open and verify",
+            "Answers come from the live web, not stale model training data",
+            "Conversational follow-ups dig one topic to the bottom",
+            "Dedicated modes for academic, finance and local queries"
+          ],
+          "bestFor": "People who research constantly and care about sources and freshness.",
+          "pricing": "Free core; Pro around $20/mo",
+          "platform": "Web / iOS / Android",
+          "url": "https://www.perplexity.ai",
+          "tags": ["Search", "AI", "Research"]
+        },
+        {
+          "id": "buildhub",
+          "name": "BuildHub",
+          "category": "ai",
+          "type": "web",
+          "tagline": "The Vibe Coding field guide — learn the words, then build",
+          "overview": "BuildHub is this very site: high-frequency frontend, backend, product, AI and Git jargon explained in plain language with interactive examples, plus practice, a skill library, prompts and this showcase. Made for people who want to build with AI but keep getting stopped by the vocabulary.",
+          "highlights": [
+            "Every term ships with a live example you can play with on the page",
+            "Fully bilingual zh/en site with one-click switching",
+            "Skill entries carry verified install commands — read it, run it",
+            "Open source end to end: terms and code welcome contributions"
+          ],
+          "bestFor": "Anyone who was once scared off by jargon yet seriously wants to build things with AI.",
+          "pricing": "Free & open source",
+          "platform": "Web",
+          "url": "https://github.com/one-person-lab/build-hub",
+          "logo": "/assets/buildhub-logo.png",
+          "tags": ["field guide", "learning", "open source"]
+        }
+      ]
+    },
+    {
+      "key": "design",
+      "label": "Design",
+      "products": [
+        {
+          "id": "figma",
+          "name": "Figma",
+          "category": "design",
+          "type": "both",
+          "tagline": "Design in the browser, collaborate in one shared link",
+          "overview": "Figma pulled professional design out of desktop apps and into the browser: everyone opens the same file, cursors visible, like a collaborative doc. Components, auto layout and prototypes are all there, and Dev Mode lets engineers inspect specs and grab code directly.",
+          "highlights": [
+            "Real-time collaboration with pinned comments — no more final_v9 files",
+            "Auto layout and variants think like code, so engineers feel at home",
+            "Runs in the browser; teammates need zero setup",
+            "A huge community file & plugin ecosystem — icons, illustrations, kits"
+          ],
+          "bestFor": "Every product team — the designer's native tool, worth opening for engineers too.",
+          "pricing": "Free for individuals; paid seats for teams",
+          "platform": "Web / macOS / Windows",
+          "url": "https://www.figma.com",
+          "logo": "https://static.figma.com/app/icon/2/icon-128.png",
+          "tags": ["UI design", "Collaboration", "Design systems"]
+        },
+        {
+          "id": "framer",
+          "name": "Framer",
+          "category": "design",
+          "type": "web",
+          "tagline": "Drag a canvas and it becomes a live website",
+          "overview": "A site builder that grew out of a design tool: what you see on the canvas is the published site, not a mockup. CMS, breakpoints and scroll effects are native. A default choice for indie devs and startups shipping marketing sites.",
+          "highlights": [
+            "What you design is literally what ships — no handoff step",
+            "Real, performant websites with CMS and interactions",
+            "Breakpoints, scroll effects and component animation, all visual",
+            "Import Figma designs to fit existing workflows"
+          ],
+          "bestFor": "People who want a high-quality site or landing page in a day without writing CSS.",
+          "pricing": "Free tier available; custom domains require a paid plan",
+          "platform": "Web",
+          "url": "https://www.framer.com",
+          "logo": "https://framerusercontent.com/images/Io89FonxEaWg4nxvQQllVLwPUUI.png",
+          "tags": ["Website builder", "No-code", "Motion"]
+        },
+        {
+          "id": "screen-studio",
+          "name": "Screen Studio",
+          "category": "design",
+          "type": "app",
+          "tagline": "Screen recordings that look like product ads",
+          "overview": "A macOS recorder that auto-zooms smoothly after your cursor, adds motion blur and polished backgrounds — demo videos with a premium feel, no editing skills required. A case study in turning a tiny tolerated annoyance into a paid product.",
+          "highlights": [
+            "Automatic smooth zoom that follows the cursor — no keyframes",
+            "Backgrounds, window shadows and animated captions look good by default",
+            "Export at publish quality, skipping After Effects entirely",
+            "One-time purchase with a free trial — small-tool business done right"
+          ],
+          "bestFor": "Indie devs and marketers who ship product demo videos constantly.",
+          "pricing": "From about $89 one-time; free trial",
+          "platform": "macOS",
+          "url": "https://screen.studio",
+          "logo": "https://screen.studio/icon.png",
+          "tags": ["Screen recording", "Video", "Product demo"]
+        },
+        {
+          "id": "appllama",
+          "name": "Appllama",
+          "category": "design",
+          "type": "web",
+          "tagline": "Reverse-engineer the design of the world's best iOS apps",
+          "overview": "A design library of top iOS apps: real screens, onboarding flows and paywalls from 1,200+ successful apps, searchable by pattern. It answers not «is the UI pretty» but «what design makes users pay» — and ships an MCP server so AI assistants can consult great app design directly.",
+          "highlights": [
+            "All real screenshots, organized by flow: onboarding, paywall, upgrade",
+            "A rare library focused on revenue-driven design",
+            "MCP access lets AI coding assistants reference proven patterns while building",
+            "New apps added continuously; Pro stays indie-affordable"
+          ],
+          "bestFor": "Indie devs and designers building subscription apps who want to see how the top ones actually charge.",
+          "pricing": "Free preview; Pro $10/mo; Team $16/seat",
+          "platform": "Web",
+          "url": "https://appllama.io",
+          "logo": "https://appllama.io/branding/logo-icon-500.webp",
+          "tags": ["design library", "iOS", "paywall"]
+        }
+      ]
+    },
+    {
+      "key": "productivity",
+      "label": "Productivity",
+      "products": [
+        {
+          "id": "linear",
+          "name": "Linear",
+          "category": "productivity",
+          "type": "both",
+          "tagline": "The taste-maker among project management tools",
+          "overview": "Blazing keyboard-driven operation, restrained UI and a workflow with opinions baked in — Linear turned issue tracking from an obligatory form into something pleasurable. Many teams study it as a benchmark of software taste.",
+          "highlights": [
+            "Sub-second responses and a full keyboard flow that never blocks thinking",
+            "Cycles and Roadmaps encode modern engineering process into the product",
+            "Git branch status syncs automatically — code and tasks stay connected",
+            "Restraint in UI and motion at textbook level"
+          ],
+          "bestFor": "Product and engineering teams who care about speed and aesthetic taste.",
+          "pricing": "Free for small teams; paid per member",
+          "platform": "Web / macOS / iOS",
+          "url": "https://linear.app",
+          "logo": "https://linear.app/favicon.ico",
+          "tags": ["Project management", "Dev collab", "Keyboard-first"]
+        },
+        {
+          "id": "raycast",
+          "name": "Raycast",
+          "category": "productivity",
+          "type": "app",
+          "tagline": "The second brain for your Mac",
+          "overview": "A Spotlight replacement where one command bar runs everything — window management, clipboard history, QuickLinks — plus an extension store for GitHub, Notion and calendars, and AI commands on any selected text. Hard to go back once adopted.",
+          "highlights": [
+            "One command palette for the whole system, fingers never leave the keyboard",
+            "AI always near: ask, translate or rewrite any selected text",
+            "Community-built extension store covering the SaaS you use daily",
+            "Snippets and window layouts are great products on their own"
+          ],
+          "bestFor": "Every Mac user chasing keyboard-driven efficiency.",
+          "pricing": "Core features free; Pro is paid",
+          "platform": "macOS",
+          "url": "https://www.raycast.com",
+          "logo": "https://raycast.com/favicon-production.png",
+          "tags": ["Launcher", "Productivity", "macOS"]
+        }
+      ]
+    },
+    {
+      "key": "media",
+      "label": "Social Media",
+      "products": [
+        {
+          "id": "buffer",
+          "name": "Buffer",
+          "category": "media",
+          "type": "both",
+          "tagline": "One dashboard to schedule every social account",
+          "overview": "One of the longest-running social schedulers: connect X, LinkedIn, Instagram and more, queue your content, publish everywhere on rhythm, then read the analytics to adjust. For solo creators and small teams, Buffer compresses multi-platform operations into a single calendar view.",
+          "highlights": [
+            "One queue across platforms, publishing rhythm made visible",
+            "Built-in analytics show which posts actually worked",
+            "Browser extension turns any link into a draft in one click",
+            "The free tier is genuinely usable for individuals"
+          ],
+          "bestFor": "Creators who need steady output without being held hostage by per-platform logins.",
+          "pricing": "Free for individuals; teams pay per channel",
+          "platform": "Web / iOS / Android",
+          "url": "https://buffer.com",
+          "logo": "https://buffer.com/favicon.ico",
+          "tags": ["social media", "scheduling", "analytics"]
+        }
+      ]
+    },
+    {
+      "key": "inspiration",
+      "label": "Inspiration",
+      "products": [
+        {
+          "id": "are-na",
+          "name": "Are.na",
+          "category": "inspiration",
+          "type": "both",
+          "tagline": "The private collection library designers hoard",
+          "overview": "No like counts, no algorithmic feed, no ads — only human-curated Channels of connected content. Collecting is treated as a form of thinking here. The community's aesthetic density is extremely high; the closest thing to an internet library.",
+          "highlights": [
+            "No algorithmic feed — everything served was arranged by a human",
+            "Channels and objects: collecting itself becomes the output",
+            "Very high concentration of designers, artists and writers",
+            "A restrained product that resists growth hacks — study what it refuses to do"
+          ],
+          "bestFor": "Designers, writers and PMs hunting for inspiration while escaping algorithmic feeds.",
+          "pricing": "Free to use; Pro subscription for advanced features",
+          "platform": "Web / iOS / Android",
+          "url": "https://www.are.na",
+          "logo": "https://are.na/favicon.ico",
+          "tags": ["Inspiration", "Curation", "Community"]
+        },
+        {
+          "id": "radio-garden",
+          "name": "Radio Garden",
+          "category": "inspiration",
+          "type": "web",
+          "tagline": "Spin the globe and listen to any live radio station on Earth",
+          "overview": "Thousands of live radio streams from around the world, laid onto a 3D globe — listen wherever you rotate to. Technologically simple, but the presentation itself is the product: a masterclass in making data feel magical.",
+          "highlights": [
+            "The 3D globe plus spatial audio is delight in a single spin",
+            "Live stations worldwide — the content never repeats",
+            "Opens in the browser, nothing to install",
+            "Proof that re-presenting the same data can invent a new category"
+          ],
+          "bestFor": "Builders who want to learn «surprise» from it; everyone else, use it as a bedtime radio.",
+          "pricing": "Free",
+          "platform": "Web",
+          "url": "https://radio.garden",
+          "tags": ["Radio", "Interaction", "Serendipity"]
+        }
+      ]
+    }
+  ]
+}

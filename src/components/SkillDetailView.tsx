@@ -1,5 +1,6 @@
 import SkillAvatar from "./SkillAvatar";
 import SkillCover from "./SkillCover";
+import CopyButton from "./CopyButton";
 import "./SkillDetailView.css";
 
 export type SkillDetail = {
@@ -16,6 +17,9 @@ export type SkillDetail = {
   author?: string;
   official?: string;
   repo?: string;
+  install?: string;
+  installs?: string;
+  logo?: string;
   cover?: string;
   tags?: string[];
 };
@@ -28,6 +32,11 @@ const UI_TEXT = {
     platform: "平台",
     pricing: "收费",
     category: "分类",
+    author: "作者",
+    install: "安装",
+    copy: "复制",
+    copied: "已复制",
+    copyFail: "复制失败",
     overview: "详细介绍",
     features: "核心特性",
     useCases: "适用场景",
@@ -41,6 +50,11 @@ const UI_TEXT = {
     platform: "Platform",
     pricing: "Pricing",
     category: "Category",
+    author: "Author",
+    install: "Install",
+    copy: "Copy",
+    copied: "Copied",
+    copyFail: "Copy failed",
     overview: "Overview",
     features: "Key features",
     useCases: "Use cases",
@@ -86,6 +100,7 @@ export default function SkillDetailView({
           <header className="skill-detail-hero">
             <SkillAvatar
               name={skill.name}
+              logo={skill.logo}
               official={skill.official}
               repo={skill.repo}
               className="skill-detail-avatar"
@@ -135,11 +150,31 @@ export default function SkillDetailView({
               <dt>{T.pricing}</dt>
               <dd>{skill.pricing}</dd>
             </div>
-            <div>
-              <dt>{T.category}</dt>
-              <dd>{categoryLabel}</dd>
-            </div>
+            {skill.author ? (
+              <div>
+                <dt>{T.author}</dt>
+                <dd>{skill.author}</dd>
+              </div>
+            ) : null}
           </dl>
+
+          {skill.install ? (
+            <section className="skill-detail-section">
+              <h2>{T.install}</h2>
+              <div className="skill-install-row">
+                <pre className="skill-install-cmd">
+                  <code>{skill.install}</code>
+                </pre>
+                <CopyButton
+                  text={skill.install}
+                  label={T.copy}
+                  copiedLabel={T.copied}
+                  failLabel={T.copyFail}
+                  className="copy-btn-primary"
+                />
+              </div>
+            </section>
+          ) : null}
 
           <section className="skill-detail-section">
             <h2>{T.overview}</h2>
