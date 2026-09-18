@@ -2,7 +2,7 @@
   {
     "key": "frontend",
     "href": "/topics/frontend",
-    "title": "前端 VibeCoding 术语",
+    "title": "前端 VibeCoding 概念",
     "tabs": [
       {
         "label": "前端",
@@ -1263,7 +1263,7 @@
   {
     "key": "backend",
     "href": "/topics/backend",
-    "title": "后端 VibeCoding 术语",
+    "title": "后端 VibeCoding 概念",
     "tabs": [
       {
         "label": "前端",
@@ -1868,7 +1868,7 @@
   {
     "key": "product",
     "href": "/topics/product",
-    "title": "产品 VibeCoding 术语",
+    "title": "产品 VibeCoding 概念",
     "tabs": [
       {
         "label": "前端",
@@ -2105,7 +2105,7 @@
   {
     "key": "testing",
     "href": "/topics/testing",
-    "title": "测试 VibeCoding 术语",
+    "title": "测试 VibeCoding 概念",
     "tabs": [
       {
         "label": "前端",
@@ -2284,7 +2284,7 @@
   {
     "key": "technology",
     "href": "/topics/technology",
-    "title": "技术栈 VibeCoding 术语",
+    "title": "技术栈 VibeCoding 概念",
     "tabs": [
       {
         "label": "前端",
@@ -2521,7 +2521,7 @@
   {
     "key": "ai",
     "href": "/topics/ai",
-    "title": "AI VibeCoding 术语",
+    "title": "AI VibeCoding 概念",
     "tabs": [
       {
         "label": "前端",
@@ -2942,7 +2942,7 @@
   {
     "key": "git",
     "href": "/topics/git",
-    "title": "Git VibeCoding 术语",
+    "title": "Git VibeCoding 概念",
     "tabs": [
       {
         "label": "前端",
@@ -3105,7 +3105,7 @@
   {
     "key": "design",
     "href": "/topics/design",
-    "title": "设计风格 VibeCoding 术语",
+    "title": "设计风格 VibeCoding 概念",
     "tabs": [
       {
         "label": "前端",
