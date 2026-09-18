@@ -1,0 +1,420 @@
+{
+  "title": "Prompt Library",
+  "subtitle": "Prompts for the whole vibe coding loop: from nailing the idea to shipping it live. Every entry ships with a copy-ready prompt, why it is written that way, when to use it, and where it bites.",
+  "categories": [
+    {
+      "key": "clarify",
+      "label": "Define the ask",
+      "prompts": [
+        {
+          "id": "clarify-spec",
+          "name": "Turn a vague idea into a spec",
+          "category": "clarify",
+          "tagline": "Do not let AI write code while the idea is still foggy",
+          "prompt": "You are my product partner. I want to build something, but right now I only have a vague idea.\n\nMy idea: {{one sentence}}\nTarget users: {{who will use it}}\nThe problem I care about most: {{the pain}}\n\nDo not jump to solutions. First turn this into a spec I can actually build from:\n1. One sentence on what this product is (elevator pitch).\n2. 3-5 core features, ordered by \"the product makes no sense without this\".\n3. State explicitly what this version will NOT do.\n4. List the open questions only I can answer (5 max).\n\nRules:\n- Plain language. No product jargon.\n- Every feature must map to the pain I described. Drop the ones that do not.\n- Mark anything uncertain as \"TBD\". Do not invent answers for me.",
+          "why": [
+            "Asking for the one-line pitch before features forces alignment on the goal instead of a feature dump",
+            "\"What this version will NOT do\" is the single strongest brake on AI scope creep",
+            "Making AI list the questions only you can answer keeps decisions in your hands",
+            "\"Do not invent answers\" stops AI from filling gaps with guesses that look complete but are unusable"
+          ],
+          "example": "With the idea \"an expense tracker for freelancers\", AI first asks \"logging transactions or budgeting?\" and \"auto-sync bank accounts?\", then returns an MVP feature list plus an explicit not-doing list.",
+          "pitfalls": [
+            "Writing only \"an expense tracker\" gives AI nothing to work with, so you get a generic template that fits everyone and no one",
+            "Skipping AI's clarifying questions means treating undecided premises as settled, and rebuilding later"
+          ],
+          "bestFor": "When you have only a rough idea and do not know how to start the conversation yet.",
+          "models": "Any general model; prefer Claude / GPT for long threads",
+          "tags": ["spec", "docs", "MVP"]
+        },
+        {
+          "id": "clarify-scope",
+          "name": "Cut scope down to a shippable v1",
+          "category": "clarify",
+          "tagline": "When the feature list keeps growing, cut it back to something you can launch",
+          "prompt": "I am building {{product name}}. Here is everything I have thought of:\n{{list every idea, one per line}}\n\nMy constraints: {{n}} people, and I want v1 live within {{timeframe}}.\n\nHelp me cut this to a minimum shippable version:\n1. Sort every idea into three buckets: dead without it (must) / better with it (could) / overthinking (cut).\n2. Justify each bucket, especially the cuts - say plainly why building it now is a waste.\n3. Give me the v1 feature list, capped at {{target count, e.g. 3}} items.\n4. Finally: after v1 ships, what will users complain about most?\n\nRules: do not be agreeable. Cut what must be cut. I want a version I can ship, not a fantasy feature set.",
+          "why": [
+            "Forcing three buckets with reasons stops AI from hedging and marking everything \"recommended\"",
+            "Stating team size and deadline makes AI cut against real capacity, not infinite resources",
+            "\"Do not be agreeable\" measurably increases how hard AI cuts - it defaults to pleasing you",
+            "Asking for the top complaint up front surfaces the real cost of the MVP before launch, not after"
+          ],
+          "example": "For a party game, trimming \"leaderboard, friend invites, custom decks, skin shop\" down to just \"draw a card + timer\" to first validate whether anyone plays it at all.",
+          "pitfalls": [
+            "Without team size and time, AI hands you a three-month plan, which is not a cut at all",
+            "Not recording what you cut, so you quietly add it back a few days later and loop forever"
+          ],
+          "bestFor": "When the feature list is a long scroll and clearly will not fit.",
+          "models": "Any general model",
+          "tags": ["MVP", "scope", "priority"]
+        },
+        {
+          "id": "clarify-acceptance",
+          "name": "Turn \"it works\" into acceptance criteria",
+          "category": "clarify",
+          "tagline": "Give AI-generated code a finish line instead of endless rewrites",
+          "prompt": "I am about to have AI build: {{feature}}\nWho uses it: {{users}}\n\nBefore any code, write the acceptance criteria:\n1. 5-8 concrete conditions that decide whether this feature is done, each verifiable by actually using it.\n2. Phrase each as \"when ... then it should ...\".\n3. Mark which are must-pass (not done without them) and which are nice-to-have.\n4. Add the edge cases: slow or dead network, empty input, very long content, double-clicking. What should happen in each?\n\nRules:\n- Specific enough that someone can click through them. \"Feels smooth\" is not a criterion.\n- Do not skip the edge cases - that is exactly where AI-generated code falls over.",
+          "why": [
+            "The \"when ... then ...\" form forces actionable steps and blocks unverifiable filler like \"smooth UX\"",
+            "Listing edge cases before coding plugs the branches AI most often forgets",
+            "Splitting must vs nice-to-have tells AI where to spend effort, and tells you when to stop",
+            "Shared criteria make later testing and rework factual instead of a matter of taste"
+          ],
+          "example": "For a login modal, criteria reach the level of \"on wrong password, show the specific reason without clearing the username field\" and \"double-clicking login fires exactly one request\".",
+          "pitfalls": [
+            "Covering only the happy path, so the code breaks the moment input is empty or oversized",
+            "Writing criteria and never checking against them at delivery, which makes them pointless"
+          ],
+          "bestFor": "Right before you hand a clear feature description to AI to implement.",
+          "models": "Any general model",
+          "tags": ["acceptance", "testing", "edge cases"]
+        }
+      ]
+    },
+    {
+      "key": "generate",
+      "label": "Generate code",
+      "prompts": [
+        {
+          "id": "generate-from-scratch",
+          "name": "Generate a working page from scratch",
+          "category": "generate",
+          "tagline": "State every constraint up front the first time you ask AI for code",
+          "prompt": "Write me {{page or feature}}.\n\nEnvironment:\n- Stack: {{e.g. Next.js + TypeScript + Tailwind}}\n- Already installed: {{list your dependencies}}\n- Target file: {{path}}\n\nRequirements:\n1. Complete, runnable code. No omissions, no \"rest of the code here\" comments.\n2. Only use dependencies I have. If you need a new package, tell me which and why first.\n3. Style with {{e.g. Tailwind}}; do not create a separate CSS file unless I ask.\n4. Brief comments on non-obvious logic explaining what it does.\n5. When done, tell me: how to run it, what URL to open, and which lines to review first.\n\nConstraints:\n- Must work on mobile (at least {{e.g. 375px}} wide must not break).\n- No abstractions I did not ask for. If one file is enough, do not split it into five.",
+          "why": [
+            "Pinning the stack and existing dependencies is the best defense against AI inventing packages you never installed",
+            "\"No omissions, no placeholder comments\" kills the lazy // ... rest similar output",
+            "\"Tell me before adding a package\" keeps install decisions yours and prevents version conflicts",
+            "Asking which lines to review makes AI self-check and hands you a review path"
+          ],
+          "example": "\"Build an event landing page, Next.js + Tailwind, at app/events/page.tsx, must not break at 375px\" - AI returns a complete tsx file, the run command, and the responsive breakpoints to check.",
+          "pitfalls": [
+            "Saying just \"write a login page\" with no stack gets you React when your project is Vue",
+            "Not demanding complete code, so AI hands back ellipses that do not run and you cannot find the break"
+          ],
+          "bestFor": "At project start, when you need AI to produce the first runnable version.",
+          "models": "Claude / GPT or other strong code models; complex pages benefit from a tool with code execution",
+          "tags": ["generate", "frontend", "from scratch"]
+        },
+        {
+          "id": "generate-reverse",
+          "name": "Build your own version of a reference",
+          "category": "generate",
+          "tagline": "You saw a site or feature you like - have AI rebuild a working version",
+          "prompt": "I want to build my own version modeled on {{reference name or link}}.\n\nReference (link / screenshot / description): {{paste it}}\nWhat I most want to reproduce: {{the specific features or visuals, 3 max}}\nMy stack: {{e.g. Next.js + Tailwind}}\n\nHelp me like this:\n1. Break the reference down: what blocks/modules is it made of, and what does each do?\n2. Point out what is core (it only looks right if you copy this) vs decoration (can wait).\n3. Give me a first version that actually runs, on my stack.\n4. Tell me explicitly what I must NOT copy - copyright, their private APIs, or fundamentally different tech.\n\nRules:\n- I want \"modeled on\", not \"identical to\". Structure and visuals can be inspired; copy, brand and data must be mine.\n- For uncertain implementation details, give me 2 options with tradeoffs instead of picking for me.",
+          "why": [
+            "Deconstructing first stops AI from copying only the surface - looks similar, behaves nothing alike",
+            "Separating core from decoration gives v1 a focus instead of trying to do everything at once",
+            "Asking what not to copy surfaces copyright and API-dependency traps, the biggest blind spot in clone requests",
+            "\"Give me 2 options\" keeps the decision yours instead of inheriting AI's default"
+          ],
+          "example": "Modeling a party-game app on CardYard AI, AI first extracts the four core modules (draw, prompt, timer, results), flags the skin shop as decoration, then writes runnable v1 code.",
+          "pitfalls": [
+            "Dropping a bare link and saying \"build this\" gets you a wall of description, not runnable code",
+            "Ignoring the copyright line and lifting their copy and assets is a launch risk"
+          ],
+          "bestFor": "When you have a concrete reference and want your own working version fast.",
+          "models": "Models that can read links or images work best; text-only description still works",
+          "tags": ["clone", "reference", "from scratch"]
+        },
+        {
+          "id": "generate-component",
+          "name": "Generate a reusable component",
+          "category": "generate",
+          "tagline": "You want a part you will reuse, not a one-off",
+          "prompt": "Build me a reusable component: {{name, e.g. empty state}}\n\nWhere it is used: {{the places}}\nStack: {{e.g. React + TypeScript + Tailwind}}\n\nRequirements:\n1. TypeScript, with every prop typed and a short comment on what it is for.\n2. Make anything likely to change a prop (copy, size, state, callbacks). Hardcode nothing.\n3. Provide sensible defaults so it works with the fewest props possible.\n4. Handle the edges: very long content, empty data, loading, disabled. What does each look like?\n5. Give 2-3 usage examples covering the most common and the most error-prone case.\n\nConstraints:\n- No over-engineering. I do not need scenarios I did not mention.\n- No new dependencies.\n- Accessibility: {{e.g. keyboard operable, has aria-label}}.",
+          "why": [
+            "\"Anything likely to change becomes a prop\" is the line between reusable and one-off - it forces parameterization up front",
+            "Requiring defaults guarantees the component works in its minimal form",
+            "Naming the four edge states plugs the empty-data and overflow branches AI usually misses",
+            "\"No over-engineering\" prevents a monster component supporting twenty cases you will never use"
+          ],
+          "example": "For an empty-state component, AI turns icon, title, description and action into props, and shows a minimal usage with title only and no button.",
+          "pitfalls": [
+            "Not saying where it is used leaves AI guessing how generic to be - too rigid or wildly over-built",
+            "Ignoring edge states, so the component blanks out or throws on empty data"
+          ],
+          "bestFor": "When the same piece of UI shows up for the second time and deserves to be extracted.",
+          "models": "Claude / GPT or other strong code models",
+          "tags": ["component", "reuse", "frontend"]
+        }
+      ]
+    },
+    {
+      "key": "debug",
+      "label": "Fix errors",
+      "prompts": [
+        {
+          "id": "debug-error",
+          "name": "Paste the error, find the root cause",
+          "category": "debug",
+          "tagline": "Never just say \"it does not run\" - paste the whole error",
+          "prompt": "I hit an error. Help me find the cause.\n\nFull error (do not truncate):\n```\n{{paste the complete console or terminal output}}\n```\n\nRelevant code:\n```\n{{the code the error points at, plus its caller}}\n```\n\nAlready tried: {{what you attempted}}\nEnvironment: {{OS / language version / framework version}}\n\nAnswer like this:\n1. In one sentence, what is this error actually saying (in plain words)?\n2. The 2-3 most likely causes, ordered by probability, with your reasoning.\n3. For each cause, the concrete fix.\n4. How I verify it is actually fixed.\n\nRules:\n- Do not rewrite the whole file upfront. Make the smallest change that locates the problem.\n- If you lack information, say exactly which code or log you need. Do not guess.",
+          "why": [
+            "\"Translate it first\" proves AI understood the error instead of keyword-matching",
+            "Ranked causes with reasoning prevent AI from confidently giving its most familiar but wrong answer",
+            "\"Smallest change first\" stops AI from rewriting broadly and burying the real cause",
+            "Letting AI say \"not enough info\" is far more efficient than forcing a guess"
+          ],
+          "example": "Paste a Hydration failed error plus the component, and AI identifies server/client output mismatch (e.g. Date.now()) and offers the useEffect or suppressHydrationWarning fixes.",
+          "pitfalls": [
+            "Pasting only the last line - the stack above it is what actually locates the problem",
+            "Not listing what you already tried, so AI re-suggests the things that failed"
+          ],
+          "bestFor": "When you have a concrete error you cannot read or fix.",
+          "models": "Claude / GPT; prefer models that actually read stack traces",
+          "tags": ["error", "debug", "root cause"]
+        },
+        {
+          "id": "debug-notworking",
+          "name": "It runs, but the result is wrong",
+          "category": "debug",
+          "tagline": "No error at all, just not the outcome you wanted",
+          "prompt": "My code runs fine with no errors, but the result is wrong.\n\nExpected: {{what should happen}}\nActual: {{what happens}}\n\nRelevant code:\n```\n{{paste it}}\n```\n\nAlready confirmed: {{e.g. \"the API response is correct\", \"the function does get called\"}}\n\nPlease:\n1. List 3-5 possible causes for the gap between expected and actual.\n2. For each, give a fast way to test it (one log line, one changed parameter, one breakpoint).\n3. Order them by least effort first so I can eliminate them one by one.\n\nRules:\n- Do not dump a big rewritten block yet - we have not located the problem.\n- Every test must be concrete enough that I can do it right now.",
+          "why": [
+            "Location is the hard part here; asking for fixed code too early usually patches the wrong place and makes it worse",
+            "Asking for quick tests instead of conclusions turns debugging into a checklist you can run",
+            "Stating what you already confirmed can immediately eliminate half the possibilities",
+            "Ordering by effort means you spend the least to rule out the most"
+          ],
+          "example": "\"The list renders but in the wrong order\" - AI first has you determine whether the API or a frontend sort is responsible, with a single console.log that tells them apart.",
+          "pitfalls": [
+            "Saying only \"it is wrong\" without describing expected vs actual leaves AI nothing to work with",
+            "Rushing to rewrite code before locating the fault, so you fix three correct places and miss the fourth"
+          ],
+          "bestFor": "When there is no error message, just wrong logic or wrong data.",
+          "models": "Claude / GPT",
+          "tags": ["debug", "logic", "bisect"]
+        },
+        {
+          "id": "debug-env",
+          "name": "Install or startup failures",
+          "category": "debug",
+          "tagline": "Stuck on setup before writing a line of business code",
+          "prompt": "I am stuck setting up the environment.\n\nWhat I am trying to do: {{e.g. start the dev server}}\nCommand: {{paste it}}\nFull output:\n```\n{{paste the complete terminal output, not just the last line}}\n```\n\nEnvironment:\n- OS: {{e.g. macOS 15 / Windows 11}}\n- Versions: {{e.g. Node v22.11.0 / Python 3.11}}\n- Package manager: {{npm / pnpm / pip}}\n- Where the project came from: {{cloned from GitHub / initialized myself}}\n\nPlease:\n1. Explain what this output is complaining about.\n2. Give the most likely cause and fix, one at a time. I will run it and report back.\n3. For version conflicts, say clearly whether to upgrade or downgrade, and why.\n\nRules:\n- Do not tell me to delete node_modules and reinstall unless it is genuinely necessary - it is slow.\n- Give me a command that verifies whether this step succeeded.",
+          "why": [
+            "Setup output is long and scary; making AI translate it first tells you instantly if you are on the wrong track",
+            "One fix at a time instead of a command dump means you know which change actually worked",
+            "Saying whether to upgrade or downgrade avoids generic advice that does not fit your project",
+            "Constraining \"delete node_modules\" keeps the brute-force fix as a last resort, not the opener"
+          ],
+          "example": "When next dev fails on a Node version mismatch, AI points at the engines field and gives you an nvm use command rather than a reinstall.",
+          "pitfalls": [
+            "Pasting only the final error line - the real clue is usually in the warnings above it",
+            "Not stating OS and versions, so the fix may be for a completely different platform"
+          ],
+          "bestFor": "When installing dependencies after a clone, or starting the dev server, fails.",
+          "models": "Claude / GPT; prefer models that give platform-correct commands",
+          "tags": ["environment", "install", "startup"]
+        }
+      ]
+    },
+    {
+      "key": "refactor",
+      "label": "Clean up",
+      "prompts": [
+        {
+          "id": "refactor-simplify",
+          "name": "Simplify code that grew too complex",
+          "category": "refactor",
+          "tagline": "AI-written code got long and unreadable",
+          "prompt": "This code works but is too complicated. Simplify it.\n\n```\n{{paste code}}\n```\n\nSimplification goal: {{e.g. less nesting / remove duplication / clearer names}}\nBehavior that must not change: {{state it explicitly}}\n\nPlease:\n1. In at most 3 points, where is the complexity coming from?\n2. Give the full simplified code.\n3. For each change, explain what you changed and why it is safer or clearer.\n4. Say explicitly what you did NOT dare touch, and why.\n\nRules:\n- No external behavior change; callers stay as they are.\n- Do not sneak in new features, abstractions or config. I asked for simplification.\n- If some complexity is inherent to the domain, say \"this cannot be simplified further\" instead of forcing it.",
+          "why": [
+            "\"Behavior that must not change\" is the safety line - without it AI quietly alters edge logic while simplifying",
+            "Asking what it did not touch exposes the high-risk areas neither of you is sure about",
+            "Banning new abstractions stops simplification from turning into a rewrite that is harder to read",
+            "Letting AI say \"cannot simplify this\" beats forcing a simplification that introduces a bug"
+          ],
+          "example": "For five levels of nested conditionals, AI flattens them with guard clauses and notes which one nesting level is domain-required and must stay.",
+          "pitfalls": [
+            "Saying just \"optimize this\" lets AI improvise abstractions you never asked for",
+            "Not re-testing after simplifying, so a behavior change slips through unnoticed"
+          ],
+          "bestFor": "When code works but is painful to read, before you layer more features on it.",
+          "models": "Claude / GPT",
+          "tags": ["refactor", "simplify", "readability"]
+        },
+        {
+          "id": "refactor-mobile",
+          "name": "Fix mobile layout breakage",
+          "category": "refactor",
+          "tagline": "Fine on desktop, broken on a phone",
+          "prompt": "My page breaks on mobile. Please fix it.\n\nProblem: {{e.g. bottom button hidden behind the safe area / horizontal scrollbar / text all crammed}}\nReproduces at: {{device or width, e.g. iPhone SE 375px}}\n\nRelevant code:\n```\n{{structure + styles}}\n```\n\nRequirements:\n1. First explain why it breaks (fixed width? missing breakpoint? safe area?).\n2. Give the full corrected code.\n3. Guarantee: no horizontal scroll, key buttons not covered, text at least {{e.g. 12px}}, tap targets at least 44px.\n4. Say what you changed at which breakpoints.\n\nConstraints:\n- Do not break desktop to fix mobile. Both must work.\n- Prefer a responsive fix over maintaining two codebases.\n- Do not paper over it with overflow: hidden.",
+          "why": [
+            "Cause before code prevents brute-force fixes like global zoom that hide the real problem",
+            "Numeric acceptance criteria (no horizontal scroll, 44px targets) make the fix verifiable rather than \"looks fine\"",
+            "Banning overflow: hidden blocks the most common fake fix - the bug is still there, just invisible",
+            "Requiring desktop to still work avoids trading one broken viewport for another"
+          ],
+          "example": "For a fixed bottom button covered by the iPhone home indicator, AI adds env(safe-area-inset-bottom) rather than blindly padding.",
+          "pitfalls": [
+            "Saying \"broken on mobile\" with no width means AI cannot target the fix",
+            "Using overflow: hidden or zoom to force it, which breaks again on the next device"
+          ],
+          "bestFor": "After finishing desktop, or when you get a mobile layout bug report.",
+          "models": "Claude / GPT; prefer models that reason well about CSS breakpoints",
+          "tags": ["responsive", "mobile", "CSS"]
+        },
+        {
+          "id": "refactor-review",
+          "name": "Code review before you ship",
+          "category": "refactor",
+          "tagline": "You cannot see the problems yourself - have AI be a harsh reviewer",
+          "prompt": "Do a strict code review of this.\n\n```\n{{paste code}}\n```\n\nContext: {{what it does, who uses it, roughly what scale}}\n\nLook for problems in these areas:\n1. Will break: nulls, boundaries, concurrency, unhandled exceptions.\n2. Will be slow: repeated work, queries or requests inside loops, render cost.\n3. Is unsafe: unvalidated user input, secrets hardcoded in the frontend, missing permission checks.\n4. Is unmaintainable: confusing names, muddled responsibility, missing comments where needed.\n\nRules:\n- Rate severity for each issue (will crash / will misbehave / just ugly) with exact location and fix.\n- Do not pad the list. If something is fine, say it is fine.\n- If anything could cause a production incident, call it out separately at the very top.",
+          "why": [
+            "Four explicit lenses dig far deeper than \"any problems?\", especially on performance and security",
+            "Severity ratings tell you what to fix first instead of drowning in \"suggestions\"",
+            "\"Do not pad the list\" keeps the signal high, otherwise AI returns nitpicks for the sake of output",
+            "Separating incident-grade issues is where a review earns its keep"
+          ],
+          "example": "Reviewing a submit form, AI flags missing client-side validation, no double-submit guard, and error toasts that leak raw backend messages to users.",
+          "pitfalls": [
+            "No context on users and scale means AI either applies big-tech standards to your toy or lets it slide",
+            "Pasting thousands of lines at once yields only generic feedback - review module by module"
+          ],
+          "bestFor": "When a feature is done and about to ship or merge.",
+          "models": "Claude / GPT; long-context models review more code in one pass",
+          "tags": ["review", "quality", "pre-launch"]
+        }
+      ]
+    },
+    {
+      "key": "extend",
+      "label": "Add features",
+      "prompts": [
+        {
+          "id": "extend-feature",
+          "name": "Add a feature to existing code",
+          "category": "extend",
+          "tagline": "The project already runs; now you add to it",
+          "prompt": "I want to add a feature to existing code. Understand the current state before writing anything.\n\nCurrent code:\n```\n{{paste the relevant code, or describe the file structure}}\n```\n\nFeature to add: {{describe it}}\n\nPlease:\n1. First restate your understanding of the current structure (so I can catch misreadings).\n2. Say where the new code goes, whether new files are needed, and what it might affect.\n3. If there are multiple approaches, give 2 with tradeoffs (smaller diff vs cleaner design).\n4. After I confirm, give the full change and mark which files changed where.\n\nRules:\n- Do not rewrite parts I did not ask you to touch.\n- Match the existing style and naming conventions.\n- Tell me exactly what I need to verify manually.",
+          "why": [
+            "Restating the structure first is the key step: you correct misreadings before any code exists, not after it is written",
+            "Two options instead of one lets you choose by project phase (rushed vs long-lived)",
+            "\"Do not rewrite parts I did not ask\" stops AI from refactoring on the side, which makes the diff unreviewable",
+            "Marking changed spots per file cuts your merge and verification cost"
+          ],
+          "example": "Adding search to an existing list, AI first identifies which hook supplies the data, then offers \"filter client-side\" vs \"add a query param\" for you to choose.",
+          "pitfalls": [
+            "Saying \"add search\" without pasting code gets you something that does not match your project at all",
+            "Not bounding the scope, so AI \"improves\" other places and the diff becomes impossible to review"
+          ],
+          "bestFor": "When the codebase has real size and you must extend without breaking what exists.",
+          "models": "Claude / GPT; long-context models suit larger codebases",
+          "tags": ["extend", "iterate", "refactor"]
+        },
+        {
+          "id": "extend-integrate",
+          "name": "Integrate a third-party API",
+          "category": "extend",
+          "tagline": "Adding payments, maps, login or an AI endpoint",
+          "prompt": "I want to integrate {{service, e.g. Stripe / Google Maps / OpenAI}} into my project.\n\nStack: {{e.g. Next.js + TypeScript}}\nScenario: {{what exactly, e.g. charge the user after checkout}}\n\nPlease:\n1. Explain the overall flow (which parties, how data moves).\n2. List the credentials needed and where each belongs - and which must never reach the client.\n3. Give minimal runnable call code including error handling and timeouts.\n4. List this service's classic traps: {{signatures, webhooks, quotas, sandbox}}.\n5. How do I test locally - is there a sandbox or test mode?\n\nRules:\n- Where secrets are involved, mark clearly that it must run server-side.\n- Do not skip webhook or async notification handling - easiest to miss, most costly.\n- Warn me about documented limits that matter (rate limits, required business verification, ICP filing).",
+          "why": [
+            "Asking for the flow diagram first avoids getting a call snippet while missing callbacks and state handling",
+            "Pinning where secrets live directly blocks the most common and most damaging mistake: shipping the secret to the client",
+            "Forcing error handling and timeouts matters because third-party failures are normal, not exceptional",
+            "Asking about verification or filing requirements surfaces the non-technical blockers that actually delay launch"
+          ],
+          "example": "Integrating payments, AI draws the checkout, charge, async webhook, and reconciliation path, stressing that the webhook must be signature-verified and the client result is not proof.",
+          "pitfalls": [
+            "Copying a call snippet and shipping, missing webhooks and errors, so users pay and orders never update",
+            "Putting secrets in the frontend, which is publishing your credentials"
+          ],
+          "bestFor": "When connecting external services, especially payments or anything sensitive.",
+          "models": "Claude / GPT; cross-check the latest API details against official docs",
+          "tags": ["integration", "API", "third-party"]
+        },
+        {
+          "id": "extend-persist",
+          "name": "Add data persistence",
+          "category": "extend",
+          "tagline": "Data vanishes on refresh - make it stick",
+          "prompt": "My data lives in memory or local state right now and disappears on refresh. I need persistence.\n\nCurrent state: {{where data lives now, e.g. React state / localStorage}}\nData to store: {{the shape}}\nScenario: {{single user / multi-user / needs cross-device sync?}}\nStack: {{e.g. Next.js}}\n\nPlease:\n1. Recommend a storage option for my scenario (localStorage / file / SQLite / hosted DB) with tradeoffs.\n2. Give complete integration code including reads, writes and error handling.\n3. Cover migration: what happens to data that already exists?\n4. Flag what to watch: concurrent writes, validation, backups, privacy.\n\nRules:\n- Do not jump to the most complex option - localStorage may genuinely be enough here.\n- For user data, call out privacy and compliance explicitly.\n- Give me a way to verify the data is actually persisted.",
+          "why": [
+            "Scenario-based recommendation instead of defaulting to a database avoids over-engineering - many small tools are fine with localStorage",
+            "\"What about migration\" is the most forgotten and most painful step when adding persistence",
+            "Requiring privacy and compliance notes matters because these are hard constraints once real users are involved",
+            "A verification method confirms data truly landed instead of assuming it did"
+          ],
+          "example": "For a local tool, AI may suggest starting with localStorage (zero cost) and say at what scale moving to a real database becomes worth it.",
+          "pitfalls": [
+            "Reaching for a database immediately and taking on ops burden for a single-user tool",
+            "Skipping validation, so data writes fine and reads back dirty"
+          ],
+          "bestFor": "When the feature works but nothing survives a refresh, or you need multi-user or multi-device support.",
+          "models": "Claude / GPT",
+          "tags": ["data", "storage", "persistence"]
+        }
+      ]
+    },
+    {
+      "key": "ship",
+      "label": "Ship it",
+      "prompts": [
+        {
+          "id": "ship-deploy",
+          "name": "Deploy to production",
+          "category": "ship",
+          "tagline": "It runs locally - now put it on the public internet",
+          "prompt": "I want to deploy my project. Give me steps I can follow literally.\n\nProject:\n- Type: {{e.g. Next.js full-stack / static site / Python API}}\n- Code lives at: {{e.g. GitHub repo}}\n- Server or database: {{yes / no}}\n- Budget: {{free tier preferred, or paid is fine}}\n- My experience: {{e.g. I write code but have never configured a server}}\n\nPlease:\n1. Recommend 1-2 suitable platforms and say why. Do not list ten for me to choose from.\n2. Give the full path from zero to a live URL - where to click and what to fill in.\n3. List required environment variables or secrets and how to set them on the platform.\n4. How to verify after deploy: which URL, which logs.\n5. The classic first-deploy traps: build failures, missing env vars, wrong paths.\n\nRules:\n- Pitch it at my experience level. Do not assume I know nginx, Docker or CI.\n- If a step may be stale because the platform UI changed, tell me to trust the official docs.",
+          "why": [
+            "Stating budget and experience stops AI from handing you a plan that needs an ops engineer",
+            "One or two recommendations instead of ten lowers the choice cost - platforms are similar enough that finishing one matters more",
+            "Listing env vars separately targets the top deploy failure: works locally, missing in production",
+            "Flagging possibly-stale UI steps saves you hunting for buttons that no longer exist"
+          ],
+          "example": "Deploying a Next.js site, AI suggests Vercel or self-hosting, walks repo connect, env vars, build, domain, and notes config differences like output: standalone.",
+          "pitfalls": [
+            "Not saying whether there is a server, so you get a static host that cannot run your API",
+            "Missing env vars: fine locally, blank page in production, with no obvious cause"
+          ],
+          "bestFor": "When local development is done and you need it reachable publicly for the first time.",
+          "models": "Claude / GPT; trust official docs for platform specifics",
+          "tags": ["deploy", "launch", "ops"]
+        },
+        {
+          "id": "ship-domain",
+          "name": "Custom domain and HTTPS",
+          "category": "ship",
+          "tagline": "It is live on a temp URL - now use your own domain",
+          "prompt": "I want to attach my own domain with HTTPS to an already-deployed project.\n\nCurrent state:\n- Hosted on: {{e.g. Vercel / my own server}}\n- Domain registrar: {{e.g. Namecheap / Alibaba Cloud}}\n- Domain: {{yours}}\n- Target: {{www.yourdomain.com or yourdomain.com}}\n\nPlease give me:\n1. The DNS records to add (type, host, value) and what each one does.\n2. What to configure on the hosting platform.\n3. How to get an HTTPS certificate (automatic or manual), and how if not automatic.\n4. Roughly how long propagation takes and how to verify.\n5. Common traps: DNS not resolving, certificate issuance failing, www vs non-www.\n\nRules:\n- Explain what each record does. I do not want to paste config without understanding it.\n- For servers in mainland China, remind me about ICP filing - unfiled domains can be blocked on ports 80/443.",
+          "why": [
+            "Explaining each record keeps you able to debug instead of blindly pasting config",
+            "Separating automatic from manual certificates matters because most platforms auto-issue, so no manual hassle is needed",
+            "Proactively raising ICP filing catches a mainland-China-only constraint you would otherwise hit after deploying",
+            "Stating propagation time and verification stops you from assuming a correct config failed"
+          ],
+          "example": "Pointing a domain at a Vercel site, AI gives the CNAME record, the platform-side domain add, automatic certificate issuance, and notes DNS propagation can take minutes to hours.",
+          "pitfalls": [
+            "Refreshing right after a DNS change and assuming failure, then churning the config when it just needed time",
+            "Binding a domain to a mainland-China server without filing, so ports 80/443 are blocked no matter what you configure"
+          ],
+          "bestFor": "When it is reachable on a temporary URL and you want the real domain.",
+          "models": "Claude / GPT",
+          "tags": ["domain", "HTTPS", "DNS"]
+        },
+        {
+          "id": "ship-prelaunch",
+          "name": "Pre-launch checklist",
+          "category": "ship",
+          "tagline": "One last pass before you hit publish",
+          "prompt": "I am about to launch {{product}}. Help me do a final pre-launch check.\n\nProduct:\n- What it is: {{one line}}\n- Stack: {{e.g. Next.js}}\n- Audience: {{who, domestic or overseas}}\n- Does it have: user accounts / payments / form submissions / user-generated content\n\nGive me a checklist covering:\n1. Functionality: does the core path work, any broken links or placeholder copy?\n2. Mobile: does it break at common screen sizes?\n3. Performance: first paint, image weight, obvious jank.\n4. Security: any secrets leaked to the client, is user input validated?\n5. Compliance: {{ICP filing needed / privacy policy / UGC moderation}}\n6. Fallbacks: what users see on error, is there a 404 page?\n\nRules:\n- Split into two tiers: \"cannot launch without this\" and \"fine to add after launch\".\n- Filter to what applies based on my answers above. No irrelevant items.\n- For the China market, call out filing and individual-account restrictions separately (individual entities usually cannot do payments, UGC communities or game categories).",
+          "why": [
+            "Two tiers keep the list usable - a giant list gets ignored, and perfectionism delays launch forever",
+            "Filtering by your actual answers makes the checklist fit your product instead of being generic",
+            "Separating filing and individual-entity limits surfaces the non-technical blockers that decide whether you can launch at all",
+            "\"What users see on error\" is the piece AI-built projects most often lack - without it, any exception is a white screen"
+          ],
+          "example": "Before launching an individually-owned WeChat mini program, AI flags: no virtual payments, no UGC community, pick the right category, and filing requires a mainland-ID admin to pass face verification.",
+          "pitfalls": [
+            "Checking only functionality and ignoring compliance - being taken down is worse than having bugs",
+            "No fallback UI, so users hit a white screen on any error and bounce"
+          ],
+          "bestFor": "The last step before you press publish.",
+          "models": "Claude / GPT",
+          "tags": ["pre-launch", "checklist", "compliance"]
+        }
+      ]
+    }
+  ]
+}

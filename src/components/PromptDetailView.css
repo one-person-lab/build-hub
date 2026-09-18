@@ -1,0 +1,296 @@
+/* 提示词详情页 PromptDetailView —— 复用 .catalog-page/.grid-wrap 等原站 class，
+   布局参考主流工具展示方式，核心是「提示词全文 + 一键复制 + 为什么这么写」 */
+
+.prompt-detail {
+  max-width: 860px;
+}
+
+.prompt-detail-back {
+  display: inline-block;
+  margin: 4px 0 18px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-soft, #6b7280);
+  text-decoration: none;
+  transition: color 0.2s var(--ease);
+}
+.prompt-detail-back:hover {
+  color: var(--theme-brand);
+}
+
+.prompt-detail-hero {
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--border-light);
+}
+.prompt-detail-cat {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--theme-brand) 12%, transparent);
+  color: var(--theme-dark-brand, var(--theme-brand));
+  border: 1px solid color-mix(in srgb, var(--theme-brand) 22%, transparent);
+}
+.prompt-detail-name {
+  font-size: 34px;
+  font-weight: 750;
+  letter-spacing: -0.02em;
+  margin: 12px 0 8px;
+  color: var(--text);
+}
+.prompt-detail-tagline {
+  font-size: 17px;
+  color: var(--text-soft, #6b7280);
+  margin: 0 0 14px;
+}
+.prompt-detail-tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+}
+.prompt-detail-tags li {
+  font-size: 12px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--theme-brand) 10%, transparent);
+  color: var(--theme-dark-brand, var(--theme-brand));
+  border: 1px solid color-mix(in srgb, var(--theme-brand) 20%, transparent);
+}
+.prompt-detail-cta {
+  margin-top: 16px;
+}
+
+/* 提示词全文：等宽代码块，保留换行 */
+.prompt-code {
+  margin: 0;
+  padding: 18px 20px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--bg) 60%, transparent);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 13.5px;
+  line-height: 1.75;
+  color: var(--text);
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-x: auto;
+}
+.prompt-var {
+  color: var(--theme-dark-brand, var(--theme-brand));
+  font-weight: 600;
+  background: color-mix(in srgb, var(--theme-brand) 12%, transparent);
+  border-radius: 4px;
+  padding: 0 3px;
+}
+.prompt-var-hint {
+  margin: 10px 0 0;
+  font-size: 12.5px;
+  color: var(--text-soft, #6b7280);
+}
+
+.prompt-detail-section {
+  margin-top: 30px;
+}
+.prompt-detail-section > h2 {
+  font-size: 19px;
+  font-weight: 700;
+  margin: 0 0 14px;
+  color: var(--text);
+}
+.prompt-detail-section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+.prompt-detail-section-head h2 {
+  margin: 0;
+}
+
+.prompt-why {
+  margin: 0;
+  padding-left: 22px;
+  color: var(--text);
+}
+.prompt-why li {
+  font-size: 14.5px;
+  line-height: 1.75;
+  margin-bottom: 10px;
+}
+.prompt-why li::marker {
+  color: var(--theme-brand);
+  font-weight: 700;
+}
+
+.prompt-example {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--text);
+  margin: 0;
+  padding: 16px 18px;
+  border-left: 3px solid var(--theme-brand);
+  background: color-mix(in srgb, var(--theme-brand) 8%, transparent);
+  border-radius: 0 12px 12px 0;
+}
+
+.prompt-pitfalls {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+.prompt-pitfalls li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+.prompt-pitfall-mark {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 800;
+  color: #fff;
+  background: #e11d48;
+  margin-top: 1px;
+}
+
+.prompt-detail-meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 28px 0 0;
+}
+.prompt-detail-meta > div {
+  background: color-mix(in srgb, var(--bg) 60%, transparent);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+.prompt-detail-meta dt {
+  font-size: 12px;
+  color: var(--text-soft, #6b7280);
+  margin-bottom: 4px;
+}
+.prompt-detail-meta dd {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.prompt-detail-related {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.prompt-detail-related-item {
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--theme-brand);
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  transition: all 0.2s var(--ease);
+}
+.prompt-detail-related-item:hover {
+  border-color: var(--theme-brand);
+  background: color-mix(in srgb, var(--theme-brand) 8%, transparent);
+}
+.prompt-detail-related-item.is-current {
+  color: #fff;
+  background: var(--theme-brand);
+  border-color: var(--theme-brand);
+}
+
+.prompt-detail-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 32px;
+  padding-top: 22px;
+  border-top: 1px solid var(--border-light);
+}
+
+/* 复制按钮（列表页与详情页共用） */
+.copy-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 650;
+  padding: 9px 16px;
+  border-radius: 10px;
+  white-space: nowrap;
+  color: var(--theme-brand);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  transition: all 0.2s var(--ease);
+}
+.copy-btn:hover {
+  border-color: var(--theme-brand);
+  background: color-mix(in srgb, var(--theme-brand) 8%, transparent);
+}
+.copy-btn:focus-visible {
+  outline: 2px solid var(--theme-brand);
+  outline-offset: 2px;
+}
+.copy-btn-icon {
+  font-size: 13px;
+  line-height: 1;
+}
+.copy-btn-primary {
+  color: #fff;
+  background: var(--theme-brand);
+  border-color: var(--theme-brand);
+}
+.copy-btn-primary:hover {
+  background: var(--theme-brand-hover, var(--theme-brand));
+  border-color: var(--theme-brand-hover, var(--theme-brand));
+}
+.copy-btn.is-copied {
+  color: #fff;
+  background: var(--theme-brand);
+  border-color: var(--theme-brand);
+}
+.copy-btn.is-failed {
+  color: #e11d48;
+  border-color: #e11d48;
+  background: var(--bg);
+}
+
+@media (max-width: 640px) {
+  .prompt-detail-name {
+    font-size: 28px;
+  }
+  .prompt-detail-meta {
+    grid-template-columns: 1fr;
+  }
+  .prompt-code {
+    font-size: 13px;
+    padding: 14px 16px;
+  }
+}

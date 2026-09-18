@@ -1,0 +1,138 @@
+/* 提示词库 PromptLibraryView —— 复用 .catalog-page/.grid/.card 等原站 class，
+   仅补充卡片内部、筛选区与复制按钮样式 */
+
+.prompt-lib-head {
+  margin: 4px 0 14px;
+}
+.prompt-lib-head h1 {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 0 0 8px;
+  color: var(--text);
+}
+.prompt-lib-head p {
+  margin: 0;
+  color: var(--text-soft, #6b7280);
+  font-size: 15px;
+  line-height: 1.65;
+  max-width: 720px;
+}
+
+.prompt-lib-finder {
+  margin: 10px 0 4px;
+}
+.prompt-lib-chip {
+  cursor: pointer;
+}
+
+.prompt-lib-cat {
+  margin-top: 8px;
+}
+.prompt-lib-empty {
+  color: var(--text-soft, #6b7280);
+  font-size: 14px;
+  padding: 22px 0;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-lg);
+  text-align: center;
+  background: color-mix(in srgb, var(--bg) 55%, transparent);
+  margin: 0 0 8px;
+}
+
+.prompt-card-wrap {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.prompt-card {
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease),
+    border-color 0.25s;
+}
+.prompt-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-card);
+  border-color: var(--theme-brand);
+}
+.prompt-card .card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  /* 给右上角复制按钮留位置 */
+  padding-right: 68px;
+}
+.prompt-card-title {
+  font-size: 18px;
+  font-weight: 650;
+  margin: 0;
+  margin-right: auto;
+  color: var(--text);
+}
+.prompt-card-tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 14px 0 0;
+  padding: 0;
+}
+.prompt-card-tags li {
+  font-size: 12px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--theme-brand) 12%, transparent);
+  color: var(--theme-dark-brand, var(--theme-brand));
+  border: 1px solid color-mix(in srgb, var(--theme-brand) 22%, transparent);
+}
+
+.prompt-card-more {
+  margin-top: 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--theme-brand);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.prompt-card:hover .prompt-card-more {
+  gap: 8px;
+  transition: gap 0.2s var(--ease);
+}
+
+/* 复制按钮：放在 <a> 外层，避免 button 嵌套在 a 里的非法结构 */
+.prompt-copy-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 2;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text-soft, #6b7280);
+  transition: all 0.18s var(--ease);
+}
+.prompt-copy-btn:hover {
+  border-color: var(--theme-brand);
+  color: var(--theme-brand);
+  background: color-mix(in srgb, var(--theme-brand) 8%, transparent);
+}
+.prompt-copy-btn.is-copied {
+  border-color: var(--theme-brand);
+  color: #fff;
+  background: var(--theme-brand);
+}
+.prompt-copy-btn.is-failed {
+  border-color: #e11d48;
+  color: #e11d48;
+}
+.prompt-copy-btn:focus-visible {
+  outline: 2px solid var(--theme-brand);
+  outline-offset: 2px;
+}
