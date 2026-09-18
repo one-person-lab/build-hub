@@ -41,7 +41,7 @@
       },
       {
         "label": "设计风格",
-        "count": 25,
+        "count": 28,
         "active": false
       },
       {
@@ -1302,7 +1302,7 @@
       },
       {
         "label": "设计风格",
-        "count": 25,
+        "count": 28,
         "active": false
       },
       {
@@ -1907,7 +1907,7 @@
       },
       {
         "label": "设计风格",
-        "count": 25,
+        "count": 28,
         "active": false
       },
       {
@@ -2144,7 +2144,7 @@
       },
       {
         "label": "设计风格",
-        "count": 25,
+        "count": 28,
         "active": false
       },
       {
@@ -2323,7 +2323,7 @@
       },
       {
         "label": "设计风格",
-        "count": 25,
+        "count": 28,
         "active": false
       },
       {
@@ -2560,7 +2560,7 @@
       },
       {
         "label": "设计风格",
-        "count": 25,
+        "count": 28,
         "active": false
       },
       {
@@ -2981,7 +2981,7 @@
       },
       {
         "label": "设计风格",
-        "count": 25,
+        "count": 28,
         "active": false
       },
       {
@@ -3144,7 +3144,7 @@
       },
       {
         "label": "设计风格",
-        "count": 25,
+        "count": 28,
         "active": true
       },
       {
@@ -3163,7 +3163,7 @@
       {
         "id": "cat-设计风格",
         "title": "设计风格",
-        "count": 25,
+        "count": 28,
         "terms": [
           {
             "slug": "style-minimal",
@@ -3364,6 +3364,30 @@
             "tagline": "头部 App 的付费墙都有一套共同套路：价值主张、利益清单、价格锚点、随时取消。",
             "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div style=\"width:100%;height:100%;display:flex;align-items:center;justify-content:center;gap:32px;padding:18px 26px;background:var(--bg-soft)\"><div style=\"flex:0 0 220px;display:flex;flex-direction:column;gap:10px\"><small style=\"color:var(--text-3);font-size:11px\">虚构示例 · 品牌与价格仅用于演示</small><b style=\"font-size:22px;font-weight:800;color:var(--text)\">付费墙<br><span style=\"font-size:13px;font-weight:500;color:var(--text-2)\">一页为「让你掏钱」而设计的页面</span></b><ul style=\"display:flex;flex-direction:column;gap:7px;font-size:12.5px;color:var(--text-2)\"><li style=\"list-style:none\">① 价值主张：先卖升级后的自己</li><li style=\"list-style:none\">② 利益清单：3–5 条具体的</li><li style=\"list-style:none\">③ 价格锚点：年框高亮</li><li style=\"list-style:none\">④ 安心与出口：随时取消 / ✕</li></ul></div><div style=\"display:flex;gap:14px\"><div style=\"width:170px;height:280px;border-radius:22px;border:2px solid var(--border);background:var(--bg);box-shadow:0 10px 24px rgba(29,33,41,.08);overflow:hidden;display:flex;flex-direction:column;gap:8px;padding:14px 12px;position:relative\"><span style=\"position:absolute;top:10px;right:12px;font-size:12px;color:var(--text-3)\">✕</span><i class=\"ti ti-crown\" style=\"font-size:18px;color:var(--brand)\"></i><b style=\"font-size:14px;color:var(--text)\">升级到 Pro</b><div style=\"display:flex;flex-direction:column;gap:5px;font-size:11.5px;color:var(--text-2)\"><span>✓ 云端无限同步</span><span>✓ 高级导出格式</span><span>✓ 去除水印</span></div><div style=\"display:flex;gap:6px;margin-top:2px\"><span style=\"flex:1;border:1px solid var(--border);border-radius:8px;padding:5px 4px;text-align:center;font-size:10.5px;color:var(--text-2)\">月付<br><b style=\"color:var(--text)\">¥ 28</b></span><span style=\"flex:1;border:1.5px solid var(--brand);border-radius:8px;padding:5px 4px;text-align:center;font-size:10.5px;background:var(--brand-light);color:var(--brand)\">年付<br><b>¥ 198</b> · 省 40%</span></div><button style=\"margin-top:auto;width:100%;border:0;border-radius:10px;padding:9px 0;font-size:12px;font-weight:700;color:#fff;background:linear-gradient(90deg,var(--brand),#722ed1)\">开始 7 天免费试用</button><small style=\"text-align:center;font-size:9.5px;color:var(--text-3)\">不收费 · 可随时取消</small></div><div style=\"width:170px;height:280px;border-radius:22px;border:2px solid var(--border);background:var(--bg);box-shadow:0 10px 24px rgba(29,33,41,.08);overflow:hidden;display:flex;flex-direction:column;gap:8px;padding:14px 12px;position:relative\"><span style=\"position:absolute;top:10px;right:12px;font-size:12px;color:var(--text-3)\">✕</span><i class=\"ti ti-crown\" style=\"font-size:18px;color:var(--brand)\"></i><b style=\"font-size:14px;color:var(--text)\">解锁全部功能</b><div style=\"display:flex;flex-direction:column;gap:5px;font-size:11.5px;color:var(--text-2)\"><span>✓ 离线草稿箱</span><span>✓ 团队空间</span><span>✓ 专属客服</span></div><div style=\"display:flex;gap:6px;margin-top:2px\"><span style=\"flex:1;border:1px solid var(--border);border-radius:8px;padding:5px 4px;text-align:center;font-size:10.5px;color:var(--text-2)\">月付<br><b style=\"color:var(--text)\">¥ 28</b></span><span style=\"flex:1;border:1.5px solid var(--brand);border-radius:8px;padding:5px 4px;text-align:center;font-size:10.5px;background:var(--brand-light);color:var(--brand)\">年付<br><b>¥ 198</b> · 省 40%</span></div><button style=\"margin-top:auto;width:100%;border:0;border-radius:10px;padding:9px 0;font-size:12px;font-weight:700;color:#fff;background:linear-gradient(90deg,var(--brand),#722ed1)\">免费试用 7 天</button><small style=\"text-align:center;font-size:9.5px;color:var(--text-3)\">随时可取消 · 不扣费</small></div></div></div></div>",
             "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
+          },
+          {
+            "slug": "style-dark-catalog",
+            "name": "深色图鉴风",
+            "en": "Dark Library",
+            "tagline": "深底、一点金、卡片排得密：把内容站做出 Appllama 那种「有货的库」的仪式感。",
+            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div style=\"width:100%;height:100%;background:#14151a;padding:16px 20px;display:flex;flex-direction:column;gap:10px\"><div style=\"display:flex;align-items:baseline;gap:10px\"><b style=\"font-size:15px;color:#eceef2\">产品图鉴</b><span style=\"font-size:10px;color:#8b8e99\">优秀产品的收藏 · 共 13 件</span><span style=\"margin-left:auto;background:#e8c767;color:#14151a;border-radius:6px;padding:2px 8px;font-size:10px;font-weight:800\">PRO</span></div><div style=\"display:flex;gap:6px;flex-wrap:wrap\"><span style=\"border:1px solid #5a5236;border-radius:999px;padding:3px 10px;font-size:10.5px;color:#e8c767\">全部 13</span><span style=\"border:1px solid #3a3d46;border-radius:999px;padding:3px 10px;font-size:10.5px;color:#9a9dab\">AI 工具</span><span style=\"border:1px solid #3a3d46;border-radius:999px;padding:3px 10px;font-size:10.5px;color:#9a9dab\">效率工具</span><span style=\"border:1px solid #3a3d46;border-radius:999px;padding:3px 10px;font-size:10.5px;color:#9a9dab\">设计创意</span></div><div style=\"display:flex;flex-direction:column;gap:8px\"><div style=\"display:grid;grid-template-columns:repeat(3,1fr);gap:8px\"><div style=\"background:#202228;border:1px solid #2c2f38;border-radius:10px;padding:10px 11px;display:flex;align-items:center;gap:9px\"><span style=\"width:24px;height:24px;flex:none;background:#fff;border-radius:7px;display:grid;place-items:center\"><img src=\"https://cursor.com/marketing-static/icon-192x192-light.png\" alt=\"\" width=\"18\" height=\"18\" style=\"width:18px;height:18px;object-fit:contain;border-radius:4px\"/></span><div style=\"min-width:0\"><b style=\"display:block;font-size:12px;color:#eceef2;font-weight:700\">Cursor</b><span style=\"font-size:10px;color:#8b8e99;line-height:1.4;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">真正读懂你代码库的 AI 编辑器</span></div></div><div style=\"background:#202228;border:1px solid #2c2f38;border-radius:10px;padding:10px 11px;display:flex;align-items:center;gap:9px\"><span style=\"width:24px;height:24px;flex:none;background:#fff;border-radius:7px;display:grid;place-items:center\"><img src=\"https://linear.app/favicon.ico\" alt=\"\" width=\"18\" height=\"18\" style=\"width:18px;height:18px;object-fit:contain;border-radius:4px\"/></span><div style=\"min-width:0\"><b style=\"display:block;font-size:12px;color:#eceef2;font-weight:700\">Linear</b><span style=\"font-size:10px;color:#8b8e99;line-height:1.4;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">为速度而生的 issue 管理</span></div></div><div style=\"background:#202228;border:1px solid #2c2f38;border-radius:10px;padding:10px 11px;display:flex;align-items:center;gap:9px\"><span style=\"width:24px;height:24px;flex:none;background:#fff;border-radius:7px;display:grid;place-items:center\"><img src=\"https://raycast.com/favicon-production.png\" alt=\"\" width=\"18\" height=\"18\" style=\"width:18px;height:18px;object-fit:contain;border-radius:4px\"/></span><div style=\"min-width:0\"><b style=\"display:block;font-size:12px;color:#eceef2;font-weight:700\">Raycast</b><span style=\"font-size:10px;color:#8b8e99;line-height:1.4;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">键盘启动器，扩展即生态</span></div></div></div><div style=\"display:grid;grid-template-columns:repeat(3,1fr);gap:8px\"><div style=\"background:#202228;border:1px solid #2c2f38;border-radius:10px;padding:10px 11px;display:flex;align-items:center;gap:9px\"><span style=\"width:24px;height:24px;flex:none;background:#fff;border-radius:7px;display:grid;place-items:center\"><img src=\"https://buffer.com/favicon.ico\" alt=\"\" width=\"18\" height=\"18\" style=\"width:18px;height:18px;object-fit:contain;border-radius:4px\"/></span><div style=\"min-width:0\"><b style=\"display:block;font-size:12px;color:#eceef2;font-weight:700\">Buffer</b><span style=\"font-size:10px;color:#8b8e99;line-height:1.4;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">有节奏地经营自媒体矩阵</span></div></div><div style=\"background:#202228;border:1px solid #2c2f38;border-radius:10px;padding:10px 11px;display:flex;align-items:center;gap:9px\"><span style=\"width:24px;height:24px;flex:none;background:#fff;border-radius:7px;display:grid;place-items:center\"><img src=\"https://appllama.io/branding/logo-icon-500.webp\" alt=\"\" width=\"18\" height=\"18\" style=\"width:18px;height:18px;object-fit:contain;border-radius:4px\"/></span><div style=\"min-width:0\"><b style=\"display:block;font-size:12px;color:#eceef2;font-weight:700\">Appllama</b><span style=\"font-size:10px;color:#8b8e99;line-height:1.4;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">1200+ 头部 App 的付费墙库</span></div></div><div style=\"background:#202228;border:1px solid #2c2f38;border-radius:10px;padding:10px 11px;display:flex;align-items:center;gap:9px\"><span style=\"width:24px;height:24px;flex:none;background:#fff;border-radius:7px;display:grid;place-items:center\"><img src=\"https://static.figma.com/app/icon/2/icon-128.png\" alt=\"\" width=\"18\" height=\"18\" style=\"width:18px;height:18px;object-fit:contain;border-radius:4px\"/></span><div style=\"min-width:0\"><b style=\"display:block;font-size:12px;color:#eceef2;font-weight:700\">Figma</b><span style=\"font-size:10px;color:#8b8e99;line-height:1.4;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">浏览器里的设计协作标准件</span></div></div></div></div><small style=\"margin-top:auto;color:#5c5f69;font-size:9.5px\">虚构示例 · 图标为各产品真实 logo</small></div></div>",
+            "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
+          },
+          {
+            "slug": "style-journal-cards",
+            "name": "手账卡片风",
+            "en": "Scrapbook Journal",
+            "tagline": "暖纸底、衬线大标题、微微歪着的卡片：像自己整理的收藏手账。",
+            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div style=\"width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#f4eee1;padding:16px\"><div style=\"background:#f4eee1;border-radius:12px;width:600px;padding:18px 20px;display:flex;flex-direction:column;gap:12px\"><div><h2 style=\"font-size:18px;color:#3a3325;font-weight:900\">产品手账<span style=\"font-size:9px;color:#b3a888;font-weight:400;letter-spacing:.18em;margin-left:8px\">FIELD NOTES</span></h2><span style=\"display:inline-block;width:52px;height:3px;background:#d9a441;border-radius:2px;margin-top:4px\"></span></div><div style=\"display:flex;gap:12px\"><div style=\"position:relative;transform:rotate(-1.6deg);background:#fffdf7;border:1px solid #e5dcc8;border-radius:6px;box-shadow:0 2px 0 rgba(120,100,60,.14);padding:12px 11px;flex:1;min-width:0\"><i style=\"position:absolute;top:-7px;left:50%;transform:translateX(-50%) rotate(-2deg);width:40px;height:12px;background:#a8c8e8;opacity:.85\"></i><span style=\"position:absolute;top:7px;right:8px;color:#d9a441;font-size:11px\">★</span><div style=\"display:flex;align-items:center;gap:7px\"><img src=\"https://cursor.com/marketing-static/icon-192x192-light.png\" alt=\"\" width=\"16\" height=\"16\" style=\"width:16px;height:16px;object-fit:contain;border-radius:4px\"/><b style=\"font-size:12px;color:#3a3325\">Cursor</b></div><p style=\"margin-top:4px;font-size:10px;color:#8a7f66;line-height:1.5\">试了三个月，Tab 补全真的在预测我的下一次重构。</p></div><div style=\"position:relative;transform:rotate(1.2deg);background:#fffdf7;border:1px solid #e5dcc8;border-radius:6px;box-shadow:0 2px 0 rgba(120,100,60,.14);padding:12px 11px;flex:1;min-width:0\"><i style=\"position:absolute;top:-7px;left:50%;transform:translateX(-50%) rotate(-2deg);width:40px;height:12px;background:#e8b4b4;opacity:.85\"></i><div style=\"display:flex;align-items:center;gap:7px\"><img src=\"https://linear.app/favicon.ico\" alt=\"\" width=\"16\" height=\"16\" style=\"width:16px;height:16px;object-fit:contain;border-radius:4px\"/><b style=\"font-size:12px;color:#3a3325\">Linear</b></div><p style=\"margin-top:4px;font-size:10px;color:#8a7f66;line-height:1.5\">issue 列表快到像没有加载这回事。</p></div><div style=\"position:relative;transform:rotate(-0.6deg);background:#fffdf7;border:1px solid #e5dcc8;border-radius:6px;box-shadow:0 2px 0 rgba(120,100,60,.14);padding:12px 11px;flex:1;min-width:0\"><i style=\"position:absolute;top:-7px;left:50%;transform:translateX(-50%) rotate(-2deg);width:40px;height:12px;background:#b8d8b0;opacity:.85\"></i><span style=\"position:absolute;top:7px;right:8px;color:#d9a441;font-size:11px\">★</span><div style=\"display:flex;align-items:center;gap:7px\"><img src=\"https://appllama.io/branding/logo-icon-500.webp\" alt=\"\" width=\"16\" height=\"16\" style=\"width:16px;height:16px;object-fit:contain;border-radius:4px\"/><b style=\"font-size:12px;color:#3a3325\">Appllama</b></div><p style=\"margin-top:4px;font-size:10px;color:#8a7f66;line-height:1.5\">把头部 App 的付费墙全存了一遍，抄作业用。</p></div></div></div></div></div>",
+            "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
+          },
+          {
+            "slug": "style-directory-nav",
+            "name": "图鉴式导航",
+            "en": "Catalog Navbar",
+            "tagline": "分区、搜索、Go Pro 一条顶栏全摊开，三秒知道能逛什么。",
+            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div style=\"width:100%;height:100%;background:#f7f7f8;padding:18px 20px;display:flex;flex-direction:column;justify-content:center;gap:14px;font-family:ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif\"><div style=\"font-size:9px;color:#6b6e76\">浅色态</div><div style=\"background:#ffffff;border:1px solid #e4e4e7;border-radius:10px;padding:7px 12px;display:flex;align-items:center;gap:12px\"><span style=\"display:flex;align-items:center;gap:6px\"><span style=\"width:18px;height:18px;display:grid;place-items:center;background:#E8C767;border-radius:5px;color:#14151a;font-size:10px;font-weight:800\">✦</span><b style=\"font-size:11px;color:#1a1b20;letter-spacing:.03em\">BUILDHUB</b></span><span style=\"display:flex;gap:11px;margin-left:6px\"><span style=\"font-size:10px;color:#1a1b20;font-weight:700\">术语</span><span style=\"font-size:10px;color:#6b6e76;font-weight:400\">技能</span><span style=\"font-size:10px;color:#6b6e76;font-weight:400\">产品</span><span style=\"font-size:10px;color:#6b6e76;font-weight:400\">提示词</span></span><span style=\"font-size:9px;font-weight:700;color:#ffffff;background:#14151a;border:1px solid #14151a;padding:2.5px 9px;border-radius:999px\">素材库</span><span style=\"margin-left:auto;display:flex;align-items:center;gap:8px\"><span style=\"display:flex;align-items:center;gap:5px;background:#f4f4f5;border-radius:999px;padding:4px 8px;font-size:9px;color:#6b6e76\">⌕ 搜索术语、技能…<i style=\"font-style:normal;border:1px solid #e4e4e7;border-radius:4px;padding:0 4px;font-size:8px\">/</i></span><span style=\"font-size:9.5px;font-weight:700;color:#1a1b20\">Go Pro</span><span style=\"width:18px;height:18px;border-radius:50%;background:#14151a;color:#fff;display:grid;place-items:center;font-size:9px\">✦</span></span></div><div style=\"font-size:9px;color:#6b6e76\">深色态</div><div style=\"background:#14151a;border:1px solid #2c2f38;border-radius:10px;padding:7px 12px;display:flex;align-items:center;gap:12px\"><span style=\"display:flex;align-items:center;gap:6px\"><span style=\"width:18px;height:18px;display:grid;place-items:center;background:#E8C767;border-radius:5px;color:#14151a;font-size:10px;font-weight:800\">✦</span><b style=\"font-size:11px;color:#ECEEF2;letter-spacing:.03em\">BUILDHUB</b></span><span style=\"display:flex;gap:11px;margin-left:6px\"><span style=\"font-size:10px;color:#ECEEF2;font-weight:700\">术语</span><span style=\"font-size:10px;color:#8B8E99;font-weight:400\">技能</span><span style=\"font-size:10px;color:#8B8E99;font-weight:400\">产品</span><span style=\"font-size:10px;color:#8B8E99;font-weight:400\">提示词</span></span><span style=\"font-size:9px;font-weight:700;color:#E8C767;background:transparent;border:1px solid #E8C767;padding:2.5px 9px;border-radius:999px\">素材库</span><span style=\"margin-left:auto;display:flex;align-items:center;gap:8px\"><span style=\"display:flex;align-items:center;gap:5px;background:#202228;border-radius:999px;padding:4px 8px;font-size:9px;color:#8B8E99\">⌕ 搜索术语、技能…<i style=\"font-style:normal;border:1px solid #2c2f38;border-radius:4px;padding:0 4px;font-size:8px\">/</i></span><span style=\"font-size:9.5px;font-weight:700;color:#ECEEF2\">Go Pro</span><span style=\"width:18px;height:18px;border-radius:50%;background:#E8C767;color:#14151a;display:grid;place-items:center;font-size:9px\">✦</span></span></div><div style=\"font-size:9px;color:#a1a1aa;text-align:center;margin-top:2px\">同一骨架 · 深浅双态</div></div></div>",
+            "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
           }
         ]
       }
@@ -3411,7 +3435,7 @@
       },
       {
         "label": "设计风格",
-        "count": 25,
+        "count": 28,
         "active": false
       },
       {
