@@ -114,9 +114,9 @@
   font-size: 12px;
   padding: 3px 10px;
   border-radius: 999px;
-  background: color-mix(in srgb, var(--theme-brand) 12%, transparent);
-  color: var(--theme-dark-brand, var(--theme-brand));
-  border: 1px solid color-mix(in srgb, var(--theme-brand) 22%, transparent);
+  background: var(--bg-soft);
+  color: var(--text-2);
+  border: 1px solid var(--border-light);
 }
 .product-card-tags li.product-card-type {
   background: color-mix(in srgb, var(--green, #16a34a) 10%, transparent);

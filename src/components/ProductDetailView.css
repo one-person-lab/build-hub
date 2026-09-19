@@ -141,9 +141,9 @@
   font-size: 12px;
   padding: 3px 10px;
   border-radius: 999px;
-  background: color-mix(in srgb, var(--theme-brand) 10%, transparent);
-  color: var(--theme-dark-brand, var(--theme-brand));
-  border: 1px solid color-mix(in srgb, var(--theme-brand) 20%, transparent);
+  background: var(--bg-soft);
+  color: var(--text-2);
+  border: 1px solid var(--border-light);
 }
 
 .product-detail-cta {
