@@ -232,6 +232,68 @@
             "性能"
           ],
           "logo": "https://github.com/vercel-labs.png"
+        },
+        {
+          "id": "impeccable",
+          "name": "impeccable",
+          "category": "design",
+          "tagline": "把 UI 从「能用」打磨到「高级」的临门一脚",
+          "overview": "skills.sh 上最火的 UI 打磨技能：专治专业与业余之间最后 5% 的差距——间距节奏、字号层级、阴影圆角、对齐和 hover 反馈这类细节。让 Agent 执行「做得更贵一点」时不再瞎猜，而是按清单逐项到位。",
+          "features": [
+            "间距、字阶、阴影、圆角等视觉打磨清单化",
+            "强调 token 级一致性，全站一个手感",
+            "覆盖静态稿之外的交互细节反馈",
+            "新页面与存量界面的品质升级都适用"
+          ],
+          "useCases": [
+            "AI 生成的界面「看着还行」但不高级",
+            "上线前给界面做最后一轮品质收口",
+            "没有资深设计师时让 Agent 代行 UI 走查"
+          ],
+          "bestFor": "与 frontend-design 常备搭配：一个定风格，一个做打磨。",
+          "pricing": "开源免费",
+          "platform": "Claude Code / Cursor / Codex 等",
+          "author": "Paul Bakaus",
+          "repo": "https://github.com/pbakaus/impeccable",
+          "install": "npx skills add https://github.com/pbakaus/impeccable --skill impeccable",
+          "installs": "283.3K",
+          "tags": [
+            "UI 打磨",
+            "高级感",
+            "设计细节"
+          ],
+          "logo": "https://github.com/pbakaus.png"
+        },
+        {
+          "id": "interaction-design",
+          "name": "interaction-design",
+          "category": "design",
+          "tagline": "给界面配上专业级的动效与状态反馈",
+          "overview": "wshobson/agents 大型技能库（★40K）中的交互设计技能：按专业交互规范定义动效时长、缓动曲线与状态反馈，避免 Agent 随手加一堆「为动而动」的转场，让微交互传递真实信息。",
+          "features": [
+            "动效时长与缓动曲线有据可依，不炫技",
+            "加载、成功、失败等状态反馈模式齐全",
+            "微交互以信息传达优先",
+            "同库百余角色技能可按需单独安装"
+          ],
+          "useCases": [
+            "按钮和转场「有动效」但手感不对",
+            "补齐加载 / 空态 / 错误态反馈",
+            "整体提升 App 与 Web 的交互品质"
+          ],
+          "bestFor": "视觉定了风格之后，用它解决动效与反馈。",
+          "pricing": "开源免费",
+          "platform": "Claude Code / Cursor / Codex 等",
+          "author": "wshobson",
+          "repo": "https://github.com/wshobson/agents",
+          "install": "npx skills add https://github.com/wshobson/agents --skill interaction-design",
+          "installs": "14.0K",
+          "tags": [
+            "交互设计",
+            "动效",
+            "状态反馈"
+          ],
+          "logo": "https://github.com/wshobson.png"
         }
       ]
     },

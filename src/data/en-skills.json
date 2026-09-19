@@ -232,6 +232,68 @@
             "performance"
           ],
           "logo": "https://github.com/vercel-labs.png"
+        },
+        {
+          "id": "impeccable",
+          "name": "impeccable",
+          "category": "design",
+          "tagline": "The polish skill that takes UIs from «works» to «premium»",
+          "overview": "The most-installed UI-polish skill on skills.sh, targeting the last 5 % between amateur and professional: spacing rhythm, type scales, shadows and radii, alignment, hover-level feedback. It gives the agent a concrete checklist instead of guesswork when asked to «make it look expensive».",
+          "features": [
+            "Checklist-driven visual polish: spacing, type scale, shadow, radius",
+            "Token-level consistency — one feel across the whole UI",
+            "Interaction details beyond static mockups",
+            "Equally useful for new builds and upgrading existing screens"
+          ],
+          "useCases": [
+            "AI-built UIs that look «almost right» but not premium",
+            "The final quality pass before shipping",
+            "Acting as the senior designer reviewing an interface"
+          ],
+          "bestFor": "Pairs with frontend-design: that one sets the style, this one does the polish.",
+          "pricing": "Free & open source",
+          "platform": "Claude Code / Cursor / Codex etc.",
+          "author": "Paul Bakaus",
+          "repo": "https://github.com/pbakaus/impeccable",
+          "install": "npx skills add https://github.com/pbakaus/impeccable --skill impeccable",
+          "installs": "283.3K",
+          "tags": [
+            "UI polish",
+            "premium feel",
+            "design detail"
+          ],
+          "logo": "https://github.com/pbakaus.png"
+        },
+        {
+          "id": "interaction-design",
+          "name": "interaction-design",
+          "category": "design",
+          "tagline": "Professional-grade motion and state feedback for interfaces",
+          "overview": "The interaction-design skill from the huge wshobson/agents catalogue (★40K): timing, easing curves and state feedback defined to professional interaction guidelines — so agents stop slapping on gratuitous transitions and micro-interactions start carrying real information.",
+          "features": [
+            "Duration and easing rules grounded in guidelines, not showreels",
+            "Loading, success and failure feedback patterns included",
+            "Micro-interactions that prioritise information over decoration",
+            "Part of a 100+ role-skill repo — install just what you need"
+          ],
+          "useCases": [
+            "Buttons and transitions that move but feel off",
+            "Missing loading / empty / error states",
+            "Raising the overall interaction quality of an app"
+          ],
+          "bestFor": "Once the visual style is set, this one fixes motion and feedback.",
+          "pricing": "Free & open source",
+          "platform": "Claude Code / Cursor / Codex etc.",
+          "author": "wshobson",
+          "repo": "https://github.com/wshobson/agents",
+          "install": "npx skills add https://github.com/wshobson/agents --skill interaction-design",
+          "installs": "14.0K",
+          "tags": [
+            "interaction design",
+            "motion",
+            "state feedback"
+          ],
+          "logo": "https://github.com/wshobson.png"
         }
       ]
     },
