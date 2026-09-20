@@ -294,6 +294,36 @@
             "状态反馈"
           ],
           "logo": "https://github.com/wshobson.png"
+        },
+        {
+          "id": "clone-website",
+          "name": "clone-website",
+          "category": "design",
+          "tagline": "给个 URL，把任意网站反编译成像素级 Next.js 复刻",
+          "overview": "ai-website-cloner-template（★34.7K）的核心技能：不是截图式仿版，而是一条逆向流水线——全站截图、提取设计令牌、交互扫查（滚动 / 点击 / 悬停 / 响应式），再为每个组件写规格文件，派并行的构建 Agent 分段施工，最后逐屏视觉比对验收。所有 CSS 值必须来自 getComputedStyle() 实测，禁止估。",
+          "features": [
+            "像素级目标：颜色、间距、字体、动画全部取实测值",
+            "不只抽外观，还抽行为：滚动触发阈值、多状态内容、悬停过渡",
+            "每个组件先写 spec 文件再派单，构建 Agent 零猜测",
+            "git worktree 并行构建，每步 tsc / npm run build 验证"
+          ],
+          "useCases": [
+            "把 WordPress / Webflow 上的自有站点迁到现代 Next.js 代码库",
+            "网站还在线但源码丢了、前开发者走了",
+            "研究优秀站点的具体布局与动效是怎么实现的"
+          ],
+          "bestFor": "需要配套的模板脚手架（Next.js + shadcn/ui）和浏览器自动化 MCP 才能跑；单独装给 Agent 的是流水线本身。",
+          "pricing": "开源免费（MIT）",
+          "platform": "Claude Code / Codex / Cursor / OpenCode",
+          "author": "JCodesMore",
+          "repo": "https://github.com/JCodesMore/ai-website-cloner-template",
+          "install": "npx skills add https://github.com/JCodesMore/ai-website-cloner-template/tree/master/.agents/skills/clone-website",
+          "tags": [
+            "网站克隆",
+            "逆向工程",
+            "像素级复刻"
+          ],
+          "logo": "https://github.com/JCodesMore.png"
         }
       ]
     },

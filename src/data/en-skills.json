@@ -294,6 +294,36 @@
             "state feedback"
           ],
           "logo": "https://github.com/wshobson.png"
+        },
+        {
+          "id": "clone-website",
+          "name": "clone-website",
+          "category": "design",
+          "tagline": "Give it a URL, get a pixel-perfect Next.js reverse-clone of any site",
+          "overview": "The core skill of ai-website-cloner-template (★34.7K): not a screenshot-copy but a reverse-engineering pipeline — full-page captures, design-token extraction, an interaction sweep (scroll / click / hover / responsive), then a spec file per component handed to parallel builder agents, finishing with a side-by-side visual diff. Every CSS value must come from getComputedStyle() — no estimating allowed.",
+          "features": [
+            "Pixel-perfect target: colors, spacing, fonts and animation from measured values",
+            "Extracts behaviour, not just looks: scroll triggers, multi-state content, hover transitions",
+            "A spec file per component before dispatch — builders never guess",
+            "Parallel builds in git worktrees, tsc / npm run build verified at every step"
+          ],
+          "useCases": [
+            "Migrating your own WordPress / Webflow site to a modern Next.js codebase",
+            "The site is live but the source is gone or the developer left",
+            "Learning how production sites achieve specific layouts and motion"
+          ],
+          "bestFor": "Runs best alongside the template's scaffold (Next.js + shadcn/ui) and a browser-automation MCP; installing the skill alone gives you the pipeline itself.",
+          "pricing": "Free & open source (MIT)",
+          "platform": "Claude Code / Codex / Cursor / OpenCode",
+          "author": "JCodesMore",
+          "repo": "https://github.com/JCodesMore/ai-website-cloner-template",
+          "install": "npx skills add https://github.com/JCodesMore/ai-website-cloner-template/tree/master/.agents/skills/clone-website",
+          "tags": [
+            "website cloning",
+            "reverse engineering",
+            "pixel-perfect"
+          ],
+          "logo": "https://github.com/JCodesMore.png"
         }
       ]
     },
