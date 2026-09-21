@@ -35,7 +35,10 @@
             "discovery",
             "skills.sh"
           ],
-          "logo": "https://github.com/vercel-labs.png"
+          "logo": "/assets/logos/github-vercel-labs.png",
+          "related": [
+            "skill-creator"
+          ]
         },
         {
           "id": "skill-creator",
@@ -65,7 +68,109 @@
             "authoring",
             "official"
           ],
-          "logo": "https://github.com/anthropics.png"
+          "logo": "/assets/logos/github-anthropics.png",
+          "related": [
+            "find-skills",
+            "skill-up"
+          ]
+        },
+        {
+          "id": "awesome-agent-skills",
+          "name": "awesome-agent-skills",
+          "category": "meta",
+          "tagline": "A hand-picked catalog of 1,400+ skills from leading engineering teams",
+          "overview": "VoltAgent's master catalog of Agent Skills: curated from Anthropic, Vercel, Cloudflare, Stripe, Supabase, Google, Microsoft, OpenAI, Figma, Sentry and dozens more official teams plus the community — hand-picked, explicitly not AI-generated filler (★34.7K). When skills.sh comes up empty, browse here.",
+          "features": [
+            "Official-team coverage: Claude, Vercel, Cloudflare, Netlify, Supabase, Expo, Hugging Face and more",
+            "Every entry links to the source skill repo with a one-line summary",
+            "Compatibility noted for Claude Code / Codex / Gemini CLI / Cursor / Copilot / OpenCode / Windsurf",
+            "Community-driven and kept fresh — latest commits within the past two weeks"
+          ],
+          "useCases": [
+            "Hunting for a capability the usual catalogs don't list",
+            "Seeing which skills a vendor ships officially for its stack",
+            "Using it as a whitelist when curating your team's skill library"
+          ],
+          "bestFor": "It's a catalog, not a skill — nothing to install; pick an entry and install from its link.",
+          "pricing": "Free & open source (MIT)",
+          "platform": "Claude Code / Codex / Gemini CLI / Cursor / Copilot etc.",
+          "author": "VoltAgent",
+          "repo": "https://github.com/VoltAgent/awesome-agent-skills",
+          "tags": [
+            "meta",
+            "catalog",
+            "awesome"
+          ],
+          "logo": "/assets/logos/github-voltagent.png",
+          "related": [
+            "find-skills",
+            "awesome-design-md"
+          ]
+        },
+        {
+          "id": "awesome-design-md",
+          "name": "awesome-design-md",
+          "category": "meta",
+          "tagline": "73 brand DESIGN.md files — drop one in and your agent ships matching UI",
+          "overview": "VoltAgent's second catalog, following awesome-agent-skills: design systems of 73 known products — Claude, Cursor, Vercel, Linear, Notion, Stripe, Figma, Airbnb — reverse-engineered into ready DESIGN.md files (★117K). DESIGN.md is a new concept from Google Stitch: a plain-Markdown design spec any agent can read to generate on-brand UI. Same mechanics as AGENTS.md, but for how things look.",
+          "features": [
+            "Grouped by domain: AI platforms, dev tools, SaaS, design tools, fintech, e-commerce, consumer tech",
+            "More than surface colors: tokens, layout patterns, component rules and voice",
+            "Drop it in the project root, say «build a page like this» — outputs stay visually consistent",
+            "Actively maintained (last commit this week); requests for new sites supported"
+          ],
+          "useCases": [
+            "Building your own site with the feel of one you admire",
+            "Keeping multiple agents' page output on one design language",
+            "Stop re-explaining «which colors, which fonts» to your agent"
+          ],
+          "bestFor": "Anyone who ships AI-generated UI and fears the template face; pairs well with frontend-design and impeccable.",
+          "pricing": "Free & open source (MIT)",
+          "platform": "Claude Code / Codex / Cursor / Google Stitch etc.",
+          "author": "VoltAgent",
+          "repo": "https://github.com/VoltAgent/awesome-design-md",
+          "tags": [
+            "meta",
+            "design spec",
+            "DESIGN.md"
+          ],
+          "logo": "/assets/logos/github-voltagent.png",
+          "related": [
+            "awesome-agent-skills"
+          ]
+        },
+        {
+          "id": "skill-up",
+          "name": "skill-up",
+          "category": "meta",
+          "tagline": "Alibaba's official eval harness — unit tests for your skills",
+          "overview": "A Go CLI from Alibaba for evaluating and evolving Agent Skills (Apache-2.0): declarative suites in eval.yaml + cases/*.yaml run across Qoder CLI, Claude Code, Codex and Qwen Code with rule, script or agent judges, and emit Anthropic-compatible grading.json plus JUnit / HTML reports for CI. The recommended front door is the skill-upper Agent Skill shipped in the repo: ask it to «evaluate this skill» and the agent writes the cases, diagnoses failures, fixes the skill or its evals, and loops until green. Existing Anthropic evals.json import cleanly.",
+          "features": [
+            "Declarative evals: eval.yaml + cases/*.yaml instead of ad hoc run folders",
+            "One suite across engines: Qoder CLI / Claude Code / Codex / Qwen Code",
+            "Three judge types: rule_based, script, agent_judge",
+            "Imports Anthropic evals.json; report formats align with the official eval loop"
+          ],
+          "useCases": [
+            "Proving a skill actually works, not vibes",
+            "Regression runs after a skill revision, so updates can't silently break",
+            "Comparing the same skill's quality across different agents"
+          ],
+          "bestFor": "Pairs with skill-creator: one authors skills, this one proves them. Note: observation capture/review currently needs the Codex observer plugin; evaluation itself is engine-agnostic.",
+          "pricing": "Free & open source (Apache-2.0)",
+          "platform": "Qoder CLI / Claude Code / Codex / Qwen Code",
+          "author": "Alibaba",
+          "repo": "https://github.com/alibaba/skill-up",
+          "install": "npx skills add https://github.com/alibaba/skill-up/tree/main/skills/skill-upper",
+          "tags": [
+            "meta",
+            "skill evals",
+            "quality"
+          ],
+          "logo": "/assets/logos/github-alibaba.png",
+          "related": [
+            "skill-creator"
+          ]
         }
       ]
     },
@@ -103,7 +208,10 @@
             "debugging",
             "code review"
           ],
-          "logo": "https://github.com/obra.png"
+          "logo": "/assets/logos/github-obra.png",
+          "related": [
+            "grill-me"
+          ]
         },
         {
           "id": "grill-me",
@@ -134,7 +242,76 @@
             "plan review",
             "planning"
           ],
-          "logo": "https://github.com/mattpocock.png"
+          "logo": "/assets/logos/github-mattpocock.png",
+          "related": [
+            "superpowers"
+          ]
+        },
+        {
+          "id": "archify",
+          "name": "archify",
+          "category": "workflow",
+          "tagline": "Turns any system or process into an interactive HTML diagram",
+          "overview": "Describe a system, workflow or plan to your agent and archify generates a self-contained interactive HTML diagram — architecture, workflow, sequence, data-flow and lifecycle types, with motion and crisp exports. It can also read a code repository and produce a source-backed system map. Currently the most popular diagramming skill on skills.sh.",
+          "features": [
+            "Five diagram types: architecture / workflow / sequence / data-flow / lifecycle",
+            "Output is a single HTML file you can open, share and keep iterating in the browser",
+            "Reads repos to generate source-backed architecture maps — a common Mermaid alternative",
+            "Refine by conversation: add modules, highlight a path, switch themes"
+          ],
+          "useCases": [
+            "Architecture and flow diagrams for design docs and reviews",
+            "Mapping call relationships and data flow in an unfamiliar codebase",
+            "Explaining processes, plans or even travel itineraries visually"
+          ],
+          "bestFor": "Anyone who regularly has to explain a system or process clearly to other people.",
+          "pricing": "Free and open source",
+          "platform": "Claude Code / Cursor / Codex / OpenCode",
+          "author": "tt-a1i",
+          "repo": "https://github.com/tt-a1i/archify",
+          "install": "npx skills add tt-a1i/archify",
+          "installs": "98.5K",
+          "tags": [
+            "Architecture diagrams",
+            "Diagram-as-code",
+            "Interactive HTML",
+            "Mermaid alternative"
+          ],
+          "logo": "/assets/logos/github-tt-a1i.png"
+        },
+        {
+          "id": "ponytail",
+          "name": "Ponytail",
+          "category": "workflow",
+          "tagline": "Turns your agent into the laziest senior dev: the best code is code never written",
+          "overview": "The anti-over-engineering skill (★143K): before writing anything, the agent climbs a seven-rung laziness ladder — does this need to exist? is it already in the codebase? can the stdlib do it? the platform natively? an installed dependency? one line? only then the minimum that works. Ask for a date picker and instead of installing flatpickr it ships `<input type=\"date\">`. On real Claude Code benchmarks: 54% less code, 20% cheaper, 27% faster, safety still 100%.",
+          "features": [
+            "Seven-rung laziness ladder: YAGNI first, native first, hand-rolled last",
+            "Lazy, not negligent: validation, error handling, security and accessibility are never cut",
+            "Six companion skills — /ponytail-review, -audit, -debt, -gain — for post-hoc review and debt inventories",
+            "Four intensity levels: lite / full / ultra / off"
+          ],
+          "useCases": [
+            "Tired of AI laying five abstraction layers for one tiny feature",
+            "Keeping code volume and maintenance cost down on AI-built side projects",
+            "Auditing already-generated AI code for what's superfluous"
+          ],
+          "bestFor": "Complements superpowers: that one disciplines the process, this one disciplines the output. Qoder users can just copy the repo's AGENTS.md or .qoder/rules into their project as an always-on rule.",
+          "pricing": "Free & open source (MIT)",
+          "platform": "Claude Code / Codex / Copilot CLI / Gemini CLI / Qoder / OpenCode and 20 agents",
+          "author": "Dietrich Gebert",
+          "repo": "https://github.com/DietrichGebert/ponytail",
+          "install": "npx skills add https://github.com/dietrichgebert/ponytail --skill ponytail",
+          "installs": "61.9K",
+          "tags": [
+            "workflow",
+            "anti-over-engineering",
+            "minimum code"
+          ],
+          "logo": "/assets/logos/github-dietrichgebert.png",
+          "related": [
+            "superpowers"
+          ]
         }
       ]
     },
@@ -171,7 +348,12 @@
             "UI design",
             "anti-slop"
           ],
-          "logo": "https://github.com/anthropics.png"
+          "logo": "/assets/logos/github-anthropics.png",
+          "related": [
+            "impeccable",
+            "interaction-design",
+            "web-design-guidelines"
+          ]
         },
         {
           "id": "web-design-guidelines",
@@ -201,7 +383,11 @@
             "audit",
             "a11y"
           ],
-          "logo": "https://github.com/vercel-labs.png"
+          "logo": "/assets/logos/github-vercel-labs.png",
+          "related": [
+            "impeccable",
+            "frontend-design"
+          ]
         },
         {
           "id": "vercel-react-best-practices",
@@ -231,7 +417,7 @@
             "Next.js",
             "performance"
           ],
-          "logo": "https://github.com/vercel-labs.png"
+          "logo": "/assets/logos/github-vercel-labs.png"
         },
         {
           "id": "impeccable",
@@ -262,7 +448,12 @@
             "premium feel",
             "design detail"
           ],
-          "logo": "https://github.com/pbakaus.png"
+          "logo": "/assets/logos/github-pbakaus.png",
+          "related": [
+            "frontend-design",
+            "interaction-design",
+            "web-design-guidelines"
+          ]
         },
         {
           "id": "interaction-design",
@@ -293,7 +484,11 @@
             "motion",
             "state feedback"
           ],
-          "logo": "https://github.com/wshobson.png"
+          "logo": "/assets/logos/github-wshobson.png",
+          "related": [
+            "impeccable",
+            "frontend-design"
+          ]
         },
         {
           "id": "clone-website",
@@ -323,7 +518,7 @@
             "reverse engineering",
             "pixel-perfect"
           ],
-          "logo": "https://github.com/JCodesMore.png"
+          "logo": "/assets/logos/github-jcodesmore.png"
         }
       ]
     },
@@ -361,7 +556,7 @@
             "official",
             "skill pack"
           ],
-          "logo": "https://github.com/openai.png"
+          "logo": "/assets/logos/github-openai.png"
         }
       ]
     },
@@ -397,7 +592,10 @@
             "React",
             "official skill"
           ],
-          "logo": "https://github.com/remotion-dev.png"
+          "logo": "/assets/logos/github-remotion-dev.png",
+          "related": [
+            "screen-studio"
+          ]
         }
       ]
     },
@@ -433,7 +631,12 @@
             "office automation",
             "official"
           ],
-          "logo": "https://github.com/anthropics.png"
+          "logo": "/assets/logos/github-anthropics.png",
+          "related": [
+            "docx",
+            "xlsx",
+            "pptx"
+          ]
         },
         {
           "id": "docx",
@@ -463,7 +666,12 @@
             "office automation",
             "official"
           ],
-          "logo": "https://github.com/anthropics.png"
+          "logo": "/assets/logos/github-anthropics.png",
+          "related": [
+            "pdf",
+            "xlsx",
+            "pptx"
+          ]
         },
         {
           "id": "xlsx",
@@ -493,7 +701,12 @@
             "reports",
             "official"
           ],
-          "logo": "https://github.com/anthropics.png"
+          "logo": "/assets/logos/github-anthropics.png",
+          "related": [
+            "pdf",
+            "docx",
+            "pptx"
+          ]
         },
         {
           "id": "pptx",
@@ -523,7 +736,12 @@
             "presentations",
             "official"
           ],
-          "logo": "https://github.com/anthropics.png"
+          "logo": "/assets/logos/github-anthropics.png",
+          "related": [
+            "pdf",
+            "docx",
+            "xlsx"
+          ]
         }
       ]
     },
@@ -560,7 +778,7 @@
             "automation",
             "testing"
           ],
-          "logo": "https://github.com/vercel-labs.png"
+          "logo": "/assets/logos/github-vercel-labs.png"
         }
       ]
     }

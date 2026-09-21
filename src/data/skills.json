@@ -35,7 +35,10 @@
             "技能发现",
             "skills.sh"
           ],
-          "logo": "https://github.com/vercel-labs.png"
+          "logo": "/assets/logos/github-vercel-labs.png",
+          "related": [
+            "skill-creator"
+          ]
         },
         {
           "id": "skill-creator",
@@ -65,7 +68,109 @@
             "技能创作",
             "官方出品"
           ],
-          "logo": "https://github.com/anthropics.png"
+          "logo": "/assets/logos/github-anthropics.png",
+          "related": [
+            "find-skills",
+            "skill-up"
+          ]
+        },
+        {
+          "id": "awesome-agent-skills",
+          "name": "awesome-agent-skills",
+          "category": "meta",
+          "tagline": "1400+ 一线团队官方技能的人工精选目录",
+          "overview": "VoltAgent 维护的 Agent Skills 总目录：收录 Anthropic、Vercel、Cloudflare、Stripe、Supabase、Google、Microsoft、OpenAI、Figma、Sentry 等数十家官方团队与社区手写的技能，强调人工挑选、拒绝 AI 批量灌水（★34.7K）。在 skills.sh 搜不到轮子时，来这里逛一圈。",
+          "features": [
+            "官方团队技能全覆盖：Claude、Vercel、Cloudflare、Netlify、Supabase、Expo、Hugging Face 等",
+            "每条直链技能源仓库，附一句话说明与适用场景",
+            "标注 Claude Code / Codex / Gemini CLI / Cursor / Copilot / OpenCode / Windsurf 兼容性",
+            "社区共建驱动，提交记录保持在最近一两周内"
+          ],
+          "useCases": [
+            "想要某个能力但常规目录里搜不到现成技能",
+            "看某个技术栈厂商官方都下场发了哪些技能",
+            "自建团队技能库时拿它当选型白名单"
+          ],
+          "bestFor": "它是目录不是技能——不用安装，看中哪个再点进链接去装。",
+          "pricing": "开源免费（MIT）",
+          "platform": "Claude Code / Codex / Gemini CLI / Cursor / Copilot 等",
+          "author": "VoltAgent",
+          "repo": "https://github.com/VoltAgent/awesome-agent-skills",
+          "tags": [
+            "元技能",
+            "技能目录",
+            "awesome"
+          ],
+          "logo": "/assets/logos/github-voltagent.png",
+          "related": [
+            "find-skills",
+            "awesome-design-md"
+          ]
+        },
+        {
+          "id": "awesome-design-md",
+          "name": "awesome-design-md",
+          "category": "meta",
+          "tagline": "73 份品牌 DESIGN.md，丢进项目让 Agent 照「同款质感」出 UI",
+          "overview": "VoltAgent 在 awesome-agent-skills 之后的第二弹：把 Claude、Cursor、Vercel、Linear、Notion、Stripe、Figma、Airbnb 等 73 个知名产品的设计系统逆向分析成现成的 DESIGN.md 文件（★117K）。DESIGN.md 是 Google Stitch 提出的新概念——纯 Markdown 写的设计规范，Agent 读完就能生成与品牌调性一致的界面，机制等同 AGENTS.md：一个文件管「长什么样」。",
+          "features": [
+            "按领域分组：AI 平台、开发者工具、SaaS、设计工具、金融科技、电商、消费科技",
+            "不止抄表面配色：含设计令牌、布局模式、组件规则与语气规范",
+            "放进项目根目录，说「照这个做一个页面」即可，多 Agent 产出视觉统一",
+            "更新极勤（最近提交就在本周），还支持按站点请求新份"
+          ],
+          "useCases": [
+            "想参照某个心仪网站的质感搭自己的站",
+            "多个 Agent 并行建页，需要统一设计语言",
+            "不想每次都对 Agent 重复解释「用什么色什么字体」"
+          ],
+          "bestFor": "用 AI 出 UI 又怕「模板脸」的人；与 frontend-design、impeccable 这类设计技能搭配用效果最好。",
+          "pricing": "开源免费（MIT）",
+          "platform": "Claude Code / Codex / Cursor / Google Stitch 等",
+          "author": "VoltAgent",
+          "repo": "https://github.com/VoltAgent/awesome-design-md",
+          "tags": [
+            "元技能",
+            "设计规范",
+            "DESIGN.md"
+          ],
+          "logo": "/assets/logos/github-voltagent.png",
+          "related": [
+            "awesome-agent-skills"
+          ]
+        },
+        {
+          "id": "skill-up",
+          "name": "skill-up",
+          "category": "meta",
+          "tagline": "阿里官方的技能评测器：给你的 Skill 写测试用例",
+          "overview": "阿里巴巴出品的 Agent Skill 评测与进化 CLI（Go 编写，Apache-2.0）：用 eval.yaml + cases 声明式描述评测用例，同一套用例可在 Qoder CLI / Claude Code / Codex / Qwen Code 多引擎跑分，支持规则、脚本、Agent 三种裁判，产出 Anthropic 兼容的 grading.json 与 JUnit / HTML 报告，可直接接进 CI。主推姿势是装仓库自带的 skill-upper 技能——说「评测这个 Skill」，Agent 自己写用例、诊断失败、修技能或修用例、循环跑到通过。",
+          "features": [
+            "声明式评测：eval.yaml + cases/*.yaml，不再手搭运行目录",
+            "多引擎跑同一套用例：Qoder CLI / Claude Code / Codex / Qwen Code",
+            "三种裁判：rule_based、script、agent_judge",
+            "兼容导入 Anthropic 的 evals.json，报告格式与官方评测闭环对齐"
+          ],
+          "useCases": [
+            "写完 Skill 想验证它到底管不管用，而不是凭感觉",
+            "技能改版后跑回归，防止越改越坏",
+            "对比同一个技能在不同 Agent 下的质量差异"
+          ],
+          "bestFor": "认真做自己的 Skill 的人，和 skill-creator 配成一对：一个负责写、一个负责验。注：观察记录采集审核目前需 Codex 观察者插件，评测本身不限引擎。",
+          "pricing": "开源免费（Apache-2.0）",
+          "platform": "Qoder CLI / Claude Code / Codex / Qwen Code",
+          "author": "Alibaba",
+          "repo": "https://github.com/alibaba/skill-up",
+          "install": "npx skills add https://github.com/alibaba/skill-up/tree/main/skills/skill-upper",
+          "tags": [
+            "元技能",
+            "技能评测",
+            "质量保障"
+          ],
+          "logo": "/assets/logos/github-alibaba.png",
+          "related": [
+            "skill-creator"
+          ]
         }
       ]
     },
@@ -103,7 +208,10 @@
             "调试",
             "代码评审"
           ],
-          "logo": "https://github.com/obra.png"
+          "logo": "/assets/logos/github-obra.png",
+          "related": [
+            "grill-me"
+          ]
         },
         {
           "id": "grill-me",
@@ -134,7 +242,76 @@
             "方案评审",
             "规划"
           ],
-          "logo": "https://github.com/mattpocock.png"
+          "logo": "/assets/logos/github-mattpocock.png",
+          "related": [
+            "superpowers"
+          ]
+        },
+        {
+          "id": "archify",
+          "name": "archify",
+          "category": "workflow",
+          "tagline": "把任何系统和流程变成可交互的 HTML 架构图",
+          "overview": "向 Agent 描述一个系统、流程或计划，archify 会生成自包含的可交互 HTML 图表，支持架构图、工作流、时序、数据流、生命周期五种类型，自带动效与高清导出。它还能直接读取代码仓库，产出有源码依据的系统地图，是目前 skills.sh 上最热的图表类技能。",
+          "features": [
+            "五种图表类型：架构 / 工作流 / 时序 / 数据流 / 生命周期",
+            "产物是单文件 HTML，浏览器打开即可分享和继续迭代",
+            "可读取仓库生成有源码依据的架构图，常被当作 Mermaid 替代",
+            "对话式持续完善：加模块、高亮路径、切换主题"
+          ],
+          "useCases": [
+            "技术方案、设计评审里画架构图和流程图",
+            "梳理陌生代码库的调用关系与数据流",
+            "把流程、计划甚至旅行路线可视化地讲给别人"
+          ],
+          "bestFor": "经常需要把系统或流程讲清楚给别人的人，工程图与非工程图都适用。",
+          "pricing": "开源免费",
+          "platform": "Claude Code / Cursor / Codex / OpenCode",
+          "author": "tt-a1i",
+          "repo": "https://github.com/tt-a1i/archify",
+          "install": "npx skills add tt-a1i/archify",
+          "installs": "98.5K",
+          "tags": [
+            "架构图",
+            "图表即代码",
+            "交互式 HTML",
+            "Mermaid 替代"
+          ],
+          "logo": "/assets/logos/github-tt-a1i.png"
+        },
+        {
+          "id": "ponytail",
+          "name": "Ponytail",
+          "category": "workflow",
+          "tagline": "让 Agent 变成「最懒的资深工程师」：最好的代码是没写出来的代码",
+          "overview": "反过度工程的技能（★143K）：Agent 写码前先过七级「懒惰阶梯」——这事需要存在吗 → 代码库里有能复用的吗 → 标准库能办吗 → 平台原生支持吗 → 已装依赖能办吗 → 一行能写完吗 → 到这一步才写最小实现。你要日期选择器，它不装 flatpickr，直接 `<input type=\"date\">`。真实 Claude Code 基准：平均少写 54% 的代码、便宜 20%、快 27%，且安全指标 100%。",
+          "features": [
+            "七级懒惰阶梯：YAGNI 优先、原生优先、最后才自己动手",
+            "懒而不摆烂：信任边界校验、错误处理、安全与无障碍永不在砍掉之列",
+            "附 /ponytail-review、/ponytail-audit、/ponytail-debt 等六个子技能做事后审查与债盘点",
+            "lite / full / ultra / off 四档强度，按项目脾气切换"
+          ],
+          "useCases": [
+            "受够了 AI 为一个小功能铺五层抽象",
+            "用 AI 搭独立项目，想压低代码量与维护成本",
+            "审计已生成的 AI 代码，找出哪些是多余的"
+          ],
+          "bestFor": "与 superpowers 互补的纪律技能：一个管流程正确，一个管产出克制。Qoder 用户可直接把仓库的 AGENTS.md 或 .qoder/rules 拷进项目当常驻规则。",
+          "pricing": "开源免费（MIT）",
+          "platform": "Claude Code / Codex / Copilot CLI / Gemini CLI / Qoder / OpenCode 等 20 个 Agent",
+          "author": "Dietrich Gebert",
+          "repo": "https://github.com/DietrichGebert/ponytail",
+          "install": "npx skills add https://github.com/dietrichgebert/ponytail --skill ponytail",
+          "installs": "61.9K",
+          "tags": [
+            "工作流",
+            "反过度工程",
+            "最小实现"
+          ],
+          "logo": "/assets/logos/github-dietrichgebert.png",
+          "related": [
+            "superpowers"
+          ]
         }
       ]
     },
@@ -171,7 +348,12 @@
             "UI 设计",
             "反 AI 味"
           ],
-          "logo": "https://github.com/anthropics.png"
+          "logo": "/assets/logos/github-anthropics.png",
+          "related": [
+            "impeccable",
+            "interaction-design",
+            "web-design-guidelines"
+          ]
         },
         {
           "id": "web-design-guidelines",
@@ -201,7 +383,11 @@
             "审计",
             "无障碍"
           ],
-          "logo": "https://github.com/vercel-labs.png"
+          "logo": "/assets/logos/github-vercel-labs.png",
+          "related": [
+            "impeccable",
+            "frontend-design"
+          ]
         },
         {
           "id": "vercel-react-best-practices",
@@ -231,7 +417,7 @@
             "Next.js",
             "性能"
           ],
-          "logo": "https://github.com/vercel-labs.png"
+          "logo": "/assets/logos/github-vercel-labs.png"
         },
         {
           "id": "impeccable",
@@ -262,7 +448,12 @@
             "高级感",
             "设计细节"
           ],
-          "logo": "https://github.com/pbakaus.png"
+          "logo": "/assets/logos/github-pbakaus.png",
+          "related": [
+            "frontend-design",
+            "interaction-design",
+            "web-design-guidelines"
+          ]
         },
         {
           "id": "interaction-design",
@@ -293,7 +484,11 @@
             "动效",
             "状态反馈"
           ],
-          "logo": "https://github.com/wshobson.png"
+          "logo": "/assets/logos/github-wshobson.png",
+          "related": [
+            "impeccable",
+            "frontend-design"
+          ]
         },
         {
           "id": "clone-website",
@@ -323,7 +518,7 @@
             "逆向工程",
             "像素级复刻"
           ],
-          "logo": "https://github.com/JCodesMore.png"
+          "logo": "/assets/logos/github-jcodesmore.png"
         }
       ]
     },
@@ -361,7 +556,7 @@
             "官方出品",
             "技能包"
           ],
-          "logo": "https://github.com/openai.png"
+          "logo": "/assets/logos/github-openai.png"
         }
       ]
     },
@@ -397,7 +592,10 @@
             "React",
             "官方技能"
           ],
-          "logo": "https://github.com/remotion-dev.png"
+          "logo": "/assets/logos/github-remotion-dev.png",
+          "related": [
+            "screen-studio"
+          ]
         }
       ]
     },
@@ -433,7 +631,12 @@
             "办公自动化",
             "官方出品"
           ],
-          "logo": "https://github.com/anthropics.png"
+          "logo": "/assets/logos/github-anthropics.png",
+          "related": [
+            "docx",
+            "xlsx",
+            "pptx"
+          ]
         },
         {
           "id": "docx",
@@ -463,7 +666,12 @@
             "办公自动化",
             "官方出品"
           ],
-          "logo": "https://github.com/anthropics.png"
+          "logo": "/assets/logos/github-anthropics.png",
+          "related": [
+            "pdf",
+            "xlsx",
+            "pptx"
+          ]
         },
         {
           "id": "xlsx",
@@ -493,7 +701,12 @@
             "报表",
             "官方出品"
           ],
-          "logo": "https://github.com/anthropics.png"
+          "logo": "/assets/logos/github-anthropics.png",
+          "related": [
+            "pdf",
+            "docx",
+            "pptx"
+          ]
         },
         {
           "id": "pptx",
@@ -523,7 +736,12 @@
             "演示文稿",
             "官方出品"
           ],
-          "logo": "https://github.com/anthropics.png"
+          "logo": "/assets/logos/github-anthropics.png",
+          "related": [
+            "pdf",
+            "docx",
+            "xlsx"
+          ]
         }
       ]
     },
@@ -560,7 +778,7 @@
             "自动化",
             "测试"
           ],
-          "logo": "https://github.com/vercel-labs.png"
+          "logo": "/assets/logos/github-vercel-labs.png"
         }
       ]
     }
