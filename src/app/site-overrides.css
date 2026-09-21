@@ -55,33 +55,31 @@ body { background: var(--ground); }
   display: none;
 }
 
-/* ===== 页脚站内链接区 =====
-   原顶部导航的「更新」等低频入口移到此处；.site-footer-content 是两列 grid
-   （wordmark | socials），这里跨满整行独占底部一行，不破坏原有两列布局。 */
-.footer-site-links {
-  grid-column: 1 / -1;
+/* ===== 页脚二维码弹层（微信 / 抖音） ===== */
+button.footer-social-link {
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.footer-qr-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  gap: 6px 16px;
-  margin-top: 14px;
-  padding-top: 14px;
-  border-top: 1px solid var(--border-light);
+  justify-content: center;
+  padding: 24px;
+  background: rgba(10, 12, 16, 0.62);
+  backdrop-filter: blur(4px);
 }
-.footer-site-links a {
-  font-size: 13px;
-  color: var(--text-3, #6b7280);
-  text-decoration: none;
-  transition: color 0.15s ease;
-}
-.footer-site-links a:hover {
-  color: var(--brand, var(--theme-brand, #0f766e));
-}
-:root[data-color-mode="dark"] .footer-site-links a {
-  color: #9aa1ad;
-}
-:root[data-color-mode="dark"] .footer-site-links a:hover {
-  color: var(--theme-dark-brand, #7b93ea);
+.footer-qr-image {
+  display: block;
+  width: auto;
+  max-width: min(320px, 86vw);
+  max-height: 82vh;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.35);
 }
 
 /* ===== 图标库展示（Lucide）：对齐现有卡片语言 ===== */
