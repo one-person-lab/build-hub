@@ -1,0 +1,29 @@
+[
+  {
+    "slug": "duolingo",
+    "name": "多邻国",
+    "en": "Duolingo",
+    "motifs": 11,
+    "tagline": "游戏化学习的 11 个交互母题：配对盖章、词块飞入、宝箱开箱、连击爆炎、路径待机——全部纯 CSS 循环复刻，点任意卡片重播。",
+    "source": "https://www.ripplix.com/apps/duolingo-ui-animations",
+    "styleHref": "/style-duolingo"
+  },
+  {
+    "slug": "tide",
+    "name": "潮汐",
+    "en": "Tide",
+    "motifs": 9,
+    "tagline": "对照潮汐当前版本（5.11）的 9 个交互母题：玻璃拟态首页轮播、圆形声景共享元素放大、刻度尺专注计时、4-4-4-4 呼吸圆、睡眠报告柱生长、格言卡堆飞出、睡眠故事错峰浮入、冥想拱窗呼吸、月落日出唤醒环——全部纯 CSS 竖屏循环复刻。",
+    "source": "https://apps.apple.com/cn/app/id1077776989",
+    "styleHref": ""
+  },
+  {
+    "slug": "finch",
+    "name": "Finch",
+    "en": "",
+    "motifs": 7,
+    "tagline": "对照 Finch 当前版本（3.73）的 7 个交互母题：勾选回弹+能量飞入、浇水开花+进度生长、太阳徽章连击庆祝、伙伴配对 bottom sheet、双鸟踏步早安对话、支持卡片主题选择+发送飞出、冒险迈步+归途进度轨——全部纯 CSS 竖屏循环复刻。",
+    "source": "https://apps.apple.com/us/app/id1528595748",
+    "styleHref": ""
+  }
+]

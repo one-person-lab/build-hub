@@ -1,0 +1,32 @@
+/* 复制提示词按钮：默认深色胶囊（对齐 bencho 主操作位），.is-outline 变体为描边胶囊 */
+.mpb {
+  height: 42px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: 1px solid var(--text);
+  background: var(--text);
+  color: var(--bg);
+  font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+.mpb:hover {
+  opacity: 0.85;
+}
+.mpb svg {
+  width: 15px;
+  height: 15px;
+}
+.mpb.is-outline {
+  border-color: var(--border);
+  background: var(--bg);
+  color: var(--text);
+}
+.mpb.is-outline:hover {
+  background: var(--bg-hover);
+  opacity: 1;
+}

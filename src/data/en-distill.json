@@ -1,0 +1,29 @@
+[
+  {
+    "slug": "duolingo",
+    "name": "Duolingo",
+    "en": "",
+    "motifs": 11,
+    "tagline": "Eleven gamified-learning interaction motifs: match-and-stamp, fly-in word chips, chest openings, combo bursts, idle path — all rebuilt as pure-CSS loops. Click any card to replay.",
+    "source": "https://www.ripplix.com/apps/duolingo-ui-animations",
+    "styleHref": "/en/style-duolingo"
+  },
+  {
+    "slug": "tide",
+    "name": "Tide",
+    "en": "",
+    "motifs": 9,
+    "tagline": "Nine motifs rebuilt against Tide's current release (5.11): glassmorphic home carousel, circular soundscape shared-element expand, ruler-tick focus timer, 4-4-4-4 breathing circle, growing sleep-stage report, flying quote-card deck, staggered sleep-story grid, breathing meditation arch, moon-to-sun wake ring — all pure-CSS portrait loops.",
+    "source": "https://apps.apple.com/cn/app/id1077776989",
+    "styleHref": ""
+  },
+  {
+    "slug": "finch",
+    "name": "Finch",
+    "en": "",
+    "motifs": 7,
+    "tagline": "Seven motifs rebuilt against Finch's current release (3.73): checkbox bounce with flying energy, watering-can bloom + growing bars, sun-badge streak party, bouncing buddy pair-up sheet, marching birds' morning chat, support-card theme picker with send-off flight, adventure walk + return track — all pure-CSS portrait loops.",
+    "source": "https://apps.apple.com/us/app/id1528595748",
+    "styleHref": ""
+  }
+]
