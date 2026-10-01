@@ -1,0 +1,13 @@
+node_modules
+.next
+.git
+.env
+.env.local
+/data
+.workbuddy
+.worktrees
+.scratch
+docs
+Dockerfile*
+README.md
+AGENTS.md

@@ -14,10 +14,19 @@ FROM node:${NODE_VERSION} AS dependencies
 # Set working directory
 WORKDIR /app
 
+# Toolchain for native modules (better-sqlite3 builds via node-gyp when prebuilds unavailable)
+# mirrors.tuna replaces deb.debian.org, which is slow/unreliable from mainland China
+RUN sed -i 's|deb.debian.org|mirrors.tuna.tsinghua.edu.cn|g' /etc/apt/sources.list.d/debian.sources \
+  && apt-get update && apt-get install -y --no-install-recommends python3 make g++ \
+  && rm -rf /var/lib/apt/lists/*
+
 # Copy package-related files first to leverage Docker's caching mechanism
 COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* .npmrc* ./
 
 # Install project dependencies with frozen lockfile for reproducible builds
+# npmmirror mirrors + better-sqlite3 prebuild host override for mainland China networks
+ENV npm_config_registry=https://registry.npmmirror.com
+ENV npm_config_better_sqlite3_binary_host_mirror=https://registry.npmmirror.com/-/binary/better-sqlite3
 RUN --mount=type=cache,target=/root/.npm \
   --mount=type=cache,target=/usr/local/share/.cache/yarn \
   --mount=type=cache,target=/root/.local/share/pnpm/store \
@@ -47,6 +56,11 @@ COPY --from=dependencies /app/node_modules ./node_modules
 COPY . .
 
 ENV NODE_ENV=production
+
+# 预渲染页的 metadataBase 在构建期就烤进 HTML，运行时 env 读不到，
+# 社交卡片的 og:url / og:image 只能从这里注入（值由 docker-compose.yml 的 build args 提供）。
+ARG SITE_URL
+ENV NEXT_PUBLIC_SITE_URL=$SITE_URL
 
 # Next.js collects completely anonymous telemetry data about general usage.
 # Learn more here: https://nextjs.org/telemetry
@@ -103,6 +117,10 @@ COPY --from=builder --chown=node:node /app/.next/static ./.next/static
 # If you want to persist the fetch cache generated during the build so that
 # cached responses are available immediately on startup, uncomment this line:
 # COPY --from=builder --chown=node:node /app/.next/cache ./.next/cache
+
+# SQLite data dir (backed by the buildhub-data named volume)
+RUN mkdir data
+RUN chown node:node data
 
 # Switch to non-root user for security best practices
 USER node

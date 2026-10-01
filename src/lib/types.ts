@@ -41,7 +41,9 @@ export type Catalog = {
   key: string;
   href: string;
   title: string;
-  tabs: { label: string; count: number; active: boolean }[];
+  tabs?: { label: string; count: number; active: boolean }[];
+  /** 独立分区的页内筛选 chips（如 /design、/principles）；缺省时沿用概念分区的页签 */
+  categories?: { key: string; label: string }[];
   sidebar: string[];
   groups: { id: string; title: string; count: number; terms: CatalogTerm[] }[];
 };
