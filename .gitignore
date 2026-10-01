@@ -33,3 +33,7 @@ coverage/
 
 # 微信支付商户证书私钥，只放服务器本地
 /secrets/
+
+# 根目录临时试验产物（截图/草稿脚本）；/logos/ 必须锚定根目录，否则会连 public/assets/logos 一起忽略
+/.scratch/
+/logos/
