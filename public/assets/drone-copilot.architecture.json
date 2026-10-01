@@ -1,0 +1,320 @@
+{
+ "schema_version": 1,
+ "diagram_type": "architecture",
+ "meta": {
+  "title": "无人机 Copilot 智能助手 · 四层架构",
+  "locale": "zh-CN",
+  "quality_profile": "showcase",
+  "viewBox": [
+   1040,
+   480
+  ],
+  "views": [
+   {
+    "id": "main-path",
+    "label": "主链路：一句话到飞行",
+    "focus": [
+     "copilot",
+     "agent",
+     "toolgw",
+     "guardrail",
+     "biz",
+     "devices"
+    ],
+    "note": "从操作员圈选口述，到模型动态选工具、护栏校验、下发到真实设备。"
+   },
+   {
+    "id": "agent-core",
+    "label": "Agent 决策核心",
+    "focus": [
+     "agent",
+     "worldstate",
+     "trace"
+    ],
+    "note": "编排者是模型：每轮读世界状态、决定动作、逐轮留痕。"
+   },
+   {
+    "id": "safety",
+    "label": "安全护栏与既有平台",
+    "focus": [
+     "toolgw",
+     "guardrail",
+     "biz"
+    ],
+    "note": "Copilot 不重建业务，只在既有平台前加一层强制校验。"
+   }
+  ]
+ },
+ "components": [
+  {
+   "id": "users",
+   "type": "external",
+   "label": "巡检操作员",
+   "sublabel": "圈选 + 口述",
+   "pos": [
+    70,
+    70
+   ],
+   "size": [
+    160,
+    58
+   ]
+  },
+  {
+   "id": "copilot",
+   "type": "frontend",
+   "label": "Copilot 交互层",
+   "sublabel": "Vue 3 · Cesium 圈选",
+   "pos": [
+    70,
+    210
+   ],
+   "size": [
+    160,
+    66
+   ]
+  },
+  {
+   "id": "agent",
+   "type": "backend",
+   "label": "Agent 决策层",
+   "sublabel": "Spring AI Alibaba · ReAct",
+   "pos": [
+    320,
+    210
+   ],
+   "size": [
+    170,
+    66
+   ],
+   "tag": "编排者=模型"
+  },
+  {
+   "id": "worldstate",
+   "type": "database",
+   "label": "世界状态",
+   "sublabel": "GIS区域·设备·任务",
+   "pos": [
+    320,
+    70
+   ],
+   "size": [
+    170,
+    58
+   ]
+  },
+  {
+   "id": "trace",
+   "type": "cloud",
+   "label": "Agent Trace",
+   "sublabel": "逐轮落库 · SSE 回显",
+   "pos": [
+    320,
+    350
+   ],
+   "size": [
+    170,
+    58
+   ]
+  },
+  {
+   "id": "toolgw",
+   "type": "backend",
+   "label": "Tool 能力层",
+   "sublabel": "10 动作 · @Tool 封装",
+   "pos": [
+    575,
+    210
+   ],
+   "size": [
+    170,
+    66
+   ]
+  },
+  {
+   "id": "guardrail",
+   "type": "security",
+   "label": "安全护栏",
+   "sublabel": "五类校验+二次确认",
+   "pos": [
+    575,
+    350
+   ],
+   "size": [
+    170,
+    66
+   ]
+  },
+  {
+   "id": "biz",
+   "type": "backend",
+   "label": "业务平台层",
+   "sublabel": "任务·航线·事件",
+   "pos": [
+    830,
+    210
+   ],
+   "size": [
+    160,
+    66
+   ]
+  },
+  {
+   "id": "devices",
+   "type": "external",
+   "label": "无人机 / 机巢",
+   "sublabel": "真实设备",
+   "pos": [
+    830,
+    350
+   ],
+   "size": [
+    160,
+    58
+   ]
+  }
+ ],
+ "boundaries": [
+  {
+   "kind": "region",
+   "label": "Copilot 智能助手（新增层）",
+   "wraps": [
+    "copilot",
+    "agent",
+    "toolgw",
+    "guardrail",
+    "worldstate",
+    "trace"
+   ],
+   "pad": 26
+  },
+  {
+   "kind": "security-group",
+   "label": "既有业务平台（不重建）",
+   "wraps": [
+    "biz",
+    "devices"
+   ],
+   "pad": 24
+  }
+ ],
+ "connections": [
+  {
+   "id": "user-copilot",
+   "from": "users",
+   "to": "copilot",
+   "label": "圈选 + 口述",
+   "fromSide": "bottom",
+   "toSide": "top",
+   "labelAt": [
+    150,
+    169
+   ]
+  },
+  {
+   "id": "copilot-agent",
+   "from": "copilot",
+   "to": "agent",
+   "label": "目标 + 上下文",
+   "variant": "emphasis"
+  },
+  {
+   "id": "agent-tool",
+   "from": "agent",
+   "to": "toolgw",
+   "label": "选动作+参数",
+   "variant": "emphasis"
+  },
+  {
+   "id": "tool-guard",
+   "from": "toolgw",
+   "to": "guardrail",
+   "label": "调用前校验",
+   "fromSide": "bottom",
+   "toSide": "top",
+   "labelAt": [
+    660,
+    313
+   ]
+  },
+  {
+   "id": "guard-biz",
+   "from": "guardrail",
+   "to": "biz",
+   "label": "二次确认放行",
+   "fromSide": "right",
+   "toSide": "bottom"
+  },
+  {
+   "id": "biz-device",
+   "from": "biz",
+   "to": "devices",
+   "label": "下发飞行指令",
+   "fromSide": "bottom",
+   "toSide": "top",
+   "labelAt": [
+    910,
+    330
+   ]
+  },
+  {
+   "id": "world-agent",
+   "from": "worldstate",
+   "to": "agent",
+   "label": "读世界状态",
+   "variant": "dashed",
+   "fromSide": "bottom",
+   "toSide": "top",
+   "labelAt": [
+    405,
+    169
+   ]
+  },
+  {
+   "id": "agent-trace",
+   "from": "agent",
+   "to": "trace",
+   "label": "逐轮留痕",
+   "variant": "dashed",
+   "fromSide": "bottom",
+   "toSide": "top",
+   "labelAt": [
+    405,
+    313
+   ]
+  }
+ ],
+ "cards": [
+  {
+   "dot": "cyan",
+   "title": "交互层",
+   "items": [
+    "对话与地图圈选是唯一输入",
+    "把模糊诉求转成结构化目标"
+   ]
+  },
+  {
+   "dot": "violet",
+   "title": "Agent 层",
+   "items": [
+    "编排者是模型，非写死流程",
+    "每轮读世界状态再决定动作"
+   ]
+  },
+  {
+   "dot": "rose",
+   "title": "能力层 + 护栏",
+   "items": [
+    "10 个动作以 @Tool 封装"
+   ]
+  },
+  {
+   "dot": "emerald",
+   "title": "业务平台层",
+   "items": [
+    "复用既有任务·航线·事件",
+    "Copilot 不重建业务，只编排"
+   ]
+  }
+ ]
+}

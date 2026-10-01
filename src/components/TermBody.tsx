@@ -1,6 +1,7 @@
 "use client";
 
 import type { TermSection } from "@/lib/types";
+import PronunciationButton from "./PronunciationButton";
 
 export type Term = {
   slug: string;
@@ -30,10 +31,6 @@ export default function TermBody({
   kicker?: string;
 }) {
   const alsoCalled = locale === "en" ? "Also called" : "也常被叫作";
-  const listenLabel =
-    locale === "en"
-      ? `Hear the pronunciation of ${term.en}`
-      : `听 ${term.en} 的英文发音`;
   return (
     <div className={"detail-body detail-entry-" + term.slug}>
       <section className="detail-hero" id="detail-hero">
@@ -45,23 +42,7 @@ export default function TermBody({
             {term.name}
             {term.en ? <span>{term.en}</span> : null}
           </h1>
-          {term.en ? (
-            <button
-              type="button"
-              className="pronunciation-button"
-              aria-label={listenLabel}
-              title={listenLabel}
-              onClick={() => {
-                if (typeof speechSynthesis !== "undefined") {
-                  const u = new SpeechSynthesisUtterance(term.en);
-                  u.lang = "en-US";
-                  speechSynthesis.speak(u);
-                }
-              }}
-            >
-              <i className="ti ti-volume" aria-hidden="true" />
-            </button>
-          ) : null}
+          <PronunciationButton text={term.en || term.name} locale={locale} />
         </div>
         {term.quote ? (
           <div className="dh-quote">

@@ -47,7 +47,8 @@
             }
           ],
           "prompt": "Design an app icon for {{APP_NAME}}: one flat solid background ({{COLOR_1}}), one high-contrast centered glyph ({{COLOR_2}}), no gradients, no text, no shadows. The glyph must stay legible at 29x29 px. Rounded-square iOS icon format, 1024x1024, generous padding, flat vector style.",
-          "promptHint": "{{COLOR_1}} 选一个能长期独占的色号，{{COLOR_2}} 与底色对比拉满；生成后缩到 29px 检查是否还认得出。"
+          "promptHint": "{{COLOR_1}} 选一个能长期独占的色号，{{COLOR_2}} 与底色对比拉满；生成后缩到 29px 检查是否还认得出。",
+          "subgroup": "minimal"
         },
         {
           "id": "icon-gradient",
@@ -97,7 +98,8 @@
             }
           ],
           "prompt": "Design an app icon for {{APP_NAME}}: a smooth diagonal gradient background ({{COLOR_1}} to {{COLOR_2}}, optional third hue), a single white outline glyph of {{SUBJECT}} centered, no text, soft light sheen, rounded-square iOS icon format, 1024x1024, flat modern style like a top-charting consumer app.",
-          "promptHint": "先确认渐变色相没被 Instagram / Apple Music / Telegram 占用；白色符号笔画不超过三条主曲线。"
+          "promptHint": "先确认渐变色相没被 Instagram / Apple Music / Telegram 占用；白色符号笔画不超过三条主曲线。",
+          "subgroup": "texture"
         },
         {
           "id": "icon-lettermark",
@@ -147,7 +149,8 @@
             }
           ],
           "prompt": "Design an app icon for {{APP_NAME}}: a single bold letter \"{{LETTER}}\" filling the canvas, custom geometric sans-serif, {{COLOR_1}} background with {{COLOR_2}} letter (or inverted), no extra ornament, the letter may carry one subtle fold or gradient detail, rounded-square iOS icon format, 1024x1024.",
-          "promptHint": "字母占画面宽度 60% 以上才有「吃掉屏幕」的气势；装饰细节最多一处，缩到 29px 必须消失得干净。"
+          "promptHint": "字母占画面宽度 60% 以上才有「吃掉屏幕」的气势；装饰细节最多一处，缩到 29px 必须消失得干净。",
+          "subgroup": "minimal"
         },
         {
           "id": "icon-mascot",
@@ -190,7 +193,8 @@
             }
           ],
           "prompt": "Design an app icon for {{APP_NAME}}: a friendly {{CREATURE}} mascot face centered on a {{COLOR_1}} background, big eyes, simple rounded shapes, flat illustration style with soft shading, no text, must stay readable at 29x29 px, rounded-square iOS icon format, 1024x1024.",
-          "promptHint": "只放头部不放全身；{{CREATURE}} 与产品气质绑定（学习 = 猫头鹰、社区 = 小机器人），眼睛至少占脸宽三分之一。"
+          "promptHint": "只放头部不放全身；{{CREATURE}} 与产品气质绑定（学习 = 猫头鹰、社区 = 小机器人），眼睛至少占脸宽三分之一。",
+          "subgroup": "brand"
         },
         {
           "id": "icon-textured",
@@ -226,7 +230,8 @@
             }
           ],
           "prompt": "Design an app icon for {{APP_NAME}}: a single dramatic {{TEXTURE_SUBJECT}} (brush stroke / emblem / artifact) with realistic lighting and rich color on a dark {{COLOR_1}} background, poster-quality rendering, centered composition, no text, rounded-square iOS icon format, 1024x1024.",
-          "promptHint": "生成两版：1024 细节版 + 29px 简化版；质感主体只留一个，第二个元素一律砍掉。"
+          "promptHint": "生成两版：1024 细节版 + 29px 简化版；质感主体只留一个，第二个元素一律砍掉。",
+          "subgroup": "texture"
         },
         {
           "id": "icon-colorful-geometric",
@@ -269,7 +274,8 @@
             }
           ],
           "prompt": "Design an app icon for {{APP_NAME}}: one unified mark assembled from 3-4 rounded geometric shapes, each in a distinct saturated color ({{COLOR_1}}, {{COLOR_2}}, {{COLOR_3}}, optional {{COLOR_4}}), on a white or very light background, flat vector, precise alignment, no text, rounded-square iOS icon format, 1024x1024.",
-          "promptHint": "先定 3-4 个带色号的 HEX 再写提示词；形状之间必须有重叠或咬合，散着摆就成了调色板。"
+          "promptHint": "先定 3-4 个带色号的 HEX 再写提示词；形状之间必须有重叠或咬合，散着摆就成了调色板。",
+          "subgroup": "texture"
         },
         {
           "id": "icon-minimal-light",
@@ -305,7 +311,8 @@
             }
           ],
           "prompt": "Design an app icon for {{APP_NAME}}: pure white background, one thin elegant {{COLOR_1}} glyph of {{SUBJECT}} (single continuous line preferred), generous negative space, editorial minimal style, no gradients, no text, rounded-square iOS icon format, 1024x1024.",
-          "promptHint": "线条粗细不低于画面宽度 1/40，否则小尺寸会断；符号不够独特时加一个专属细节（如 Notion 的衬线脚）。"
+          "promptHint": "线条粗细不低于画面宽度 1/40，否则小尺寸会断；符号不够独特时加一个专属细节（如 Notion 的衬线脚）。",
+          "subgroup": "minimal"
         },
         {
           "id": "icon-dark-tech",
@@ -348,7 +355,8 @@
             }
           ],
           "prompt": "Design an app icon for {{APP_NAME}}: near-black background (#0B0B0F), a single minimal glyph of {{SUBJECT}} in white or a subtle {{COLOR_1}} glow gradient, thin precise strokes, dark-mode native, no text, no drop shadow, rounded-square iOS icon format, 1024x1024.",
-          "promptHint": "光效只允许一种颜色、一个方向；同时导出纯白反色版给浅色场景用。"
+          "promptHint": "光效只允许一种颜色、一个方向；同时导出纯白反色版给浅色场景用。",
+          "subgroup": "brand"
         }
       ]
     }

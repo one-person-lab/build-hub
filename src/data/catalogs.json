@@ -31,7 +31,7 @@
       },
       {
         "label": "AI",
-        "count": 37,
+        "count": 36,
         "active": false
       },
       {
@@ -40,13 +40,8 @@
         "active": false
       },
       {
-        "label": "设计风格",
-        "count": 28,
-        "active": false
-      },
-      {
-        "label": "素材库",
-        "count": 10,
+        "label": "设计",
+        "count": 46,
         "active": false
       },
       {
@@ -1292,7 +1287,7 @@
       },
       {
         "label": "AI",
-        "count": 37,
+        "count": 36,
         "active": false
       },
       {
@@ -1301,13 +1296,8 @@
         "active": false
       },
       {
-        "label": "设计风格",
-        "count": 28,
-        "active": false
-      },
-      {
-        "label": "素材库",
-        "count": 10,
+        "label": "设计",
+        "count": 46,
         "active": false
       },
       {
@@ -1897,7 +1887,7 @@
       },
       {
         "label": "AI",
-        "count": 37,
+        "count": 36,
         "active": false
       },
       {
@@ -1906,13 +1896,8 @@
         "active": false
       },
       {
-        "label": "设计风格",
-        "count": 28,
-        "active": false
-      },
-      {
-        "label": "素材库",
-        "count": 10,
+        "label": "设计",
+        "count": 46,
         "active": false
       },
       {
@@ -2134,7 +2119,7 @@
       },
       {
         "label": "AI",
-        "count": 37,
+        "count": 36,
         "active": false
       },
       {
@@ -2143,13 +2128,8 @@
         "active": false
       },
       {
-        "label": "设计风格",
-        "count": 28,
-        "active": false
-      },
-      {
-        "label": "素材库",
-        "count": 10,
+        "label": "设计",
+        "count": 46,
         "active": false
       },
       {
@@ -2313,7 +2293,7 @@
       },
       {
         "label": "AI",
-        "count": 37,
+        "count": 36,
         "active": false
       },
       {
@@ -2322,13 +2302,8 @@
         "active": false
       },
       {
-        "label": "设计风格",
-        "count": 28,
-        "active": false
-      },
-      {
-        "label": "素材库",
-        "count": 10,
+        "label": "设计",
+        "count": 46,
         "active": false
       },
       {
@@ -2550,7 +2525,7 @@
       },
       {
         "label": "AI",
-        "count": 37,
+        "count": 36,
         "active": true
       },
       {
@@ -2559,13 +2534,8 @@
         "active": false
       },
       {
-        "label": "设计风格",
-        "count": 28,
-        "active": false
-      },
-      {
-        "label": "素材库",
-        "count": 10,
+        "label": "设计",
+        "count": 46,
         "active": false
       },
       {
@@ -2713,7 +2683,7 @@
       {
         "id": "cat-Agent 与工具",
         "title": "Agent 与工具",
-        "count": 7,
+        "count": 6,
         "terms": [
           {
             "slug": "ai-agent",
@@ -2753,14 +2723,6 @@
             "en": "Tool Calling",
             "tagline": "AI 光会说不会做，怎么让它真的去查数据库、发请求？",
             "demoHtml": "<div class=\"card-demo-mount\">\n  <div class=\"ai-card-visual ai-card-tool-call\">\n    <div class=\"aic-tool-request\"><small>模型请求</small><code>calendar.read({ day: \"tomorrow\" })</code></div>\n    <div class=\"aic-tool-flow\"><span class=\"gate\"><small>应用校验</small><b>权限 ✓ 参数 ✓</b></span><i>→</i><span class=\"result\"><small>真实结果</small><b>14:00 空闲</b></span></div>\n    <div class=\"aic-foot\">tool call 是请求 · 工具返回才是结果</div>\n  </div></div>",
-            "demoClass": "card-demo preview-animations-paused"
-          },
-          {
-            "slug": "react-pattern",
-            "name": "ReAct",
-            "en": "",
-            "tagline": "AI 能不能每完成一步先检查结果，再决定下一步？",
-            "demoHtml": "<div class=\"card-demo-mount\">\n  <div class=\"ai-card-visual ai-card-react\">\n    <div class=\"aic-react-loop\"><span class=\"think\"><small>判断</small><b>按钮可能没有点击事件</b></span><i class=\"one\">→</i><span class=\"act\"><small>行动</small><b>读取 login-button.jsx</b></span><i class=\"two\">↓</i><span class=\"observe\"><small>观察</small><b>点击事件已存在</b></span><i class=\"three\">↖</i></div>\n    <div class=\"aic-foot\">停止改按钮 · 下一步查看 401 请求</div>\n  </div></div>",
             "demoClass": "card-demo preview-animations-paused"
           },
           {
@@ -2971,7 +2933,7 @@
       },
       {
         "label": "AI",
-        "count": 37,
+        "count": 36,
         "active": false
       },
       {
@@ -2980,13 +2942,8 @@
         "active": true
       },
       {
-        "label": "设计风格",
-        "count": 28,
-        "active": false
-      },
-      {
-        "label": "素材库",
-        "count": 10,
+        "label": "设计",
+        "count": 46,
         "active": false
       },
       {
@@ -3104,8 +3061,30 @@
   },
   {
     "key": "design",
-    "href": "/topics/design",
-    "title": "设计风格 VibeCoding 概念",
+    "href": "/design",
+    "title": "设计",
+    "categories": [
+      {
+        "key": "app-style",
+        "label": "APP 设计风格"
+      },
+      {
+        "key": "web-style",
+        "label": "网页设计风格"
+      },
+      {
+        "key": "icon-style",
+        "label": "App 图标风格"
+      },
+      {
+        "key": "icon-lib",
+        "label": "Icon 图标"
+      },
+      {
+        "key": "motion",
+        "label": "交互动画"
+      }
+    ],
     "tabs": [
       {
         "label": "前端",
@@ -3134,7 +3113,7 @@
       },
       {
         "label": "AI",
-        "count": 37,
+        "count": 36,
         "active": false
       },
       {
@@ -3143,14 +3122,9 @@
         "active": false
       },
       {
-        "label": "设计风格",
-        "count": 32,
+        "label": "设计",
+        "count": 46,
         "active": true
-      },
-      {
-        "label": "素材库",
-        "count": 10,
-        "active": false
       },
       {
         "label": "收藏",
@@ -3161,9 +3135,94 @@
     "sidebar": [],
     "groups": [
       {
-        "id": "cat-设计风格",
-        "title": "设计风格",
-        "count": 32,
+        "id": "cat-texture-expression",
+        "title": "质感表达",
+        "category": "app-style",
+        "count": 2,
+        "terms": [
+          {
+            "slug": "style-skeuomorphism",
+            "name": "拟物化",
+            "en": "Skeuomorphism",
+            "tagline": "早期 iPhone 那种，按钮像真按钮、笔记本像真本子。",
+            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div class=\"style-skeuomorphism-demo style-skeuomorphism-console\">\n    <div class=\"style-skeuomorphism-console-top\"><span class=\"style-skeuomorphism-brand\">MELLOWTAPE <i>STUDIO RECORDER</i></span><span class=\"style-skeuomorphism-console-status\"><b></b> INPUT LIVE</span></div>\n    <div class=\"style-skeuomorphism-console-main\">\n      <div class=\"style-skeuomorphism-reels\"><span class=\"style-skeuomorphism-reel\"><i></i></span><span class=\"style-skeuomorphism-tape\"></span><span class=\"style-skeuomorphism-reel right\"><i></i></span></div>\n      <div class=\"style-skeuomorphism-ledger\"><small>TAKE 04 · UNTITLED ROOM</small><strong>00:02:18</strong><span><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></div>\n      <div class=\"style-skeuomorphism-meters\"><b>L</b><i><em></em></i><b>R</b><i><em></em></i></div>\n    </div>\n    <div class=\"style-skeuomorphism-console-controls\"><span class=\"style-skeuomorphism-metal-knob\"></span><small>INPUT</small><span class=\"style-skeuomorphism-deck-key\">◀◀</span><span class=\"style-skeuomorphism-record-key\">●<i>REC</i></span><span class=\"style-skeuomorphism-deck-key\">▶</span><span class=\"style-skeuomorphism-metal-knob small\"></span><small>OUTPUT</small></div>\n  </div></div>",
+            "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
+          },
+          {
+            "slug": "style-glass",
+            "name": "玻璃拟态",
+            "en": "Glassmorphism",
+            "tagline": "半透明的磨砂玻璃块，后面隐约透出背景那种。",
+            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div class=\"style-glass-demo glass-player\"><span class=\"glass-orb one\"></span><span class=\"glass-orb two\"></span><span class=\"glass-orb three\"></span><header><b><i class=\"ti ti-wave-sine\"></i>sonora</b><span>For you</span><span>Browse</span><span>Radio</span><button><i class=\"ti ti-search\"></i></button><button><i class=\"ti ti-user\"></i></button></header><main><div class=\"glass-album\"><img src=\"/assets/slide-forest.png\" alt=\"Album cover\"><span></span></div><section class=\"glass-now\"><small>NOW PLAYING</small><h2>After the rain</h2><p>Arlo Parks · Softly</p><div class=\"glass-progress\"><i></i></div><div class=\"glass-time\"><span>1:42</span><span>3:56</span></div><nav><i class=\"ti ti-player-track-prev\"></i><b class=\"ti ti-player-pause\"></b><i class=\"ti ti-player-track-next\"></i><i class=\"ti ti-volume\"></i></nav></section><aside class=\"glass-queue\"><header>UP NEXT <i class=\"ti ti-list\"></i></header><p><b>01</b><span>Slow motion<small>Raveena</small></span><i>3:12</i></p><p class=\"on\"><b>02</b><span>After the rain<small>Arlo Parks</small></span><i>3:56</i></p><p><b>03</b><span>Salt air<small>Golden Vessel</small></span><i>2:48</i></p></aside></main></div></div>",
+            "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
+          }
+        ]
+      },
+      {
+        "id": "cat-dark-mode",
+        "title": "暗色模式",
+        "category": "app-style",
+        "count": 1,
+        "terms": [
+          {
+            "slug": "style-dark-pro-tool",
+            "name": "深色专业工具风",
+            "en": "Dark Pro Tool",
+            "tagline": "黑底、一个蓝、密到爆的工具条：屏幕留给作品，界面靠边站。",
+            "platform": "ios",
+            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div style=\"width:100%;height:100%;display:flex;align-items:center;justify-content:center;gap:16px;padding:14px 20px;background:var(--bg-soft);box-sizing:border-box\"><div style=\"flex:0 0 158px;display:flex;flex-direction:column;gap:8px\"><b style=\"font-size:19px;line-height:1.3;color:var(--text)\">深色专业工具风</b><span style=\"font-size:11px;color:var(--text-2);line-height:1.6\">近黑底 + 单一蓝强调 + 图标工具条：画布占屏 70% 以上</span><span style=\"font-size:10px;color:var(--text-3)\">案例：LumaFusion · Lightroom · Darkroom</span></div><div style=\"display:flex;gap:12px;align-items:flex-start\"><div style=\"display:flex;flex-direction:column;gap:5px\"><div style=\"width:150px;height:272px;flex:none;border:2px solid #3a3a3e;border-radius:26px;background:#1c1c1e;overflow:hidden;display:flex;flex-direction:column;position:relative;box-shadow:0 14px 30px rgba(29,33,41,.12)\"><div style=\"position:absolute;inset:0;background:#1c1c1e;display:flex;flex-direction:column;font-family:ui-monospace,SFMono-Regular,Menlo,monospace\"><div style=\"height:20px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 14px;font-size:8px;color:#ffffff\"><b>9:41</b><span>●▮▮</span></div><div style=\"height:56px;flex:none;margin:6px 10px 0;border-radius:6px;background:linear-gradient(120deg,#2b3a55,#6b4a3a 55%,#243043);display:flex;align-items:flex-end;justify-content:space-between;padding:4px\"><span style=\"font-size:7px;color:#dfe6f2;background:rgba(0,0,0,.5);padding:1px 4px;border-radius:3px\">00:31:17</span><i class=\"ti ti-play\" style=\"font-size:13px;color:#dfe6f2\"></i></div><div style=\"display:flex;margin:6px 6px 0;border-top:.5px solid #3a3a3e\"><span style=\"flex:1;display:grid;place-items:center;height:26px;font-size:11px;color:#9a9aa0;\"><i class=\"ti ti-crop\"></i></span><span style=\"flex:1;display:grid;place-items:center;height:26px;font-size:11px;color:#0a84ff;border-bottom:2px solid #0a84ff\"><i class=\"ti ti-sliders\"></i></span><span style=\"flex:1;display:grid;place-items:center;height:26px;font-size:11px;color:#9a9aa0;\"><i class=\"ti ti-adjustments\"></i></span><span style=\"flex:1;display:grid;place-items:center;height:26px;font-size:11px;color:#9a9aa0;\"><i class=\"ti ti-filter\"></i></span><span style=\"flex:1;display:grid;place-items:center;height:26px;font-size:11px;color:#9a9aa0;\"><i class=\"ti ti-contrast\"></i></span><span style=\"flex:1;display:grid;place-items:center;height:26px;font-size:11px;color:#9a9aa0;\"><i class=\"ti ti-wand\"></i></span><span style=\"flex:1;display:grid;place-items:center;height:26px;font-size:11px;color:#9a9aa0;\"><i class=\"ti ti-layers-subtract\"></i></span><span style=\"flex:1;display:grid;place-items:center;height:26px;font-size:11px;color:#9a9aa0;\"><i class=\"ti ti-music\"></i></span></div><div style=\"margin:8px 10px 0;background:#1c1c1e;border-radius:8px;padding:6px\"><div style=\"font-size:7.5px;color:#9a9aa0;font-family:ui-monospace,monospace\">TIMELINE · 31:17</div><div style=\"position:relative;height:11px;margin-top:3px;background:#26272b;border-radius:2px\"><span style=\"position:absolute;left:12%;width:70%;top:1px;bottom:1px;background:#0a84ff;border-radius:2px\"></span></div><div style=\"position:relative;height:11px;margin-top:3px;background:#26272b;border-radius:2px\"><span style=\"position:absolute;left:6%;width:40%;top:1px;bottom:1px;background:#30d158;border-radius:2px\"></span></div><div style=\"position:relative;height:11px;margin-top:3px;background:#26272b;border-radius:2px\"><span style=\"position:absolute;left:24%;width:56%;top:1px;bottom:1px;background:#ff9f0a;border-radius:2px\"></span></div><div style=\"position:relative;height:11px;margin-top:3px;background:#26272b;border-radius:2px\"><span style=\"position:absolute;left:10%;width:30%;top:1px;bottom:1px;background:#bf5af2;border-radius:2px\"></span></div></div><div style=\"margin-top:auto;flex:none;height:22px;display:flex;align-items:center;gap:6px;padding:0 12px;border-top:.5px solid #3a3a3e;font-size:7.5px;color:#9a9aa0\"><span>ISO 200</span><span>f/2.8</span><span style=\"margin-left:auto;color:#0a84ff\">100%</span></div></div></div><div style=\"font-size:9px;color:var(--text-3);font-weight:400;margin-top:0px;line-height:1.5\">工作台 · 时间线密度</div></div><div style=\"display:flex;flex-direction:column;gap:5px\"><div style=\"width:150px;height:272px;flex:none;border:2px solid #3a3a3e;border-radius:26px;background:#1c1c1e;overflow:hidden;display:flex;flex-direction:column;position:relative;box-shadow:0 14px 30px rgba(29,33,41,.12)\"><div style=\"position:absolute;inset:0;background:#1c1c1e;display:flex;flex-direction:column;font-family:ui-monospace,SFMono-Regular,Menlo,monospace\"><div style=\"height:20px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 14px;font-size:8px;color:#ffffff\"><b>9:41</b><span>●▮▮</span></div><div style=\"height:56px;flex:none;margin:6px 10px 0;border-radius:6px;background:linear-gradient(120deg,#2b3a55,#6b4a3a 55%,#243043);display:flex;align-items:flex-end;justify-content:space-between;padding:4px\"><span style=\"font-size:7px;color:#dfe6f2;background:rgba(0,0,0,.5);padding:1px 4px;border-radius:3px\">00:31:17</span><i class=\"ti ti-play\" style=\"font-size:13px;color:#dfe6f2\"></i></div><div style=\"display:flex;margin:6px 6px 0;border-top:.5px solid #3a3a3e\"><span style=\"flex:1;display:grid;place-items:center;height:26px;font-size:11px;color:#9a9aa0;\"><i class=\"ti ti-crop\"></i></span><span style=\"flex:1;display:grid;place-items:center;height:26px;font-size:11px;color:#9a9aa0;\"><i class=\"ti ti-sliders\"></i></span><span style=\"flex:1;display:grid;place-items:center;height:26px;font-size:11px;color:#0a84ff;border-bottom:2px solid #0a84ff\"><i class=\"ti ti-adjustments\"></i></span><span style=\"flex:1;display:grid;place-items:center;height:26px;font-size:11px;color:#9a9aa0;\"><i class=\"ti ti-filter\"></i></span><span style=\"flex:1;display:grid;place-items:center;height:26px;font-size:11px;color:#9a9aa0;\"><i class=\"ti ti-contrast\"></i></span><span style=\"flex:1;display:grid;place-items:center;height:26px;font-size:11px;color:#9a9aa0;\"><i class=\"ti ti-wand\"></i></span><span style=\"flex:1;display:grid;place-items:center;height:26px;font-size:11px;color:#9a9aa0;\"><i class=\"ti ti-layers-subtract\"></i></span><span style=\"flex:1;display:grid;place-items:center;height:26px;font-size:11px;color:#9a9aa0;\"><i class=\"ti ti-music\"></i></span></div><div style=\"margin:8px 10px 0;background:#26272b;border-radius:8px;padding:8px\"><div style=\"font-size:8px;color:#9a9aa0;display:flex;justify-content:space-between\"><span>EXPOSURE</span><span style=\"color:#0a84ff;font-family:ui-monospace,monospace\">+0.35</span></div><div style=\"height:2px;background:#3a3a3e;border-radius:99px;margin:6px 0\"><span style=\"display:block;width:58%;height:100%;background:#0a84ff;border-radius:99px\"></span></div><div style=\"font-size:8px;color:#9a9aa0;display:flex;justify-content:space-between\"><span>HIGHLIGHTS</span><span style=\"color:#ffffff;font-family:ui-monospace,monospace\">−12</span></div><div style=\"height:2px;background:#3a3a3e;border-radius:99px;margin:6px 0\"><span style=\"display:block;width:34%;height:100%;background:#9a9aa0;border-radius:99px\"></span></div><div style=\"font-size:8px;color:#9a9aa0;display:flex;justify-content:space-between\"><span>CURVE</span><span style=\"color:#ffffff;font-family:ui-monospace,monospace\">RGB</span></div><svg viewBox=\"0 0 100 34\" style=\"width:100%;height:30px;margin-top:4px\"><path d=\"M2 32 C 26 30 40 12 98 4\" fill=\"none\" stroke=\"#0a84ff\" stroke-width=\"1.5\"/></svg></div><div style=\"margin-top:auto;flex:none;height:22px;display:flex;align-items:center;gap:6px;padding:0 12px;border-top:.5px solid #3a3a3e;font-size:7.5px;color:#9a9aa0\"><span>ISO 200</span><span>f/2.8</span><span style=\"margin-left:auto;color:#0a84ff\">100%</span></div></div></div><div style=\"font-size:9px;color:var(--text-3);font-weight:400;margin-top:0px;line-height:1.5\">参数面板 · 等宽数值</div></div></div></div></div>",
+            "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
+          }
+        ]
+      },
+      {
+        "id": "cat-emotion-vitality",
+        "title": "情绪与活力",
+        "category": "app-style",
+        "count": 4,
+        "terms": [
+          {
+            "slug": "style-soft-wellness",
+            "name": "疗愈柔和风",
+            "en": "Soft Wellness",
+            "tagline": "一打开就松下来：奶色渐变、大圆角卡片、一个小东西陪着你。",
+            "platform": "ios",
+            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div style=\"width:100%;height:100%;display:flex;align-items:center;justify-content:center;gap:16px;padding:14px 20px;background:var(--bg-soft);box-sizing:border-box\"><div style=\"flex:0 0 158px;display:flex;flex-direction:column;gap:8px\"><b style=\"font-size:19px;line-height:1.3;color:var(--text)\">疗愈柔和风</b><span style=\"font-size:11px;color:var(--text-2);line-height:1.6\">渐变底 + 24pt 圆角 + 圆润字体：深色态换成夜色版而不是反色</span><span style=\"font-size:10px;color:var(--text-3)\">案例：Calm · Headspace · Finch</span></div><div style=\"display:flex;gap:12px;align-items:flex-start\"><div style=\"display:flex;flex-direction:column;gap:5px\"><div style=\"width:150px;height:272px;flex:none;border:2px solid #e6d3c6;border-radius:26px;background:#ffffff;overflow:hidden;display:flex;flex-direction:column;position:relative;box-shadow:0 14px 30px rgba(29,33,41,.12)\"><div style=\"position:absolute;inset:0;background:linear-gradient(180deg,#f8dcc3,#dcb8e8);padding:0 11px;font-family:ui-rounded,-apple-system,BlinkMacSystemFont,sans-serif\"><div style=\"height:20px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 14px;font-size:8px;color:#3d2f3a\"><b>9:41</b><span>●▮▮</span></div><div style=\"font-size:8.5px;color:#8a7488;margin-top:6px\">晚上好</div><div style=\"font-size:17px;font-weight:600;color:#3d2f3a;letter-spacing:-.2px\">慢下来</div><div style=\"display:flex;align-items:center;gap:8px;padding:8px 10px;background:rgba(255,255,255,.72);border-radius:16px;margin-top:7px\"><span style=\"width:22px;height:22px;flex:none;border-radius:50%;background:#ff8f5e;display:grid;place-items:center\"><i class=\"ti ti-player-play\" style=\"font-size:11px;color:#201a33\"></i></span><span style=\"font-size:9.5px;color:#3d2f3a\">今晚 · 释放这一天</span><span style=\"margin-left:auto;font-size:8px;color:#8a7488\">10 分钟</span></div><div style=\"display:flex;align-items:center;gap:8px;padding:8px 10px;background:rgba(255,255,255,.72);border-radius:16px;margin-top:7px\"><span style=\"width:22px;height:22px;flex:none;border-radius:50%;background:#ff8f5e;display:grid;place-items:center\"><i class=\"ti ti-cloud-moon\" style=\"font-size:11px;color:#201a33\"></i></span><span style=\"font-size:9.5px;color:#3d2f3a\">睡前故事</span><span style=\"margin-left:auto;font-size:8px;color:#8a7488\">25 分钟</span></div><div style=\"display:flex;align-items:center;gap:8px;padding:8px 10px;background:rgba(255,255,255,.72);border-radius:16px;margin-top:7px\"><span style=\"width:22px;height:22px;flex:none;border-radius:50%;background:#ff8f5e;display:grid;place-items:center\"><i class=\"ti ti-breathing\" style=\"font-size:11px;color:#201a33\"></i></span><span style=\"font-size:9.5px;color:#3d2f3a\">四次呼吸</span><span style=\"margin-left:auto;font-size:8px;color:#8a7488\">3 分钟</span></div><div style=\"margin-top:10px;display:flex;gap:4px;align-items:center\"><span style=\"flex:1;height:3px;border-radius:99px;background:rgba(255,255,255,.72)\"></span><span style=\"width:14px;height:3px;border-radius:99px;background:#ff8f5e\"></span><span style=\"flex:1;height:3px;border-radius:99px;background:rgba(255,255,255,.72)\"></span></div><div style=\"margin-top:9px;background:#ff8f5e;border-radius:99px;padding:7px 0;text-align:center;font-size:9.5px;font-weight:700;color:#201a33\">继续第 12 天</div></div></div><div style=\"font-size:9px;color:var(--text-3);font-weight:400;margin-top:0px;line-height:1.5\">白天态 · 日落渐变</div></div><div style=\"display:flex;flex-direction:column;gap:5px\"><div style=\"width:150px;height:272px;flex:none;border:2px solid #3a2f5c;border-radius:26px;background:#ffffff;overflow:hidden;display:flex;flex-direction:column;position:relative;box-shadow:0 14px 30px rgba(29,33,41,.12)\"><div style=\"position:absolute;inset:0;background:linear-gradient(180deg,#1b1e3c,#3a2f5c);padding:0 11px;font-family:ui-rounded,-apple-system,BlinkMacSystemFont,sans-serif\"><div style=\"height:20px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 14px;font-size:8px;color:#f3eeff\"><b>9:41</b><span>●▮▮</span></div><div style=\"font-size:8.5px;color:#b6aede;margin-top:6px\">晚上好</div><div style=\"font-size:17px;font-weight:600;color:#f3eeff;letter-spacing:-.2px\">慢下来</div><div style=\"display:flex;align-items:center;gap:8px;padding:8px 10px;background:rgba(255,255,255,.14);border-radius:16px;margin-top:7px\"><span style=\"width:22px;height:22px;flex:none;border-radius:50%;background:#a48bff;display:grid;place-items:center\"><i class=\"ti ti-player-play\" style=\"font-size:11px;color:#201a33\"></i></span><span style=\"font-size:9.5px;color:#f3eeff\">今晚 · 释放这一天</span><span style=\"margin-left:auto;font-size:8px;color:#b6aede\">10 分钟</span></div><div style=\"display:flex;align-items:center;gap:8px;padding:8px 10px;background:rgba(255,255,255,.14);border-radius:16px;margin-top:7px\"><span style=\"width:22px;height:22px;flex:none;border-radius:50%;background:#a48bff;display:grid;place-items:center\"><i class=\"ti ti-cloud-moon\" style=\"font-size:11px;color:#201a33\"></i></span><span style=\"font-size:9.5px;color:#f3eeff\">睡前故事</span><span style=\"margin-left:auto;font-size:8px;color:#b6aede\">25 分钟</span></div><div style=\"display:flex;align-items:center;gap:8px;padding:8px 10px;background:rgba(255,255,255,.14);border-radius:16px;margin-top:7px\"><span style=\"width:22px;height:22px;flex:none;border-radius:50%;background:#a48bff;display:grid;place-items:center\"><i class=\"ti ti-breathing\" style=\"font-size:11px;color:#201a33\"></i></span><span style=\"font-size:9.5px;color:#f3eeff\">四次呼吸</span><span style=\"margin-left:auto;font-size:8px;color:#b6aede\">3 分钟</span></div><div style=\"margin-top:10px;display:flex;gap:4px;align-items:center\"><span style=\"flex:1;height:3px;border-radius:99px;background:rgba(255,255,255,.14)\"></span><span style=\"width:14px;height:3px;border-radius:99px;background:#a48bff\"></span><span style=\"flex:1;height:3px;border-radius:99px;background:rgba(255,255,255,.14)\"></span></div><div style=\"margin-top:9px;background:#a48bff;border-radius:99px;padding:7px 0;text-align:center;font-size:9.5px;font-weight:700;color:#201a33\">继续第 12 天</div></div></div><div style=\"font-size:9px;color:var(--text-3);font-weight:400;margin-top:0px;line-height:1.5\">夜色态 · 同一版式换材料</div></div></div></div></div>",
+            "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
+          },
+          {
+            "slug": "style-immersive-nature",
+            "name": "沉浸自然风",
+            "en": "Immersive Nature",
+            "tagline": "界面把自己藏起来：全屏自然实景配同款声音，控件是浮在画面上的磨砂。",
+            "platform": "ios",
+            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div style=\"width:100%;height:100%;display:flex;align-items:center;justify-content:center;gap:16px;padding:14px 20px;background:var(--bg-soft);box-sizing:border-box\"><div style=\"flex:0 0 158px;display:flex;flex-direction:column;gap:8px\"><b style=\"font-size:19px;line-height:1.3;color:var(--text)\">沉浸自然风</b><span style=\"font-size:11px;color:var(--text-2);line-height:1.6\">实景画面即界面：声音与画面一场一体，昼夜态跟着时间切换</span><span style=\"font-size:10px;color:var(--text-3)\">案例：潮汐</span></div><div style=\"display:flex;gap:12px;align-items:flex-start\"><div style=\"display:flex;flex-direction:column;gap:5px\"><div style=\"width:150px;height:272px;flex:none;border:2px solid #c9ccd3;border-radius:26px;background:#ffffff;overflow:hidden;display:flex;flex-direction:column;position:relative;box-shadow:0 14px 30px rgba(29,33,41,.12)\"><div style=\"position:absolute;inset:0;background:linear-gradient(180deg,#dcebe0 0%,#9dc0ad 34%,#4f7a66 72%,#2e4a3f 100%);padding:0 11px;font-family:-apple-system,BlinkMacSystemFont,sans-serif\"><span style=\"position:absolute;top:34px;right:16px;width:26px;height:26px;border-radius:50%;background:radial-gradient(circle,#fff7d6 0%,rgba(255,247,214,0) 70%)\"></span><div style=\"height:20px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 14px;font-size:8px;color:#ffffff\"><b>9:41</b><span>●▮▮</span></div><div style=\"font-size:8.5px;color:rgba(255,255,255,.72);margin-top:6px\">早上好</div><div style=\"font-size:17px;font-weight:700;color:#ffffff;letter-spacing:-.2px\">森林</div><div style=\"display:flex;align-items:center;gap:8px;padding:8px 10px;background:rgba(23,32,28,.28);border-radius:16px;margin-top:64px;backdrop-filter:blur(6px)\"><span style=\"width:22px;height:22px;flex:none;border-radius:50%;background:#e8f0e6;display:grid;place-items:center\"><i class=\"ti ti-player-play\" style=\"font-size:11px;color:#101a16\"></i></span><span style=\"font-size:9.5px;color:#ffffff\">雨声 · 30 分钟</span><span style=\"margin-left:auto;font-size:8px;color:rgba(255,255,255,.72)\">播放中</span></div><div style=\"display:flex;gap:6px;margin-top:9px;justify-content:center\"><span style=\"width:26px;height:26px;flex:none;border-radius:50%;background:linear-gradient(160deg,#9fb8a5,#5d7d6b)\"></span><span style=\"width:26px;height:26px;flex:none;border-radius:50%;background:linear-gradient(160deg,#c9a7a0,#7a5a63)\"></span><span style=\"width:26px;height:26px;flex:none;border-radius:50%;background:linear-gradient(160deg,#8ea8c4,#4d647e)\"></span><span style=\"width:26px;height:26px;flex:none;border-radius:50%;background:linear-gradient(160deg,#c9b98a,#7a6f4d)\"></span></div><div style=\"margin-top:auto;margin-bottom:8px;display:flex;justify-content:space-around;align-items:center;background:rgba(23,32,28,.28);border-radius:99px;padding:6px 0;backdrop-filter:blur(6px)\"><i class=\"ti ti-home\" style=\"font-size:11px;color:#ffffff\"></i><i class=\"ti ti-moon-stars\" style=\"font-size:11px;color:rgba(255,255,255,.72)\"></i><i class=\"ti ti-leaf\" style=\"font-size:11px;color:rgba(255,255,255,.72)\"></i><i class=\"ti ti-volume\" style=\"font-size:11px;color:rgba(255,255,255,.72)\"></i></div></div></div><div style=\"font-size:9px;color:var(--text-3);font-weight:400;margin-top:0px;line-height:1.5\">白天态 · 实景 + 磨砂控件</div></div><div style=\"display:flex;flex-direction:column;gap:5px\"><div style=\"width:150px;height:272px;flex:none;border:2px solid #2c3a44;border-radius:26px;background:#ffffff;overflow:hidden;display:flex;flex-direction:column;position:relative;box-shadow:0 14px 30px rgba(29,33,41,.12)\"><div style=\"position:absolute;inset:0;background:linear-gradient(180deg,#20303a 0%,#16252e 46%,#0c161c 100%);padding:0 11px;font-family:-apple-system,BlinkMacSystemFont,sans-serif\"><span style=\"position:absolute;top:34px;right:18px;width:18px;height:18px;border-radius:50%;background:#e8ecf2;box-shadow:0 0 14px rgba(232,236,242,.7)\"></span><div style=\"height:20px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 14px;font-size:8px;color:rgba(255,255,255,.6)\"><b>9:41</b><span>●▮▮</span></div><div style=\"font-size:8.5px;color:rgba(255,255,255,.55);margin-top:6px\">晚上好</div><div style=\"font-size:17px;font-weight:700;color:rgba(255,255,255,.6);letter-spacing:-.2px\">夜溪</div><div style=\"display:flex;align-items:center;gap:8px;padding:8px 10px;background:rgba(14,20,24,.46);border-radius:16px;margin-top:64px;backdrop-filter:blur(6px)\"><span style=\"width:22px;height:22px;flex:none;border-radius:50%;background:#dfe7ee;display:grid;place-items:center\"><i class=\"ti ti-player-play\" style=\"font-size:11px;color:#101a16\"></i></span><span style=\"font-size:9.5px;color:rgba(255,255,255,.6)\">雨声 · 30 分钟</span><span style=\"margin-left:auto;font-size:8px;color:rgba(255,255,255,.55)\">播放中</span></div><div style=\"display:flex;gap:6px;margin-top:9px;justify-content:center\"><span style=\"width:26px;height:26px;flex:none;border-radius:50%;background:linear-gradient(160deg,#9fb8a5,#5d7d6b)\"></span><span style=\"width:26px;height:26px;flex:none;border-radius:50%;background:linear-gradient(160deg,#c9a7a0,#7a5a63)\"></span><span style=\"width:26px;height:26px;flex:none;border-radius:50%;background:linear-gradient(160deg,#8ea8c4,#4d647e)\"></span><span style=\"width:26px;height:26px;flex:none;border-radius:50%;background:linear-gradient(160deg,#c9b98a,#7a6f4d)\"></span></div><div style=\"margin-top:auto;margin-bottom:8px;display:flex;justify-content:space-around;align-items:center;background:rgba(14,20,24,.46);border-radius:99px;padding:6px 0;backdrop-filter:blur(6px)\"><i class=\"ti ti-home\" style=\"font-size:11px;color:rgba(255,255,255,.6)\"></i><i class=\"ti ti-moon-stars\" style=\"font-size:11px;color:rgba(255,255,255,.55)\"></i><i class=\"ti ti-leaf\" style=\"font-size:11px;color:rgba(255,255,255,.55)\"></i><i class=\"ti ti-volume\" style=\"font-size:11px;color:rgba(255,255,255,.55)\"></i></div></div></div><div style=\"font-size:9px;color:var(--text-3);font-weight:400;margin-top:0px;line-height:1.5\">夜晚态 · 同一版式换场景</div></div></div></div></div>",
+            "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
+          },
+          {
+            "slug": "style-playful",
+            "name": "趣味插画",
+            "en": "Playful Illustration",
+            "tagline": "活泼一点，配上有趣的插画和角色，别太严肃。",
+            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div class=\"ms-demo ms-playful\"><small style=\"display:block;padding:6px 10px;color:var(--text-3);font-size:11px\">虚构示例 · 品牌、任务与客户名称仅用于展示</small><span class=\"play-shape s1\">✦</span><span class=\"play-shape s2\"></span><header><b><span>m</span> mochi</b><nav><span>How it works</span><span>Templates</span><span>Stories</span></nav><div><span>Log in</span><button>Make something <i class=\"ti ti-arrow-up-right\"></i></button></div></header><main><section><small>YOUR IDEAS, IN MOTION</small><h2>Plan less.<br><em>Make more.</em></h2><p>A friendly creative board for turning tiny sparks into finished things.</p><div><button>Start a free board</button><a><i class=\"ti ti-player-play-filled\"></i> See it in action</a></div></section><aside class=\"play-board\"><div class=\"play-note yellow\"><small>THIS WEEK</small><b>Launch the tiny zine ✦</b><span>3 of 5 done</span></div><div class=\"play-note purple\"><span class=\"play-face\">◡</span><b>Nice work!</b><small>You kept the streak alive</small></div><div class=\"play-note white\"><small>IDEA PILE</small><p><i></i>Cover sketch</p><p><i></i>Ask Mei for photos</p><p><i></i>Print ten copies</p></div><span class=\"play-sticker\">MAKE<br>IT REAL</span></aside></main><footer><span>客户标识需授权后展示</span></footer></div></div>",
+            "demoClass": "card-demo scaled-preview style-preview"
+          },
+          {
+            "slug": "style-duolingo",
+            "name": "多邻国游戏化风",
+            "en": "Duolingo Gamified",
+            "tagline": "把学习做成打游戏：进度条、连击、宝箱和吉祥物，每一步都有奖励反馈。",
+            "platform": "ios",
+            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div style=\"width:100%;height:100%;display:flex;flex-direction:column;align-items:center;gap:12px;padding:16px;background:linear-gradient(#fff,#f7fbef);box-sizing:border-box\"><div style=\"width:70%;height:8px;border-radius:99px;background:#e5e5e5\"><i style=\"display:block;width:62%;height:100%;border-radius:99px;background:#ff9600\"></i></div><div style=\"display:flex;flex-direction:column;align-items:center;gap:10px\"><div style=\"width:44px;height:40px;border-radius:50% 50% 46% 46%;background:#58cc02;box-shadow:0 5px 0 #46a302;color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px\">★</div><div style=\"width:150px;background:#58cc02;border-radius:12px;padding:9px 10px;color:#fff;box-shadow:0 5px 0 #46a302\"><b style=\"display:block;font-size:11px\">点餐与食物</b><span style=\"display:block;font-size:9px;opacity:.85;margin:2px 0 6px\">第 3 课 · 共 4 课</span><i style=\"display:block;height:22px;line-height:22px;text-align:center;background:#fff;color:#46a302;border-radius:8px;font-size:9.5px;font-style:normal;font-weight:800\">START +10 XP</i></div><div style=\"display:flex;gap:14px\"><span style=\"width:36px;height:32px;border-radius:50% 50% 46% 46%;background:#e2e5db;box-shadow:0 4px 0 #cdd2c4\"></span><span style=\"width:36px;height:32px;border-radius:50% 50% 46% 46%;background:#e2e5db;box-shadow:0 4px 0 #cdd2c4\"></span></div></div></div></div>",
+            "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
+          }
+        ]
+      },
+      {
+        "id": "cat-minimal-rational",
+        "title": "简约理性",
+        "category": "web-style",
+        "count": 11,
         "terms": [
           {
             "slug": "style-minimal",
@@ -3198,22 +3257,6 @@
             "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
           },
           {
-            "slug": "style-glass",
-            "name": "玻璃拟态",
-            "en": "Glassmorphism",
-            "tagline": "半透明的磨砂玻璃块，后面隐约透出背景那种。",
-            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div class=\"style-glass-demo glass-player\"><span class=\"glass-orb one\"></span><span class=\"glass-orb two\"></span><span class=\"glass-orb three\"></span><header><b><i class=\"ti ti-wave-sine\"></i>sonora</b><span>For you</span><span>Browse</span><span>Radio</span><button><i class=\"ti ti-search\"></i></button><button><i class=\"ti ti-user\"></i></button></header><main><div class=\"glass-album\"><img src=\"/assets/slide-forest.png\" alt=\"Album cover\"><span></span></div><section class=\"glass-now\"><small>NOW PLAYING</small><h2>After the rain</h2><p>Arlo Parks · Softly</p><div class=\"glass-progress\"><i></i></div><div class=\"glass-time\"><span>1:42</span><span>3:56</span></div><nav><i class=\"ti ti-player-track-prev\"></i><b class=\"ti ti-player-pause\"></b><i class=\"ti ti-player-track-next\"></i><i class=\"ti ti-volume\"></i></nav></section><aside class=\"glass-queue\"><header>UP NEXT <i class=\"ti ti-list\"></i></header><p><b>01</b><span>Slow motion<small>Raveena</small></span><i>3:12</i></p><p class=\"on\"><b>02</b><span>After the rain<small>Arlo Parks</small></span><i>3:56</i></p><p><b>03</b><span>Salt air<small>Golden Vessel</small></span><i>2:48</i></p></aside></main></div></div>",
-            "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
-          },
-          {
-            "slug": "style-brutalism",
-            "name": "新粗野",
-            "en": "Neo-Brutalism",
-            "tagline": "粗黑边框、大色块、硬阴影，特别张扬有个性的那种。",
-            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div id=\"brutalism-dashboard-demo\" class=\"style-brutalism-demo\" role=\"img\" aria-label=\"新粗野风格的创作者经营工作台，展示收入、订单、转化率和本周销冠\">\n    <div class=\"style-brutalism-app\">\n      <div class=\"style-brutalism-topbar\">\n        <div class=\"style-brutalism-brand\"><span>MO</span><b>MAKER OFFICE</b><i>CREATOR OS</i></div>\n        <div class=\"style-brutalism-live\"><i></i>商店营业中</div>\n        <div class=\"style-brutalism-profile\"><span>AH</span><b>阿禾</b><i>↘</i></div>\n      </div>\n      <div class=\"style-brutalism-shell\">\n        <aside class=\"style-brutalism-sidebar\">\n          <nav>\n            <span class=\"on\"><i>01</i>经营概览</span>\n            <span><i>02</i>我的商品</span>\n            <span><i>03</i>订单管理</span>\n            <span><i>04</i>顾客名单</span>\n          </nav>\n          <div class=\"style-brutalism-side-goal\">\n            <small>JULY GOAL</small>\n            <b>离目标还差<br>¥ 3,820</b>\n            <span><i style=\"width:68%\"></i></span>\n            <em>68%</em>\n          </div>\n        </aside>\n        <div class=\"style-brutalism-main\">\n          <div class=\"style-brutalism-hero\">\n            <div><small>WED. 22 JULY</small><h2>今天，把作品<br><mark>卖出去。</mark></h2></div>\n            <span class=\"style-brutalism-publish\">＋ 发布新商品 <b>↗</b></span>\n          </div>\n          <div class=\"style-brutalism-kpis\">\n            <article class=\"income\"><span>本月收入 <i>+18.6%</i></span><b>¥ 16,180</b><small>目标 ¥20,000</small></article>\n            <article><span>今日订单 <i>LIVE</i></span><b>38</b><small>7 笔待交付</small></article>\n            <article><span>商品转化率 <i>↗ 2.4%</i></span><b>8.7%</b><small>访客 1,284</small></article>\n          </div>\n          <div class=\"style-brutalism-lower\">\n            <section class=\"style-brutalism-orders\">\n              <header><div><small>RECENT ORDERS</small><b>刚刚卖出的作品</b></div><span>查看全部 →</span></header>\n              <div class=\"style-brutalism-order-head\"><span>商品</span><span>顾客</span><span>金额</span><span>状态</span></div>\n              <div class=\"style-brutalism-order-row\"><b><i class=\"pink\">NS</i>Notion 创作系统</b><span>@lulu</span><strong>¥129</strong><em>已交付</em></div>\n              <div class=\"style-brutalism-order-row\"><b><i class=\"blue\">FG</i>Figma 组件模板</b><span>@mango</span><strong>¥69</strong><em>已交付</em></div>\n              <div class=\"style-brutalism-order-row\"><b><i class=\"yellow\">WB</i>独立开发手册</b><span>@zoe</span><strong>¥49</strong><em class=\"wait\">待交付</em></div>\n            </section>\n            <section class=\"style-brutalism-product\">\n              <div class=\"style-brutalism-product-cover\"><span>TOP 01</span><i></i><b>NOTION<br>创作系统</b></div>\n              <div class=\"style-brutalism-product-meta\"><small>本周销冠</small><b>已售 128 份</b><span>¥129 / 份</span></div>\n              <div class=\"style-brutalism-spark\"><i style=\"height:32%\"></i><i style=\"height:48%\"></i><i style=\"height:41%\"></i><i style=\"height:70%\"></i><i style=\"height:58%\"></i><i style=\"height:86%\"></i><i style=\"height:100%\"></i></div>\n            </section>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div></div>",
-            "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
-          },
-          {
             "slug": "style-swiss",
             "name": "瑞士排版",
             "en": "Swiss Style",
@@ -3222,27 +3265,35 @@
             "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
           },
           {
-            "slug": "style-editorial",
-            "name": "杂志编辑风",
-            "en": "Editorial",
-            "tagline": "像时尚杂志那样的排版，图文穿插，有编辑感。",
-            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div class=\"style-editorial-demo editorial-city\"><header><span>FIELD NOTES</span><b>THE WEEKEND EDIT</b><span>ISSUE 28 · 2026</span></header><main><section class=\"editorial-cover\"><img src=\"/assets/style-imagery/editorial-light-study.webp\" alt=\"Concrete forms cut by light\"><small>Light study / Xuhui, 6:12 p.m.</small></section><section class=\"editorial-story\"><p class=\"editorial-kicker\">CITY / PEOPLE / PLACE</p><h1>The city<br>after <em>midnight.</em></h1><p class=\"editorial-dek\">For one quiet hour, familiar streets become a different kind of public room.</p><div class=\"editorial-by\"><span>WORDS / LIN ZHI</span><span>8 MIN READ</span></div></section></main><footer><span>ESSAYS</span><span>GUIDES</span><b>042</b><span>SUBSCRIBE <i class=\"ti ti-arrow-up-right\"></i></span></footer></div></div>",
+            "slug": "style-journal-cards",
+            "name": "手账卡片风",
+            "en": "Scrapbook Journal",
+            "tagline": "暖纸底、衬线大标题、微微歪着的卡片：像自己整理的收藏手账。",
+            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div style=\"width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#f4eee1;padding:16px\"><div style=\"background:#f4eee1;border-radius:12px;width:600px;padding:18px 20px;display:flex;flex-direction:column;gap:12px\"><div><h2 style=\"font-size:18px;color:#3a3325;font-weight:900\">产品手账<span style=\"font-size:9px;color:#b3a888;font-weight:400;letter-spacing:.18em;margin-left:8px\">FIELD NOTES</span></h2><span style=\"display:inline-block;width:52px;height:3px;background:#d9a441;border-radius:2px;margin-top:4px\"></span></div><div style=\"display:flex;gap:12px\"><div style=\"position:relative;transform:rotate(-1.6deg);background:#fffdf7;border:1px solid #e5dcc8;border-radius:6px;box-shadow:0 2px 0 rgba(120,100,60,.14);padding:12px 11px;flex:1;min-width:0\"><i style=\"position:absolute;top:-7px;left:50%;transform:translateX(-50%) rotate(-2deg);width:40px;height:12px;background:#a8c8e8;opacity:.85\"></i><span style=\"position:absolute;top:7px;right:8px;color:#d9a441;font-size:11px\">★</span><div style=\"display:flex;align-items:center;gap:7px\"><img src=\"/assets/logos/cursor.png\" alt=\"\" width=\"16\" height=\"16\" style=\"width:16px;height:16px;object-fit:contain;border-radius:4px\"/><b style=\"font-size:12px;color:#3a3325\">Cursor</b></div><p style=\"margin-top:4px;font-size:10px;color:#8a7f66;line-height:1.5\">试了三个月，Tab 补全真的在预测我的下一次重构。</p></div><div style=\"position:relative;transform:rotate(1.2deg);background:#fffdf7;border:1px solid #e5dcc8;border-radius:6px;box-shadow:0 2px 0 rgba(120,100,60,.14);padding:12px 11px;flex:1;min-width:0\"><i style=\"position:absolute;top:-7px;left:50%;transform:translateX(-50%) rotate(-2deg);width:40px;height:12px;background:#e8b4b4;opacity:.85\"></i><div style=\"display:flex;align-items:center;gap:7px\"><img src=\"/assets/logos/linear.ico\" alt=\"\" width=\"16\" height=\"16\" style=\"width:16px;height:16px;object-fit:contain;border-radius:4px\"/><b style=\"font-size:12px;color:#3a3325\">Linear</b></div><p style=\"margin-top:4px;font-size:10px;color:#8a7f66;line-height:1.5\">issue 列表快到像没有加载这回事。</p></div><div style=\"position:relative;transform:rotate(-0.6deg);background:#fffdf7;border:1px solid #e5dcc8;border-radius:6px;box-shadow:0 2px 0 rgba(120,100,60,.14);padding:12px 11px;flex:1;min-width:0\"><i style=\"position:absolute;top:-7px;left:50%;transform:translateX(-50%) rotate(-2deg);width:40px;height:12px;background:#b8d8b0;opacity:.85\"></i><span style=\"position:absolute;top:7px;right:8px;color:#d9a441;font-size:11px\">★</span><div style=\"display:flex;align-items:center;gap:7px\"><img src=\"/assets/logos/appllama.webp\" alt=\"\" width=\"16\" height=\"16\" style=\"width:16px;height:16px;object-fit:contain;border-radius:4px\"/><b style=\"font-size:12px;color:#3a3325\">Appllama</b></div><p style=\"margin-top:4px;font-size:10px;color:#8a7f66;line-height:1.5\">把头部 App 的付费墙全存了一遍，抄作业用。</p></div></div></div></div></div>",
             "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
           },
           {
-            "slug": "style-skeuomorphism",
-            "name": "拟物化",
-            "en": "Skeuomorphism",
-            "tagline": "早期 iPhone 那种，按钮像真按钮、笔记本像真本子。",
-            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div class=\"style-skeuomorphism-demo style-skeuomorphism-console\">\n    <div class=\"style-skeuomorphism-console-top\"><span class=\"style-skeuomorphism-brand\">MELLOWTAPE <i>STUDIO RECORDER</i></span><span class=\"style-skeuomorphism-console-status\"><b></b> INPUT LIVE</span></div>\n    <div class=\"style-skeuomorphism-console-main\">\n      <div class=\"style-skeuomorphism-reels\"><span class=\"style-skeuomorphism-reel\"><i></i></span><span class=\"style-skeuomorphism-tape\"></span><span class=\"style-skeuomorphism-reel right\"><i></i></span></div>\n      <div class=\"style-skeuomorphism-ledger\"><small>TAKE 04 · UNTITLED ROOM</small><strong>00:02:18</strong><span><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></div>\n      <div class=\"style-skeuomorphism-meters\"><b>L</b><i><em></em></i><b>R</b><i><em></em></i></div>\n    </div>\n    <div class=\"style-skeuomorphism-console-controls\"><span class=\"style-skeuomorphism-metal-knob\"></span><small>INPUT</small><span class=\"style-skeuomorphism-deck-key\">◀◀</span><span class=\"style-skeuomorphism-record-key\">●<i>REC</i></span><span class=\"style-skeuomorphism-deck-key\">▶</span><span class=\"style-skeuomorphism-metal-knob small\"></span><small>OUTPUT</small></div>\n  </div></div>",
+            "slug": "style-directory-nav",
+            "name": "图鉴式导航",
+            "en": "Catalog Navbar",
+            "tagline": "分区、搜索、Go Pro 一条顶栏全摊开，三秒知道能逛什么。",
+            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div style=\"width:100%;height:100%;background:#f7f7f8;padding:18px 20px;display:flex;flex-direction:column;justify-content:center;gap:14px;font-family:ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif\"><div style=\"font-size:9px;color:#6b6e76\">浅色态</div><div style=\"background:#ffffff;border:1px solid #e4e4e7;border-radius:10px;padding:7px 12px;display:flex;align-items:center;gap:12px\"><span style=\"display:flex;align-items:center;gap:6px\"><span style=\"width:18px;height:18px;display:grid;place-items:center;background:#E8C767;border-radius:5px;color:#14151a;font-size:10px;font-weight:800\">✦</span><b style=\"font-size:11px;color:#1a1b20;letter-spacing:.03em\">BUILDHUB</b></span><span style=\"display:flex;gap:11px;margin-left:6px\"><span style=\"font-size:10px;color:#1a1b20;font-weight:700\">术语</span><span style=\"font-size:10px;color:#6b6e76;font-weight:400\">技能</span><span style=\"font-size:10px;color:#6b6e76;font-weight:400\">产品</span><span style=\"font-size:10px;color:#6b6e76;font-weight:400\">提示词</span></span><span style=\"font-size:9px;font-weight:700;color:#ffffff;background:#14151a;border:1px solid #14151a;padding:2.5px 9px;border-radius:999px\">素材库</span><span style=\"margin-left:auto;display:flex;align-items:center;gap:8px\"><span style=\"display:flex;align-items:center;gap:5px;background:#f4f4f5;border-radius:999px;padding:4px 8px;font-size:9px;color:#6b6e76\">⌕ 搜索术语、技能…<i style=\"font-style:normal;border:1px solid #e4e4e7;border-radius:4px;padding:0 4px;font-size:8px\">/</i></span><span style=\"font-size:9.5px;font-weight:700;color:#1a1b20\">Go Pro</span><span style=\"width:18px;height:18px;border-radius:50%;background:#14151a;color:#fff;display:grid;place-items:center;font-size:9px\">✦</span></span></div><div style=\"font-size:9px;color:#6b6e76\">深色态</div><div style=\"background:#14151a;border:1px solid #2c2f38;border-radius:10px;padding:7px 12px;display:flex;align-items:center;gap:12px\"><span style=\"display:flex;align-items:center;gap:6px\"><span style=\"width:18px;height:18px;display:grid;place-items:center;background:#E8C767;border-radius:5px;color:#14151a;font-size:10px;font-weight:800\">✦</span><b style=\"font-size:11px;color:#ECEEF2;letter-spacing:.03em\">BUILDHUB</b></span><span style=\"display:flex;gap:11px;margin-left:6px\"><span style=\"font-size:10px;color:#ECEEF2;font-weight:700\">术语</span><span style=\"font-size:10px;color:#8B8E99;font-weight:400\">技能</span><span style=\"font-size:10px;color:#8B8E99;font-weight:400\">产品</span><span style=\"font-size:10px;color:#8B8E99;font-weight:400\">提示词</span></span><span style=\"font-size:9px;font-weight:700;color:#E8C767;background:transparent;border:1px solid #E8C767;padding:2.5px 9px;border-radius:999px\">素材库</span><span style=\"margin-left:auto;display:flex;align-items:center;gap:8px\"><span style=\"display:flex;align-items:center;gap:5px;background:#202228;border-radius:999px;padding:4px 8px;font-size:9px;color:#8B8E99\">⌕ 搜索术语、技能…<i style=\"font-style:normal;border:1px solid #2c2f38;border-radius:4px;padding:0 4px;font-size:8px\">/</i></span><span style=\"font-size:9.5px;font-weight:700;color:#ECEEF2\">Go Pro</span><span style=\"width:18px;height:18px;border-radius:50%;background:#E8C767;color:#14151a;display:grid;place-items:center;font-size:9px\">✦</span></span></div><div style=\"font-size:9px;color:#a1a1aa;text-align:center;margin-top:2px\">同一骨架 · 深浅双态</div></div></div>",
             "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
           },
           {
-            "slug": "style-flat",
-            "name": "扁平化",
-            "en": "Flat Design",
-            "tagline": "不要立体不要阴影，纯色块加简单图形，平平的那种。",
-            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div class=\"style-flat-demo style-flat-planner\">\n    <div class=\"style-flat-planner-head\"><b>WANDER / SH</b><span>SAT · 08.24</span><i>3 stops</i></div>\n    <div class=\"style-flat-planner-copy\"><small>DAY PLAN / SHANGHAI</small><h2>把周六<br>留给街道。</h2><p>一条步行路线，三件刚好的事。</p><b>查看路线 <i>→</i></b></div>\n    <div class=\"style-flat-route\"><div class=\"style-flat-route-line\"></div><div class=\"style-flat-stop blue\"><i></i><b>09:30</b><span>武康路</span></div><div class=\"style-flat-stop yellow\"><i></i><b>12:15</b><span>安福路</span></div><div class=\"style-flat-stop coral\"><i></i><b>16:00</b><span>西岸</span></div></div>\n    <div class=\"style-flat-plan-grid\"><div class=\"style-flat-plan-card blue\"><i class=\"style-flat-shape building\"></i><span>散步</span></div><div class=\"style-flat-plan-card yellow\"><i class=\"style-flat-shape sun\"></i><span>午餐</span></div><div class=\"style-flat-plan-card coral\"><i class=\"style-flat-shape arch\"></i><span>展览</span></div></div>\n  </div></div>",
+            "slug": "style-dark-catalog",
+            "name": "深色图鉴风",
+            "en": "Dark Library",
+            "tagline": "深底、一点金、卡片排得密：把内容站做出 Appllama 那种「有货的库」的仪式感。",
+            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div style=\"width:100%;height:100%;background:#14151a;padding:16px 20px;display:flex;flex-direction:column;gap:10px\"><div style=\"display:flex;align-items:baseline;gap:10px\"><b style=\"font-size:15px;color:#eceef2\">产品图鉴</b><span style=\"font-size:10px;color:#8b8e99\">优秀产品的收藏 · 共 13 件</span><span style=\"margin-left:auto;background:#e8c767;color:#14151a;border-radius:6px;padding:2px 8px;font-size:10px;font-weight:800\">PRO</span></div><div style=\"display:flex;gap:6px;flex-wrap:wrap\"><span style=\"border:1px solid #5a5236;border-radius:999px;padding:3px 10px;font-size:10.5px;color:#e8c767\">全部 13</span><span style=\"border:1px solid #3a3d46;border-radius:999px;padding:3px 10px;font-size:10.5px;color:#9a9dab\">AI 工具</span><span style=\"border:1px solid #3a3d46;border-radius:999px;padding:3px 10px;font-size:10.5px;color:#9a9dab\">效率工具</span><span style=\"border:1px solid #3a3d46;border-radius:999px;padding:3px 10px;font-size:10.5px;color:#9a9dab\">设计创意</span></div><div style=\"display:flex;flex-direction:column;gap:8px\"><div style=\"display:grid;grid-template-columns:repeat(3,1fr);gap:8px\"><div style=\"background:#202228;border:1px solid #2c2f38;border-radius:10px;padding:10px 11px;display:flex;align-items:center;gap:9px\"><span style=\"width:24px;height:24px;flex:none;background:#fff;border-radius:7px;display:grid;place-items:center\"><img src=\"/assets/logos/cursor.png\" alt=\"\" width=\"18\" height=\"18\" style=\"width:18px;height:18px;object-fit:contain;border-radius:4px\"/></span><div style=\"min-width:0\"><b style=\"display:block;font-size:12px;color:#eceef2;font-weight:700\">Cursor</b><span style=\"font-size:10px;color:#8b8e99;line-height:1.4;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">真正读懂你代码库的 AI 编辑器</span></div></div><div style=\"background:#202228;border:1px solid #2c2f38;border-radius:10px;padding:10px 11px;display:flex;align-items:center;gap:9px\"><span style=\"width:24px;height:24px;flex:none;background:#fff;border-radius:7px;display:grid;place-items:center\"><img src=\"/assets/logos/linear.ico\" alt=\"\" width=\"18\" height=\"18\" style=\"width:18px;height:18px;object-fit:contain;border-radius:4px\"/></span><div style=\"min-width:0\"><b style=\"display:block;font-size:12px;color:#eceef2;font-weight:700\">Linear</b><span style=\"font-size:10px;color:#8b8e99;line-height:1.4;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">为速度而生的 issue 管理</span></div></div><div style=\"background:#202228;border:1px solid #2c2f38;border-radius:10px;padding:10px 11px;display:flex;align-items:center;gap:9px\"><span style=\"width:24px;height:24px;flex:none;background:#fff;border-radius:7px;display:grid;place-items:center\"><img src=\"/assets/logos/raycast.png\" alt=\"\" width=\"18\" height=\"18\" style=\"width:18px;height:18px;object-fit:contain;border-radius:4px\"/></span><div style=\"min-width:0\"><b style=\"display:block;font-size:12px;color:#eceef2;font-weight:700\">Raycast</b><span style=\"font-size:10px;color:#8b8e99;line-height:1.4;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">键盘启动器，扩展即生态</span></div></div></div><div style=\"display:grid;grid-template-columns:repeat(3,1fr);gap:8px\"><div style=\"background:#202228;border:1px solid #2c2f38;border-radius:10px;padding:10px 11px;display:flex;align-items:center;gap:9px\"><span style=\"width:24px;height:24px;flex:none;background:#fff;border-radius:7px;display:grid;place-items:center\"><img src=\"/assets/logos/buffer.ico\" alt=\"\" width=\"18\" height=\"18\" style=\"width:18px;height:18px;object-fit:contain;border-radius:4px\"/></span><div style=\"min-width:0\"><b style=\"display:block;font-size:12px;color:#eceef2;font-weight:700\">Buffer</b><span style=\"font-size:10px;color:#8b8e99;line-height:1.4;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">有节奏地经营自媒体矩阵</span></div></div><div style=\"background:#202228;border:1px solid #2c2f38;border-radius:10px;padding:10px 11px;display:flex;align-items:center;gap:9px\"><span style=\"width:24px;height:24px;flex:none;background:#fff;border-radius:7px;display:grid;place-items:center\"><img src=\"/assets/logos/appllama.webp\" alt=\"\" width=\"18\" height=\"18\" style=\"width:18px;height:18px;object-fit:contain;border-radius:4px\"/></span><div style=\"min-width:0\"><b style=\"display:block;font-size:12px;color:#eceef2;font-weight:700\">Appllama</b><span style=\"font-size:10px;color:#8b8e99;line-height:1.4;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">1200+ 头部 App 的付费墙库</span></div></div><div style=\"background:#202228;border:1px solid #2c2f38;border-radius:10px;padding:10px 11px;display:flex;align-items:center;gap:9px\"><span style=\"width:24px;height:24px;flex:none;background:#fff;border-radius:7px;display:grid;place-items:center\"><img src=\"/assets/logos/figma.png\" alt=\"\" width=\"18\" height=\"18\" style=\"width:18px;height:18px;object-fit:contain;border-radius:4px\"/></span><div style=\"min-width:0\"><b style=\"display:block;font-size:12px;color:#eceef2;font-weight:700\">Figma</b><span style=\"font-size:10px;color:#8b8e99;line-height:1.4;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">浏览器里的设计协作标准件</span></div></div></div></div><small style=\"margin-top:auto;color:#5c5f69;font-size:9.5px\">虚构示例 · 图标为各产品真实 logo</small></div></div>",
+            "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
+          },
+          {
+            "slug": "style-calm-console",
+            "name": "冷静控制台风",
+            "en": "Calm Console",
+            "tagline": "灰白底、细描边、小字号高密度、一点紫：Linear 那种安静的高级工作台。",
+            "demoHtml": "<div class='scaled-preview-canvas style-preview-canvas'><div style=\"width:100%;height:100%;display:flex;align-items:center;justify-content:center;gap:16px;padding:16px 22px;background:#26272B;font-family:ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif\"><div style='width:230px;background:#FAFAFA;border:1px solid #E4E4E7;border-radius:10px;padding:10px 11px;display:flex;flex-direction:column;gap:7px'><div style='display:flex;align-items:baseline'><b style='font-size:11px;color:#18191A'>今天</b><span style='font-size:7.5px;color:#6B6E76;margin-left:5px;font-variant-numeric:tabular-nums'>9 / 18</span><span style='margin-left:auto;font-size:7.5px;font-weight:700;color:#fff;background:#5E6AD2;border-radius:4px;padding:2px 6px'>＋ 新建</span></div><div style='display:flex;gap:6px'><div style='flex:1;background:#FFFFFF;border:1px solid #E4E4E7;border-radius:7px;padding:6px 7px'><div style='font-size:7px;color:#6B6E76'>进行中目标</div><div style='font-size:14px;font-weight:700;color:#18191A;font-variant-numeric:tabular-nums'>3</div></div><div style='flex:1;background:#FFFFFF;border:1px solid #E4E4E7;border-radius:7px;padding:6px 7px'><div style='font-size:7px;color:#6B6E76'>本周任务</div><div style='font-size:14px;font-weight:700;color:#18191A;font-variant-numeric:tabular-nums'>12/18</div></div></div><div style='background:#FFFFFF;border:1px solid #E4E4E7;border-radius:7px;padding:6px 8px;display:flex;align-items:center;gap:6px'><i style='width:9px;height:9px;flex:none;border-radius:50%;border:1px solid #6B6E76'></i><span style='font-size:8.5px;color:#18191A'>冷静控制台样张</span><span style='margin-left:auto'><span style='font-size:8px;font-weight:600;color:#2E7D4F;background:rgba(48,164,108,.10);border:1px solid rgba(48,164,108,.35);border-radius:999px;padding:1.5px 6px;white-space:nowrap'>进行中</span></span></div><div style='background:#FFFFFF;border:1px solid #E4E4E7;border-radius:7px;padding:6px 8px'><div style='font-size:7.5px;color:#6B6E76;margin-bottom:4px;display:flex'><span>人生操作系统改造</span><span style='margin-left:auto;font-variant-numeric:tabular-nums;color:#5E6AD2;font-weight:700'>43%</span></div><div style='height:3px;background:#EFEFF1;border-radius:99px'><i style='display:block;width:43%;height:3px;background:#5E6AD2;border-radius:99px'></i></div></div><span style='font-size:7px;color:#6B6E76'>浅色态</span></div><div style='width:230px;background:#101112;border:1px solid #292A2E;border-radius:10px;padding:10px 11px;display:flex;flex-direction:column;gap:7px'><div style='display:flex;align-items:baseline'><b style='font-size:11px;color:#E4E4E7'>今天</b><span style='font-size:7.5px;color:#8A8F98;margin-left:5px;font-variant-numeric:tabular-nums'>9 / 18</span><span style='margin-left:auto;font-size:7.5px;font-weight:700;color:#fff;background:#8B93E8;border-radius:4px;padding:2px 6px'>＋ 新建</span></div><div style='display:flex;gap:6px'><div style='flex:1;background:#18191A;border:1px solid #292A2E;border-radius:7px;padding:6px 7px'><div style='font-size:7px;color:#8A8F98'>进行中目标</div><div style='font-size:14px;font-weight:700;color:#E4E4E7;font-variant-numeric:tabular-nums'>3</div></div><div style='flex:1;background:#18191A;border:1px solid #292A2E;border-radius:7px;padding:6px 7px'><div style='font-size:7px;color:#8A8F98'>本周任务</div><div style='font-size:14px;font-weight:700;color:#E4E4E7;font-variant-numeric:tabular-nums'>12/18</div></div></div><div style='background:#18191A;border:1px solid #292A2E;border-radius:7px;padding:6px 8px;display:flex;align-items:center;gap:6px'><i style='width:9px;height:9px;flex:none;border-radius:50%;border:1px solid #8A8F98'></i><span style='font-size:8.5px;color:#E4E4E7'>冷静控制台样张</span><span style='margin-left:auto'><span style='font-size:8px;font-weight:600;color:#5DBB8A;background:rgba(72,180,115,.10);border:1px solid rgba(72,180,115,.32);border-radius:999px;padding:1.5px 6px;white-space:nowrap'>进行中</span></span></div><div style='background:#18191A;border:1px solid #292A2E;border-radius:7px;padding:6px 8px'><div style='font-size:7.5px;color:#8A8F98;margin-bottom:4px;display:flex'><span>人生操作系统改造</span><span style='margin-left:auto;font-variant-numeric:tabular-nums;color:#8B93E8;font-weight:700'>43%</span></div><div style='height:3px;background:#292A2E;border-radius:99px'><i style='display:block;width:43%;height:3px;background:#8B93E8;border-radius:99px'></i></div></div><span style='font-size:7px;color:#8A8F98'>深色态</span></div></div></div>",
             "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
           },
           {
@@ -3254,13 +3305,21 @@
             "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
           },
           {
-            "slug": "style-neumorphism",
-            "name": "新拟态",
-            "en": "Neumorphism",
-            "tagline": "按钮像从背景里凸出来，同色系、软软的那种质感。",
-            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div class=\"style-neumorphism-demo style-neumorphism-home\">\n    <div class=\"style-neumorphism-home-head\"><span>HOME / LIVING ROOM</span><b>晚安模式</b><i>22:41</i></div>\n    <div class=\"style-neumorphism-climate\"><small>室内温度</small><b>24<span>°</span></b><em>舒适</em><i class=\"style-neumorphism-climate-ring\"></i></div>\n    <div class=\"style-neumorphism-home-side\"><div class=\"style-neumorphism-home-state\"><i></i><span>空气质量<b>优</b></span></div><div class=\"style-neumorphism-home-state pressed\"><i></i><span>夜间氛围<b>已开启</b></span></div></div>\n    <div class=\"style-neumorphism-home-actions\"><button class=\"style-neumorphism-home-action\"><i class=\"lamp\"></i><span>阅读灯</span><b>40%</b></button><button class=\"style-neumorphism-home-action\"><i class=\"fan\"></i><span>新风</span><b>自动</b></button></div>\n  </div></div>",
+            "slug": "style-flat",
+            "name": "扁平化",
+            "en": "Flat Design",
+            "tagline": "不要立体不要阴影，纯色块加简单图形，平平的那种。",
+            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div class=\"style-flat-demo style-flat-planner\">\n    <div class=\"style-flat-planner-head\"><b>WANDER / SH</b><span>SAT · 08.24</span><i>3 stops</i></div>\n    <div class=\"style-flat-planner-copy\"><small>DAY PLAN / SHANGHAI</small><h2>把周六<br>留给街道。</h2><p>一条步行路线，三件刚好的事。</p><b>查看路线 <i>→</i></b></div>\n    <div class=\"style-flat-route\"><div class=\"style-flat-route-line\"></div><div class=\"style-flat-stop blue\"><i></i><b>09:30</b><span>武康路</span></div><div class=\"style-flat-stop yellow\"><i></i><b>12:15</b><span>安福路</span></div><div class=\"style-flat-stop coral\"><i></i><b>16:00</b><span>西岸</span></div></div>\n    <div class=\"style-flat-plan-grid\"><div class=\"style-flat-plan-card blue\"><i class=\"style-flat-shape building\"></i><span>散步</span></div><div class=\"style-flat-plan-card yellow\"><i class=\"style-flat-shape sun\"></i><span>午餐</span></div><div class=\"style-flat-plan-card coral\"><i class=\"style-flat-shape arch\"></i><span>展览</span></div></div>\n  </div></div>",
             "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
-          },
+          }
+        ]
+      },
+      {
+        "id": "cat-commercial-conversion",
+        "title": "商业转化",
+        "category": "web-style",
+        "count": 4,
+        "terms": [
           {
             "slug": "style-saas",
             "name": "SaaS 产品官网",
@@ -3286,6 +3345,54 @@
             "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
           },
           {
+            "slug": "style-paywall",
+            "name": "付费墙设计",
+            "en": "App Paywall",
+            "tagline": "头部 App 的付费墙都有一套共同套路：价值主张、利益清单、价格锚点、随时取消。",
+            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div style=\"width:100%;height:100%;display:flex;align-items:center;justify-content:center;gap:32px;padding:18px 26px;background:var(--bg-soft)\"><div style=\"flex:0 0 220px;display:flex;flex-direction:column;gap:10px\"><small style=\"color:var(--text-3);font-size:11px\">虚构示例 · 品牌与价格仅用于演示</small><b style=\"font-size:22px;font-weight:800;color:var(--text)\">付费墙<br><span style=\"font-size:13px;font-weight:500;color:var(--text-2)\">一页为「让你掏钱」而设计的页面</span></b><ul style=\"display:flex;flex-direction:column;gap:7px;font-size:12.5px;color:var(--text-2)\"><li style=\"list-style:none\">① 价值主张：先卖升级后的自己</li><li style=\"list-style:none\">② 利益清单：3–5 条具体的</li><li style=\"list-style:none\">③ 价格锚点：年框高亮</li><li style=\"list-style:none\">④ 安心与出口：随时取消 / ✕</li></ul></div><div style=\"display:flex;gap:14px\"><div style=\"width:170px;height:280px;border-radius:22px;border:2px solid var(--border);background:var(--bg);box-shadow:0 10px 24px rgba(29,33,41,.08);overflow:hidden;display:flex;flex-direction:column;gap:8px;padding:14px 12px;position:relative\"><span style=\"position:absolute;top:10px;right:12px;font-size:12px;color:var(--text-3)\">✕</span><i class=\"ti ti-crown\" style=\"font-size:18px;color:var(--brand)\"></i><b style=\"font-size:14px;color:var(--text)\">升级到 Pro</b><div style=\"display:flex;flex-direction:column;gap:5px;font-size:11.5px;color:var(--text-2)\"><span>✓ 云端无限同步</span><span>✓ 高级导出格式</span><span>✓ 去除水印</span></div><div style=\"display:flex;gap:6px;margin-top:2px\"><span style=\"flex:1;border:1px solid var(--border);border-radius:8px;padding:5px 4px;text-align:center;font-size:10.5px;color:var(--text-2)\">月付<br><b style=\"color:var(--text)\">¥ 28</b></span><span style=\"flex:1;border:1.5px solid var(--brand);border-radius:8px;padding:5px 4px;text-align:center;font-size:10.5px;background:var(--brand-light);color:var(--brand)\">年付<br><b>¥ 198</b> · 省 40%</span></div><button style=\"margin-top:auto;width:100%;border:0;border-radius:10px;padding:9px 0;font-size:12px;font-weight:700;color:#fff;background:linear-gradient(90deg,var(--brand),#722ed1)\">开始 7 天免费试用</button><small style=\"text-align:center;font-size:9.5px;color:var(--text-3)\">不收费 · 可随时取消</small></div><div style=\"width:170px;height:280px;border-radius:22px;border:2px solid var(--border);background:var(--bg);box-shadow:0 10px 24px rgba(29,33,41,.08);overflow:hidden;display:flex;flex-direction:column;gap:8px;padding:14px 12px;position:relative\"><span style=\"position:absolute;top:10px;right:12px;font-size:12px;color:var(--text-3)\">✕</span><i class=\"ti ti-crown\" style=\"font-size:18px;color:var(--brand)\"></i><b style=\"font-size:14px;color:var(--text)\">解锁全部功能</b><div style=\"display:flex;flex-direction:column;gap:5px;font-size:11.5px;color:var(--text-2)\"><span>✓ 离线草稿箱</span><span>✓ 团队空间</span><span>✓ 专属客服</span></div><div style=\"display:flex;gap:6px;margin-top:2px\"><span style=\"flex:1;border:1px solid var(--border);border-radius:8px;padding:5px 4px;text-align:center;font-size:10.5px;color:var(--text-2)\">月付<br><b style=\"color:var(--text)\">¥ 28</b></span><span style=\"flex:1;border:1.5px solid var(--brand);border-radius:8px;padding:5px 4px;text-align:center;font-size:10.5px;background:var(--brand-light);color:var(--brand)\">年付<br><b>¥ 198</b> · 省 40%</span></div><button style=\"margin-top:auto;width:100%;border:0;border-radius:10px;padding:9px 0;font-size:12px;font-weight:700;color:#fff;background:linear-gradient(90deg,var(--brand),#722ed1)\">免费试用 7 天</button><small style=\"text-align:center;font-size:9.5px;color:var(--text-3)\">随时可取消 · 不扣费</small></div></div></div></div>",
+            "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
+          }
+        ]
+      },
+      {
+        "id": "cat-personal-expression",
+        "title": "个人表达",
+        "category": "web-style",
+        "count": 3,
+        "terms": [
+          {
+            "slug": "style-personal-site",
+            "name": "个人作品集站",
+            "en": "Personal Portfolio",
+            "tagline": "一个域名、一到三屏：说清你是谁、做过什么、怎么联系你。",
+            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div style=\"width:100%;height:100%;background:#0a192f;font-family:ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,'PingFang SC',sans-serif;padding:14px 16px;display:flex;gap:18px;align-items:flex-start\"><div style=\"flex:0 0 168px;display:flex;flex-direction:column;gap:10px\"><div><h2 style=\"font-size:22px;font-weight:800;color:#ccd6f8;letter-spacing:-.01em\">柯比 · Kobe</h2><div style=\"font-size:11px;color:#8892b6;margin-top:2px\">独立开发者 · VibeCoding</div><p style=\"font-size:10px;color:#8892b6;line-height:1.6;margin-top:7px\">做一人公司工具，也写下来怎么做。</p></div><div style=\"display:flex;flex-direction:column;gap:7px;margin-top:6px\"><span style=\"display:flex;align-items:center;gap:8px\"><i style=\"width:26px;height:1px;background:#64ffda;display:block\"></i><b style=\"font-size:10px;letter-spacing:.14em;color:#ccd6f8\">关于</b></span><span style=\"display:flex;align-items:center;gap:8px\"><i style=\"width:14px;height:1px;background:#64ffda;display:block\"></i><b style=\"font-size:10px;letter-spacing:.14em;color:#8892b6\">经历</b></span><span style=\"display:flex;align-items:center;gap:8px\"><i style=\"width:14px;height:1px;background:#64ffda;display:block\"></i><b style=\"font-size:10px;letter-spacing:.14em;color:#8892b6\">作品</b></span></div><div style=\"display:flex;gap:6px;margin-top:6px\"><span style=\"width:20px;height:20px;border:1px solid #233554;border-radius:5px;display:grid;place-items:center;font-size:10px;color:#8892b6\">⌥</span><span style=\"width:20px;height:20px;border:1px solid #233554;border-radius:5px;display:grid;place-items:center;font-size:10px;color:#8892b6\">in</span><span style=\"width:20px;height:20px;border:1px solid #233554;border-radius:5px;display:grid;place-items:center;font-size:10px;color:#8892b6\">@</span></div></div><div style=\"flex:1;min-width:0;border-left:1px solid #233554;padding-left:18px\"><p style=\"font-size:11px;color:#ccd6f8;line-height:1.75\">你好，我是柯比。一个人做产品：一个 Next.js 的内容站、两个卖出去的模板、一个还在写的工作台。<span style=\"color:#64ffda\">可核验的东西都在下面。</span></p></div></div></div>",
+            "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
+          },
+          {
+            "slug": "style-digital-garden",
+            "name": "数字花园",
+            "en": "Digital Garden",
+            "tagline": "不按时间按主题：公开笔记长期修订，允许半成品挂着。",
+            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div style=\"width:100%;height:100%;background:#fdfcf8;font-family:Georgia,'Iowan Old Style','Songti SC',serif;padding:14px 18px;display:flex;flex-direction:column;gap:10px\"><div style=\"display:flex;align-items:center;gap:8px\"><span style=\"width:22px;height:22px;border-radius:50%;background:#1c1a17;color:#fdfcf8;display:grid;place-items:center;font-size:11px\">G</span><div style=\"display:flex;gap:5px;margin-left:6px\"><span style=\"border:1px solid #ddd6c6;background:#fffdf9;font-size:9px;letter-spacing:.12em;color:#1c1a17;padding:3px 9px;border-radius:3px\">站点</span><span style=\"border:1px solid #ddd6c6;background:#fffdf9;font-size:9px;letter-spacing:.12em;color:#1c1a17;padding:3px 9px;border-radius:3px\">关于</span><span style=\"border:1px solid #ddd6c6;background:#fffdf9;font-size:9px;letter-spacing:.12em;color:#1c1a17;padding:3px 9px;border-radius:3px\">最新</span><span style=\"border:1px solid #ddd6c6;background:#fffdf9;font-size:9px;letter-spacing:.12em;color:#1c1a17;padding:3px 9px;border-radius:3px\">笔记</span><span style=\"border:1px solid #ddd6c6;background:#fffdf9;font-size:9px;letter-spacing:.12em;color:#1c1a17;padding:3px 9px;border-radius:3px\">链接</span></div><span style=\"margin-left:auto;font-size:9px;color:#8a806c\">Auto · Light · Dark</span></div><p style=\"font-size:11.5px;line-height:1.7;color:#1c1a17;margin:0\">这是 <b>Gwern 式</b>的花园首页：正文衬线、链接全部下划线，<i style=\"color:#8a806c\">导航说明</i>写在第一段里，读者从任何一页都能跳进主题。</p><div style=\"display:flex;gap:22px;border-top:1px solid #ddd6c6;padding-top:9px;margin-top:2px\"><div style=\"flex:1;min-width:0\"><div style=\"font-size:10px;letter-spacing:.14em;color:#1c1a17;border-bottom:1px solid #ddd6c6;padding-bottom:4px;margin-bottom:7px\">NEWEST</div><div style=\"display:flex;align-items:center;gap:5px;font-size:10.5px;color:#2f6fed;text-decoration:underline;text-underline-offset:2px;margin-bottom:5px\"><span style=\"color:#b8ad93;text-decoration:none\">◈</span>想法：Lean scaling laws</div><div style=\"display:flex;align-items:center;gap:5px;font-size:10.5px;color:#2f6fed;text-decoration:underline;text-underline-offset:2px;margin-bottom:5px\"><span style=\"color:#b8ad93;text-decoration:none\">❖</span>「沙、雨、木」读书笔记</div><div style=\"display:flex;align-items:center;gap:5px;font-size:10.5px;color:#2f6fed;text-decoration:underline;text-underline-offset:2px;margin-bottom:5px\"><span style=\"color:#b8ad93;text-decoration:none\">❖</span>第 6 章：Mime Molting</div></div><div style=\"flex:1;min-width:0\"><div style=\"font-size:10px;letter-spacing:.14em;color:#1c1a17;border-bottom:1px solid #ddd6c6;padding-bottom:4px;margin-bottom:7px\">POPULAR</div><div style=\"display:flex;align-items:center;gap:5px;font-size:10.5px;color:#2f6fed;text-decoration:underline;text-underline-offset:2px;margin-bottom:5px\"><span style=\"color:#b8ad93;text-decoration:none\">❖</span>NN 规模假设</div><div style=\"display:flex;align-items:center;gap:5px;font-size:10.5px;color:#2f6fed;text-decoration:underline;text-underline-offset:2px;margin-bottom:5px\"><span style=\"color:#b8ad93;text-decoration:none\">❖</span>Death Note 匿名性研究</div><div style=\"display:flex;align-items:center;gap:5px;font-size:10.5px;color:#2f6fed;text-decoration:underline;text-underline-offset:2px;margin-bottom:5px\"><span style=\"color:#b8ad93;text-decoration:none\">❖</span>丝绸之路 1 号档案</div></div></div></div></div>",
+            "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
+          },
+          {
+            "slug": "style-link-hub",
+            "name": "创作者链接页",
+            "en": "Link-in-bio Page",
+            "tagline": "一个 URL 装下所有平台入口，竖排胶囊一列到底。",
+            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div style=\"width:100%;height:100%;background:linear-gradient(135deg,#f4f1ff,#eef4ff);font-family:ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,'PingFang SC',sans-serif;display:flex;align-items:center;justify-content:center\"><div style=\"width:212px;display:flex;flex-direction:column;align-items:center;gap:7px;padding:12px 0\"><span style=\"width:44px;height:44px;border-radius:50%;background:#14151a;color:#e8c767;display:grid;place-items:center;font-size:17px;font-weight:800\">柯</span><b style=\"font-size:12.5px;color:#1a1b20\">柯比 Kobe</b><span style=\"font-size:9.5px;color:#6b6e76\">@kobe · 一个人做产品，把它写下来</span><div style=\"width:100%;display:flex;flex-direction:column;gap:6px;margin-top:4px\"><div style=\"height:26px;background:#14151a;border:1px solid #14151a;border-radius:9px;display:flex;align-items:center;gap:7px;padding:0 10px;font-size:10.5px;color:#ffffff;font-weight:600\"><span style=\"width:14px;height:14px;border-radius:4px;background:#e8c767;display:grid;place-items:center;font-size:8px;color:#14151a\">✦</span>我的产品工作台<span style=\"margin-left:auto;font-size:9px;opacity:.6\">↗</span></div><div style=\"height:26px;background:#ffffff;border:1px solid #e4e4e7;border-radius:9px;display:flex;align-items:center;gap:7px;padding:0 10px;font-size:10.5px;color:#1a1b20;font-weight:600\"><span style=\"width:14px;height:14px;border-radius:4px;background:#f4f4f5;display:grid;place-items:center;font-size:8px;color:#14151a\">公</span>公众号 · 每周更新<span style=\"margin-left:auto;font-size:9px;opacity:.6\">↗</span></div><div style=\"height:26px;background:#ffffff;border:1px solid #e4e4e7;border-radius:9px;display:flex;align-items:center;gap:7px;padding:0 10px;font-size:10.5px;color:#1a1b20;font-weight:600\"><span style=\"width:14px;height:14px;border-radius:4px;background:#f4f4f5;display:grid;place-items:center;font-size:8px;color:#14151a\">B</span>B 站 · 开发实录<span style=\"margin-left:auto;font-size:9px;opacity:.6\">↗</span></div><div style=\"height:26px;background:#ffffff;border:1px solid #e4e4e7;border-radius:9px;display:flex;align-items:center;gap:7px;padding:0 10px;font-size:10.5px;color:#1a1b20;font-weight:600\"><span style=\"width:14px;height:14px;border-radius:4px;background:#f4f4f5;display:grid;place-items:center;font-size:8px;color:#14151a\">W</span>全部作品与写作<span style=\"margin-left:auto;font-size:9px;opacity:.6\">↗</span></div></div><span style=\"font-size:8.5px;color:#8b8e99;margin-top:2px\">kobe.dev · 2026</span></div></div></div>",
+            "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
+          }
+        ]
+      },
+      {
+        "id": "cat-dark-tech",
+        "title": "暗黑科技",
+        "category": "web-style",
+        "count": 2,
+        "terms": [
+          {
             "slug": "style-dark-tech",
             "name": "深色界面",
             "en": "Dark UI",
@@ -3294,20 +3401,44 @@
             "demoClass": "card-demo scaled-preview style-preview"
           },
           {
-            "slug": "style-playful",
-            "name": "趣味插画",
-            "en": "Playful Illustration",
-            "tagline": "活泼一点，配上有趣的插画和角色，别太严肃。",
-            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div class=\"ms-demo ms-playful\"><small style=\"display:block;padding:6px 10px;color:var(--text-3);font-size:11px\">虚构示例 · 品牌、任务与客户名称仅用于展示</small><span class=\"play-shape s1\">✦</span><span class=\"play-shape s2\"></span><header><b><span>m</span> mochi</b><nav><span>How it works</span><span>Templates</span><span>Stories</span></nav><div><span>Log in</span><button>Make something <i class=\"ti ti-arrow-up-right\"></i></button></div></header><main><section><small>YOUR IDEAS, IN MOTION</small><h2>Plan less.<br><em>Make more.</em></h2><p>A friendly creative board for turning tiny sparks into finished things.</p><div><button>Start a free board</button><a><i class=\"ti ti-player-play-filled\"></i> See it in action</a></div></section><aside class=\"play-board\"><div class=\"play-note yellow\"><small>THIS WEEK</small><b>Launch the tiny zine ✦</b><span>3 of 5 done</span></div><div class=\"play-note purple\"><span class=\"play-face\">◡</span><b>Nice work!</b><small>You kept the streak alive</small></div><div class=\"play-note white\"><small>IDEA PILE</small><p><i></i>Cover sketch</p><p><i></i>Ask Mei for photos</p><p><i></i>Print ten copies</p></div><span class=\"play-sticker\">MAKE<br>IT REAL</span></aside></main><footer><span>客户标识需授权后展示</span></footer></div></div>",
+            "slug": "style-terminal",
+            "name": "终端极客风",
+            "en": "Terminal Aesthetic",
+            "tagline": "像黑客终端那样：黑底绿字、等宽字体、敲命令的感觉。",
+            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div class=\"style-terminal-demo style-terminal-console\"><div class=\"tm-head\"><b><span class=\"style-terminal-g\">▣</span> release/console</b><span>prod · ap-east-1</span><i>09:42:18</i></div><div class=\"tm-grid\"><section><small>DEPLOYMENT #8842</small><h2>checkout-api<br><span class=\"style-terminal-g\">v2.14.0</span></h2><p>canary 25% · checks are watching p95 and error rate.</p><div class=\"tm-command\">$ deploy promote --to=100%</div><div class=\"tm-buttons\"><b>promote →</b><span>rollback ↶</span></div><div class=\"tm-stages\"><span>✓ bundle&nbsp;&nbsp; 1.2s</span><span>✓ migrations&nbsp;&nbsp; skipped</span><span>○ metrics window&nbsp;&nbsp; 02:14 left</span></div></section><aside><div><small>SERVICES</small><b><i></i> api  healthy</b><b><i></i> worker healthy</b><b class=\"warn\"><i></i> web  1 warning</b></div><pre>$ tail deploy.log\n✓ migrations skipped\n✓ canary healthy\n… waiting for approval<span class=\"style-terminal-cursor\"></span></pre></aside></div></div></div>",
             "demoClass": "card-demo scaled-preview style-preview"
+          }
+        ]
+      },
+      {
+        "id": "cat-retro-cultural",
+        "title": "复古文化",
+        "category": "web-style",
+        "count": 7,
+        "terms": [
+          {
+            "slug": "style-brutalism",
+            "name": "新粗野",
+            "en": "Neo-Brutalism",
+            "tagline": "粗黑边框、大色块、硬阴影，特别张扬有个性的那种。",
+            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div id=\"brutalism-dashboard-demo\" class=\"style-brutalism-demo\" role=\"img\" aria-label=\"新粗野风格的创作者经营工作台，展示收入、订单、转化率和本周销冠\">\n    <div class=\"style-brutalism-app\">\n      <div class=\"style-brutalism-topbar\">\n        <div class=\"style-brutalism-brand\"><span>MO</span><b>MAKER OFFICE</b><i>CREATOR OS</i></div>\n        <div class=\"style-brutalism-live\"><i></i>商店营业中</div>\n        <div class=\"style-brutalism-profile\"><span>AH</span><b>阿禾</b><i>↘</i></div>\n      </div>\n      <div class=\"style-brutalism-shell\">\n        <aside class=\"style-brutalism-sidebar\">\n          <nav>\n            <span class=\"on\"><i>01</i>经营概览</span>\n            <span><i>02</i>我的商品</span>\n            <span><i>03</i>订单管理</span>\n            <span><i>04</i>顾客名单</span>\n          </nav>\n          <div class=\"style-brutalism-side-goal\">\n            <small>JULY GOAL</small>\n            <b>离目标还差<br>¥ 3,820</b>\n            <span><i style=\"width:68%\"></i></span>\n            <em>68%</em>\n          </div>\n        </aside>\n        <div class=\"style-brutalism-main\">\n          <div class=\"style-brutalism-hero\">\n            <div><small>WED. 22 JULY</small><h2>今天，把作品<br><mark>卖出去。</mark></h2></div>\n            <span class=\"style-brutalism-publish\">＋ 发布新商品 <b>↗</b></span>\n          </div>\n          <div class=\"style-brutalism-kpis\">\n            <article class=\"income\"><span>本月收入 <i>+18.6%</i></span><b>¥ 16,180</b><small>目标 ¥20,000</small></article>\n            <article><span>今日订单 <i>LIVE</i></span><b>38</b><small>7 笔待交付</small></article>\n            <article><span>商品转化率 <i>↗ 2.4%</i></span><b>8.7%</b><small>访客 1,284</small></article>\n          </div>\n          <div class=\"style-brutalism-lower\">\n            <section class=\"style-brutalism-orders\">\n              <header><div><small>RECENT ORDERS</small><b>刚刚卖出的作品</b></div><span>查看全部 →</span></header>\n              <div class=\"style-brutalism-order-head\"><span>商品</span><span>顾客</span><span>金额</span><span>状态</span></div>\n              <div class=\"style-brutalism-order-row\"><b><i class=\"pink\">NS</i>Notion 创作系统</b><span>@lulu</span><strong>¥129</strong><em>已交付</em></div>\n              <div class=\"style-brutalism-order-row\"><b><i class=\"blue\">FG</i>Figma 组件模板</b><span>@mango</span><strong>¥69</strong><em>已交付</em></div>\n              <div class=\"style-brutalism-order-row\"><b><i class=\"yellow\">WB</i>独立开发手册</b><span>@zoe</span><strong>¥49</strong><em class=\"wait\">待交付</em></div>\n            </section>\n            <section class=\"style-brutalism-product\">\n              <div class=\"style-brutalism-product-cover\"><span>TOP 01</span><i></i><b>NOTION<br>创作系统</b></div>\n              <div class=\"style-brutalism-product-meta\"><small>本周销冠</small><b>已售 128 份</b><span>¥129 / 份</span></div>\n              <div class=\"style-brutalism-spark\"><i style=\"height:32%\"></i><i style=\"height:48%\"></i><i style=\"height:41%\"></i><i style=\"height:70%\"></i><i style=\"height:58%\"></i><i style=\"height:86%\"></i><i style=\"height:100%\"></i></div>\n            </section>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div></div>",
+            "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
           },
           {
-            "slug": "style-organic",
-            "name": "有机设计",
-            "en": "Organic Design",
-            "tagline": "自然一点的感觉：大地色、圆润的形状、像手作的。",
-            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div class=\"ms-demo ms-organic\"><small style=\"display:block;padding:6px 10px;color:var(--text-3);font-size:11px\">虚构示例 · 品牌、产地、商品和成分承诺仅用于展示</small><header><b>MORROW</b><nav><span>Shop</span><span>Our farm</span><span>Field notes</span><span>Stockists</span></nav><div><i class=\"ti ti-search\"></i><span>Bag (1)</span></div></header><main><section class=\"organic-copy\"><small>BOTANICAL DAILY CARE · 04</small><h2>Small rituals,<br><em>better days.</em></h2><p>Plant oils and mineral-rich clays, blended slowly in the hills outside Dali.</p><div><button>Meet the collection</button><a>How we make it <i class=\"ti ti-arrow-right\"></i></a></div><footer><span><i class=\"ti ti-leaf\"></i> Traceable plants</span><span><i class=\"ti ti-recycle\"></i> Refill ready</span></footer></section><aside class=\"organic-photo\"><img src=\"/assets/style-imagery/editorial-travel-forest.webp\" alt=\"Quiet forest in soft daylight\"><div><small>FIELD BLEND · NO. 04</small><b>Forest Body Oil</b><span>Camellia · Pine · Oat</span><em>示例价格</em></div><i>示例<br><small>产量</small></i></aside></main><div class=\"organic-note\"><span>来源、产地和成分按实际信息填写</span><b>— 内容说明</b></div></div></div>",
-            "demoClass": "card-demo scaled-preview style-preview"
+            "slug": "style-editorial",
+            "name": "杂志编辑风",
+            "en": "Editorial",
+            "tagline": "像时尚杂志那样的排版，图文穿插，有编辑感。",
+            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div class=\"style-editorial-demo editorial-city\"><header><span>FIELD NOTES</span><b>THE WEEKEND EDIT</b><span>ISSUE 28 · 2026</span></header><main><section class=\"editorial-cover\"><img src=\"/assets/style-imagery/editorial-light-study.webp\" alt=\"Concrete forms cut by light\"><small>Light study / Xuhui, 6:12 p.m.</small></section><section class=\"editorial-story\"><p class=\"editorial-kicker\">CITY / PEOPLE / PLACE</p><h1>The city<br>after <em>midnight.</em></h1><p class=\"editorial-dek\">For one quiet hour, familiar streets become a different kind of public room.</p><div class=\"editorial-by\"><span>WORDS / LIN ZHI</span><span>8 MIN READ</span></div></section></main><footer><span>ESSAYS</span><span>GUIDES</span><b>042</b><span>SUBSCRIBE <i class=\"ti ti-arrow-up-right\"></i></span></footer></div></div>",
+            "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
+          },
+          {
+            "slug": "style-neumorphism",
+            "name": "新拟态",
+            "en": "Neumorphism",
+            "tagline": "按钮像从背景里凸出来，同色系、软软的那种质感。",
+            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div class=\"style-neumorphism-demo style-neumorphism-home\">\n    <div class=\"style-neumorphism-home-head\"><span>HOME / LIVING ROOM</span><b>晚安模式</b><i>22:41</i></div>\n    <div class=\"style-neumorphism-climate\"><small>室内温度</small><b>24<span>°</span></b><em>舒适</em><i class=\"style-neumorphism-climate-ring\"></i></div>\n    <div class=\"style-neumorphism-home-side\"><div class=\"style-neumorphism-home-state\"><i></i><span>空气质量<b>优</b></span></div><div class=\"style-neumorphism-home-state pressed\"><i></i><span>夜间氛围<b>已开启</b></span></div></div>\n    <div class=\"style-neumorphism-home-actions\"><button class=\"style-neumorphism-home-action\"><i class=\"lamp\"></i><span>阅读灯</span><b>40%</b></button><button class=\"style-neumorphism-home-action\"><i class=\"fan\"></i><span>新风</span><b>自动</b></button></div>\n  </div></div>",
+            "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
           },
           {
             "slug": "style-y2k",
@@ -3326,22 +3457,6 @@
             "demoClass": "card-demo scaled-preview style-preview"
           },
           {
-            "slug": "style-terminal",
-            "name": "终端极客风",
-            "en": "Terminal Aesthetic",
-            "tagline": "像黑客终端那样：黑底绿字、等宽字体、敲命令的感觉。",
-            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div class=\"style-terminal-demo style-terminal-console\"><div class=\"tm-head\"><b><span class=\"style-terminal-g\">▣</span> release/console</b><span>prod · ap-east-1</span><i>09:42:18</i></div><div class=\"tm-grid\"><section><small>DEPLOYMENT #8842</small><h2>checkout-api<br><span class=\"style-terminal-g\">v2.14.0</span></h2><p>canary 25% · checks are watching p95 and error rate.</p><div class=\"tm-command\">$ deploy promote --to=100%</div><div class=\"tm-buttons\"><b>promote →</b><span>rollback ↶</span></div><div class=\"tm-stages\"><span>✓ bundle&nbsp;&nbsp; 1.2s</span><span>✓ migrations&nbsp;&nbsp; skipped</span><span>○ metrics window&nbsp;&nbsp; 02:14 left</span></div></section><aside><div><small>SERVICES</small><b><i></i> api  healthy</b><b><i></i> worker healthy</b><b class=\"warn\"><i></i> web  1 warning</b></div><pre>$ tail deploy.log\n✓ migrations skipped\n✓ canary healthy\n… waiting for approval<span class=\"style-terminal-cursor\"></span></pre></aside></div></div></div>",
-            "demoClass": "card-demo scaled-preview style-preview"
-          },
-          {
-            "slug": "style-wabisabi",
-            "name": "日式侘寂",
-            "en": "Wabi-sabi",
-            "tagline": "素一点、旧一点、留白多一点，有种安静的时间感。",
-            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div class=\"style-wabisabi-demo style-wabisabi-journal\"><div class=\"wb-head\"><b>一席茶事</b><span>五月 · 雨水</span><i>第 04 则</i></div><div class=\"wb-page\"><aside>午后<br>雨停<br>器温<br>微凉</aside><main><small>今日所用 / 粗陶茶碗</small><h2>先闻香，<br>再等水开。</h2><p>壶口冒出第一缕白气时，院里只剩一声很轻的鸟鸣。茶不急着喝，先让杯壁暖一暖手。</p><div class=\"wb-meta\"><span>焙火乌龙 · 3 泡</span><b>续写此刻 →</b></div></main><div class=\"wb-vessel\"><i></i><span>手捏<br>茶碗</span></div></div><span class=\"style-wabisabi-seal\">茶</span></div></div>",
-            "demoClass": "card-demo scaled-preview style-preview"
-          },
-          {
             "slug": "style-bauhaus",
             "name": "包豪斯",
             "en": "Bauhaus",
@@ -3356,141 +3471,61 @@
             "tagline": "想要复古奢华点的页面，对称构图加几何纹样，像老剧院海报那种，不是光把字改成金色。",
             "demoHtml": "",
             "demoClass": "card-demo scaled-preview style-preview"
-          },
-          {
-            "slug": "style-paywall",
-            "name": "付费墙设计",
-            "en": "App Paywall",
-            "tagline": "头部 App 的付费墙都有一套共同套路：价值主张、利益清单、价格锚点、随时取消。",
-            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div style=\"width:100%;height:100%;display:flex;align-items:center;justify-content:center;gap:32px;padding:18px 26px;background:var(--bg-soft)\"><div style=\"flex:0 0 220px;display:flex;flex-direction:column;gap:10px\"><small style=\"color:var(--text-3);font-size:11px\">虚构示例 · 品牌与价格仅用于演示</small><b style=\"font-size:22px;font-weight:800;color:var(--text)\">付费墙<br><span style=\"font-size:13px;font-weight:500;color:var(--text-2)\">一页为「让你掏钱」而设计的页面</span></b><ul style=\"display:flex;flex-direction:column;gap:7px;font-size:12.5px;color:var(--text-2)\"><li style=\"list-style:none\">① 价值主张：先卖升级后的自己</li><li style=\"list-style:none\">② 利益清单：3–5 条具体的</li><li style=\"list-style:none\">③ 价格锚点：年框高亮</li><li style=\"list-style:none\">④ 安心与出口：随时取消 / ✕</li></ul></div><div style=\"display:flex;gap:14px\"><div style=\"width:170px;height:280px;border-radius:22px;border:2px solid var(--border);background:var(--bg);box-shadow:0 10px 24px rgba(29,33,41,.08);overflow:hidden;display:flex;flex-direction:column;gap:8px;padding:14px 12px;position:relative\"><span style=\"position:absolute;top:10px;right:12px;font-size:12px;color:var(--text-3)\">✕</span><i class=\"ti ti-crown\" style=\"font-size:18px;color:var(--brand)\"></i><b style=\"font-size:14px;color:var(--text)\">升级到 Pro</b><div style=\"display:flex;flex-direction:column;gap:5px;font-size:11.5px;color:var(--text-2)\"><span>✓ 云端无限同步</span><span>✓ 高级导出格式</span><span>✓ 去除水印</span></div><div style=\"display:flex;gap:6px;margin-top:2px\"><span style=\"flex:1;border:1px solid var(--border);border-radius:8px;padding:5px 4px;text-align:center;font-size:10.5px;color:var(--text-2)\">月付<br><b style=\"color:var(--text)\">¥ 28</b></span><span style=\"flex:1;border:1.5px solid var(--brand);border-radius:8px;padding:5px 4px;text-align:center;font-size:10.5px;background:var(--brand-light);color:var(--brand)\">年付<br><b>¥ 198</b> · 省 40%</span></div><button style=\"margin-top:auto;width:100%;border:0;border-radius:10px;padding:9px 0;font-size:12px;font-weight:700;color:#fff;background:linear-gradient(90deg,var(--brand),#722ed1)\">开始 7 天免费试用</button><small style=\"text-align:center;font-size:9.5px;color:var(--text-3)\">不收费 · 可随时取消</small></div><div style=\"width:170px;height:280px;border-radius:22px;border:2px solid var(--border);background:var(--bg);box-shadow:0 10px 24px rgba(29,33,41,.08);overflow:hidden;display:flex;flex-direction:column;gap:8px;padding:14px 12px;position:relative\"><span style=\"position:absolute;top:10px;right:12px;font-size:12px;color:var(--text-3)\">✕</span><i class=\"ti ti-crown\" style=\"font-size:18px;color:var(--brand)\"></i><b style=\"font-size:14px;color:var(--text)\">解锁全部功能</b><div style=\"display:flex;flex-direction:column;gap:5px;font-size:11.5px;color:var(--text-2)\"><span>✓ 离线草稿箱</span><span>✓ 团队空间</span><span>✓ 专属客服</span></div><div style=\"display:flex;gap:6px;margin-top:2px\"><span style=\"flex:1;border:1px solid var(--border);border-radius:8px;padding:5px 4px;text-align:center;font-size:10.5px;color:var(--text-2)\">月付<br><b style=\"color:var(--text)\">¥ 28</b></span><span style=\"flex:1;border:1.5px solid var(--brand);border-radius:8px;padding:5px 4px;text-align:center;font-size:10.5px;background:var(--brand-light);color:var(--brand)\">年付<br><b>¥ 198</b> · 省 40%</span></div><button style=\"margin-top:auto;width:100%;border:0;border-radius:10px;padding:9px 0;font-size:12px;font-weight:700;color:#fff;background:linear-gradient(90deg,var(--brand),#722ed1)\">免费试用 7 天</button><small style=\"text-align:center;font-size:9.5px;color:var(--text-3)\">随时可取消 · 不扣费</small></div></div></div></div>",
-            "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
-          },
-          {
-            "slug": "style-dark-catalog",
-            "name": "深色图鉴风",
-            "en": "Dark Library",
-            "tagline": "深底、一点金、卡片排得密：把内容站做出 Appllama 那种「有货的库」的仪式感。",
-            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div style=\"width:100%;height:100%;background:#14151a;padding:16px 20px;display:flex;flex-direction:column;gap:10px\"><div style=\"display:flex;align-items:baseline;gap:10px\"><b style=\"font-size:15px;color:#eceef2\">产品图鉴</b><span style=\"font-size:10px;color:#8b8e99\">优秀产品的收藏 · 共 13 件</span><span style=\"margin-left:auto;background:#e8c767;color:#14151a;border-radius:6px;padding:2px 8px;font-size:10px;font-weight:800\">PRO</span></div><div style=\"display:flex;gap:6px;flex-wrap:wrap\"><span style=\"border:1px solid #5a5236;border-radius:999px;padding:3px 10px;font-size:10.5px;color:#e8c767\">全部 13</span><span style=\"border:1px solid #3a3d46;border-radius:999px;padding:3px 10px;font-size:10.5px;color:#9a9dab\">AI 工具</span><span style=\"border:1px solid #3a3d46;border-radius:999px;padding:3px 10px;font-size:10.5px;color:#9a9dab\">效率工具</span><span style=\"border:1px solid #3a3d46;border-radius:999px;padding:3px 10px;font-size:10.5px;color:#9a9dab\">设计创意</span></div><div style=\"display:flex;flex-direction:column;gap:8px\"><div style=\"display:grid;grid-template-columns:repeat(3,1fr);gap:8px\"><div style=\"background:#202228;border:1px solid #2c2f38;border-radius:10px;padding:10px 11px;display:flex;align-items:center;gap:9px\"><span style=\"width:24px;height:24px;flex:none;background:#fff;border-radius:7px;display:grid;place-items:center\"><img src=\"https://cursor.com/marketing-static/icon-192x192-light.png\" alt=\"\" width=\"18\" height=\"18\" style=\"width:18px;height:18px;object-fit:contain;border-radius:4px\"/></span><div style=\"min-width:0\"><b style=\"display:block;font-size:12px;color:#eceef2;font-weight:700\">Cursor</b><span style=\"font-size:10px;color:#8b8e99;line-height:1.4;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">真正读懂你代码库的 AI 编辑器</span></div></div><div style=\"background:#202228;border:1px solid #2c2f38;border-radius:10px;padding:10px 11px;display:flex;align-items:center;gap:9px\"><span style=\"width:24px;height:24px;flex:none;background:#fff;border-radius:7px;display:grid;place-items:center\"><img src=\"https://linear.app/favicon.ico\" alt=\"\" width=\"18\" height=\"18\" style=\"width:18px;height:18px;object-fit:contain;border-radius:4px\"/></span><div style=\"min-width:0\"><b style=\"display:block;font-size:12px;color:#eceef2;font-weight:700\">Linear</b><span style=\"font-size:10px;color:#8b8e99;line-height:1.4;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">为速度而生的 issue 管理</span></div></div><div style=\"background:#202228;border:1px solid #2c2f38;border-radius:10px;padding:10px 11px;display:flex;align-items:center;gap:9px\"><span style=\"width:24px;height:24px;flex:none;background:#fff;border-radius:7px;display:grid;place-items:center\"><img src=\"https://raycast.com/favicon-production.png\" alt=\"\" width=\"18\" height=\"18\" style=\"width:18px;height:18px;object-fit:contain;border-radius:4px\"/></span><div style=\"min-width:0\"><b style=\"display:block;font-size:12px;color:#eceef2;font-weight:700\">Raycast</b><span style=\"font-size:10px;color:#8b8e99;line-height:1.4;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">键盘启动器，扩展即生态</span></div></div></div><div style=\"display:grid;grid-template-columns:repeat(3,1fr);gap:8px\"><div style=\"background:#202228;border:1px solid #2c2f38;border-radius:10px;padding:10px 11px;display:flex;align-items:center;gap:9px\"><span style=\"width:24px;height:24px;flex:none;background:#fff;border-radius:7px;display:grid;place-items:center\"><img src=\"https://buffer.com/favicon.ico\" alt=\"\" width=\"18\" height=\"18\" style=\"width:18px;height:18px;object-fit:contain;border-radius:4px\"/></span><div style=\"min-width:0\"><b style=\"display:block;font-size:12px;color:#eceef2;font-weight:700\">Buffer</b><span style=\"font-size:10px;color:#8b8e99;line-height:1.4;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">有节奏地经营自媒体矩阵</span></div></div><div style=\"background:#202228;border:1px solid #2c2f38;border-radius:10px;padding:10px 11px;display:flex;align-items:center;gap:9px\"><span style=\"width:24px;height:24px;flex:none;background:#fff;border-radius:7px;display:grid;place-items:center\"><img src=\"https://appllama.io/branding/logo-icon-500.webp\" alt=\"\" width=\"18\" height=\"18\" style=\"width:18px;height:18px;object-fit:contain;border-radius:4px\"/></span><div style=\"min-width:0\"><b style=\"display:block;font-size:12px;color:#eceef2;font-weight:700\">Appllama</b><span style=\"font-size:10px;color:#8b8e99;line-height:1.4;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">1200+ 头部 App 的付费墙库</span></div></div><div style=\"background:#202228;border:1px solid #2c2f38;border-radius:10px;padding:10px 11px;display:flex;align-items:center;gap:9px\"><span style=\"width:24px;height:24px;flex:none;background:#fff;border-radius:7px;display:grid;place-items:center\"><img src=\"https://static.figma.com/app/icon/2/icon-128.png\" alt=\"\" width=\"18\" height=\"18\" style=\"width:18px;height:18px;object-fit:contain;border-radius:4px\"/></span><div style=\"min-width:0\"><b style=\"display:block;font-size:12px;color:#eceef2;font-weight:700\">Figma</b><span style=\"font-size:10px;color:#8b8e99;line-height:1.4;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">浏览器里的设计协作标准件</span></div></div></div></div><small style=\"margin-top:auto;color:#5c5f69;font-size:9.5px\">虚构示例 · 图标为各产品真实 logo</small></div></div>",
-            "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
-          },
-          {
-            "slug": "style-journal-cards",
-            "name": "手账卡片风",
-            "en": "Scrapbook Journal",
-            "tagline": "暖纸底、衬线大标题、微微歪着的卡片：像自己整理的收藏手账。",
-            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div style=\"width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#f4eee1;padding:16px\"><div style=\"background:#f4eee1;border-radius:12px;width:600px;padding:18px 20px;display:flex;flex-direction:column;gap:12px\"><div><h2 style=\"font-size:18px;color:#3a3325;font-weight:900\">产品手账<span style=\"font-size:9px;color:#b3a888;font-weight:400;letter-spacing:.18em;margin-left:8px\">FIELD NOTES</span></h2><span style=\"display:inline-block;width:52px;height:3px;background:#d9a441;border-radius:2px;margin-top:4px\"></span></div><div style=\"display:flex;gap:12px\"><div style=\"position:relative;transform:rotate(-1.6deg);background:#fffdf7;border:1px solid #e5dcc8;border-radius:6px;box-shadow:0 2px 0 rgba(120,100,60,.14);padding:12px 11px;flex:1;min-width:0\"><i style=\"position:absolute;top:-7px;left:50%;transform:translateX(-50%) rotate(-2deg);width:40px;height:12px;background:#a8c8e8;opacity:.85\"></i><span style=\"position:absolute;top:7px;right:8px;color:#d9a441;font-size:11px\">★</span><div style=\"display:flex;align-items:center;gap:7px\"><img src=\"https://cursor.com/marketing-static/icon-192x192-light.png\" alt=\"\" width=\"16\" height=\"16\" style=\"width:16px;height:16px;object-fit:contain;border-radius:4px\"/><b style=\"font-size:12px;color:#3a3325\">Cursor</b></div><p style=\"margin-top:4px;font-size:10px;color:#8a7f66;line-height:1.5\">试了三个月，Tab 补全真的在预测我的下一次重构。</p></div><div style=\"position:relative;transform:rotate(1.2deg);background:#fffdf7;border:1px solid #e5dcc8;border-radius:6px;box-shadow:0 2px 0 rgba(120,100,60,.14);padding:12px 11px;flex:1;min-width:0\"><i style=\"position:absolute;top:-7px;left:50%;transform:translateX(-50%) rotate(-2deg);width:40px;height:12px;background:#e8b4b4;opacity:.85\"></i><div style=\"display:flex;align-items:center;gap:7px\"><img src=\"https://linear.app/favicon.ico\" alt=\"\" width=\"16\" height=\"16\" style=\"width:16px;height:16px;object-fit:contain;border-radius:4px\"/><b style=\"font-size:12px;color:#3a3325\">Linear</b></div><p style=\"margin-top:4px;font-size:10px;color:#8a7f66;line-height:1.5\">issue 列表快到像没有加载这回事。</p></div><div style=\"position:relative;transform:rotate(-0.6deg);background:#fffdf7;border:1px solid #e5dcc8;border-radius:6px;box-shadow:0 2px 0 rgba(120,100,60,.14);padding:12px 11px;flex:1;min-width:0\"><i style=\"position:absolute;top:-7px;left:50%;transform:translateX(-50%) rotate(-2deg);width:40px;height:12px;background:#b8d8b0;opacity:.85\"></i><span style=\"position:absolute;top:7px;right:8px;color:#d9a441;font-size:11px\">★</span><div style=\"display:flex;align-items:center;gap:7px\"><img src=\"https://appllama.io/branding/logo-icon-500.webp\" alt=\"\" width=\"16\" height=\"16\" style=\"width:16px;height:16px;object-fit:contain;border-radius:4px\"/><b style=\"font-size:12px;color:#3a3325\">Appllama</b></div><p style=\"margin-top:4px;font-size:10px;color:#8a7f66;line-height:1.5\">把头部 App 的付费墙全存了一遍，抄作业用。</p></div></div></div></div></div>",
-            "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
-          },
-          {
-            "slug": "style-directory-nav",
-            "name": "图鉴式导航",
-            "en": "Catalog Navbar",
-            "tagline": "分区、搜索、Go Pro 一条顶栏全摊开，三秒知道能逛什么。",
-            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div style=\"width:100%;height:100%;background:#f7f7f8;padding:18px 20px;display:flex;flex-direction:column;justify-content:center;gap:14px;font-family:ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif\"><div style=\"font-size:9px;color:#6b6e76\">浅色态</div><div style=\"background:#ffffff;border:1px solid #e4e4e7;border-radius:10px;padding:7px 12px;display:flex;align-items:center;gap:12px\"><span style=\"display:flex;align-items:center;gap:6px\"><span style=\"width:18px;height:18px;display:grid;place-items:center;background:#E8C767;border-radius:5px;color:#14151a;font-size:10px;font-weight:800\">✦</span><b style=\"font-size:11px;color:#1a1b20;letter-spacing:.03em\">BUILDHUB</b></span><span style=\"display:flex;gap:11px;margin-left:6px\"><span style=\"font-size:10px;color:#1a1b20;font-weight:700\">术语</span><span style=\"font-size:10px;color:#6b6e76;font-weight:400\">技能</span><span style=\"font-size:10px;color:#6b6e76;font-weight:400\">产品</span><span style=\"font-size:10px;color:#6b6e76;font-weight:400\">提示词</span></span><span style=\"font-size:9px;font-weight:700;color:#ffffff;background:#14151a;border:1px solid #14151a;padding:2.5px 9px;border-radius:999px\">素材库</span><span style=\"margin-left:auto;display:flex;align-items:center;gap:8px\"><span style=\"display:flex;align-items:center;gap:5px;background:#f4f4f5;border-radius:999px;padding:4px 8px;font-size:9px;color:#6b6e76\">⌕ 搜索术语、技能…<i style=\"font-style:normal;border:1px solid #e4e4e7;border-radius:4px;padding:0 4px;font-size:8px\">/</i></span><span style=\"font-size:9.5px;font-weight:700;color:#1a1b20\">Go Pro</span><span style=\"width:18px;height:18px;border-radius:50%;background:#14151a;color:#fff;display:grid;place-items:center;font-size:9px\">✦</span></span></div><div style=\"font-size:9px;color:#6b6e76\">深色态</div><div style=\"background:#14151a;border:1px solid #2c2f38;border-radius:10px;padding:7px 12px;display:flex;align-items:center;gap:12px\"><span style=\"display:flex;align-items:center;gap:6px\"><span style=\"width:18px;height:18px;display:grid;place-items:center;background:#E8C767;border-radius:5px;color:#14151a;font-size:10px;font-weight:800\">✦</span><b style=\"font-size:11px;color:#ECEEF2;letter-spacing:.03em\">BUILDHUB</b></span><span style=\"display:flex;gap:11px;margin-left:6px\"><span style=\"font-size:10px;color:#ECEEF2;font-weight:700\">术语</span><span style=\"font-size:10px;color:#8B8E99;font-weight:400\">技能</span><span style=\"font-size:10px;color:#8B8E99;font-weight:400\">产品</span><span style=\"font-size:10px;color:#8B8E99;font-weight:400\">提示词</span></span><span style=\"font-size:9px;font-weight:700;color:#E8C767;background:transparent;border:1px solid #E8C767;padding:2.5px 9px;border-radius:999px\">素材库</span><span style=\"margin-left:auto;display:flex;align-items:center;gap:8px\"><span style=\"display:flex;align-items:center;gap:5px;background:#202228;border-radius:999px;padding:4px 8px;font-size:9px;color:#8B8E99\">⌕ 搜索术语、技能…<i style=\"font-style:normal;border:1px solid #2c2f38;border-radius:4px;padding:0 4px;font-size:8px\">/</i></span><span style=\"font-size:9.5px;font-weight:700;color:#ECEEF2\">Go Pro</span><span style=\"width:18px;height:18px;border-radius:50%;background:#E8C767;color:#14151a;display:grid;place-items:center;font-size:9px\">✦</span></span></div><div style=\"font-size:9px;color:#a1a1aa;text-align:center;margin-top:2px\">同一骨架 · 深浅双态</div></div></div>",
-            "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
-          },
-          {
-            "slug": "style-ios-native",
-            "name": "iOS 原生克制风",
-            "en": "Native iOS",
-            "tagline": "照着 iPhone 自带 App 那套做：系统字体、系统控件、别自己发明按钮。",
-            "platform": "ios",
-            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div style=\"width:100%;height:100%;display:flex;align-items:center;justify-content:center;gap:16px;padding:14px 20px;background:var(--bg-soft);box-sizing:border-box\"><div style=\"flex:0 0 158px;display:flex;flex-direction:column;gap:8px\"><b style=\"font-size:19px;line-height:1.3;color:var(--text)\">iOS 原生克制风</b><span style=\"font-size:11px;color:var(--text-2);line-height:1.6\">系统控件 + 语义色：深浅两态同一版式，切换只换 token</span><span style=\"font-size:10px;color:var(--text-3)\">案例：Things 3 · Structured · Slopes</span></div><div style=\"display:flex;gap:12px;align-items:flex-start\"><div style=\"display:flex;flex-direction:column;gap:5px\"><div style=\"width:150px;height:272px;flex:none;border:2px solid #c9ccd3;border-radius:26px;background:#ffffff;overflow:hidden;display:flex;flex-direction:column;position:relative;box-shadow:0 14px 30px rgba(29,33,41,.12)\"><div style=\"position:absolute;inset:0;background:#f2f2f7;display:flex;flex-direction:column;font-family:-apple-system,BlinkMacSystemFont,sans-serif\"><div style=\"height:20px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 14px;font-size:8px;color:#000000\"><b>9:41</b><span>●▮▮</span></div><div style=\"padding:2px 12px 8px\"><div style=\"font-size:8.5px;color:#8e8e93\">提醒事项</div><div style=\"font-size:18px;font-weight:700;color:#000000;letter-spacing:-.3px\">今天</div></div><div style=\"margin:0 10px;border-radius:10px;overflow:hidden;border:.5px solid #e5e5ea\"><div style=\"display:flex;align-items:center;gap:7px;padding:7px 9px;border-top:.5px solid #e5e5ea;background:#ffffff\"><i class=\"ti ti-checks\" style=\"font-size:12px;color:#5e5ce6\"></i><span style=\"font-size:10.5px;color:#000000\">今天</span><span style=\"margin-left:auto;font-size:9.5px;color:#8e8e93\">3</span><i class=\"ti ti-chevron-right\" style=\"font-size:10px;color:#8e8e93\"></i></div><div style=\"display:flex;align-items:center;gap:7px;padding:7px 9px;border-top:.5px solid #e5e5ea;background:#ffffff\"><i class=\"ti ti-calendar-event\" style=\"font-size:12px;color:#ff453a\"></i><span style=\"font-size:10.5px;color:#000000\">即将到来</span><span style=\"margin-left:auto;font-size:9.5px;color:#8e8e93\">12</span><i class=\"ti ti-chevron-right\" style=\"font-size:10px;color:#8e8e93\"></i></div><div style=\"display:flex;align-items:center;gap:7px;padding:7px 9px;border-top:.5px solid #e5e5ea;background:#ffffff\"><i class=\"ti ti-clock\" style=\"font-size:12px;color:#30d158\"></i><span style=\"font-size:10.5px;color:#000000\">任何时间</span><span style=\"margin-left:auto;font-size:9.5px;color:#8e8e93\"></span><i class=\"ti ti-chevron-right\" style=\"font-size:10px;color:#8e8e93\"></i></div><div style=\"display:flex;align-items:center;gap:7px;padding:7px 9px;border-top:.5px solid #e5e5ea;background:#ffffff\"><i class=\"ti ti-archive\" style=\"font-size:12px;color:#ff9f0a\"></i><span style=\"font-size:10.5px;color:#000000\">某天</span><span style=\"margin-left:auto;font-size:9.5px;color:#8e8e93\"></span><i class=\"ti ti-chevron-right\" style=\"font-size:10px;color:#8e8e93\"></i></div></div><div style=\"margin-top:auto;flex:none;height:34px;background:#ffffff;border-top:.5px solid #e5e5ea;display:flex;align-items:center;padding:0 6px\"><span style=\"flex:1;display:flex;flex-direction:column;align-items:center;gap:1px;font-size:7.5px;color:#0a84ff\"><i class=\"ti ti-checks\" style=\"font-size:13px\"></i>今天</span><span style=\"flex:1;display:flex;flex-direction:column;align-items:center;gap:1px;font-size:7.5px;color:#8e8e93\"><i class=\"ti ti-calendar\" style=\"font-size:13px\"></i>日程</span><span style=\"flex:1;display:flex;flex-direction:column;align-items:center;gap:1px;font-size:7.5px;color:#8e8e93\"><i class=\"ti ti-dots\" style=\"font-size:13px\"></i>更多</span></div></div></div><div style=\"font-size:9px;color:var(--text-3);font-weight:400;margin-top:0px;line-height:1.5\">浅色态 · systemBackground</div></div><div style=\"display:flex;flex-direction:column;gap:5px\"><div style=\"width:150px;height:272px;flex:none;border:2px solid #c9ccd3;border-radius:26px;background:#ffffff;overflow:hidden;display:flex;flex-direction:column;position:relative;box-shadow:0 14px 30px rgba(29,33,41,.12)\"><div style=\"position:absolute;inset:0;background:#000000;display:flex;flex-direction:column;font-family:-apple-system,BlinkMacSystemFont,sans-serif\"><div style=\"height:20px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 14px;font-size:8px;color:#ffffff\"><b>9:41</b><span>●▮▮</span></div><div style=\"padding:2px 12px 8px\"><div style=\"font-size:8.5px;color:#98989f\">提醒事项</div><div style=\"font-size:18px;font-weight:700;color:#ffffff;letter-spacing:-.3px\">今天</div></div><div style=\"margin:0 10px;border-radius:10px;overflow:hidden;border:.5px solid #38383a\"><div style=\"display:flex;align-items:center;gap:7px;padding:7px 9px;border-top:.5px solid #38383a;background:#1c1c1e\"><i class=\"ti ti-checks\" style=\"font-size:12px;color:#5e5ce6\"></i><span style=\"font-size:10.5px;color:#ffffff\">今天</span><span style=\"margin-left:auto;font-size:9.5px;color:#98989f\">3</span><i class=\"ti ti-chevron-right\" style=\"font-size:10px;color:#98989f\"></i></div><div style=\"display:flex;align-items:center;gap:7px;padding:7px 9px;border-top:.5px solid #38383a;background:#1c1c1e\"><i class=\"ti ti-calendar-event\" style=\"font-size:12px;color:#ff453a\"></i><span style=\"font-size:10.5px;color:#ffffff\">即将到来</span><span style=\"margin-left:auto;font-size:9.5px;color:#98989f\">12</span><i class=\"ti ti-chevron-right\" style=\"font-size:10px;color:#98989f\"></i></div><div style=\"display:flex;align-items:center;gap:7px;padding:7px 9px;border-top:.5px solid #38383a;background:#1c1c1e\"><i class=\"ti ti-clock\" style=\"font-size:12px;color:#30d158\"></i><span style=\"font-size:10.5px;color:#ffffff\">任何时间</span><span style=\"margin-left:auto;font-size:9.5px;color:#98989f\"></span><i class=\"ti ti-chevron-right\" style=\"font-size:10px;color:#98989f\"></i></div><div style=\"display:flex;align-items:center;gap:7px;padding:7px 9px;border-top:.5px solid #38383a;background:#1c1c1e\"><i class=\"ti ti-archive\" style=\"font-size:12px;color:#ff9f0a\"></i><span style=\"font-size:10.5px;color:#ffffff\">某天</span><span style=\"margin-left:auto;font-size:9.5px;color:#98989f\"></span><i class=\"ti ti-chevron-right\" style=\"font-size:10px;color:#98989f\"></i></div></div><div style=\"margin-top:auto;flex:none;height:34px;background:#1c1c1e;border-top:.5px solid #38383a;display:flex;align-items:center;padding:0 6px\"><span style=\"flex:1;display:flex;flex-direction:column;align-items:center;gap:1px;font-size:7.5px;color:#0a84ff\"><i class=\"ti ti-checks\" style=\"font-size:13px\"></i>今天</span><span style=\"flex:1;display:flex;flex-direction:column;align-items:center;gap:1px;font-size:7.5px;color:#98989f\"><i class=\"ti ti-calendar\" style=\"font-size:13px\"></i>日程</span><span style=\"flex:1;display:flex;flex-direction:column;align-items:center;gap:1px;font-size:7.5px;color:#98989f\"><i class=\"ti ti-dots\" style=\"font-size:13px\"></i>更多</span></div></div></div><div style=\"font-size:9px;color:var(--text-3);font-weight:400;margin-top:0px;line-height:1.5\">深色态 · 同一版式</div></div></div></div></div>",
-            "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
-          },
-          {
-            "slug": "style-soft-wellness",
-            "name": "疗愈柔和风",
-            "en": "Soft Wellness",
-            "tagline": "一打开就松下来：奶色渐变、大圆角卡片、一个小东西陪着你。",
-            "platform": "ios",
-            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div style=\"width:100%;height:100%;display:flex;align-items:center;justify-content:center;gap:16px;padding:14px 20px;background:var(--bg-soft);box-sizing:border-box\"><div style=\"flex:0 0 158px;display:flex;flex-direction:column;gap:8px\"><b style=\"font-size:19px;line-height:1.3;color:var(--text)\">疗愈柔和风</b><span style=\"font-size:11px;color:var(--text-2);line-height:1.6\">渐变底 + 24pt 圆角 + 圆润字体：深色态换成夜色版而不是反色</span><span style=\"font-size:10px;color:var(--text-3)\">案例：Calm · Headspace · Finch</span></div><div style=\"display:flex;gap:12px;align-items:flex-start\"><div style=\"display:flex;flex-direction:column;gap:5px\"><div style=\"width:150px;height:272px;flex:none;border:2px solid #e6d3c6;border-radius:26px;background:#ffffff;overflow:hidden;display:flex;flex-direction:column;position:relative;box-shadow:0 14px 30px rgba(29,33,41,.12)\"><div style=\"position:absolute;inset:0;background:linear-gradient(180deg,#f8dcc3,#dcb8e8);padding:0 11px;font-family:ui-rounded,-apple-system,BlinkMacSystemFont,sans-serif\"><div style=\"height:20px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 14px;font-size:8px;color:#3d2f3a\"><b>9:41</b><span>●▮▮</span></div><div style=\"font-size:8.5px;color:#8a7488;margin-top:6px\">晚上好</div><div style=\"font-size:17px;font-weight:600;color:#3d2f3a;letter-spacing:-.2px\">慢下来</div><div style=\"display:flex;align-items:center;gap:8px;padding:8px 10px;background:rgba(255,255,255,.72);border-radius:16px;margin-top:7px\"><span style=\"width:22px;height:22px;flex:none;border-radius:50%;background:#ff8f5e;display:grid;place-items:center\"><i class=\"ti ti-player-play\" style=\"font-size:11px;color:#201a33\"></i></span><span style=\"font-size:9.5px;color:#3d2f3a\">今晚 · 释放这一天</span><span style=\"margin-left:auto;font-size:8px;color:#8a7488\">10 分钟</span></div><div style=\"display:flex;align-items:center;gap:8px;padding:8px 10px;background:rgba(255,255,255,.72);border-radius:16px;margin-top:7px\"><span style=\"width:22px;height:22px;flex:none;border-radius:50%;background:#ff8f5e;display:grid;place-items:center\"><i class=\"ti ti-cloud-moon\" style=\"font-size:11px;color:#201a33\"></i></span><span style=\"font-size:9.5px;color:#3d2f3a\">睡前故事</span><span style=\"margin-left:auto;font-size:8px;color:#8a7488\">25 分钟</span></div><div style=\"display:flex;align-items:center;gap:8px;padding:8px 10px;background:rgba(255,255,255,.72);border-radius:16px;margin-top:7px\"><span style=\"width:22px;height:22px;flex:none;border-radius:50%;background:#ff8f5e;display:grid;place-items:center\"><i class=\"ti ti-breathing\" style=\"font-size:11px;color:#201a33\"></i></span><span style=\"font-size:9.5px;color:#3d2f3a\">四次呼吸</span><span style=\"margin-left:auto;font-size:8px;color:#8a7488\">3 分钟</span></div><div style=\"margin-top:10px;display:flex;gap:4px;align-items:center\"><span style=\"flex:1;height:3px;border-radius:99px;background:rgba(255,255,255,.72)\"></span><span style=\"width:14px;height:3px;border-radius:99px;background:#ff8f5e\"></span><span style=\"flex:1;height:3px;border-radius:99px;background:rgba(255,255,255,.72)\"></span></div><div style=\"margin-top:9px;background:#ff8f5e;border-radius:99px;padding:7px 0;text-align:center;font-size:9.5px;font-weight:700;color:#201a33\">继续第 12 天</div></div></div><div style=\"font-size:9px;color:var(--text-3);font-weight:400;margin-top:0px;line-height:1.5\">白天态 · 日落渐变</div></div><div style=\"display:flex;flex-direction:column;gap:5px\"><div style=\"width:150px;height:272px;flex:none;border:2px solid #3a2f5c;border-radius:26px;background:#ffffff;overflow:hidden;display:flex;flex-direction:column;position:relative;box-shadow:0 14px 30px rgba(29,33,41,.12)\"><div style=\"position:absolute;inset:0;background:linear-gradient(180deg,#1b1e3c,#3a2f5c);padding:0 11px;font-family:ui-rounded,-apple-system,BlinkMacSystemFont,sans-serif\"><div style=\"height:20px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 14px;font-size:8px;color:#f3eeff\"><b>9:41</b><span>●▮▮</span></div><div style=\"font-size:8.5px;color:#b6aede;margin-top:6px\">晚上好</div><div style=\"font-size:17px;font-weight:600;color:#f3eeff;letter-spacing:-.2px\">慢下来</div><div style=\"display:flex;align-items:center;gap:8px;padding:8px 10px;background:rgba(255,255,255,.14);border-radius:16px;margin-top:7px\"><span style=\"width:22px;height:22px;flex:none;border-radius:50%;background:#a48bff;display:grid;place-items:center\"><i class=\"ti ti-player-play\" style=\"font-size:11px;color:#201a33\"></i></span><span style=\"font-size:9.5px;color:#f3eeff\">今晚 · 释放这一天</span><span style=\"margin-left:auto;font-size:8px;color:#b6aede\">10 分钟</span></div><div style=\"display:flex;align-items:center;gap:8px;padding:8px 10px;background:rgba(255,255,255,.14);border-radius:16px;margin-top:7px\"><span style=\"width:22px;height:22px;flex:none;border-radius:50%;background:#a48bff;display:grid;place-items:center\"><i class=\"ti ti-cloud-moon\" style=\"font-size:11px;color:#201a33\"></i></span><span style=\"font-size:9.5px;color:#f3eeff\">睡前故事</span><span style=\"margin-left:auto;font-size:8px;color:#b6aede\">25 分钟</span></div><div style=\"display:flex;align-items:center;gap:8px;padding:8px 10px;background:rgba(255,255,255,.14);border-radius:16px;margin-top:7px\"><span style=\"width:22px;height:22px;flex:none;border-radius:50%;background:#a48bff;display:grid;place-items:center\"><i class=\"ti ti-breathing\" style=\"font-size:11px;color:#201a33\"></i></span><span style=\"font-size:9.5px;color:#f3eeff\">四次呼吸</span><span style=\"margin-left:auto;font-size:8px;color:#b6aede\">3 分钟</span></div><div style=\"margin-top:10px;display:flex;gap:4px;align-items:center\"><span style=\"flex:1;height:3px;border-radius:99px;background:rgba(255,255,255,.14)\"></span><span style=\"width:14px;height:3px;border-radius:99px;background:#a48bff\"></span><span style=\"flex:1;height:3px;border-radius:99px;background:rgba(255,255,255,.14)\"></span></div><div style=\"margin-top:9px;background:#a48bff;border-radius:99px;padding:7px 0;text-align:center;font-size:9.5px;font-weight:700;color:#201a33\">继续第 12 天</div></div></div><div style=\"font-size:9px;color:var(--text-3);font-weight:400;margin-top:0px;line-height:1.5\">夜色态 · 同一版式换材料</div></div></div></div></div>",
-            "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
-          },
-          {
-            "slug": "style-dark-pro-tool",
-            "name": "深色专业工具风",
-            "en": "Dark Pro Tool",
-            "tagline": "黑底、一个蓝、密到爆的工具条：屏幕留给作品，界面靠边站。",
-            "platform": "ios",
-            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div style=\"width:100%;height:100%;display:flex;align-items:center;justify-content:center;gap:16px;padding:14px 20px;background:var(--bg-soft);box-sizing:border-box\"><div style=\"flex:0 0 158px;display:flex;flex-direction:column;gap:8px\"><b style=\"font-size:19px;line-height:1.3;color:var(--text)\">深色专业工具风</b><span style=\"font-size:11px;color:var(--text-2);line-height:1.6\">近黑底 + 单一蓝强调 + 图标工具条：画布占屏 70% 以上</span><span style=\"font-size:10px;color:var(--text-3)\">案例：LumaFusion · Lightroom · Darkroom</span></div><div style=\"display:flex;gap:12px;align-items:flex-start\"><div style=\"display:flex;flex-direction:column;gap:5px\"><div style=\"width:150px;height:272px;flex:none;border:2px solid #3a3a3e;border-radius:26px;background:#1c1c1e;overflow:hidden;display:flex;flex-direction:column;position:relative;box-shadow:0 14px 30px rgba(29,33,41,.12)\"><div style=\"position:absolute;inset:0;background:#1c1c1e;display:flex;flex-direction:column;font-family:ui-monospace,SFMono-Regular,Menlo,monospace\"><div style=\"height:20px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 14px;font-size:8px;color:#ffffff\"><b>9:41</b><span>●▮▮</span></div><div style=\"height:56px;flex:none;margin:6px 10px 0;border-radius:6px;background:linear-gradient(120deg,#2b3a55,#6b4a3a 55%,#243043);display:flex;align-items:flex-end;justify-content:space-between;padding:4px\"><span style=\"font-size:7px;color:#dfe6f2;background:rgba(0,0,0,.5);padding:1px 4px;border-radius:3px\">00:31:17</span><i class=\"ti ti-play\" style=\"font-size:13px;color:#dfe6f2\"></i></div><div style=\"display:flex;margin:6px 6px 0;border-top:.5px solid #3a3a3e\"><span style=\"flex:1;display:grid;place-items:center;height:26px;font-size:11px;color:#9a9aa0;\"><i class=\"ti ti-crop\"></i></span><span style=\"flex:1;display:grid;place-items:center;height:26px;font-size:11px;color:#0a84ff;border-bottom:2px solid #0a84ff\"><i class=\"ti ti-sliders\"></i></span><span style=\"flex:1;display:grid;place-items:center;height:26px;font-size:11px;color:#9a9aa0;\"><i class=\"ti ti-adjustments\"></i></span><span style=\"flex:1;display:grid;place-items:center;height:26px;font-size:11px;color:#9a9aa0;\"><i class=\"ti ti-filter\"></i></span><span style=\"flex:1;display:grid;place-items:center;height:26px;font-size:11px;color:#9a9aa0;\"><i class=\"ti ti-contrast\"></i></span><span style=\"flex:1;display:grid;place-items:center;height:26px;font-size:11px;color:#9a9aa0;\"><i class=\"ti ti-wand\"></i></span><span style=\"flex:1;display:grid;place-items:center;height:26px;font-size:11px;color:#9a9aa0;\"><i class=\"ti ti-layers-subtract\"></i></span><span style=\"flex:1;display:grid;place-items:center;height:26px;font-size:11px;color:#9a9aa0;\"><i class=\"ti ti-music\"></i></span></div><div style=\"margin:8px 10px 0;background:#1c1c1e;border-radius:8px;padding:6px\"><div style=\"font-size:7.5px;color:#9a9aa0;font-family:ui-monospace,monospace\">TIMELINE · 31:17</div><div style=\"position:relative;height:11px;margin-top:3px;background:#26272b;border-radius:2px\"><span style=\"position:absolute;left:12%;width:70%;top:1px;bottom:1px;background:#0a84ff;border-radius:2px\"></span></div><div style=\"position:relative;height:11px;margin-top:3px;background:#26272b;border-radius:2px\"><span style=\"position:absolute;left:6%;width:40%;top:1px;bottom:1px;background:#30d158;border-radius:2px\"></span></div><div style=\"position:relative;height:11px;margin-top:3px;background:#26272b;border-radius:2px\"><span style=\"position:absolute;left:24%;width:56%;top:1px;bottom:1px;background:#ff9f0a;border-radius:2px\"></span></div><div style=\"position:relative;height:11px;margin-top:3px;background:#26272b;border-radius:2px\"><span style=\"position:absolute;left:10%;width:30%;top:1px;bottom:1px;background:#bf5af2;border-radius:2px\"></span></div></div><div style=\"margin-top:auto;flex:none;height:22px;display:flex;align-items:center;gap:6px;padding:0 12px;border-top:.5px solid #3a3a3e;font-size:7.5px;color:#9a9aa0\"><span>ISO 200</span><span>f/2.8</span><span style=\"margin-left:auto;color:#0a84ff\">100%</span></div></div></div><div style=\"font-size:9px;color:var(--text-3);font-weight:400;margin-top:0px;line-height:1.5\">工作台 · 时间线密度</div></div><div style=\"display:flex;flex-direction:column;gap:5px\"><div style=\"width:150px;height:272px;flex:none;border:2px solid #3a3a3e;border-radius:26px;background:#1c1c1e;overflow:hidden;display:flex;flex-direction:column;position:relative;box-shadow:0 14px 30px rgba(29,33,41,.12)\"><div style=\"position:absolute;inset:0;background:#1c1c1e;display:flex;flex-direction:column;font-family:ui-monospace,SFMono-Regular,Menlo,monospace\"><div style=\"height:20px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 14px;font-size:8px;color:#ffffff\"><b>9:41</b><span>●▮▮</span></div><div style=\"height:56px;flex:none;margin:6px 10px 0;border-radius:6px;background:linear-gradient(120deg,#2b3a55,#6b4a3a 55%,#243043);display:flex;align-items:flex-end;justify-content:space-between;padding:4px\"><span style=\"font-size:7px;color:#dfe6f2;background:rgba(0,0,0,.5);padding:1px 4px;border-radius:3px\">00:31:17</span><i class=\"ti ti-play\" style=\"font-size:13px;color:#dfe6f2\"></i></div><div style=\"display:flex;margin:6px 6px 0;border-top:.5px solid #3a3a3e\"><span style=\"flex:1;display:grid;place-items:center;height:26px;font-size:11px;color:#9a9aa0;\"><i class=\"ti ti-crop\"></i></span><span style=\"flex:1;display:grid;place-items:center;height:26px;font-size:11px;color:#9a9aa0;\"><i class=\"ti ti-sliders\"></i></span><span style=\"flex:1;display:grid;place-items:center;height:26px;font-size:11px;color:#0a84ff;border-bottom:2px solid #0a84ff\"><i class=\"ti ti-adjustments\"></i></span><span style=\"flex:1;display:grid;place-items:center;height:26px;font-size:11px;color:#9a9aa0;\"><i class=\"ti ti-filter\"></i></span><span style=\"flex:1;display:grid;place-items:center;height:26px;font-size:11px;color:#9a9aa0;\"><i class=\"ti ti-contrast\"></i></span><span style=\"flex:1;display:grid;place-items:center;height:26px;font-size:11px;color:#9a9aa0;\"><i class=\"ti ti-wand\"></i></span><span style=\"flex:1;display:grid;place-items:center;height:26px;font-size:11px;color:#9a9aa0;\"><i class=\"ti ti-layers-subtract\"></i></span><span style=\"flex:1;display:grid;place-items:center;height:26px;font-size:11px;color:#9a9aa0;\"><i class=\"ti ti-music\"></i></span></div><div style=\"margin:8px 10px 0;background:#26272b;border-radius:8px;padding:8px\"><div style=\"font-size:8px;color:#9a9aa0;display:flex;justify-content:space-between\"><span>EXPOSURE</span><span style=\"color:#0a84ff;font-family:ui-monospace,monospace\">+0.35</span></div><div style=\"height:2px;background:#3a3a3e;border-radius:99px;margin:6px 0\"><span style=\"display:block;width:58%;height:100%;background:#0a84ff;border-radius:99px\"></span></div><div style=\"font-size:8px;color:#9a9aa0;display:flex;justify-content:space-between\"><span>HIGHLIGHTS</span><span style=\"color:#ffffff;font-family:ui-monospace,monospace\">−12</span></div><div style=\"height:2px;background:#3a3a3e;border-radius:99px;margin:6px 0\"><span style=\"display:block;width:34%;height:100%;background:#9a9aa0;border-radius:99px\"></span></div><div style=\"font-size:8px;color:#9a9aa0;display:flex;justify-content:space-between\"><span>CURVE</span><span style=\"color:#ffffff;font-family:ui-monospace,monospace\">RGB</span></div><svg viewBox=\"0 0 100 34\" style=\"width:100%;height:30px;margin-top:4px\"><path d=\"M2 32 C 26 30 40 12 98 4\" fill=\"none\" stroke=\"#0a84ff\" stroke-width=\"1.5\"/></svg></div><div style=\"margin-top:auto;flex:none;height:22px;display:flex;align-items:center;gap:6px;padding:0 12px;border-top:.5px solid #3a3a3e;font-size:7.5px;color:#9a9aa0\"><span>ISO 200</span><span>f/2.8</span><span style=\"margin-left:auto;color:#0a84ff\">100%</span></div></div></div><div style=\"font-size:9px;color:var(--text-3);font-weight:400;margin-top:0px;line-height:1.5\">参数面板 · 等宽数值</div></div></div></div></div>",
-            "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
-          },
-          {
-            "slug": "style-calm-console",
-            "name": "冷静控制台风",
-            "en": "Calm Console",
-            "tagline": "灰白底、细描边、小字号高密度、一点紫：Linear 那种安静的高级工作台。",
-            "demoHtml": "<div class='scaled-preview-canvas style-preview-canvas'><div style=\"width:100%;height:100%;display:flex;align-items:center;justify-content:center;gap:16px;padding:16px 22px;background:#26272B;font-family:ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif\"><div style='width:230px;background:#FAFAFA;border:1px solid #E4E4E7;border-radius:10px;padding:10px 11px;display:flex;flex-direction:column;gap:7px'><div style='display:flex;align-items:baseline'><b style='font-size:11px;color:#18191A'>今天</b><span style='font-size:7.5px;color:#6B6E76;margin-left:5px;font-variant-numeric:tabular-nums'>9 / 18</span><span style='margin-left:auto;font-size:7.5px;font-weight:700;color:#fff;background:#5E6AD2;border-radius:4px;padding:2px 6px'>＋ 新建</span></div><div style='display:flex;gap:6px'><div style='flex:1;background:#FFFFFF;border:1px solid #E4E4E7;border-radius:7px;padding:6px 7px'><div style='font-size:7px;color:#6B6E76'>进行中目标</div><div style='font-size:14px;font-weight:700;color:#18191A;font-variant-numeric:tabular-nums'>3</div></div><div style='flex:1;background:#FFFFFF;border:1px solid #E4E4E7;border-radius:7px;padding:6px 7px'><div style='font-size:7px;color:#6B6E76'>本周任务</div><div style='font-size:14px;font-weight:700;color:#18191A;font-variant-numeric:tabular-nums'>12/18</div></div></div><div style='background:#FFFFFF;border:1px solid #E4E4E7;border-radius:7px;padding:6px 8px;display:flex;align-items:center;gap:6px'><i style='width:9px;height:9px;flex:none;border-radius:50%;border:1px solid #6B6E76'></i><span style='font-size:8.5px;color:#18191A'>冷静控制台样张</span><span style='margin-left:auto'><span style='font-size:8px;font-weight:600;color:#2E7D4F;background:rgba(48,164,108,.10);border:1px solid rgba(48,164,108,.35);border-radius:999px;padding:1.5px 6px;white-space:nowrap'>进行中</span></span></div><div style='background:#FFFFFF;border:1px solid #E4E4E7;border-radius:7px;padding:6px 8px'><div style='font-size:7.5px;color:#6B6E76;margin-bottom:4px;display:flex'><span>人生操作系统改造</span><span style='margin-left:auto;font-variant-numeric:tabular-nums;color:#5E6AD2;font-weight:700'>43%</span></div><div style='height:3px;background:#EFEFF1;border-radius:99px'><i style='display:block;width:43%;height:3px;background:#5E6AD2;border-radius:99px'></i></div></div><span style='font-size:7px;color:#6B6E76'>浅色态</span></div><div style='width:230px;background:#101112;border:1px solid #292A2E;border-radius:10px;padding:10px 11px;display:flex;flex-direction:column;gap:7px'><div style='display:flex;align-items:baseline'><b style='font-size:11px;color:#E4E4E7'>今天</b><span style='font-size:7.5px;color:#8A8F98;margin-left:5px;font-variant-numeric:tabular-nums'>9 / 18</span><span style='margin-left:auto;font-size:7.5px;font-weight:700;color:#fff;background:#8B93E8;border-radius:4px;padding:2px 6px'>＋ 新建</span></div><div style='display:flex;gap:6px'><div style='flex:1;background:#18191A;border:1px solid #292A2E;border-radius:7px;padding:6px 7px'><div style='font-size:7px;color:#8A8F98'>进行中目标</div><div style='font-size:14px;font-weight:700;color:#E4E4E7;font-variant-numeric:tabular-nums'>3</div></div><div style='flex:1;background:#18191A;border:1px solid #292A2E;border-radius:7px;padding:6px 7px'><div style='font-size:7px;color:#8A8F98'>本周任务</div><div style='font-size:14px;font-weight:700;color:#E4E4E7;font-variant-numeric:tabular-nums'>12/18</div></div></div><div style='background:#18191A;border:1px solid #292A2E;border-radius:7px;padding:6px 8px;display:flex;align-items:center;gap:6px'><i style='width:9px;height:9px;flex:none;border-radius:50%;border:1px solid #8A8F98'></i><span style='font-size:8.5px;color:#E4E4E7'>冷静控制台样张</span><span style='margin-left:auto'><span style='font-size:8px;font-weight:600;color:#5DBB8A;background:rgba(72,180,115,.10);border:1px solid rgba(72,180,115,.32);border-radius:999px;padding:1.5px 6px;white-space:nowrap'>进行中</span></span></div><div style='background:#18191A;border:1px solid #292A2E;border-radius:7px;padding:6px 8px'><div style='font-size:7.5px;color:#8A8F98;margin-bottom:4px;display:flex'><span>人生操作系统改造</span><span style='margin-left:auto;font-variant-numeric:tabular-nums;color:#8B93E8;font-weight:700'>43%</span></div><div style='height:3px;background:#292A2E;border-radius:99px'><i style='display:block;width:43%;height:3px;background:#8B93E8;border-radius:99px'></i></div></div><span style='font-size:7px;color:#8A8F98'>深色态</span></div></div></div>",
-            "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
           }
         ]
-      }
-    ]
-  },
-  {
-    "key": "assets",
-    "href": "/topics/assets",
-    "title": "素材库",
-    "tabs": [
-      {
-        "label": "前端",
-        "count": 137,
-        "active": false
       },
       {
-        "label": "后端",
-        "count": 62,
-        "active": false
+        "id": "cat-natural-zen",
+        "title": "自然禅意",
+        "category": "web-style",
+        "count": 2,
+        "terms": [
+          {
+            "slug": "style-organic",
+            "name": "有机设计",
+            "en": "Organic Design",
+            "tagline": "自然一点的感觉：大地色、圆润的形状、像手作的。",
+            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div class=\"ms-demo ms-organic\"><small style=\"display:block;padding:6px 10px;color:var(--text-3);font-size:11px\">虚构示例 · 品牌、产地、商品和成分承诺仅用于展示</small><header><b>MORROW</b><nav><span>Shop</span><span>Our farm</span><span>Field notes</span><span>Stockists</span></nav><div><i class=\"ti ti-search\"></i><span>Bag (1)</span></div></header><main><section class=\"organic-copy\"><small>BOTANICAL DAILY CARE · 04</small><h2>Small rituals,<br><em>better days.</em></h2><p>Plant oils and mineral-rich clays, blended slowly in the hills outside Dali.</p><div><button>Meet the collection</button><a>How we make it <i class=\"ti ti-arrow-right\"></i></a></div><footer><span><i class=\"ti ti-leaf\"></i> Traceable plants</span><span><i class=\"ti ti-recycle\"></i> Refill ready</span></footer></section><aside class=\"organic-photo\"><img src=\"/assets/style-imagery/editorial-travel-forest.webp\" alt=\"Quiet forest in soft daylight\"><div><small>FIELD BLEND · NO. 04</small><b>Forest Body Oil</b><span>Camellia · Pine · Oat</span><em>示例价格</em></div><i>示例<br><small>产量</small></i></aside></main><div class=\"organic-note\"><span>来源、产地和成分按实际信息填写</span><b>— 内容说明</b></div></div></div>",
+            "demoClass": "card-demo scaled-preview style-preview"
+          },
+          {
+            "slug": "style-wabisabi",
+            "name": "日式侘寂",
+            "en": "Wabi-sabi",
+            "tagline": "素一点、旧一点、留白多一点，有种安静的时间感。",
+            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div class=\"style-wabisabi-demo style-wabisabi-journal\"><div class=\"wb-head\"><b>一席茶事</b><span>五月 · 雨水</span><i>第 04 则</i></div><div class=\"wb-page\"><aside>午后<br>雨停<br>器温<br>微凉</aside><main><small>今日所用 / 粗陶茶碗</small><h2>先闻香，<br>再等水开。</h2><p>壶口冒出第一缕白气时，院里只剩一声很轻的鸟鸣。茶不急着喝，先让杯壁暖一暖手。</p><div class=\"wb-meta\"><span>焙火乌龙 · 3 泡</span><b>续写此刻 →</b></div></main><div class=\"wb-vessel\"><i></i><span>手捏<br>茶碗</span></div></div><span class=\"style-wabisabi-seal\">茶</span></div></div>",
+            "demoClass": "card-demo scaled-preview style-preview"
+          }
+        ]
       },
       {
-        "label": "产品",
-        "count": 19,
-        "active": false
+        "id": "cat-icon-minimal",
+        "title": "极简形",
+        "category": "icon-style",
+        "subgroup": "minimal",
+        "count": 3,
+        "terms": []
       },
       {
-        "label": "测试",
-        "count": 14,
-        "active": false
+        "id": "cat-icon-texture",
+        "title": "色彩质感",
+        "category": "icon-style",
+        "subgroup": "texture",
+        "count": 3,
+        "terms": []
       },
       {
-        "label": "技术栈",
-        "count": 17,
-        "active": false
+        "id": "cat-icon-brand",
+        "title": "品牌形象",
+        "category": "icon-style",
+        "subgroup": "brand",
+        "count": 2,
+        "terms": []
       },
       {
-        "label": "AI",
-        "count": 37,
-        "active": false
-      },
-      {
-        "label": "Git",
-        "count": 12,
-        "active": false
-      },
-      {
-        "label": "设计风格",
-        "count": 28,
-        "active": false
-      },
-      {
-        "label": "素材库",
-        "count": 10,
-        "active": true
-      },
-      {
-        "label": "收藏",
-        "count": 0,
-        "active": false
-      }
-    ],
-    "sidebar": [
-      "图标库"
-    ],
-    "groups": [
-      {
-        "id": "cat-图标库",
-        "title": "图标库",
+        "id": "cat-icon-libraries",
+        "title": "Icon 图标",
+        "category": "icon-lib",
         "count": 2,
         "terms": [
           {
@@ -3508,6 +3543,127 @@
             "tagline": "要粗细可调、风格统一的图标？Phosphor 一套六档字重，Duotone 双色更有层次。",
             "demoHtml": "<div class=\"icon-grid\"><div class=\"icon-cell\" title=\"house\"><span class=\"icon-svg\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 256 256\"><path fill=\"currentColor\" d=\"m219.31 108.68l-80-80a16 16 0 0 0-22.62 0l-80 80A15.87 15.87 0 0 0 32 120v96a8 8 0 0 0 8 8h64a8 8 0 0 0 8-8v-56h32v56a8 8 0 0 0 8 8h64a8 8 0 0 0 8-8v-96a15.87 15.87 0 0 0-4.69-11.32M208 208h-48v-56a8 8 0 0 0-8-8h-48a8 8 0 0 0-8 8v56H48v-88l80-80l80 80Z\"/></svg></span><span class=\"icon-name\">house</span></div><div class=\"icon-cell\" title=\"magnifying-glass\"><span class=\"icon-svg\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 256 256\"><path fill=\"currentColor\" d=\"m229.66 218.34l-50.07-50.06a88.11 88.11 0 1 0-11.31 11.31l50.06 50.07a8 8 0 0 0 11.32-11.32M40 112a72 72 0 1 1 72 72a72.08 72.08 0 0 1-72-72\"/></svg></span><span class=\"icon-name\">magnifying-glass</span></div><div class=\"icon-cell\" title=\"gear\"><span class=\"icon-svg\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 256 256\"><path fill=\"currentColor\" d=\"M128 80a48 48 0 1 0 48 48a48.05 48.05 0 0 0-48-48m0 80a32 32 0 1 1 32-32a32 32 0 0 1-32 32m88-29.84q.06-2.16 0-4.32l14.92-18.64a8 8 0 0 0 1.48-7.06a107.2 107.2 0 0 0-10.88-26.25a8 8 0 0 0-6-3.93l-23.72-2.64q-1.48-1.56-3-3L186 40.54a8 8 0 0 0-3.94-6a107.7 107.7 0 0 0-26.25-10.87a8 8 0 0 0-7.06 1.49L130.16 40h-4.32L107.2 25.11a8 8 0 0 0-7.06-1.48a107.6 107.6 0 0 0-26.25 10.88a8 8 0 0 0-3.93 6l-2.64 23.76q-1.56 1.49-3 3L40.54 70a8 8 0 0 0-6 3.94a107.7 107.7 0 0 0-10.87 26.25a8 8 0 0 0 1.49 7.06L40 125.84v4.32L25.11 148.8a8 8 0 0 0-1.48 7.06a107.2 107.2 0 0 0 10.88 26.25a8 8 0 0 0 6 3.93l23.72 2.64q1.49 1.56 3 3L70 215.46a8 8 0 0 0 3.94 6a107.7 107.7 0 0 0 26.25 10.87a8 8 0 0 0 7.06-1.49L125.84 216q2.16.06 4.32 0l18.64 14.92a8 8 0 0 0 7.06 1.48a107.2 107.2 0 0 0 26.25-10.88a8 8 0 0 0 3.93-6l2.64-23.72q1.56-1.48 3-3l23.78-2.8a8 8 0 0 0 6-3.94a107.7 107.7 0 0 0 10.87-26.25a8 8 0 0 0-1.49-7.06Zm-16.1-6.5a74 74 0 0 1 0 8.68a8 8 0 0 0 1.74 5.48l14.19 17.73a91.6 91.6 0 0 1-6.23 15l-22.6 2.56a8 8 0 0 0-5.1 2.64a74 74 0 0 1-6.14 6.14a8 8 0 0 0-2.64 5.1l-2.51 22.58a91.3 91.3 0 0 1-15 6.23l-17.74-14.19a8 8 0 0 0-5-1.75h-.48a74 74 0 0 1-8.68 0a8 8 0 0 0-5.48 1.74l-17.78 14.2a91.6 91.6 0 0 1-15-6.23L82.89 187a8 8 0 0 0-2.64-5.1a74 74 0 0 1-6.14-6.14a8 8 0 0 0-5.1-2.64l-22.58-2.52a91.3 91.3 0 0 1-6.23-15l14.19-17.74a8 8 0 0 0 1.74-5.48a74 74 0 0 1 0-8.68a8 8 0 0 0-1.74-5.48L40.2 100.45a91.6 91.6 0 0 1 6.23-15L69 82.89a8 8 0 0 0 5.1-2.64a74 74 0 0 1 6.14-6.14A8 8 0 0 0 82.89 69l2.51-22.57a91.3 91.3 0 0 1 15-6.23l17.74 14.19a8 8 0 0 0 5.48 1.74a74 74 0 0 1 8.68 0a8 8 0 0 0 5.48-1.74l17.77-14.19a91.6 91.6 0 0 1 15 6.23L173.11 69a8 8 0 0 0 2.64 5.1a74 74 0 0 1 6.14 6.14a8 8 0 0 0 5.1 2.64l22.58 2.51a91.3 91.3 0 0 1 6.23 15l-14.19 17.74a8 8 0 0 0-1.74 5.53Z\"/></svg></span><span class=\"icon-name\">gear</span></div><div class=\"icon-cell\" title=\"user\"><span class=\"icon-svg\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 256 256\"><path fill=\"currentColor\" d=\"M230.92 212c-15.23-26.33-38.7-45.21-66.09-54.16a72 72 0 1 0-73.66 0c-27.39 8.94-50.86 27.82-66.09 54.16a8 8 0 1 0 13.85 8c18.84-32.56 52.14-52 89.07-52s70.23 19.44 89.07 52a8 8 0 1 0 13.85-8M72 96a56 56 0 1 1 56 56a56.06 56.06 0 0 1-56-56\"/></svg></span><span class=\"icon-name\">user</span></div><div class=\"icon-cell\" title=\"heart\"><span class=\"icon-svg\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 256 256\"><path fill=\"currentColor\" d=\"M178 40c-20.65 0-38.73 8.88-50 23.89C116.73 48.88 98.65 40 78 40a62.07 62.07 0 0 0-62 62c0 70 103.79 126.66 108.21 129a8 8 0 0 0 7.58 0C136.21 228.66 240 172 240 102a62.07 62.07 0 0 0-62-62m-50 174.8c-18.26-10.64-96-59.11-96-112.8a46.06 46.06 0 0 1 46-46c19.45 0 35.78 10.36 42.6 27a8 8 0 0 0 14.8 0c6.82-16.67 23.15-27 42.6-27a46.06 46.06 0 0 1 46 46c0 53.61-77.76 102.15-96 112.8\"/></svg></span><span class=\"icon-name\">heart</span></div><div class=\"icon-cell\" title=\"star\"><span class=\"icon-svg\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 256 256\"><path fill=\"currentColor\" d=\"M239.18 97.26A16.38 16.38 0 0 0 224.92 86l-59-4.76l-22.78-55.09a16.36 16.36 0 0 0-30.27 0L90.11 81.23L31.08 86a16.46 16.46 0 0 0-9.37 28.86l45 38.83L53 211.75a16.38 16.38 0 0 0 24.5 17.82l50.5-31.08l50.53 31.08A16.4 16.4 0 0 0 203 211.75l-13.76-58.07l45-38.83a16.43 16.43 0 0 0 4.94-17.59m-15.34 5.47l-48.7 42a8 8 0 0 0-2.56 7.91l14.88 62.8a.37.37 0 0 1-.17.48c-.18.14-.23.11-.38 0l-54.72-33.65a8 8 0 0 0-8.38 0l-54.72 33.67c-.15.09-.19.12-.38 0a.37.37 0 0 1-.17-.48l14.88-62.8a8 8 0 0 0-2.56-7.91l-48.7-42c-.12-.1-.23-.19-.13-.5s.18-.27.33-.29l63.92-5.16a8 8 0 0 0 6.72-4.94l24.62-59.61c.08-.17.11-.25.35-.25s.27.08.35.25L153 91.86a8 8 0 0 0 6.75 4.92l63.92 5.16c.15 0 .24 0 .33.29s0 .4-.16.5\"/></svg></span><span class=\"icon-name\">star</span></div><div class=\"icon-cell\" title=\"bell\"><span class=\"icon-svg\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 256 256\"><path fill=\"currentColor\" d=\"M221.8 175.94c-5.55-9.56-13.8-36.61-13.8-71.94a80 80 0 1 0-160 0c0 35.34-8.26 62.38-13.81 71.94A16 16 0 0 0 48 200h40.81a40 40 0 0 0 78.38 0H208a16 16 0 0 0 13.8-24.06M128 216a24 24 0 0 1-22.62-16h45.24A24 24 0 0 1 128 216m-80-32c7.7-13.24 16-43.92 16-80a64 64 0 1 1 128 0c0 36.05 8.28 66.73 16 80Z\"/></svg></span><span class=\"icon-name\">bell</span></div><div class=\"icon-cell\" title=\"envelope-simple\"><span class=\"icon-svg\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 256 256\"><path fill=\"currentColor\" d=\"M224 48H32a8 8 0 0 0-8 8v136a16 16 0 0 0 16 16h176a16 16 0 0 0 16-16V56a8 8 0 0 0-8-8m-20.57 16L128 133.15L52.57 64ZM216 192H40V74.19l82.59 75.71a8 8 0 0 0 10.82 0L216 74.19z\"/></svg></span><span class=\"icon-name\">envelope-simple</span></div><div class=\"icon-cell\" title=\"camera\"><span class=\"icon-svg\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 256 256\"><path fill=\"currentColor\" d=\"M208 56h-27.72l-13.63-20.44A8 8 0 0 0 160 32H96a8 8 0 0 0-6.65 3.56L75.71 56H48a24 24 0 0 0-24 24v112a24 24 0 0 0 24 24h160a24 24 0 0 0 24-24V80a24 24 0 0 0-24-24m8 136a8 8 0 0 1-8 8H48a8 8 0 0 1-8-8V80a8 8 0 0 1 8-8h32a8 8 0 0 0 6.66-3.56L100.28 48h55.43l13.63 20.44A8 8 0 0 0 176 72h32a8 8 0 0 1 8 8ZM128 88a44 44 0 1 0 44 44a44.05 44.05 0 0 0-44-44m0 72a28 28 0 1 1 28-28a28 28 0 0 1-28 28\"/></svg></span><span class=\"icon-name\">camera</span></div><div class=\"icon-cell\" title=\"chat-circle\"><span class=\"icon-svg\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 256 256\"><path fill=\"currentColor\" d=\"M128 24a104 104 0 0 0-91.82 152.88l-11.35 34.05a16 16 0 0 0 20.24 20.24l34.05-11.35A104 104 0 1 0 128 24m0 192a87.87 87.87 0 0 1-44.06-11.81a8 8 0 0 0-6.54-.67L40 216l12.47-37.4a8 8 0 0 0-.66-6.54A88 88 0 1 1 128 216\"/></svg></span><span class=\"icon-name\">chat-circle</span></div><div class=\"icon-cell\" title=\"trash\"><span class=\"icon-svg\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 256 256\"><path fill=\"currentColor\" d=\"M216 48h-40v-8a24 24 0 0 0-24-24h-48a24 24 0 0 0-24 24v8H40a8 8 0 0 0 0 16h8v144a16 16 0 0 0 16 16h128a16 16 0 0 0 16-16V64h8a8 8 0 0 0 0-16M96 40a8 8 0 0 1 8-8h48a8 8 0 0 1 8 8v8H96Zm96 168H64V64h128Zm-80-104v64a8 8 0 0 1-16 0v-64a8 8 0 0 1 16 0m48 0v64a8 8 0 0 1-16 0v-64a8 8 0 0 1 16 0\"/></svg></span><span class=\"icon-name\">trash</span></div><div class=\"icon-cell\" title=\"plus\"><span class=\"icon-svg\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 256 256\"><path fill=\"currentColor\" d=\"M224 128a8 8 0 0 1-8 8h-80v80a8 8 0 0 1-16 0v-80H40a8 8 0 0 1 0-16h80V40a8 8 0 0 1 16 0v80h80a8 8 0 0 1 8 8\"/></svg></span><span class=\"icon-name\">plus</span></div><div class=\"icon-cell\" title=\"arrow-right\"><span class=\"icon-svg\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 256 256\"><path fill=\"currentColor\" d=\"m221.66 133.66l-72 72a8 8 0 0 1-11.32-11.32L196.69 136H40a8 8 0 0 1 0-16h156.69l-58.35-58.34a8 8 0 0 1 11.32-11.32l72 72a8 8 0 0 1 0 11.32\"/></svg></span><span class=\"icon-name\">arrow-right</span></div><div class=\"icon-cell\" title=\"check\"><span class=\"icon-svg\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 256 256\"><path fill=\"currentColor\" d=\"m229.66 77.66l-128 128a8 8 0 0 1-11.32 0l-56-56a8 8 0 0 1 11.32-11.32L96 188.69L218.34 66.34a8 8 0 0 1 11.32 11.32\"/></svg></span><span class=\"icon-name\">check</span></div><div class=\"icon-cell\" title=\"x\"><span class=\"icon-svg\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 256 256\"><path fill=\"currentColor\" d=\"M205.66 194.34a8 8 0 0 1-11.32 11.32L128 139.31l-66.34 66.35a8 8 0 0 1-11.32-11.32L116.69 128L50.34 61.66a8 8 0 0 1 11.32-11.32L128 116.69l66.34-66.35a8 8 0 0 1 11.32 11.32L139.31 128Z\"/></svg></span><span class=\"icon-name\">x</span></div><div class=\"icon-cell\" title=\"lightbulb\"><span class=\"icon-svg\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 256 256\"><path fill=\"currentColor\" d=\"M176 232a8 8 0 0 1-8 8H88a8 8 0 0 1 0-16h80a8 8 0 0 1 8 8m40-128a87.55 87.55 0 0 1-33.64 69.21A16.24 16.24 0 0 0 176 186v6a16 16 0 0 1-16 16H96a16 16 0 0 1-16-16v-6a16 16 0 0 0-6.23-12.66A87.59 87.59 0 0 1 40 104.49C39.74 56.83 78.26 17.14 125.88 16A88 88 0 0 1 216 104m-16 0a72 72 0 0 0-73.74-72c-39 .92-70.47 33.39-70.26 72.39a71.65 71.65 0 0 0 27.64 56.3A32 32 0 0 1 96 186v6h64v-6a32.15 32.15 0 0 1 12.47-25.35A71.65 71.65 0 0 0 200 104m-16.11-9.34a57.6 57.6 0 0 0-46.56-46.55a8 8 0 0 0-2.66 15.78c16.57 2.79 30.63 16.85 33.44 33.45A8 8 0 0 0 176 104a9 9 0 0 0 1.35-.11a8 8 0 0 0 6.54-9.23\"/></svg></span><span class=\"icon-name\">lightbulb</span></div><div class=\"icon-cell\" title=\"shopping-cart\"><span class=\"icon-svg\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 256 256\"><path fill=\"currentColor\" d=\"M230.14 58.87A8 8 0 0 0 224 56H62.68L56.6 22.57A8 8 0 0 0 48.73 16H24a8 8 0 0 0 0 16h18l25.56 140.29a24 24 0 0 0 5.33 11.27a28 28 0 1 0 44.4 8.44h45.42a27.75 27.75 0 0 0-2.71 12a28 28 0 1 0 28-28H91.17a8 8 0 0 1-7.87-6.57L80.13 152h116a24 24 0 0 0 23.61-19.71l12.16-66.86a8 8 0 0 0-1.76-6.56M104 204a12 12 0 1 1-12-12a12 12 0 0 1 12 12m96 0a12 12 0 1 1-12-12a12 12 0 0 1 12 12m4-74.57a8 8 0 0 1-7.9 6.57H77.22L65.59 72h148.82Z\"/></svg></span><span class=\"icon-name\">shopping-cart</span></div><div class=\"icon-cell\" title=\"calendar\"><span class=\"icon-svg\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 256 256\"><path fill=\"currentColor\" d=\"M208 32h-24v-8a8 8 0 0 0-16 0v8H88v-8a8 8 0 0 0-16 0v8H48a16 16 0 0 0-16 16v160a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16M72 48v8a8 8 0 0 0 16 0v-8h80v8a8 8 0 0 0 16 0v-8h24v32H48V48Zm136 160H48V96h160zm-96-88v64a8 8 0 0 1-16 0v-51.06l-4.42 2.22a8 8 0 0 1-7.16-14.32l16-8A8 8 0 0 1 112 120m59.16 30.45L152 176h16a8 8 0 0 1 0 16h-32a8 8 0 0 1-6.4-12.8l28.78-38.37a8 8 0 1 0-13.31-8.83a8 8 0 1 1-13.85-8A24 24 0 0 1 176 136a23.76 23.76 0 0 1-4.84 14.45\"/></svg></span><span class=\"icon-name\">calendar</span></div></div>",
             "demoClass": "card-demo icon-grid-wrap"
+          }
+        ]
+      },
+      {
+        "id": "cat-interaction-motion",
+        "title": "动效组件",
+        "category": "motion",
+        "count": 3,
+        "terms": [
+          {
+            "slug": "motion-card-carousel",
+            "name": "卡片轮播",
+            "en": "Card Carousel",
+            "tagline": "三张照片卡散落堆叠：跟着指针浮沉，点击或拖拽换卡，参数滑杆实时改动画。",
+            "tags": [
+              "指针响应",
+              "拖拽换卡",
+              "参数可调"
+            ],
+            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div style=\"position:relative;width:100%;height:100%;background:var(--bg-soft)\"><div style=\"position:absolute;left:50%;top:50%;width:130px;height:173px;margin:-86px 0 0 -216px;transform:rotate(-8deg);border-radius:12px;background:url(/assets/motion/citrus.png) center/cover;box-shadow:0 12px 26px rgba(0,0,0,.22)\"></div><div style=\"position:absolute;left:50%;top:50%;width:130px;height:173px;margin:-86px 0 0 86px;transform:rotate(7deg);border-radius:12px;background:url(/assets/motion/forest.png) center/cover;box-shadow:0 12px 26px rgba(0,0,0,.22)\"></div><div style=\"position:absolute;left:50%;top:50%;width:140px;height:187px;margin:-96px 0 0 -70px;transform:rotate(-3deg);border-radius:12px;background:url(/assets/motion/dune.png) center/cover;box-shadow:0 16px 34px rgba(0,0,0,.28)\"></div></div></div>",
+            "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
+          },
+          {
+            "slug": "motion-dot-intro",
+            "name": "信纸开场",
+            "en": "Letter Intro",
+            "tagline": "渐变底上一张微倾斜的信纸浮入，衬线文字逐行淡进——点一下屏幕推进一步，循环重播。",
+            "tags": [
+              "入场动画",
+              "点击推进",
+              "自动循环"
+            ],
+            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div style=\"position:relative;width:100%;height:100%;background:linear-gradient(160deg,#f3d9c4,#f8efe7 55%,#e9e4f2)\"><div style=\"position:absolute;left:50%;top:24%;transform:translateX(-50%);font-family:Georgia,'Songti SC',serif;font-size:19px;color:#33291f\">还有一件事</div><div style=\"position:absolute;left:50%;top:66%;transform:translate(-50%,-50%) rotate(-4deg);width:150px;height:170px;background:#fffdf9;border-radius:14px;box-shadow:0 14px 30px rgba(80,50,40,.2);padding:16px;box-sizing:border-box;font-family:Georgia,'Songti SC',serif;font-size:15px;color:#2b241e\">你好，<i style=\"display:inline-block;width:2px;height:13px;background:#2b241f;vertical-align:-2px\"></i></div></div></div>",
+            "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
+          },
+          {
+            "slug": "motion-dark-onboarding",
+            "name": "暗场引导",
+            "en": "Dark Onboarding",
+            "tagline": "深色手机里四个引导场景横向滑入换场：条目分步进、3D 卡片翻面、图标描边形变、数字逐位滚定——点屏推进，自动循环。",
+            "tags": [
+              "横向切场",
+              "3D 卡片",
+              "数字滚轮"
+            ],
+            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div style=\"position:relative;width:100%;height:100%;background:#0a0b0d\"><div style=\"position:absolute;left:50%;top:34%;transform:translate(-50%,-50%) rotateX(10deg) rotateY(-8deg);width:150px;height:94px;border-radius:11px;background:linear-gradient(135deg,#2c2f35,#17191d 46%,#34373e);border:1px solid #43474f;box-shadow:0 16px 32px rgba(0,0,0,.5);box-sizing:border-box\"><span style=\"position:absolute;top:11px;right:12px;font-size:10px;letter-spacing:1px;color:#e6c58a\">潮汐</span><span style=\"position:absolute;top:34px;left:12px;width:22px;height:17px;border-radius:4px;background:linear-gradient(120deg,#d8b475,#8d7040)\"></span><span style=\"position:absolute;bottom:12px;left:12px;font-size:10px;letter-spacing:1px;color:#b9bdc5\">•••• •••• •••• 4291</span></div><div style=\"position:absolute;left:20%;bottom:20%;width:92px;height:9px;border-radius:5px;background:#f2f3f5\"></div><div style=\"position:absolute;left:20%;bottom:13%;width:128px;height:6px;border-radius:4px;background:#3a3d44\"></div></div></div>",
+            "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "key": "principles",
+    "href": "/principles",
+    "title": "AI 应用工作原理",
+    "categories": [
+      {
+        "key": "retrieval",
+        "label": "检索与知识库"
+      },
+      {
+        "key": "reasoning",
+        "label": "Agent 推理"
+      }
+    ],
+    "sidebar": [],
+    "groups": [
+      {
+        "id": "cat-retrieval-pipeline",
+        "title": "检索链路",
+        "category": "retrieval",
+        "count": 4,
+        "terms": [
+          {
+            "slug": "rag",
+            "name": "检索增强生成",
+            "en": "RAG",
+            "tagline": "AI 说它不知道我们公司的规定，能不能先把它查一遍再回答？",
+            "demoHtml": "<div class=\"card-demo-mount\"><div class=\"ai-card-visual plx-card plx-card-rag\"><div class=\"plx-q\"><small>用户提问</small><b>我们的退款政策上个月改过吗？</b></div><div class=\"plx-pipe\"><span class=\"plx-retrieve\"><small>① 先查资料</small><b>退款政策 v3 · 7 天无理由</b></span><i>→</i><span class=\"plx-context\"><small>② 连同问题给模型</small><b>只给命中的 3 段</b></span><i>→</i><span class=\"plx-answer\"><small>③ 才开口</small><b>结论 + 来源链接</b></span></div><div class=\"plx-noise\"><small>没被选中</small><b>会员等级说明 · 运费说明</b></div></div></div>",
+            "demoClass": "card-demo preview-animations-paused"
+          },
+          {
+            "slug": "chunking",
+            "name": "分块",
+            "en": "Chunking",
+            "tagline": "我把整本手册都喂给它了，它怎么还是答非所问？",
+            "demoHtml": "<div class=\"card-demo-mount\"><div class=\"ai-card-visual plx-card plx-card-chunk\"><div class=\"plx-src\"><small>一份 24 页的售后手册</small><span class=\"plx-src-bar\"></span></div><div class=\"plx-chunks\"><span><b>1</b>第 1–4 页</span><span class=\"ov\"><b>2</b>第 4–7 页<i>重叠</i></span><span><b>3</b>第 7–10 页</span><span class=\"cut\"><b>4</b>表格拦腰截断</span></div></div></div>",
+            "demoClass": "card-demo preview-animations-paused"
+          },
+          {
+            "slug": "embedding",
+            "name": "向量化",
+            "en": "Embedding",
+            "tagline": "它是怎么知道哪一段资料跟我问的话有关的？",
+            "demoHtml": "<div class=\"card-demo-mount\"><div class=\"ai-card-visual plx-card plx-card-emb\"><div class=\"plx-emb-row\"><span>明天下午有降雨</span><b>0.21 · −0.44 · 0.87 · …</b></div><div class=\"plx-emb-row\"><span>降雨预报</span><b>0.19 · −0.41 · 0.85 · …</b></div><div class=\"plx-emb-row is-far\"><span>今天吃了煎饼</span><b>−0.77 · 0.05 · −0.31 · …</b></div><div class=\"plx-emb-score\"><em class=\"ok\">语义相近 → 数字也相近 0.93</em><em class=\"fail\">无关句子 0.12</em></div></div></div>",
+            "demoClass": "card-demo preview-animations-paused"
+          },
+          {
+            "slug": "rerank",
+            "name": "重排",
+            "en": "Rerank",
+            "tagline": "搜出来 20 条，凭什么决定给模型看哪 3 条？",
+            "demoHtml": "<div class=\"card-demo-mount\"><div class=\"ai-card-visual plx-card plx-card-rerank\"><div class=\"plx-rk plx-rk-recall\"><small>① 召回 20 条</small><div class=\"plx-rk-list\"><span>退款政策<b>0.62</b></span><span>运费说明<b>0.58</b></span><span>退换货流程<b>0.51</b></span></div></div><i>→</i><div class=\"plx-rk plx-rk-top\"><small>② 逐对精排取 3 条</small><div class=\"plx-rk-list\"><span class=\"up\">退换货流程<b>0.91</b></span><span>退款政策<b>0.88</b></span><span class=\"out\">运费说明<b>0.34</b></span></div></div></div></div>",
+            "demoClass": "card-demo preview-animations-paused"
+          }
+        ]
+      },
+      {
+        "id": "cat-agent-reasoning",
+        "title": "推理与决策",
+        "category": "reasoning",
+        "count": 1,
+        "terms": [
+          {
+            "slug": "react-pattern",
+            "name": "ReAct",
+            "en": "Reason + Act",
+            "tagline": "AI 能不能每完成一步先检查结果，再决定下一步？",
+            "demoHtml": "<div class=\"card-demo-mount\">\n  <div class=\"ai-card-visual ai-card-react\">\n    <div class=\"aic-react-loop\"><span class=\"think\"><small>判断</small><b>按钮可能没有点击事件</b></span><i class=\"one\">→</i><span class=\"act\"><small>行动</small><b>读取 login-button.jsx</b></span><i class=\"two\">↓</i><span class=\"observe\"><small>观察</small><b>点击事件已存在</b></span><i class=\"three\">↖</i></div>\n    <div class=\"aic-foot\">停止改按钮 · 下一步查看 401 请求</div>\n  </div></div>",
+            "demoClass": "card-demo preview-animations-paused"
           }
         ]
       }

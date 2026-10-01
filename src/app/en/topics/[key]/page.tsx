@@ -5,8 +5,11 @@ import type { Catalog } from "@/lib/types";
 
 const CATALOGS = enCatalogsData as Catalog[];
 
+// 设计分区已独立为顶级 /en/design，不再走 /topics 路由
+const TOPIC_CATALOGS = CATALOGS.filter((c) => c.key !== "design");
+
 export function generateStaticParams() {
-  return CATALOGS.map((c) => ({ key: c.key }));
+  return TOPIC_CATALOGS.map((c) => ({ key: c.key }));
 }
 
 export default async function EnTopicPage({
@@ -15,7 +18,7 @@ export default async function EnTopicPage({
   params: Promise<{ key: string }>;
 }) {
   const { key } = await params;
-  const catalog = CATALOGS.find((c) => c.key === key);
+  const catalog = TOPIC_CATALOGS.find((c) => c.key === key);
   if (!catalog) notFound();
   return <CatalogView catalogKey={key} locale="en" />;
 }

@@ -312,6 +312,76 @@
           "related": [
             "superpowers"
           ]
+        },
+        {
+          "id": "graphify",
+          "name": "graphify",
+          "category": "workflow",
+          "tagline": "把整个项目炼成一张可查询的知识图谱，问图而不是 grep 代码",
+          "overview": "Graphify Labs（YC S26）出品（★122K，Apache-2.0）：在 Agent 里输入 /graphify，它把任意文件夹——代码、文档、PDF、截图甚至视频——解析成一张持久化的知识图谱。代码走 tree-sitter AST，纯本地、不经过 LLM、确定性可复现；没有向量库，是真正可遍历的图。每条边标注 EXTRACTED（源码里明写）或 INFERRED（图谱推断），读到的和猜的分得清清楚楚。产出三件套：可交互 graph.html、GraphRAG 格式的 graph.json、人话版 GRAPH_REPORT.md，之后问架构直接 graphify query / path / explain。官方基准：在约 100 万行的 ERPNext 上，只给 Agent 加这一个工具，关键事实覆盖率从 70.8%（grep+read 基线）提到 82.0%，而建图本身不消耗一个 LLM token。",
+          "features": [
+            "代码解析全本地：tree-sitter AST + 调用图，无 LLM、无向量库，代码不出机器",
+            "多模态入图：文档/PDF/图片/视频走语义抽取，代码与论文跨源连边、社区检测聚类",
+            "query / path / explain 三种问法，--watch 或 git post-commit 钩子让图谱随提交自动重建",
+            "导出生态齐全：graph.html、Obsidian 库、--wiki、SVG/GraphML、Neo4j、MCP server"
+          ],
+          "useCases": [
+            "接手陌生大仓库，先建图再问架构，不再满仓 grep",
+            "让 Agent 查图代替通读文件，大项目显著省 token",
+            "论文、截图、笔记丢进一个文件夹，攒成可查询的个人知识库"
+          ],
+          "bestFor": "天天让 AI 读代码的人必备；与 archify 互补——graphify 把结构查出来，archify 把图画出来。注意 PyPI 包名是 graphifyy（双 y），技能首次运行会自动装好 CLI。",
+          "pricing": "开源免费（Apache-2.0）",
+          "platform": "Claude Code / Cursor / Codex / Gemini CLI / Copilot 等 20+ Agent",
+          "author": "Graphify Labs",
+          "repo": "https://github.com/Graphify-Labs/graphify",
+          "install": "npx skills add https://github.com/graphify-labs/graphify --skill graphify",
+          "installs": "8.2K",
+          "tags": [
+            "工作流",
+            "知识图谱",
+            "代码理解"
+          ],
+          "logo": "/assets/logos/github-graphify-labs.png",
+          "related": [
+            "archify",
+            "superpowers"
+          ]
+        },
+        {
+          "id": "caveman",
+          "name": "caveman",
+          "category": "workflow",
+          "tagline": "让 Agent 停止客套：只砍废话不动代码，输出 token 独立实测省 8.5%",
+          "overview": "个人开发者 Julius Brussee 的病毒式技能（★108K，技能 MIT、引擎 BSL-1.1），口号「why use many token when few do trick」，2026 年 7 月做到 GitHub Trending 第一。装上后 Agent 用最短的话讲结论：代码、命令、文件路径、报错原文一个字不动，安全警告和「你确定吗」自动切回完整句子。语气分 lite/full/ultra 三档，另有文言模式。省多少它把三方数字都摊在 README 里：JetBrains 在 86 个真实编码任务上做配对 A/B，独立测得输出 token 少 8.5%、成本约省 10%、质量测不出差异（符号检验 p=0.82），并注明这是上限而非常态——仓库宣传的 65% 是另一码事；Adobe Research 的 CAVEWOMAN 论文测到成本 1.4–2.4 倍、最好 3 倍；仓库自己对照「Answer concisely」基线，中位数再省 50% 输出。同一仓库还带一个本地代理，压 Agent 读进去的日志、测试输出、diff，54 次固定跑合计少 33.2% 输入 token，其中 HTML 那行是 +9.9%，作者把它标红留在表里没删。",
+          "features": [
+            "六档语气随时切换，/caveman off 回正常模式；规则从不吃代码、命令与报错原文",
+            "配套命令齐：/caveman-commit 一行式 Conventional Commit、/caveman-review 一行评审意见、/caveman-compress 把记忆文件平均压掉 46%",
+            "cavecrew 子代理预设（investigator / builder / reviewer）与六种工作模式，让 Agent 少写代码而不只是少说话",
+            "大石头是跑在 Agent 与模型之间的代理：压缩读入流，浏览器页面一例实测 15,704 → 121 token，且可还原"
+          ],
+          "useCases": [
+            "长会话里日志、测试输出、diff 反复进上下文，按 token 付费想压账单",
+            "受了三段铺垫才给结论，要 Agent 直接说结论",
+            "CLAUDE.md / AGENTS.md 越写越长，用 /caveman-compress 压回可控体积"
+          ],
+          "bestFor": "只有按 token 计费才划算：按请求计费的（如 Copilot premium requests）省不到钱；规则本身每次调用约带 1,000 输入 token，短问答场景可能倒挂。作者给的判断标准就一句——同一任务开关各跑一次，去看提供商的账单页。",
+          "pricing": "技能与 CLI 开源免费（MIT）；引擎/代理为 BSL-1.1 源码可用，自用与自托管免授权，替第三方托管才需商业许可",
+          "platform": "Claude Code / Codex / Gemini CLI / Cursor / Windsurf / Cline / Copilot 等 30+ Agent",
+          "author": "Julius Brussee",
+          "repo": "https://github.com/JuliusBrussee/caveman",
+          "install": "npx skills add https://github.com/juliusbrussee/caveman --skill caveman",
+          "installs": "542.6K",
+          "tags": [
+            "工作流",
+            "省 token",
+            "输出风格"
+          ],
+          "logo": "/assets/logos/github-juliusbrussee.png",
+          "related": [
+            "graphify",
+            "ponytail"
+          ]
         }
       ]
     },
@@ -519,6 +589,44 @@
             "像素级复刻"
           ],
           "logo": "/assets/logos/github-jcodesmore.png"
+        }
+      ]
+    },
+    {
+      "key": "image",
+      "label": "图像生成",
+      "skills": [
+        {
+          "id": "ip-as-logo",
+          "name": "ip-as-logo",
+          "category": "image",
+          "tagline": "把「吉祥物要可爱又好记」写成一张硬约束表",
+          "overview": "个人开发者 Sida 做的 IP 吉祥物生成技能，2026 年 8 月开源，两个月不到拿到 ★5.7K。它不画图，只管住图像模型：整只角色只用 4–7 个大几何形拼出、全图限三种语义色（两色角色 + 一色实底背景）、只允许一个物种特征、缩到 32×32 还认得出来，角色必须从左下或右下探出、占掉画面八九成。技能本体就是一份 114 行的指令文档，没有脚本、没有素材依赖。",
+          "features": [
+            "先给方向再出图：读完产品上下文后提出三条「角色 — 与产品的关联 — 轮廓特征」，你点头才生成六张独立候选，左下角与右下角各三张",
+            "复杂度是硬约束：两处内部色块、两点眼睛加最多一个小嘴，禁止锐角、细线、纹理、装饰性小标记，多余的特征一律合并或删掉",
+            "提示词里不许出现用途词：喂给图像模型的正文只描述一张方形角色图，绝不写 logo、图标、App 图标，防止模型跑偏去画「带边框的标志」",
+            "一次抽卡不返工：六张全发，不做合规判定、不自动重试、不后期修图，要重抽明说",
+            "实测通过：安装命令跑通，装完的文件与仓库逐字节一致；照它的提示词模板喂图像模型，出来的图确实守住了三色与角落构图",
+            "门槛在模型，维护也停了：只认 GPT Image 2、Seedream 5.0 Pro、Nano Banana Pro / 2 这一档出图模型，明令禁止退回 SVG；仓库最后一次提交停在 2026-08-22，官网图片 404 的报障至今开着"
+          ],
+          "useCases": [
+            "独立产品和 side project 缺一个记得住的吉祥物",
+            "要一批风格统一但各有差别的候选图给团队挑",
+            "没有设计师时，给公众号、小红书做一套统一形象"
+          ],
+          "bestFor": "手上已经有顶级图像模型的独立开发者和小团队。不想自己抽图的话，配套官网 ipaslogo.com 挂了 3400 多个成品 logo，标注全部免费下载、可商用。",
+          "pricing": "MIT 开源免费；官网成品 logo 免费下载可商用",
+          "platform": "Codex / Coze / 豆包 / Manus / Gemini 等支持 Agent Skills 的助手",
+          "author": "Sida",
+          "repo": "https://github.com/s1dashu/ip-as-logo-skill",
+          "install": "npx skills@latest add s1dashu/ip-as-logo-skill",
+          "tags": [
+            "IP 吉祥物",
+            "提示词工程",
+            "免费商用"
+          ],
+          "logo": "/assets/logos/ipaslogo.png"
         }
       ]
     },

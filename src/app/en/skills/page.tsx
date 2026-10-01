@@ -4,7 +4,7 @@ import SkillLibraryView from "@/components/SkillLibraryView";
 export const metadata: Metadata = {
   title: "Skill Library｜BuildHub · Curated Agent Skills",
   description:
-    "Mainstream Agent Skills that earn their place — meta, workflow, design, documents, browser automation. Every entry ships a one-click install command.",
+    "Mainstream Agent Skills that earn their place — meta, workflow, design, image generation, documents, browser automation. Every entry ships a one-click install command.",
   openGraph: {
     title: "Skill Library｜BuildHub",
     description:

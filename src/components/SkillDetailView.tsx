@@ -1,6 +1,9 @@
 import SkillAvatar from "./SkillAvatar";
 import SkillCover from "./SkillCover";
 import CopyButton from "./CopyButton";
+import PronunciationButton from "./PronunciationButton";
+import RelatedSection from "./RelatedSection";
+import type { RelatedItem } from "@/lib/related";
 import "./SkillDetailView.css";
 
 export type SkillDetail = {
@@ -22,6 +25,7 @@ export type SkillDetail = {
   logo?: string;
   cover?: string;
   tags?: string[];
+  related?: string[];
 };
 
 export type SkillDetailLocale = "zh" | "en";
@@ -72,6 +76,7 @@ export default function SkillDetailView({
   backHref,
   categories,
   currentCategory,
+  related = [],
 }: {
   skill: SkillDetail;
   locale?: SkillDetailLocale;
@@ -79,6 +84,7 @@ export default function SkillDetailView({
   backHref: string;
   categories: { key: string; label: string }[];
   currentCategory: string;
+  related?: RelatedItem[];
 }) {
   const T = UI_TEXT[locale];
   const primary = skill.official || skill.repo;
@@ -101,13 +107,14 @@ export default function SkillDetailView({
             <SkillAvatar
               name={skill.name}
               logo={skill.logo}
-              official={skill.official}
-              repo={skill.repo}
               className="skill-detail-avatar"
             />
             <div className="skill-detail-hero-main">
               <span className="skill-detail-cat">{categoryLabel}</span>
-              <h1 className="skill-detail-name">{skill.name}</h1>
+              <div className="skill-detail-name detail-name-line">
+                <h1>{skill.name}</h1>
+                <PronunciationButton text={skill.name} locale={locale} />
+              </div>
               <p className="skill-detail-tagline">{skill.tagline}</p>
               {skill.tags && skill.tags.length > 0 ? (
                 <ul className="skill-detail-tags">
@@ -208,6 +215,8 @@ export default function SkillDetailView({
             <span className="skill-detail-best-label">{T.bestFor}</span>
             <p>{skill.bestFor}</p>
           </section>
+
+          <RelatedSection items={related} locale={locale} />
 
           {categories.length > 0 ? (
             <section className="skill-detail-section">

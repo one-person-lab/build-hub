@@ -1,0 +1,274 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "无人机实战平台 · 系统全景",
+    "locale": "zh-CN",
+    "quality_profile": "showcase",
+    "viewBox": [1150, 545],
+    "views": [
+      {
+        "id": "device-to-alarm",
+        "label": "设备进来 → 事件预警",
+        "focus": ["devices", "ingest", "task", "media", "ai"],
+        "note": "一条主链：设备上报、统一能力、任务流转、调阅视频与位置，最后出事件。"
+      },
+      {
+        "id": "where-copilot-sits",
+        "label": "Copilot 挂在哪",
+        "focus": ["copilot", "task", "ingest", "mysql"],
+        "note": "Copilot 只经统一动作调用业务服务层，不直连设备、不改底座。"
+      },
+      {
+        "id": "realtime-to-web",
+        "label": "实时状态怎么到前端",
+        "focus": ["ingest", "push", "web", "redis"],
+        "note": "状态变化先落 Redis，再经 WebSocket 主动推给前端，不靠轮询。"
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "web",
+      "type": "frontend",
+      "label": "运营人员 Web 端",
+      "sublabel": "管理台 · 地图 · 视频",
+      "pos": [60, 50],
+      "size": [150, 58]
+    },
+    {
+      "id": "devices",
+      "type": "external",
+      "label": "无人机设备",
+      "sublabel": "机场 · 遥控器 · 飞行器",
+      "tag": "多厂商异构",
+      "pos": [280, 50],
+      "size": [150, 58]
+    },
+    {
+      "id": "copilot",
+      "type": "frontend",
+      "label": "Copilot 入口",
+      "sublabel": "自然语言 → 10 个动作",
+      "tag": "本专题",
+      "pos": [500, 50],
+      "size": [150, 58]
+    },
+    {
+      "id": "push",
+      "type": "backend",
+      "label": "实时推送",
+      "sublabel": "WebSocket + Netty",
+      "pos": [60, 240],
+      "size": [150, 58]
+    },
+    {
+      "id": "ingest",
+      "type": "backend",
+      "label": "设备接入",
+      "sublabel": "MQTT 长连接 · 厂商适配",
+      "pos": [280, 240],
+      "size": [150, 58]
+    },
+    {
+      "id": "task",
+      "type": "backend",
+      "label": "任务管理",
+      "sublabel": "状态机 · 超时重试补偿",
+      "pos": [500, 240],
+      "size": [150, 58]
+    },
+    {
+      "id": "media",
+      "type": "backend",
+      "label": "视频 · 地图能力",
+      "sublabel": "RTSP 转码分发 · GIS 轨迹",
+      "pos": [720, 240],
+      "size": [150, 58]
+    },
+    {
+      "id": "ai",
+      "type": "cloud",
+      "label": "AI 能力",
+      "sublabel": "视频分析 · 事件识别",
+      "tag": "输出事件预警",
+      "pos": [940, 240],
+      "size": [150, 58]
+    },
+    {
+      "id": "redis",
+      "type": "database",
+      "label": "Redis",
+      "sublabel": "设备实时状态",
+      "pos": [60, 430],
+      "size": [150, 58]
+    },
+    {
+      "id": "mysql",
+      "type": "database",
+      "label": "MySQL",
+      "sublabel": "业务与历史数据",
+      "pos": [500, 430],
+      "size": [150, 58]
+    },
+    {
+      "id": "minio",
+      "type": "database",
+      "label": "MinIO",
+      "sublabel": "视频与图片对象",
+      "pos": [720, 430],
+      "size": [150, 58]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "接入层",
+      "wraps": ["push", "ingest"],
+      "pad": 18
+    },
+    {
+      "kind": "region",
+      "label": "业务服务层",
+      "wraps": ["task", "media", "ai"],
+      "pad": 18
+    },
+    {
+      "kind": "region",
+      "label": "基础设施层",
+      "wraps": ["redis", "mysql", "minio"],
+      "pad": 18
+    },
+    {
+      "kind": "security-group",
+      "label": "本专题新增",
+      "wraps": ["copilot"],
+      "pad": 14
+    }
+  ],
+  "connections": [
+    {
+      "id": "devices-ingest",
+      "from": "devices",
+      "to": "ingest",
+      "label": "上报",
+      "variant": "emphasis",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelAt": [355, 122]
+    },
+    {
+      "id": "ingest-task",
+      "from": "ingest",
+      "to": "task",
+      "label": "统一能力",
+      "variant": "emphasis",
+      "fromSide": "right",
+      "toSide": "left"
+    },
+    {
+      "id": "ingest-push",
+      "from": "ingest",
+      "to": "push",
+      "label": "状态",
+      "fromSide": "left",
+      "toSide": "right"
+    },
+    {
+      "id": "task-media",
+      "from": "task",
+      "to": "media",
+      "label": "调阅",
+      "fromSide": "right",
+      "toSide": "left"
+    },
+    {
+      "id": "media-ai",
+      "from": "media",
+      "to": "ai",
+      "label": "视频 + 轨迹",
+      "variant": "emphasis",
+      "fromSide": "right",
+      "toSide": "left"
+    },
+    {
+      "id": "push-web",
+      "from": "push",
+      "to": "web",
+      "label": "推送",
+      "fromSide": "top",
+      "toSide": "bottom"
+    },
+    {
+      "id": "copilot-task",
+      "from": "copilot",
+      "to": "task",
+      "label": "只调统一动作",
+      "variant": "emphasis",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelAt": [575, 122]
+    },
+    {
+      "id": "push-redis",
+      "from": "push",
+      "to": "redis",
+      "variant": "dashed",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "task-mysql",
+      "from": "task",
+      "to": "mysql",
+      "variant": "dashed",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "media-minio",
+      "from": "media",
+      "to": "minio",
+      "variant": "dashed",
+      "fromSide": "bottom",
+      "toSide": "top"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "解耦",
+      "items": [
+        "厂商差异封装在设备接入层",
+        "上层只面向统一设备能力",
+        "新增厂商不改任务与业务代码"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "数据按特点分家",
+      "items": [
+        "MySQL 存业务与历史数据",
+        "Redis 存高频实时状态",
+        "MinIO 存视频与图片对象"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "实时链路",
+      "items": [
+        "状态变化 → Redis → 事件通知 → WebSocket",
+        "集群下连接不绑定节点，靠共享状态路由"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "异步与削峰",
+      "items": [
+        "集中报警时设备数据会突发",
+        "先接收校验，再投 RocketMQ 解耦",
+        "同步写库会把 MySQL 打成瓶颈"
+      ]
+    }
+  ]
+}

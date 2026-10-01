@@ -113,6 +113,10 @@
   background: color-mix(in srgb, var(--text) 6%, transparent);
   border: 1px solid var(--border-light, var(--border));
 }
+/* 深色态下 6% 白会把药丸垫亮，压住灰字对比度（4.14:1，不达 AA）；改成向下凹陷的深色底 */
+html[data-color-mode="dark"] .skill-card-installs {
+  background: var(--bg-soft);
+}
 .skill-card-desc {
   margin: 10px 0 0;
   font-size: 13.5px;

@@ -34,8 +34,8 @@ const ZONES: Record<"zh" | "en", Record<string, string>> = {
     technology: "技术栈",
     ai: "AI",
     git: "Git",
-    design: "设计风格",
-    assets: "素材库",
+    design: "设计",
+    principles: "原理",
   },
   en: {
     frontend: "Frontend",
@@ -46,7 +46,7 @@ const ZONES: Record<"zh" | "en", Record<string, string>> = {
     ai: "AI",
     git: "Git",
     design: "Design",
-    assets: "Assets",
+    principles: "Principles",
   },
 };
 
@@ -59,7 +59,10 @@ type Term = {
   demoHtml?: string;
   demoClass?: string;
 };
-type Catalog = { key: string; groups: { terms: Omit<Term, "zone">[] }[] };
+type Catalog = {
+  key: string;
+  groups: { id: string; category?: string; terms: Omit<Term, "zone">[] }[];
+};
 type AnyProduct = {
   id: string;
   name: string;
@@ -70,23 +73,24 @@ type AnyProduct = {
 
 const COPY = {
   zh: {
-    kicker: "设计风格 · DARK LIBRARY",
-    h1a: "一个人的产品图鉴，",
-    h1b: "逛起来。",
-    lead: "BuildHub 用大白话解释 Vibe Coding 高频概念，每个词条配可视化示例。深底、一点金、卡片排得密——把内容站做出「有货的库」的质感。",
-    ctaBrowse: "开始逛图鉴",
-    ctaStyle: "这套风格从哪来",
+    kicker: "技能资产库",
+    h1a: "把会的东西，",
+    h1b: "变成可用的资产。",
+    lead:
+      "会讲清一件事、会跑通一套流程、会做一份模板——把这些收进来，变成随时能再用的资产。不懂前端后端、看不懂 AI 的黑话？BuildHub 用大白话把前端、后端、AI、Git 这些 Vibe Coding 高频概念讲清楚，每个词条配可视化示例；技能、产品、提示词、动效、手册都替你筛过。",
+    ctaBrowse: "从第一个概念开始",
+    ctaStyle: "系统学一遍",
     statTerms: "概念词条",
     statStyles: "设计风格",
     statProducts: "精选产品",
-    statFree: "浏览收费",
-    sec1: "热门概念",
-    sec1sub: "今天大家都在查",
+    statFree: "元看完全站",
+    sec1: "先看懂 AI 编程的黑话",
+    sec1sub: "每个概念都用大白话 + 可视化示例",
     sec1all: "全部概念 →",
-    sec2: "产品图鉴",
+    sec2: "工具别乱选，这里都用过",
     sec2sub: "真实 logo · 真实评测",
     sec2all: "全部产品 →",
-    sec3: "本站正在试穿的风格",
+    sec3: "界面长什么样，这里有参考",
     sec3sub: "候选词条即样张，欢迎围观对比",
     sec3all: "更多风格 →",
     candidate: "候选",
@@ -95,23 +99,23 @@ const COPY = {
     both: "网站 + App",
   },
   en: {
-    kicker: "DESIGN · DARK LIBRARY",
-    h1a: "One person’s product index,",
-    h1b: "made for strolling.",
-    lead: "BuildHub explains the Vibe Coding concepts you keep running into in plain words, each with a visual example — plus curated skills, products and prompts. Dark ground, a touch of gold: a content site that feels stocked.",
-    ctaBrowse: "Start browsing",
+    kicker: "FOR NON-ENGINEERS",
+    h1a: "Ship a product with AI —",
+    h1b: "no code required.",
+    lead: "BuildHub explains the Vibe Coding concepts you keep running into in plain words, each with a visual example — plus curated skills, hands-on product reviews, ready-to-use prompts and playbooks. From your first concept to a live product.",
+    ctaBrowse: "Start with the concepts",
     ctaStyle: "Where this style comes from",
     statTerms: "concepts",
     statStyles: "design styles",
     statProducts: "products",
-    statFree: "paywalled",
-    sec1: "Popular concepts",
-    sec1sub: "What everyone’s looking up",
+    statFree: "paywalls",
+    sec1: "Decode the AI jargon",
+    sec1sub: "Plain words, with a live example each",
     sec1all: "All concepts →",
-    sec2: "Showcase",
-    sec2sub: "Real logos · real picks",
+    sec2: "Tools we’ve actually used",
+    sec2sub: "Real logos · real reviews",
     sec2all: "All products →",
-    sec3: "Styles on trial",
+    sec3: "Reference for how it should look",
     sec3sub: "Candidate styles, shown as live samples",
     sec3all: "More styles →",
     candidate: "Candidate",
@@ -141,7 +145,11 @@ export default function HomeView({ locale = "zh" }: { locale?: "zh" | "en" }) {
     (t): t is Term => Boolean(t)
   );
 
-  const styleTerms = catalogs.find((c) => c.key === "design")?.groups.flatMap((g) => g.terms) ?? [];
+  const styleTerms =
+    catalogs
+      .find((c) => c.key === "design")
+      ?.groups.filter((g) => g.category === "app-style" || g.category === "web-style")
+      .flatMap((g) => g.terms) ?? [];
   const stylePicks = STYLE_PICKS.map((s) =>
     styleTerms.find((t) => t.slug === s)
   ).filter(Boolean) as typeof styleTerms;
@@ -166,9 +174,11 @@ export default function HomeView({ locale = "zh" }: { locale?: "zh" | "en" }) {
             <Link href={`${base}/topics/frontend`} className="rd-btn">
               {C.ctaBrowse}
             </Link>
-            <Link href={`${base}/style-dark-catalog`} className="rd-btn-ghost">
-              {C.ctaStyle}
-            </Link>
+            {!en && (
+              <Link href="/courses" className="rd-btn-ghost">
+                {C.ctaStyle}
+              </Link>
+            )}
           </div>
           <div className="rd-stats">
             <span>
@@ -247,7 +257,7 @@ export default function HomeView({ locale = "zh" }: { locale?: "zh" | "en" }) {
           <div className="rd-section-head">
             <h2>{C.sec3}</h2>
             <span>{C.sec3sub}</span>
-            <Link href={`${base}/topics/design`}>{C.sec3all}</Link>
+            <Link href={`${base}/design`}>{C.sec3all}</Link>
           </div>
           <div className="rd-grid">
             {stylePicks.map((t) => (

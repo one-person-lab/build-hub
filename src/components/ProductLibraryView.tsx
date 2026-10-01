@@ -6,7 +6,7 @@ import enProductsData from "@/data/en-products.json";
 import SkillAvatar from "./SkillAvatar";
 import "./ProductLibraryView.css";
 
-export type ProductType = "web" | "app" | "both";
+export type ProductType = "web" | "app" | "both" | "lib";
 
 type Product = {
   id: string;
@@ -34,6 +34,7 @@ const UI_TEXT = {
     web: "网站",
     app: "App",
     both: "网站 + App",
+    lib: "代码库",
   },
   en: {
     all: "All",
@@ -43,6 +44,7 @@ const UI_TEXT = {
     web: "Website",
     app: "App",
     both: "Web + App",
+    lib: "Library",
   },
 } as const;
 
@@ -115,12 +117,12 @@ export default function ProductLibraryView({ locale = "zh" }: { locale?: "zh" | 
 
           {visible.map((c) => (
             <section className="product-lib-cat" key={c.key}>
-              <div className="cat-title">
+              <h2 className="cat-title">
                 {c.label}
                 <span>
                   {c.products.length} {T.count}
                 </span>
-              </div>
+              </h2>
               {c.products.length === 0 ? (
                 <p className="product-lib-empty">{T.empty}</p>
               ) : (
@@ -136,7 +138,6 @@ export default function ProductLibraryView({ locale = "zh" }: { locale?: "zh" | 
                           <SkillAvatar
                             name={p.name}
                             logo={p.logo}
-                            official={p.url}
                             className="product-card-avatar"
                           />
                           <h3 className="product-card-title">{p.name}</h3>

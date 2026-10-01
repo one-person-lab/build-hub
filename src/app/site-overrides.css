@@ -12,6 +12,9 @@
 :root[data-color-mode="dark"] { --ground: #14151a; }
 body { background: var(--ground); }
 
+/* 各组件样式里 25 处 color: var(--text-soft, #6b7280) 的兜底色不跟随主题，深色态下压在 #1a1c22 上只有 3.4:1；补上真正的语义别名后两个主题都达标 */
+:root { --text-soft: var(--text-2); }
+
 /* React 包裹层不产生盒子，保持 .detail-body 直接子元素布局 */
 .detail-body > .vh-section-wrap {
   display: contents;
@@ -26,6 +29,24 @@ body { background: var(--ground); }
 .cat-section,
 .catalog-directory-layout .cat-section {
   scroll-margin-top: 112px;
+}
+
+/* 窄屏下分类筛选条是横向滚动的（溢出 272–515px），但滚动条已隐藏、右侧又被硬裁一刀，看不出后面还有分类。
+   右端渐隐补上提示；padding-right 让滚到末尾时渐隐落在空白上而不是最后一个分类上。 */
+@media (max-width: 767px) {
+  .catalog-filter-list {
+    padding-right: 30px;
+    scroll-snap-type: x proximity;
+    -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 34px), transparent);
+    mask-image: linear-gradient(90deg, #000 calc(100% - 34px), transparent);
+  }
+  .catalog-filter-list > * {
+    scroll-snap-align: start;
+  }
+  /* 分类条是这里唯一的触控目标，30px 高按不准 */
+  .catalog-filter-chip {
+    min-height: 36px;
+  }
 }
 
 /* 课程路由：整屏两栏布局，由正文内部滚动；不显示页脚（与原站一致）。
@@ -53,6 +74,52 @@ body { background: var(--ground); }
 .site-shell.is-course-route .site-footer,
 .site-shell:has(> main.course-shell-main) .site-footer {
   display: none;
+}
+
+/* 页脚联系方式五卡（补入个人网站后由四列改五列）：
+   五列要每张 ≈200px 才不截断小字，窄一档改三列并让末尾 CTA 卡占两格补满整行 */
+.footer-socials {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+@media (max-width: 1080px) {
+  .footer-socials {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .footer-socials > :last-child {
+    grid-column: span 2;
+  }
+}
+@media (max-width: 760px) {
+  .footer-socials {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .footer-socials > :last-child {
+    grid-column: span 2;
+  }
+}
+@media (max-width: 640px) {
+  .footer-socials {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .footer-socials > :last-child {
+    grid-column: auto;
+  }
+}
+
+/* 备案号（页脚联系方式卡之下的一行安静小字，链到工信部） */
+.footer-legal {
+  margin: 2px 0 0;
+  color: var(--text-3);
+  font-size: 11px;
+  line-height: 1.4;
+}
+.footer-legal a {
+  color: inherit;
+  text-decoration: none;
+}
+.footer-legal a:hover {
+  color: var(--text-2);
+  text-decoration: underline;
 }
 
 /* ===== 页脚二维码弹层（微信 / 抖音） ===== */
@@ -85,6 +152,7 @@ button.footer-social-link {
 /* ===== 图标库展示（Lucide）：对齐现有卡片语言 ===== */
 .icon-grid-wrap { padding: 0; }
 .icon-grid {
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
   gap: 8px;
@@ -182,6 +250,19 @@ button.footer-social-link {
 @media (max-width: 760px) {
   .catalog-platform-row .catalog-filter-chip { min-height: 32px; }
 }
+/* 手机上筛选 chips 只有 31px 高，难点中；用不可见外扩把命中区撑到 ≈44px，
+   外扩留在 .catalog-finder 的上下 8–10px 内边距里，不改条带高度与锚点偏移 */
+@media (max-width: 900px) {
+  .catalog-filter-chip {
+    position: relative;
+    min-height: 34px;
+  }
+  .catalog-filter-chip::after {
+    content: "";
+    position: absolute;
+    inset: -5px -2px;
+  }
+}
 
 /* ===== 图鉴式顶部导航（源自样张 redesign.css，--rd-* 换成全站令牌） ===== */
 .nav.rd-nav {
@@ -218,6 +299,7 @@ button.footer-social-link {
 }
 .rd-gopro { font-size: 13px; font-weight: 700; background: none; border: 0; color: var(--text); cursor: pointer; }
 .rd-gopro:hover { color: var(--brand); }
+a.rd-gopro.is-pro { color: var(--brand); }
 .rd-avatar-wrap { position: relative; }
 .rd-avatar {
   width: 30px; height: 30px; border-radius: 50%; cursor: pointer;
@@ -226,9 +308,10 @@ button.footer-social-link {
 }
 .rd-menu {
   position: absolute; right: 0; top: 38px; width: 190px;
-  max-height: calc(100vh - 60px); overflow: auto;
+  max-height: calc(100vh - 60px); overflow: auto; overscroll-behavior: contain;
   background: var(--bg); border: 1px solid var(--border);
   border-radius: 12px; padding: 6px; box-shadow: 0 18px 44px rgba(0,0,0,.28);
+  z-index: 61;
 }
 .rd-menu button {
   width: 100%; text-align: left; padding: 8px 10px; font-size: 13px;
@@ -240,6 +323,12 @@ button.footer-social-link {
   color: var(--text); text-decoration: none;
 }
 .rd-menu a:hover { background: var(--accent-light); }
+.rd-menu a.rd-menu-site { display: flex; align-items: center; gap: 8px; }
+.rd-menu-site-mark {
+  width: 16px; height: 16px; border-radius: 5px; flex: none;
+  background: var(--brand); color: var(--on-brand);
+  display: grid; place-items: center; font-size: 9px; font-weight: 800;
+}
 .rd-menu-sep { display: block; height: 1px; background: var(--border); margin: 6px 8px; }
 .rd-menu-fav {
   display: flex; justify-content: space-between; align-items: center;
@@ -252,7 +341,8 @@ button.footer-social-link {
   border: 1px solid var(--border) !important; font-size: 12px !important;
 }
 .rd-menu-lang button.is-selected { border-color: var(--brand) !important; color: var(--brand); font-weight: 700; }
-.nv-mob-only { display: none; }
+/* 抽屉的分组标题、关闭钮与分区网格只在手机底部抽屉里出现 */
+.rd-menu-scrim, .rd-menu-head, .rd-menu-label, .rd-menu-sections, .rd-avatar-mob { display: none; }
 @media (max-width: 1023px) {
   /* 旧版 .nav 在此断点变两行 grid：强制回归单行图鉴导航 */
   .nav.rd-nav { display: flex; grid-template: none; flex-wrap: nowrap; }
@@ -261,9 +351,65 @@ button.footer-social-link {
 @media (max-width: 900px) {
   .nav.rd-nav { gap: 10px; padding: 0 14px; }
   .rd-sections, .rd-searchlabel, .rd-searchbtn kbd { display: none; }
-  .rd-searchbtn { width: auto; padding: 7px 11px; }
-  .rd-nav-right { gap: 8px; }
-  .nv-mob-only { display: block; }
+  .rd-nav-right { gap: 6px; }
+
+  /* 顶栏可点区域全部提到 44px（iOS 建议值），视觉尺寸尽量不变 */
+  .rd-searchbtn { width: 44px; height: 44px; padding: 0; justify-content: center; }
+  .rd-gopro { min-height: 44px; display: inline-flex; align-items: center; padding: 0 2px; white-space: nowrap; }
+  .nav-theme .nav-circle { position: relative; }
+  /* ::after 是那个金色小圆点本体，不能拿来扩热区；用空的 ::before 外扩 */
+  .nav-theme .nav-circle::before { content: ""; position: absolute; inset: -8px; }
+  .rd-avatar {
+    width: auto; height: 44px; padding: 0 13px; gap: 6px;
+    border-radius: 999px; display: inline-flex; align-items: center; white-space: nowrap;
+  }
+  .rd-avatar-mob { display: inline; font-size: 13px; font-weight: 700; }
+
+  /* 头像弹层 → 全宽底部抽屉：分区做成两列大按钮，其余按组排开 */
+  .rd-menu-scrim {
+    display: block; position: fixed; inset: 0; z-index: 60;
+    background: rgba(10, 11, 14, .62);
+  }
+  .rd-menu {
+    position: fixed; left: 0; right: 0; top: auto; bottom: 0; width: auto;
+    max-height: 84dvh; border: 0; border-radius: 18px 18px 0 0;
+    box-shadow: 0 -1px 0 var(--border), 0 -18px 44px rgba(0, 0, 0, .4);
+    padding: 6px 16px calc(18px + env(safe-area-inset-bottom));
+    animation: rd-sheet .2s ease;
+  }
+  .rd-menu-head {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 8px 2px 6px; font-size: 13px; font-weight: 700; color: var(--text-3);
+  }
+  .rd-menu-close {
+    width: 40px !important; height: 40px; border-radius: 50% !important;
+    display: grid; place-items: center; font-size: 20px !important; line-height: 1;
+    color: var(--text-2); background: var(--accent-light) !important;
+  }
+  .rd-menu-label { display: block; font-size: 11px; color: var(--text-3); margin: 10px 2px 8px; }
+  .rd-menu-sections { display: block; }
+  .rd-menu-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .rd-menu-grid a {
+    display: flex; align-items: center; justify-content: center; min-height: 46px;
+    border: 1px solid var(--border); border-radius: 11px; font-size: 14px; font-weight: 600;
+  }
+  .rd-menu-grid a.is-active { border-color: var(--brand); color: var(--brand); background: var(--accent-light); }
+  .rd-menu-group > button, .rd-menu-group > a { min-height: 44px; font-size: 14px; }
+  .rd-menu-group > a { display: flex; align-items: center; }
+  /* 「更多」四项排成两列，抽屉整体不必再内部滚动 */
+  .rd-menu-group-more { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; align-items: stretch; }
+  .rd-menu-group-more > .rd-menu-label { grid-column: 1 / -1; }
+  .rd-menu-group-more > a.rd-menu-site { justify-content: center; }
+  .rd-menu-fav { min-height: 44px; align-items: center; font-size: 14px; }
+  .rd-menu-lang { padding: 8px 0 0; }
+  .rd-menu-lang button { min-height: 44px !important; font-size: 13px !important; }
+}
+@keyframes rd-sheet {
+  from { transform: translateY(16px); opacity: .55; }
+  to { transform: none; opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rd-menu { animation: none; }
 }
 
 /* ---------- 命令面板 ---------- */
@@ -333,6 +479,7 @@ button.footer-social-link {
   display: inline-block; padding: 10px 20px; border-radius: 10px;
   background: var(--brand); color: var(--on-brand);
   font-size: 14px; font-weight: 700; border: 0; cursor: pointer;
+  text-decoration: none;
 }
 .rd-btn:hover { box-shadow: 0 0 0 4px color-mix(in srgb, var(--brand) 25%, transparent); }
 .rd-btn-block { width: 100%; }
@@ -342,6 +489,62 @@ button.footer-social-link {
   border-radius: 8px; border: 1px solid var(--border); background: none;
   color: var(--text-2); cursor: pointer;
 }
+
+/* ---------- Go Pro 购买流 ---------- */
+.rd-plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px; margin-bottom: 16px; }
+.rd-plan {
+  border: 1px solid var(--border); border-radius: 11px; padding: 11px 9px 10px;
+  font-size: 11.5px; color: var(--text-2); cursor: pointer; position: relative;
+  text-align: center;
+}
+.rd-plan.is-active { border-color: var(--brand); }
+.rd-plan-label { display: block; }
+.rd-plan b { display: block; font-size: 19px; color: var(--text); margin-top: 3px; }
+.rd-plan-was { display: block; font-size: 11px; color: var(--text-3); text-decoration: line-through; margin-top: 1px; }
+.rd-plan-unit { display: block; font-size: 10.5px; color: var(--text-3); margin-top: 1px; }
+.rd-plan .save {
+  position: absolute; top: -8px; right: 7px;
+  background: var(--brand); color: var(--on-brand);
+  font-size: 10px; font-weight: 800; padding: 1px 7px; border-radius: 999px;
+}
+.rd-field {
+  width: 100%; box-sizing: border-box; margin-bottom: 10px;
+  padding: 10px 12px; border-radius: 10px; border: 1px solid var(--border);
+  background: var(--bg); color: var(--text); font-size: 13.5px;
+}
+.rd-field:focus { outline: none; border-color: var(--brand); }
+.rd-code-row { display: flex; gap: 8px; align-items: stretch; margin-bottom: 4px; }
+.rd-code-row .rd-field { flex: 1; margin-bottom: 0; }
+.rd-code-row .rd-btn-ghost { white-space: nowrap; flex: none; }
+.rd-pro-err { font-size: 12px; color: #d5484b; margin: 4px 0 8px; text-align: center; }
+.rd-pay-amount { color: var(--text); font-size: 15px; }
+.rd-pay-types { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+.rd-pay-type {
+  border: 1px solid var(--border); border-radius: 11px; padding: 13px 10px;
+  background: none; color: var(--text); font-size: 13.5px; font-weight: 600; cursor: pointer;
+}
+.rd-pay-type.is-active { border-color: var(--brand); }
+.rd-pro-ok { text-align: center; padding: 26px 0 10px; font-size: 14px; color: var(--text); }
+.rd-pro .rd-btn-block + .rd-btn-block { margin-top: 8px; }
+
+/* ---------- 账号页 ---------- */
+.rd-account { max-width: 520px; margin: 0 auto; padding: 56px 20px 80px; }
+.rd-account > h1 { font-size: 22px; margin: 0 0 20px; color: var(--text); }
+.rd-card {
+  border: 1px solid var(--border); border-radius: 16px; padding: 22px;
+  background: var(--bg);
+}
+.rd-card h2 { font-size: 16px; margin: 0 0 4px; color: var(--text); }
+.rd-card .sub { font-size: 12.5px; color: var(--text-2); margin: 0 0 16px; }
+.rd-acct-email { font-size: 14px; font-weight: 600; color: var(--text); margin: 0 0 6px; }
+.rd-acct-plan { font-size: 13px; color: var(--text-2); margin: 0 0 18px; }
+.rd-acct-plan.is-pro { color: var(--brand); font-weight: 700; }
+.rd-acct-actions { display: flex; gap: 10px; }
+.rd-paid-banner {
+  font-size: 13px; border-radius: 10px; padding: 10px 14px; margin: 0 0 16px;
+  border: 1px solid var(--border); color: var(--text-2);
+}
+.rd-paid-banner.is-ok { border-color: var(--brand); color: var(--brand); }
 
 /* ===== 列表页图鉴化：缩略取景框（样张 .rd-thumb → .card-thumb） =====
    demo 永远按浅色设计，垫白底避免深色态色偏 */
@@ -407,6 +610,17 @@ button.footer-social-link {
   margin-bottom: 8px;
 }
 
+/* —— 标题行 + 英文发音按钮：技能 / 产品 / 素材详情页共用 —— */
+.detail-name-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.detail-name-line h1 {
+  font: inherit;
+}
+
 /* —— 首页图鉴化（Task 5）：hero + 四列图鉴卡 —— */
 .rd-home {
   min-height: calc(100vh - var(--site-nav-height));
@@ -424,7 +638,8 @@ button.footer-social-link {
 .rd-btn-ghost {
   display: inline-block; padding: 10px 20px; border-radius: 10px;
   border: 1px solid var(--border); font-size: 14px; color: var(--text);
-  background: none; cursor: pointer; transition: border-color .15s ease, color .15s ease;
+  background: none; cursor: pointer; text-decoration: none;
+  transition: border-color .15s ease, color .15s ease;
 }
 .rd-btn-ghost:hover { border-color: var(--brand); color: var(--brand); }
 .rd-stats {
@@ -464,7 +679,7 @@ html[data-color-mode="light"] .rd-card:hover {
 }
 .rd-card p { margin: 0; font-size: 12.5px; line-height: 1.65; color: var(--text-2); }
 .rd-tag {
-  align-self: flex-start; font-size: 10.5px; color: var(--brand);
+  align-self: flex-start; font-size: 11px; color: var(--brand);
   border: 1px solid var(--border); border-radius: 999px; padding: 1px 8px;
 }
 .rd-tile {
@@ -477,6 +692,12 @@ html[data-color-mode="light"] .rd-card:hover {
 @media (max-width: 560px) {
   .rd-h1 { font-size: 28px; }
   .rd-home-main { padding: 28px 16px 56px; }
+  /* 四个读数排成 2×2，避免最后一项单独掉一行 */
+  .rd-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 12px; }
+  /* 分区标题行只留「标题 + 查看全部」，说明文字换到下一行整宽 */
+  .rd-section-head { flex-wrap: wrap; row-gap: 6px; }
+  .rd-section-head span { flex: 1 1 100%; order: 3; }
+  .rd-section-head a { white-space: nowrap; }
 }
 
 /* —— 筛选胶囊统一（对齐样张 .rd-chip：描边药丸，active 实心金） —— */
@@ -531,4 +752,50 @@ html[data-color-mode="light"] .rd-card:hover {
     width: 100%;
     transform: translateX(-50%);
   }
+}
+
+/* ===== 触屏兜底：原站靠 :hover 才出现的东西，手机上必须拿得到 ===== */
+/* 手机上偏小的真 UI 文案（桌面保持原样）：页脚账号小字 9px、更新日志分类标签 10px */
+@media (max-width: 900px) {
+  .footer-social-copy small { font-size: 11px; }
+  .changelog-term-cat { font-size: 11px; }
+}
+@media (hover: none) {
+  /* /practice 答对后右上角的「打开词条」：面板已预留 40px 顶栏空档，触屏直接常显 */
+  .practice-term-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  /* 表单禁用原因：disabled 按钮收不到任何事件，气泡改成跟在按钮后面的普通文字 */
+  .disabled-why-wrap .disabled-why-tip {
+    position: static;
+    transform: none;
+    opacity: 1;
+    pointer-events: auto;
+    display: inline-block;
+    margin-left: 6px;
+    white-space: normal;
+  }
+  /* 图标按钮释义气泡：按住图标即显示（iOS 需 cursor:pointer 才触发 :active） */
+  .tip-wrap {
+    cursor: pointer;
+  }
+  .tip-wrap:active .tip-bubble {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* 微信付款码：二维码必须压在纯白底上，深色主题下黑码白底才扫得出，quiet zone 由 padding 给 */
+.rd-qr {
+  display: flex;
+  justify-content: center;
+  margin: 16px 0;
+}
+.rd-qr img {
+  padding: 10px;
+  background: #fff;
+  border-radius: 10px;
+  width: 240px;
+  height: 240px;
 }

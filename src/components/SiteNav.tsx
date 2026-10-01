@@ -4,49 +4,41 @@ import { useEffect, useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import CommandPalette from "@/components/CommandPalette";
 import ProModal from "@/components/ProModal";
+import FavoritesSync from "@/components/FavoritesSync";
+import {
+  COLOR_MODE_KEY,
+  THEME_COLORS,
+  THEME_COLOR_KEY,
+  applyThemeColor,
+} from "@/lib/theme";
 
 type Locale = "zh" | "en";
-
-const THEME_COLORS = [
-  { name: "图鉴金", value: "#8a6a1f", hover: "#6f5518", dark: "#e8c767" },
-  { name: "靛蓝", value: "#3559d8", hover: "#2a46b4", dark: "#7b93ea" },
-  { name: "紫罗兰", value: "#7c3aed", hover: "#6d28d9", dark: "#a78bfa" },
-  { name: "黛绿", value: "#0f766e", hover: "#115e59", dark: "#2dd4bf" },
-  { name: "蜜橙", value: "#c2410c", hover: "#9a3412", dark: "#fb923c" },
-  { name: "玫红", value: "#e11d48", hover: "#be123c", dark: "#fb7185" },
-  { name: "樱粉", value: "#db2777", hover: "#be185d", dark: "#f472b6" },
-  { name: "赤金", value: "#b45309", hover: "#92400e", dark: "#fbbf24" },
-  { name: "石墨", value: "#525963", hover: "#414751", dark: "#b7bec9" },
-];
-
-function applyThemeColor(value: string, hover: string, dark: string) {
-  const root = document.documentElement;
-  root.style.setProperty("--theme-brand", value);
-  root.style.setProperty("--theme-brand-hover", hover);
-  root.style.setProperty("--theme-dark-brand", dark);
-  localStorage.setItem("vh-theme-color", value);
-}
 
 const SECTIONS: Record<Locale, { href: string; label: string }[]> = {
   zh: [
     { href: "/topics/frontend", label: "概念" },
+    { href: "/principles", label: "原理" },
     { href: "/skills", label: "技能" },
     { href: "/products", label: "产品" },
     { href: "/prompts", label: "提示词" },
-    { href: "/topics/assets", label: "素材库" },
+    { href: "/design", label: "设计" },
+    { href: "/distill", label: "动效" },
+    { href: "/explains", label: "专题" },
+    { href: "/playbooks", label: "手册" },
   ],
   en: [
     { href: "/en/topics/frontend", label: "Concepts" },
     { href: "/en/skills", label: "Skills" },
     { href: "/en/products", label: "Showcase" },
     { href: "/en/prompts", label: "Prompts" },
-    { href: "/en/topics/assets", label: "Assets" },
+    { href: "/en/design", label: "Design" },
+    { href: "/en/distill", label: "Motion" },
   ],
 };
 
 const UI = {
   zh: {
-    searchLabel: "搜索图鉴…",
+    searchLabel: "搜索概念…",
     goPro: "Go Pro",
     toDark: "切换到黑夜模式",
     toLight: "切换到白昼模式",
@@ -56,9 +48,15 @@ const UI = {
     practice: "练习",
     courses: "课程",
     skill: "BuildHub Skill",
-    oil: "Oil 的个人网站",
+    personalSite: "个人网站",
     language: "语言",
     favorites: "收藏",
+    account: "账号",
+    menu: "菜单",
+    closeMenu: "关闭菜单",
+    groupSections: "内容分区",
+    groupMore: "更多",
+    groupAccount: "账号与语言",
   },
   en: {
     searchLabel: "Search the index…",
@@ -71,9 +69,15 @@ const UI = {
     practice: "Practice",
     courses: "Courses",
     skill: "BuildHub Skill",
-    oil: "Oil's website",
+    personalSite: "Website",
     language: "Language",
     favorites: "Favorites",
+    account: "Account",
+    menu: "Menu",
+    closeMenu: "Close menu",
+    groupSections: "Sections",
+    groupMore: "More",
+    groupAccount: "Account & language",
   },
 };
 
@@ -88,6 +92,7 @@ export default function SiteNav() {
   const [themeColor, setThemeColor] = useState<string | null>(null);
   const [communityOpen, setCommunityOpen] = useState(false);
   const [favCount, setFavCount] = useState(0);
+  const [me, setMe] = useState<{ user: { email: string } | null; pro: boolean } | null>(null);
   const menuRef = useRef<HTMLDivElement>(null);
   const themeRef = useRef<HTMLDivElement>(null);
 
@@ -97,19 +102,23 @@ export default function SiteNav() {
   const base = locale === "en" ? "/en" : "";
 
   useEffect(() => {
-    const saved = localStorage.getItem("vh-color-mode");
-    const isDark =
-      saved === "dark" ||
-      (saved === null &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches);
-    setDark(isDark);
-    document.documentElement.dataset.colorMode = isDark ? "dark" : "light";
+    const load = () =>
+      fetch("/api/me")
+        .then((r) => r.json())
+        .then((d) => setMe(d))
+        .catch(() => {});
+    load();
+    window.addEventListener("vh-me-changed", load);
+    return () => window.removeEventListener("vh-me-changed", load);
+  }, []);
 
-    const savedColor = localStorage.getItem("vh-theme-color");
+  useEffect(() => {
+    // data-color-mode 与主题色已由 <head> 内的初始化脚本在首屏前写好，这里只同步按钮状态
+    setDark(document.documentElement.dataset.colorMode === "dark");
+
+    const savedColor = localStorage.getItem(THEME_COLOR_KEY);
     const matched = THEME_COLORS.find((c) => c.value === savedColor);
-    const initial = matched ?? THEME_COLORS[0]; // 图鉴金
-    setThemeColor(initial.value);
-    applyThemeColor(initial.value, initial.hover, initial.dark);
+    setThemeColor((matched ?? THEME_COLORS[0]).value);
   }, []);
 
   useEffect(() => {
@@ -156,11 +165,27 @@ export default function SiteNav() {
     };
   }, [communityOpen]);
 
+  // 抽屉只在手机上以底部弹层出现，此时锁定背景滚动
+  useEffect(() => {
+    if (!menu) return;
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") setMenu(false);
+    }
+    const isSheet = window.matchMedia("(max-width: 900px)").matches;
+    const prevOverflow = document.body.style.overflow;
+    if (isSheet) document.body.style.overflow = "hidden";
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [menu]);
+
   function toggleMode() {
     const next = !dark;
     setDark(next);
     document.documentElement.dataset.colorMode = next ? "dark" : "light";
-    localStorage.setItem("vh-color-mode", next ? "dark" : "light");
+    localStorage.setItem(COLOR_MODE_KEY, next ? "dark" : "light");
   }
 
   function openMenu() {
@@ -218,9 +243,18 @@ export default function SiteNav() {
             <span className="rd-searchlabel">{U.searchLabel}</span>
             <kbd>/</kbd>
           </button>
-          <button className="rd-gopro" onClick={() => setPro(true)}>
-            {U.goPro}
-          </button>
+          {me?.user ? (
+            <a
+              className={`rd-gopro${me.pro ? " is-pro" : ""}`}
+              href={`${base}/account`}
+            >
+              {me.pro ? "✦ PRO" : U.account}
+            </a>
+          ) : (
+            <button className="rd-gopro" onClick={() => setPro(true)}>
+              {U.goPro}
+            </button>
+          )}
           <div className="nav-theme" ref={themeRef}>
             <button
               className="nav-circle"
@@ -273,56 +307,84 @@ export default function SiteNav() {
             </svg>
           </button>
           <div ref={menuRef} className="rd-avatar-wrap">
-            <button className="rd-avatar" onClick={openMenu} aria-label="账号与更多" aria-haspopup="menu" aria-expanded={menu}>
-              ✦
+            <button className="rd-avatar" onClick={openMenu} aria-label={U.menu} aria-haspopup="menu" aria-expanded={menu}>
+              ✦<span className="rd-avatar-mob">{U.menu}</span>
             </button>
+            {menu ? <div className="rd-menu-scrim" aria-hidden onClick={() => setMenu(false)} /> : null}
             {menu ? (
-              <div className="rd-menu" role="menu">
-                {SECTIONS[locale].map((s) => (
-                  <button key={s.href} className="nv-mob-only" onClick={() => (window.location.href = s.href)}>
-                    {s.label}
+              <div className="rd-menu" role="menu" aria-label={U.menu}>
+                <header className="rd-menu-head">
+                  <span>{U.menu}</span>
+                  <button
+                    type="button"
+                    className="rd-menu-close"
+                    aria-label={U.closeMenu}
+                    onClick={() => setMenu(false)}
+                  >
+                    ×
                   </button>
-                ))}
-                <span className="rd-menu-sep" aria-hidden />
-                <button
-                  onClick={() => {
-                    setMenu(false);
-                    setCommunityOpen(true);
-                  }}
-                >
-                  {U.community}
-                </button>
-                <button onClick={() => (window.location.href = `${base}/changelog`)}>{U.changelog}</button>
-                <button onClick={() => (window.location.href = `${base}/practice`)}>{U.practice}</button>
-                {locale === "zh" && (
-                  <button onClick={() => (window.location.href = "/courses")}>{U.courses}</button>
-                )}
-                <button onClick={() => (window.location.href = skillHref)}>{U.skill}</button>
-                <a href="https://oiloil.org/" target="_blank" rel="noreferrer">
-                  {U.oil}
-                </a>
-                <span className="rd-menu-sep" aria-hidden />
-                <div className="rd-menu-fav">
-                  <span>★ {U.favorites}</span>
-                  <b>{favCount}</b>
+                </header>
+                <div className="rd-menu-group rd-menu-sections">
+                  <p className="rd-menu-label">{U.groupSections}</p>
+                  <div className="rd-menu-grid">
+                    {SECTIONS[locale].map((s) => (
+                      <a
+                        key={s.href}
+                        href={s.href}
+                        className={isCurrent(s.href) ? "is-active" : ""}
+                        role="menuitem"
+                      >
+                        {s.label}
+                      </a>
+                    ))}
+                  </div>
                 </div>
-                <div className="rd-menu-lang">
+                <span className="rd-menu-sep" aria-hidden />
+                <div className="rd-menu-group rd-menu-group-more">
+                  <p className="rd-menu-label">{U.groupMore}</p>
+                  <a href={`${base}/practice`} role="menuitem">{U.practice}</a>
+                  {locale === "zh" && (
+                    <a href="/courses" role="menuitem">{U.courses}</a>
+                  )}
+                  <a href={skillHref} role="menuitem">{U.skill}</a>
+                  <a href="https://lab.smzsapp.com/" target="_blank" rel="noreferrer" className="rd-menu-site">
+                    <span className="rd-menu-site-mark" aria-hidden>✦</span>
+                    {U.personalSite}
+                  </a>
+                </div>
+                <span className="rd-menu-sep" aria-hidden />
+                <div className="rd-menu-group">
+                  <p className="rd-menu-label">{U.groupAccount}</p>
                   <button
-                    className={locale === "zh" ? "is-selected" : ""}
-                    role="menuitemradio"
-                    aria-checked={locale === "zh"}
-                    onClick={() => switchLang("zh")}
+                    onClick={() => {
+                      setMenu(false);
+                      setCommunityOpen(true);
+                    }}
                   >
-                    中文
+                    {U.community}
                   </button>
-                  <button
-                    className={locale === "en" ? "is-selected" : ""}
-                    role="menuitemradio"
-                    aria-checked={locale === "en"}
-                    onClick={() => switchLang("en")}
-                  >
-                    English
-                  </button>
+                  <div className="rd-menu-fav">
+                    <span>★ {U.favorites}</span>
+                    <b>{favCount}</b>
+                  </div>
+                  <div className="rd-menu-lang">
+                    <button
+                      className={locale === "zh" ? "is-selected" : ""}
+                      role="menuitemradio"
+                      aria-checked={locale === "zh"}
+                      onClick={() => switchLang("zh")}
+                    >
+                      中文
+                    </button>
+                    <button
+                      className={locale === "en" ? "is-selected" : ""}
+                      role="menuitemradio"
+                      aria-checked={locale === "en"}
+                      onClick={() => switchLang("en")}
+                    >
+                      English
+                    </button>
+                  </div>
                 </div>
               </div>
             ) : null}
@@ -330,6 +392,7 @@ export default function SiteNav() {
         </div>
         {palette ? <CommandPalette locale={locale} onClose={() => setPalette(false)} /> : null}
         {pro ? <ProModal locale={locale} onClose={() => setPro(false)} /> : null}
+        <FavoritesSync />
       </nav>
       {communityOpen && (
         <div
@@ -343,10 +406,10 @@ export default function SiteNav() {
             id="community-dialog"
             role="dialog"
             aria-modal="true"
-            aria-label={locale === "en" ? "Join the community" : "加入交流群"}
+            aria-label={locale === "en" ? "Add me on WeChat" : "加我微信"}
           >
             <header className="community-dialog-header">
-              <span>{locale === "en" ? "COMMUNITY / WECHAT" : "交流群 / COMMUNITY"}</span>
+              <span>{locale === "en" ? "WECHAT" : "加我微信 / WECHAT"}</span>
               <button
                 type="button"
                 aria-label={locale === "en" ? "Close community dialog" : "关闭交流群弹窗"}
@@ -359,57 +422,26 @@ export default function SiteNav() {
               <div className="community-dialog-qr-grid">
                 <div className="community-dialog-qr-item">
                   <div className="community-dialog-qr-caption">
-                    <h2>{locale === "en" ? "BuildHub community · Group 6" : "BuildHub 交流 6 群"}</h2>
+                    <h2>{locale === "en" ? "Add me on WeChat" : "加我微信"}</h2>
                     <p>
                       {locale === "en"
-                        ? "Share AI tool tips and discuss your projects."
-                        : "交流 AI 工具使用经验与项目实践。"}
+                        ? "Ask about AI tools, your projects, and GPT or Codex subscriptions."
+                        : "聊 AI 工具、项目实践，或者问 GPT、Codex 订阅，都可以直接找我。"}
                     </p>
                   </div>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     alt={
                       locale === "en"
-                        ? "WeChat QR code for BuildHub community group 6"
-                        : "BuildHub 交流 6 群微信二维码"
+                        ? "Scan to add me on WeChat"
+                        : "扫描二维码，添加我为朋友"
                     }
-                    src="/assets/vibehub-group-qr-6-20260913.jpg"
+                    src="/assets/wechat-qr.png"
                   />
                   <a
                     className="community-dialog-save"
-                    href="/assets/vibehub-group-qr-6-20260913.jpg"
-                    download="vibehub-community-group-6.jpg"
-                  >
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                      <path d="M12 3v11m0 0 4-4m-4 4-4-4M5 17v2h14v-2" />
-                    </svg>
-                    <span>{locale === "en" ? "Save" : "保存"}</span>
-                  </a>
-                </div>
-                <div className="community-dialog-qr-item">
-                  <div className="community-dialog-qr-caption">
-                    <h2>
-                      {locale === "en" ? "GPT subscription services" : "GPT 订阅服务群"}
-                    </h2>
-                    <p>
-                      {locale === "en"
-                        ? "Ask about GPT and Codex subscriptions and payments."
-                        : "咨询 GPT、Codex 订阅与充值服务。"}
-                    </p>
-                  </div>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    alt={
-                      locale === "en"
-                        ? "WeChat QR code for GPT support group 1"
-                        : "BuildHub GPT 补给站 1 群微信二维码"
-                    }
-                    src="/assets/vibehub-gpt-support-qr-1-20260913.jpg"
-                  />
-                  <a
-                    className="community-dialog-save"
-                    href="/assets/vibehub-gpt-support-qr-1-20260913.jpg"
-                    download="vibehub-gpt-support-group-1.jpg"
+                    href="/assets/wechat-qr.png"
+                    download="wechat-qr.png"
                   >
                     <svg viewBox="0 0 24 24" aria-hidden="true">
                       <path d="M12 3v11m0 0 4-4m-4 4-4-4M5 17v2h14v-2" />

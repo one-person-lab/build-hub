@@ -7,6 +7,7 @@ import enCatalogsData from "@/data/en-catalogs.json";
 import assetsData from "@/data/assets.json";
 import enAssetsData from "@/data/en-assets.json";
 import CardDemoThumb from "@/components/CardDemoThumb";
+import MotionDetailModal from "@/components/MotionDetailModal";
 import type { Platform } from "@/lib/types";
 import "./AssetLibraryView.css";
 
@@ -16,15 +17,25 @@ type Term = {
   en: string;
   tagline: string;
   platform?: Platform;
+  tags?: string[];
   demoHtml: string;
   demoClass: string;
 };
-type Group = { id: string; title: string; count: number; terms: Term[] };
+type Group = {
+  id: string;
+  title: string;
+  count: number;
+  category?: string;
+  subgroup?: string;
+  terms: Term[];
+};
 type Catalog = {
   key: string;
   href: string;
   title: string;
-  tabs: { label: string; count: number; active: boolean }[];
+  tabs?: { label: string; count: number; active: boolean }[];
+  /** 独立分区的页内分类 chips；缺省时沿用概念分区的页签 */
+  categories?: { key: string; label: string }[];
   sidebar: string[];
   groups: Group[];
 };
@@ -37,6 +48,7 @@ type AssetStyle = {
   name: string;
   en: string;
   tagline: string;
+  subgroup?: string;
   cases: { brand: string; image: string; bg?: string }[];
 };
 type AssetLibrary = {
@@ -45,7 +57,7 @@ type AssetLibrary = {
 const ZH_ASSETS = assetsData as unknown as AssetLibrary;
 const EN_ASSETS = enAssetsData as unknown as AssetLibrary;
 
-// tab 标签与 catalog key 顺序一一对应
+// tab 标签与概念 catalog key 顺序一一对应
 const TAB_LABELS: Record<string, Record<string, string>> = {
   zh: {
     frontend: "前端",
@@ -55,8 +67,6 @@ const TAB_LABELS: Record<string, Record<string, string>> = {
     technology: "技术栈",
     ai: "AI",
     git: "Git",
-    design: "设计风格",
-    assets: "素材库",
   },
   en: {
     frontend: "Frontend",
@@ -66,14 +76,9 @@ const TAB_LABELS: Record<string, Record<string, string>> = {
     technology: "Tech Stack",
     ai: "AI",
     git: "Git",
-    design: "Design Styles",
-    assets: "Assets",
   },
 };
 const TAB_ORDER = Object.keys(TAB_LABELS.zh);
-// 素材库是独立顶级 tab：概念页不出现素材库 chip，素材库页也不出现概念 chips
-const tabsFor = (catalogKey: string) =>
-  catalogKey === "assets" ? ["assets"] : TAB_ORDER.filter((k) => k !== "assets");
 
 export type Locale = "zh" | "en";
 
@@ -89,8 +94,15 @@ const matchesPlatform = (t: Term, f: PlatformFilter) =>
   f === "all" || platformOf(t) === "cross" || platformOf(t) === f;
 
 const UI_TEXT = {
-  zh: { favorites: "收藏", termCount: "个条目", favoriteTerm: "收藏概念", platform: "平台", liveToc: "实时目录", filterConcepts: "筛选概念", filterAssets: "筛选素材" },
-  en: { favorites: "Favorites", termCount: "entries", favoriteTerm: "Add to favorites", platform: "Platform", liveToc: "On this page", filterConcepts: "Filter concepts", filterAssets: "Filter assets" },
+  zh: { favorites: "收藏", termCount: "个条目", favoriteTerm: "收藏概念", platform: "平台", liveToc: "实时目录", filterConcepts: "筛选概念", filterCatalog: "筛选分类" },
+  en: { favorites: "Favorites", termCount: "entries", favoriteTerm: "Add to favorites", platform: "Platform", liveToc: "On this page", filterConcepts: "Filter concepts", filterCatalog: "Filter categories" },
+};
+
+// Share 链接的 ?c= 参数 → 交互动画词条 slug
+const MOTION_SLUG_BY_C: Record<string, string> = {
+  carousel: "motion-card-carousel",
+  dot: "motion-dot-intro",
+  onboarding: "motion-dark-onboarding",
 };
 
 const STAR_PATH =
@@ -117,11 +129,10 @@ export default function CatalogView({
   const [favorites, setFavorites] = useState<Set<string>>(new Set());
   const [platformFilter, setPlatformFilter] = useState<PlatformFilter>("all");
 
-  // 平台筛选：只有当前目录里确实存在非 Web 词条时才出现，未标注视为 Web
-  const platformEnabled = useMemo(
-    () => catalog.groups.some((g) => g.terms.some((t) => platformOf(t) !== "web")),
-    [catalog]
-  );
+  // 平台筛选：概念目录里确实存在非 Web 词条时才出现；设计页用 APP/网页分类替代
+  const platformEnabled =
+    catalog.key !== "design" &&
+    catalog.groups.some((g) => g.terms.some((t) => platformOf(t) !== "web"));
   const activePlatform = platformEnabled ? platformFilter : "all";
   const platformCounts = useMemo(() => {
     const terms = catalog.groups.flatMap((g) => g.terms);
@@ -135,6 +146,7 @@ export default function CatalogView({
     () =>
       catalog.groups
         .map((g) => {
+          if (g.subgroup) return g; // 图标风格虚拟分组：卡片来自 assets.json
           const terms = g.terms.filter((t) => matchesPlatform(t, activePlatform));
           return { ...g, terms, count: terms.length };
         })
@@ -142,29 +154,56 @@ export default function CatalogView({
     [catalog, activePlatform]
   );
 
-  // 素材库页：把「App 图标风格」作为虚拟分组并入左侧目录与 scroll spy
+  const [activeCat, setActiveCat] = useState<string>(catalog.categories?.[0]?.key ?? "");
+  const [motionSlug, setMotionSlug] = useState<string | null>(null);
+  // demo 的 Share 链接带 ?c=carousel / ?c=dot：打开时落在「交互动画」分类并直接点开对应弹层
+  useEffect(() => {
+    if (catalog.key !== "design") return;
+    const slug = MOTION_SLUG_BY_C[new URLSearchParams(window.location.search).get("c") ?? ""];
+    if (slug) {
+      setActiveCat("motion");
+      setMotionSlug(slug);
+    }
+  }, [catalog.key]);
+  // 独立分区（设计、原理）按页内分类 chips 过滤，概念分区一次铺开所有分组
+  const visibleGroups = useMemo(
+    () =>
+      catalog.categories
+        ? groups.filter((g) => g.category === activeCat)
+        : groups,
+    [catalog, groups, activeCat]
+  );
+  const catCounts = useMemo(() => {
+    const m: Record<string, number> = {};
+    for (const g of groups) m[g.category ?? ""] = (m[g.category ?? ""] ?? 0) + g.count;
+    return m;
+  }, [groups]);
+
+  // 设计分区页：App 图标风格分组的卡片数据来自 assets.json
   const iconStyleCat =
-    catalog.key === "assets"
+    catalog.key === "design"
       ? (locale === "en" ? EN_ASSETS : ZH_ASSETS).categories.find(
           (c) => c.key === "app-icon-style"
         )
       : undefined;
-  const tocGroups = useMemo(
-    () =>
-      iconStyleCat
-        ? [...groups, { id: "app-icon-style", title: iconStyleCat.label, count: iconStyleCat.styles.length }]
-        : groups,
-    [groups, iconStyleCat]
-  );
 
   // 收藏持久化
   useEffect(() => {
-    try {
-      const saved = JSON.parse(localStorage.getItem("vh-favorites") || "[]");
-      if (Array.isArray(saved)) setFavorites(new Set(saved.filter((s) => typeof s === "string")));
-    } catch {
-      setFavorites(new Set());
-    }
+    const read = () => {
+      try {
+        const saved = JSON.parse(localStorage.getItem("vh-favorites") || "[]");
+        if (Array.isArray(saved)) setFavorites(new Set(saved.filter((s) => typeof s === "string")));
+      } catch {
+        setFavorites(new Set());
+      }
+    };
+    read();
+    const onSynced = (e: Event) =>
+      setFavorites(
+        new Set((e as CustomEvent<string[]>).detail.filter((s) => typeof s === "string"))
+      );
+    window.addEventListener("vh-favorites-synced", onSynced);
+    return () => window.removeEventListener("vh-favorites-synced", onSynced);
   }, []);
 
   const toggleFavorite = (slug: string) => {
@@ -173,13 +212,14 @@ export default function CatalogView({
       if (next.has(slug)) next.delete(slug);
       else next.add(slug);
       localStorage.setItem("vh-favorites", JSON.stringify(Array.from(next)));
+      window.dispatchEvent(new Event("vh-favorites-changed"));
       return next;
     });
   };
 
   // Scroll spy：根据当前进入视口的分组 section 高亮左侧实时目录
   useEffect(() => {
-    const sections = tocGroups
+    const sections = visibleGroups
       .map((g) => document.getElementById(g.id))
       .filter((el): el is HTMLElement => Boolean(el));
     if (sections.length === 0) return;
@@ -198,7 +238,7 @@ export default function CatalogView({
     );
     sections.forEach((s) => observer.observe(s));
     return () => observer.disconnect();
-  }, [catalog.key, tocGroups]);
+  }, [catalog.key, visibleGroups]);
 
   // 顶部筛选栏粘住时切到带背景的状态（原站 .catalog-finder.is-stuck：
   // ::before 淡入毛玻璃底 + 底边线 + 阴影，避免正文从栏下穿过）。
@@ -238,31 +278,50 @@ export default function CatalogView({
     <div className="catalog-page catalog-directory-page">
       <div className="catalog-layout catalog-directory-layout">
         <span className="catalog-finder-sentinel" aria-hidden="true" />
-        <section className="catalog-finder" aria-label={catalog.key === "assets" ? T.filterAssets : T.filterConcepts}>
+        <section className="catalog-finder" aria-label={catalog.categories ? T.filterCatalog : T.filterConcepts}>
           <div className="catalog-finder-row">
             <div className="catalog-filter-list">
-              {tabsFor(catalog.key).map((key) => {
-                const c = CATALOGS.find((x) => x.key === key);
-                const total =
-                  c?.tabs.find((t) => L[key] === t.label)?.count ??
-                  c?.tabs[0]?.count ??
-                  0;
-                const active = key === catalog.key;
-                return (
-                  <button
-                    key={key}
-                    type="button"
-                    className="catalog-filter-chip"
-                    aria-pressed={active}
-                    onClick={() =>
-                      router.push(c?.href ?? (locale === "en" ? "/en" : "/"))
-                    }
-                  >
-                    {L[key]}
-                    <span>{total}</span>
-                  </button>
-                );
-              })}
+              {catalog.categories
+                ? catalog.categories.map((cat) => {
+                    const active = activeCat === cat.key;
+                    return (
+                      <button
+                        key={cat.key}
+                        type="button"
+                        className="catalog-filter-chip"
+                        aria-pressed={active}
+                        onClick={() => {
+                          setActiveCat(cat.key);
+                          window.scrollTo({ top: 0 });
+                        }}
+                      >
+                        {cat.label}
+                        <span>{catCounts[cat.key] ?? 0}</span>
+                      </button>
+                    );
+                  })
+                : TAB_ORDER.map((key) => {
+                    const c = CATALOGS.find((x) => x.key === key);
+                    const total =
+                      c?.tabs?.find((t) => L[key] === t.label)?.count ??
+                      c?.tabs?.[0]?.count ??
+                      0;
+                    const active = key === catalog.key;
+                    return (
+                      <button
+                        key={key}
+                        type="button"
+                        className="catalog-filter-chip"
+                        aria-pressed={active}
+                        onClick={() =>
+                          router.push(c?.href ?? (locale === "en" ? "/en" : "/"))
+                        }
+                      >
+                        {L[key]}
+                        <span>{total}</span>
+                      </button>
+                    );
+                  })}
               <button type="button" className="catalog-filter-chip" aria-pressed={false}>
                 {T.favorites}
                 <span>{favorites.size}</span>
@@ -291,7 +350,7 @@ export default function CatalogView({
         </section>
         <aside className="cat-live-toc" aria-label={T.liveToc}>
           <nav className="cat-live-toc-nav">
-            {tocGroups.map((g) => (
+            {visibleGroups.map((g) => (
               <button
                 key={g.id}
                 type="button"
@@ -314,114 +373,182 @@ export default function CatalogView({
           <header className="catalog-heading">
             <h1>{catalog.title}</h1>
           </header>
-          {groups.map((g) => (
-            <section className="cat-section" id={g.id} key={g.id}>
-              <div className="cat-title">
-                {g.title}
-                <span>
-                  {g.count} {T.termCount}
-                </span>
-              </div>
-              <div className="grid">
-                {g.terms.map((t) => (
-                  <article
-                    className="card"
-                    data-id={t.slug}
-                    key={t.slug}
-                    style={{ cursor: "pointer" }}
-                    onClick={() => router.push(detailBase + t.slug)}
-                  >
-                    <CardDemoThumb demoHtml={t.demoHtml} demoClass={t.demoClass} />
-                    <div className="card-head">
-                      <a
-                        className="card-title-group card-title-link"
-                        href={detailBase + t.slug}
-                        aria-label={t.name}
+          {visibleGroups.map((g) => {
+            // 交互动画分组：普通卡片网格，点开卡片进入 ripplix 式详情弹层玩 demo
+            if (g.category === "motion") {
+              return (
+                <section className="cat-section" id={g.id} key={g.id}>
+                  <h2 className="cat-title">
+                    {g.title}
+                    <span>
+                      {g.count} {T.termCount}
+                    </span>
+                  </h2>
+                  <div className="grid">
+                    {g.terms.map((t) => (
+                      <article
+                        className="card"
+                        data-id={t.slug}
+                        key={t.slug}
+                        style={{ cursor: "pointer" }}
+                        onClick={() => setMotionSlug(t.slug)}
                       >
-                        <h3>
-                          {t.name}
-                          {t.en ? <span>{t.en}</span> : null}
-                        </h3>
-                      </a>
-                      <button
-                        type="button"
-                        className="favorite-button"
-                        aria-label={T.favoriteTerm}
-                        aria-pressed={favorites.has(t.slug)}
-                        title={T.favoriteTerm}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          toggleFavorite(t.slug);
-                        }}
+                        <CardDemoThumb demoHtml={t.demoHtml} demoClass={t.demoClass} />
+                        <div className="card-head">
+                          <a
+                            className="card-title-group card-title-link"
+                            href={detailBase + t.slug}
+                            aria-label={t.name}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              setMotionSlug(t.slug);
+                            }}
+                          >
+                            <h3>
+                              {t.name}
+                              {t.en ? <span>{t.en}</span> : null}
+                            </h3>
+                          </a>
+                          <button
+                            type="button"
+                            className="favorite-button"
+                            aria-label={T.favoriteTerm}
+                            aria-pressed={favorites.has(t.slug)}
+                            title={T.favoriteTerm}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              toggleFavorite(t.slug);
+                            }}
+                          >
+                            <svg viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+                              <path d={STAR_PATH} />
+                            </svg>
+                          </button>
+                        </div>
+                        <div className="card-tagline card-quote">{t.tagline}</div>
+                      </article>
+                    ))}
+                  </div>
+                  {motionSlug && g.terms.some((t) => t.slug === motionSlug) && (
+                    <MotionDetailModal
+                      terms={g.terms}
+                      slug={motionSlug}
+                      onSlugChange={setMotionSlug}
+                      onClose={() => setMotionSlug(null)}
+                      locale={locale}
+                    />
+                  )}
+                </section>
+              );
+            }
+            const iconStyles =
+              g.subgroup && iconStyleCat
+                ? iconStyleCat.styles.filter((s) => s.subgroup === g.subgroup)
+                : null;
+            if (g.subgroup && !iconStyles) return null;
+            return (
+              <section className="cat-section" id={g.id} key={g.id}>
+                <h2 className="cat-title">
+                  {g.title}
+                  <span>
+                    {(iconStyles ? iconStyles.length : g.count)} {T.termCount}
+                  </span>
+                </h2>
+                {iconStyles ? (
+                  <div className="grid">
+                    {iconStyles.map((s) => (
+                      <article
+                        className="card"
+                        data-id={s.id}
+                        key={s.id}
+                        style={{ cursor: "pointer" }}
+                        onClick={() => router.push(`${detailBase}assets/${s.id}`)}
                       >
-                        <svg viewBox="0 0 48 48" aria-hidden="true" focusable="false">
-                          <path d={STAR_PATH} />
-                        </svg>
-                      </button>
-                    </div>
-                    <div className="card-tagline card-quote">{t.tagline}</div>
-                  </article>
-                ))}
-              </div>
-            </section>
-          ))}
-          {iconStyleCat && (
-            <section className="cat-section" id="app-icon-style">
-              <div className="cat-title">
-                {iconStyleCat.label}
-                <span>
-                  {iconStyleCat.styles.length} {T.termCount}
-                </span>
-              </div>
-              <div className="grid">
-                {iconStyleCat.styles.map((s) => (
-                  <article
-                    className="card"
-                    data-id={s.id}
-                    key={s.id}
-                    style={{ cursor: "pointer" }}
-                    onClick={() => router.push(`${detailBase}assets/${s.id}`)}
-                  >
-                    <div className="card-thumb">
-                      <div className="asset-case-strip" aria-hidden="true">
-                        {s.cases.slice(0, 3).map((cs) => (
-                          <img src={cs.image} alt="" loading="lazy" key={cs.brand} />
-                        ))}
-                      </div>
-                    </div>
-                    <div className="card-head">
-                      <a
-                        className="card-title-group card-title-link"
-                        href={`${detailBase}assets/${s.id}`}
-                        aria-label={s.name}
+                        <div className="card-thumb">
+                          <div className="asset-case-strip" aria-hidden="true">
+                            {s.cases.slice(0, 3).map((cs) => (
+                              <img src={cs.image} alt="" loading="lazy" key={cs.brand} />
+                            ))}
+                          </div>
+                        </div>
+                        <div className="card-head">
+                          <a
+                            className="card-title-group card-title-link"
+                            href={`${detailBase}assets/${s.id}`}
+                            aria-label={s.name}
+                          >
+                            <h3>
+                              {s.name}
+                              {s.en ? <span>{s.en}</span> : null}
+                            </h3>
+                          </a>
+                          <button
+                            type="button"
+                            className="favorite-button"
+                            aria-label={T.favoriteTerm}
+                            aria-pressed={favorites.has(s.id)}
+                            title={T.favoriteTerm}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              toggleFavorite(s.id);
+                            }}
+                          >
+                            <svg viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+                              <path d={STAR_PATH} />
+                            </svg>
+                          </button>
+                        </div>
+                        <div className="card-tagline card-quote">{s.tagline}</div>
+                      </article>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="grid">
+                    {g.terms.map((t) => (
+                      <article
+                        className="card"
+                        data-id={t.slug}
+                        key={t.slug}
+                        style={{ cursor: "pointer" }}
+                        onClick={() => router.push(detailBase + t.slug)}
                       >
-                        <h3>
-                          {s.name}
-                          {s.en ? <span>{s.en}</span> : null}
-                        </h3>
-                      </a>
-                      <button
-                        type="button"
-                        className="favorite-button"
-                        aria-label={T.favoriteTerm}
-                        aria-pressed={favorites.has(s.id)}
-                        title={T.favoriteTerm}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          toggleFavorite(s.id);
-                        }}
-                      >
-                        <svg viewBox="0 0 48 48" aria-hidden="true" focusable="false">
-                          <path d={STAR_PATH} />
-                        </svg>
-                      </button>
-                    </div>
-                    <div className="card-tagline card-quote">{s.tagline}</div>
-                  </article>
-                ))}
-              </div>
-            </section>
-          )}
+                        <CardDemoThumb demoHtml={t.demoHtml} demoClass={t.demoClass} />
+                        <div className="card-head">
+                          <a
+                            className="card-title-group card-title-link"
+                            href={detailBase + t.slug}
+                            aria-label={t.name}
+                          >
+                            <h3>
+                              {t.name}
+                              {t.en ? <span>{t.en}</span> : null}
+                            </h3>
+                          </a>
+                          <button
+                            type="button"
+                            className="favorite-button"
+                            aria-label={T.favoriteTerm}
+                            aria-pressed={favorites.has(t.slug)}
+                            title={T.favoriteTerm}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              toggleFavorite(t.slug);
+                            }}
+                          >
+                            <svg viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+                              <path d={STAR_PATH} />
+                            </svg>
+                          </button>
+                        </div>
+                        <div className="card-tagline card-quote">{t.tagline}</div>
+                      </article>
+                    ))}
+                  </div>
+                )}
+              </section>
+            );
+          })}
         </div>
       </div>
     </div>

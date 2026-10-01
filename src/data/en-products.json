@@ -1,6 +1,6 @@
 {
   "title": "Showcase",
-  "subtitle": "A collection of products we admire: websites, desktop tools and apps. No sponsored posts — just why they are good and who they fit.",
+  "subtitle": "A collection of products we admire: websites, desktop tools, apps and open-source projects. No sponsored posts — just why they are good and who they fit.",
   "categories": [
     {
       "key": "ai",
@@ -23,8 +23,9 @@
           "pricing": "Free for personal use; Pro around $20/mo",
           "platform": "macOS / Windows / Linux",
           "url": "https://cursor.com",
-          "logo": "https://cursor.com/marketing-static/icon-192x192-light.png",
-          "tags": ["AI coding", "Editor", "Dev tools"]
+          "logo": "/assets/logos/cursor.png",
+          "tags": ["AI coding", "Editor", "Dev tools"],
+          "related": ["superpowers"]
         },
         {
           "id": "perplexity",
@@ -43,6 +44,7 @@
           "pricing": "Free core; Pro around $20/mo",
           "platform": "Web / iOS / Android",
           "url": "https://www.perplexity.ai",
+          "logo": "/assets/logos/perplexity.ico",
           "tags": ["Search", "AI", "Research"]
         },
         {
@@ -88,8 +90,9 @@
           "pricing": "Free for individuals; paid seats for teams",
           "platform": "Web / macOS / Windows",
           "url": "https://www.figma.com",
-          "logo": "https://static.figma.com/app/icon/2/icon-128.png",
-          "tags": ["UI design", "Collaboration", "Design systems"]
+          "logo": "/assets/logos/figma.png",
+          "tags": ["UI design", "Collaboration", "Design systems"],
+          "related": ["framer", "appllama", "are-na"]
         },
         {
           "id": "framer",
@@ -108,8 +111,9 @@
           "pricing": "Free tier available; custom domains require a paid plan",
           "platform": "Web",
           "url": "https://www.framer.com",
-          "logo": "https://framerusercontent.com/images/Io89FonxEaWg4nxvQQllVLwPUUI.png",
-          "tags": ["Website builder", "No-code", "Motion"]
+          "logo": "/assets/logos/framerusercontent.png",
+          "tags": ["Website builder", "No-code", "Motion"],
+          "related": ["figma", "bencho"]
         },
         {
           "id": "screen-studio",
@@ -128,8 +132,9 @@
           "pricing": "From about $89 one-time; free trial",
           "platform": "macOS",
           "url": "https://screen.studio",
-          "logo": "https://screen.studio/icon.png",
-          "tags": ["Screen recording", "Video", "Product demo"]
+          "logo": "/assets/logos/screen.png",
+          "tags": ["Screen recording", "Video", "Product demo"],
+          "related": ["remotion"]
         },
         {
           "id": "appllama",
@@ -148,8 +153,9 @@
           "pricing": "Free preview; Pro $10/mo; Team $16/seat",
           "platform": "Web",
           "url": "https://appllama.io",
-          "logo": "https://appllama.io/branding/logo-icon-500.webp",
-          "tags": ["design library", "iOS", "paywall"]
+          "logo": "/assets/logos/appllama.webp",
+          "tags": ["design library", "iOS", "paywall"],
+          "related": ["figma", "are-na"]
         },
         {
           "id": "bencho",
@@ -168,8 +174,9 @@
           "pricing": "Completely free; blocks MIT-licensed",
           "platform": "Web",
           "url": "https://bencho.dev",
-          "logo": "https://bencho.dev/apple-touch-icon.png",
-          "tags": ["UI blocks", "Micro-interactions", "Open source"]
+          "logo": "/assets/logos/bencho.png",
+          "tags": ["UI blocks", "Micro-interactions", "Open source"],
+          "related": ["framer", "interaction-design"]
         }
       ]
     },
@@ -194,8 +201,9 @@
           "pricing": "Free for small teams; paid per member",
           "platform": "Web / macOS / iOS",
           "url": "https://linear.app",
-          "logo": "https://linear.app/favicon.ico",
-          "tags": ["Project management", "Dev collab", "Keyboard-first"]
+          "logo": "/assets/logos/linear.ico",
+          "tags": ["Project management", "Dev collab", "Keyboard-first"],
+          "related": ["appflowy"]
         },
         {
           "id": "raycast",
@@ -214,7 +222,7 @@
           "pricing": "Core features free; Pro is paid",
           "platform": "macOS",
           "url": "https://www.raycast.com",
-          "logo": "https://raycast.com/favicon-production.png",
+          "logo": "/assets/logos/raycast.png",
           "tags": ["Launcher", "Productivity", "macOS"]
         }
       ]
@@ -240,7 +248,7 @@
           "pricing": "Free for individuals; teams pay per channel",
           "platform": "Web / iOS / Android",
           "url": "https://buffer.com",
-          "logo": "https://buffer.com/favicon.ico",
+          "logo": "/assets/logos/buffer.ico",
           "tags": ["social media", "scheduling", "analytics"]
         }
       ]
@@ -266,8 +274,9 @@
           "pricing": "Free to use; Pro subscription for advanced features",
           "platform": "Web / iOS / Android",
           "url": "https://www.are.na",
-          "logo": "https://are.na/favicon.ico",
-          "tags": ["Inspiration", "Curation", "Community"]
+          "logo": "/assets/logos/are-na.ico",
+          "tags": ["Inspiration", "Curation", "Community"],
+          "related": ["appllama", "figma", "radio-garden"]
         },
         {
           "id": "radio-garden",
@@ -286,7 +295,61 @@
           "pricing": "Free",
           "platform": "Web",
           "url": "https://radio.garden",
-          "tags": ["Radio", "Interaction", "Serendipity"]
+          "logo": "/assets/logos/radio-garden.png",
+          "tags": ["Radio", "Interaction", "Serendipity"],
+          "related": ["are-na"]
+        }
+      ]
+    },
+    {
+      "key": "opensource",
+      "label": "Open Source",
+      "products": [
+        {
+          "id": "appflowy",
+          "name": "AppFlowy",
+          "category": "opensource",
+          "type": "app",
+          "tagline": "The leading open-source Notion alternative",
+          "overview": "Built with Flutter + Rust, AppFlowy is a collaborative AI workspace where your data stays yours. Documents, Grid/Board/Calendar database views and team spaces all work fully offline; for sync and collaboration you can self-host AppFlowy Cloud or use the managed one.",
+          "highlights": [
+            "Local-first: content lives on your own devices by default",
+            "Documents, database views and team spaces cover the core Notion workflows",
+            "Fully self-hostable via AppFlowy Cloud — sync without vendor servers",
+            "Desktop and mobile clients across all major platforms, usable offline"
+          ],
+          "bestFor": "People and teams who want Notion's capabilities with real data ownership — and developers studying a large Flutter + Rust codebase.",
+          "pricing": "Core features are free and open source; the managed cloud has paid plans",
+          "platform": "macOS / Windows / Linux / iOS / Android",
+          "url": "https://appflowy.com",
+          "repo": "https://github.com/AppFlowy-IO/AppFlowy",
+          "license": "AGPL-3.0",
+          "logo": "https://avatars.githubusercontent.com/u/86002201?v=4",
+          "tags": ["Notion alternative", "Local-first", "Self-hostable", "Flutter + Rust"],
+          "related": ["linear"]
+        },
+        {
+          "id": "beautiful-mermaid",
+          "name": "beautiful-mermaid",
+          "category": "opensource",
+          "type": "lib",
+          "tagline": "Beautiful SVG diagrams from Mermaid — and ASCII for terminals",
+          "overview": "Built by Craft for its own AI assistant, open-sourced in early 2026 (★11K+ since). It targets the friction people hit with the stock Mermaid renderer: presets that don't look professional, recolouring that means fighting CSS classes, no terminal output, and a heavy dependency tree for a simple diagram. Pure TypeScript, zero DOM dependencies, synchronous rendering — one source of text becomes either an SVG for the UI or an ASCII diagram for a terminal, across six types: flowchart, state, sequence, class, ER and XY chart.",
+          "highlights": [
+            "Two colours are enough: pass only background and foreground and every text level, connector and node stroke is derived with color-mix(); 15 built-in themes, any Shiki (VS Code) theme can be fed straight in, and theme switches go through CSS variables without a re-render",
+            "Dual output — vector diagrams in the UI, ASCII / Unicode box drawing in CLIs, from the same source text",
+            "Synchronous rendering with no DOM: no await, no flash, drops into a React useMemo; measured 113ms for 100 flowcharts",
+            "Two caveats from testing: nodes must sit on separate lines — the README's single-line \"graph LR; A --> B\" throws outright — and ASCII width is counted in code points, so CJK labels push the box borders out of alignment (Latin text is fine)",
+            "Maintenance: the npm package has stayed at 1.1.3 since 2026-02-26 and the last commit landed 2026-05-06 — the feature set looks stable, but don't expect new diagram types soon"
+          ],
+          "bestFor": "Developers embedding diagrams in their own product, CLI tool or agent output who find the default Mermaid renderer ugly and its theming painful.",
+          "pricing": "MIT, free and open source",
+          "platform": "Node / Bun / browser / terminal",
+          "url": "https://agents.craft.do/mermaid",
+          "repo": "https://github.com/lukilabs/beautiful-mermaid",
+          "license": "MIT",
+          "logo": "/assets/logos/github-lukilabs.png",
+          "tags": ["Mermaid", "Diagram rendering", "Dual output", "Zero DOM"]
         }
       ]
     }

@@ -19,7 +19,7 @@ npm run build && npm start
 | 术语详情 | `/[slug]` × 322 | 结构化数据渲染（你可能会说 / 定义 / 容易混淆 / Anatomy / Variants / 场景 / 延伸阅读） |
 | 术语目录 | `/`（前端 137）+ `/topics/[key]` × 7 | 分类 tab、侧栏分组锚点、卡片 mini demo（320 个） |
 | 功能页 | `/practice` `/courses` `/anti-ai-flavor` `/changelog` `/vibehub-skill` | 浏览器渲染后提取的整页内容 |
-| 课程 | `/courses/product-website`（12 章）、`/courses/git-workflow`（6 章） | 同上 |
+| 课程 | `/courses/product-website`（12 章）、`/courses/git-workflow`（6 章）、`/courses/drone-copilot`（更新中） | 同上 |
 
 ## 实现方式
 

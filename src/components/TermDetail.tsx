@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import TermBody, { type Term } from "./TermBody";
-import { useFlatTerms } from "./CommandPalette";
+import { standaloneCrumb, useFlatTerms } from "./CommandPalette";
 
 function buildMarkdown(t: Term, locale: "zh" | "en" = "zh"): string {
   const lines: string[] = [];
@@ -44,6 +44,12 @@ function useFavorites() {
     } catch {
       setFavorites(new Set());
     }
+    const onSynced = (e: Event) =>
+      setFavorites(
+        new Set((e as CustomEvent<string[]>).detail.filter((s) => typeof s === "string"))
+      );
+    window.addEventListener("vh-favorites-synced", onSynced);
+    return () => window.removeEventListener("vh-favorites-synced", onSynced);
   }, []);
   const toggle = (slug: string) => {
     setFavorites((prev) => {
@@ -51,6 +57,7 @@ function useFavorites() {
       if (next.has(slug)) next.delete(slug);
       else next.add(slug);
       localStorage.setItem("vh-favorites", JSON.stringify(Array.from(next)));
+      window.dispatchEvent(new Event("vh-favorites-changed"));
       return next;
     });
   };
@@ -68,16 +75,33 @@ export default function TermDetail({
   const { favorites, toggle } = useFavorites();
   const isFav = useMemo(() => favorites.has(term.slug), [favorites, term.slug]);
   const flatTerms = useFlatTerms(locale);
-  const zone = useMemo(
-    () => flatTerms.find((t) => t.slug === term.slug)?.zone,
+  const entry = useMemo(
+    () => flatTerms.find((t) => t.slug === term.slug),
     [flatTerms, term.slug]
   );
+  const zone = entry?.zone;
+  // 独立分区（设计 / 原理）的词条跳回自己那页
+  const sectionHref = standaloneCrumb(entry?.catalogKey, locale);
+  const allEntries = sectionHref
+    ? locale === "en"
+      ? `All ${entry?.zone}`
+      : `全部${entry?.zone}`
+    : locale === "en"
+      ? "All entries"
+      : "全部概念";
+  const backAll = sectionHref
+    ? locale === "en"
+      ? `Back to all ${entry?.zone}`
+      : `返回全部${entry?.zone}`
+    : locale === "en"
+      ? "Back to all entries"
+      : "返回全部概念";
 
   const T =
     locale === "en"
       ? {
-          allEntries: "All entries",
-          backAll: "Back to all entries",
+          allEntries,
+          backAll,
           fav: "Add to favorites",
           copyMd: "Copy as Markdown",
           copied: "Copied",
@@ -85,8 +109,8 @@ export default function TermDetail({
           next: "Next entry",
         }
       : {
-          allEntries: "概念图鉴",
-          backAll: "返回概念图鉴",
+          allEntries,
+          backAll,
           fav: "收藏概念",
           copyMd: "复制为 Markdown",
           copied: "已复制",
@@ -94,6 +118,7 @@ export default function TermDetail({
           next: "下一个条目",
         };
   const homeHref = locale === "en" ? "/en" : "/";
+  const conceptsHref = locale === "en" ? "/en/topics/frontend" : "/topics/frontend";
   const detailBase = locale === "en" ? "/en/" : "/";
   const breadcrumbLabel = locale === "en" ? "Breadcrumb" : "面包屑";
 
@@ -117,7 +142,7 @@ export default function TermDetail({
                 <path d="M19 12H5m6-6-6 6 6 6" />
               </svg>
             </button>
-            <button type="button" className="breadcrumb-link" onClick={() => router.push(homeHref)}>
+            <button type="button" className="breadcrumb-link" onClick={() => router.push(sectionHref ?? conceptsHref)}>
               {T.allEntries}
             </button>
             <span className="breadcrumb-separator" aria-hidden="true">

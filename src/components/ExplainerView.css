@@ -1,0 +1,370 @@
+/* 专题 · ExplainerView —— 左目录 + 右正文的文档式布局。
+   版式只有三种原语：exp-items（编号条目）、exp-kv（左标签右内容）、exp-note（引述）。
+   除「先记住这三样」这块面板外，全页不再出现灰底圆角卡片。 */
+.exp-main {
+  --exp-brand: var(--brand, #2563eb);
+  --exp-fg: var(--text, #1a1b20);
+  --exp-muted: var(--text-2, #52525b);
+  --exp-line: var(--border, #e4e4e7);
+  --exp-hair: color-mix(in srgb, var(--exp-fg) 10%, transparent);
+  --exp-tint: color-mix(in srgb, var(--exp-fg) 3.5%, transparent);
+  --exp-card: var(--bg, #fff);
+  max-width: 1540px;
+  margin: 0 auto;
+  padding: 22px 32px 96px;
+  color: var(--exp-fg);
+  line-height: 1.75;
+}
+.exp-main * { box-sizing: border-box; }
+.exp-shell { display: grid; grid-template-columns: 156px minmax(0, 1fr); gap: 28px; align-items: start; }
+.exp-col { min-width: 0; }
+
+/* ── 左目录：三章 + 九节，滚动时高亮当前节 ────────────────── */
+.exp-toc { position: sticky; top: 92px; }
+.exp-toc-h {
+  font-size: .7rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--exp-muted); margin: 0 0 .7rem;
+}
+.exp-toc-chapter {
+  display: flex; align-items: baseline; gap: .35rem;
+  font-size: .8rem; font-weight: 700; color: var(--exp-fg);
+  margin: 1.15rem 0 .3rem;
+}
+.exp-toc-chapter-n {
+  font-size: .68rem; font-weight: 800; font-variant-numeric: tabular-nums;
+  color: var(--exp-brand); letter-spacing: .04em;
+}
+.exp-toc ol { list-style: none; margin: 0; padding: 0; border-left: 1px solid var(--exp-hair); }
+.exp-toc a {
+  display: flex; gap: .5rem; align-items: baseline; text-decoration: none;
+  padding: .3rem 0 .3rem .85rem; margin-left: -1px;
+  border-left: 2px solid transparent;
+  font-size: .84rem; color: var(--exp-muted);
+}
+.exp-toc a:hover { color: var(--exp-fg); }
+.exp-toc a.is-active { color: var(--exp-brand); font-weight: 700; border-left-color: var(--exp-brand); }
+
+/* ── 页头 ─────────────────────────────────────────────────── */
+.exp-eyebrow {
+  font-size: .74rem; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--exp-brand); font-weight: 700; margin: 0 0 .7rem;
+}
+.exp-hero h1 {
+  font-size: clamp(1.6rem, 3vw, 2.15rem); line-height: 1.3; margin: 0 0 .7rem;
+  font-weight: 800; letter-spacing: -.01em;
+}
+.exp-oneLiner { font-size: 1.05rem; margin: 0 0 .5rem; max-width: 66ch; }
+.exp-forWhom { color: var(--exp-muted); font-size: .92rem; margin: 0; max-width: 66ch; }
+
+/* 第一层：先记住这三样——全页唯一一块带底色的面板 */
+.exp-memory {
+  margin-top: 1.9rem; padding: 1.2rem 1.35rem 1.35rem;
+  border: 1px solid color-mix(in srgb, var(--exp-brand) 24%, var(--exp-line));
+  border-radius: 14px; background: color-mix(in srgb, var(--exp-brand) 4.5%, transparent);
+}
+/* 宽屏时「一张图」挪到右边一栏：左文字右图，面板不再是一条被拉长的空档 */
+@media (min-width: 1120px) {
+  .exp-memory { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 30rem); gap: 0 2.6rem; align-items: start; }
+  .exp-memory-h { grid-column: 1 / -1; }
+  .exp-memory-map { margin-top: 0; }
+}
+.exp-memory-h {
+  display: flex; align-items: baseline; gap: .6rem; flex-wrap: wrap;
+  margin: 0 0 1rem; font-size: .8rem; font-weight: 800;
+}
+.exp-memory-k {
+  display: block; font-size: .68rem; font-weight: 800; letter-spacing: .12em;
+  color: var(--exp-brand); margin-bottom: .4rem;
+}
+.exp-memory-line { margin: 0 0 1.1rem; font-size: 1.24rem; font-weight: 700; line-height: 1.5; letter-spacing: -.005em; }
+.exp-memory-chain {
+  list-style: none; margin: 0; padding: 0;
+  display: flex; flex-wrap: wrap; gap: .3rem .6rem; align-items: center;
+}
+.exp-memory-chain li { display: flex; align-items: center; gap: .45rem; font-size: .92rem; font-weight: 600; }
+.exp-memory-chain li + li::before { content: "→"; color: var(--exp-muted); font-weight: 400; }
+.exp-memory-n {
+  display: grid; place-items: center; width: 1.25rem; height: 1.25rem; flex: none;
+  border-radius: 50%; background: color-mix(in srgb, var(--exp-brand) 12%, transparent);
+  color: var(--exp-brand); font-size: .72rem; font-weight: 800;
+}
+.exp-memory-map { margin-top: 1.2rem; container-type: inline-size; }
+/* 缩略图：架构图 iframe 固定按 1040px 渲染（这个宽度下它自己的工具栏不换行），
+   图形本体 926×463、从 y=181 开始。用「一栏」的宽度反算缩放比，任意栏宽都是「整图缩小」而不是裁一半。
+   注意 cqi 要由父级提供容器，元素自己声明 container-type 时查不到自己。
+   iframe 高度给足，避免图里冒出滚动条把内容挤到换行、把量好的 181 挪掉。 */
+.exp-memory-frame {
+  --exp-map-scale: tan(atan2(100cqi, 1040px));
+  position: relative; height: calc(463px * var(--exp-map-scale) + 14px);
+  overflow: hidden; border: 1px solid var(--exp-hair); border-radius: 10px;
+}
+.exp-memory-frame iframe {
+  position: absolute; left: 50%; top: 0; width: 1040px; height: 1400px;
+  border: 0; pointer-events: none; transform-origin: top center;
+  transform: translateX(-50%) scale(var(--exp-map-scale)) translateY(-181px);
+}
+.exp-memory-cap { margin: .55rem 0 0; font-size: .8rem; color: var(--exp-muted); }
+.exp-memory-cap a { color: var(--exp-brand); }
+.exp-sub-note { font-size: .78rem; font-weight: 500; color: var(--exp-muted); letter-spacing: 0; }
+
+/* ── 页头第一行：左边小标，右边两枚小钮（返回 + 复制），同一行对齐 ── */
+.exp-hero-top {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  margin: 0 0 .8rem;
+}
+.exp-hero-top .exp-eyebrow { margin-bottom: 0; }
+.exp-corner { display: flex; align-items: center; gap: 8px; }
+.exp-chip {
+  display: inline-flex; align-items: center; gap: .4rem; flex: none;
+  height: 30px; padding: 0 .7rem; border-radius: 8px;
+  border: 1px solid var(--exp-hair); background: none;
+  font-size: .72rem; font-weight: 600; color: var(--exp-muted); text-decoration: none;
+  transition: color .18s ease, border-color .18s ease, background-color .18s ease;
+}
+.exp-chip:hover {
+  color: var(--exp-brand);
+  border-color: color-mix(in srgb, var(--exp-brand) 32%, transparent);
+  background-color: color-mix(in srgb, var(--exp-brand) 6%, transparent);
+}
+.exp-back .ui-icon {
+  width: 15px; height: 15px; fill: none; stroke: currentColor;
+  stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+  transition: transform .18s ease;
+}
+.exp-back:hover .ui-icon { transform: translateX(-3px); }
+/* 复用公共复制钮的尺寸与图标切换动效，只去掉它的白底与实线边框 */
+.exp-corner .detail-copy-markdown {
+  border-color: var(--exp-hair); background: none; color: var(--exp-muted);
+  border-radius: 8px;
+}
+.exp-corner .detail-copy-markdown:hover {
+  color: var(--exp-brand); border-color: color-mix(in srgb, var(--exp-brand) 32%, transparent);
+  background: color-mix(in srgb, var(--exp-brand) 6%, transparent); transform: none;
+}
+.exp-corner .detail-copy-markdown.is-copied {
+  color: var(--green, #16a34a); border-color: color-mix(in srgb, var(--green, #16a34a) 40%, transparent);
+  background: none;
+}
+
+/* ── 思维导图：根 → 三章 → 七段 → 每段的短标签 ─────────── */
+.exp-mind-block { margin-top: 1.9rem; }
+.exp-mind-h {
+  display: flex; align-items: baseline; gap: .6rem; flex-wrap: wrap;
+  margin: 0 0 .3rem; font-size: .8rem; font-weight: 800;
+}
+.exp-mind { margin-top: 1rem; overflow-x: auto; }
+.exp-mind svg { display: block; width: 100%; height: auto; }
+.exp-mind .mm-link { cursor: pointer; }
+.exp-mind .mm-edge { fill: none; stroke: var(--exp-hair); stroke-width: 1.4; }
+.exp-mind .mm-root-box { fill: var(--exp-brand); stroke: none; }
+.exp-mind .mm-root-text { fill: #fff; font-weight: 700; }
+.exp-mind .mm-chapter { fill: var(--exp-muted); font-weight: 800; letter-spacing: .1em; }
+.exp-mind .mm-sec-box { fill: var(--exp-bg, var(--exp-card, transparent)); stroke: var(--exp-hair); }
+.exp-mind .mm-sec-text { fill: var(--exp-fg); font-weight: 700; }
+.exp-mind .mm-sec-num { fill: var(--exp-brand); font-weight: 800; }
+.exp-mind .mm-leaf { fill: var(--exp-muted); }
+.exp-mind .mm-leaf-edge { stroke: var(--exp-hair); stroke-width: 1.2; }
+.exp-mind .mm-link:hover .mm-sec-box { stroke: var(--exp-brand); }
+.exp-mind .mm-link:hover .mm-sec-text, .exp-mind .mm-link:hover .mm-leaf { fill: var(--exp-brand); }
+
+.exp-related { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 1.5rem; }
+.exp-related-card {
+  flex: 1 1 20rem; display: flex; flex-direction: column; gap: .3rem;
+  padding: .85rem 1rem; border: 1px solid var(--exp-hair);
+  border-radius: 12px; text-decoration: none; color: var(--exp-fg);
+  transition: border-color .15s ease, background .15s ease;
+}
+.exp-related-card:hover { border-color: var(--exp-brand); background: var(--exp-tint); }
+.exp-related-label { font-weight: 700; font-size: .95rem; }
+.exp-related-note { color: var(--exp-muted); font-size: .85rem; }
+.exp-related-cta { color: var(--exp-brand); font-size: .82rem; font-weight: 600; }
+
+/* ── 三章：章带 + 节标题 ──────────────────────────────────── */
+/* 锚点跳转只要避开站点导航（56px）＋一点呼吸 */
+.exp-sec {
+  margin-top: 3.2rem; padding-top: 2rem; border-top: 1px solid var(--exp-hair);
+  scroll-margin-top: 84px;
+}
+.exp-sec > h2 {
+  display: flex; align-items: baseline; gap: .55rem; flex-wrap: wrap;
+  font-size: 1.3rem; font-weight: 800; margin: 0 0 .5rem; letter-spacing: -.005em;
+}
+.exp-sec > h2 .exp-hint { font-size: .82rem; font-weight: 500; color: var(--exp-muted); }
+.exp-sec .exp-sec-intro { color: var(--exp-muted); margin: 0 0 1.25rem; font-size: .95rem; max-width: 68ch; }
+.exp-sub-h {
+  display: flex; align-items: baseline; gap: .6rem; flex-wrap: wrap;
+  margin: 2.2rem 0 .35rem; font-size: 1rem; font-weight: 800;
+}
+.exp-sub-h:first-child { margin-top: 0; }
+/* 实现：小标题紧跟节头，不留 2.2rem 的空档 */
+.exp-sec > div > .exp-sub-h:first-child { margin-top: .3rem; }
+
+/* 三章带：编号在章上，节只用名字 */
+.exp-chapter { display: flex; align-items: baseline; gap: .6rem; flex-wrap: wrap; margin-top: 3.4rem; }
+.exp-chapter-n {
+  font-size: .78rem; font-weight: 800; letter-spacing: .06em; font-variant-numeric: tabular-nums;
+  color: var(--exp-brand);
+}
+.exp-chapter-zh { font-size: .95rem; font-weight: 800; color: var(--exp-fg); }
+.exp-chapter + .exp-sec { margin-top: 1.1rem; padding-top: 0; border-top: 0; }
+
+/* ── 原语一：编号条目（01 链 / 02 问题 / 05 坑 / 07 沉淀）── */
+.exp-items { list-style: none; margin: 0; padding: 0; }
+.exp-item {
+  display: grid; grid-template-columns: 1.9rem minmax(0, 1fr); gap: .9rem;
+  padding: 1.05rem 0; border-top: 1px solid var(--exp-hair);
+}
+.exp-items > .exp-item:first-child { border-top: 0; padding-top: .1rem; }
+.exp-item-n {
+  font-size: .8rem; font-weight: 800; font-variant-numeric: tabular-nums;
+  color: var(--exp-muted); padding-top: .15rem;
+}
+.exp-item-body { min-width: 0; }
+.exp-item-body h4 { margin: 0 0 .3rem; font-size: 1rem; font-weight: 700; }
+.exp-item-body p { margin: 0; font-size: .93rem; color: var(--exp-muted); line-height: 1.75; max-width: 68ch; }
+.exp-item-fix { margin-top: .5rem; font-size: .9rem; color: var(--exp-fg); max-width: 68ch; }
+.exp-item-fix-label {
+  display: inline-block; margin-right: .45rem; padding: .05rem .4rem;
+  border-radius: 5px; background: color-mix(in srgb, #16a34a 14%, transparent);
+  color: #15803d; font-size: .72rem; font-weight: 800;
+}
+
+/* ── 原语二：左标签右内容（06 数字 / 及格线 / 技术选型 / 边界）── */
+.exp-kv { margin: 0; }
+.exp-kv-row {
+  display: grid; grid-template-columns: 10.5rem minmax(0, 1fr); gap: 1.2rem;
+  padding: .9rem 0; border-top: 1px solid var(--exp-hair);
+}
+.exp-kv > .exp-kv-row:first-child { border-top: 0; padding-top: .15rem; }
+.exp-kv-k { font-size: .9rem; font-weight: 700; min-width: 0; }
+.exp-kv-k.is-link {
+  color: var(--exp-brand); text-decoration: none;
+  border-bottom: 1px dashed color-mix(in srgb, var(--exp-brand) 45%, transparent);
+}
+.exp-kv-k.is-link:hover { border-bottom-style: solid; }
+.exp-kv-v { font-size: .93rem; color: var(--exp-muted); line-height: 1.75; min-width: 0; }
+.exp-kv-group + .exp-kv-group { margin-top: 1.5rem; }
+.exp-kv-group > h3 { margin: 0 0 .2rem; font-size: .86rem; font-weight: 800; }
+
+/* ── 原语三：引述 / 提醒 ─────────────────────────────────── */
+.exp-note {
+  margin: 0 0 1.2rem; padding-left: 1.05rem; font-size: .88rem;
+  border-left: 2px solid var(--exp-hair); color: var(--exp-muted); max-width: 68ch;
+}
+
+/* ── 图 ──────────────────────────────────────────────────── */
+.exp-map-frame { position: relative; }
+.exp-map-frame iframe {
+  width: 100%; height: 76vh; min-height: 540px;
+  border: 1px solid var(--exp-hair); border-radius: 14px; background: #fff;
+}
+.exp-map-open { font-size: .82rem; margin-top: .55rem; color: var(--exp-muted); }
+.exp-map-open a { color: var(--exp-brand); }
+/* 全景图有三层泳道 + 底部图例，76vh 会把最底下一层裁掉；按内容列宽量出来是 876px */
+.exp-map-panorama iframe { height: clamp(560px, 62vw, 880px); }
+
+/* 走查 stepper */
+.exp-walk-bar { display: flex; align-items: center; gap: .7rem; margin-bottom: 1rem; }
+.exp-walk-nav {
+  width: 34px; height: 34px; border-radius: 9px; cursor: pointer;
+  border: 1px solid var(--exp-hair); background: transparent;
+  font-size: 1.05rem; color: var(--exp-fg); line-height: 1;
+}
+.exp-walk-nav:hover { border-color: var(--exp-brand); color: var(--exp-brand); }
+.exp-walk-nav:disabled { opacity: .3; cursor: default; }
+.exp-walk-count { font-variant-numeric: tabular-nums; font-size: .86rem; color: var(--exp-muted); }
+/* width:0 + min-width:100% —— 横向滚动条不能把整篇文章的 min-content 撑宽，
+   否则手机会把布局视口拉宽、整页缩小成桌面版 */
+.exp-steps { display: flex; gap: .5rem; overflow-x: auto; padding: .3rem .1rem .9rem; scroll-behavior: smooth; width: 0; min-width: 100%; }
+.exp-step {
+  flex: 0 0 auto; min-width: 12.5rem; text-align: left; cursor: pointer;
+  border: 1px solid var(--exp-hair); border-radius: 11px; background: transparent;
+  padding: .6rem .75rem; color: var(--exp-fg); font: inherit; font-size: .84rem;
+  display: flex; flex-direction: column; gap: .3rem; transition: border-color .15s, background .15s;
+}
+.exp-step .exp-step-n {
+  width: 21px; height: 21px; border-radius: 50%; font-size: .72rem; font-weight: 700;
+  display: grid; place-items: center; background: var(--exp-tint); color: var(--exp-muted);
+}
+.exp-step.is-active { border-color: var(--exp-brand); background: color-mix(in srgb, var(--exp-brand) 8%, transparent); }
+.exp-step.is-active .exp-step-n { background: var(--exp-brand); color: #fff; }
+.exp-step .exp-step-node { color: var(--exp-muted); font-size: .76rem; }
+.exp-walk-detail { border-left: 2px solid var(--exp-brand); padding-left: 1.05rem; font-size: 1rem; max-width: 68ch; }
+.exp-walk-detail .exp-walk-node { font-weight: 700; color: var(--exp-brand); font-size: .8rem; letter-spacing: .04em; display: block; margin-bottom: .25rem; }
+
+/* ── 04 逐层拆解：左层名 + 右四档话术 ────────────────────── */
+.exp-nodes-grid { display: grid; grid-template-columns: 12.5rem minmax(0, 1fr); gap: 2rem; align-items: start; }
+.exp-rail { display: flex; flex-direction: column; gap: .05rem; position: sticky; top: 132px; }
+.exp-rail button {
+  text-align: left; cursor: pointer; font: inherit; font-size: .87rem;
+  border: 0; border-left: 2px solid transparent; padding: .45rem .7rem;
+  background: transparent; color: var(--exp-muted); white-space: nowrap;
+}
+.exp-rail button:hover { color: var(--exp-fg); }
+.exp-rail button.is-active { color: var(--exp-brand); border-left-color: var(--exp-brand); font-weight: 700; background: var(--exp-tint); }
+.exp-node-card { padding-top: .1rem; }
+.exp-node-head { display: flex; align-items: baseline; gap: .6rem; flex-wrap: wrap; margin-bottom: .5rem; }
+.exp-node-head h3 { margin: 0; font-size: 1.15rem; font-weight: 800; }
+.exp-node-head .exp-sub { color: var(--exp-muted); font-size: .86rem; }
+.exp-kind { font-size: .7rem; font-weight: 700; letter-spacing: .03em; padding: .1rem .5rem; border-radius: 999px; color: #fff; }
+.exp-depth { display: inline-flex; gap: .2rem; padding: .2rem; border: 1px solid var(--exp-hair); border-radius: 999px; margin: .5rem 0 1.1rem; }
+.exp-depth button { font: inherit; font-size: .78rem; cursor: pointer; border: 0; background: transparent; color: var(--exp-muted); padding: .28rem .75rem; border-radius: 999px; }
+.exp-depth button.is-active { background: var(--exp-brand); color: #fff; font-weight: 700; }
+.exp-tier { margin: 0 0 1rem; }
+.exp-tier .exp-tier-label { font-size: .72rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--exp-brand); display: block; margin-bottom: .3rem; }
+.exp-tier p { margin: 0; font-size: 1rem; line-height: 1.8; max-width: 68ch; }
+.exp-tier.deep p { color: color-mix(in srgb, var(--exp-fg) 88%, transparent); }
+.exp-tier.impl { padding-left: 1.05rem; border-left: 2px solid var(--exp-hair); }
+.exp-tier.impl .exp-tier-label { color: var(--exp-muted); }
+.exp-followups { margin-top: 1.2rem; padding-top: .8rem; border-top: 1px solid var(--exp-hair); }
+.exp-followups .exp-fu-title { font-size: .8rem; font-weight: 800; color: var(--exp-muted); margin: 0 0 .4rem; }
+.exp-followups details { padding: .5rem 0; border-top: 1px solid var(--exp-hair); }
+.exp-followups details:first-of-type { border-top: 0; }
+.exp-followups summary { cursor: pointer; font-weight: 600; font-size: .93rem; list-style: none; }
+.exp-followups summary::-webkit-details-marker { display: none; }
+.exp-followups summary::before { content: "追问 · "; color: var(--exp-brand); font-weight: 700; }
+.exp-followups details p { margin: .5rem 0 0; color: var(--exp-muted); font-size: .92rem; max-width: 68ch; }
+
+/* 你大概率会问 */
+.exp-qa details { padding: .85rem 0; border-top: 1px solid var(--exp-hair); }
+.exp-qa details:first-of-type { border-top: 0; padding-top: .15rem; }
+.exp-qa summary { cursor: pointer; font-weight: 700; font-size: .98rem; list-style: none; }
+.exp-qa summary::-webkit-details-marker { display: none; }
+.exp-qa summary::before { content: "+"; display: inline-block; width: 1.1rem; color: var(--exp-brand); font-weight: 800; }
+.exp-qa details[open] summary::before { content: "−"; }
+.exp-qa details p { margin: .55rem 0 0 .1rem; color: var(--exp-muted); font-size: .93rem; max-width: 68ch; }
+
+.exp-foot {
+  margin-top: 3rem; padding-top: 1.4rem; border-top: 1px solid var(--exp-hair);
+  font-size: .85rem; color: var(--exp-muted); max-width: 68ch;
+}
+
+/* 讲解目录页 */
+.exp-index .exp-sec { margin-top: 2rem; padding-top: 0; border-top: 0; }
+.exp-index-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.2rem; }
+.exp-index-card {
+  display: flex; flex-direction: column; gap: .6rem; text-decoration: none;
+  border: 1px solid var(--exp-hair); border-radius: 14px; padding: 1.3rem 1.4rem;
+  color: inherit; transition: border-color .15s, background .15s, transform .15s;
+}
+.exp-index-card:hover { border-color: var(--exp-brand); background: var(--exp-tint); transform: translateY(-2px); }
+.exp-index-card h2 { margin: 0; font-size: 1.15rem; font-weight: 800; color: var(--exp-fg); }
+.exp-index-oneline { margin: 0; font-size: .96rem; color: var(--exp-fg); line-height: 1.6; }
+.exp-index-forwhom { margin: 0; font-size: .87rem; color: var(--exp-muted); }
+.exp-index-meta { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .2rem; }
+.exp-index-meta span {
+  font-size: .74rem; color: var(--exp-muted); padding: .15rem .55rem;
+  border: 1px solid var(--exp-hair); border-radius: 999px;
+}
+.exp-index-cta { margin-top: .4rem; font-size: .9rem; font-weight: 700; color: var(--exp-brand); }
+.exp-index-empty { color: var(--exp-muted); font-size: .92rem; margin: 0; }
+
+@media (max-width: 1080px) {
+  .exp-shell { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .exp-toc { display: none; }
+  .exp-nodes-grid { grid-template-columns: minmax(0, 1fr); gap: 1rem; }
+  .exp-rail { position: static; flex-direction: row; overflow-x: auto; padding-bottom: .4rem; }
+}
+@media (max-width: 620px) {
+  .exp-kv-row { grid-template-columns: minmax(0, 1fr); gap: .25rem; }
+}

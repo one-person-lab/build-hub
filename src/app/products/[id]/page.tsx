@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import ProductDetailView, { type ProductDetail } from "@/components/ProductDetailView";
+import { resolveRelated } from "@/lib/related";
 import productsData from "@/data/products.json";
 
 type RawProduct = ProductDetail;
@@ -54,6 +55,7 @@ export default async function ProductDetailPage({
       backHref="/products"
       categories={categories}
       currentCategory={product.category}
+      related={resolveRelated(product.related, "zh", product.id)}
     />
   );
 }

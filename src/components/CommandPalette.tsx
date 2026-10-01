@@ -11,7 +11,16 @@ export type FlatTerm = {
   en: string;
   tagline: string;
   zone: string;
+  catalogKey: string;
 };
+
+// 这两个分区有独立顶级菜单，词条面包屑要跳回自己那页而不是概念列表
+const STANDALONE_KEYS = ["design", "principles"];
+
+export function standaloneCrumb(catalogKey: string | undefined, locale: "zh" | "en") {
+  if (!catalogKey || !STANDALONE_KEYS.includes(catalogKey)) return null;
+  return `${locale === "en" ? "/en" : ""}/${catalogKey}`;
+}
 
 const ZONES: Record<"zh" | "en", Record<string, string>> = {
   zh: {
@@ -22,8 +31,8 @@ const ZONES: Record<"zh" | "en", Record<string, string>> = {
     technology: "技术栈",
     ai: "AI",
     git: "Git",
-    design: "设计风格",
-    assets: "素材库",
+    design: "设计",
+    principles: "原理",
   },
   en: {
     frontend: "Frontend",
@@ -34,7 +43,7 @@ const ZONES: Record<"zh" | "en", Record<string, string>> = {
     ai: "AI",
     git: "Git",
     design: "Design",
-    assets: "Assets",
+    principles: "Principles",
   },
 };
 
@@ -56,6 +65,7 @@ export function useFlatTerms(locale: "zh" | "en"): FlatTerm[] {
             en: t.en ?? "",
             tagline: t.tagline ?? "",
             zone,
+            catalogKey: cat.key,
           });
         }
     }
@@ -65,7 +75,7 @@ export function useFlatTerms(locale: "zh" | "en"): FlatTerm[] {
 
 const UI = {
   zh: {
-    placeholder: "搜索图鉴：试试「图标」「付费墙」…",
+    placeholder: "搜索概念：试试「图标」「付费墙」…",
     aria: "搜索概念",
     empty: "没有匹配的条目",
     hint: ["↑↓ 选择", "↵ 打开"],

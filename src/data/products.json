@@ -1,6 +1,6 @@
 {
   "title": "产品图鉴",
-  "subtitle": "我们观察到的一些优秀产品：网站、桌面工具和 App。不写软文，只说它们好在哪、适合谁。",
+  "subtitle": "我们观察到的一些优秀产品：网站、桌面工具、App 和开源项目。不写软文，只说它们好在哪、适合谁。",
   "categories": [
     {
       "key": "ai",
@@ -23,8 +23,9 @@
           "pricing": "个人版免费，Pro 约 $20/月",
           "platform": "macOS / Windows / Linux",
           "url": "https://cursor.com",
-          "logo": "https://cursor.com/marketing-static/icon-192x192-light.png",
-          "tags": ["AI 编程", "编辑器", "开发者工具"]
+          "logo": "/assets/logos/cursor.png",
+          "tags": ["AI 编程", "编辑器", "开发者工具"],
+          "related": ["superpowers"]
         },
         {
           "id": "perplexity",
@@ -43,6 +44,7 @@
           "pricing": "基础免费，Pro 约 $20/月",
           "platform": "Web / iOS / Android",
           "url": "https://www.perplexity.ai",
+          "logo": "/assets/logos/perplexity.ico",
           "tags": ["搜索", "AI", "研究"]
         },
         {
@@ -88,8 +90,9 @@
           "pricing": "个人免费，团队版按席位付费",
           "platform": "Web / macOS / Windows",
           "url": "https://www.figma.com",
-          "logo": "https://static.figma.com/app/icon/2/icon-128.png",
-          "tags": ["UI 设计", "协作", "设计系统"]
+          "logo": "/assets/logos/figma.png",
+          "tags": ["UI 设计", "协作", "设计系统"],
+          "related": ["framer", "appllama", "are-na"]
         },
         {
           "id": "framer",
@@ -108,8 +111,9 @@
           "pricing": "有免费档，绑定自有域名需付费",
           "platform": "Web",
           "url": "https://www.framer.com",
-          "logo": "https://framerusercontent.com/images/Io89FonxEaWg4nxvQQllVLwPUUI.png",
-          "tags": ["建站", "无代码", "动效"]
+          "logo": "/assets/logos/framerusercontent.png",
+          "tags": ["建站", "无代码", "动效"],
+          "related": ["figma", "bencho"]
         },
         {
           "id": "screen-studio",
@@ -128,8 +132,9 @@
           "pricing": "买断制约 $89 起，可免费试用",
           "platform": "macOS",
           "url": "https://screen.studio",
-          "logo": "https://screen.studio/icon.png",
-          "tags": ["录屏", "视频", "产品演示"]
+          "logo": "/assets/logos/screen.png",
+          "tags": ["录屏", "视频", "产品演示"],
+          "related": ["remotion"]
         },
         {
           "id": "appllama",
@@ -148,8 +153,9 @@
           "pricing": "部分免费；Pro $10/月，Team $16/席位",
           "platform": "Web",
           "url": "https://appllama.io",
-          "logo": "https://appllama.io/branding/logo-icon-500.webp",
-          "tags": ["设计库", "iOS", "付费墙"]
+          "logo": "/assets/logos/appllama.webp",
+          "tags": ["设计库", "iOS", "付费墙"],
+          "related": ["figma", "are-na"]
         },
         {
           "id": "bencho",
@@ -168,8 +174,9 @@
           "pricing": "完全免费，blocks 以 MIT 开源",
           "platform": "Web",
           "url": "https://bencho.dev",
-          "logo": "https://bencho.dev/apple-touch-icon.png",
-          "tags": ["UI 组件", "微交互", "开源"]
+          "logo": "/assets/logos/bencho.png",
+          "tags": ["UI 组件", "微交互", "开源"],
+          "related": ["framer", "interaction-design"]
         }
       ]
     },
@@ -194,8 +201,9 @@
           "pricing": "小团队免费，按成员数付费",
           "platform": "Web / macOS / iOS",
           "url": "https://linear.app",
-          "logo": "https://linear.app/favicon.ico",
-          "tags": ["项目管理", "研发协作", "键盘流"]
+          "logo": "/assets/logos/linear.ico",
+          "tags": ["项目管理", "研发协作", "键盘流"],
+          "related": ["appflowy"]
         },
         {
           "id": "raycast",
@@ -214,7 +222,7 @@
           "pricing": "基础功能免费，Pro 付费",
           "platform": "macOS",
           "url": "https://www.raycast.com",
-          "logo": "https://raycast.com/favicon-production.png",
+          "logo": "/assets/logos/raycast.png",
           "tags": ["启动器", "效率", "macOS"]
         }
       ]
@@ -240,7 +248,7 @@
           "pricing": "个人免费，团队按渠道付费",
           "platform": "Web / iOS / Android",
           "url": "https://buffer.com",
-          "logo": "https://buffer.com/favicon.ico",
+          "logo": "/assets/logos/buffer.ico",
           "tags": ["社媒运营", "排程发布", "数据分析"]
         }
       ]
@@ -266,8 +274,9 @@
           "pricing": "免费可用，Pro 订阅解锁高级功能",
           "platform": "Web / iOS / Android",
           "url": "https://www.are.na",
-          "logo": "https://are.na/favicon.ico",
-          "tags": ["灵感", "收集", "社区"]
+          "logo": "/assets/logos/are-na.ico",
+          "tags": ["灵感", "收集", "社区"],
+          "related": ["appllama", "figma", "radio-garden"]
         },
         {
           "id": "radio-garden",
@@ -286,7 +295,61 @@
           "pricing": "免费",
           "platform": "Web",
           "url": "https://radio.garden",
-          "tags": ["广播", "交互", "小而美"]
+          "logo": "/assets/logos/radio-garden.png",
+          "tags": ["广播", "交互", "小而美"],
+          "related": ["are-na"]
+        }
+      ]
+    },
+    {
+      "key": "opensource",
+      "label": "开源项目",
+      "products": [
+        {
+          "id": "appflowy",
+          "name": "AppFlowy",
+          "category": "opensource",
+          "type": "app",
+          "tagline": "最知名的开源 Notion 替代品",
+          "overview": "AppFlowy 用 Flutter + Rust 打造，定位是「数据归你自己」的 AI 协作工作区：文档、Grid/Board/Calendar 三种数据库视图、团队空间一应俱全，默认全部存在本地，不联网也能完整使用。需要同步与协作时，可以自建 AppFlowy Cloud，也可以用官方托管。",
+          "highlights": [
+            "本地优先：内容默认存在自己的设备上，不依赖厂商服务器",
+            "文档 + Grid/Board/Calendar 数据库视图 + 团队空间，覆盖 Notion 核心场景",
+            "可用 AppFlowy Cloud 完整自部署，同步协作握在自己手里",
+            "桌面与移动端全平台客户端，离线可用"
+          ],
+          "bestFor": "想要 Notion 的能力、又在意数据主权的人和团队；也想看一个 Flutter + Rust 大型工程怎么组织的开发者。",
+          "pricing": "核心功能开源免费；官方托管云有付费订阅",
+          "platform": "macOS / Windows / Linux / iOS / Android",
+          "url": "https://appflowy.com",
+          "repo": "https://github.com/AppFlowy-IO/AppFlowy",
+          "license": "AGPL-3.0",
+          "logo": "https://avatars.githubusercontent.com/u/86002201?v=4",
+          "tags": ["Notion 替代", "本地优先", "可自部署", "Flutter + Rust"],
+          "related": ["linear"]
+        },
+        {
+          "id": "beautiful-mermaid",
+          "name": "beautiful-mermaid",
+          "category": "opensource",
+          "type": "lib",
+          "tagline": "把 Mermaid 图渲成好看的 SVG 和终端字符画",
+          "overview": "Craft 团队为自家 AI 助手做的 Mermaid 渲染库，2026 年初开源，至今 ★11K+。它对着官方渲染器几个实在的别扭来：默认样式不够专业、改配色要跟 CSS 类搏斗、终端里出不来图、为几张简单图还得拖进一堆依赖。整库纯 TypeScript、零 DOM 依赖、同步出图，同一份文本既能出 SVG 给界面用，也能出字符画给终端用，覆盖流程图、状态图、时序图、类图、ER 图与 XY 图表六类。",
+          "highlights": [
+            "两色即可成图：只给背景色和前景色，文字深浅、连线、节点描边全由 color-mix() 自动推导；内置 15 套主题，VS Code 的 Shiki 主题能直接喂进来，换主题走 CSS 变量、不必重渲染",
+            "SVG 与字符画双输出：界面里放矢量图，CLI 和终端里放 ASCII / Unicode 框图，用的是同一份源文本",
+            "同步渲染、零 DOM 依赖：不用 await、不闪屏，React 里塞进 useMemo 就够；实测 100 张流程图耗时 113ms",
+            "实测两个坑：节点必须逐行写，README 里「graph LR; A --> B」这种单行分号写法会直接报错；字符画按码点算宽度，中文节点会把框线撑歪，纯英文正常",
+            "维护状态：npm 包停在 1.1.3（2026-02-26 发布），仓库最后一次提交是 2026-05-06——现有能力已经稳，但短期内别指望它补新图类型"
+          ],
+          "bestFor": "要在自己产品、CLI 工具或 Agent 输出里嵌图，又嫌官方 Mermaid 渲染器难看、主题难调的开发者。",
+          "pricing": "MIT 开源免费",
+          "platform": "Node / Bun / 浏览器 / 终端",
+          "url": "https://agents.craft.do/mermaid",
+          "repo": "https://github.com/lukilabs/beautiful-mermaid",
+          "license": "MIT",
+          "logo": "/assets/logos/github-lukilabs.png",
+          "tags": ["Mermaid", "图表渲染", "双输出", "零 DOM 依赖"]
         }
       ]
     }

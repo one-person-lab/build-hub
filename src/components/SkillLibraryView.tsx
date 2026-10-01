@@ -117,12 +117,12 @@ export default function SkillLibraryView({ locale = "zh" }: { locale?: "zh" | "e
 
           {visible.map((c) => (
             <section className="skill-lib-cat" key={c.key}>
-              <div className="cat-title">
+              <h2 className="cat-title">
                 {c.label}
                 <span>
                   {c.skills.length} {T.count}
                 </span>
-              </div>
+              </h2>
               {c.skills.length === 0 ? (
                 <p className="skill-lib-empty">{T.empty}</p>
               ) : (
@@ -138,8 +138,6 @@ export default function SkillLibraryView({ locale = "zh" }: { locale?: "zh" | "e
                           <SkillAvatar
                             name={s.name}
                             logo={s.logo}
-                            official={s.official}
-                            repo={s.repo}
                             className="skill-card-avatar"
                           />
                           <h3 className="skill-card-title">{s.name}</h3>

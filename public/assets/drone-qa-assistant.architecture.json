@@ -1,0 +1,290 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "无人机智能问答助手 · RAG 三层架构",
+    "locale": "zh-CN",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1040,
+      480
+    ],
+    "views": [
+      {
+        "id": "offline-build",
+        "label": "离线：文档进知识库",
+        "focus": [
+          "docs",
+          "ingest",
+          "vecstore"
+        ],
+        "note": "说明书、手册、故障处理、业务规范先解析切分，连元数据一起入向量库。"
+      },
+      {
+        "id": "online-answer",
+        "label": "在线：一次提问到带出处答案",
+        "focus": [
+          "user",
+          "retrieve",
+          "llm",
+          "answer"
+        ],
+        "note": "混合召回 + Rerank 后交给模型，答案带回文档与章节。"
+      },
+      {
+        "id": "effect-loop",
+        "label": "效果不好时看这一段",
+        "focus": [
+          "retrieve",
+          "llm",
+          "eval",
+          "ingest"
+        ],
+        "note": "问题→召回→排序→上下文→答案逐段定位，结论回到切分与索引。"
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "docs",
+      "type": "external",
+      "label": "专业文档",
+      "sublabel": "说明书·手册·故障·规范",
+      "pos": [
+        70,
+        70
+      ],
+      "size": [
+        160,
+        58
+      ]
+    },
+    {
+      "id": "ingest",
+      "type": "backend",
+      "label": "知识层",
+      "sublabel": "解析·切分·Embedding",
+      "pos": [
+        320,
+        70
+      ],
+      "size": [
+        170,
+        58
+      ]
+    },
+    {
+      "id": "vecstore",
+      "type": "database",
+      "label": "向量库",
+      "sublabel": "向量 + 元数据",
+      "pos": [
+        575,
+        70
+      ],
+      "size": [
+        170,
+        58
+      ],
+      "tag": "型号·版本·章节"
+    },
+    {
+      "id": "user",
+      "type": "external",
+      "label": "业务人员",
+      "sublabel": "自然语言提问",
+      "pos": [
+        70,
+        210
+      ],
+      "size": [
+        160,
+        58
+      ]
+    },
+    {
+      "id": "retrieve",
+      "type": "backend",
+      "label": "检索层",
+      "sublabel": "混合召回 · Rerank",
+      "pos": [
+        320,
+        210
+      ],
+      "size": [
+        170,
+        66
+      ]
+    },
+    {
+      "id": "llm",
+      "type": "cloud",
+      "label": "大模型层",
+      "sublabel": "受约束生成",
+      "pos": [
+        575,
+        210
+      ],
+      "size": [
+        170,
+        66
+      ],
+      "tag": "无依据即拒答"
+    },
+    {
+      "id": "answer",
+      "type": "frontend",
+      "label": "答案 + 出处",
+      "sublabel": "文档·章节可追溯",
+      "pos": [
+        830,
+        210
+      ],
+      "size": [
+        160,
+        66
+      ]
+    },
+    {
+      "id": "eval",
+      "type": "cloud",
+      "label": "评测与回归",
+      "sublabel": "真实问题测试集",
+      "pos": [
+        320,
+        350
+      ],
+      "size": [
+        170,
+        58
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "智能问答助手（RAG 三层）",
+      "wraps": [
+        "ingest",
+        "vecstore",
+        "retrieve",
+        "llm",
+        "answer"
+      ],
+      "pad": 26
+    },
+    {
+      "kind": "security-group",
+      "label": "既有文档口径（只读，不改写）",
+      "wraps": [
+        "docs"
+      ],
+      "pad": 22
+    }
+  ],
+  "connections": [
+    {
+      "id": "docs-ingest",
+      "from": "docs",
+      "to": "ingest",
+      "label": "文档上传",
+      "fromSide": "right",
+      "toSide": "left"
+    },
+    {
+      "id": "ingest-vecstore",
+      "from": "ingest",
+      "to": "vecstore",
+      "label": "入库",
+      "variant": "emphasis",
+      "fromSide": "right",
+      "toSide": "left"
+    },
+    {
+      "id": "vecstore-retrieve",
+      "from": "vecstore",
+      "to": "retrieve",
+      "label": "召回候选片段",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelAt": [
+        405,
+        165
+      ]
+    },
+    {
+      "id": "user-retrieve",
+      "from": "user",
+      "to": "retrieve",
+      "label": "提问",
+      "variant": "emphasis",
+      "fromSide": "right",
+      "toSide": "left"
+    },
+    {
+      "id": "retrieve-llm",
+      "from": "retrieve",
+      "to": "llm",
+      "label": "拼上下文",
+      "variant": "emphasis",
+      "fromSide": "right",
+      "toSide": "left"
+    },
+    {
+      "id": "llm-answer",
+      "from": "llm",
+      "to": "answer",
+      "label": "答案与来源",
+      "variant": "emphasis",
+      "fromSide": "right",
+      "toSide": "left"
+    },
+    {
+      "id": "retrieve-eval",
+      "from": "retrieve",
+      "to": "eval",
+      "label": "逐段留痕",
+      "variant": "dashed",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelAt": [
+        405,
+        313
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "知识层",
+      "items": [
+        "解析后按标题·章节·语义切分",
+        "保留型号·版本·章节元数据"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "检索层",
+      "items": [
+        "向量找语义，关键词找精确",
+        "元数据过滤后再过 Rerank"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "大模型层",
+      "items": [
+        "只基于给定知识回答",
+        "没有可靠依据就明确拒答"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "评测",
+      "items": [
+        "用真实业务问题建测试集",
+        "答案不对先定位是哪一段错"
+      ]
+    }
+  ]
+}

@@ -312,6 +312,76 @@
           "related": [
             "superpowers"
           ]
+        },
+        {
+          "id": "graphify",
+          "name": "graphify",
+          "category": "workflow",
+          "tagline": "Turns your whole project into a queryable knowledge graph — ask the graph instead of grepping code",
+          "overview": "From Graphify Labs (YC S26) (★122K, Apache-2.0): type /graphify in your agent and it parses any folder — code, docs, PDFs, screenshots, even video — into a persistent knowledge graph. Code goes through tree-sitter AST: fully local, no LLM, deterministic and reproducible; no vector store, a real traversable graph. Every edge is tagged EXTRACTED (explicit in source) or INFERRED (resolved by graphify), so you always know what was read versus guessed. You get three artifacts: an interactive graph.html, GraphRAG-ready graph.json, and a plain-language GRAPH_REPORT.md — then answer architecture questions with graphify query / path / explain. On the official benchmark, a roughly 1M-LOC ERPNext repo goes from 70.8% key-fact coverage (a grep-and-read baseline) to 82.0% with this single tool added — and building the graph itself costs zero LLM tokens.",
+          "features": [
+            "Local code parsing: tree-sitter AST + call graph, no LLM, no vector store, code never leaves your machine",
+            "Multimodal ingestion: docs/PDFs/images/video get a semantic pass; cross-source edges and community detection",
+            "Three query modes — query / path / explain; --watch or a post-commit hook keeps the graph current automatically",
+            "Full export ecosystem: graph.html, Obsidian vault, --wiki, SVG/GraphML, Neo4j, MCP server"
+          ],
+          "useCases": [
+            "Onboarding onto an unfamiliar repo: build the graph first, then ask about architecture",
+            "Letting agents query the graph instead of reading files — big token savings on large projects",
+            "Dropping papers, screenshots and notes into one folder to grow a queryable personal knowledge base"
+          ],
+          "bestFor": "Anyone who has AI read code daily; complements archify — graphify finds the structure, archify draws the picture. Note the PyPI package is graphifyy (double-y); the skill auto-installs the CLI on first run.",
+          "pricing": "Free & open source (Apache-2.0)",
+          "platform": "Claude Code / Cursor / Codex / Gemini CLI / Copilot and 20+ agents",
+          "author": "Graphify Labs",
+          "repo": "https://github.com/Graphify-Labs/graphify",
+          "install": "npx skills add https://github.com/graphify-labs/graphify --skill graphify",
+          "installs": "8.2K",
+          "tags": [
+            "workflow",
+            "knowledge graph",
+            "codebase understanding"
+          ],
+          "logo": "/assets/logos/github-graphify-labs.png",
+          "related": [
+            "archify",
+            "superpowers"
+          ]
+        },
+        {
+          "id": "caveman",
+          "name": "caveman",
+          "category": "workflow",
+          "tagline": "Make your agent stop being polite: prose gets cut, code doesn't — 8.5% fewer output tokens in independent testing",
+          "overview": "A viral skill by solo developer Julius Brussee (★108K; skill is MIT, engine BSL-1.1), billed on the tagline \"why use many token when few do trick\" and #1 on GitHub Trending in July 2026. Once installed, the agent answers in the shortest sentence that still lands: code, commands, file paths and raw error messages are never touched, and security warnings or \"are you sure?\" prompts drop back to full sentences on their own. Three intensities — lite / full / ultra — plus a classical Chinese mode. The repo publishes all three measurements rather than one: JetBrains ran a paired A/B over 86 real coding tasks and found 8.5% fewer output tokens, roughly 10% cost, with no detectable quality change (sign test p = 0.82), noting that is the ceiling rather than the usual case — the advertised 65% is a different claim; Adobe Research's CAVEWOMAN paper measured 1.4–2.4× lower realized cost per model, up to 3×; the repo's own eval, against an \"Answer concisely\" control, is 50% fewer output tokens at the median. The same repo ships a local proxy that shrinks what the agent reads — logs, test output, diffs — saving 33.2% of input tokens across a pinned 54-run benchmark, where one HTML case came in at +9.9% and the author left that row in the table, red.",
+          "features": [
+            "Six intensity levels with instant exit via /caveman off; code, commands and error text are never compressed",
+            "Full command set: /caveman-commit for one-line Conventional Commits, /caveman-review for one-line findings, /caveman-compress cuts memory files 46% on average",
+            "cavecrew subagent presets (investigator / builder / reviewer) plus six work patterns — write less code, not just fewer words",
+            "The big rock is a proxy between your agent and the provider: it compresses the read stream, 15,704 → 121 tokens on one browser-page case, byte-recoverable"
+          ],
+          "useCases": [
+            "Long sessions where logs, test output and diffs keep re-entering context on per-token billing",
+            "Done with three paragraphs of throat-clearing before the actual answer",
+            "CLAUDE.md / AGENTS.md growing out of control — /caveman-compress shrinks them with the original backed up"
+          ],
+          "bestFor": "Only pays off on per-token billing: per-request pricing (Copilot premium requests, for one) saves nothing, and the ruleset rides along as ~1,000 input tokens per call, which can go negative on terse Q&A. The author's own advice: run the same task with and without it and compare the provider's billing page.",
+          "pricing": "Skill and CLI free and open source (MIT); engine/proxy are BSL-1.1 source-available — free for your own and self-hosted traffic, commercial license only to host it for third parties",
+          "platform": "Claude Code / Codex / Gemini CLI / Cursor / Windsurf / Cline / Copilot and 30+ agents",
+          "author": "Julius Brussee",
+          "repo": "https://github.com/JuliusBrussee/caveman",
+          "install": "npx skills add https://github.com/juliusbrussee/caveman --skill caveman",
+          "installs": "542.6K",
+          "tags": [
+            "workflow",
+            "token savings",
+            "output style"
+          ],
+          "logo": "/assets/logos/github-juliusbrussee.png",
+          "related": [
+            "graphify",
+            "ponytail"
+          ]
         }
       ]
     },
@@ -519,6 +589,44 @@
             "pixel-perfect"
           ],
           "logo": "/assets/logos/github-jcodesmore.png"
+        }
+      ]
+    },
+    {
+      "key": "image",
+      "label": "Image Generation",
+      "skills": [
+        {
+          "id": "ip-as-logo",
+          "name": "ip-as-logo",
+          "category": "image",
+          "tagline": "Turns \"cute and memorable mascot\" into a table of hard limits",
+          "overview": "An IP mascot generation skill by solo developer Sida, open-sourced in August 2026 and at ★5.7K within two months. It doesn't draw anything — it disciplines the image model: the whole character is built from roughly 4–7 large geometric shapes, the image is capped at three semantic colours (two for the character, one solid background), only one species-defining feature is allowed, it must still read at 32×32, and it emerges from the lower-left or lower-right filling 85–95% of the square. The skill itself is a single 114-line instruction document — no scripts, no asset dependencies.",
+          "features": [
+            "Directions before pixels: it reads your product context, proposes three one-line \"subject — product connection — silhouette\" directions, and only after you agree generates six independent candidates, three from each lower corner",
+            "Complexity is a hard budget: two broad colour regions, two eyes and at most one small mouth; sharp corners, thin lines, texture and decorative marks are forbidden, and any feature that carries no identity gets merged or deleted",
+            "No use-case words in the generation prompt: the text sent to the model describes only a square character image and never says logo, brand mark or app icon, so the model doesn't start drawing framed badge layouts",
+            "One-pass draw: all six results are delivered as returned — no compliance scoring, no automatic retries, no post-processing to fake conformance",
+            "Verified here: the install command works and the installed files match the repository byte for byte; feeding its prompt skeleton to an image model produced exactly the three-colour, corner-emerging composition it claims",
+            "The gate is the model, and updates have stalled: it requires a top-tier image model (GPT Image 2 preferred, or Seedream 5.0 Pro, Nano Banana Pro / 2) and explicitly refuses an SVG fallback. The last commit landed 2026-08-22 and a reported 404 on the site's CDN is still open"
+          ],
+          "useCases": [
+            "An indie product or side project that needs a mascot people can remember",
+            "A batch of candidates in one consistent style but real variation, for a team to pick from",
+            "Building a shared visual identity for social accounts without a designer on staff"
+          ],
+          "bestFor": "Indie developers and small teams who already have access to a top-tier image model. If you'd rather not roll your own, the companion site ipaslogo.com lists 3,400+ finished logos marked free to download and free for commercial use.",
+          "pricing": "Free & open source (MIT); logos on the companion site are free for commercial use",
+          "platform": "Codex / Coze / Doubao / Manus / Gemini Apps and other Agent Skills-compatible assistants",
+          "author": "Sida",
+          "repo": "https://github.com/s1dashu/ip-as-logo-skill",
+          "install": "npx skills@latest add s1dashu/ip-as-logo-skill",
+          "tags": [
+            "IP mascot",
+            "prompt engineering",
+            "free for commercial use"
+          ],
+          "logo": "/assets/logos/ipaslogo.png"
         }
       ]
     },

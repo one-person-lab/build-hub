@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "乾坤大数据操作系统 · 四层架构",
+    "locale": "zh-CN",
+    "quality_profile": "showcase",
+    "viewBox": [1040, 520],
+    "views": [
+      {
+        "id": "request-path",
+        "label": "在线：一次业务请求走到数据",
+        "focus": ["client", "access", "apps", "blocks", "stores"],
+        "note": "请求经统一接入到业务应用，应用只调数据能力，不直接操作存储。"
+      },
+      {
+        "id": "data-in",
+        "label": "离线：数据源统一进平台",
+        "focus": ["sources", "blocks", "stores"],
+        "note": "各系统数据由数据积木统一抽取入库，不让业务各自对接数据源。"
+      },
+      {
+        "id": "base-layer",
+        "label": "底座：为什么能持续扩展",
+        "focus": ["base", "common", "blocks", "apps"],
+        "note": "微服务底座与公共能力先沉淀，业务层只写自己的差异。"
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "client",
+      "type": "external",
+      "label": "业务方与三方系统",
+      "sublabel": "统一入口发起请求",
+      "pos": [70, 60],
+      "size": [160, 58]
+    },
+    {
+      "id": "access",
+      "type": "backend",
+      "label": "统一接入",
+      "sublabel": "Nginx · Gateway · Netty",
+      "pos": [320, 60],
+      "size": [170, 58]
+    },
+    {
+      "id": "apps",
+      "type": "frontend",
+      "label": "业务应用",
+      "sublabel": "智慧搜·综合轨迹·行为预警",
+      "pos": [575, 60],
+      "size": [185, 58]
+    },
+    {
+      "id": "sources",
+      "type": "external",
+      "label": "各业务系统数据",
+      "sublabel": "来源多·类型不一致",
+      "pos": [70, 215],
+      "size": [160, 58]
+    },
+    {
+      "id": "blocks",
+      "type": "backend",
+      "label": "数据能力",
+      "sublabel": "数据积木：抽取·碰撞·合并·分析",
+      "pos": [320, 215],
+      "size": [170, 66]
+    },
+    {
+      "id": "stores",
+      "type": "database",
+      "label": "多模存储",
+      "sublabel": "MySQL·MongoDB·HBase·ES",
+      "pos": [575, 215],
+      "size": [185, 60],
+      "tag": "按数据特点分工"
+    },
+    {
+      "id": "base",
+      "type": "cloud",
+      "label": "基础平台",
+      "sublabel": "Spring Cloud Alibaba·Nacos·Sentinel",
+      "pos": [320, 370],
+      "size": [170, 58]
+    },
+    {
+      "id": "common",
+      "type": "security",
+      "label": "公共能力",
+      "sublabel": "认证·权限·日志·文件·消息",
+      "pos": [575, 370],
+      "size": [185, 58]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "平台四层：接入 · 应用 · 数据能力 · 基础平台",
+      "wraps": ["access", "apps", "blocks", "stores", "base", "common"],
+      "pad": 26
+    },
+    {
+      "kind": "security-group",
+      "label": "外部数据源（平台不改写来源）",
+      "wraps": ["client", "sources"],
+      "pad": 22
+    }
+  ],
+  "connections": [
+    {
+      "id": "client-access",
+      "from": "client",
+      "to": "access",
+      "label": "请求",
+      "variant": "emphasis",
+      "fromSide": "right",
+      "toSide": "left"
+    },
+    {
+      "id": "access-apps",
+      "from": "access",
+      "to": "apps",
+      "label": "路由分发",
+      "variant": "emphasis",
+      "fromSide": "right",
+      "toSide": "left"
+    },
+    {
+      "id": "apps-blocks",
+      "from": "apps",
+      "to": "blocks",
+      "label": "调数据能力",
+      "variant": "emphasis",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "blocks-stores",
+      "from": "blocks",
+      "to": "stores",
+      "label": "统一读写",
+      "variant": "emphasis",
+      "fromSide": "right",
+      "toSide": "left"
+    },
+    {
+      "id": "sources-blocks",
+      "from": "sources",
+      "to": "blocks",
+      "label": "抽取入库",
+      "fromSide": "right",
+      "toSide": "left"
+    },
+    {
+      "id": "base-blocks",
+      "from": "base",
+      "to": "blocks",
+      "label": "底座支撑",
+      "variant": "dashed",
+      "fromSide": "top",
+      "toSide": "bottom"
+    },
+    {
+      "id": "base-common",
+      "from": "base",
+      "to": "common",
+      "label": "沉淀复用",
+      "variant": "dashed",
+      "fromSide": "right",
+      "toSide": "left"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "统一接入",
+      "items": [
+        "外部请求一律走 Nginx + Gateway",
+        "实时通信场景由 Netty 承接"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "数据能力",
+      "items": [
+        "抽取·碰撞·合并·分析做成平台能力",
+        "业务应用不直接操作底层数据库"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "多模存储",
+      "items": [
+        "按数据特点选存储，不搞一种打天下",
+        "差异被数据能力层吸收，不上浮到业务"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "基础平台",
+      "items": [
+        "微服务底座统一注册、配置与限流",
+        "认证权限日志文件消息只建一次"
+      ]
+    }
+  ]
+}

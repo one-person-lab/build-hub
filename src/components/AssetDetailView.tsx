@@ -1,4 +1,5 @@
 import CopyButton from "./CopyButton";
+import PronunciationButton from "./PronunciationButton";
 import type { Locale } from "./CatalogView";
 import "./AssetDetailView.css";
 
@@ -26,7 +27,7 @@ export type AssetStyle = {
 
 const UI_TEXT = {
   zh: {
-    back: "返回素材库",
+    back: "返回设计分区",
     catLogo: "Logo 风格",
     catIcon: "App 图标风格",
     cases: "市场验证案例",
@@ -43,7 +44,7 @@ const UI_TEXT = {
     source: "来源",
   },
   en: {
-    back: "Back to Assets",
+    back: "Back to Design",
     catLogo: "Logo style",
     catIcon: "App icon style",
     cases: "Proven in the market",
@@ -90,10 +91,16 @@ export default function AssetDetailView({
 
           <header className="asset-detail-hero">
             <span className="asset-detail-cat rd-kicker">{isIcon ? T.catIcon : T.catLogo}</span>
-            <h1 className="asset-detail-name">
-              {style.name}
-              <span>{style.en}</span>
-            </h1>
+            <div className="asset-detail-name detail-name-line">
+              <h1>
+                {style.name}
+                <span>{style.en}</span>
+              </h1>
+              <PronunciationButton
+                text={style.en || style.name}
+                locale={locale}
+              />
+            </div>
             <p className="asset-detail-tagline">{style.tagline}</p>
             <p className="asset-detail-intro">{style.intro}</p>
           </header>

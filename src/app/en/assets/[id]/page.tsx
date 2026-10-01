@@ -25,10 +25,10 @@ export async function generateMetadata({
   if (!hit) return {};
   const { style, cat } = hit;
   return {
-    title: `${style.name} ${cat.label}｜Asset Library · BuildHub`,
+    title: `${style.name} ${cat.label}｜Design · BuildHub`,
     description: style.tagline,
     openGraph: {
-      title: `${style.name} ${cat.label}｜Asset Library`,
+      title: `${style.name} ${cat.label}｜Design`,
       description: style.tagline,
     },
   };
@@ -49,7 +49,7 @@ export default async function AssetDetailEnPage({
     <AssetDetailView
       style={hit.style}
       locale="en"
-      backHref="/en/topics/assets"
+      backHref="/en/design"
       related={related}
       kind={hit.cat.key === "app-icon-style" ? "app-icon" : "logo"}
     />

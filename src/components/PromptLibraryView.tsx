@@ -135,12 +135,12 @@ export default function PromptLibraryView({
 
           {visible.map((c) => (
             <section className="prompt-lib-cat" key={c.key}>
-              <div className="cat-title">
+              <h2 className="cat-title">
                 {c.label}
                 <span>
                   {c.prompts.length} {T.count}
                 </span>
-              </div>
+              </h2>
               {c.prompts.length === 0 ? (
                 <p className="prompt-lib-empty">{T.empty}</p>
               ) : (

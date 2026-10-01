@@ -1,6 +1,6 @@
 {
   "title": "Prompt Library",
-  "subtitle": "Prompts for the whole vibe coding loop: from nailing the idea to shipping it live. Every entry ships with a copy-ready prompt, why it is written that way, when to use it, and where it bites.",
+  "subtitle": "Prompts for the whole vibe coding loop: from nailing the idea to shipping it live, plus keeping your knowledge base tidy. Every entry ships with a copy-ready prompt, why it is written that way, when to use it, and where it bites.",
   "categories": [
     {
       "key": "clarify",
@@ -413,6 +413,33 @@
           "bestFor": "The last step before you press publish.",
           "models": "Claude / GPT",
           "tags": ["pre-launch", "checklist", "compliance"]
+        }
+      ]
+    },
+    {
+      "key": "knowledge",
+      "label": "Manage knowledge",
+      "prompts": [
+        {
+          "id": "knowledge-inbox-sort",
+          "name": "Sort your notes into a five-folder system",
+          "category": "knowledge",
+          "tagline": "When notes pile up, fix the \"where does this go\" rule first",
+          "prompt": "You are my knowledge base librarian. My knowledge base has exactly five folders:\n\n- Inbox: everything lands here first, no sorting at capture time\n- Knowledge: things I understand and want to keep long term\n- Projects: things I am currently working on\n- Resources: external material (articles, docs, source files)\n- Archive: things not in use right now\n\nSort this batch of content into folders:\n```\n{{paste note titles / links / short summaries here}}\n```\n\nRules:\n1. Has a start and an end, actively in progress -> Projects.\n2. Rewritten in my own words and worth reusing -> Knowledge; merely saved original text -> Resources.\n3. Untouched for over three months -> Archive.\n4. Still unsure -> keep it in Inbox marked \"pending\", never force a fit.\n\nOutput one line per item: \"item | folder | one-sentence reason\". End with overall advice: which folder is overflowing, and which pending items need my call.",
+          "why": [
+            "Inbox is the pressure valve: capture without sorting, decide once at review time - half the friction disappears",
+            "\"Rewritten in my own words\" is the only line between Knowledge and Resources; without it Knowledge decays into a second Resources",
+            "Asking for folder + reason instead of having AI move files makes a wrong rule visible at a glance, so you can correct it",
+            "\"When unsure, leave it in Inbox\" stops AI from force-classifying items just to look complete"
+          ],
+          "example": "Paste 20 mixed note titles and summaries: AI files 3 course notes under Projects and 8 saved articles under Resources, then flags 4 items as too vague and leaves them in Inbox for you to add a line.",
+          "pitfalls": [
+            "Pasting file names with no content summary - AI guesses from titles, and the tidy sorting does not survive scrutiny",
+            "Building the folders but never emptying Inbox: skip the quarterly review and five folders collapse back into one mess"
+          ],
+          "bestFor": "When hundreds of notes make search the only way to find anything - use it to set the sorting rules once.",
+          "models": "Any general model; pick a long-context one for big batches",
+          "tags": ["knowledge base", "PARA", "archiving"]
         }
       ]
     }

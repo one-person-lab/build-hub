@@ -5,8 +5,12 @@ import type { Catalog } from "@/lib/types";
 
 const CATALOGS = catalogsData as Catalog[];
 
+// 设计、原理已独立为顶级路由，不再走 /topics
+const STANDALONE = new Set(["design", "principles"]);
+const TOPIC_CATALOGS = CATALOGS.filter((c) => !STANDALONE.has(c.key));
+
 export function generateStaticParams() {
-  return CATALOGS.map((c) => ({ key: c.key }));
+  return TOPIC_CATALOGS.map((c) => ({ key: c.key }));
 }
 
 export default async function TopicPage({
@@ -15,7 +19,7 @@ export default async function TopicPage({
   params: Promise<{ key: string }>;
 }) {
   const { key } = await params;
-  const catalog = CATALOGS.find((c) => c.key === key);
+  const catalog = TOPIC_CATALOGS.find((c) => c.key === key);
   if (!catalog) notFound();
   return <CatalogView catalogKey={key} />;
 }

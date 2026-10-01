@@ -334,10 +334,8 @@ for key, f in special.items():
 print('pages:', len(pages))
 
 s = (RAW / 'index.html').read_text(encoding='utf-8')
-nav, _ = find_class(s, 'nav-primary')
 footer = re.search(r'<footer class="site-footer".*?</footer>', s, re.S)
 (OUT / 'chrome.json').write_text(json.dumps({
-    'navHtml': clean(nav) if nav else '',
     'footerHtml': clean(footer.group(0)) if footer else '',
 }, ensure_ascii=False, indent=1), encoding='utf-8')
 print('chrome ok')

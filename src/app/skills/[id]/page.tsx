@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import SkillDetailView, { type SkillDetail } from "@/components/SkillDetailView";
+import { resolveRelated } from "@/lib/related";
 import skillsData from "@/data/skills.json";
 
 type RawSkill = {
@@ -21,6 +22,7 @@ type RawSkill = {
   installs?: string;
   logo?: string;
   tags?: string[];
+  related?: string[];
 };
 type RawCategory = { key: string; label: string; skills: RawSkill[] };
 type RawLib = { title: string; subtitle: string; categories: RawCategory[] };
@@ -72,6 +74,7 @@ export default async function SkillDetailPage({
       backHref="/skills"
       categories={categories}
       currentCategory={skill.category}
+      related={resolveRelated(skill.related, "zh", skill.id)}
     />
   );
 }

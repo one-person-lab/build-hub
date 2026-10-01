@@ -5,6 +5,7 @@ import data from "@/data/en-distill.json";
 import DuolingoMotionGallery from "@/components/DuolingoMotionGallery";
 import TideMotionGallery from "@/components/TideMotionGallery";
 import FinchMotionGallery from "@/components/FinchMotionGallery";
+import ErlyMotionGallery from "@/components/ErlyMotionGallery";
 import "@/components/DistillView.css";
 
 type App = {
@@ -37,6 +38,7 @@ const GALLERIES: Record<string, React.ReactNode> = {
   duolingo: <DuolingoMotionGallery locale="en" />,
   tide: <TideMotionGallery locale="en" />,
   finch: <FinchMotionGallery locale="en" />,
+  erly: <ErlyMotionGallery locale="en" />,
 };
 
 export default async function EnDistillAppPage({ params }: { params: Promise<{ app: string }> }) {

@@ -25,5 +25,14 @@
     "tagline": "对照 Finch 当前版本（3.73）的 7 个交互母题：勾选回弹+能量飞入、浇水开花+进度生长、太阳徽章连击庆祝、伙伴配对 bottom sheet、双鸟踏步早安对话、支持卡片主题选择+发送飞出、冒险迈步+归途进度轨——全部纯 CSS 竖屏循环复刻。",
     "source": "https://apps.apple.com/us/app/id1528595748",
     "styleHref": ""
+  },
+  {
+    "slug": "erly",
+    "name": "Erly",
+    "en": "",
+    "motifs": 7,
+    "tagline": "对照 Erly 当前版本（1.3.15）的 7 个交互母题：淡紫呼吸光球首页+连击跳数、闹钟开关拨动涟漪、取景框任务倒计时、任务选择 sheet 卡片错峰、打卡成功对勾连排弹出、里程碑虹彩徽章流光、应用锁昼夜交叉淡切——全部纯 CSS 竖屏循环复刻。",
+    "source": "https://apps.apple.com/us/app/id6751428380",
+    "styleHref": ""
   }
 ]

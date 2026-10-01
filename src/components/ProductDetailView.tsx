@@ -1,4 +1,7 @@
 import SkillAvatar from "./SkillAvatar";
+import PronunciationButton from "./PronunciationButton";
+import RelatedSection from "./RelatedSection";
+import type { RelatedItem } from "@/lib/related";
 import type { ProductType } from "./ProductLibraryView";
 import "./ProductDetailView.css";
 
@@ -16,6 +19,9 @@ export type ProductDetail = {
   url?: string;
   logo?: string;
   tags?: string[];
+  repo?: string;
+  license?: string;
+  related?: string[];
 };
 
 export type ProductDetailLocale = "zh" | "en";
@@ -35,6 +41,9 @@ const UI_TEXT = {
     web: "网站",
     app: "App",
     both: "网站 + App",
+    lib: "代码库",
+    license: "开源协议",
+    source: "查看源码",
   },
   en: {
     back: "Back to Showcase",
@@ -50,6 +59,9 @@ const UI_TEXT = {
     web: "Website",
     app: "App",
     both: "Web + App",
+    lib: "Library",
+    license: "License",
+    source: "View source",
   },
 } as const;
 
@@ -60,6 +72,7 @@ export default function ProductDetailView({
   backHref,
   categories,
   currentCategory,
+  related = [],
 }: {
   product: ProductDetail;
   locale?: ProductDetailLocale;
@@ -67,6 +80,7 @@ export default function ProductDetailView({
   backHref: string;
   categories: { key: string; label: string }[];
   currentCategory: string;
+  related?: RelatedItem[];
 }) {
   const T = UI_TEXT[locale];
 
@@ -86,12 +100,14 @@ export default function ProductDetailView({
             <SkillAvatar
               name={product.name}
               logo={product.logo}
-              official={product.url}
               className="product-detail-avatar"
             />
             <div className="product-detail-hero-main">
               <span className="product-detail-cat">{categoryLabel}</span>
-              <h1 className="product-detail-name">{product.name}</h1>
+              <div className="product-detail-name detail-name-line">
+                <h1>{product.name}</h1>
+                <PronunciationButton text={product.name} locale={locale} />
+              </div>
               <p className="product-detail-tagline">{product.tagline}</p>
               {product.tags && product.tags.length > 0 ? (
                 <ul className="product-detail-tags">
@@ -128,6 +144,12 @@ export default function ProductDetailView({
               <dt>{T.pricing}</dt>
               <dd>{product.pricing}</dd>
             </div>
+            {product.license ? (
+              <div>
+                <dt>{T.license}</dt>
+                <dd>{product.license}</dd>
+              </div>
+            ) : null}
           </dl>
 
           <section className="product-detail-section">
@@ -154,6 +176,8 @@ export default function ProductDetailView({
             <p>{product.bestFor}</p>
           </section>
 
+          <RelatedSection items={related} locale={locale} />
+
           {categories.length > 0 ? (
             <section className="product-detail-section">
               <h2>{T.categories}</h2>
@@ -175,16 +199,28 @@ export default function ProductDetailView({
             </section>
           ) : null}
 
-          {product.url ? (
+          {product.url || product.repo ? (
             <section className="product-detail-links">
-              <a
-                className="product-cta product-cta-primary"
-                href={product.url}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {T.visit} ↗
-              </a>
+              {product.repo ? (
+                <a
+                  className="product-cta product-cta-ghost"
+                  href={product.repo}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {T.source} ↗
+                </a>
+              ) : null}
+              {product.url ? (
+                <a
+                  className="product-cta product-cta-primary"
+                  href={product.url}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {T.visit} ↗
+                </a>
+              ) : null}
             </section>
           ) : null}
         </div>

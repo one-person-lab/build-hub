@@ -4,7 +4,7 @@ import PromptLibraryView from "@/components/PromptLibraryView";
 export const metadata: Metadata = {
   title: "Prompt Library｜BuildHub · Prompts for the whole vibe coding loop",
   description:
-    "Prompts organized by the build loop: define the ask, generate code, fix errors, clean up, add features, ship it. Copy-ready, each with a breakdown of why it works.",
+    "Prompts organized by the build loop: define the ask, generate code, fix errors, clean up, add features, ship it - plus sorting your knowledge base. Copy-ready, each with a breakdown of why it works.",
   openGraph: {
     title: "Prompt Library｜BuildHub",
     description:
