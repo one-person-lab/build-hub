@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import CopyButton from "./CopyButton";
+import { track } from "@/lib/track";
 
 type Me = {
   user: { email: string; proUntil: string | null } | null;
@@ -47,7 +49,19 @@ const UI = {
     proActive: "你已是 PRO 会员",
     proUntil: "有效期至",
     proLifetime: "终身有效",
-    fineprint: "基础浏览永远免费 · 微信扫码安全支付",
+    fineprint: "基础浏览永远免费",
+    linkTerms: "用户协议",
+    linkPrivacy: "隐私政策",
+    linkRefunds: "退款与售后",
+    guideTitle: "手机上还不能直接付款",
+    guideBody: "付款二维码要用另一台设备来扫，所以在自己手机上扫不了。手机端直接付款正在审核，通过后这里立刻可用。",
+    guideWay1: "用电脑付款",
+    guideWay1Body: "在电脑上打开下面的网址，登录后点「开通 PRO」，用手机扫电脑屏幕就能付。",
+    copySite: "复制网址",
+    copied: "已复制",
+    copyFail: "复制失败，请手动输入",
+    guideWay2: "或加我微信代开",
+    guideWay2Body: "先截图，再在微信「扫一扫 → 相册」里识别这张码添加我，备注 PRO，我把开通方式发给你。",
   },
   en: {
     title: "BuildHub PRO",
@@ -85,7 +99,19 @@ const UI = {
     proActive: "You're already a PRO member",
     proUntil: "Valid until",
     proLifetime: "Lifetime",
-    fineprint: "browsing stays free forever · pay with WeChat",
+    fineprint: "browsing stays free forever",
+    linkTerms: "Terms",
+    linkPrivacy: "Privacy",
+    linkRefunds: "Refunds",
+    guideTitle: "Paying on this phone isn't live yet",
+    guideBody: "That QR code has to be scanned by another device, so it can't be scanned on the phone showing it. In-app mobile payment is under review and will work here as soon as it's approved.",
+    guideWay1: "Pay on a computer",
+    guideWay1Body: "Open the address below on a computer, sign in, click Go PRO, then scan the computer screen with your phone.",
+    copySite: "Copy address",
+    copied: "Copied",
+    copyFail: "Copy failed, type it in",
+    guideWay2: "Or ask me on WeChat",
+    guideWay2Body: "Screenshot the code, then in WeChat use Scan → Album to add me. Mention PRO and I'll send the way to activate.",
   },
 };
 
@@ -111,9 +137,12 @@ export default function ProModal({
   onClose: () => void;
 }) {
   const U = UI[locale];
+  const base = locale === "en" ? "/en" : "";
   const [me, setMe] = useState<Me | null>(null);
-  const [step, setStep] = useState<"plans" | "login" | "qr">("plans");
+  const [step, setStep] = useState<"plans" | "login" | "qr" | "guide">("plans");
   const [planKey, setPlanKey] = useState("yearly");
+  const [phone, setPhone] = useState(false);
+  const [siteHost, setSiteHost] = useState("");
   const [email, setEmail] = useState("");
   const [code, setCode] = useState("");
   const [countdown, setCountdown] = useState(0);
@@ -123,6 +152,9 @@ export default function ProModal({
   const timer = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
+    // 触屏设备扫不了自己屏幕上的码，付费改走「电脑下单 / 微信代开」两条出口
+    setPhone(window.matchMedia("(hover: none)").matches);
+    setSiteHost(window.location.host);
     fetch("/api/me")
       .then((r) => r.json())
       .then((d: Me) => setMe(d))
@@ -187,6 +219,11 @@ export default function ProModal({
 
   async function startPay() {
     if (!plan) return;
+    // 触屏设备上这张码没人能扫，所以不建订单，直接给替代出口
+    if (phone) {
+      setStep("guide");
+      return;
+    }
     setErr("");
     setBusy(true);
     try {
@@ -200,6 +237,7 @@ export default function ProModal({
         return;
       }
       const d = await r.json();
+      track("order_create", { plan: plan.key, amount: plan.money });
       setQr({ outTradeNo: d.outTradeNo, dataUrl: d.qr });
       setStep("qr");
     } catch {
@@ -221,6 +259,7 @@ export default function ProModal({
         if (!d.paid || stop) return;
         stop = true;
         clearInterval(t);
+        track("pay_success", { plan: plan?.key ?? "", amount: plan?.money ?? "" });
         const me2 = await fetch("/api/me").then((x) => x.json());
         setMe(me2);
         setQr(null);
@@ -299,7 +338,12 @@ export default function ProModal({
           <button className="rd-btn-ghost rd-btn-block" onClick={onClose}>
             {locale === "zh" ? "暂不订阅" : "Not now"}
           </button>
-          <p className="fineprint">{U.fineprint}</p>
+          <p className="fineprint rd-fine-links">
+            {U.fineprint} ·{" "}
+            <a href={`${base}/refunds`}>{U.linkRefunds}</a> ·{" "}
+            <a href={`${base}/terms`}>{U.linkTerms}</a> ·{" "}
+            <a href={`${base}/privacy`}>{U.linkPrivacy}</a>
+          </p>
         </>
       )}
 
@@ -370,6 +414,51 @@ export default function ProModal({
               setStep("plans");
             }}
           >
+            {U.back}
+          </button>
+        </>
+      )}
+
+      {step === "guide" && (
+        <>
+          <h3>{U.guideTitle}</h3>
+          {plan && (
+            <p className="sub">
+              {U.payAmount} <b className="rd-pay-amount">¥{fmtMoney(plan.money)}</b>
+            </p>
+          )}
+          <p className="fineprint">{U.guideBody}</p>
+          <div className="rd-guide">
+            <div className="rd-guide-item">
+              <h4>{U.guideWay1}</h4>
+              <p>
+                {U.guideWay1Body}
+                <b> {siteHost}</b>
+              </p>
+              <CopyButton
+                className="rd-btn-ghost rd-guide-copy"
+                text={`https://${siteHost}`}
+                label={U.copySite}
+                copiedLabel={U.copied}
+                failLabel={U.copyFail}
+              />
+            </div>
+            <div className="rd-guide-item">
+              <h4>{U.guideWay2}</h4>
+              <p>{U.guideWay2Body}</p>
+              <div className="rd-guide-qr">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/assets/wechat-qr.png"
+                  alt={locale === "zh" ? "我的微信二维码" : "My WeChat QR"}
+                  width={128}
+                  height={128}
+                  draggable={false}
+                />
+              </div>
+            </div>
+          </div>
+          <button className="rd-btn-ghost rd-btn-block" onClick={() => setStep("plans")}>
             {U.back}
           </button>
         </>

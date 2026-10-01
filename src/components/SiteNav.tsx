@@ -5,6 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import CommandPalette from "@/components/CommandPalette";
 import ProModal from "@/components/ProModal";
 import FavoritesSync from "@/components/FavoritesSync";
+import { track } from "@/lib/track";
 import {
   COLOR_MODE_KEY,
   THEME_COLORS,
@@ -251,7 +252,13 @@ export default function SiteNav() {
               {me.pro ? "✦ PRO" : U.account}
             </a>
           ) : (
-            <button className="rd-gopro" onClick={() => setPro(true)}>
+            <button
+              className="rd-gopro"
+              onClick={() => {
+                track("go_pro_click", { from: "nav" });
+                setPro(true);
+              }}
+            >
               {U.goPro}
             </button>
           )}

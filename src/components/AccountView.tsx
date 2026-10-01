@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import ProModal from "@/components/ProModal";
+import { track } from "@/lib/track";
 
 type Me = {
   user: { email: string; proUntil: string | null } | null;
@@ -30,9 +31,6 @@ const UI = {
     goPro: "开通 PRO",
     renew: "续费",
     logout: "退出登录",
-    paidOk: "支付成功，PRO 已开通",
-    paidPending: "支付完成，正在等待到账确认…通常几秒内生效",
-    paidFail: "未检测到成功支付，如已付款请稍后刷新本页",
   },
   en: {
     title: "Account",
@@ -55,9 +53,6 @@ const UI = {
     goPro: "Go PRO",
     renew: "Renew",
     logout: "Sign out",
-    paidOk: "Payment successful — PRO is active",
-    paidPending: "Payment done, waiting for confirmation… usually seconds",
-    paidFail: "No successful payment detected. If you paid, refresh shortly.",
   },
 };
 
@@ -70,7 +65,6 @@ export default function AccountView({ locale }: { locale: "zh" | "en" }) {
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState("");
   const [showPro, setShowPro] = useState(false);
-  const [paidBanner, setPaidBanner] = useState<"ok" | "pending" | "fail" | null>(null);
   const timer = useRef<ReturnType<typeof setInterval> | null>(null);
 
   function load() {
@@ -80,27 +74,6 @@ export default function AccountView({ locale }: { locale: "zh" | "en" }) {
       .catch(() => {});
   }
   useEffect(load, []);
-
-  useEffect(() => {
-    if (new URLSearchParams(window.location.search).get("paid") !== "1") return;
-    let tries = 0;
-    const check = () => {
-      fetch("/api/me")
-        .then((r) => r.json())
-        .then((d: Me) => {
-          setMe(d);
-          if (d.pro) setPaidBanner("ok");
-          else if (++tries >= 12) setPaidBanner("fail");
-          else setPaidBanner("pending");
-        });
-    };
-    check();
-    const iv = setInterval(() => {
-      if (tries < 12) check();
-      else clearInterval(iv);
-    }, 2000);
-    return () => clearInterval(iv);
-  }, []);
 
   useEffect(() => {
     if (countdown <= 0) return;
@@ -164,11 +137,6 @@ export default function AccountView({ locale }: { locale: "zh" | "en" }) {
   return (
     <main className="rd-account">
       <h1>{U.title}</h1>
-      {paidBanner && me?.user && (
-        <p className={`rd-paid-banner is-${paidBanner}`}>
-          {paidBanner === "ok" ? U.paidOk : paidBanner === "pending" ? U.paidPending : U.paidFail}
-        </p>
-      )}
       {me === null ? null : !me.user ? (
         <section className="rd-card">
           <h2>{U.loginTitle}</h2>
@@ -225,12 +193,24 @@ export default function AccountView({ locale }: { locale: "zh" | "en" }) {
           </p>
           <div className="rd-acct-actions">
             {!me.pro ? (
-              <button className="rd-btn" onClick={() => setShowPro(true)}>
+              <button
+                className="rd-btn"
+                onClick={() => {
+                  track("go_pro_click", { from: "account" });
+                  setShowPro(true);
+                }}
+              >
                 {U.goPro}
               </button>
             ) : (
               proUntilText !== U.proLifetime && (
-                <button className="rd-btn" onClick={() => setShowPro(true)}>
+                <button
+                  className="rd-btn"
+                  onClick={() => {
+                    track("renew_click", { from: "account" });
+                    setShowPro(true);
+                  }}
+                >
                   {U.renew}
                 </button>
               )

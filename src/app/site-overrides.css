@@ -534,12 +534,6 @@ a.rd-gopro.is-pro { color: var(--brand); }
 .rd-acct-plan { font-size: 13px; color: var(--text-2); margin: 0 0 18px; }
 .rd-acct-plan.is-pro { color: var(--brand); font-weight: 700; }
 .rd-acct-actions { display: flex; gap: 10px; }
-.rd-paid-banner {
-  font-size: 13px; border-radius: 10px; padding: 10px 14px; margin: 0 0 16px;
-  border: 1px solid var(--border); color: var(--text-2);
-}
-.rd-paid-banner.is-ok { border-color: var(--brand); color: var(--brand); }
-
 /* ===== 列表页图鉴化：缩略取景框（样张 .rd-thumb → .card-thumb） =====
    demo 永远按浅色设计，垫白底避免深色态色偏 */
 .catalog-page { background: var(--ground); }
@@ -793,3 +787,54 @@ html[data-color-mode="light"] .rd-card:hover {
   width: 240px;
   height: 240px;
 }
+
+/* ---------- 手机端付费指引 ---------- */
+.rd-guide { display: grid; gap: 10px; margin: 2px 0 14px; }
+.rd-guide-item {
+  border: 1px solid var(--border); border-radius: 12px; padding: 12px 13px;
+}
+.rd-guide-item h4 { margin: 0 0 5px; font-size: 13.5px; color: var(--text); }
+.rd-guide-item p { margin: 0; font-size: 12px; line-height: 1.65; color: var(--text-2); }
+.rd-guide-item .copy-btn { margin-top: 9px; }
+.rd-guide-qr { display: flex; justify-content: center; margin-top: 10px; }
+.rd-guide-qr img {
+  width: 128px; height: 128px; padding: 6px; background: #fff; border-radius: 8px;
+}
+
+/* 手机上弹层内容更高（指引带二维码），改成贴底抽屉并允许滚动，免得末尾被裁掉 */
+@media (max-width: 767px) {
+  .rd-pro {
+    top: auto; bottom: 0; left: 0; transform: none;
+    width: 100%; max-height: 86vh; overflow-y: auto;
+    border-radius: 16px 16px 0 0;
+    padding: 22px 18px calc(20px + env(safe-area-inset-bottom));
+  }
+}
+
+/* ---------- 政策页（用户协议 / 隐私 / 退款） ---------- */
+.legal-page { max-width: 720px; margin: 0 auto; padding: 56px 20px 88px; }
+.legal-head h1 { font-size: 24px; margin: 0 0 6px; color: var(--text); }
+.legal-updated { font-size: 12px; color: var(--text-3); margin: 0 0 18px; }
+.legal-intro {
+  margin: 0 0 26px; padding: 14px 16px;
+  font-size: 14px; line-height: 1.8; color: var(--text);
+  background: var(--bg-hover); border-left: 2px solid var(--brand);
+  border-radius: 0 10px 10px 0;
+}
+.legal-page section { margin-bottom: 26px; }
+.legal-page h2 { font-size: 16px; margin: 0 0 10px; color: var(--text); }
+.legal-page p { font-size: 14px; line-height: 1.85; color: var(--text-2); margin: 0 0 9px; }
+.legal-page a { color: var(--brand); }
+.legal-links {
+  display: flex; gap: 16px; margin-top: 34px; padding-top: 18px;
+  border-top: 1px solid var(--border); font-size: 13px;
+}
+@media (max-width: 767px) {
+  .legal-page { padding: 34px 18px 64px; }
+}
+
+/* 弹层页脚小字里的协议链接：跟小字同色，只留下划线，别抢付费按钮的注意力 */
+.rd-fine-links a {
+  color: inherit; text-decoration: underline; text-underline-offset: 2px;
+}
+.rd-guide-copy { padding: 7px 12px; border-radius: 8px; font-size: 12.5px; }

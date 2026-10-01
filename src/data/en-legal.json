@@ -1,0 +1,185 @@
+{
+  "terms": {
+    "title": "Terms of Service",
+    "updated": "2026-10-01",
+    "intro": "This page covers three things: what BuildHub gives you, the rules for using it, and who carries which responsibility once you pay. Signing in or paying means you have read and agreed to the following.",
+    "sections": [
+      {
+        "h": "1. What BuildHub is",
+        "p": [
+          "BuildHub (buildhub.cn) is a learning site for people who don't write code. We explain front-end, back-end, AI and Git concepts in plain language, then add curated skills, products we actually tested, copy-ready prompts and step-by-step playbooks.",
+          "The site is run by an independent developer. Browsing stays free forever and needs no account; only PRO costs money."
+        ]
+      },
+      {
+        "h": "2. Your account",
+        "p": [
+          "Sign-in uses an email address and a one-time code. There is no password — your email is your account.",
+          "One email is one account. Don't share, lend or sell it.",
+          "You can ask us to delete your account any time by email. We then remove your email, sessions and favorites."
+        ]
+      },
+      {
+        "h": "3. PRO membership",
+        "p": [
+          "PRO is a paid plan, currently monthly, yearly and lifetime. The price shown at checkout is the price you pay.",
+          "PRO includes unlimited favorites with cross-device sync, the index view with Markdown export, and early access to new entries (lifetime includes all future updates).",
+          "Monthly and yearly plans simply expire. There is no auto-renewal and we never charge you again without you placing a new order.",
+          "Benefits may evolve with the product. Within a period you already paid for we won't remove features you could already use; if a benefit has to shut down we compensate pro rata for the remaining time."
+        ]
+      },
+      {
+        "h": "4. Payment and refunds",
+        "p": [
+          "Payment runs through WeChat Pay. Tenpay settles with us; we never see or store your card details.",
+          "A created order is not a paid order. Service is delivered only when payment lands and PRO shows as active.",
+          "Refund rules, including the cases where you can get your money back, are on the Refunds & Support page. Please read it before paying."
+        ]
+      },
+      {
+        "h": "5. Using the content",
+        "p": [
+          "Explanations, tutorials, prompts and playbooks are for your own learning and for building your own products. You are free to use the methods and prompts in what you ship.",
+          "When quoting our material, credit BuildHub and don't present rewritten copies as your own original work.",
+          "Without permission, don't scrape all or large parts of the site to republish, mirror, resell, or feed into public datasets. Maintaining this site is our own cost, and we can't support that use."
+        ]
+      },
+      {
+        "h": "6. What isn't allowed",
+        "p": [
+          "Don't use the site to publish or spread unlawful content, and don't use the sign-in flow to bother other people.",
+          "Don't brute-force verification codes, mass-create accounts, or otherwise disrupt the service.",
+          "Accounts that break these rules may be suspended without a refund."
+        ]
+      },
+      {
+        "h": "7. Liability",
+        "p": [
+          "We provide learning material and reference methods. Tech choices, product decisions and business bets you make from them are yours. We work to keep content accurate but don't promise success.",
+          "If a fault of ours — a bug, wrong data, our negligence — causes you loss, our liability is capped at the amount you actually paid for the related order.",
+          "Outages caused by force majeure or by third-party services (WeChat Pay, our mail provider, our cloud host) aren't compensable, but we'll restore service and tell you plainly what happened."
+        ]
+      },
+      {
+        "h": "8. Updates and misc",
+        "p": [
+          "This page changes as the product does; the update date at the top shows the current version. Material changes are also announced by email.",
+          "These terms are governed by the law of the People's Republic of China. Disputes go to email first, then to the court with jurisdiction where we operate.",
+          "Contact: {email}"
+        ]
+      }
+    ]
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "updated": "2026-10-01",
+    "intro": "Short version: we keep only what sign-in and billing require, we don't sell it, and there are no ad-network trackers on this site. Below is exactly what we collect, why, where it lives and for how long.",
+    "sections": [
+      {
+        "h": "1. What we collect",
+        "p": [
+          "Email address — used for sign-in and for sending the code; it's also the only way to get back into your account.",
+          "Verification code — we store only its hash, never the plain code. It expires in 10 minutes and allows 5 attempts.",
+          "Session — one cookie named bh_session that remembers you're signed in; it dies when you sign out.",
+          "Favorites and membership state — which entries you saved, and when PRO expires.",
+          "Orders — plan, amount, order number, payment status, WeChat transaction ID. These are financial records and the basis for reconciliation and refunds.",
+          "Basic analytics — page views, referrer, device and browser type."
+        ]
+      },
+      {
+        "h": "2. What we don't collect",
+        "p": [
+          "No phone number, real name, ID number or postal address, and no social-network login permissions.",
+          "We never read your contacts, location, photos or clipboard.",
+          "Your card number, WeChat password and payment password stay inside WeChat and Tenpay — we can't see them.",
+          "No ad networks, no third-party tracking scripts, no cross-site profiling."
+        ]
+      },
+      {
+        "h": "3. Where it lives and who can see it",
+        "p": [
+          "Data sits on cloud servers we rent and administer ourselves. Only the operator and maintainers have access; nothing goes into third-party SaaS forms.",
+          "Analytics runs on our own Umami instance. It measures aggregate trends and never labels individuals.",
+          "Emails, orders and sessions are never sold or rented out. We disclose them only if the law requires it, or to the partners needed to take payment, send codes and host the site (WeChat Pay/Tenpay, our mail provider, our cloud host)."
+        ]
+      },
+      {
+        "h": "4. Retention",
+        "p": [
+          "Email, sessions and favorites: kept while the account exists, deleted when you close it.",
+          "Orders and payment records: kept long-term, because we must be able to reconcile accounts and handle refunds. These are financial records.",
+          "Code hashes: useless once expired."
+        ]
+      },
+      {
+        "h": "5. Your rights",
+        "p": [
+          "You can request access, correction or deletion of your information, or close your account, at any time.",
+          "Email {email} with your account address and what you want done. We verify it's you and normally reply within 7 working days.",
+          "If you're not satisfied with how we handle it, you may complain to the internet-information or market-regulation authorities."
+        ]
+      },
+      {
+        "h": "6. Minors",
+        "p": [
+          "The content is written for adult working people and learners. Under-18 users should have a guardian's consent, and under-14s shouldn't pay on their own."
+        ]
+      },
+      {
+        "h": "7. Policy updates and incidents",
+        "p": [
+          "Updates are reflected in the date at the top; material changes are announced by email to active users.",
+          "If a data breach ever happens, we'll notify affected users by email and in a site notice as soon as we can, stating what's exposed and what you should do.",
+          "Contact: {email}"
+        ]
+      }
+    ]
+  },
+  "refunds": {
+    "title": "Refunds & Support",
+    "updated": "2026-10-01",
+    "intro": "PRO activates instantly, so there's no no-reason refund. But in the cases listed below you are entitled to a full refund and we will honour it. This page also says where to go when something breaks.",
+    "sections": [
+      {
+        "h": "1. No refund without cause",
+        "p": [
+          "Once paid, PRO benefits are usable immediately and can't be given back, so a change-of-mind return isn't possible.",
+          "Wrong plan, changed your mind, bought it but never used it — these aren't refundable. Check the plan and amount at checkout before you pay."
+        ]
+      },
+      {
+        "h": "2. Cases where we do refund in full",
+        "p": [
+          "You were charged twice or charged the wrong amount for one order.",
+          "You paid but PRO didn't activate, and after 24 hours it still hasn't — provided the account you signed into is the right one.",
+          "A PRO feature (sync, export) keeps failing and we haven't fixed it within 7 days of confirming the problem.",
+          "What you got is clearly different from what we described — entry counts, benefits, badly mismatched.",
+          "A payment made by a minor without a guardian's consent."
+        ]
+      },
+      {
+        "h": "3. How to request it",
+        "p": [
+          "Email {email} with the subject \"refund\", or message us on WeChat through the QR code in the footer.",
+          "Include: your account email, the order number (visible in your WeChat Pay bill), the plan, the payment time, and one sentence about what happened.",
+          "We reply with our finding within 3 working days. Once confirmed, the money goes back the way it came; WeChat usually settles it in 1–7 working days.",
+          "You don't need to hand over anything beyond a screenshot, and there is no handling fee."
+        ]
+      },
+      {
+        "h": "4. Everyday support",
+        "p": [
+          "Can't sign in, code never arrives, payment problem, wrong content — same email, or the WeChat contact in the footer.",
+          "Members get priority. On weekdays we usually answer the same day, and never later than 3 working days.",
+          "Need an invoice? Email us the payee name and amount; we issue it for what you actually paid."
+        ]
+      },
+      {
+        "h": "5. Rule changes",
+        "p": [
+          "Updates show in the date at the top. Existing orders are handled under the rules in effect when they were placed — we don't apply new rules backwards."
+        ]
+      }
+    ]
+  }
+}

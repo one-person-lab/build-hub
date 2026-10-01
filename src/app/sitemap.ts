@@ -36,9 +36,12 @@ const RESERVED = new Set([
   "practice",
   "playbooks",
   "principles",
+  "privacy",
   "products",
   "prompts",
+  "refunds",
   "skills",
+  "terms",
   "topics",
   "vibehub-skill",
 ]);
