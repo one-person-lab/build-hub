@@ -36,15 +36,10 @@ const UI = {
     resend: "重新获取",
     codePh: "6 位验证码",
     toPay: "去支付",
-    payTitle: "选择支付方式",
-    alipay: "支付宝",
-    wxpay: "微信支付",
     payAmount: "支付金额",
-    payNow: "立即支付",
-    jumpHint: "即将跳转收银台…",
     scan: "微信扫码支付",
     scanHint: "支付成功后自动开通，无需刷新",
-    errWxOff: "微信支付暂未开放，请先用支付宝",
+    errWxOff: "微信支付暂不可用，请稍后再试",
     errGeneric: "出错了，请重试",
     errCode: "验证码错误或已过期",
     errMail: "邮件发送失败，请稍后重试",
@@ -52,7 +47,7 @@ const UI = {
     proActive: "你已是 PRO 会员",
     proUntil: "有效期至",
     proLifetime: "终身有效",
-    fineprint: "基础浏览永远免费 · 支付宝 / 微信安全支付",
+    fineprint: "基础浏览永远免费 · 微信扫码安全支付",
   },
   en: {
     title: "BuildHub PRO",
@@ -79,15 +74,10 @@ const UI = {
     resend: "Resend",
     codePh: "6-digit code",
     toPay: "Continue",
-    payTitle: "Choose payment method",
-    alipay: "Alipay",
-    wxpay: "WeChat Pay",
     payAmount: "Amount",
-    payNow: "Pay now",
-    jumpHint: "Redirecting to checkout…",
     scan: "Scan with WeChat",
     scanHint: "Activates automatically once paid",
-    errWxOff: "WeChat Pay isn't available yet, try Alipay",
+    errWxOff: "WeChat Pay is unavailable right now, try again later",
     errGeneric: "Something went wrong, try again",
     errCode: "Wrong or expired code",
     errMail: "Failed to send email, try later",
@@ -95,7 +85,7 @@ const UI = {
     proActive: "You're already a PRO member",
     proUntil: "Valid until",
     proLifetime: "Lifetime",
-    fineprint: "browsing stays free forever",
+    fineprint: "browsing stays free forever · pay with WeChat",
   },
 };
 
@@ -122,14 +112,13 @@ export default function ProModal({
 }) {
   const U = UI[locale];
   const [me, setMe] = useState<Me | null>(null);
-  const [step, setStep] = useState<"plans" | "login" | "pay" | "qr">("plans");
+  const [step, setStep] = useState<"plans" | "login" | "qr">("plans");
   const [planKey, setPlanKey] = useState("yearly");
   const [email, setEmail] = useState("");
   const [code, setCode] = useState("");
   const [countdown, setCountdown] = useState(0);
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState("");
-  const [payType, setPayType] = useState<"alipay" | "wxpay">("alipay");
   const [qr, setQr] = useState<{ outTradeNo: string; dataUrl: string } | null>(null);
   const timer = useRef<ReturnType<typeof setInterval> | null>(null);
 
@@ -187,7 +176,7 @@ export default function ProModal({
         const d = await fetch("/api/me").then((x) => x.json());
         setMe(d);
         window.dispatchEvent(new Event("vh-me-changed"));
-        setStep("pay");
+        await startPay();
       }
     } catch {
       setErr(U.errGeneric);
@@ -196,48 +185,23 @@ export default function ProModal({
     }
   }
 
-  async function pay() {
+  async function startPay() {
     if (!plan) return;
     setErr("");
     setBusy(true);
     try {
-      if (payType === "wxpay") {
-        const r = await fetch("/api/pay/wx/create", {
-          method: "POST",
-          headers: { "content-type": "application/json" },
-          body: JSON.stringify({ plan: plan.key }),
-        });
-        if (!r.ok) {
-          setErr(r.status === 503 ? U.errWxOff : U.errGeneric);
-          return;
-        }
-        const d = await r.json();
-        setQr({ outTradeNo: d.outTradeNo, dataUrl: d.qr });
-        setStep("qr");
-        return;
-      }
-      const r = await fetch("/api/pay/create", {
+      const r = await fetch("/api/pay/wx/create", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ plan: plan.key, type: payType }),
+        body: JSON.stringify({ plan: plan.key }),
       });
       if (!r.ok) {
-        setErr(U.errGeneric);
+        setErr(r.status === 503 ? U.errWxOff : U.errGeneric);
         return;
       }
-      const { gateway, params } = await r.json();
-      const form = document.createElement("form");
-      form.method = "POST";
-      form.action = gateway;
-      for (const [k, v] of Object.entries(params as Record<string, string>)) {
-        const input = document.createElement("input");
-        input.type = "hidden";
-        input.name = k;
-        input.value = v;
-        form.appendChild(input);
-      }
-      document.body.appendChild(form);
-      form.submit();
+      const d = await r.json();
+      setQr({ outTradeNo: d.outTradeNo, dataUrl: d.qr });
+      setStep("qr");
     } catch {
       setErr(U.errGeneric);
     } finally {
@@ -260,7 +224,7 @@ export default function ProModal({
         const me2 = await fetch("/api/me").then((x) => x.json());
         setMe(me2);
         setQr(null);
-        setStep("pay");
+        setStep("plans");
         window.dispatchEvent(new Event("vh-me-changed"));
       } catch {
         /* 下一轮再试 */
@@ -272,7 +236,7 @@ export default function ProModal({
     };
   }, [step, qr]);
 
-  if (me?.user && (step === "plans" || step === "pay") && me.pro) {
+  if (me?.user && me.pro && step !== "login") {
     return (
       <Shell locale={locale} onClose={onClose}>
         <div className="rd-pro-ok">
@@ -326,7 +290,8 @@ export default function ProModal({
             disabled={busy || !me}
             onClick={() => {
               setErr("");
-              setStep(me?.user ? "pay" : "login");
+              if (me?.user) startPay();
+              else setStep("login");
             }}
           >
             {U.cta}
@@ -385,39 +350,6 @@ export default function ProModal({
         </>
       )}
 
-      {step === "pay" && (
-        <>
-          <h3>{U.payTitle}</h3>
-          {plan && (
-            <p className="sub">
-              {U.payAmount}{" "}
-              <b className="rd-pay-amount">¥{fmtMoney(plan.money)}</b>{" "}
-              · {U[FMT[plan.key]?.unit ?? "yearly"]}
-            </p>
-          )}
-          <div className="rd-pay-types">
-            <button
-              className={`rd-pay-type${payType === "alipay" ? " is-active" : ""}`}
-              onClick={() => setPayType("alipay")}
-            >
-              {U.alipay}
-            </button>
-            <button
-              className={`rd-pay-type${payType === "wxpay" ? " is-active" : ""}`}
-              onClick={() => setPayType("wxpay")}
-            >
-              {U.wxpay}
-            </button>
-          </div>
-          {err && <p className="rd-pro-err">{err}</p>}
-          <button className="rd-btn rd-btn-block" disabled={busy} onClick={pay}>
-            {busy ? U.jumpHint : U.payNow}
-          </button>
-          <button className="rd-btn-ghost rd-btn-block" onClick={() => setStep("plans")}>
-            {U.back}
-          </button>
-        </>
-      )}
       {step === "qr" && qr && (
         <>
           <h3>{U.scan}</h3>
@@ -435,7 +367,7 @@ export default function ProModal({
             className="rd-btn-ghost rd-btn-block"
             onClick={() => {
               setQr(null);
-              setStep("pay");
+              setStep("plans");
             }}
           >
             {U.back}

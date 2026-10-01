@@ -518,12 +518,6 @@ a.rd-gopro.is-pro { color: var(--brand); }
 .rd-code-row .rd-btn-ghost { white-space: nowrap; flex: none; }
 .rd-pro-err { font-size: 12px; color: #d5484b; margin: 4px 0 8px; text-align: center; }
 .rd-pay-amount { color: var(--text); font-size: 15px; }
-.rd-pay-types { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
-.rd-pay-type {
-  border: 1px solid var(--border); border-radius: 11px; padding: 13px 10px;
-  background: none; color: var(--text); font-size: 13.5px; font-weight: 600; cursor: pointer;
-}
-.rd-pay-type.is-active { border-color: var(--brand); }
 .rd-pro-ok { text-align: center; padding: 26px 0 10px; font-size: 14px; color: var(--text); }
 .rd-pro .rd-btn-block + .rd-btn-block { margin-top: 8px; }
 
