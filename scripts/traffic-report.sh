@@ -99,6 +99,7 @@ const out = [
   ["orders_total", one("select count(*) n from orders")],
   ["orders_not_selftest", one("select count(*) n from orders where plan <> ?", "test")],
   ["paid_not_selftest", one("select count(*) n from orders where plan <> ? and status = ?", "test", "paid")],
+  // 验证单（plan=test）同样给 1 天 PRO，所以刚测完支付的那天这里会多 1，次日自动归零
   ["pro_users", one("select count(*) n from users where pro_until is not null")],
 ];
 for (const [k, v] of out) console.log("DB\t" + k + "\t" + v);

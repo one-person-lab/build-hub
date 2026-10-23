@@ -7,6 +7,7 @@ import { track } from "@/lib/track";
 type Me = {
   user: { email: string; proUntil: string | null } | null;
   pro: boolean;
+  payTest: { key: string } | null;
 };
 
 const UI = {
@@ -65,7 +66,19 @@ export default function AccountView({ locale }: { locale: "zh" | "en" }) {
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState("");
   const [showPro, setShowPro] = useState(false);
+  const [showTest, setShowTest] = useState(false);
+  const taps = useRef({ n: 0, at: 0 });
   const timer = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  // 隐藏入口：连点邮箱 5 次打开验证单。非白名单账号点了没有任何反应，不留线索
+  function tapEmail() {
+    const now = Date.now();
+    taps.current =
+      now - taps.current.at > 2000 ? { n: 1, at: now } : { n: taps.current.n + 1, at: now };
+    if (taps.current.n < 5) return;
+    taps.current = { n: 0, at: 0 };
+    if (me?.payTest) setShowTest(true);
+  }
 
   function load() {
     fetch("/api/me")
@@ -125,7 +138,7 @@ export default function AccountView({ locale }: { locale: "zh" | "en" }) {
 
   async function logout() {
     await fetch("/api/auth/logout", { method: "POST" }).catch(() => {});
-    setMe({ user: null, pro: false });
+    setMe({ user: null, pro: false, payTest: null });
     window.dispatchEvent(new Event("vh-me-changed"));
   }
 
@@ -181,7 +194,7 @@ export default function AccountView({ locale }: { locale: "zh" | "en" }) {
         </section>
       ) : (
         <section className="rd-card">
-          <p className="rd-acct-email">{me.user.email}</p>
+          <p className="rd-acct-email" onClick={tapEmail}>{me.user.email}</p>
           <p className={`rd-acct-plan${me.pro ? " is-pro" : ""}`}>
             {me.pro ? `✦ ${U.proOn}` : U.proFree}
             {me.pro && proUntilText && (
@@ -222,6 +235,9 @@ export default function AccountView({ locale }: { locale: "zh" | "en" }) {
         </section>
       )}
       {showPro && <ProModal locale={locale} onClose={() => setShowPro(false)} />}
+      {showTest && (
+        <ProModal locale={locale} entry="test" onClose={() => setShowTest(false)} />
+      )}
     </main>
   );
 }

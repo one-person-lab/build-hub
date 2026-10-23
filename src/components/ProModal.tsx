@@ -4,16 +4,19 @@ import { useEffect, useRef, useState } from "react";
 import CopyButton from "./CopyButton";
 import { track } from "@/lib/track";
 
+type PayPlan = {
+  key: string;
+  name: string;
+  money: string;
+  listPrice?: string | null;
+  days?: number | string;
+};
+
 type Me = {
   user: { email: string; proUntil: string | null } | null;
   pro: boolean;
-  plans: {
-    key: string;
-    name: string;
-    money: string;
-    listPrice: string | null;
-    days: number | string;
-  }[];
+  plans: PayPlan[];
+  payTest: PayPlan | null;
 };
 
 const UI = {
@@ -62,6 +65,15 @@ const UI = {
     copyFail: "复制失败，请手动输入",
     guideWay2: "或加我微信代开",
     guideWay2Body: "先截图，再在微信「扫一扫 → 相册」里识别这张码添加我，备注 PRO，我把开通方式发给你。",
+    testTitle: "支付验证单",
+    testSub: "只给白名单账号用，1 分钱走完整链路",
+    testName: "验证单",
+    testDays: "1 天 PRO",
+    testCta: "付 ¥0.01 验证",
+    testCancel: "先不验证",
+    testHint: "下单、扫码、回调、到账四步全走真的；这一单不计入付费统计。",
+    testOpenWx: "在这台手机上打开微信付款",
+    testOk: "链路跑通，PRO 已到号",
   },
   en: {
     title: "BuildHub PRO",
@@ -112,6 +124,15 @@ const UI = {
     copyFail: "Copy failed, type it in",
     guideWay2: "Or ask me on WeChat",
     guideWay2Body: "Screenshot the code, then in WeChat use Scan → Album to add me. Mention PRO and I'll send the way to activate.",
+    testTitle: "Payment smoke test",
+    testSub: "Whitelisted accounts only, 1 cent through the real flow",
+    testName: "Test order",
+    testDays: "1 day PRO",
+    testCta: "Pay ¥0.01 to test",
+    testCancel: "Not now",
+    testHint: "Order, scan, callback and settle all run for real. This order stays out of paid stats.",
+    testOpenWx: "Open WeChat Pay on this device",
+    testOk: "Flow works — PRO activated",
   },
 };
 
@@ -132,15 +153,20 @@ function lifetimeShown(proUntil: string | null): boolean {
 export default function ProModal({
   locale,
   onClose,
+  entry = "plans",
 }: {
   locale: "zh" | "en";
   onClose: () => void;
+  /** test：白名单账号专用的验证单入口，不渲染三档套餐 */
+  entry?: "plans" | "test";
 }) {
   const U = UI[locale];
   const base = locale === "en" ? "/en" : "";
   const [me, setMe] = useState<Me | null>(null);
-  const [step, setStep] = useState<"plans" | "login" | "qr" | "guide">("plans");
-  const [planKey, setPlanKey] = useState("yearly");
+  const [step, setStep] = useState<"plans" | "login" | "qr" | "guide" | "ok">(
+    "plans"
+  );
+  const [planKey, setPlanKey] = useState(entry === "test" ? "test" : "yearly");
   const [phone, setPhone] = useState(false);
   const [siteHost, setSiteHost] = useState("");
   const [email, setEmail] = useState("");
@@ -148,7 +174,11 @@ export default function ProModal({
   const [countdown, setCountdown] = useState(0);
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState("");
-  const [qr, setQr] = useState<{ outTradeNo: string; dataUrl: string } | null>(null);
+  const [qr, setQr] = useState<{
+    outTradeNo: string;
+    dataUrl: string;
+    codeUrl: string;
+  } | null>(null);
   const timer = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
@@ -172,7 +202,12 @@ export default function ProModal({
     };
   }, [countdown]);
 
-  const plan = me?.plans.find((p) => p.key === planKey) ?? null;
+  // 服务端没给 payTest（白名单没命中）时退回普通套餐弹窗，不做出错的死路
+  const testMode = entry === "test" && !!me?.payTest;
+  const plan: PayPlan | null = testMode
+    ? me?.payTest ?? null
+    : me?.plans.find((p) => p.key === planKey) ?? null;
+  const shownPlans: PayPlan[] = testMode ? (plan ? [plan] : []) : me?.plans ?? [];
 
   async function sendCode() {
     setErr("");
@@ -219,8 +254,8 @@ export default function ProModal({
 
   async function startPay() {
     if (!plan) return;
-    // 触屏设备上这张码没人能扫，所以不建订单，直接给替代出口
-    if (phone) {
+    // 触屏设备上这张码没人能扫，所以不建订单，直接给替代出口；验证单例外，它要的就是真下单
+    if (phone && !testMode) {
       setStep("guide");
       return;
     }
@@ -237,8 +272,9 @@ export default function ProModal({
         return;
       }
       const d = await r.json();
-      track("order_create", { plan: plan.key, amount: plan.money });
-      setQr({ outTradeNo: d.outTradeNo, dataUrl: d.qr });
+      // 验证单不埋点：付费漏斗的数得只算真用户
+      if (!testMode) track("order_create", { plan: plan.key, amount: plan.money });
+      setQr({ outTradeNo: d.outTradeNo, dataUrl: d.qr, codeUrl: d.codeUrl });
       setStep("qr");
     } catch {
       setErr(U.errGeneric);
@@ -259,11 +295,11 @@ export default function ProModal({
         if (!d.paid || stop) return;
         stop = true;
         clearInterval(t);
-        track("pay_success", { plan: plan?.key ?? "", amount: plan?.money ?? "" });
+        if (!testMode) track("pay_success", { plan: plan?.key ?? "", amount: plan?.money ?? "" });
         const me2 = await fetch("/api/me").then((x) => x.json());
         setMe(me2);
         setQr(null);
-        setStep("plans");
+        setStep(testMode ? "ok" : "plans");
         window.dispatchEvent(new Event("vh-me-changed"));
       } catch {
         /* 下一轮再试 */
@@ -275,7 +311,7 @@ export default function ProModal({
     };
   }, [step, qr]);
 
-  if (me?.user && me.pro && step !== "login") {
+  if (me?.user && me.pro && step !== "login" && step !== "ok" && !testMode) {
     return (
       <Shell locale={locale} onClose={onClose}>
         <div className="rd-pro-ok">
@@ -296,10 +332,10 @@ export default function ProModal({
       {step === "plans" && (
         <>
           <div className="mark">✦</div>
-          <h3>{U.title}</h3>
-          <p className="sub">{U.sub}</p>
+          <h3>{testMode ? U.testTitle : U.title}</h3>
+          <p className="sub">{testMode ? U.testSub : U.sub}</p>
           <div className="rd-plans">
-            {(me?.plans ?? []).map((p) => {
+            {shownPlans.map((p) => {
               const f = FMT[p.key] ?? FMT.yearly;
               return (
                 <div
@@ -308,21 +344,29 @@ export default function ProModal({
                   onClick={() => setPlanKey(p.key)}
                 >
                   {p.listPrice && <span className="save">{U.limited}</span>}
-                  <span className="rd-plan-label">{U[f.unit]}</span>
+                  <span className="rd-plan-label">
+                    {testMode ? U.testName : U[f.unit]}
+                  </span>
                   <b>¥{fmtMoney(p.money)}</b>
                   {p.listPrice && (
                     <span className="rd-plan-was">¥{fmtMoney(p.listPrice)}</span>
                   )}
-                  <span className="rd-plan-unit">{U[f.label]}</span>
+                  <span className="rd-plan-unit">
+                    {testMode ? U.testDays : U[f.label]}
+                  </span>
                 </div>
               );
             })}
           </div>
-          <ul>
-            {U.benefits.map((b) => (
-              <li key={b}>{b}</li>
-            ))}
-          </ul>
+          {testMode ? (
+            <p className="fineprint">{U.testHint}</p>
+          ) : (
+            <ul>
+              {U.benefits.map((b) => (
+                <li key={b}>{b}</li>
+              ))}
+            </ul>
+          )}
           {err && <p className="rd-pro-err">{err}</p>}
           <button
             className="rd-btn rd-btn-block"
@@ -333,10 +377,10 @@ export default function ProModal({
               else setStep("login");
             }}
           >
-            {U.cta}
+            {testMode ? U.testCta : U.cta}
           </button>
           <button className="rd-btn-ghost rd-btn-block" onClick={onClose}>
-            {locale === "zh" ? "暂不订阅" : "Not now"}
+            {testMode ? U.testCancel : locale === "zh" ? "暂不订阅" : "Not now"}
           </button>
           <p className="fineprint rd-fine-links">
             {U.fineprint} ·{" "}
@@ -407,6 +451,16 @@ export default function ProModal({
             <img src={qr.dataUrl} alt={U.scan} width={220} height={220} />
           </div>
           <p className="fineprint">{U.scanHint}</p>
+          {testMode && phone && (
+            <button
+              className="rd-btn rd-btn-block"
+              onClick={() => {
+                window.location.href = qr.codeUrl;
+              }}
+            >
+              {U.testOpenWx}
+            </button>
+          )}
           <button
             className="rd-btn-ghost rd-btn-block"
             onClick={() => {
@@ -462,6 +516,18 @@ export default function ProModal({
             {U.back}
           </button>
         </>
+      )}
+
+      {step === "ok" && (
+        <div className="rd-pro-ok">
+          <p>{U.testOk}</p>
+          <p className="fineprint">
+            {U.proUntil}{" "}
+            {lifetimeShown(me?.user?.proUntil ?? null)
+              ? U.proLifetime
+              : me?.user?.proUntil?.slice(0, 10)}
+          </p>
+        </div>
       )}
     </Shell>
   );
