@@ -155,7 +155,7 @@ export default function TermDetail({
           <div className="detail-topbar-actions">
             <button
               type="button"
-              className="favorite-button"
+              className={`favorite-button${isFav ? " is-saved" : ""}`}
               aria-label={T.fav}
               aria-pressed={isFav}
               title={T.fav}

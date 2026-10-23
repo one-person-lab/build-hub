@@ -322,10 +322,14 @@ export default function CatalogView({
                       </button>
                     );
                   })}
-              <button type="button" className="catalog-filter-chip" aria-pressed={false}>
-                {T.favorites}
+              <a
+                href={`${detailBase}favorites`}
+                className="catalog-filter-chip"
+                title={T.favorites}
+              >
+                ★ {T.favorites}
                 <span>{favorites.size}</span>
-              </button>
+              </a>
             </div>
           </div>
           {platformEnabled && (
@@ -412,7 +416,7 @@ export default function CatalogView({
                           </a>
                           <button
                             type="button"
-                            className="favorite-button"
+                            className={`favorite-button${favorites.has(t.slug) ? " is-saved" : ""}`}
                             aria-label={T.favoriteTerm}
                             aria-pressed={favorites.has(t.slug)}
                             title={T.favoriteTerm}
@@ -485,7 +489,7 @@ export default function CatalogView({
                           </a>
                           <button
                             type="button"
-                            className="favorite-button"
+                            className={`favorite-button${favorites.has(s.id) ? " is-saved" : ""}`}
                             aria-label={T.favoriteTerm}
                             aria-pressed={favorites.has(s.id)}
                             title={T.favoriteTerm}
@@ -527,7 +531,7 @@ export default function CatalogView({
                           </a>
                           <button
                             type="button"
-                            className="favorite-button"
+                            className={`favorite-button${favorites.has(t.slug) ? " is-saved" : ""}`}
                             aria-label={T.favoriteTerm}
                             aria-pressed={favorites.has(t.slug)}
                             title={T.favoriteTerm}

@@ -330,11 +330,11 @@ a.rd-gopro.is-pro { color: var(--brand); }
   display: grid; place-items: center; font-size: 9px; font-weight: 800;
 }
 .rd-menu-sep { display: block; height: 1px; background: var(--border); margin: 6px 8px; }
-.rd-menu-fav {
+.rd-menu a.rd-menu-fav {
   display: flex; justify-content: space-between; align-items: center;
   padding: 8px 10px; font-size: 13px; color: var(--text-2);
 }
-.rd-menu-fav b { color: var(--brand); font-variant-numeric: tabular-nums; }
+.rd-menu a.rd-menu-fav b { color: var(--brand); font-variant-numeric: tabular-nums; }
 .rd-menu-lang { display: flex; gap: 6px; padding: 4px 6px 2px; }
 .rd-menu-lang button {
   flex: 1; width: auto !important; text-align: center !important;
@@ -400,7 +400,6 @@ a.rd-gopro.is-pro { color: var(--brand); }
   .rd-menu-group-more { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; align-items: stretch; }
   .rd-menu-group-more > .rd-menu-label { grid-column: 1 / -1; }
   .rd-menu-group-more > a.rd-menu-site { justify-content: center; }
-  .rd-menu-fav { min-height: 44px; align-items: center; font-size: 14px; }
   .rd-menu-lang { padding: 8px 0 0; }
   .rd-menu-lang button { min-height: 44px !important; font-size: 13px !important; }
 }
@@ -533,7 +532,59 @@ a.rd-gopro.is-pro { color: var(--brand); }
 .rd-acct-email { font-size: 14px; font-weight: 600; color: var(--text); margin: 0 0 6px; }
 .rd-acct-plan { font-size: 13px; color: var(--text-2); margin: 0 0 18px; }
 .rd-acct-plan.is-pro { color: var(--brand); font-weight: 700; }
-.rd-acct-actions { display: flex; gap: 10px; }
+.rd-acct-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+/* ---------- 我的收藏页 ---------- */
+a.catalog-filter-chip { text-decoration: none; cursor: pointer; }
+.fav-page { max-width: 860px; margin: 0 auto; padding: 48px 20px 96px; }
+.fav-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 10px; }
+.fav-head h1 { font-size: 22px; color: var(--text); }
+.fav-count { font-size: 13px; color: var(--text-3); font-variant-numeric: tabular-nums; }
+.fav-sync {
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  margin: 0 0 26px; font-size: 12.5px; color: var(--text-2);
+}
+.fav-sync.is-on { color: var(--brand); }
+.fav-sync-btn {
+  border: 0; background: none; padding: 0; font-size: 12.5px; font-weight: 700;
+  color: var(--brand); text-decoration: underline; text-underline-offset: 3px;
+}
+.fav-section { margin-bottom: 26px; }
+.fav-zone {
+  font-size: 12px; font-weight: 700; letter-spacing: .04em;
+  color: var(--text-3); margin: 0 0 4px;
+}
+.fav-list { list-style: none; margin: 0; padding: 0; }
+.fav-row {
+  display: flex; align-items: center; gap: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.fav-row-main {
+  flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;
+  padding: 13px 0; color: inherit; text-decoration: none;
+}
+.fav-row-name { font-size: 14.5px; font-weight: 650; color: var(--text); }
+.fav-row-name .fav-row-en {
+  margin-left: 7px; font-size: 12px; font-weight: 400; color: var(--text-3);
+}
+.fav-row-tagline {
+  font-size: 12.5px; line-height: 1.55; color: var(--text-2);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.fav-row-main:hover .fav-row-name { color: var(--brand); }
+.fav-empty { padding: 40px 0; text-align: center; }
+.fav-empty-title { font-size: 15px; font-weight: 650; color: var(--text); margin: 0 0 6px; }
+.fav-empty-hint { font-size: 13px; color: var(--text-2); margin: 0 0 18px; }
+.fav-empty-cta {
+  display: inline-block; padding: 9px 18px; border-radius: 10px;
+  background: var(--brand); color: var(--on-brand); font-size: 13px; font-weight: 650;
+  text-decoration: none;
+}
+@media (max-width: 767px) {
+  .fav-page { padding: 28px 16px 72px; }
+  .fav-row-tagline { white-space: normal; }
+}
+
 /* ===== 列表页图鉴化：缩略取景框（样张 .rd-thumb → .card-thumb） =====
    demo 永远按浅色设计，垫白底避免深色态色偏 */
 .catalog-page { background: var(--ground); }

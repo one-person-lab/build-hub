@@ -31,6 +31,7 @@ const UI = {
     proFree: "免费用户",
     goPro: "开通 PRO",
     renew: "续费",
+    myFavorites: "我的收藏",
     logout: "退出登录",
   },
   en: {
@@ -53,6 +54,7 @@ const UI = {
     proFree: "Free plan",
     goPro: "Go PRO",
     renew: "Renew",
+    myFavorites: "My favorites",
     logout: "Sign out",
   },
 };
@@ -234,6 +236,9 @@ export default function AccountView({ locale }: { locale: "zh" | "en" }) {
                 </button>
               )
             )}
+            <a className="rd-btn-ghost" href={`${locale === "en" ? "/en" : ""}/favorites`}>
+              {U.myFavorites}
+            </a>
             <button className="rd-btn-ghost" onClick={logout}>
               {U.logout}
             </button>

@@ -370,10 +370,10 @@ export default function SiteNav() {
                   >
                     {U.community}
                   </button>
-                  <div className="rd-menu-fav">
+                  <a className="rd-menu-fav" href={`${base}/favorites`} role="menuitem">
                     <span>★ {U.favorites}</span>
                     <b>{favCount}</b>
-                  </div>
+                  </a>
                   <div className="rd-menu-lang">
                     <button
                       className={locale === "zh" ? "is-selected" : ""}
