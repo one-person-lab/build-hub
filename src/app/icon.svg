@@ -1,10 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
   <defs>
-    <linearGradient id="bhBg" x1="0" y1="0" x2="0.4" y2="1">
-      <stop offset="0" stop-color="#3f60e2"/>
-      <stop offset="1" stop-color="#21399e"/>
+    <linearGradient id="bhGold" x1="0" y1="0" x2="0.35" y2="1">
+      <stop offset="0" stop-color="#EFDCAB"/>
+      <stop offset="0.35" stop-color="#D8BC80"/>
+      <stop offset="0.66" stop-color="#B6944F"/>
+      <stop offset="1" stop-color="#95733A"/>
     </linearGradient>
   </defs>
-  <rect width="512" height="512" rx="112" fill="url(#bhBg)"/>
-  <path fill="#ffffff" fill-rule="evenodd" d="M189 147 H267 A56 56 0 1 1 267 259 A56 56 0 1 1 267 365 H189 Z M267 173 a30 30 0 1 0 0 60 a30 30 0 1 0 0-60 Z M267 279 a30 30 0 1 0 0 60 a30 30 0 1 0 0-60 Z"/>
+  <rect width="512" height="512" rx="112" fill="#3B2B1E"/>
+  <path fill="url(#bhGold)" d="M137.07 95H262.59Q280.79 95 298.52 99.32Q316.26 103.64 330.13 113.42Q344 123.2 352.65 138.66Q361.29 154.12 361.29 175.95Q361.29 203.24 345.82 220.98Q330.36 238.72 305.35 246.45V247.36Q335.82 251.45 355.37 271.01Q374.93 290.56 374.93 323.31Q374.93 349.69 364.47 367.65Q354.01 385.62 336.95 396.53Q319.9 407.45 297.84 412.22Q275.78 417 253.04 417H137.07ZM194.37 225.98H245.31Q273.96 225.98 288.97 214.61Q303.98 203.24 303.98 182.32Q303.98 160.49 288.52 151.4Q273.06 142.3 240.31 142.3H194.37ZM194.37 368.79H245.77Q256.68 368.79 269.42 367.2Q282.15 365.61 292.84 360.6Q303.53 355.6 310.58 346.05Q317.63 336.5 317.63 320.58Q317.63 295.11 300.34 285.11Q283.06 275.1 248.04 275.1H194.37Z"/>
+  <rect x="26" y="26" width="460" height="460" rx="92" fill="none" stroke="#C0A062" stroke-opacity="0.45" stroke-width="5"/>
 </svg>
