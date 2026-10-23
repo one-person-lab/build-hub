@@ -88,6 +88,12 @@ export default function AccountView({ locale }: { locale: "zh" | "en" }) {
   }
   useEffect(load, []);
 
+  // 弹窗付完款会广播这个事件；账号卡不重新拉，就会停在旧状态（钱付了还显示「免费用户」）
+  useEffect(() => {
+    window.addEventListener("vh-me-changed", load);
+    return () => window.removeEventListener("vh-me-changed", load);
+  }, []);
+
   useEffect(() => {
     if (countdown <= 0) return;
     timer.current = setInterval(() => setCountdown((s) => s - 1), 1000);

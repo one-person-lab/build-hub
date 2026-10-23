@@ -16,7 +16,7 @@ type Me = {
   user: { email: string; proUntil: string | null } | null;
   pro: boolean;
   plans: PayPlan[];
-  payTest: PayPlan | null;
+  payTest: (PayPlan & { revable?: boolean }) | null;
 };
 
 const UI = {
@@ -73,7 +73,8 @@ const UI = {
     testCancel: "先不验证",
     testHint: "下单、扫码、回调、到账四步全走真的；这一单不计入付费统计。",
     testOpenWx: "在这台手机上打开微信付款",
-    testOk: "链路跑通，PRO 已到号",
+    testRevoke: "撤销这次验证给的 PRO",
+    testRevoked: "已撤销，这个号回到免费用户",
   },
   en: {
     title: "BuildHub PRO",
@@ -132,7 +133,8 @@ const UI = {
     testCancel: "Not now",
     testHint: "Order, scan, callback and settle all run for real. This order stays out of paid stats.",
     testOpenWx: "Open WeChat Pay on this device",
-    testOk: "Flow works — PRO activated",
+    testRevoke: "Revoke the PRO this test granted",
+    testRevoked: "Revoked — this account is back on the free plan",
   },
 };
 
@@ -163,7 +165,7 @@ export default function ProModal({
   const U = UI[locale];
   const base = locale === "en" ? "/en" : "";
   const [me, setMe] = useState<Me | null>(null);
-  const [step, setStep] = useState<"plans" | "login" | "qr" | "guide" | "ok">(
+  const [step, setStep] = useState<"plans" | "login" | "qr" | "guide">(
     "plans"
   );
   const [planKey, setPlanKey] = useState(entry === "test" ? "test" : "yearly");
@@ -174,6 +176,8 @@ export default function ProModal({
   const [countdown, setCountdown] = useState(0);
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState("");
+  const [note, setNote] = useState("");
+  const [justPaid, setJustPaid] = useState(false);
   const [qr, setQr] = useState<{
     outTradeNo: string;
     dataUrl: string;
@@ -283,6 +287,27 @@ export default function ProModal({
     }
   }
 
+  // 撤销只针对验证单给的那几天，真钱买的套餐不动
+  async function revokeTest() {
+    setErr("");
+    setNote("");
+    setBusy(true);
+    try {
+      const r = await fetch("/api/pro/revoke-test", { method: "POST" });
+      if (!r.ok) {
+        setErr(U.errGeneric);
+        return;
+      }
+      setMe(await fetch("/api/me").then((x) => x.json()));
+      setNote(U.testRevoked);
+      window.dispatchEvent(new Event("vh-me-changed"));
+    } catch {
+      setErr(U.errGeneric);
+    } finally {
+      setBusy(false);
+    }
+  }
+
   // 回调可能比人慢，轮询时服务端会顺手主动查单，所以这里只认 paid
   useEffect(() => {
     if (step !== "qr" || !qr) return;
@@ -299,7 +324,8 @@ export default function ProModal({
         const me2 = await fetch("/api/me").then((x) => x.json());
         setMe(me2);
         setQr(null);
-        setStep(testMode ? "ok" : "plans");
+        setJustPaid(true);
+        setStep("plans");
         window.dispatchEvent(new Event("vh-me-changed"));
       } catch {
         /* 下一轮再试 */
@@ -311,7 +337,7 @@ export default function ProModal({
     };
   }, [step, qr]);
 
-  if (me?.user && me.pro && step !== "login" && step !== "ok" && !testMode) {
+  if (me?.user && me.pro && step !== "login" && (!testMode || justPaid)) {
     return (
       <Shell locale={locale} onClose={onClose}>
         <div className="rd-pro-ok">
@@ -368,17 +394,28 @@ export default function ProModal({
             </ul>
           )}
           {err && <p className="rd-pro-err">{err}</p>}
+          {note && <p className="fineprint">{note}</p>}
           <button
             className="rd-btn rd-btn-block"
             disabled={busy || !me}
             onClick={() => {
               setErr("");
+              setNote("");
               if (me?.user) startPay();
               else setStep("login");
             }}
           >
             {testMode ? U.testCta : U.cta}
           </button>
+          {testMode && me?.payTest?.revable && (
+            <button
+              className="rd-btn-ghost rd-btn-block"
+              disabled={busy}
+              onClick={revokeTest}
+            >
+              {U.testRevoke}
+            </button>
+          )}
           <button className="rd-btn-ghost rd-btn-block" onClick={onClose}>
             {testMode ? U.testCancel : locale === "zh" ? "暂不订阅" : "Not now"}
           </button>
@@ -516,18 +553,6 @@ export default function ProModal({
             {U.back}
           </button>
         </>
-      )}
-
-      {step === "ok" && (
-        <div className="rd-pro-ok">
-          <p>{U.testOk}</p>
-          <p className="fineprint">
-            {U.proUntil}{" "}
-            {lifetimeShown(me?.user?.proUntil ?? null)
-              ? U.proLifetime
-              : me?.user?.proUntil?.slice(0, 10)}
-          </p>
-        </div>
       )}
     </Shell>
   );

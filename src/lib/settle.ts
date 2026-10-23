@@ -1,5 +1,5 @@
 import { getDb } from "./db";
-import { getPlan, planDays } from "./plans";
+import { TEST_PLAN, getPlan, planDays } from "./plans";
 import { yuanToFen } from "./wxpay";
 
 export function newOutTradeNo(): string {
@@ -70,4 +70,35 @@ export function isPaid(outTradeNo: string): boolean {
     .prepare(`select 1 from orders where out_trade_no = ? and status = 'paid'`)
     .get(outTradeNo);
   return !!row;
+}
+
+/**
+ * 撤销最近一笔已支付的验证单：订单转 revoked，并把它给的天数从 pro_until 上原样扣回。
+ * 只碰 test 单，真钱买的套餐不动；扣完已过期就置 NULL，账号回到免费用户。
+ */
+export function revokeTestOrder(userId: number): { ok: boolean; days: number } {
+  const db = getDb();
+  const order = db
+    .prepare(
+      `select out_trade_no from orders
+       where user_id = ? and plan = ? and status = 'paid'
+       order by paid_at desc limit 1`
+    )
+    .get(userId, TEST_PLAN.key) as { out_trade_no: string } | undefined;
+  if (!order) return { ok: false, days: 0 };
+
+  const back = `-${planDays(TEST_PLAN)} days`;
+  db.transaction(() => {
+    db.prepare(
+      `update orders set status = 'revoked' where out_trade_no = ? and status = 'paid'`
+    ).run(order.out_trade_no);
+    db.prepare(
+      `update users set pro_until = case
+         when datetime(pro_until, ?) <= datetime('now') then null
+         else datetime(pro_until, ?)
+       end where id = ?`
+    ).run(back, back, userId);
+  }).immediate();
+
+  return { ok: true, days: planDays(TEST_PLAN) };
 }
