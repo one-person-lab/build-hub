@@ -276,10 +276,10 @@ button.footer-social-link {
 }
 .rd-brand { display: flex; align-items: center; gap: 9px; font-weight: 800; font-size: 15px; letter-spacing: .02em; color: var(--text); text-decoration: none; }
 .rd-logo {
-  width: 26px; height: 26px; border-radius: 7px;
-  background: var(--brand); color: var(--on-brand);
-  display: grid; place-items: center; font-size: 13px; font-weight: 800;
+  width: 26px; height: 26px;
+  display: grid; place-items: center;
 }
+.rd-logo svg { width: 100%; height: 100%; display: block; }
 .rd-sections { display: flex; gap: 4px; }
 .rd-sections a {
   padding: 6px 12px; border-radius: 8px; font-size: 13.5px; color: var(--text-2); text-decoration: none;
@@ -520,8 +520,8 @@ a.rd-gopro.is-pro { color: var(--brand); }
 .rd-pro-ok { text-align: center; padding: 26px 0 10px; font-size: 14px; color: var(--text); }
 .rd-pro .rd-btn-block + .rd-btn-block { margin-top: 8px; }
 
-/* ---------- 账号页 ---------- */
-.rd-account { max-width: 520px; margin: 0 auto; padding: 56px 20px 80px; }
+/* ---------- 账号页：概览，不是收据 ---------- */
+.rd-account { max-width: 680px; margin: 0 auto; padding: 56px 20px 80px; }
 .rd-account > h1 { font-size: 22px; margin: 0 0 20px; color: var(--text); }
 .rd-card {
   border: 1px solid var(--border); border-radius: 16px; padding: 22px;
@@ -529,10 +529,63 @@ a.rd-gopro.is-pro { color: var(--brand); }
 }
 .rd-card h2 { font-size: 16px; margin: 0 0 4px; color: var(--text); }
 .rd-card .sub { font-size: 12.5px; color: var(--text-2); margin: 0 0 16px; }
-.rd-acct-email { font-size: 14px; font-weight: 600; color: var(--text); margin: 0 0 6px; }
-.rd-acct-plan { font-size: 13px; color: var(--text-2); margin: 0 0 18px; }
-.rd-acct-plan.is-pro { color: var(--brand); font-weight: 700; }
-.rd-acct-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+.acct-idbar {
+  display: flex; align-items: center; gap: 14px;
+  border: 1px solid var(--border); border-radius: 14px; padding: 16px 18px;
+  background: var(--bg);
+}
+.acct-mail { font-size: 14px; font-weight: 650; color: var(--text); margin: 0 0 4px; cursor: pointer; }
+.acct-plan { font-size: 12.5px; color: var(--text-2); margin: 0; }
+.acct-plan.is-pro { color: var(--brand); font-weight: 700; }
+.acct-idbar .rd-btn { margin-left: auto; flex: none; }
+
+.acct-usage {
+  display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 4px 12px;
+  margin-top: 12px; padding: 14px 18px;
+  border: 1px solid var(--border); border-radius: 14px; background: var(--bg);
+}
+.acct-usage-label { font-size: 12.5px; color: var(--text-2); }
+.acct-usage-label b { margin-left: 5px; font-size: 15px; color: var(--text); font-variant-numeric: tabular-nums; }
+.acct-usage-cap { color: var(--text-3); font-variant-numeric: tabular-nums; }
+.acct-usage-cta {
+  justify-self: end; border: 0; background: none; padding: 0;
+  font-size: 12.5px; font-weight: 700; color: var(--brand); cursor: pointer;
+}
+.acct-usage-bar { grid-column: 1 / -1; height: 6px; border-radius: 6px; background: var(--border); overflow: hidden; }
+.acct-usage-bar i { display: block; height: 100%; background: var(--brand); border-radius: 6px; }
+
+.acct-block { margin-top: 26px; }
+.acct-block-head { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.acct-block-head h2 { font-size: 14px; margin: 0; color: var(--text); }
+.acct-block-head a { margin-left: auto; font-size: 12.5px; font-weight: 650; color: var(--brand); text-decoration: none; }
+.acct-empty { font-size: 12.5px; color: var(--text-3); margin: 0; padding: 14px 16px; border: 1px dashed var(--border); border-radius: 12px; }
+.acct-rows { list-style: none; margin: 0; padding: 0; border: 1px solid var(--border); border-radius: 12px; background: var(--bg); overflow: hidden; }
+.acct-rows li + li { border-top: 1px solid var(--border); }
+.acct-rows a {
+  display: flex; align-items: center; gap: 8px; padding: 12px 16px;
+  font-size: 13px; color: var(--text); text-decoration: none;
+}
+.acct-rows a:hover .acct-row-name { color: var(--brand); }
+.acct-row-name { font-weight: 650; }
+.acct-row-en { font-size: 12px; color: var(--text-3); }
+.acct-row-zone { margin-left: auto; font-size: 11px; color: var(--text-3); background: var(--accent-light); border-radius: 20px; padding: 3px 9px; }
+.acct-bill { width: 100%; border-collapse: collapse; font-size: 12.5px; background: var(--bg); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.acct-bill th, .acct-bill td { text-align: left; padding: 11px 16px; border-bottom: 1px solid var(--border); font-weight: 500; }
+.acct-bill th { font-size: 11.5px; color: var(--text-3); background: var(--accent-light); }
+.acct-bill tr:last-child td { border-bottom: 0; }
+.acct-bill .is-paid { color: #2f7d4f; font-weight: 700; }
+.acct-bill .is-revoked { color: var(--text-3); }
+/* 表格圆角要靠 border-collapse:separate，否则 thead 底色会顶出圆角外 */
+.acct-bill { border-collapse: separate; border-spacing: 0; }
+
+/* 退出登录不是主行动，不该和「开通 PRO」长一样 */
+.acct-foot { display: flex; margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--border); }
+.acct-foot button {
+  border: 0; background: none; padding: 4px 0; font-size: 12.5px;
+  color: var(--text-3); cursor: pointer;
+}
+.acct-foot button:hover { color: var(--text-2); }
 
 /* ---------- 我的收藏页 ---------- */
 a.catalog-filter-chip { text-decoration: none; cursor: pointer; }
@@ -580,9 +633,59 @@ a.catalog-filter-chip { text-decoration: none; cursor: pointer; }
   background: var(--brand); color: var(--on-brand); font-size: 13px; font-weight: 650;
   text-decoration: none;
 }
+
+/* 未登录且一条没收藏：这一页就是转化页，不给空列表 */
+.fav-conv { text-align: center; padding: 26px 0 6px; }
+.fav-conv-glyph {
+  display: grid; place-items: center; width: 58px; height: 58px; margin: 0 auto 16px;
+  border-radius: 15px; background: var(--accent-light); color: var(--brand);
+}
+.fav-conv-glyph svg { width: 26px; height: 26px; fill: currentColor; }
+.fav-conv h2 { font-size: 19px; margin: 0 0 8px; color: var(--text); }
+.fav-conv > p { font-size: 13.5px; line-height: 1.7; color: var(--text-2); margin: 0 auto 20px; max-width: 430px; }
+.fav-conv-cta {
+  display: inline-block; padding: 11px 22px; border-radius: 9px;
+  background: var(--text); color: var(--bg); font-size: 13.5px; font-weight: 650; text-decoration: none;
+}
+.fav-conv-cta:hover { background: var(--brand); color: var(--on-brand); }
+.fav-plans { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 30px; text-align: left; }
+.fav-plan { border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px; background: var(--bg); }
+.fav-plan.is-pro { border-color: var(--brand); box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand) 12%, transparent); }
+.fav-plan h3 { display: flex; align-items: center; gap: 8px; font-size: 13px; margin: 0 0 3px; color: var(--text); }
+.fav-plan h3 button { margin-left: auto; border: 0; background: none; padding: 0; font-size: 11.5px; font-weight: 700; color: var(--brand); cursor: pointer; }
+.fav-plan-price { font-size: 12px; color: var(--brand); font-weight: 700; margin: 0 0 12px; }
+.fav-plan ul { list-style: none; margin: 0; padding: 0; }
+.fav-plan li { font-size: 12.5px; line-height: 1.95; color: var(--text-2); }
+.fav-plan li.is-no { color: var(--text-3); }
+
+/* 免费档的用量条就是付费钩子，得让人看见自己用到哪了 */
+.fav-usage {
+  display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 4px 12px;
+  margin: 0 0 26px; padding: 14px 18px;
+  border: 1px solid var(--border); border-radius: 12px; background: var(--bg);
+}
+.fav-usage-label { font-size: 12.5px; color: var(--text-2); }
+.fav-usage-label b { margin-left: 5px; font-size: 15px; color: var(--text); font-variant-numeric: tabular-nums; }
+.fav-usage-cap { color: var(--text-3); font-variant-numeric: tabular-nums; }
+.fav-usage-cta {
+  justify-self: end; border: 0; background: none; padding: 0;
+  font-size: 12.5px; font-weight: 700; color: var(--brand); cursor: pointer;
+}
+.fav-usage-bar { grid-column: 1 / -1; height: 6px; border-radius: 6px; background: var(--border); overflow: hidden; }
+.fav-usage-bar i { display: block; height: 100%; background: var(--brand); border-radius: 6px; }
+.fav-cap-note { font-size: 12.5px; color: var(--brand); margin: -14px 0 22px; }
+
+/* 顶栏一级「收藏」：数字是钩子，有才显示 */
+.rd-nav-fav { display: inline-flex; align-items: center; gap: 5px; }
+.rd-nav-fav b { font-size: 11px; font-weight: 700; color: var(--brand); font-variant-numeric: tabular-nums; }
 @media (max-width: 767px) {
   .fav-page { padding: 28px 16px 72px; }
   .fav-row-tagline { white-space: normal; }
+  .fav-plans { grid-template-columns: 1fr; }
+  .rd-account { padding: 32px 16px 64px; }
+  .acct-idbar { flex-wrap: wrap; }
+  .acct-idbar .rd-btn { margin-left: 0; }
+  .acct-row-zone { display: none; }
 }
 
 /* ===== 列表页图鉴化：缩略取景框（样张 .rd-thumb → .card-thumb） =====

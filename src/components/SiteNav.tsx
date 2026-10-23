@@ -5,6 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import CommandPalette from "@/components/CommandPalette";
 import ProModal from "@/components/ProModal";
 import FavoritesSync from "@/components/FavoritesSync";
+import { useFavoriteSlugs } from "@/lib/favorites";
 import { track } from "@/lib/track";
 import {
   COLOR_MODE_KEY,
@@ -92,7 +93,7 @@ export default function SiteNav() {
   const [themeOpen, setThemeOpen] = useState(false);
   const [themeColor, setThemeColor] = useState<string | null>(null);
   const [communityOpen, setCommunityOpen] = useState(false);
-  const [favCount, setFavCount] = useState(0);
+  const favCount = useFavoriteSlugs().length;
   const [me, setMe] = useState<{ user: { email: string } | null; pro: boolean } | null>(null);
   const menuRef = useRef<HTMLDivElement>(null);
   const themeRef = useRef<HTMLDivElement>(null);
@@ -190,11 +191,6 @@ export default function SiteNav() {
   }
 
   function openMenu() {
-    try {
-      setFavCount(JSON.parse(localStorage.getItem("vh-favorites") || "[]").length);
-    } catch {
-      setFavCount(0);
-    }
     setMenu((v) => !v);
   }
 
@@ -222,7 +218,20 @@ export default function SiteNav() {
       <nav className="nav rd-nav">
         <a href={base || "/"} className="rd-brand" aria-label="BuildHub">
           <span className="rd-logo" aria-hidden>
-            ✦
+            <svg viewBox="0 0 512 512">
+              <defs>
+                <linearGradient id="bhNavLogo" x1="0" y1="0" x2="0.4" y2="1">
+                  <stop offset="0" stopColor="#3f60e2" />
+                  <stop offset="1" stopColor="#21399e" />
+                </linearGradient>
+              </defs>
+              <rect width="512" height="512" rx="112" fill="url(#bhNavLogo)" />
+              <path
+                fill="#fff"
+                fillRule="evenodd"
+                d="M189 147 H267 A56 56 0 1 1 267 259 A56 56 0 1 1 267 365 H189 Z M267 173 a30 30 0 1 0 0 60 a30 30 0 1 0 0-60 Z M267 279 a30 30 0 1 0 0 60 a30 30 0 1 0 0-60 Z"
+              />
+            </svg>
           </span>
           BuildHub
         </a>
@@ -237,6 +246,14 @@ export default function SiteNav() {
               {s.label}
             </a>
           ))}
+          <a
+            href={`${base}/favorites`}
+            className={`rd-nav-fav${isCurrent(`${base}/favorites`) ? " is-active" : ""}`}
+            aria-current={isCurrent(`${base}/favorites`) ? "page" : undefined}
+          >
+            ★ {U.favorites}
+            {favCount > 0 && <b>{favCount}</b>}
+          </a>
         </div>
         <div className="rd-nav-right">
           <button className="rd-searchbtn" onClick={() => setPalette(true)}>
