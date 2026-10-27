@@ -1,4 +1,8 @@
+"use client";
+
 import CopyButton from "./CopyButton";
+import ProModal from "./ProModal";
+import { useFavorites } from "@/lib/favorites";
 import "./PromptDetailView.css";
 
 export type PromptDetail = {
@@ -77,6 +81,8 @@ export default function PromptDetailView({
   currentCategory: string;
 }) {
   const T = UI_TEXT[locale];
+  const { favorites, toggle, limitHit, dismissLimit } = useFavorites();
+  const isFav = favorites.has(prompt.id);
 
   return (
     <main>
@@ -88,7 +94,21 @@ export default function PromptDetailView({
 
           <header className="prompt-detail-hero">
             <span className="prompt-detail-cat">{categoryLabel}</span>
-            <h1 className="prompt-detail-name">{prompt.name}</h1>
+            <div className="prompt-name-line">
+              <h1 className="prompt-detail-name">{prompt.name}</h1>
+              <button
+                type="button"
+                className={`favorite-button${isFav ? " is-saved" : ""}`}
+                aria-label={locale === "en" ? "Add to favorites" : "收藏提示词"}
+                aria-pressed={isFav}
+                title={locale === "en" ? "Add to favorites" : "收藏提示词"}
+                onClick={() => toggle(prompt.id)}
+              >
+                <svg viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+                  <path d="M23.9986 5L17.8856 17.4776L4 19.4911L14.0589 29.3251L11.6544 43L23.9986 36.4192L36.3454 43L33.9586 29.3251L44 19.4911L30.1913 17.4776L23.9986 5Z" />
+                </svg>
+              </button>
+            </div>
             <p className="prompt-detail-tagline">{prompt.tagline}</p>
             {prompt.tags && prompt.tags.length > 0 ? (
               <ul className="prompt-detail-tags">
@@ -195,6 +215,7 @@ export default function PromptDetailView({
           </section>
         </div>
       </div>
+      {limitHit && <ProModal locale={locale} onClose={dismissLimit} />}
     </main>
   );
 }

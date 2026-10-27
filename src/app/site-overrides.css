@@ -349,7 +349,7 @@ a.rd-gopro.is-pro { color: var(--brand); }
   .rd-searchbtn { width: 170px; }
 }
 @media (max-width: 900px) {
-  .nav.rd-nav { gap: 10px; padding: 0 14px; }
+  .nav.rd-nav { gap: 10px; padding: 0 14px; background: color-mix(in srgb, var(--ground) 96%, transparent); }
   .rd-sections, .rd-searchlabel, .rd-searchbtn kbd { display: none; }
   .rd-nav-right { gap: 6px; }
 
@@ -431,16 +431,36 @@ a.rd-gopro.is-pro { color: var(--brand); }
   color: var(--text); font-size: 14px;
 }
 .rd-palette-input kbd { font-size: 11px; color: var(--text-3); border: 1px solid var(--border); border-radius: 5px; padding: 0 6px; }
+.rd-modes { display: flex; align-items: center; gap: 4px; margin-top: 8px; }
+.rd-modes button {
+  display: inline-flex; align-items: center; gap: 5px;
+  border: 1px solid transparent; border-radius: 7px; background: none;
+  padding: 3px 9px; font-size: 11.5px; color: var(--text-3); cursor: pointer;
+}
+.rd-modes button:hover { color: var(--text); background: var(--bg-hover); }
+.rd-modes button.is-active {
+  color: var(--brand); background: color-mix(in srgb, var(--brand) 8%, transparent);
+}
+.rd-modes i {
+  font-style: normal; font-size: 9px; font-weight: 800; letter-spacing: .04em;
+  border: 1px solid currentColor; border-radius: 4px; padding: 0 3px; line-height: 1.4;
+}
+.rd-result small.rd-snippet { color: var(--text-2); }
 .rd-results { max-height: 320px; overflow-y: auto; margin-top: 8px; }
 .rd-result {
   display: flex; align-items: center; gap: 9px; padding: 8px 10px; border-radius: 8px;
   font-size: 13.5px; cursor: pointer; color: var(--text);
 }
 .rd-result.is-active { background: var(--bg-hover); box-shadow: inset 2px 0 0 var(--brand); }
-.rd-result small { color: var(--text-3); font-size: 11.5px; }
+.rd-result b { white-space: nowrap; }
+.rd-result small {
+  color: var(--text-3); font-size: 11.5px;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0;
+}
 .rd-result .zone {
   margin-left: auto; font-size: 10px; color: var(--brand);
   border: 1px solid var(--border); border-radius: 4px; padding: 1px 6px;
+  flex: none;
 }
 .rd-palette-foot { display: flex; gap: 14px; padding: 9px 10px 3px; font-size: 11px; color: var(--text-3); }
 
@@ -631,8 +651,100 @@ a.catalog-filter-chip { text-decoration: none; cursor: pointer; }
 .fav-empty-cta {
   display: inline-block; padding: 9px 18px; border-radius: 10px;
   background: var(--brand); color: var(--on-brand); font-size: 13px; font-weight: 650;
-  text-decoration: none;
+  text-decoration: none; border: 0; cursor: pointer; font-family: inherit;
 }
+
+/* PRO 收藏夹 / 备注 / 导出 */
+.fav-head { align-items: center; }
+.fav-head-actions { margin-left: auto; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.fav-head-btn { padding: 7px 13px; font-size: 12.5px; }
+.fav-pro-tag {
+  margin-left: 6px; font-size: 9px; font-weight: 800; letter-spacing: .04em;
+  border: 1px solid currentColor; border-radius: 4px; padding: 0 4px;
+}
+.fav-pro-hint { margin: -16px 0 24px; font-size: 12.5px; line-height: 1.6; color: var(--text-2); }
+.fav-pro-hint button {
+  border: 0; background: none; padding: 0 0 0 8px;
+  font-size: 12.5px; font-weight: 700; color: var(--brand); cursor: pointer;
+}
+.fav-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 20px; }
+.fav-tab {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 5px 12px; border: 1px solid var(--border); border-radius: 999px;
+  background: none; color: var(--text-2); font-size: 12.5px; cursor: pointer;
+}
+.fav-tab:hover { border-color: var(--brand); color: var(--brand); }
+.fav-tab.is-active {
+  border-color: var(--brand); color: var(--brand);
+  background: color-mix(in srgb, var(--brand) 8%, transparent);
+}
+.fav-tab span { font-size: 10.5px; color: var(--text-3); font-variant-numeric: tabular-nums; }
+.fav-create { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: -6px 0 20px; }
+.fav-create input {
+  width: min(240px, 100%); padding: 8px 11px;
+  border: 1px solid var(--border); border-radius: 8px;
+  background: var(--bg); color: var(--text); font-size: 13px; outline: none;
+}
+.fav-create input:focus { border-color: var(--brand); }
+.fav-create .rd-btn, .fav-create .rd-btn-ghost { padding: 7px 14px; font-size: 12.5px; }
+.fav-form-err { font-size: 12px; color: #c0392b; }
+.fav-col-actions { margin: -10px 0 18px; }
+.fav-col-actions button {
+  border: 0; background: none; padding: 0; font-size: 12px;
+  color: var(--text-3); cursor: pointer;
+}
+.fav-col-actions button:hover { color: var(--text-2); }
+.fav-col-actions button.is-danger { color: #c0392b; font-weight: 700; }
+.fav-item { position: relative; border-bottom: 1px solid var(--border); }
+.fav-item .fav-row { border-bottom: 0; }
+.fav-row-actions { display: flex; align-items: center; gap: 2px; flex: none; }
+.fav-icon-btn {
+  width: 30px; height: 30px; display: grid; place-items: center;
+  border: 0; border-radius: 8px; background: none; color: var(--text-3); cursor: pointer;
+}
+.fav-icon-btn:hover { background: var(--bg-hover); color: var(--brand); }
+.fav-icon-btn.is-on { color: var(--brand); }
+.fav-icon-btn svg {
+  width: 16px; height: 16px; fill: none; stroke: currentColor;
+  stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round;
+}
+.fav-note {
+  margin: -4px 0 12px; padding: 7px 11px; border-left: 2px solid var(--brand);
+  border-radius: 0 8px 8px 0; background: color-mix(in srgb, var(--brand) 6%, transparent);
+  font-size: 12.5px; line-height: 1.65; color: var(--text-2); white-space: pre-wrap;
+}
+.fav-note-edit {
+  margin: -2px 0 12px; padding: 10px 12px;
+  border: 1px solid var(--border); border-radius: 10px; background: var(--bg);
+}
+.fav-note-edit textarea {
+  width: 100%; min-height: 64px; resize: vertical;
+  border: 0; outline: none; background: none; color: var(--text);
+  font: inherit; font-size: 13px; line-height: 1.6;
+}
+.fav-note-actions { display: flex; align-items: center; gap: 8px; margin-top: 8px; font-size: 11px; color: var(--text-3); }
+.fav-note-actions em { font-style: normal; color: #c0392b; }
+.fav-note-actions .rd-btn, .fav-note-actions .rd-btn-ghost { padding: 5px 12px; font-size: 12px; }
+.fav-note-actions button:first-of-type { margin-left: auto; }
+.fav-pop {
+  position: absolute; right: 36px; top: 40px; z-index: 12; width: 220px; padding: 6px;
+  background: var(--bg); border: 1px solid var(--border); border-radius: 10px;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, .18);
+}
+.fav-pop-item {
+  display: flex; align-items: center; gap: 8px; width: 100%;
+  padding: 7px 8px; border: 0; border-radius: 6px; background: none;
+  color: var(--text); font-size: 12.5px; text-align: left; cursor: pointer;
+}
+.fav-pop-item:hover { background: var(--bg-hover); }
+.fav-pop-item .check { width: 14px; flex: none; color: var(--brand); font-size: 12px; }
+.fav-pop-empty { margin: 0; padding: 8px; font-size: 12px; line-height: 1.6; color: var(--text-3); }
+
+/* 技能 / 提示词详情页：收藏星贴着标题，不抢按钮位 */
+.skill-detail-name .skill-fav { margin-left: 2px; align-self: center; }
+.prompt-name-line { display: flex; align-items: center; gap: 8px; }
+.prompt-name-line .prompt-detail-name { margin: 0; }
+.prompt-name-line .favorite-button { margin-left: 2px; flex: none; }
 
 /* 未登录且一条没收藏：这一页就是转化页，不给空列表 */
 .fav-conv { text-align: center; padding: 26px 0 6px; }
@@ -680,6 +792,10 @@ a.catalog-filter-chip { text-decoration: none; cursor: pointer; }
 .rd-nav-fav b { font-size: 11px; font-weight: 700; color: var(--brand); font-variant-numeric: tabular-nums; }
 @media (max-width: 767px) {
   .fav-page { padding: 28px 16px 72px; }
+  .fav-head { flex-wrap: wrap; }
+  .fav-head-actions { width: 100%; margin-left: 0; margin-top: 8px; }
+  .fav-head-btn { flex: 1; text-align: center; }
+  .fav-pop { right: 0; }
   .fav-row-tagline { white-space: normal; }
   .fav-plans { grid-template-columns: 1fr; }
   .rd-account { padding: 32px 16px 64px; }

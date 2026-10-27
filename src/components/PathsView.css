@@ -1,0 +1,785 @@
+/* 路径 / Paths —— 三条按结果组织的动手路线 */
+
+.pth-main {
+  width: 100%;
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 56px 32px 96px;
+}
+
+.pth-eyebrow {
+  margin: 0 0 14px;
+  font-size: 11.5px;
+  font-weight: 650;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.pth-hero h1,
+.pth-detail-hero h1 {
+  margin: 0;
+  font-size: clamp(30px, 4.4vw, 46px);
+  line-height: 1.14;
+  letter-spacing: -0.035em;
+  font-weight: 720;
+  color: var(--text);
+  text-wrap: balance;
+}
+
+.pth-hero-lead {
+  max-width: 640px;
+  margin: 18px 0 0;
+  font-size: 16.5px;
+  line-height: 1.8;
+  color: var(--text-2);
+}
+
+.pth-index-rule {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 26px;
+  margin: 30px 0 0;
+  padding: 18px 0 0;
+  border-top: 1px solid var(--border-light);
+  font-size: 13px;
+  color: var(--text-3);
+}
+
+.pth-index-rule span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.pth-index-rule span::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--brand);
+  opacity: 0.7;
+}
+
+/* ── 索引卡片 ── */
+.pth-list {
+  display: grid;
+  gap: 16px;
+  margin-top: 40px;
+}
+
+.pth-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr) minmax(190px, 250px);
+  gap: 28px;
+  align-items: start;
+  padding: 30px 30px 28px;
+  border: 1px solid var(--border-light);
+  border-radius: 16px;
+  background: var(--bg);
+  color: inherit;
+  text-decoration: none;
+  transition: border-color 0.2s var(--ease), background 0.2s var(--ease),
+    transform 0.2s var(--ease);
+}
+
+.pth-card:hover {
+  border-color: color-mix(in srgb, var(--brand) 34%, var(--border));
+  background: color-mix(in srgb, var(--brand) 2.5%, var(--bg));
+  transform: translateY(-2px);
+}
+
+.pth-card:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 3px;
+}
+
+.pth-card-num {
+  font-family: var(--font-serif);
+  font-size: 46px;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  color: color-mix(in srgb, var(--brand) 38%, var(--text-3));
+  font-variant-numeric: lining-nums;
+}
+
+.pth-card-kicker {
+  margin: 0 0 9px;
+  font-size: 12px;
+  font-weight: 620;
+  letter-spacing: 0.06em;
+  color: var(--text-3);
+}
+
+.pth-card h2 {
+  margin: 0;
+  font-size: 24px;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  font-weight: 680;
+  color: var(--text);
+}
+
+.pth-card-tagline {
+  margin: 10px 0 0;
+  font-size: 14.5px;
+  line-height: 1.75;
+  color: var(--text-2);
+  max-width: 560px;
+}
+
+.pth-card-meta {
+  margin: 16px 0 0;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--text-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.pth-card-side {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: flex-start;
+  padding-left: 24px;
+  border-left: 1px solid var(--border-light);
+  min-height: 100%;
+}
+
+.pth-card-out {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-3);
+}
+
+.pth-card-out b {
+  display: block;
+  margin-bottom: 3px;
+  font-size: 11px;
+  font-weight: 620;
+  letter-spacing: 0.06em;
+  color: var(--text-3);
+  opacity: 0.75;
+}
+
+.pth-card-go {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13.5px;
+  font-weight: 650;
+  color: var(--brand);
+}
+
+.pth-card-go::after {
+  content: "→";
+  transition: transform 0.2s var(--ease);
+}
+
+.pth-card:hover .pth-card-go::after {
+  transform: translateX(3px);
+}
+
+/* ── 索引页底部说明 ── */
+.pth-how {
+  margin-top: 64px;
+  padding-top: 36px;
+  border-top: 1px solid var(--border-light);
+}
+
+.pth-how h2 {
+  margin: 0 0 22px;
+  font-size: 20px;
+  letter-spacing: -0.015em;
+  font-weight: 660;
+}
+
+.pth-how-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 30px;
+}
+
+.pth-how-item b {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 14px;
+  font-weight: 650;
+  color: var(--text);
+}
+
+.pth-how-item p {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.75;
+  color: var(--text-2);
+}
+
+/* ── 详情页 ── */
+.pth-detail-main {
+  width: 100%;
+  max-width: 940px;
+  margin: 0 auto;
+  padding: 34px 32px 104px;
+}
+
+.pth-crumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 30px;
+  font-size: 12.5px;
+  color: var(--text-3);
+}
+
+.pth-crumb a {
+  color: var(--text-3);
+  text-decoration: none;
+}
+
+.pth-crumb a:hover {
+  color: var(--text);
+}
+
+.pth-crumb span[aria-hidden] {
+  opacity: 0.5;
+}
+
+.pth-detail-lead {
+  max-width: 660px;
+  margin: 16px 0 0;
+  font-size: 16.5px;
+  line-height: 1.8;
+  color: var(--text-2);
+}
+
+.pth-facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin: 34px 0 0;
+  padding: 22px 0;
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.pth-fact span {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 11px;
+  font-weight: 620;
+  letter-spacing: 0.08em;
+  color: var(--text-3);
+}
+
+.pth-fact p {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--text);
+}
+
+.pth-start {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 28px;
+  padding: 12px 22px;
+  border-radius: 999px;
+  background: var(--brand);
+  color: var(--on-brand);
+  font-size: 14px;
+  font-weight: 650;
+  text-decoration: none;
+  transition: background 0.2s var(--ease), transform 0.2s var(--ease);
+}
+
+.pth-start:hover {
+  background: var(--brand-hover);
+  transform: translateY(-1px);
+}
+
+.pth-start:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 3px;
+}
+
+/* ── 步骤 ── */
+.pth-steps {
+  margin-top: 56px;
+}
+
+.pth-step {
+  position: relative;
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr);
+  gap: 24px;
+  padding-bottom: 46px;
+  scroll-margin-top: calc(var(--site-nav-height) + 28px);
+}
+
+.pth-step:last-child {
+  padding-bottom: 0;
+}
+
+.pth-step::before {
+  content: "";
+  position: absolute;
+  left: 25px;
+  top: 54px;
+  bottom: 0;
+  width: 1px;
+  background: var(--border-light);
+}
+
+.pth-step:last-child::before {
+  display: none;
+}
+
+.pth-step-num {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--bg);
+  font-family: var(--font-serif);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text);
+  font-variant-numeric: lining-nums;
+}
+
+.pth-step-body {
+  padding-top: 9px;
+  min-width: 0;
+}
+
+.pth-step-body h2 {
+  margin: 0;
+  font-size: 21px;
+  line-height: 1.4;
+  letter-spacing: -0.018em;
+  font-weight: 670;
+  color: var(--text);
+}
+
+.pth-step-why {
+  margin: 9px 0 0;
+  font-size: 14.5px;
+  line-height: 1.8;
+  color: var(--text-2);
+  max-width: 640px;
+}
+
+.pth-assets {
+  display: grid;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.pth-asset {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  padding: 11px 14px;
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  background: var(--bg-soft);
+  color: inherit;
+  text-decoration: none;
+  transition: border-color 0.18s var(--ease), background 0.18s var(--ease);
+}
+
+.pth-asset:hover {
+  border-color: color-mix(in srgb, var(--brand) 34%, var(--border));
+  background: color-mix(in srgb, var(--brand) 4%, var(--bg));
+}
+
+.pth-asset:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
+.pth-asset-type {
+  flex: none;
+  min-width: 44px;
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  color: var(--text-3);
+}
+
+.pth-asset-title {
+  font-size: 14px;
+  font-weight: 580;
+  color: var(--text);
+}
+
+.pth-asset-note {
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--text-3);
+}
+
+.pth-asset-note::before {
+  content: "·";
+  margin-right: 6px;
+  opacity: 0.55;
+}
+
+.pth-done {
+  display: flex;
+  gap: 10px;
+  margin: 16px 0 0;
+  font-size: 13.5px;
+  line-height: 1.75;
+  color: var(--text-2);
+}
+
+.pth-done b {
+  flex: none;
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: 0.05em;
+  color: var(--green);
+  padding-top: 3px;
+}
+
+.pth-done b::before {
+  content: "✓";
+  margin-right: 4px;
+}
+
+/* ── 完成标志 ── */
+.pth-finish {
+  margin-top: 64px;
+  padding: 30px 32px 32px;
+  border: 1px solid color-mix(in srgb, var(--green) 26%, var(--border-light));
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--green) 4%, var(--bg));
+}
+
+.pth-finish h2 {
+  margin: 0 0 6px;
+  font-size: 19px;
+  font-weight: 670;
+  letter-spacing: -0.015em;
+}
+
+.pth-finish-lead {
+  margin: 0 0 20px;
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--text-2);
+}
+
+.pth-finish ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 26px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pth-finish li {
+  position: relative;
+  padding-left: 22px;
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: var(--text);
+}
+
+.pth-finish li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--green);
+}
+
+/* ── 资产清单 ── */
+.pth-manifest {
+  margin-top: 56px;
+  padding-top: 36px;
+  border-top: 1px solid var(--border-light);
+}
+
+.pth-manifest-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.pth-manifest-head h2 {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 670;
+  letter-spacing: -0.015em;
+}
+
+.pth-manifest-head span {
+  font-size: 12.5px;
+  color: var(--text-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.pth-group + .pth-group {
+  margin-top: 22px;
+}
+
+.pth-group h3 {
+  margin: 0 0 10px;
+  font-size: 11.5px;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  color: var(--text-3);
+}
+
+.pth-group-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.pth-group-links a {
+  padding: 7px 12px;
+  border: 1px solid var(--border-light);
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--text-2);
+  font-size: 12.5px;
+  text-decoration: none;
+  transition: color 0.18s var(--ease), border-color 0.18s var(--ease);
+}
+
+.pth-group-links a:hover {
+  color: var(--text);
+  border-color: color-mix(in srgb, var(--brand) 40%, var(--border));
+}
+
+/* ── 下一条路径 ── */
+.pth-next {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 56px;
+  padding: 26px 30px;
+  border: 1px solid var(--border-light);
+  border-radius: 16px;
+  background: var(--bg-soft);
+  color: inherit;
+  text-decoration: none;
+  transition: border-color 0.2s var(--ease), background 0.2s var(--ease);
+}
+
+.pth-next:hover {
+  border-color: color-mix(in srgb, var(--brand) 34%, var(--border));
+  background: color-mix(in srgb, var(--brand) 3%, var(--bg-soft));
+}
+
+.pth-next span {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 11.5px;
+  font-weight: 620;
+  letter-spacing: 0.08em;
+  color: var(--text-3);
+}
+
+.pth-next strong {
+  font-size: 18px;
+  font-weight: 660;
+  letter-spacing: -0.015em;
+}
+
+.pth-next em {
+  flex: none;
+  font-style: normal;
+  font-size: 13.5px;
+  font-weight: 650;
+  color: var(--brand);
+}
+
+/* ── 首页入口条 ── */
+.pth-home-start {
+  margin-top: 30px;
+}
+
+.pth-home-start-label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: 0.1em;
+  color: var(--text-3);
+}
+
+.pth-home-links {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 0;
+  max-width: 720px;
+}
+
+.pth-home-links a {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 13px 15px;
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  background: var(--bg);
+  color: inherit;
+  text-decoration: none;
+  transition: border-color 0.18s var(--ease), background 0.18s var(--ease);
+}
+
+.pth-home-links a:hover {
+  border-color: color-mix(in srgb, var(--brand) 34%, var(--border));
+  background: color-mix(in srgb, var(--brand) 3%, var(--bg));
+}
+
+.pth-home-links small {
+  font-size: 10.5px;
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  color: var(--text-3);
+}
+
+.pth-home-links b {
+  font-size: 13.5px;
+  font-weight: 620;
+  color: var(--text);
+}
+
+@media (max-width: 860px) {
+  .pth-card {
+    grid-template-columns: 52px minmax(0, 1fr);
+    gap: 20px;
+    padding: 24px 22px;
+  }
+  .pth-card-num {
+    font-size: 38px;
+  }
+  .pth-card-side {
+    grid-column: 2;
+    padding: 14px 0 0;
+    border-left: 0;
+    border-top: 1px solid var(--border-light);
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .pth-card-go {
+    margin-top: 0;
+  }
+  .pth-how-grid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+  .pth-facts {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .pth-finish ul {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .pth-main {
+    padding: 36px 20px 72px;
+  }
+  .pth-detail-main {
+    padding: 26px 20px 80px;
+  }
+  .pth-hero h1,
+  .pth-detail-hero h1 {
+    font-size: 29px;
+    line-height: 1.2;
+  }
+  .pth-hero-lead,
+  .pth-detail-lead {
+    font-size: 15px;
+  }
+  .pth-list {
+    margin-top: 30px;
+    gap: 12px;
+  }
+  .pth-card {
+    grid-template-columns: 40px minmax(0, 1fr);
+    gap: 16px;
+    padding: 20px 18px;
+  }
+  .pth-card h2 {
+    font-size: 20px;
+  }
+  .pth-card-num {
+    font-size: 30px;
+  }
+  .pth-card-side {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .pth-step {
+    grid-template-columns: 38px minmax(0, 1fr);
+    gap: 16px;
+    padding-bottom: 38px;
+  }
+  .pth-step::before {
+    left: 18px;
+    top: 40px;
+  }
+  .pth-step-num {
+    width: 38px;
+    height: 38px;
+    font-size: 14px;
+  }
+  .pth-step-body {
+    padding-top: 4px;
+  }
+  .pth-step-body h2 {
+    font-size: 18px;
+  }
+  .pth-finish {
+    padding: 24px 20px;
+  }
+  .pth-manifest-head {
+    flex-direction: column;
+    gap: 5px;
+  }
+  .pth-next {
+    padding: 22px 20px;
+  }
+  .pth-home-links {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pth-card,
+  .pth-card-go::after,
+  .pth-start {
+    transition: none;
+  }
+  .pth-card:hover {
+    transform: none;
+  }
+}

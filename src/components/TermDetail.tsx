@@ -1,8 +1,10 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
 import { useRouter } from "next/navigation";
 import TermBody, { type Term } from "./TermBody";
+import ProModal from "@/components/ProModal";
+import { useFavorites } from "@/lib/favorites";
 import { standaloneCrumb, useFlatTerms } from "./CommandPalette";
 
 function buildMarkdown(t: Term, locale: "zh" | "en" = "zh"): string {
@@ -35,35 +37,6 @@ function buildMarkdown(t: Term, locale: "zh" | "en" = "zh"): string {
   return lines.join("\n");
 }
 
-function useFavorites() {
-  const [favorites, setFavorites] = useState<Set<string>>(new Set());
-  useEffect(() => {
-    try {
-      const saved = JSON.parse(localStorage.getItem("vh-favorites") || "[]");
-      if (Array.isArray(saved)) setFavorites(new Set(saved.filter((s) => typeof s === "string")));
-    } catch {
-      setFavorites(new Set());
-    }
-    const onSynced = (e: Event) =>
-      setFavorites(
-        new Set((e as CustomEvent<string[]>).detail.filter((s) => typeof s === "string"))
-      );
-    window.addEventListener("vh-favorites-synced", onSynced);
-    return () => window.removeEventListener("vh-favorites-synced", onSynced);
-  }, []);
-  const toggle = (slug: string) => {
-    setFavorites((prev) => {
-      const next = new Set(prev);
-      if (next.has(slug)) next.delete(slug);
-      else next.add(slug);
-      localStorage.setItem("vh-favorites", JSON.stringify(Array.from(next)));
-      window.dispatchEvent(new Event("vh-favorites-changed"));
-      return next;
-    });
-  };
-  return { favorites, toggle };
-}
-
 export default function TermDetail({
   term,
   locale = "zh",
@@ -72,7 +45,7 @@ export default function TermDetail({
   locale?: "zh" | "en";
 }) {
   const router = useRouter();
-  const { favorites, toggle } = useFavorites();
+  const { favorites, toggle, limitHit, dismissLimit } = useFavorites();
   const isFav = useMemo(() => favorites.has(term.slug), [favorites, term.slug]);
   const flatTerms = useFlatTerms(locale);
   const entry = useMemo(
@@ -215,6 +188,7 @@ export default function TermDetail({
 
         <TermBody term={term} locale={locale} kicker={zone} />
       </div>
+      {limitHit && <ProModal locale={locale} onClose={dismissLimit} />}
     </main>
   );
 }

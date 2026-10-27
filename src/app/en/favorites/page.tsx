@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import FavoritesView from "@/components/FavoritesView";
+import { PLANS } from "@/lib/plans";
 
 export const metadata: Metadata = {
   title: "My favorites · BuildHub",
@@ -7,5 +8,10 @@ export const metadata: Metadata = {
 };
 
 export default function EnFavoritesPage() {
-  return <FavoritesView locale="en" />;
+  return (
+    <FavoritesView
+      locale="en"
+      plans={PLANS.map((p) => ({ key: p.key, name: p.name, money: p.money, days: p.days }))}
+    />
+  );
 }

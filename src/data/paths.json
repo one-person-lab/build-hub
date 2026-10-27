@@ -1,0 +1,304 @@
+{
+  "title": "路径",
+  "subtitle": "别再从词条列表里自己找顺序。选一个你真正想要的结果，按步骤走完。",
+  "paths": [
+    {
+      "id": "first-website",
+      "order": 1,
+      "kicker": "从 0 到上线",
+      "name": "做出第一个产品官网",
+      "tagline": "从一句模糊的想法，到一个别人点开就能看懂、能留联系方式、有自己域名的网站。",
+      "outcome": "一个能直接发出去的网址：手机上打开不错位，首屏说清你卖什么，表单能收到留言，域名和 HTTPS 都正常。",
+      "outcomeShort": "一个能直接发给别人的官网",
+      "audience": "还没上线过任何东西，或者用 AI 写过页面、但从没真正交付过的人",
+      "prereq": "一台电脑，一个能跑命令的 AI 编程工具；不用会写代码",
+      "duration": "约 6–10 小时，分三次做完",
+      "steps": [
+        {
+          "title": "把想法说清楚，再动手",
+          "why": "大部分返工不是 AI 不会写，是开工前没人定「给谁、解决什么、这一版不做什么」。",
+          "assets": [
+            { "type": "course", "id": "product-website", "note": "整门 9 章，就是这条路径的主线" },
+            { "type": "prompt", "id": "clarify-spec" },
+            { "type": "prompt", "id": "clarify-scope" }
+          ],
+          "done": "你能用一句话说清给谁、做什么、凭什么是你，并写下这一版明确不做的三件事。"
+        },
+        {
+          "title": "用现成章节搭页面骨架",
+          "why": "先定有哪几页、每页干什么，再谈长什么样。顺序反了，就会在配色上耗掉一整天。",
+          "assets": [
+            { "type": "chapter", "id": "product-website/01-page-structure" },
+            { "type": "term", "id": "user-flow" },
+            { "type": "term", "id": "mvp" }
+          ],
+          "done": "页面数量控制在 5 个以内，每页能用一句话说清目的，并且知道访客下一步去哪。"
+        },
+        {
+          "title": "定一个视觉方向",
+          "why": "不要边写边想风格。先选参考，再把主色、圆角、字号写成规则，后面全部照规则来。",
+          "assets": [
+            { "type": "chapter", "id": "product-website/02-visual-direction" },
+            { "type": "style", "id": "style-saas", "note": "偏商业转化" },
+            { "type": "style", "id": "style-minimal", "note": "偏克制" },
+            { "type": "term", "id": "design-token" }
+          ],
+          "done": "选定 1 个主参考，写下 3 条视觉规则；页面里不再出现规则之外的颜色和字号。"
+        },
+        {
+          "title": "写首屏，把「你卖什么」放进去",
+          "why": "访客只会给你三秒。首屏说不清，后面的内容写得再好也没人看。",
+          "assets": [
+            { "type": "chapter", "id": "product-website/03-hero-cta" },
+            { "type": "term", "id": "hero" },
+            { "type": "term", "id": "cta" },
+            { "type": "prompt", "id": "generate-from-scratch" }
+          ],
+          "done": "不滚动就能看到：给谁、解决什么问题、点哪个按钮；按钮点下去有明确结果。"
+        },
+        {
+          "title": "补证据、价格和常见问题",
+          "why": "「很好用」不是证据。截图、数据、用户原话、可退换说明，才是让人敢下单的东西。",
+          "assets": [
+            { "type": "chapter", "id": "product-website/04-content-structure" },
+            { "type": "chapter", "id": "product-website/05-evidence-pricing-faq" },
+            { "type": "term", "id": "social-proof" },
+            { "type": "term", "id": "pricing" },
+            { "type": "term", "id": "faq" }
+          ],
+          "done": "每个卖点后面都有一条证据；价格写清包含什么、不包含什么；常见问题覆盖至少 5 条真实疑问。"
+        },
+        {
+          "title": "让表单真的能用，手机真的能看",
+          "why": "电脑上好看不算数。真实访客大半在手机上，表单报错和提交结果没设计，等于白做。",
+          "assets": [
+            { "type": "chapter", "id": "product-website/07-form-and-interaction" },
+            { "type": "chapter", "id": "product-website/08-responsive" },
+            { "type": "prompt", "id": "refactor-mobile" },
+            { "type": "term", "id": "responsive-design" }
+          ],
+          "done": "390px 宽从头滑到尾不横向滚动；表单填错有具体提示，提交成功和失败都有反馈。"
+        },
+        {
+          "title": "上线，换成自己的域名",
+          "why": "临时链接只能自己看。域名和 HTTPS 是「这是个正经产品」的最低门槛。",
+          "assets": [
+            { "type": "prompt", "id": "ship-deploy" },
+            { "type": "prompt", "id": "ship-domain" },
+            { "type": "term", "id": "deployment" },
+            { "type": "term", "id": "domain" }
+          ],
+          "done": "别人用你的域名能打开，地址栏是 HTTPS；刷新和直接访问内页都不 404。"
+        },
+        {
+          "title": "发布前过一遍验收清单",
+          "why": "最后一小时最容易漏：分享卡片、404、手机端、表单回执。过一遍清单，比上线后救火便宜。",
+          "assets": [
+            { "type": "prompt", "id": "ship-prelaunch" },
+            { "type": "skill", "id": "web-design-guidelines" },
+            { "type": "term", "id": "accessibility" }
+          ],
+          "done": "清单每一项都打勾，并且你真的用手机走完了一遍「打开 → 看懂 → 提交」。"
+        }
+      ],
+      "finish": [
+        "有一个自己的域名，HTTPS 正常",
+        "手机 390px 宽打开不错位、不横向滚动",
+        "陌生人 3 秒内能说出你是做什么的",
+        "表单提交后，你能收到内容",
+        "分享到微信或社媒，有标题、描述和封面"
+      ],
+      "next": "agent-workflow"
+    },
+    {
+      "id": "agent-workflow",
+      "order": 2,
+      "kicker": "从救火到稳定",
+      "name": "给 AI 装一套工作流",
+      "tagline": "让 AI 从「一问一答」变成「先想清楚、再计划、动手、自检」的固定流程，换新项目也不用重新教。",
+      "outcome": "项目里有一套写下来的规则和几个真正在用的技能：新任务开始时 AI 会先问清目标、给计划；出错时能定位；交付前有清单。",
+      "outcomeShort": "一套换项目也能带走的开工流程",
+      "audience": "已经在用 Claude Code、Cursor 或 Codex，但每次都要重新解释背景、经常返工的人",
+      "prereq": "装好一个能跑命令的 AI 编程工具；会复制粘贴命令",
+      "duration": "约 2–3 小时，装完当天就能用",
+      "steps": [
+        {
+          "title": "先装「找技能」的元技能",
+          "why": "你不需要背安装命令。装一个会搜索的元技能，缺什么让它自己去找。",
+          "assets": [
+            { "type": "skill", "id": "find-skills" },
+            { "type": "term", "id": "skill" }
+          ],
+          "done": "对 Agent 说「我想做 X」，它会先给出候选技能和安装命令，而不是直接瞎写。"
+        },
+        {
+          "title": "给开工加上纪律",
+          "why": "AI 最大的浪费不是写错，是没想清楚就写了一大堆。先用流程把它按住。",
+          "assets": [
+            { "type": "skill", "id": "superpowers" },
+            { "type": "skill", "id": "grill-me" }
+          ],
+          "done": "新任务开始时，Agent 会先复述目标、给计划、等你确认，再动代码。"
+        },
+        {
+          "title": "把你的项目规矩写下来",
+          "why": "每次重新解释背景，是最贵的重复劳动。规矩写进文件，Agent 每次开工自动读。",
+          "assets": [
+            { "type": "term", "id": "project-rules" },
+            { "type": "skill", "id": "skill-creator" },
+            { "type": "prompt", "id": "clarify-acceptance" }
+          ],
+          "done": "仓库里有一份项目规则文件，新会话不用再讲一遍技术栈、目录和禁区。"
+        },
+        {
+          "title": "需求没定，就别让它写",
+          "why": "「帮我做个功能」这种输入，AI 只能猜。先要一份写清范围和验收的需求。",
+          "assets": [
+            { "type": "prompt", "id": "clarify-spec" },
+            { "type": "prompt", "id": "clarify-scope" }
+          ],
+          "done": "每次开工前都有一页需求：做什么、不做什么、怎么算完成。"
+        },
+        {
+          "title": "出错时，给够信息",
+          "why": "「跑不起来」四个字，AI 只能猜。报错原文、复现步骤、期望结果，缺一个就会来回猜。",
+          "assets": [
+            { "type": "prompt", "id": "debug-error" },
+            { "type": "prompt", "id": "debug-notworking" },
+            { "type": "term", "id": "agent-loop" }
+          ],
+          "done": "问题能定位到具体文件和行；修完后同一个问题有办法验证没复发。"
+        },
+        {
+          "title": "交付前跑同一套自检",
+          "why": "靠记忆验收，每次都会漏。把清单固定下来，让 Agent 和你都照同一套标准。",
+          "assets": [
+            { "type": "prompt", "id": "refactor-review" },
+            { "type": "prompt", "id": "ship-prelaunch" },
+            { "type": "skill", "id": "skill-up" }
+          ],
+          "done": "每次交付前都跑一遍清单，结果可复述，不靠「我感觉可以了」。"
+        },
+        {
+          "title": "让项目知识随时可查",
+          "why": "会话一长，AI 就忘了前面定过什么。把项目结构变成可查询的图谱，比反复贴代码省。",
+          "assets": [
+            { "type": "skill", "id": "graphify" },
+            { "type": "term", "id": "context-engineering" },
+            { "type": "term", "id": "mcp" },
+            { "type": "explainer", "id": "drone-copilot", "note": "看一个 Agent 项目怎么从 0 跑通" }
+          ],
+          "done": "新会话里问「这个功能在哪、谁调用了它」，Agent 能给出位置，不用你重新讲。"
+        }
+      ],
+      "finish": [
+        "项目里有一份 Agent 每次都会读的规则文件",
+        "至少装了 3 个真正用上的技能，而不是装完就忘",
+        "新任务有「计划 → 确认 → 实现 → 验证」四步",
+        "交付前有一份固定清单，不靠记忆",
+        "换一个新项目，能在 10 分钟内把这套流程搬过去"
+      ],
+      "next": "ui-quality"
+    },
+    {
+      "id": "ui-quality",
+      "order": 3,
+      "kicker": "从能用到像样",
+      "name": "把界面做出质感",
+      "tagline": "不靠换模板，而是从参考、规则、状态到验收，把页面一步步推到「像正经产品」。",
+      "outcome": "一套写下来的视觉规则，加上一个经得起截图对比的页面：层级清楚、状态齐全、手机上也体面。",
+      "outcomeShort": "一个经得起截图对比的页面",
+      "audience": "页面已经能跑，但看起来像 demo；知道「土」，却说不清哪里不对的人",
+      "prereq": "有一个能打开的页面，本地或线上都行",
+      "duration": "约 3–5 小时",
+      "steps": [
+        {
+          "title": "先选参考，别凭感觉改",
+          "why": "「高级感」不是可执行的意见。选一个具体参考站，拆它的间距、字号、颜色，才知道改哪里。",
+          "assets": [
+            { "type": "style", "id": "style-saas", "note": "商业产品页" },
+            { "type": "style", "id": "style-notion", "note": "内容型产品" },
+            { "type": "style", "id": "style-minimal", "note": "克制型界面" },
+            { "type": "skill", "id": "clone-website" }
+          ],
+          "done": "选定 1 个主参考和 1 个辅助参考，写下要借鉴的 3 个具体点，每个都能落到数值或结构。"
+        },
+        {
+          "title": "把视觉规则写成文件",
+          "why": "没有规则，AI 每次生成都换一套颜色和间距，页面越改越花。",
+          "assets": [
+            { "type": "chapter", "id": "product-website/02-visual-direction" },
+            { "type": "term", "id": "design-token" },
+            { "type": "term", "id": "typography" },
+            { "type": "term", "id": "space" }
+          ],
+          "done": "主色、背景、三档文字灰、圆角、间距写成一份规则，页面只引用规则里的值。"
+        },
+        {
+          "title": "装上设计技能，别让 AI 自由发挥",
+          "why": "通用大模型默认输出「模板脸」。把设计规范和项目约束交给它，结果才稳定。",
+          "assets": [
+            { "type": "skill", "id": "frontend-design" },
+            { "type": "skill", "id": "web-design-guidelines" },
+            { "type": "skill", "id": "vercel-react-best-practices" }
+          ],
+          "done": "改界面前 Agent 会先读规范；新生成的区块和已有页面是同一套语言。"
+        },
+        {
+          "title": "把首屏和层级做对",
+          "why": "质感首先来自「一眼知道看哪」。层级乱了，再精致的阴影也救不回来。",
+          "assets": [
+            { "type": "chapter", "id": "product-website/03-hero-cta" },
+            { "type": "term", "id": "visual-hierarchy" },
+            { "type": "term", "id": "contrast" },
+            { "type": "term", "id": "hero" }
+          ],
+          "done": "遮住正文只看首屏，仍能说出：这是什么、给谁、下一步点哪。"
+        },
+        {
+          "title": "补上交互状态和动效",
+          "why": "真实产品有一半时间处在 hover、加载、空、出错这些状态里。只做「正常态」就像 demo。",
+          "assets": [
+            { "type": "skill", "id": "interaction-design" },
+            { "type": "term", "id": "transition" },
+            { "type": "term", "id": "hover" },
+            { "type": "term", "id": "focus" },
+            { "type": "term", "id": "skeleton" }
+          ],
+          "done": "每个可点元素有 hover、focus、禁用态；列表有加载和空状态，不是白屏。"
+        },
+        {
+          "title": "做最后一轮打磨",
+          "why": "到这一步不缺大结构，缺的是不一致：这里 12px 那里 14px，这里有阴影那里没有。",
+          "assets": [
+            { "type": "skill", "id": "impeccable" },
+            { "type": "prompt", "id": "refactor-review" },
+            { "type": "term", "id": "shadow" },
+            { "type": "term", "id": "border-radius" },
+            { "type": "term", "id": "dark-mode" }
+          ],
+          "done": "对照参考截图逐项过：间距、字重、颜色、圆角，全部收敛到规则里。"
+        },
+        {
+          "title": "用清单验收，不靠肉眼",
+          "why": "「我觉得还行」不是验收。用同一套标准在手机上、键盘上各走一遍。",
+          "assets": [
+            { "type": "prompt", "id": "ship-prelaunch" },
+            { "type": "skill", "id": "web-design-guidelines" },
+            { "type": "term", "id": "accessibility" }
+          ],
+          "done": "390px 不横向滚动；键盘能走完主流程；文字对比度过关；深浅色都不破版。"
+        }
+      ],
+      "finish": [
+        "视觉规则写在一份文件里，页面没有规则外的颜色和字号",
+        "遮住正文，首屏 3 秒能看懂",
+        "交互状态齐全：hover / focus / 禁用 / 加载 / 空 / 出错",
+        "390px 手机宽度不横向滚动",
+        "键盘能走完主流程，对比度过关",
+        "对照参考截图，差距能具体说出来并改掉"
+      ],
+      "next": "first-website"
+    }
+  ]
+}

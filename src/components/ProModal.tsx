@@ -23,7 +23,7 @@ const UI = {
   zh: {
     title: "BuildHub PRO",
     sub: "为认真做产品的人",
-    benefits: ["无限收藏与跨设备同步", "图鉴视图与 Markdown 导出", "新条目抢先看与终身更新（买断）"],
+    benefits: ["无限收藏（免费只有 20 条）", "收藏跨设备自动同步", "多个收藏夹与条目备注", "全文搜索与 Markdown 导出"],
     monthly: "月卡",
     yearly: "年卡",
     lifetime: "终身买断",
@@ -80,9 +80,10 @@ const UI = {
     title: "BuildHub PRO",
     sub: "For people who ship seriously",
     benefits: [
-      "Unlimited favorites & cross-device sync",
-      "Index view & Markdown export",
-      "Early access · lifetime updates (one-time plan)",
+      "Unlimited favorites (free plan holds 20)",
+      "Favorites sync across your devices",
+      "Multiple collections and notes",
+      "Full-text search and Markdown export",
     ],
     monthly: "Monthly",
     yearly: "Yearly",

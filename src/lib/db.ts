@@ -35,6 +35,22 @@ function migrate(d: Database.Database) {
       added_at TEXT NOT NULL DEFAULT (datetime('now')),
       PRIMARY KEY (user_id, slug)
     );
+    CREATE TABLE IF NOT EXISTS collections (
+      id TEXT PRIMARY KEY,
+      user_id INTEGER NOT NULL REFERENCES users(id),
+      name TEXT NOT NULL,
+      slugs TEXT NOT NULL DEFAULT '[]',
+      created_at TEXT NOT NULL DEFAULT (datetime('now')),
+      updated_at TEXT NOT NULL DEFAULT (datetime('now'))
+    );
+    CREATE INDEX IF NOT EXISTS collections_user ON collections(user_id);
+    CREATE TABLE IF NOT EXISTS notes (
+      user_id INTEGER NOT NULL REFERENCES users(id),
+      slug TEXT NOT NULL,
+      body TEXT NOT NULL,
+      updated_at TEXT NOT NULL DEFAULT (datetime('now')),
+      PRIMARY KEY (user_id, slug)
+    );
     CREATE TABLE IF NOT EXISTS orders (
       out_trade_no TEXT PRIMARY KEY,
       user_id INTEGER NOT NULL REFERENCES users(id),

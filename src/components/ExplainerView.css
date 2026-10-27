@@ -339,25 +339,215 @@
   font-size: .85rem; color: var(--exp-muted); max-width: 68ch;
 }
 
-/* 讲解目录页 */
-.exp-index .exp-sec { margin-top: 2rem; padding-top: 0; border-top: 0; }
-.exp-index-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.2rem; }
+/* ── 讲解目录页 · 封面墙 ─────────────────────────────────── */
+.exp-main.exp-index { max-width: 1120px; padding: 54px 32px 104px; }
+
+.exp-index .exp-eyebrow { margin-bottom: 12px; }
+.exp-index .exp-hero h1 {
+  font-size: clamp(32px, 4.2vw, 46px);
+  line-height: 1.14;
+  letter-spacing: -.035em;
+  font-weight: 720;
+  margin: 0;
+  text-wrap: balance;
+}
+.exp-index .exp-oneLiner {
+  max-width: 660px;
+  margin: 18px 0 0;
+  font-size: 16.5px;
+  line-height: 1.8;
+  color: var(--exp-muted);
+}
+
+.exp-index-facts {
+  display: flex; flex-wrap: wrap; gap: 10px 30px;
+  margin: 30px 0 0; padding: 17px 0 0;
+  border-top: 1px solid var(--exp-hair);
+  font-size: 13px; color: var(--exp-muted);
+}
+.exp-index-facts span { display: inline-flex; align-items: baseline; gap: 6px; white-space: nowrap; }
+.exp-index-facts b {
+  font-size: 15px; font-weight: 650; color: var(--exp-fg);
+  font-variant-numeric: tabular-nums;
+}
+
+.exp-index-wall {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 42px;
+}
 .exp-index-card {
-  display: flex; flex-direction: column; gap: .6rem; text-decoration: none;
-  border: 1px solid var(--exp-hair); border-radius: 14px; padding: 1.3rem 1.4rem;
-  color: inherit; transition: border-color .15s, background .15s, transform .15s;
+  display: flex; flex-direction: column;
+  border: 1px solid var(--exp-line); border-radius: 16px;
+  background: var(--exp-card); overflow: hidden;
+  color: inherit; text-decoration: none;
+  transition: border-color .2s var(--ease, ease), background .2s var(--ease, ease), transform .2s var(--ease, ease);
 }
-.exp-index-card:hover { border-color: var(--exp-brand); background: var(--exp-tint); transform: translateY(-2px); }
-.exp-index-card h2 { margin: 0; font-size: 1.15rem; font-weight: 800; color: var(--exp-fg); }
-.exp-index-oneline { margin: 0; font-size: .96rem; color: var(--exp-fg); line-height: 1.6; }
-.exp-index-forwhom { margin: 0; font-size: .87rem; color: var(--exp-muted); }
-.exp-index-meta { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .2rem; }
-.exp-index-meta span {
-  font-size: .74rem; color: var(--exp-muted); padding: .15rem .55rem;
-  border: 1px solid var(--exp-hair); border-radius: 999px;
+.exp-index-card:hover {
+  border-color: color-mix(in srgb, var(--exp-brand) 36%, var(--exp-line));
+  background: color-mix(in srgb, var(--exp-brand) 2.5%, var(--exp-card));
+  transform: translateY(-3px);
 }
-.exp-index-cta { margin-top: .4rem; font-size: .9rem; font-weight: 700; color: var(--exp-brand); }
-.exp-index-empty { color: var(--exp-muted); font-size: .92rem; margin: 0; }
+.exp-index-card:focus-visible { outline: 2px solid var(--exp-brand); outline-offset: 3px; }
+
+.exp-index-card.is-wide {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 360px minmax(0, 1fr);
+}
+.exp-index-card.is-wide .exp-index-cover { min-height: 100%; }
+.exp-index-card.is-wide .exp-index-body { justify-content: center; padding: 30px 34px; }
+.exp-index-card.is-wide h2 { font-size: 25px; }
+.exp-index-card.is-wide .exp-index-oneline { max-width: 640px; }
+.exp-index-card.is-wide .exp-index-go { margin-top: 18px; padding-top: 0; }
+
+.exp-index-cover {
+  position: relative;
+  display: flex; flex-direction: column;
+  min-height: 200px;
+  padding: 22px 22px 0;
+  overflow: hidden;
+  color: #f4efe4;
+  background:
+    radial-gradient(120% 90% at 85% 8%, rgba(201,168,90,.16), transparent 62%),
+    #1b1813;
+}
+:root[data-color-mode="dark"] .exp-index-cover {
+  background:
+    radial-gradient(120% 90% at 85% 8%, rgba(201,168,90,.16), transparent 62%),
+    #2a2418;
+}
+.exp-index-cover-top {
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;
+}
+.exp-index-num {
+  font-family: var(--font-serif);
+  font-size: 58px; line-height: .84; letter-spacing: -.045em;
+  color: #c9a55a; opacity: .92;
+  font-variant-numeric: lining-nums;
+}
+.exp-index-layers {
+  margin-top: 6px; padding: 3px 8px;
+  border: 1px solid rgba(244,239,228,.22); border-radius: 999px;
+  font-size: 10.5px; letter-spacing: .05em;
+  color: rgba(244,239,228,.72); white-space: nowrap;
+}
+.exp-index-quote {
+  margin: auto 0 22px;
+  font-size: 20px; font-weight: 620; line-height: 1.45;
+  letter-spacing: -.01em; color: #fbf7ee;
+}
+.exp-index-card.is-wide .exp-index-quote { font-size: 17px; }
+
+.exp-index-body {
+  display: flex; flex-direction: column; flex: 1;
+  padding: 20px 22px 22px;
+}
+.exp-index-kicker {
+  margin: 0 0 8px;
+  font-size: 11.5px; font-weight: 620; letter-spacing: .06em;
+  color: var(--exp-muted);
+}
+.exp-index-card h2 {
+  margin: 0;
+  font-size: 21px; line-height: 1.32; letter-spacing: -.02em;
+  font-weight: 680; color: var(--exp-fg);
+}
+.exp-index-oneline {
+  margin: 10px 0 0;
+  font-size: 13.5px; line-height: 1.72;
+  color: var(--exp-muted);
+  text-wrap: pretty;
+}
+.exp-index-meta {
+  margin: 14px 0 0;
+  font-size: 12px; line-height: 1.6;
+  color: var(--exp-muted);
+  font-variant-numeric: tabular-nums;
+}
+.exp-index-go {
+  margin-top: auto; padding-top: 18px;
+  font-size: 13.5px; font-weight: 650;
+  color: var(--exp-brand);
+}
+.exp-index-go::after {
+  content: " →"; display: inline-block;
+  transition: transform .2s var(--ease, ease);
+}
+.exp-index-card:hover .exp-index-go::after { transform: translateX(3px); }
+
+.exp-index-note {
+  margin-top: 66px; padding-top: 34px;
+  border-top: 1px solid var(--exp-hair);
+}
+.exp-index-note h2 {
+  margin: 0; font-size: 20px; font-weight: 680; letter-spacing: -.015em;
+}
+.exp-index-note > p {
+  max-width: 660px; margin: 10px 0 0;
+  font-size: 14px; line-height: 1.75; color: var(--exp-muted);
+}
+.exp-index-framework {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px; margin-top: 26px;
+}
+.exp-index-fw {
+  display: grid; grid-template-columns: auto minmax(0, 1fr);
+  gap: 12px; align-items: start;
+}
+.exp-index-fw-n {
+  font-family: var(--font-serif);
+  font-size: 25px; line-height: 1;
+  color: color-mix(in srgb, var(--exp-brand) 45%, var(--exp-muted));
+  font-variant-numeric: lining-nums;
+}
+.exp-index-fw b { display: block; font-size: 14px; font-weight: 650; color: var(--exp-fg); }
+.exp-index-fw p { margin: 4px 0 0; font-size: 12.5px; line-height: 1.7; color: var(--exp-muted); text-wrap: pretty; }
+.exp-index-coming {
+  display: flex; align-items: baseline; gap: 10px;
+  margin: 34px 0 0; padding-top: 16px;
+  border-top: 1px solid var(--exp-hair);
+  font-size: 12.5px; color: var(--exp-muted);
+}
+.exp-index-coming b { color: var(--exp-fg); font-weight: 620; }
+
+.exp-index-nw { white-space: nowrap; }
+
+/* 两列还留得住，但封面放不下 20px 的引语 */
+@media (max-width: 980px) {
+  .exp-index-quote,
+  .exp-index-card.is-wide .exp-index-quote { font-size: 16px; }
+  .exp-index-card.is-wide h2 { font-size: 22px; }
+}
+
+/* 再窄就一列，卡片铺满，引语可以回到 20px */
+@media (max-width: 880px) {
+  .exp-index-wall { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .exp-index-card.is-wide { display: flex; flex-direction: column; }
+  .exp-index-card.is-wide .exp-index-cover { min-height: 200px; }
+  .exp-index-card.is-wide .exp-index-body { justify-content: flex-start; padding: 20px 22px 22px; }
+  .exp-index-card.is-wide .exp-index-go { margin-top: auto; padding-top: 18px; }
+  .exp-index-quote,
+  .exp-index-card.is-wide .exp-index-quote { font-size: 20px; }
+  .exp-index-card.is-wide h2 { font-size: 21px; }
+}
+
+@media (max-width: 760px) {
+  .exp-main.exp-index { padding: 38px 20px 80px; }
+  .exp-index-wall { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  .exp-index-card.is-wide { display: flex; flex-direction: column; }
+  .exp-index-card.is-wide .exp-index-cover { min-height: 176px; }
+  .exp-index-card.is-wide .exp-index-body { padding: 20px 22px 22px; }
+  .exp-index-cover { min-height: 176px; }
+  .exp-index-num { font-size: 50px; }
+  .exp-index-quote,
+  .exp-index-card.is-wide .exp-index-quote { font-size: 15px; }
+  .exp-index-card h2,
+  .exp-index-card.is-wide h2 { font-size: 18px; }
+  .exp-index-facts { gap: 10px 20px; font-size: 12.5px; }
+  .exp-index-framework { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+}
 
 @media (max-width: 1080px) {
   .exp-shell { grid-template-columns: minmax(0, 1fr); gap: 0; }

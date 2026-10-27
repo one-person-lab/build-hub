@@ -1,8 +1,12 @@
+"use client";
+
 import SkillAvatar from "./SkillAvatar";
 import SkillCover from "./SkillCover";
 import CopyButton from "./CopyButton";
 import PronunciationButton from "./PronunciationButton";
 import RelatedSection from "./RelatedSection";
+import ProModal from "./ProModal";
+import { useFavorites } from "@/lib/favorites";
 import type { RelatedItem } from "@/lib/related";
 import "./SkillDetailView.css";
 
@@ -89,6 +93,8 @@ export default function SkillDetailView({
   const T = UI_TEXT[locale];
   const primary = skill.official || skill.repo;
   const secondary = skill.repo && skill.repo !== primary ? skill.repo : null;
+  const { favorites, toggle, limitHit, dismissLimit } = useFavorites();
+  const isFav = favorites.has(skill.id);
 
   return (
     <main>
@@ -114,6 +120,18 @@ export default function SkillDetailView({
               <div className="skill-detail-name detail-name-line">
                 <h1>{skill.name}</h1>
                 <PronunciationButton text={skill.name} locale={locale} />
+                <button
+                  type="button"
+                  className={`favorite-button skill-fav${isFav ? " is-saved" : ""}`}
+                  aria-label={locale === "en" ? "Add to favorites" : "收藏技能"}
+                  aria-pressed={isFav}
+                  title={locale === "en" ? "Add to favorites" : "收藏技能"}
+                  onClick={() => toggle(skill.id)}
+                >
+                  <svg viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+                    <path d="M23.9986 5L17.8856 17.4776L4 19.4911L14.0589 29.3251L11.6544 43L23.9986 36.4192L36.3454 43L33.9586 29.3251L44 19.4911L30.1913 17.4776L23.9986 5Z" />
+                  </svg>
+                </button>
               </div>
               <p className="skill-detail-tagline">{skill.tagline}</p>
               {skill.tags && skill.tags.length > 0 ? (
@@ -263,6 +281,7 @@ export default function SkillDetailView({
           </section>
         </div>
       </div>
+      {limitHit && <ProModal locale={locale} onClose={dismissLimit} />}
     </main>
   );
 }

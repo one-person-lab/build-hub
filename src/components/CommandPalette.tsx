@@ -2,6 +2,8 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import ProModal from "@/components/ProModal";
+import { useMe } from "@/lib/favorites";
 import zhCatalogs from "@/data/catalogs.json";
 import enCatalogs from "@/data/en-catalogs.json";
 
@@ -75,17 +77,29 @@ export function useFlatTerms(locale: "zh" | "en"): FlatTerm[] {
 
 const UI = {
   zh: {
-    placeholder: "搜索概念：试试「图标」「付费墙」…",
-    aria: "搜索概念",
+    placeholder: "搜索全站：概念、技能、提示词…",
+    aria: "搜索全站",
     empty: "没有匹配的条目",
     hint: ["↑↓ 选择", "↵ 打开"],
+    titleMode: "标题",
+    fullMode: "全文",
   },
   en: {
-    placeholder: "Search the index: try “icon”, “paywall”…",
-    aria: "Search concepts",
+    placeholder: "Search everything: concepts, skills, prompts…",
+    aria: "Search everything",
     empty: "No matching entries",
     hint: ["↑↓ select", "↵ open"],
+    titleMode: "Titles",
+    fullMode: "Full text",
   },
+};
+
+type SearchResult = {
+  title: string;
+  subtitle: string;
+  type: string;
+  href: string;
+  snippet?: string;
 };
 
 export default function CommandPalette({
@@ -96,24 +110,38 @@ export default function CommandPalette({
   onClose: () => void;
 }) {
   const router = useRouter();
-  const terms = useFlatTerms(locale);
   const [q, setQ] = useState("");
   const [active, setActive] = useState(0);
+  const [results, setResults] = useState<SearchResult[]>([]);
+  const [full, setFull] = useState(false);
+  const [showPro, setShowPro] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  const me = useMe();
+  const pro = !!me?.pro;
   const U = UI[locale];
 
-  const results = useMemo(() => {
-    const kw = q.trim().toLowerCase();
-    const pool = kw
-      ? terms.filter(
-          (t) =>
-            t.name.toLowerCase().includes(kw) ||
-            t.en.toLowerCase().includes(kw) ||
-            t.tagline.toLowerCase().includes(kw)
+  useEffect(() => {
+    const ctrl = new AbortController();
+    const timer = setTimeout(
+      () => {
+        fetch(
+          `/api/search?locale=${locale}&full=${full ? 1 : 0}&q=${encodeURIComponent(q.trim())}`,
+          { signal: ctrl.signal }
         )
-      : terms;
-    return pool.slice(0, kw ? 10 : 8);
-  }, [q, terms]);
+          .then((r) => r.json())
+          .then((d) => {
+            setResults(Array.isArray(d?.items) ? d.items : []);
+            setActive(0);
+          })
+          .catch(() => {});
+      },
+      q.trim() ? 120 : 0
+    );
+    return () => {
+      clearTimeout(timer);
+      ctrl.abort();
+    };
+  }, [q, locale, full]);
 
   useEffect(() => {
     inputRef.current?.focus();
@@ -125,55 +153,83 @@ export default function CommandPalette({
       if (e.key === "ArrowDown") setActive((i) => Math.min(i + 1, results.length - 1));
       if (e.key === "ArrowUp") setActive((i) => Math.max(i - 1, 0));
       if (e.key === "Enter" && results[active]) {
-        router.push(locale === "en" ? `/en/${results[active].slug}` : `/${results[active].slug}`);
+        router.push(results[active].href);
         onClose();
       }
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [results, active, router, onClose, locale]);
+  }, [results, active, router, onClose]);
 
   return (
-    <div className="rd-overlay" onClick={onClose}>
-      <div className="rd-palette" onClick={(e) => e.stopPropagation()}>
-        <div className="rd-palette-input">
-          <span aria-hidden>⌕</span>
-          <input
-            ref={inputRef}
-            value={q}
-            onChange={(e) => {
-              setQ(e.target.value);
-              setActive(0);
-            }}
-            placeholder={U.placeholder}
-            aria-label={U.aria}
-          />
-          <kbd>esc</kbd>
-        </div>
-        <div className="rd-results">
-          {results.map((t, i) => (
-            <div
-              key={t.slug}
-              className={`rd-result${i === active ? " is-active" : ""}`}
-              onMouseEnter={() => setActive(i)}
+    <>
+      <div className="rd-overlay" onClick={onClose}>
+        <div className="rd-palette" onClick={(e) => e.stopPropagation()}>
+          <div className="rd-palette-input">
+            <span aria-hidden>⌕</span>
+            <input
+              ref={inputRef}
+              value={q}
+              onChange={(e) => {
+                setQ(e.target.value);
+                setActive(0);
+              }}
+              placeholder={U.placeholder}
+              aria-label={U.aria}
+            />
+            <kbd>esc</kbd>
+          </div>
+          <div className="rd-modes">
+            <button
+              type="button"
+              className={!full ? "is-active" : ""}
+              onClick={() => setFull(false)}
+            >
+              {U.titleMode}
+            </button>
+            <button
+              type="button"
+              className={full ? "is-active" : ""}
               onClick={() => {
-                router.push(locale === "en" ? `/en/${t.slug}` : `/${t.slug}`);
-                onClose();
+                if (!pro) {
+                  setShowPro(true);
+                  return;
+                }
+                setFull((v) => !v);
               }}
             >
-              <b>{t.name}</b>
-              <small>{t.en}</small>
-              <span className="zone">{t.zone}</span>
-            </div>
-          ))}
-          {results.length === 0 ? <div className="rd-palette-foot">{U.empty}</div> : null}
-        </div>
-        <div className="rd-palette-foot">
-          <span>{U.hint[0]}</span>
-          <span>{U.hint[1]}</span>
-          <span style={{ marginLeft: "auto" }}>BuildHub</span>
+              {U.fullMode}
+              <i>PRO</i>
+            </button>
+          </div>
+          <div className="rd-results">
+            {results.map((t, i) => (
+              <div
+                key={t.href}
+                className={`rd-result${i === active ? " is-active" : ""}`}
+                onMouseEnter={() => setActive(i)}
+                onClick={() => {
+                  router.push(t.href);
+                  onClose();
+                }}
+              >
+                <b>{t.title}</b>
+                <small className={t.snippet ? "rd-snippet" : undefined}>
+                  {t.snippet || t.subtitle}
+                </small>
+                <span className="zone">{t.type}</span>
+              </div>
+            ))}
+            {results.length === 0 ? <div className="rd-palette-foot">{U.empty}</div> : null}
+          </div>
+          <div className="rd-palette-foot">
+            <span>{U.hint[0]}</span>
+            <span>{U.hint[1]}</span>
+            <span style={{ marginLeft: "auto" }}>BuildHub</span>
+          </div>
         </div>
       </div>
-    </div>
+      {showPro && <ProModal locale={locale} onClose={() => setShowPro(false)} />}
+    </>
   );
 }

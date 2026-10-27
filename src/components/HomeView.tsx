@@ -2,10 +2,16 @@
 
 import Link from "next/link";
 import CardDemoThumb from "./CardDemoThumb";
+import "./PathsView.css";
 import zhCatalogsData from "@/data/catalogs.json";
 import enCatalogsData from "@/data/en-catalogs.json";
 import zhProductsData from "@/data/products.json";
 import enProductsData from "@/data/en-products.json";
+import pathsData from "@/data/paths.json";
+
+const PATHS = (pathsData as unknown as {
+  paths: { id: string; name: string; kicker: string }[];
+}).paths;
 
 const FEATURED = [
   "icon-library",
@@ -78,8 +84,8 @@ const COPY = {
     h1b: "变成可用的资产。",
     lead:
       "会讲清一件事、会跑通一套流程、会做一份模板——把这些收进来，变成随时能再用的资产。不懂前端后端、看不懂 AI 的黑话？BuildHub 用大白话把前端、后端、AI、Git 这些 Vibe Coding 高频概念讲清楚，每个词条配可视化示例；技能、产品、提示词、动效、手册都替你筛过。",
-    ctaBrowse: "从第一个概念开始",
-    ctaStyle: "系统学一遍",
+    ctaBrowse: "从零做出第一个官网",
+    ctaStyle: "先逛概念",
     statTerms: "概念词条",
     statStyles: "设计风格",
     statProducts: "精选产品",
@@ -171,11 +177,14 @@ export default function HomeView({ locale = "zh" }: { locale?: "zh" | "en" }) {
           </h1>
           <p className="rd-lead">{C.lead}</p>
           <div className="rd-ctas">
-            <Link href={`${base}/topics/frontend`} className="rd-btn">
+            <Link
+              href={en ? `${base}/topics/frontend` : "/paths/first-website"}
+              className="rd-btn"
+            >
               {C.ctaBrowse}
             </Link>
             {!en && (
-              <Link href="/courses" className="rd-btn-ghost">
+              <Link href="/topics/frontend" className="rd-btn-ghost">
                 {C.ctaStyle}
               </Link>
             )}
@@ -198,6 +207,20 @@ export default function HomeView({ locale = "zh" }: { locale?: "zh" | "en" }) {
               {C.statFree}
             </span>
           </div>
+
+          {!en && (
+            <div className="pth-home-start">
+              <span className="pth-home-start-label">按路径走</span>
+              <div className="pth-home-links">
+                {PATHS.map((p) => (
+                  <Link href={`/paths/${p.id}`} key={p.id}>
+                    <small>{p.kicker}</small>
+                    <b>{p.name}</b>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
         </section>
 
         <section className="rd-section">

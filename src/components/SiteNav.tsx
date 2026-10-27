@@ -18,6 +18,7 @@ type Locale = "zh" | "en";
 
 const SECTIONS: Record<Locale, { href: string; label: string }[]> = {
   zh: [
+    { href: "/paths", label: "路径" },
     { href: "/topics/frontend", label: "概念" },
     { href: "/principles", label: "原理" },
     { href: "/skills", label: "技能" },
@@ -40,7 +41,7 @@ const SECTIONS: Record<Locale, { href: string; label: string }[]> = {
 
 const UI = {
   zh: {
-    searchLabel: "搜索概念…",
+    searchLabel: "搜索全站…",
     goPro: "Go Pro",
     toDark: "切换到黑夜模式",
     toLight: "切换到白昼模式",
@@ -61,7 +62,7 @@ const UI = {
     groupAccount: "账号与语言",
   },
   en: {
-    searchLabel: "Search the index…",
+    searchLabel: "Search everything…",
     goPro: "Go Pro",
     toDark: "Switch to dark mode",
     toLight: "Switch to light mode",
@@ -368,10 +369,10 @@ export default function SiteNav() {
                 <span className="rd-menu-sep" aria-hidden />
                 <div className="rd-menu-group rd-menu-group-more">
                   <p className="rd-menu-label">{U.groupMore}</p>
-                  <a href={`${base}/practice`} role="menuitem">{U.practice}</a>
                   {locale === "zh" && (
                     <a href="/courses" role="menuitem">{U.courses}</a>
                   )}
+                  <a href={`${base}/practice`} role="menuitem">{U.practice}</a>
                   <a href={skillHref} role="menuitem">{U.skill}</a>
                   <a href="https://lab.smzsapp.com/" target="_blank" rel="noreferrer" className="rd-menu-site">
                     <span className="rd-menu-site-mark" aria-hidden>✦</span>

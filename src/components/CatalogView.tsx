@@ -8,6 +8,8 @@ import assetsData from "@/data/assets.json";
 import enAssetsData from "@/data/en-assets.json";
 import CardDemoThumb from "@/components/CardDemoThumb";
 import MotionDetailModal from "@/components/MotionDetailModal";
+import ProModal from "@/components/ProModal";
+import { useFavorites } from "@/lib/favorites";
 import type { Platform } from "@/lib/types";
 import "./AssetLibraryView.css";
 
@@ -126,7 +128,6 @@ export default function CatalogView({
     [CATALOGS, catalogKey]
   );
   const [activeGroup, setActiveGroup] = useState<string | null>(null);
-  const [favorites, setFavorites] = useState<Set<string>>(new Set());
   const [platformFilter, setPlatformFilter] = useState<PlatformFilter>("all");
 
   // 平台筛选：概念目录里确实存在非 Web 词条时才出现；设计页用 APP/网页分类替代
@@ -187,35 +188,8 @@ export default function CatalogView({
         )
       : undefined;
 
-  // 收藏持久化
-  useEffect(() => {
-    const read = () => {
-      try {
-        const saved = JSON.parse(localStorage.getItem("vh-favorites") || "[]");
-        if (Array.isArray(saved)) setFavorites(new Set(saved.filter((s) => typeof s === "string")));
-      } catch {
-        setFavorites(new Set());
-      }
-    };
-    read();
-    const onSynced = (e: Event) =>
-      setFavorites(
-        new Set((e as CustomEvent<string[]>).detail.filter((s) => typeof s === "string"))
-      );
-    window.addEventListener("vh-favorites-synced", onSynced);
-    return () => window.removeEventListener("vh-favorites-synced", onSynced);
-  }, []);
-
-  const toggleFavorite = (slug: string) => {
-    setFavorites((prev) => {
-      const next = new Set(prev);
-      if (next.has(slug)) next.delete(slug);
-      else next.add(slug);
-      localStorage.setItem("vh-favorites", JSON.stringify(Array.from(next)));
-      window.dispatchEvent(new Event("vh-favorites-changed"));
-      return next;
-    });
-  };
+  // 收藏：非 PRO 到 20 条时不写本地，直接弹开通卡
+  const { favorites, toggle: toggleFavorite, limitHit, dismissLimit } = useFavorites();
 
   // Scroll spy：根据当前进入视口的分组 section 高亮左侧实时目录
   useEffect(() => {
@@ -556,6 +530,7 @@ export default function CatalogView({
         </div>
       </div>
     </div>
+    {limitHit && <ProModal locale={locale} onClose={dismissLimit} />}
     </main>
   );
 }

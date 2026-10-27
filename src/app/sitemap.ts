@@ -16,6 +16,7 @@ import enDistillData from "@/data/en-distill.json";
 import explainersData from "@/data/explainers.json";
 import playbooksData from "@/data/playbooks.json";
 import coursesData from "@/data/courses.json";
+import pathsData from "@/data/paths.json";
 
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || process.env.APP_URL || "https://buildhub.cn";
@@ -34,6 +35,7 @@ const RESERVED = new Set([
   "en",
   "explains",
   "practice",
+  "paths",
   "playbooks",
   "principles",
   "privacy",
@@ -103,6 +105,11 @@ function zh(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/explains`, lastModified: new Date() },
     { url: `${SITE_URL}/playbooks`, lastModified: new Date() },
     { url: `${SITE_URL}/courses`, lastModified: new Date() },
+    { url: `${SITE_URL}/paths`, lastModified: new Date() },
+    ...entries(
+      "/paths",
+      (pathsData as { paths: { id: string }[] }).paths.map((p) => p.id),
+    ),
     { url: `${SITE_URL}/changelog`, lastModified: new Date() },
     { url: `${SITE_URL}/practice`, lastModified: new Date() },
     { url: `${SITE_URL}/anti-ai-flavor`, lastModified: new Date() },
