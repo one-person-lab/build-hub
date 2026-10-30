@@ -108,13 +108,16 @@
 .exp-memory-cap a { color: var(--exp-brand); }
 .exp-sub-note { font-size: .78rem; font-weight: 500; color: var(--exp-muted); letter-spacing: 0; }
 
-/* ── 页头第一行：左边小标，右边两枚小钮（返回 + 复制），同一行对齐 ── */
+/* ── 页头第一行：左边小标，右边小钮（返回 / 原型入口 / 复制），窄屏换行不溢出 ── */
 .exp-hero-top {
   display: flex; align-items: center; justify-content: space-between; gap: 1rem;
   margin: 0 0 .8rem;
 }
 .exp-hero-top .exp-eyebrow { margin-bottom: 0; }
-.exp-corner { display: flex; align-items: center; gap: 8px; }
+.exp-corner {
+  display: flex; align-items: center; justify-content: flex-end;
+  flex-wrap: wrap; gap: 8px;
+}
 .exp-chip {
   display: inline-flex; align-items: center; gap: .4rem; flex: none;
   height: 30px; padding: 0 .7rem; border-radius: 8px;
@@ -506,6 +509,9 @@
 }
 @media (max-width: 620px) {
   .exp-kv-row { grid-template-columns: minmax(0, 1fr); gap: .25rem; }
+  /* 页头右侧放不下三枚小钮，整组挪到小标下方独占一行 */
+  .exp-hero-top { flex-wrap: wrap; }
+  .exp-corner { width: 100%; justify-content: flex-start; }
 }
 
 /* ── 专题索引页 · 技术手册入口 ─────────────────────────────── */
