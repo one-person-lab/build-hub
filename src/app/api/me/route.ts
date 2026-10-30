@@ -9,7 +9,7 @@ export async function GET() {
   return NextResponse.json({
     user: user ? { email: user.email, proUntil: user.proUntil } : null,
     pro: isPro(user),
-    plans: PLANS.map(({ key, name, money, listPrice, days }) => ({ key, name, money, listPrice, days })),
+    plans: PLANS.map(({ key, name, money, days }) => ({ key, name, money, days })),
     // 验证单不进 plans，白名单另走一个字段，付费弹窗永远不会渲染它
     payTest:
       user && owner

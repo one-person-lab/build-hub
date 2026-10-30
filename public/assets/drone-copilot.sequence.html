@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>无人机智能作业 Copilot · 任务时序图</title>
+<link rel="stylesheet" href="./drone-copilot.figure.css">
+<style>
+.seq { max-width: 1180px; margin: 0 auto; }
+.stage svg { display: block; width: 100%; height: auto; }
+.stage text { font-family: inherit; }
+
+/* 分支 */
+.branch { margin-top: 18px; }
+.branch-k {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 9px;
+  font-size: 10px; font-weight: 800; letter-spacing: .16em; color: var(--ink-3); text-transform: uppercase;
+}
+.branch-k i { flex: 1; height: 1px; background: linear-gradient(90deg, var(--line), transparent); }
+.branch-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.bcard {
+  padding: 11px 12px; border-radius: 11px;
+  border: 1px solid var(--line); border-top: 2px solid var(--tone);
+  background: rgba(148, 163, 184, .04);
+}
+.bcard b { display: flex; align-items: center; gap: 7px; font-size: 12.5px; font-weight: 750; color: #fff; }
+.bcard b .dot { background: var(--tone); }
+.bcard p { margin: 5px 0 0; font-size: 11.5px; line-height: 1.5; color: var(--ink-2); }
+
+/* 窄屏：换成竖向步骤 */
+.list { display: none; }
+.steps { list-style: none; margin: 0; padding: 0; }
+.steps li { display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 10px; padding: 10px 0; border-top: 1px solid var(--line); }
+.steps li:first-child { border-top: 0; }
+.steps .n {
+  display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%;
+  font-size: 10.5px; font-weight: 800; color: var(--bg); background: var(--tone, var(--gold));
+}
+.steps .flow-line { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--ink-3); }
+.steps .flow-line b { color: var(--ink); font-weight: 650; }
+.steps .flow-line s { text-decoration: none; color: var(--ink-3); }
+.steps p { margin: 3px 0 0; font-size: 13px; color: var(--ink-2); }
+.steps li[data-reply] p { color: var(--ink-3); }
+
+@media (max-width: 880px) {
+  body { padding: 20px 18px 22px; }
+  .stage { display: none; }
+  .list { display: block; }
+  .branch-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 520px) {
+  .branch-grid { grid-template-columns: minmax(0, 1fr); }
+}
+</style>
+</head>
+<body>
+<main class="seq">
+  <div class="stage" id="stage" aria-hidden="true"></div>
+  <div class="list"><ol class="steps" id="steps"></ol></div>
+
+  <section class="branch">
+    <div class="branch-k">分支处理<i></i></div>
+    <div class="branch-grid">
+      <div class="bcard tone-emerald">
+        <b><span class="dot"></span>成功</b>
+        <p>平台回报完成与媒体落库，模型只负责解释结果、生成记录。</p>
+      </div>
+      <div class="bcard tone-rose">
+        <b><span class="dot"></span>失败</b>
+        <p>平台返回错误码，原样回报原因；有副作用的动作不自动重试。</p>
+      </div>
+      <div class="bcard tone-amber">
+        <b><span class="dot"></span>超时</b>
+        <p>结果未知按 UNKNOWN 处理，先查平台真实状态，不当作失败重跑。</p>
+      </div>
+      <div class="bcard tone-violet">
+        <b><span class="dot"></span>人工接管</b>
+        <p>任一护栏拦截即中断并转人工；计划版本与 Trace 保留，可回放。</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+(function () {
+  var ACTORS = [
+    { id: "user",  label: "巡检操作员",      sub: "圈选 + 口述",        tone: "#d4af5e" },
+    { id: "ui",    label: "Copilot 确认端",  sub: "会话 · 确认卡 · 进度", tone: "#38d3e8" },
+    { id: "agent", label: "Agent 编排器",    sub: "意图 · 流程 · 选工具", tone: "#a78bfa" },
+    { id: "state", label: "状态查询服务",    sub: "设备 · 空域 · 任务",   tone: "#7cc4fb" },
+    { id: "gw",    label: "工具网关",        sub: "注册 · 参数 · 权限",   tone: "#3ddc97" },
+    { id: "guard", label: "安全护栏",        sub: "五类校验 · 凭证",     tone: "#fb7185" },
+    { id: "biz",   label: "无人机业务平台",  sub: "设备 · 航线 · 任务",   tone: "#f6c453" }
+  ];
+
+  var MSGS = [
+    { from: "user",  to: "ui",    text: "圈选地块 + 口述「巡检这里的消防通道」" },
+    { from: "ui",    to: "agent", text: "指令 + GeoJSON + 会话上下文" },
+    { from: "agent", to: "state", text: "查机巢 / 电量 / 载荷 / 空域 / 任务占用" },
+    { from: "state", to: "agent", text: "本轮状态快照", reply: true },
+    { from: "agent", to: "gw",    text: "生成巡检航线草稿" },
+    { from: "gw",    to: "guard", text: "权限 / 参数 / 设备 / 空域校验" },
+    { from: "guard", to: "agent", text: "通过 · 计划 v1 落版", reply: true },
+    { from: "agent", to: "ui",    text: "计划 v1 + 航线预览 + 风险项", reply: true },
+    { from: "user",  to: "ui",    text: "确认执行（绑定 v1）" },
+    { from: "ui",    to: "guard", text: "planId + 版本 + 一次性凭证" },
+    { from: "guard", to: "biz",   text: "复核状态后下发任务" },
+    { from: "biz",   to: "ui",    text: "任务 ID + 进度流（以平台为准）", reply: true },
+    { from: "agent", to: "gw",    text: "异常处置：拍照取证 / 远程喊话" },
+    { from: "biz",   to: "agent", text: "事件 · 证据 · 最终状态", reply: true }
+  ];
+
+  var NS = "http://www.w3.org/2000/svg";
+  function el(name, attrs, text) {
+    var n = document.createElementNS(NS, name);
+    for (var k in attrs) n.setAttribute(k, attrs[k]);
+    if (text != null) n.textContent = text;
+    return n;
+  }
+  function idx(id) { for (var i = 0; i < ACTORS.length; i++) if (ACTORS[i].id === id) return i; return -1; }
+
+  function renderSvg() {
+    var stage = document.getElementById("stage");
+    var W = Math.max(720, Math.floor(stage.clientWidth));
+    if (!W) return;
+
+    var headH = 54, top = headH + 34, gap = 38;
+    var bodyH = top + MSGS.length * gap + 16;
+    var svg = el("svg", { viewBox: "0 0 " + W + " " + bodyH, width: W, height: bodyH, role: "img" });
+
+    var defs = el("defs");
+    [["arrow", "#d4af5e"], ["arrow-reply", "#64748b"]].forEach(function (p) {
+      var m = el("marker", { id: p[0], viewBox: "0 0 8 8", refX: 7, refY: 4, markerWidth: 7, markerHeight: 7, orient: "auto" });
+      m.appendChild(el("path", { d: "M0,0 L8,4 L0,8 z", fill: p[1] }));
+      defs.appendChild(m);
+    });
+    svg.appendChild(defs);
+
+    var colW = W / ACTORS.length;
+    function cx(i) { return colW * i + colW / 2; }
+
+    ACTORS.forEach(function (a, i) {
+      var bw = Math.min(colW - 10, 168), bh = headH;
+      var x = cx(i) - bw / 2;
+      var box = el("g");
+      box.appendChild(el("rect", { x: x, y: 0, width: bw, height: bh, rx: 10, fill: "rgba(148,163,184,.06)", stroke: a.tone, "stroke-opacity": .55 }));
+      box.appendChild(el("rect", { x: x, y: 0, width: 3, height: bh, rx: 1.5, fill: a.tone }));
+      box.appendChild(el("text", { x: x + 12, y: 21, fill: "#fff", "font-size": 12.5, "font-weight": 700 }, a.label));
+      box.appendChild(el("text", { x: x + 12, y: 38, fill: "#8b97ac", "font-size": 10.5 }, a.sub));
+      svg.appendChild(box);
+      svg.appendChild(el("line", { x1: cx(i), y1: bh, x2: cx(i), y2: bodyH - 8, stroke: "rgba(148,163,184,.22)", "stroke-dasharray": "3 5" }));
+    });
+
+    MSGS.forEach(function (m, i) {
+      var a = idx(m.from), b = idx(m.to);
+      var y = top + i * gap;
+      var x1 = cx(a), x2 = cx(b);
+      var dir = x2 > x1 ? 1 : -1;
+      var tone = m.reply ? "#7b879c" : ACTORS[a].tone;
+
+      var g = el("g");
+      g.appendChild(el("line", {
+        x1: x1 + dir * 1, y1: y, x2: x2 - dir * 2, y2: y,
+        stroke: tone, "stroke-width": m.reply ? 1.1 : 1.5,
+        "stroke-dasharray": m.reply ? "4 4" : "none",
+        "marker-end": "url(#" + (m.reply ? "arrow-reply" : "arrow") + ")"
+      }));
+      // 序号并入标签，避免圆点压住说明文字
+      var midX = (x1 + x2) / 2;
+      var label = el("text", {
+        x: midX, y: y - 8, "text-anchor": "middle",
+        fill: m.reply ? "#8b97ac" : "#dbe3f0",
+        "font-size": 11.5, "font-weight": m.reply ? 400 : 600
+      });
+      label.appendChild(el("tspan", { fill: tone, "font-weight": 800 }, (i + 1) + "  "));
+      label.appendChild(el("tspan", m.reply ? { fill: "#8b97ac" } : { fill: "#dbe3f0" }, m.text));
+      g.appendChild(label);
+      svg.appendChild(g);
+      var bb;
+      try { bb = label.getBBox(); } catch (_) { bb = null; }
+      if (bb && bb.width) {
+        var pad = 5;
+        var bg = el("rect", {
+          x: bb.x - pad, y: bb.y - 2, width: bb.width + pad * 2, height: bb.height + 3,
+          fill: "#080c16", "fill-opacity": .96
+        });
+        g.insertBefore(bg, label);
+      }
+    });
+
+    stage.innerHTML = "";
+    stage.appendChild(svg);
+  }
+
+  function renderList() {
+    var ol = document.getElementById("steps");
+    ol.innerHTML = "";
+    MSGS.forEach(function (m, i) {
+      var li = document.createElement("li");
+      li.style.setProperty("--tone", m.reply ? "#7b879c" : ACTORS[idx(m.from)].tone);
+      if (m.reply) li.setAttribute("data-reply", "");
+      var n = document.createElement("span");
+      n.className = "n";
+      n.textContent = String(i + 1);
+      var body = document.createElement("div");
+      var fl = document.createElement("div");
+      fl.className = "flow-line";
+      fl.innerHTML = "<b>" + ACTORS[idx(m.from)].label + "</b><s>" + (m.reply ? "⇢" : "→") + "</s><b>" + ACTORS[idx(m.to)].label + "</b>";
+      var p = document.createElement("p");
+      p.textContent = m.text;
+      body.appendChild(fl);
+      body.appendChild(p);
+      li.appendChild(n);
+      li.appendChild(body);
+      ol.appendChild(li);
+    });
+  }
+
+  function send() {
+    var h = Math.ceil(document.documentElement.getBoundingClientRect().height);
+    if (h > 0) parent.postMessage({ __expFigure: true, height: h }, "*");
+  }
+
+  renderList();
+  renderSvg();
+  window.addEventListener("resize", function () { renderSvg(); send(); });
+  window.addEventListener("load", function () { renderSvg(); send(); });
+  if (window.ResizeObserver) new ResizeObserver(send).observe(document.body);
+  setTimeout(send, 60);
+  send();
+})();
+</script>
+</body>
+</html>

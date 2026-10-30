@@ -15,7 +15,7 @@ import zhDistill from "@/data/distill.json";
 import enDistill from "@/data/en-distill.json";
 import courses from "@/data/courses.json";
 import paths from "@/data/paths.json";
-import { currentUser, isPro } from "@/lib/session";
+import { BOOKS, flatChapters } from "@/lib/drone-book";
 
 type Item = {
   key: string;
@@ -24,7 +24,7 @@ type Item = {
   type: string;
   href: string;
   match: string;
-  /** 正文纯文本，只给 PRO 全文搜索用；不含 HTML、链接和资源路径 */
+  /** 正文纯文本，给全文搜索命中用；不含 HTML、链接和资源路径 */
   deep?: string;
 };
 
@@ -105,7 +105,6 @@ const ZONES: Record<Locale, Record<string, string>> = {
     ai: "AI",
     git: "Git",
     design: "设计",
-    principles: "原理",
   },
   en: {
     frontend: "Frontend",
@@ -116,7 +115,6 @@ const ZONES: Record<Locale, Record<string, string>> = {
     ai: "AI",
     git: "Git",
     design: "Design",
-    principles: "Principles",
   },
 };
 
@@ -145,7 +143,9 @@ function makeIndex(locale: Locale): Item[] {
           subtitle: t.tagline ?? "",
           type: zone,
           href: `${base}/${t.slug}`,
-          match: [t.name, t.en, t.tagline, ...(t.aliases ?? [])].filter(Boolean).join(" "),
+          match: [t.name, t.en, t.tagline, ...(t.aliases ?? []), ...(termBodies.get(t.slug)?.aliases ?? [])]
+            .filter(Boolean)
+            .join(" "),
           deep: deepText(termBodies.get(t.slug) ?? { name: t.name, tagline: t.tagline }),
         });
       }
@@ -256,6 +256,28 @@ function makeIndex(locale: Locale): Item[] {
         deep: deepText(e),
       });
     }
+    for (const [id, book] of Object.entries(BOOKS)) {
+      items.push({
+        key: `book:${id}`,
+        title: `${book.title}${book.subtitle}`,
+        subtitle: book.oneLiner,
+        type: L.explainer,
+        href: `/explains/${id}`,
+        match: [book.title, book.subtitle, book.oneLiner, book.intro].join(" "),
+        deep: deepText(book),
+      });
+      for (const chapter of flatChapters(book)) {
+        items.push({
+          key: `book:${id}:${chapter.id}`,
+          title: `第 ${chapter.id} 章 ${chapter.title}`,
+          subtitle: `${book.title} · ${chapter.summary}`,
+          type: L.explainer,
+          href: `/explains/${id}/${chapter.slug}`,
+          match: [chapter.title, chapter.summary, ...Object.values(chapter.sections)].filter(Boolean).join(" "),
+          deep: deepText(chapter),
+        });
+      }
+    }
     for (const [id, c] of Object.entries(courses as Record<string, any>)) {
       if (id === "index" || id === "chapters") continue;
       if (c.kind !== "list") continue;
@@ -282,9 +304,8 @@ const INDEX: Record<Locale, Item[]> = {
 
 const SECTIONS: Record<Locale, { label: string; title: string; subtitle: string; href: string }[]> = {
   zh: [
-    { label: "路径", title: "路径", subtitle: "三条排好顺序的动手路线", href: "/paths" },
-    { label: "概念", title: "概念", subtitle: "343 个词条，配可视化示例", href: "/topics/frontend" },
-    { label: "原理", title: "原理", subtitle: "RAG、向量、重排这些技术点", href: "/principles" },
+    { label: "路径", title: "路径", subtitle: "四条排好顺序的动手路线", href: "/paths" },
+    { label: "概念", title: "概念", subtitle: "400+ 个词条，配可视化示例", href: "/topics/frontend" },
     { label: "课程", title: "课程", subtitle: "成体系地走完一遍", href: "/courses" },
     { label: "技能", title: "技能库", subtitle: "精选 Agent Skills，附安装命令", href: "/skills" },
     { label: "产品", title: "产品图鉴", subtitle: "真实用过的工具与网站", href: "/products" },
@@ -292,7 +313,7 @@ const SECTIONS: Record<Locale, { label: string; title: string; subtitle: string;
     { label: "设计", title: "设计", subtitle: "可点开看的界面风格", href: "/design" },
     { label: "动效", title: "动效", subtitle: "顶级 App 的交互动效拆解", href: "/distill" },
     { label: "专题", title: "专题", subtitle: "从 0 到 1 的完整拆解", href: "/explains" },
-    { label: "手册", title: "手册", subtitle: "一步一步照着跑的实操流程", href: "/playbooks" },
+    { label: "手册", title: "手册", subtitle: "什么时候用、怎么做、做到什么程度算过", href: "/playbooks" },
   ],
   en: [
     { label: "concepts", title: "Concepts", subtitle: "Plain-word explanations with live demos", href: "/en/topics/frontend" },
@@ -330,12 +351,12 @@ function quickLinks(locale: Locale): Item[] {
     ];
   }
   return [
-    { key: "go:paths", title: "三条路径", subtitle: "做出官网 / 装好工作流 / 做出质感", type: L.entry, href: "/paths", match: "" },
+    { key: "go:paths", title: "四条路径", subtitle: "做出官网 / 装好工作流 / 做出质感 / 做出 AI 应用", type: L.entry, href: "/paths", match: "" },
     { key: "go:course", title: "从零做一个产品官网", subtitle: "9 章 · 从需求到上线", type: L.course, href: "/courses/product-website", match: "" },
     { key: "go:git", title: "Git 工作流与版本管理", subtitle: "6 章 · 从提交到协作", type: L.course, href: "/courses/git-workflow", match: "" },
     { key: "go:skills", title: "技能库", subtitle: "精选 Agent Skills，附安装命令", type: L.entry, href: "/skills", match: "" },
     { key: "go:prompts", title: "提示词库", subtitle: "可直接复制的全流程提示词", type: L.entry, href: "/prompts", match: "" },
-    { key: "go:playbooks", title: "手册", subtitle: "一步一步照着跑的实操流程", type: L.entry, href: "/playbooks", match: "" },
+    { key: "go:playbooks", title: "手册", subtitle: "什么时候用、怎么做、做到什么程度算过", type: L.entry, href: "/playbooks", match: "" },
     { key: "go:design", title: "设计", subtitle: "可点开看的界面风格", type: L.entry, href: "/design", match: "" },
   ];
 }
@@ -389,10 +410,10 @@ export async function GET(req: Request) {
   const url = new URL(req.url);
   const locale: Locale = url.searchParams.get("locale") === "en" ? "en" : "zh";
   const q = (url.searchParams.get("q") ?? "").trim().toLowerCase();
-  const wantsFull = url.searchParams.get("full") === "1";
-  const full = wantsFull && isPro(await currentUser());
+  /* 全文搜索免费：内容本来就全公开，把「找得到」锁进 PRO 等于给自己造诱饵 */
+  const full = url.searchParams.get("full") === "1";
 
-  if (!q) return NextResponse.json({ items: brief(quickLinks(locale)), full, locked: false });
+  if (!q) return NextResponse.json({ items: brief(quickLinks(locale)), full });
 
   const tokens = q.split(/\s+/).filter(Boolean).slice(0, 4);
   const snippets = new Map<string, string>();
@@ -410,5 +431,5 @@ export async function GET(req: Request) {
     14
   );
 
-  return NextResponse.json({ items: brief(items, snippets), full, locked: wantsFull && !full });
+  return NextResponse.json({ items: brief(items, snippets), full });
 }

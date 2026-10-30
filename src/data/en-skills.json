@@ -1,6 +1,6 @@
 {
   "title": "Skill Library",
-  "subtitle": "A curated set of mainstream Agent Skills that actually earn their place, grouped by purpose. Every entry ships a one-click install command. Our own open-source skills will join over time.",
+  "subtitle": "A curated set of mainstream Agent Skills that actually earn their place, grouped by purpose. Every entry ships a one-click install command.",
   "categories": [
     {
       "key": "meta",

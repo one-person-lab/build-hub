@@ -7,6 +7,13 @@ import { FREE_FAVORITE_LIMIT, useFavoriteSlugs, useMe } from "@/lib/favorites";
 import { track } from "@/lib/track";
 
 type Order = { plan: string; name: string; money: string; status: string; date: string };
+type ManualOrder = {
+  outTradeNo: string;
+  email: string;
+  name: string;
+  money: string;
+  createdAt: string;
+};
 
 const UI = {
   zh: {
@@ -44,6 +51,12 @@ const UI = {
     paid: "已支付",
     revoked: "已撤销",
     billEmpty: "还没有订单。",
+    manualBlock: "待人工开通",
+    manualEmpty: "没有等核销的手机端订单。",
+    manualWho: "账号",
+    manualWhen: "下单时间",
+    manualSettle: "确认到账",
+    manualDone: "已开通",
   },
   en: {
     title: "Account",
@@ -80,6 +93,12 @@ const UI = {
     paid: "Paid",
     revoked: "Revoked",
     billEmpty: "No orders yet.",
+    manualBlock: "Waiting to activate",
+    manualEmpty: "No phone orders to settle.",
+    manualWho: "Account",
+    manualWhen: "Placed",
+    manualSettle: "Money received",
+    manualDone: "Activated",
   },
 };
 
@@ -96,6 +115,7 @@ export default function AccountView({ locale }: { locale: "zh" | "en" }) {
   const [showTest, setShowTest] = useState(false);
   const slugs = useFavoriteSlugs();
   const [orders, setOrders] = useState<Order[]>([]);
+  const [manuals, setManuals] = useState<ManualOrder[]>([]);
   const taps = useRef({ n: 0, at: 0 });
   const timer = useRef<ReturnType<typeof setInterval> | null>(null);
   const index = useFavoriteIndex(locale);
@@ -116,6 +136,36 @@ export default function AccountView({ locale }: { locale: "zh" | "en" }) {
       .then((d: { orders: Order[] }) => setOrders(d.orders ?? []))
       .catch(() => {});
   }, [me?.user?.email]);
+
+  // 手机端人工开通的单只有站长看得到；别人访问这个接口直接 404
+  useEffect(() => {
+    if (!me?.payTest) return;
+    fetch("/api/pro/manual")
+      .then((r) => (r.ok ? r.json() : { orders: [] }))
+      .then((d: { orders: ManualOrder[] }) => setManuals(d.orders ?? []))
+      .catch(() => {});
+  }, [me?.payTest]);
+
+  async function settleManual(outTradeNo: string) {
+    setBusy(true);
+    try {
+      const r = await fetch("/api/pro/manual", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ out_trade_no: outTradeNo }),
+      });
+      if (!r.ok) {
+        setErr(U.errGeneric);
+        return;
+      }
+      track("manual_settled", { order: outTradeNo });
+      setManuals((list) => list.filter((o) => o.outTradeNo !== outTradeNo));
+    } catch {
+      setErr(U.errGeneric);
+    } finally {
+      setBusy(false);
+    }
+  }
 
   useEffect(() => {
     if (countdown <= 0) return;
@@ -182,7 +232,7 @@ export default function AccountView({ locale }: { locale: "zh" | "en" }) {
     <main className="rd-account">
       <h1>{U.title}</h1>
       {me === null ? null : !me.user ? (
-        <section className="rd-card">
+        <section className="rd-card acct-login">
           <h2>{U.loginTitle}</h2>
           <p className="sub">{U.loginSub}</p>
           <input
@@ -304,6 +354,49 @@ export default function AccountView({ locale }: { locale: "zh" | "en" }) {
               </ul>
             )}
           </section>
+
+          {me?.payTest && (
+            <section className="acct-block">
+              <header className="acct-block-head">
+                <h2>{U.manualBlock}</h2>
+              </header>
+              {manuals.length === 0 ? (
+                <p className="acct-empty">{U.manualEmpty}</p>
+              ) : (
+                <table className="acct-bill">
+                  <thead>
+                    <tr>
+                      <th>{U.manualWho}</th>
+                      <th>{U.billPlan}</th>
+                      <th>{U.billMoney}</th>
+                      <th>{U.manualWhen}</th>
+                      <th />
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {manuals.map((o) => (
+                      <tr key={o.outTradeNo}>
+                        <td>{o.email}</td>
+                        <td>{o.name.replace("BuildHub ", "")}</td>
+                        <td>¥{o.money}</td>
+                        <td>{o.createdAt.slice(5, 16)}</td>
+                        <td>
+                          <button
+                            type="button"
+                            className="acct-settle"
+                            disabled={busy}
+                            onClick={() => settleManual(o.outTradeNo)}
+                          >
+                            {U.manualSettle}
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              )}
+            </section>
+          )}
 
           <section className="acct-block">
             <header className="acct-block-head">

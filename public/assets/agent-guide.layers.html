@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agent 应用的分层参考架构</title>
+<link rel="stylesheet" href="./agent-guide.figure.css">
+<style>
+.stack { display: grid; gap: 0; }
+.layer {
+  display: grid; grid-template-columns: 132px minmax(0, 1fr); gap: 14px; align-items: start;
+  padding: 14px 0;
+}
+.layer + .layer { border-top: 1px solid var(--line); }
+.lk { padding-top: 4px; }
+.lk b { display: block; font-size: 12.5px; font-weight: 750; color: var(--tone); letter-spacing: .02em; }
+.lk span { display: block; margin-top: 3px; font-size: 11px; line-height: 1.5; color: var(--ink-3); }
+.boxes { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 9px; }
+.box {
+  padding: 10px 11px; border-radius: 10px; border: 1px solid var(--line); background: var(--panel);
+}
+.box b { display: block; font-size: 12.5px; font-weight: 700; color: var(--ink); margin-bottom: 3px; }
+.box span { display: block; font-size: 11.5px; line-height: 1.5; color: var(--ink-2); }
+.core { border-color: rgba(212,175,94,.34); background: rgba(212,175,94,.06); }
+.loop {
+  grid-column: 1 / -1; margin-top: 9px; padding: 8px 11px; border-radius: 9px;
+  border: 1px dashed rgba(212,175,94,.42); background: rgba(212,175,94,.05);
+  font-size: 11.5px; color: var(--gold); letter-spacing: .02em;
+  display: flex; align-items: center; gap: 8px;
+}
+.loop svg { flex: 0 0 auto; }
+.chips { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  padding: 7px 11px; border-radius: 999px; border: 1px solid var(--line);
+  background: var(--bg); font-size: 12px; color: var(--ink-2);
+}
+.chip i { display: inline-block; width: 6px; height: 6px; border-radius: 50%; margin-right: 6px; background: var(--tone); }
+.guard { --tone: var(--violet); }
+.guard .chip { border-color: rgba(167,139,250,.3); }
+.narrow .ncard { padding: 12px 0; border-top: 1px solid var(--line); }
+.narrow .ncard:first-child { border-top: 0; }
+.narrow .ncard b { display: block; font-size: 13.5px; color: var(--ink); margin-bottom: 3px; }
+.narrow .ncard span { display: block; font-size: 12px; color: var(--ink-2); line-height: 1.55; }
+@media (max-width: 1040px) {
+  .layer { grid-template-columns: 1fr; gap: 9px; }
+  .boxes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+</style>
+</head>
+<body>
+<div class="fig">
+  <p class="fig-kicker">参考架构 · 四层<i></i></p>
+  <h1 class="fig-title">一次 Agent 请求跑下来，路上有哪几层</h1>
+  <p class="fig-sub">这是通用参考架构，不是微服务清单。早期四层全塞在一个应用里完全可以，复杂度涨上来再拆——但每一层该管的事，一样都不能少。</p>
+
+  <div class="stage">
+    <div class="stack">
+      <div class="layer" style="--tone:var(--sky)">
+        <div class="lk"><b>业务入口</b><span>用户从哪进来</span></div>
+        <div class="boxes">
+          <div class="box"><b>自然语言</b><span>对话、指令</span></div>
+          <div class="box"><b>表单</b><span>结构化提交</span></div>
+          <div class="box"><b>业务事件</b><span>状态变化触发</span></div>
+          <div class="box"><b>API</b><span>系统对系统</span></div>
+        </div>
+      </div>
+
+      <div class="layer" style="--tone:var(--gold)">
+        <div class="lk"><b>Agent 运行时</b><span>核心：决定下一步</span></div>
+        <div class="boxes">
+          <div class="box core"><b>任务规划</b><span>拆解任务、选下一步</span></div>
+          <div class="box core"><b>模型与 Prompt</b><span>推理、决策、模型路由</span></div>
+          <div class="box core"><b>上下文管理</b><span>历史、检索、状态、压缩</span></div>
+          <div class="box core"><b>工具与编排</b><span>Tool、Workflow、重试、审批</span></div>
+          <div class="loop">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+              <path d="M4 12a8 8 0 0 1 13.7-5.6M20 12a8 8 0 0 1-13.7 5.6" stroke-linecap="round"/>
+              <path d="M17 3v4h-4M7 21v-4h4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            执行结果反馈 · 状态更新 · 下一轮决策——这一圈能跑起来，才叫 Agent；跑不起来，就还是一次调用。
+          </div>
+        </div>
+      </div>
+
+      <div class="layer" style="--tone:var(--cyan)">
+        <div class="lk"><b>业务能力层</b><span>它的手，不是新写的</span></div>
+        <div class="boxes">
+          <div class="box"><b>业务 API</b><span>订单、设备、用户、任务</span></div>
+          <div class="box"><b>知识检索</b><span>RAG、数据库、文档</span></div>
+          <div class="box"><b>外部工具</b><span>搜索、第三方服务、MCP</span></div>
+          <div class="box"><b>执行服务</b><span>任务调度、异步、设备控制</span></div>
+        </div>
+      </div>
+
+      <div class="layer guard">
+        <div class="lk"><b>横向工程保障</b><span>贯穿上面三层</span></div>
+        <div class="chips">
+          <span class="chip"><i></i>评测与回归</span>
+          <span class="chip"><i></i>Trace 与日志</span>
+          <span class="chip"><i></i>权限与安全</span>
+          <span class="chip"><i></i>超时与重试</span>
+          <span class="chip"><i></i>成本与延迟</span>
+          <span class="chip"><i></i>版本管理</span>
+        </div>
+      </div>
+    </div>
+    <p class="foot">最容易被跳过的是最后那一条横带。它不在演示里，但出事的时候只有它能回答「为什么它当时做了这个决定」。</p>
+  </div>
+
+  <div class="narrow">
+    <div class="ncard"><b>业务入口</b><span>自然语言、表单、业务事件、API。四种入口的权限口径必须一样。</span></div>
+    <div class="ncard"><b>Agent 运行时</b><span>任务规划、模型与 Prompt、上下文管理、工具与编排；结果反馈回来推下一轮。</span></div>
+    <div class="ncard"><b>业务能力层</b><span>业务 API、知识检索、外部工具、执行服务。这些本来就该存在。</span></div>
+    <div class="ncard"><b>横向工程保障</b><span>评测与回归、Trace 与日志、权限与安全、超时与重试、成本与延迟、版本管理。</span></div>
+  </div>
+</div>
+<script>
+(function () {
+  function send() {
+    var h = Math.ceil(document.documentElement.getBoundingClientRect().height);
+    if (h > 0) parent.postMessage({ __expFigure: true, height: h }, "*");
+  }
+  window.addEventListener("resize", send);
+  window.addEventListener("load", send);
+  if (window.ResizeObserver) new ResizeObserver(send).observe(document.body);
+  setTimeout(send, 60);
+  send();
+})();
+</script>
+</body>
+</html>

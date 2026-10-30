@@ -1,0 +1,590 @@
+/* 首页「随便玩一个」：随机词条的可运行小实验 */
+
+.pg-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 95;
+  background: rgba(12, 11, 10, 0.55);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 6vh 18px 5vh;
+  overflow-y: auto;
+  animation: pg-in 0.2s ease-out;
+}
+@keyframes pg-in {
+  from {
+    opacity: 0;
+  }
+}
+.pg-panel {
+  width: min(760px, 100%);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 18px 22px 16px;
+  box-shadow: 0 30px 80px rgba(12, 11, 10, 0.35);
+  animation: pg-rise 0.26s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+@keyframes pg-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.985);
+  }
+}
+.pg-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+.pg-head em {
+  font-style: normal;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--brand);
+}
+.pg-head h3 {
+  margin: 3px 0 2px;
+  font-size: 21px;
+  line-height: 1.25;
+}
+.pg-head p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-2);
+}
+.pg-head-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 auto;
+}
+.pg-x {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-2);
+  font-size: 17px;
+  line-height: 1;
+  cursor: pointer;
+}
+.pg-x:hover {
+  color: var(--text);
+  border-color: var(--brand);
+}
+.pg-body {
+  padding: 16px 0 6px;
+}
+.pg-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--text-3);
+}
+.pg-foot a {
+  color: var(--brand);
+  text-decoration: none;
+}
+.pg-foot a:hover {
+  text-decoration: underline;
+}
+
+/* 共用件 */
+.pg-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+.pg-field {
+  display: flex;
+  flex: 1 1 220px;
+  flex-direction: column;
+  gap: 4px;
+}
+.pg-field span {
+  font-size: 11px;
+  color: var(--text-3);
+}
+.pg-field input {
+  font: inherit;
+  font-size: 14px;
+  padding: 8px 10px;
+  color: var(--text);
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+.pg-field input:focus {
+  outline: none;
+  border-color: var(--brand);
+}
+.pg-slider {
+  display: flex;
+  flex: 1 1 200px;
+  flex-direction: column;
+  gap: 4px;
+}
+.pg-slider span {
+  font-size: 11px;
+  color: var(--text-3);
+}
+.pg-slider b {
+  color: var(--brand);
+  font-size: 12px;
+}
+.pg-slider input {
+  width: 100%;
+  accent-color: var(--brand);
+}
+.pg-btn {
+  font: inherit;
+  font-size: 13px;
+  padding: 8px 15px;
+  border-radius: 999px;
+  border: 1px solid var(--brand);
+  background: var(--brand);
+  color: var(--bg);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.pg-btn:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+.pg-btn.is-ghost {
+  background: transparent;
+  color: var(--text-2);
+  border-color: var(--border);
+}
+.pg-btn.is-ghost:hover {
+  color: var(--text);
+  border-color: var(--brand);
+}
+.pg-count {
+  margin: 0 0 8px;
+  font-size: 12px;
+  color: var(--text-3);
+}
+.pg-count b {
+  color: var(--brand);
+}
+.pg-note {
+  margin: 14px 0 0;
+  padding: 10px 12px;
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: var(--text-2);
+  background: var(--bg-soft);
+  border-left: 2px solid var(--brand);
+  border-radius: 0 10px 10px 0;
+}
+.pg-empty {
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--text-3);
+}
+
+/* 分块 */
+.pg-chunks {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.pg-chunk {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  padding: 7px 10px;
+  font-size: 12.5px;
+  line-height: 1.6;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+.pg-chunk i {
+  flex: 0 0 auto;
+  font-style: normal;
+  font-size: 10px;
+  padding: 1px 6px;
+  border-radius: 999px;
+  background: var(--brand-light);
+  color: var(--brand);
+}
+.pg-chunk span {
+  color: var(--text-2);
+}
+
+/* 相似度 */
+.pg-meter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.pg-meter-bar {
+  flex: 1;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.pg-meter-bar i {
+  display: block;
+  height: 100%;
+  background: var(--brand);
+  transition: width 0.25s ease-out;
+}
+.pg-meter b {
+  font-size: 15px;
+  color: var(--brand);
+  min-width: 42px;
+}
+.pg-meter em {
+  font-style: normal;
+  font-size: 11px;
+  color: var(--text-3);
+}
+.pg-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.pg-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 10px;
+  font-size: 13px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg-soft);
+}
+.pg-list li span {
+  flex: 1;
+  min-width: 0;
+  color: var(--text-2);
+}
+.pg-track {
+  flex: 0 0 96px;
+  display: block;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--border);
+  overflow: hidden;
+}
+.pg-track b {
+  display: block;
+  height: 100%;
+  min-width: 2px;
+  background: var(--border);
+  transition: width 0.25s ease-out;
+}
+.pg-list li.is-hit .pg-track {
+  background: var(--brand-light);
+}
+.pg-list li.is-hit .pg-track b {
+  background: var(--brand);
+}
+.pg-list li.is-hit {
+  border-color: var(--brand);
+}
+
+/* RAG */
+.pg-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+.pg-chips button {
+  font: inherit;
+  font-size: 12.5px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-2);
+  cursor: pointer;
+}
+.pg-chips button.is-on {
+  border-color: var(--brand);
+  background: var(--brand-light);
+  color: var(--brand);
+}
+.pg-toggle {
+  font: inherit;
+  font-size: 12.5px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px dashed var(--border);
+  background: transparent;
+  color: var(--text-3);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.pg-toggle.is-on {
+  border-style: solid;
+  border-color: var(--brand);
+  color: var(--brand);
+}
+.pg-answer {
+  margin-top: 12px;
+  padding: 11px 13px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg-soft);
+}
+.pg-answer em {
+  font-style: normal;
+  font-size: 11px;
+  color: var(--text-3);
+}
+.pg-answer p {
+  margin: 5px 0 0;
+  font-size: 13.5px;
+  line-height: 1.75;
+  color: var(--text);
+}
+
+/* 缓存 / 限流的记录 */
+.pg-cache-state {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  font-size: 12.5px;
+}
+.pg-cache-state b.ok {
+  color: var(--green);
+}
+.pg-cache-state b.no {
+  color: var(--text-3);
+}
+.pg-ttl {
+  flex: 1;
+  height: 5px;
+  border-radius: 999px;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.pg-ttl i {
+  display: block;
+  height: 100%;
+  background: var(--green);
+}
+.pg-cache-state em {
+  font-style: normal;
+  color: var(--text-3);
+}
+.pg-log {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.pg-log li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12.5px;
+  padding: 6px 10px;
+  border-radius: 9px;
+  border: 1px solid var(--border);
+  background: var(--bg-soft);
+}
+.pg-log li span {
+  flex: 0 0 46px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+.pg-log li.hit span {
+  color: var(--green);
+}
+.pg-log li.miss span {
+  color: var(--red);
+}
+.pg-log li b {
+  color: var(--text-2);
+  font-weight: 500;
+}
+.pg-log li.pg-empty {
+  border-style: dashed;
+}
+
+.pg-bucket {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+.pg-bucket i {
+  width: 26px;
+  height: 30px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--bg-soft);
+  transition: background 0.15s;
+}
+.pg-bucket i.full {
+  background: var(--brand);
+  border-color: var(--brand);
+}
+.pg-bucket em {
+  font-style: normal;
+  font-size: 12px;
+  color: var(--text-3);
+  margin-left: 4px;
+}
+
+/* 哈希 */
+.pg-hash {
+  margin-top: 12px;
+  padding: 12px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 13px;
+  line-height: 1.9;
+  word-break: break-all;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.pg-hash i {
+  font-style: normal;
+  color: var(--text-2);
+}
+.pg-hash i.diff {
+  color: var(--red);
+  background: var(--red-light);
+  border-radius: 2px;
+}
+
+/* flex */
+.pg-stage {
+  display: flex;
+  min-height: 150px;
+  padding: 12px;
+  margin-bottom: 12px;
+  border: 1px dashed var(--border);
+  border-radius: 14px;
+  background: var(--bg-soft);
+  gap: 10px;
+}
+.pg-stage b {
+  display: grid;
+  place-items: center;
+  padding: 0 16px;
+  min-height: 40px;
+  font-size: 14px;
+  color: var(--bg);
+  border-radius: 10px;
+  transition: all 0.22s ease-out;
+}
+.pg-stage b.a {
+  background: var(--brand);
+}
+.pg-stage b.b {
+  background: var(--info);
+}
+.pg-stage b.c {
+  background: var(--green);
+}
+.pg-optgroup {
+  margin-bottom: 9px;
+}
+.pg-optgroup > span {
+  display: block;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11.5px;
+  color: var(--text-3);
+  margin-bottom: 4px;
+}
+
+/* 对比度 */
+.pg-color {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text-3);
+}
+.pg-color input[type="color"] {
+  width: 34px;
+  height: 30px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+}
+.pg-color code {
+  font-size: 12px;
+  color: var(--text-2);
+}
+.pg-sample {
+  padding: 18px 16px;
+  font-size: 17px;
+  line-height: 1.6;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  margin-bottom: 10px;
+}
+.pg-ratio {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.pg-ratio > b {
+  font-size: 24px;
+  letter-spacing: -0.01em;
+}
+.pg-ratio > div {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.pg-pass,
+.pg-fail {
+  font-size: 11.5px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+}
+.pg-pass {
+  color: var(--green);
+  border-color: var(--green);
+  background: var(--green-light);
+}
+.pg-fail {
+  color: var(--text-3);
+}
+
+@media (max-width: 640px) {
+  .pg-panel {
+    padding: 15px 15px 13px;
+    border-radius: 18px;
+  }
+  .pg-head h3 {
+    font-size: 18px;
+  }
+}

@@ -2,15 +2,13 @@ export type Plan = {
   key: string;
   name: string;
   money: string;
-  /** 划线原价，仅展示用；null 表示无限时优惠 */
-  listPrice: string | null;
   days: number | "lifetime";
 };
 
 export const PLANS: Plan[] = [
-  { key: "monthly", name: "BuildHub PRO 月卡", money: "9.90", listPrice: null, days: 30 },
-  { key: "yearly", name: "BuildHub PRO 年卡", money: "58.00", listPrice: "98.00", days: 365 },
-  { key: "lifetime", name: "BuildHub PRO 终身买断", money: "168.00", listPrice: "298.00", days: "lifetime" },
+  { key: "monthly", name: "BuildHub PRO 月卡", money: "9.90", days: 30 },
+  { key: "yearly", name: "BuildHub PRO 年卡", money: "58.00", days: 365 },
+  { key: "lifetime", name: "BuildHub PRO 终身买断", money: "168.00", days: "lifetime" },
 ];
 
 /**
@@ -21,7 +19,6 @@ export const TEST_PLAN: Plan = {
   key: "test",
   name: "BuildHub PRO 验证单",
   money: "0.01",
-  listPrice: null,
   days: 1,
 };
 

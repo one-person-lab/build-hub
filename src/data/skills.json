@@ -1,6 +1,6 @@
 {
   "title": "技能库",
-  "subtitle": "精选市面主流、真正好用的 Agent Skills，按用途分类。每个技能都附一键复制的安装命令，自己开源的好技能也会陆续收录进来。",
+  "subtitle": "精选市面主流、真正好用的 Agent Skills，按用途分类。每个技能都附一键复制的安装命令。",
   "categories": [
     {
       "key": "meta",

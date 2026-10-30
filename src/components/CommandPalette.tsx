@@ -2,8 +2,6 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import ProModal from "@/components/ProModal";
-import { useMe } from "@/lib/favorites";
 import zhCatalogs from "@/data/catalogs.json";
 import enCatalogs from "@/data/en-catalogs.json";
 
@@ -17,7 +15,7 @@ export type FlatTerm = {
 };
 
 // 这两个分区有独立顶级菜单，词条面包屑要跳回自己那页而不是概念列表
-const STANDALONE_KEYS = ["design", "principles"];
+const STANDALONE_KEYS = ["design", "stack"];
 
 export function standaloneCrumb(catalogKey: string | undefined, locale: "zh" | "en") {
   if (!catalogKey || !STANDALONE_KEYS.includes(catalogKey)) return null;
@@ -34,7 +32,7 @@ const ZONES: Record<"zh" | "en", Record<string, string>> = {
     ai: "AI",
     git: "Git",
     design: "设计",
-    principles: "原理",
+    stack: "选型",
   },
   en: {
     frontend: "Frontend",
@@ -45,7 +43,6 @@ const ZONES: Record<"zh" | "en", Record<string, string>> = {
     ai: "AI",
     git: "Git",
     design: "Design",
-    principles: "Principles",
   },
 };
 
@@ -114,10 +111,7 @@ export default function CommandPalette({
   const [active, setActive] = useState(0);
   const [results, setResults] = useState<SearchResult[]>([]);
   const [full, setFull] = useState(false);
-  const [showPro, setShowPro] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
-  const me = useMe();
-  const pro = !!me?.pro;
   const U = UI[locale];
 
   useEffect(() => {
@@ -190,16 +184,9 @@ export default function CommandPalette({
             <button
               type="button"
               className={full ? "is-active" : ""}
-              onClick={() => {
-                if (!pro) {
-                  setShowPro(true);
-                  return;
-                }
-                setFull((v) => !v);
-              }}
+              onClick={() => setFull((v) => !v)}
             >
               {U.fullMode}
-              <i>PRO</i>
             </button>
           </div>
           <div className="rd-results">
@@ -229,7 +216,6 @@ export default function CommandPalette({
           </div>
         </div>
       </div>
-      {showPro && <ProModal locale={locale} onClose={() => setShowPro(false)} />}
     </>
   );
 }

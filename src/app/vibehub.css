@@ -1256,6 +1256,166 @@
   text-align: center;
 }
 
+/* 状态机：当前状态停在流程中间，只有写进图的转移才能往下走。 */
+.ai-card-state-machine {
+  gap: 7px;
+}
+.aic-sm-head {
+  min-height: 29px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 9px;
+  border: 1px solid var(--border-light);
+  border-radius: 7px;
+  background: var(--bg);
+}
+.aic-sm-head > span {
+  display: flex;
+  min-width: 0;
+  align-items: baseline;
+  gap: 6px;
+}
+.aic-sm-head > span small {
+  flex: none;
+  color: var(--brand);
+}
+.aic-sm-head > strong {
+  flex: none;
+  padding: 4px 7px;
+  border-radius: 999px;
+  background: var(--brand-light);
+  color: var(--brand);
+  font-size: 9px;
+}
+.aic-sm-track {
+  display: flex;
+  align-items: stretch;
+  gap: 5px;
+}
+.aic-sm-track > span {
+  flex: 1;
+  min-width: 0;
+  padding: 7px 5px;
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--text-3);
+  text-align: center;
+}
+.aic-sm-track > span.is-now {
+  border-color: color-mix(in srgb, var(--brand) 30%, var(--border));
+  background: var(--brand-light);
+  color: var(--brand);
+}
+.aic-sm-track > i {
+  align-self: center;
+  color: var(--text-3);
+  font-style: normal;
+}
+.aic-sm-rules {
+  display: grid;
+  gap: 5px;
+}
+.aic-sm-rules span {
+  padding: 5px 7px;
+  border-radius: 6px;
+  background: var(--bg-soft);
+  color: var(--text-2);
+  font-size: 9.5px;
+  text-align: center;
+}
+.aic-sm-rules span.no {
+  background: color-mix(in srgb, var(--red) 7%, var(--bg-soft));
+  color: var(--red);
+}
+
+/* DAG：任务按依赖分列，并行的一列并排，最后汇到一个节点。 */
+.ai-card-dag {
+  gap: 7px;
+}
+.aic-dag-head {
+  min-height: 29px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 9px;
+  border: 1px solid var(--border-light);
+  border-radius: 7px;
+  background: var(--bg);
+}
+.aic-dag-head > span {
+  display: flex;
+  min-width: 0;
+  align-items: baseline;
+  gap: 6px;
+}
+.aic-dag-head > span small {
+  flex: none;
+  color: var(--brand);
+}
+.aic-dag-head > strong {
+  flex: none;
+  padding: 4px 7px;
+  border-radius: 999px;
+  background: var(--brand-light);
+  color: var(--brand);
+  font-size: 9px;
+}
+.aic-dag-flow {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) 10px minmax(0, 1.2fr) 10px minmax(0, 0.9fr);
+  align-items: center;
+  gap: 4px;
+}
+.aic-dag-flow > i {
+  color: var(--text-3);
+  font-style: normal;
+  text-align: center;
+}
+.aic-dag-node {
+  min-width: 0;
+  padding: 7px 5px;
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--text-2);
+  font-size: 9.5px;
+  text-align: center;
+}
+.aic-dag-node.done {
+  color: var(--text-2);
+}
+.aic-dag-node.now {
+  border-color: color-mix(in srgb, var(--brand) 30%, var(--border));
+  background: var(--brand-light);
+  color: var(--brand);
+}
+.aic-dag-parallel {
+  display: grid;
+  gap: 4px;
+}
+.aic-dag-rules {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 5px;
+}
+.aic-dag-rules span {
+  min-width: 0;
+  padding: 5px 6px;
+  border-radius: 6px;
+  background: var(--bg-soft);
+  color: var(--text-2);
+  font-size: 9px;
+  text-align: center;
+}
+.aic-dag-rules span.no {
+  background: color-mix(in srgb, var(--red) 7%, var(--bg-soft));
+  color: var(--red);
+}
+
 /* TTFT / TPS：第一段等待和之后的生成密度位于同一条时间线上。 */
 .aic-speed-axis {
   min-height: 70px;
@@ -10798,6 +10958,13 @@
 .plx-anat .plx-loopback > small { display: inline; margin: 0; }
 .plx-anat .plx-src > .plx-src-bar { height: 9px; }
 .plx-anat .plx-act { border-color: color-mix(in srgb, var(--brand) 30%, var(--border)); background: var(--brand-light); }
+@media (min-width: 641px) {
+  .plx-anat-sm > .plx-box { flex: 1 1 0; }
+}
+@media (max-width: 640px) {
+  .plx-anat-sm > .plx-box { flex: 1 1 100%; }
+  .plx-anat-sm > .plx-arrow { margin: 0 auto; }
+}
 @media (max-width: 640px) {
   .plx-pipe { grid-template-columns: minmax(0, 1fr); }
   .plx-pipe > i, .plx-card-rerank > i { justify-self: center; transform: rotate(90deg); }

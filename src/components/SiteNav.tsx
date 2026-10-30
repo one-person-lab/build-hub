@@ -20,7 +20,7 @@ const SECTIONS: Record<Locale, { href: string; label: string }[]> = {
   zh: [
     { href: "/paths", label: "路径" },
     { href: "/topics/frontend", label: "概念" },
-    { href: "/principles", label: "原理" },
+    { href: "/stack", label: "选型" },
     { href: "/skills", label: "技能" },
     { href: "/products", label: "产品" },
     { href: "/prompts", label: "提示词" },
@@ -28,6 +28,7 @@ const SECTIONS: Record<Locale, { href: string; label: string }[]> = {
     { href: "/distill", label: "动效" },
     { href: "/explains", label: "专题" },
     { href: "/playbooks", label: "手册" },
+    { href: "/proto", label: "原型" },
   ],
   en: [
     { href: "/en/topics/frontend", label: "Concepts" },
@@ -36,6 +37,7 @@ const SECTIONS: Record<Locale, { href: string; label: string }[]> = {
     { href: "/en/prompts", label: "Prompts" },
     { href: "/en/design", label: "Design" },
     { href: "/en/distill", label: "Motion" },
+    { href: "/proto", label: "Prototype" },
   ],
 };
 
@@ -49,7 +51,6 @@ const UI = {
     community: "交流群",
     changelog: "更新日志",
     practice: "练习",
-    courses: "课程",
     skill: "BuildHub Skill",
     personalSite: "个人网站",
     language: "语言",
@@ -70,7 +71,6 @@ const UI = {
     community: "Community",
     changelog: "Changelog",
     practice: "Practice",
-    courses: "Courses",
     skill: "BuildHub Skill",
     personalSite: "Website",
     language: "Language",
@@ -213,6 +213,8 @@ export default function SiteNav() {
       : pathname === href || pathname.startsWith(href + "/");
 
   const skillHref = locale === "en" ? "/en/vibehub-skill" : "/vibehub-skill";
+
+  if (pathname.startsWith("/proto")) return null;
 
   return (
     <>
@@ -369,9 +371,6 @@ export default function SiteNav() {
                 <span className="rd-menu-sep" aria-hidden />
                 <div className="rd-menu-group rd-menu-group-more">
                   <p className="rd-menu-label">{U.groupMore}</p>
-                  {locale === "zh" && (
-                    <a href="/courses" role="menuitem">{U.courses}</a>
-                  )}
                   <a href={`${base}/practice`} role="menuitem">{U.practice}</a>
                   <a href={skillHref} role="menuitem">{U.skill}</a>
                   <a href="https://lab.smzsapp.com/" target="_blank" rel="noreferrer" className="rd-menu-site">

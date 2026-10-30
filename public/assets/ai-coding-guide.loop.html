@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一次任务的执行闭环 · 算没算做完看证据</title>
+<link rel="stylesheet" href="./ai-coding-guide.figure.css">
+<style>
+.node rect { fill: var(--panel); stroke: var(--line-2); stroke-width: 1; rx: 12; }
+.node.hot rect { stroke: var(--gold); fill: rgba(212,175,94,.08); }
+.node text.t { fill: var(--ink); font-size: 14px; font-weight: 700; }
+.node text.s { fill: var(--ink-2); font-size: 11.5px; }
+.node text.num { fill: var(--gold); font-size: 11px; font-weight: 800; letter-spacing: .1em; }
+path.fwd { stroke: var(--line-2); stroke-width: 1.5; fill: none; marker-end: url(#arr); }
+path.back { stroke: var(--rose); stroke-width: 1.3; fill: none; stroke-dasharray: 5 4; marker-end: url(#arrb); }
+text.blab { fill: var(--ink-3); font-size: 11px; }
+.evi { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+.evi div { padding: 14px 15px 15px; border: 1px solid var(--line); border-radius: 13px; background: var(--panel); }
+.evi h4 { margin: 0 0 9px; font-size: 12px; font-weight: 800; letter-spacing: .1em; }
+.evi .yes h4 { color: var(--emerald); }
+.evi .no h4 { color: var(--rose); }
+.evi ul { margin: 0; padding: 0; list-style: none; }
+.evi li { position: relative; padding-left: 15px; font-size: 12.5px; line-height: 1.7; color: var(--ink-2); }
+.evi li::before { content: ""; position: absolute; left: 2px; top: 8px; width: 5px; height: 5px; border-radius: 50%; background: currentColor; opacity: .5; }
+.evi .yes li { color: var(--ink); }
+.rule { margin: 14px 0 0; padding: 12px 14px; border-left: 2px solid var(--gold); background: rgba(212,175,94,.06); border-radius: 0 10px 10px 0; font-size: 12.5px; line-height: 1.7; color: var(--ink); }
+.narrow ol { margin: 0; padding: 0; list-style: none; counter-reset: s; }
+.narrow li { padding: 11px 0; border-top: 1px solid var(--line); font-size: 12.5px; line-height: 1.6; color: var(--ink-2); }
+.narrow li:first-child { border-top: 0; }
+.narrow li b { display: block; color: var(--ink); font-size: 13.5px; margin-bottom: 2px; }
+</style>
+</head>
+<body>
+<div class="fig">
+  <p class="fig-kicker">一次任务 · 跑一圈<i></i></p>
+  <h1 class="fig-title">一次任务跑完的样子</h1>
+  <p class="fig-sub">万能提示词不管用。管用的是这个能自己纠偏的圈：跑到「验证」那一格才见分晓，过了往下走，没过带着报错回到动手那一格。</p>
+
+  <div class="stage">
+    <svg viewBox="0 0 1160 258" role="img" aria-label="任务闭环：说清任务、喂上下文、规划动手、跑验证、审改动交付，验证不通过回到规划动手">
+      <defs>
+        <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0 0 L10 5 L0 10 z" fill="rgba(148,163,184,.5)"/>
+        </marker>
+        <marker id="arrb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0 0 L10 5 L0 10 z" fill="#fb7185"/>
+        </marker>
+      </defs>
+
+      <g class="node"><rect x="0" y="28" width="196" height="78" rx="12"/>
+        <text class="num" x="16" y="52">01</text><text class="t" x="16" y="74">说清任务</text>
+        <text class="s" x="16" y="94">目标 · 范围 · 红线</text></g>
+      <g class="node"><rect x="240" y="28" width="196" height="78" rx="12"/>
+        <text class="num" x="256" y="52">02</text><text class="t" x="256" y="74">喂上下文</text>
+        <text class="s" x="256" y="94">规范 · 现有实现 · 测试</text></g>
+      <g class="node hot"><rect x="480" y="28" width="196" height="78" rx="12"/>
+        <text class="num" x="496" y="52">03</text><text class="t" x="496" y="74">规划并动手</text>
+        <text class="s" x="496" y="94">拆解 · 改文件 · 处理依赖</text></g>
+      <g class="node"><rect x="720" y="28" width="196" height="78" rx="12"/>
+        <text class="num" x="736" y="52">04</text><text class="t" x="736" y="74">跑验证</text>
+        <text class="s" x="736" y="94">测试 · 构建 · 打开页面看</text></g>
+      <g class="node"><rect x="960" y="28" width="196" height="78" rx="12"/>
+        <text class="num" x="976" y="52">05</text><text class="t" x="976" y="74">审改动再交付</text>
+        <text class="s" x="976" y="94">看 diff · 定风险 · 提交</text></g>
+
+      <path class="fwd" d="M196 67 H234"/>
+      <path class="fwd" d="M436 67 H474"/>
+      <path class="fwd" d="M676 67 H714"/>
+      <path class="fwd" d="M916 67 H954"/>
+
+      <path class="back" d="M818 106 V150 H578 V112"/>
+      <text class="blab" x="640" y="142">验证没过：把完整报错丢回去，回到 03 接着改</text>
+      <path class="back" d="M776 150 V196 H100 V112"/>
+      <text class="blab" x="330" y="188">需求本身变了：回到 01 重新说清任务，别将错就错</text>
+    </svg>
+
+    <div class="evi">
+      <div class="yes">
+        <h4>算「做完了」的证据</h4>
+        <ul>
+          <li>测试跑过，通过数比改之前多、失败数没变多</li>
+          <li>构建和类型检查干净，没有新报错</li>
+          <li>页面真在浏览器里点开过，该点的路径点了一遍</li>
+          <li>diff 里只有这次该动的行，没夹带无关改动</li>
+        </ul>
+      </div>
+      <div class="no">
+        <h4>不算证据的东西</h4>
+        <ul>
+          <li>它自己写的「已完成」「测试全部通过」</li>
+          <li>只跑了生成那一步，没跑运行和验证</li>
+          <li>改完没跑过，凭代码看着对</li>
+          <li>把老功能碰坏了，但没人去点</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="rule">Agent 可以把这个圈跑完，但最后一步是你收证据。没有能重复跑的验证，就只能听它说好了。</p>
+  </div>
+
+  <div class="narrow">
+    <ol>
+      <li><b>01 说清任务</b>目标、范围、什么算做完。</li>
+      <li><b>02 喂上下文</b>项目规范、现有实现、相关测试。</li>
+      <li><b>03 规划并动手</b>拆解、改文件、处理依赖。</li>
+      <li><b>04 跑验证</b>测试、构建、类型检查、真打开看一眼。没过带报错回 03；需求变了回 01。</li>
+      <li><b>05 审改动再交付</b>看 diff、定风险、提交。</li>
+      <li><b>算做完的是证据</b>测试通过数、构建结果、浏览器里的样子、diff 改了哪几行。它自己说「做完了」不算。</li>
+    </ol>
+  </div>
+</div>
+<script>
+(function () {
+  function send() {
+    var h = Math.ceil(document.documentElement.getBoundingClientRect().height);
+    if (h > 0) parent.postMessage({ __expFigure: true, height: h }, "*");
+  }
+  window.addEventListener("resize", send);
+  window.addEventListener("load", send);
+  if (window.ResizeObserver) new ResizeObserver(send).observe(document.body);
+  setTimeout(send, 60);
+  send();
+})();
+</script>
+</body>
+</html>

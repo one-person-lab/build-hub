@@ -8,7 +8,6 @@ type PayPlan = {
   key: string;
   name: string;
   money: string;
-  listPrice?: string | null;
   days?: number | string;
 };
 
@@ -22,15 +21,14 @@ type Me = {
 const UI = {
   zh: {
     title: "BuildHub PRO",
-    sub: "为认真做产品的人",
-    benefits: ["无限收藏（免费只有 20 条）", "收藏跨设备自动同步", "多个收藏夹与条目备注", "全文搜索与 Markdown 导出"],
+    sub: "内容都免费看，PRO 管的是你自己攒下的东西",
+    benefits: ["无限收藏（免费只有 20 条）", "收藏跨设备自动同步", "多个收藏夹与条目备注", "复刻档案不限份数，进度跟着账号走", "收藏、收藏夹、复刻进度一键打包导出"],
     monthly: "月卡",
     yearly: "年卡",
     lifetime: "终身买断",
     perMonth: "/ 月",
     perYear: "/ 年",
     once: "一次付费",
-    limited: "限时",
     cta: "开通 PRO",
     back: "返回",
     loginTitle: "登录后继续",
@@ -56,15 +54,22 @@ const UI = {
     linkTerms: "用户协议",
     linkPrivacy: "隐私政策",
     linkRefunds: "退款与售后",
-    guideTitle: "手机上还不能直接付款",
-    guideBody: "付款二维码要用另一台设备来扫，所以在自己手机上扫不了。手机端直接付款正在审核，通过后这里立刻可用。",
-    guideWay1: "用电脑付款",
-    guideWay1Body: "在电脑上打开下面的网址，登录后点「开通 PRO」，用手机扫电脑屏幕就能付。",
+    manualTitle: "手机上这样开通",
+    manualSub: "手机扫不了自己屏幕上的码，所以这一单由我手动给你开。三步，订单号是唯一凭据。",
+    manualOrder: "订单号",
+    manualCopy: "复制订单号",
+    manualStep1: "加微信，把订单号发我",
+    manualStep1Body: "长按二维码识别添加，验证消息里就填这串数字。",
+    manualStep2: "按套餐价转账",
+    manualStep3: "我核对到账后开通",
+    manualStep3Body: "一般几个小时，最晚不超过 24 小时；开通后这个窗口自己会变成已开通，不用你回来刷新。",
+    manualWait: "已经下过单了，还在等你把订单号发我。",
+    manualCancel: "这单不要了",
+    manualPc: "或者用电脑自己扫码付",
+    manualPcBody: "电脑打开下面的网址，登录后点「开通 PRO」，手机扫屏幕上的码，付完立刻到账。",
     copySite: "复制网址",
     copied: "已复制",
     copyFail: "复制失败，请手动输入",
-    guideWay2: "或加我微信代开",
-    guideWay2Body: "先截图，再在微信「扫一扫 → 相册」里识别这张码添加我，备注 PRO，我把开通方式发给你。",
     testTitle: "支付验证单",
     testSub: "只给白名单账号用，1 分钱走完整链路",
     testName: "验证单",
@@ -78,12 +83,13 @@ const UI = {
   },
   en: {
     title: "BuildHub PRO",
-    sub: "For people who ship seriously",
+    sub: "Everything stays free to read — PRO manages what you've saved",
     benefits: [
       "Unlimited favorites (free plan holds 20)",
       "Favorites sync across your devices",
       "Multiple collections and notes",
-      "Full-text search and Markdown export",
+      "Unlimited playbook forks, progress kept on your account",
+      "Export favorites, collections and playbook progress as one Markdown pack",
     ],
     monthly: "Monthly",
     yearly: "Yearly",
@@ -91,7 +97,6 @@ const UI = {
     perMonth: "/ mo",
     perYear: "/ yr",
     once: "one-time",
-    limited: "LIMITED",
     cta: "Go PRO",
     back: "Back",
     loginTitle: "Sign in to continue",
@@ -117,15 +122,22 @@ const UI = {
     linkTerms: "Terms",
     linkPrivacy: "Privacy",
     linkRefunds: "Refunds",
-    guideTitle: "Paying on this phone isn't live yet",
-    guideBody: "That QR code has to be scanned by another device, so it can't be scanned on the phone showing it. In-app mobile payment is under review and will work here as soon as it's approved.",
-    guideWay1: "Pay on a computer",
-    guideWay1Body: "Open the address below on a computer, sign in, click Go PRO, then scan the computer screen with your phone.",
+    manualTitle: "Activating on your phone",
+    manualSub: "A phone can't scan the code on its own screen, so I switch this one on by hand. Three steps, and the order number is the only proof.",
+    manualOrder: "Order number",
+    manualCopy: "Copy order number",
+    manualStep1: "Add me on WeChat and send the number",
+    manualStep1Body: "Long-press the code below to add me; put the order number in the request message.",
+    manualStep2: "Transfer the plan price",
+    manualStep3: "I check the money and switch you on",
+    manualStep3Body: "Usually within a few hours, always inside 24. This window flips to active on its own — no need to come back and refresh.",
+    manualWait: "Order placed. It waits here until you send me the number.",
+    manualCancel: "Drop this order",
+    manualPc: "Or pay by scanning on a computer",
+    manualPcBody: "Open the address below on a computer, sign in, click Go PRO, then scan the screen with your phone.",
     copySite: "Copy address",
     copied: "Copied",
     copyFail: "Copy failed, type it in",
-    guideWay2: "Or ask me on WeChat",
-    guideWay2Body: "Screenshot the code, then in WeChat use Scan → Album to add me. Mention PRO and I'll send the way to activate.",
     testTitle: "Payment smoke test",
     testSub: "Whitelisted accounts only, 1 cent through the real flow",
     testName: "Test order",
@@ -166,7 +178,7 @@ export default function ProModal({
   const U = UI[locale];
   const base = locale === "en" ? "/en" : "";
   const [me, setMe] = useState<Me | null>(null);
-  const [step, setStep] = useState<"plans" | "login" | "qr" | "guide">(
+  const [step, setStep] = useState<"plans" | "login" | "qr" | "manual">(
     "plans"
   );
   const [planKey, setPlanKey] = useState(entry === "test" ? "test" : "yearly");
@@ -183,6 +195,11 @@ export default function ProModal({
     outTradeNo: string;
     dataUrl: string;
     codeUrl: string;
+  } | null>(null);
+  const [manual, setManual] = useState<{
+    outTradeNo: string;
+    money: string;
+    name: string;
   } | null>(null);
   const timer = useRef<ReturnType<typeof setInterval> | null>(null);
 
@@ -259,9 +276,9 @@ export default function ProModal({
 
   async function startPay() {
     if (!plan) return;
-    // 触屏设备上这张码没人能扫，所以不建订单，直接给替代出口；验证单例外，它要的就是真下单
+    // 触屏设备上这张码没人能扫，所以改走人工开通：照样落一笔单，只是核销由我在微信里做
     if (phone && !testMode) {
-      setStep("guide");
+      await startManual();
       return;
     }
     setErr("");
@@ -281,6 +298,46 @@ export default function ProModal({
       if (!testMode) track("order_create", { plan: plan.key, amount: plan.money });
       setQr({ outTradeNo: d.outTradeNo, dataUrl: d.qr, codeUrl: d.codeUrl });
       setStep("qr");
+    } catch {
+      setErr(U.errGeneric);
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function startManual() {
+    if (!plan) return;
+    setErr("");
+    setBusy(true);
+    try {
+      const r = await fetch("/api/pay/manual", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ plan: plan.key }),
+      });
+      if (!r.ok) {
+        setErr(U.errGeneric);
+        return;
+      }
+      const d = await r.json();
+      track("manual_order_create", { plan: plan.key, amount: plan.money });
+      setManual({ outTradeNo: d.outTradeNo, money: d.money, name: d.name });
+      setStep("manual");
+    } catch {
+      setErr(U.errGeneric);
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function cancelManual() {
+    if (!manual) return;
+    setErr("");
+    setBusy(true);
+    try {
+      await fetch(`/api/pay/manual?out_trade_no=${manual.outTradeNo}`, { method: "DELETE" });
+      setManual(null);
+      setStep("plans");
     } catch {
       setErr(U.errGeneric);
     } finally {
@@ -338,6 +395,34 @@ export default function ProModal({
     };
   }, [step, qr]);
 
+  // 人工核销完，这个窗口自己翻成已开通；用户不需要知道是谁点的确认
+  useEffect(() => {
+    if (step !== "manual" || !manual) return;
+    let stop = false;
+    const t = setInterval(async () => {
+      try {
+        const d = await fetch(`/api/pay/manual?out_trade_no=${manual.outTradeNo}`).then((x) =>
+          x.json()
+        );
+        if (d.status !== "paid" || stop) return;
+        stop = true;
+        clearInterval(t);
+        track("pay_success", { plan: plan?.key ?? "", amount: manual.money, via: "manual" });
+        setMe(await fetch("/api/me").then((x) => x.json()));
+        setManual(null);
+        setJustPaid(true);
+        setStep("plans");
+        window.dispatchEvent(new Event("vh-me-changed"));
+      } catch {
+        /* 下一轮再试 */
+      }
+    }, 5000);
+    return () => {
+      stop = true;
+      clearInterval(t);
+    };
+  }, [step, manual, plan, testMode]);
+
   if (me?.user && me.pro && step !== "login" && (!testMode || justPaid)) {
     return (
       <Shell locale={locale} onClose={onClose}>
@@ -370,14 +455,10 @@ export default function ProModal({
                   className={`rd-plan${planKey === p.key ? " is-active" : ""}`}
                   onClick={() => setPlanKey(p.key)}
                 >
-                  {p.listPrice && <span className="save">{U.limited}</span>}
                   <span className="rd-plan-label">
                     {testMode ? U.testName : U[f.unit]}
                   </span>
                   <b>¥{fmtMoney(p.money)}</b>
-                  {p.listPrice && (
-                    <span className="rd-plan-was">¥{fmtMoney(p.listPrice)}</span>
-                  )}
                   <span className="rd-plan-unit">
                     {testMode ? U.testDays : U[f.label]}
                   </span>
@@ -511,47 +592,85 @@ export default function ProModal({
         </>
       )}
 
-      {step === "guide" && (
+      {step === "manual" && manual && (
         <>
-          <h3>{U.guideTitle}</h3>
-          {plan && (
-            <p className="sub">
-              {U.payAmount} <b className="rd-pay-amount">¥{fmtMoney(plan.money)}</b>
-            </p>
-          )}
-          <p className="fineprint">{U.guideBody}</p>
-          <div className="rd-guide">
-            <div className="rd-guide-item">
-              <h4>{U.guideWay1}</h4>
-              <p>
-                {U.guideWay1Body}
-                <b> {siteHost}</b>
-              </p>
-              <CopyButton
-                className="rd-btn-ghost rd-guide-copy"
-                text={`https://${siteHost}`}
-                label={U.copySite}
-                copiedLabel={U.copied}
-                failLabel={U.copyFail}
-              />
+          <h3>{U.manualTitle}</h3>
+          <p className="sub">
+            {U.payAmount} <b className="rd-pay-amount">¥{fmtMoney(manual.money)}</b> · {manual.name}
+          </p>
+          <p className="fineprint">{U.manualSub}</p>
+
+          <div className="rd-manual-order">
+            <span>{U.manualOrder}</span>
+            <b>{manual.outTradeNo}</b>
+            <CopyButton
+              className="rd-btn-ghost rd-manual-copy"
+              text={manual.outTradeNo}
+              label={U.manualCopy}
+              copiedLabel={U.copied}
+              failLabel={U.copyFail}
+            />
+          </div>
+
+          <div className="rd-manual-steps">
+            <div className="rd-manual-step">
+              <span className="rd-manual-n">1</span>
+              <div>
+                <h4>{U.manualStep1}</h4>
+                <p>{U.manualStep1Body}</p>
+                <div className="rd-guide-qr">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/assets/wechat-qr.png"
+                    alt={locale === "zh" ? "我的微信二维码" : "My WeChat QR"}
+                    width={128}
+                    height={128}
+                    draggable={false}
+                  />
+                </div>
+              </div>
             </div>
-            <div className="rd-guide-item">
-              <h4>{U.guideWay2}</h4>
-              <p>{U.guideWay2Body}</p>
-              <div className="rd-guide-qr">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/assets/wechat-qr.png"
-                  alt={locale === "zh" ? "我的微信二维码" : "My WeChat QR"}
-                  width={128}
-                  height={128}
-                  draggable={false}
-                />
+            <div className="rd-manual-step">
+              <span className="rd-manual-n">2</span>
+              <div>
+                <h4>{U.manualStep2}</h4>
+                <p>
+                  ¥{fmtMoney(manual.money)} · {manual.name}
+                </p>
+              </div>
+            </div>
+            <div className="rd-manual-step">
+              <span className="rd-manual-n">3</span>
+              <div>
+                <h4>{U.manualStep3}</h4>
+                <p>{U.manualStep3Body}</p>
               </div>
             </div>
           </div>
-          <button className="rd-btn-ghost rd-btn-block" onClick={() => setStep("plans")}>
-            {U.back}
+
+          {err && <p className="rd-pro-err">{err}</p>}
+
+          <div className="rd-guide-item">
+            <h4>{U.manualPc}</h4>
+            <p>
+              {U.manualPcBody}
+              <b> {siteHost}</b>
+            </p>
+            <CopyButton
+              className="rd-btn-ghost rd-guide-copy"
+              text={`https://${siteHost}`}
+              label={U.copySite}
+              copiedLabel={U.copied}
+              failLabel={U.copyFail}
+            />
+          </div>
+
+          <button
+            className="rd-btn-ghost rd-btn-block"
+            disabled={busy}
+            onClick={cancelManual}
+          >
+            {U.manualCancel}
           </button>
         </>
       )}

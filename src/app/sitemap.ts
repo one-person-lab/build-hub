@@ -17,12 +17,13 @@ import explainersData from "@/data/explainers.json";
 import playbooksData from "@/data/playbooks.json";
 import coursesData from "@/data/courses.json";
 import pathsData from "@/data/paths.json";
+import { BOOKS, flatChapters } from "@/lib/drone-book";
 
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || process.env.APP_URL || "https://buildhub.cn";
 
 // 这些路径由各自的 page.tsx 拥有，术语 slug 撞上时必须让位，否则 sitemap 会指向不存在的内容
-const STANDALONE_KEYS = ["design", "principles"];
+const STANDALONE_KEYS = ["design", "stack"];
 const RESERVED = new Set([
   "",
   "account",
@@ -43,6 +44,7 @@ const RESERVED = new Set([
   "prompts",
   "refunds",
   "skills",
+  "stack",
   "terms",
   "topics",
   "vibehub-skill",
@@ -73,7 +75,7 @@ function library(data: unknown, path: string): MetadataRoute.Sitemap {
 }
 
 function topics(base: string, data: unknown): MetadataRoute.Sitemap {
-  // 设计、原理已独立成顶级路由，catalogs 里那两条不走 /topics
+  // 设计、选型已独立成顶级路由，catalogs 里那两条不走 /topics
   const keys = (data as Catalog[])
     .filter((c) => !STANDALONE_KEYS.includes(c.key))
     .map((c) => c.key);
@@ -100,7 +102,7 @@ function zh(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/skills`, lastModified: new Date() },
     { url: `${SITE_URL}/prompts`, lastModified: new Date() },
     { url: `${SITE_URL}/design`, lastModified: new Date() },
-    { url: `${SITE_URL}/principles`, lastModified: new Date() },
+    { url: `${SITE_URL}/stack`, lastModified: new Date() },
     { url: `${SITE_URL}/distill`, lastModified: new Date() },
     { url: `${SITE_URL}/explains`, lastModified: new Date() },
     { url: `${SITE_URL}/playbooks`, lastModified: new Date() },
@@ -122,7 +124,13 @@ function zh(): MetadataRoute.Sitemap {
     ...entries("/distill", (distillData as { slug: string }[]).map((d) => d.slug)),
     ...entries(
       "/explains",
-      Object.keys(explainersData as Record<string, unknown>),
+      [...Object.keys(explainersData), ...Object.keys(BOOKS)],
+    ),
+    ...Object.entries(BOOKS).flatMap(([id, book]) =>
+      entries(
+        `/explains/${id}`,
+        flatChapters(book).map((c) => c.slug),
+      ),
     ),
     ...entries(
       "/playbooks",

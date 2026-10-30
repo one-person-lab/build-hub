@@ -466,101 +466,502 @@
   }
 }
 
-/* ── 索引页 ── */
+/* ── 索引页：版式对齐概念目录（分类条 + 分节标题带横线 + 卡片网格） ── */
 .pbx-main {
+  position: relative;
+  isolation: isolate;
   min-height: calc(100dvh - var(--site-nav-height));
   background: var(--ground, var(--bg));
 }
+.pbx-main::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0 0 auto;
+  height: min(560px, calc(100vh - var(--site-nav-height)));
+  pointer-events: none;
+  background-image: linear-gradient(
+      color-mix(in srgb, var(--text) 3%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--text) 3%, transparent) 1px,
+      transparent 1px
+    ),
+    radial-gradient(
+      ellipse 58% 46% at 50% 18%,
+      color-mix(in srgb, var(--brand) 9%, transparent),
+      transparent 74%
+    );
+  background-size: 32px 32px, 32px 32px, auto;
+  mask-image: radial-gradient(ellipse 72% 68% at 50% 32%, #000 8%, transparent 76%);
+  -webkit-mask-image: radial-gradient(ellipse 72% 68% at 50% 32%, #000 8%, transparent 76%);
+}
+.pbx-main > * {
+  position: relative;
+  z-index: 1;
+}
 .pbx-wrap {
-  max-width: 1180px;
+  max-width: 1240px;
   margin: 0 auto;
-  padding: 40px 32px 80px;
+  padding: 30px 32px 96px;
 }
 .pbx-hero {
-  margin-bottom: 30px;
+  margin: 0 0 20px;
 }
 .pbx-hero h1 {
-  font-size: 30px;
+  font-size: clamp(27px, 2.2vw, 31px);
   font-weight: 700;
   letter-spacing: -0.02em;
   margin: 0 0 10px;
   color: var(--text);
 }
 .pbx-hero p {
-  font-size: 16px;
-  line-height: 1.75;
+  font-size: 15px;
+  line-height: 1.7;
   color: var(--text-2);
   margin: 0;
   max-width: 720px;
 }
-.pbx-sec {
-  margin-top: 30px;
+
+/* 分类条：和概念的 catalog-filter-chip 同一套尺寸与配色，点一下跳到对应分节 */
+.pbx-cats {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 0 2px;
 }
-.pbx-sec h2 {
-  font-size: 15px;
-  font-weight: 650;
-  color: var(--text);
-  margin: 0 0 4px;
-}
-.pbx-sec-desc {
-  font-size: 13.5px;
+.pbx-cat {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 32px;
+  padding: 5px 10px;
+  border-radius: var(--radius);
+  background: transparent;
   color: var(--text-2);
-  margin: 0 0 14px;
+  font-size: 12.5px;
+  line-height: 1.3;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.18s ease, background-color 0.18s ease, transform 0.18s var(--ease);
 }
+.pbx-cat em {
+  font-style: normal;
+  font-size: 11px;
+  font-weight: 450;
+  color: var(--text-3);
+  font-variant-numeric: tabular-nums;
+}
+.pbx-cat:hover {
+  color: var(--text);
+  background: var(--bg-soft);
+}
+.pbx-cat:active {
+  transform: translateY(1px);
+  background: var(--bg-hover);
+}
+.pbx-cat:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+.pbx-cats-total {
+  margin-left: auto;
+  align-self: center;
+  font-size: 12px;
+  color: var(--text-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.pbx-sec {
+  margin-top: 8px;
+  scroll-margin-top: 76px;
+}
+.pbx-sec-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text);
+  margin: 26px 0 16px;
+}
+.pbx-sec-title::after {
+  content: "";
+  order: 3;
+  flex: 1 1;
+  height: 1px;
+  background: var(--border-light);
+}
+.pbx-sec-name {
+  order: 1;
+  white-space: nowrap;
+}
+.pbx-sec-title > span:last-child {
+  order: 2;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-3);
+}
+
 .pbx-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 14px;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  gap: 20px;
 }
-/* 分类下只有一篇时，auto-fill 仍会留两列空轨道，卡片像被丢在页面左边；让单条目行只占一列 */
-.pbx-grid:has(> .pbx-card:only-child) {
-  grid-template-columns: minmax(0, 520px);
-}
-.pbx-card {
-  display: block;
-  padding: 18px 20px 20px;
-  border: 1px solid var(--border-light);
-  border-radius: 14px;
+.pbx-item {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 20px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
   background: var(--bg);
-  text-decoration: none;
   color: inherit;
+  text-decoration: none;
   transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease),
     border-color 0.25s;
 }
-.pbx-card:hover {
+.pbx-item:hover {
   transform: translateY(-3px);
   box-shadow: var(--shadow-card);
-  border-color: var(--theme-brand);
+  border-color: var(--border-hover);
 }
-.pbx-card h3 {
-  font-size: 17px;
-  font-weight: 650;
-  margin: 0 0 8px;
-  color: var(--text);
+.pbx-item:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 3px;
 }
-.pbx-card p {
-  font-size: 14px;
-  line-height: 1.75;
-  color: var(--text-2);
-  margin: 0;
-}
-.pbx-meta {
+
+/* 卡面缩略区：直接列出这篇手册自己的步/节标题，不放装饰性图形 */
+.pbx-thumb {
+  flex: 1 1 auto;
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 14px;
-  font-size: 12px;
-  color: var(--text-2);
+  flex-direction: column;
+  justify-content: center;
+  gap: 7px;
+  min-height: 108px;
+  margin-bottom: 16px;
+  padding: 14px 16px;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  background: var(--bg-soft);
+}
+.pbx-thumb-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  min-width: 0;
+}
+.pbx-thumb-row i {
+  flex: none;
+  font-style: normal;
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: 0.02em;
+  color: var(--accent);
   font-variant-numeric: tabular-nums;
 }
-.pbx-cta {
-  margin-top: 14px;
-  font-size: 13px;
+.pbx-thumb-row b {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 500;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--text-2);
+}
+.pbx-thumb-more {
+  margin-top: 2px;
+  font-size: 11.5px;
+  color: var(--text-3);
+}
+
+.pbx-item-title {
+  font-size: 16px;
   font-weight: 600;
-  color: var(--theme-brand);
+  color: var(--text);
+  margin: 0 0 8px;
+}
+.pbx-item-hook {
+  position: relative;
+  padding-left: 20px;
+  margin: 0 0 16px;
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--text-2);
+}
+.pbx-item-hook::before {
+  content: "\201C";
+  position: absolute;
+  left: 0;
+  top: -1px;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--accent);
+}
+.pbx-item-meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin: auto 0 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-light);
+  font-size: 12px;
+  color: var(--text-3);
+  font-variant-numeric: tabular-nums;
+}
+.pbx-item-meta em {
+  font-style: normal;
+  margin-left: 10px;
+}
+.pbx-item-cta {
+  flex: none;
+  font-weight: 600;
+  color: var(--accent);
 }
 @media (max-width: 900px) {
   .pbx-wrap {
-    padding: 24px 18px 56px;
+    padding: 22px 18px 64px;
   }
+  .pbx-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  /* 窄屏放不下「分类名 + 篇数 + 一句说明 + 横线」：说明换到第二行，分类名不拆行 */
+  .pbx-sec-title {
+    flex-wrap: wrap;
+    row-gap: 2px;
+  }
+  .pbx-sec-title > span:last-child {
+    flex: 1 1 100%;
+    order: 4;
+  }
+}
+
+/* ── 复刻层：一键复刻 + 逐步执行记录 ── */
+.pb-fork {
+  margin: 0 0 26px;
+  padding: 18px 20px;
+  border: 1px solid var(--border-light);
+  border-radius: 14px;
+  background: var(--bg-soft);
+}
+.pb-fork-cta {
+  display: block;
+  width: 100%;
+  font-size: 15px;
+  font-weight: 650;
+  padding: 11px 18px;
+  border-radius: 10px;
+  border: 1px solid var(--theme-brand);
+  background: var(--theme-brand);
+  color: var(--on-brand, #fff);
+  cursor: pointer;
+  transition: filter 0.18s var(--ease), opacity 0.18s var(--ease);
+}
+.pb-fork-cta:hover {
+  filter: brightness(1.06);
+}
+.pb-fork-cta:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+.pb-fork-quota {
+  margin: 10px 0 0;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--text-2);
+}
+.pb-fork-err {
+  margin: 10px 0 0;
+  font-size: 12.5px;
+  color: var(--rose, #e11d48);
+}
+.pb-fork-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.pb-fork-top b {
+  font-size: 14.5px;
+  font-weight: 660;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+.pb-fork-mine {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--theme-brand);
+  text-decoration: none;
+}
+.pb-fork-bar {
+  margin-top: 12px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--bg);
+  border: 1px solid var(--border-light);
+  overflow: hidden;
+}
+.pb-fork-bar i {
+  display: block;
+  height: 100%;
+  background: var(--theme-brand);
+  transition: width 0.4s var(--ease);
+}
+.pb-deliverable {
+  margin: 14px 0 0;
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--text-2);
+}
+.pb-deliverable b {
+  display: inline-block;
+  margin-right: 8px;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--theme-brand);
+}
+
+/* 单步执行记录 */
+.pb-exec {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.pb-exec-status {
+  display: flex;
+  gap: 6px;
+}
+.pb-exec-btn {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text-2);
+  cursor: pointer;
+  transition: all 0.18s var(--ease);
+}
+.pb-exec-btn:hover {
+  color: var(--text);
+}
+.pb-exec-btn.is-doing[aria-pressed="true"] {
+  border-color: var(--theme-brand);
+  color: var(--theme-brand);
+}
+.pb-exec-btn.is-done[aria-pressed="true"] {
+  border-color: var(--theme-brand);
+  background: var(--theme-brand);
+  color: var(--on-brand, #fff);
+}
+.pb-step.is-executed {
+  border-color: color-mix(in srgb, var(--theme-brand) 45%, var(--border));
+}
+.pb-exec-field {
+  display: block;
+}
+.pb-exec-field span {
+  display: block;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--text-2);
+  margin-bottom: 5px;
+}
+.pb-exec-field.is-blocker span {
+  color: var(--rose, #e11d48);
+}
+.pb-exec-field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  font: inherit;
+  font-size: 14px;
+  line-height: 1.65;
+  padding: 9px 11px;
+  border-radius: 9px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  resize: vertical;
+}
+.pb-exec-field textarea:focus-visible {
+  outline: 2px solid var(--theme-brand);
+  outline-offset: 1px;
+}
+.pb-exec-hint {
+  margin: 0;
+  font-size: 11.5px;
+  line-height: 1.6;
+  color: var(--text-2);
+}
+
+/* 复刻前的内联登录 */
+.pb-signin {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-light);
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.pb-signin-title {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-2);
+}
+.pb-signin-row {
+  display: flex;
+  gap: 8px;
+}
+.pb-signin-field {
+  flex: 1;
+  min-width: 0;
+  font: inherit;
+  font-size: 14px;
+  padding: 9px 11px;
+  border-radius: 9px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+}
+.pb-signin-code {
+  flex-shrink: 0;
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 0 14px;
+  border-radius: 9px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text-2);
+  cursor: pointer;
+}
+.pb-signin-code:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+.pb-signin-cancel {
+  align-self: flex-start;
+  font-size: 12.5px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--text-2);
+  text-decoration: underline;
+  cursor: pointer;
+}
+.pb-exec-btn:focus-visible,
+.pb-fork-cta:focus-visible,
+.pb-signin-code:focus-visible {
+  outline: 2px solid var(--theme-brand);
+  outline-offset: 2px;
 }

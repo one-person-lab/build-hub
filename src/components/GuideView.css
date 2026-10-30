@@ -1,0 +1,355 @@
+/* 手册 · 实践指南（长文体例）—— 左目录 + 右正文，跟专题页同一套版式 */
+
+.gd-main {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 30px 32px 96px;
+  background: var(--ground);
+}
+.gd-shell {
+  display: grid;
+  grid-template-columns: 156px minmax(0, 1fr);
+  gap: 32px;
+  align-items: start;
+}
+.gd-col {
+  min-width: 0;
+  max-width: 880px;
+}
+
+/* ── 左目录：滚动时高亮当前节 ── */
+.gd-rail {
+  position: sticky;
+  top: 92px;
+}
+.gd-rail-h {
+  margin: 0 0 10px;
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: var(--text-3);
+}
+.gd-rail ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-left: 1px solid var(--border-light);
+}
+.gd-rail a {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  margin-left: -1px;
+  padding: 6px 0 6px 13px;
+  border-left: 2px solid transparent;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--text-2);
+  text-decoration: none;
+}
+.gd-rail a:hover {
+  color: var(--text);
+}
+.gd-rail a.is-active {
+  color: var(--brand);
+  font-weight: 700;
+  border-left-color: var(--brand);
+}
+.gd-rail-n {
+  flex: none;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--text-3);
+  font-variant-numeric: tabular-nums;
+}
+.gd-rail a.is-active .gd-rail-n {
+  color: var(--brand);
+}
+
+/* ── 页头 ── */
+.gd-head {
+  margin: 0 0 8px;
+}
+.gd-head-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 0 0 12px;
+}
+.gd-head-top .gd-kicker {
+  margin-bottom: 0;
+}
+.gd-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex: none;
+  height: 30px;
+  padding: 0 11px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: none;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-2);
+  text-decoration: none;
+  transition: color 0.18s var(--ease), border-color 0.18s var(--ease),
+    background-color 0.18s var(--ease);
+}
+.gd-chip:hover {
+  color: var(--brand);
+  border-color: color-mix(in srgb, var(--brand) 32%, transparent);
+  background-color: color-mix(in srgb, var(--brand) 6%, transparent);
+}
+.gd-chip .ui-icon {
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 0.18s var(--ease);
+}
+.gd-chip:hover .ui-icon {
+  transform: translateX(-3px);
+}
+
+.gd-kicker {
+  margin: 0 0 10px;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--brand);
+}
+
+/* ── 正文分节 ── */
+.gd-sec {
+  margin: 46px 0 0;
+  scroll-margin-top: 84px;
+}
+.gd-sec h2 {
+  display: flex;
+  align-items: baseline;
+  gap: 11px;
+  margin: 0 0 16px;
+  font-size: 23px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.35;
+  color: var(--text);
+}
+.gd-sec-n {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--brand);
+  font-variant-numeric: tabular-nums;
+}
+.gd-h3 {
+  margin: 30px 0 8px;
+  font-size: 16.5px;
+  font-weight: 650;
+  color: var(--text);
+}
+.gd-p {
+  margin: 0 0 14px;
+  font-size: 15.5px;
+  line-height: 1.85;
+  color: var(--text);
+}
+.gd-ul {
+  margin: 0 0 16px;
+  padding: 0;
+  list-style: none;
+}
+.gd-ul li {
+  position: relative;
+  padding: 0 0 0 18px;
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--text);
+}
+.gd-ul li + li {
+  margin-top: 6px;
+}
+.gd-ul li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 12px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--brand);
+  opacity: 0.55;
+}
+
+/* ── 提示块 ── */
+.gd-note {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 18px 0;
+  padding: 15px 17px;
+  border: 1px solid var(--border-light);
+  border-left: 3px solid var(--brand);
+  border-radius: 12px;
+  background: var(--bg-soft);
+  font-size: 14.5px;
+  line-height: 1.78;
+  color: var(--text);
+}
+.gd-note b {
+  font-size: 11.5px;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  color: var(--brand);
+}
+
+/* ── 表格 ── */
+.gd-tablewrap {
+  margin: 18px 0 20px;
+  overflow-x: auto;
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+}
+.gd-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  line-height: 1.65;
+}
+/* 三列以上的表在窄屏挤成一团，让它横向滚 */
+.gd-tablewrap:has(th:nth-child(3)) .gd-table {
+  min-width: 620px;
+}
+.gd-table th,
+.gd-table td {
+  padding: 11px 13px;
+  text-align: left;
+  vertical-align: top;
+  border-top: 1px solid var(--border-light);
+}
+.gd-table thead th {
+  border-top: 0;
+  background: var(--bg-soft);
+  font-size: 12.5px;
+  font-weight: 650;
+  color: var(--text-2);
+  white-space: nowrap;
+}
+.gd-table td {
+  color: var(--text);
+}
+.gd-table td:first-child {
+  font-weight: 600;
+}
+.gd-table tbody tr:nth-child(n + 2) td {
+  border-top-color: var(--border-light);
+}
+
+/* ── 图 ── */
+.gd-figure {
+  position: relative;
+  height: 520px;
+  margin: 20px 0 22px;
+  overflow: hidden;
+  border: 1px solid var(--border-light);
+  border-radius: 14px;
+  background: #080c16;
+}
+.gd-figure iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* ── 可复制块 ── */
+.gd-copyblock {
+  margin: 20px 0 22px;
+  padding: 16px 17px 15px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--bg-soft);
+}
+.gd-copyblock-head {
+  margin-bottom: 11px;
+}
+.gd-copyblock-head b {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 650;
+  color: var(--text);
+}
+.gd-copyblock-head p {
+  margin: 4px 0 0;
+  font-size: 12.5px;
+  color: var(--text-3);
+}
+.gd-pre {
+  margin: 0;
+  padding: 14px 15px;
+  overflow-x: auto;
+  border-radius: 10px;
+  background: var(--bg);
+  border: 1px solid var(--border-light);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12.8px;
+  line-height: 1.72;
+  color: var(--text);
+  white-space: pre;
+  tab-size: 2;
+}
+.gd-copyblock .pb-copy {
+  margin-top: 11px;
+}
+
+/* ── 参考链接 ── */
+.gd-links {
+  margin: 0 0 8px;
+  padding: 0;
+  list-style: none;
+}
+.gd-links li {
+  padding: 12px 0;
+  border-top: 1px solid var(--border-light);
+}
+.gd-links li:first-child {
+  border-top: 0;
+}
+.gd-links a {
+  font-size: 14.8px;
+  font-weight: 600;
+  color: var(--brand);
+  text-decoration: none;
+}
+.gd-links a:hover {
+  text-decoration: underline;
+}
+.gd-links li p {
+  margin: 4px 0 0;
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--text-2);
+}
+
+@media (max-width: 900px) {
+  .gd-main {
+    padding: 22px 18px 64px;
+  }
+  .gd-shell {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+  .gd-rail {
+    display: none;
+  }
+  .gd-sec h2 {
+    font-size: 20px;
+  }
+  .gd-figure {
+    height: 620px;
+  }
+}

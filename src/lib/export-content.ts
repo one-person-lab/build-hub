@@ -247,7 +247,28 @@ function pathMarkdown(p: AnyRecord, locale: Locale): string {
   return lines.filter((x) => x !== "").join("\n").replace(/\n{3,}/g, "\n\n").trim();
 }
 
+function guideMarkdown(g: AnyRecord): string {
+  const lines = [`# ${g.title}`, g.summary ? `> ${g.summary}` : ""];
+  for (const s of Array.isArray(g.sections) ? g.sections : []) {
+    lines.push("", `## ${s.n} ${s.title}`);
+    for (const b of Array.isArray(s.blocks) ? s.blocks : []) {
+      if (b.t === "p" || b.t === "h") lines.push("", b.text);
+      else if (b.t === "note") lines.push("", `**${b.label}：** ${b.text}`);
+      else if (b.t === "ul") lines.push("", ...bullets(b.items));
+      else if (b.t === "copy") lines.push("", "```", b.text, "```");
+      else if (b.t === "table") {
+        lines.push("", `| ${b.head.join(" | ")} |`, `| ${b.head.map(() => "---").join(" |")} |`);
+        for (const row of b.rows) lines.push(`| ${row.join(" | ")} |`);
+      } else if (b.t === "links") {
+        for (const l of b.items) lines.push(`- [${l.label}](${l.href})${l.note ? ` — ${l.note}` : ""}`);
+      }
+    }
+  }
+  return lines.filter((x) => x !== "").join("\n").replace(/\n{3,}/g, "\n\n").trim();
+}
+
 function playbookMarkdown(p: AnyRecord, locale: Locale): string {
+  if (p.kind === "guide") return guideMarkdown(p);
   const lines = [`# ${p.title}`, p.summary ? `> ${p.summary}` : ""];
   if (Array.isArray(p.intro)) lines.push("", ...p.intro);
   if (Array.isArray(p.steps)) {
@@ -413,26 +434,16 @@ export function resolveFavorite(slug: string, locale: Locale = "zh"): Resolved |
   return null;
 }
 
-export function buildFavoritesMarkdown(
+function favoritesBody(
   slugs: string[],
-  locale: Locale = "zh",
-  opts: { title?: string; notes?: Record<string, string> } = {}
+  locale: Locale,
+  notes: Record<string, string>
 ): string {
-  const date = new Date().toISOString().slice(0, 10);
-  const entries = slugs
+  return slugs
     .map((slug) => ({ slug, entry: resolveFavorite(slug, locale) }))
-    .filter((x): x is { slug: string; entry: Resolved } => Boolean(x.entry));
-
-  const heading = opts.title || (locale === "en" ? "BuildHub favorites" : "BuildHub 收藏");
-  const count = locale === "en" ? `${entries.length} entries` : `共 ${entries.length} 条`;
-  const intro =
-    locale === "en"
-      ? "Exported from BuildHub. Each entry keeps its source link."
-      : "从 BuildHub 导出，每条都带原始链接。";
-
-  const body = entries
+    .filter((x): x is { slug: string; entry: Resolved } => Boolean(x.entry))
     .map(({ slug, entry }) => {
-      const note = opts.notes?.[slug]?.trim();
+      const note = notes[slug]?.trim();
       const parts = [entry.markdown];
       if (note)
         parts.push(
@@ -442,6 +453,26 @@ export function buildFavoritesMarkdown(
       return parts.join("\n\n");
     })
     .join("\n\n---\n\n");
+}
+
+export function buildFavoritesMarkdown(
+  slugs: string[],
+  locale: Locale = "zh",
+  opts: { title?: string; notes?: Record<string, string> } = {}
+): string {
+  const date = new Date().toISOString().slice(0, 10);
+  const entries = slugs
+    .map((slug) => resolveFavorite(slug, locale))
+    .filter(Boolean).length;
+
+  const heading = opts.title || (locale === "en" ? "BuildHub favorites" : "BuildHub 收藏");
+  const count = locale === "en" ? `${entries} entries` : `共 ${entries} 条`;
+  const intro =
+    locale === "en"
+      ? "Exported from BuildHub. Each entry keeps its source link."
+      : "从 BuildHub 导出，每条都带原始链接。";
+
+  const body = favoritesBody(slugs, locale, opts.notes ?? {});
 
   return [`# ${heading} · ${date}`, "", count, "", intro, "", "---", "", body, ""]
     .join("\n")
@@ -452,4 +483,84 @@ export function exportFilename(kind: string, id: string | null = null): string {
   const date = new Date().toISOString().slice(0, 10);
   const safe = (id ?? kind).replace(/[^a-zA-Z0-9_-]+/g, "-").slice(0, 60);
   return `buildhub-${safe}-${date}.md`;
+}
+
+export type PackInput = {
+  favorites: string[];
+  notes: Record<string, string>;
+  collections: { name: string; slugs: string[] }[];
+  forks: {
+    playbookId: string;
+    title: string;
+    steps: { name: string; done?: string }[];
+    progress: { stepIndex: number; status: string; result: string; blocker: string }[];
+  }[];
+};
+
+const MARK: Record<string, string> = { done: "✓", doing: "→", todo: "·" };
+
+/** 资产包 = 收藏全文 + 收藏夹清单 + 复刻进度，一次拿走自己攒下的全部东西 */
+export function buildPackMarkdown(input: PackInput, locale: Locale = "zh"): string {
+  const date = new Date().toISOString().slice(0, 10);
+  const L = (zh: string, en: string) => (locale === "en" ? en : zh);
+  const out: string[] = [
+    `# ${L("BuildHub 资产包", "BuildHub asset pack")} · ${date}`,
+    "",
+    L(
+      "这里面是你在这个站上攒下的全部东西：收藏的正文、自己分的收藏夹、以及每份手册走到哪一步。",
+      "Everything you have accumulated here: the full text of your favorites, your own collections, and how far you got in each playbook."
+    ),
+    "",
+    "---",
+    "",
+  ];
+
+  const CN = ["一", "二", "三", "四"];
+  const sections: { head: string; body: string[] }[] = [];
+
+  sections.push({
+    head: `${L("我的收藏", "My favorites")} · ${input.favorites.length}`,
+    body: ["", favoritesBody(input.favorites, locale, input.notes), ""],
+  });
+
+  if (input.collections.length) {
+    const body: string[] = [""];
+    for (const c of input.collections) {
+      body.push(`### ${c.name} · ${c.slugs.length}`, "");
+      for (const slug of c.slugs) {
+        const hit = resolveFavorite(slug, locale);
+        body.push(
+          hit
+            ? `- ${hit.typeLabel} · [${hit.title}](${hit.href})`
+            : `- ${slug} ${L("（内容已下线）", "(removed)")}`
+        );
+      }
+      body.push("");
+    }
+    sections.push({ head: L("我的收藏夹", "My collections"), body });
+  }
+
+  if (input.forks.length) {
+    const body: string[] = [""];
+    for (const f of input.forks) {
+      const byIndex = new Map(f.progress.map((p) => [p.stepIndex, p]));
+      const doneCount = f.steps.filter((_, i) => byIndex.get(i)?.status === "done").length;
+      body.push(`### ${f.title} · ${doneCount}/${f.steps.length}`, "");
+      f.steps.forEach((s, i) => {
+        const p = byIndex.get(i);
+        const bits = [`${i + 1}. ${MARK[p?.status ?? "todo"] ?? "·"} ${s.name}`];
+        if (p?.result?.trim()) bits.push(`${L("我的结果", "Result")}: ${p.result.trim()}`);
+        if (p?.blocker?.trim()) bits.push(`${L("卡点", "Blocked")}: ${p.blocker.trim()}`);
+        body.push(bits.join(" — "));
+      });
+      body.push("");
+    }
+    sections.push({ head: L("我的复刻进度", "My playbooks in progress"), body });
+  }
+
+  sections.forEach((s, i) => {
+    out.push(`## ${CN[i] ?? i + 1}、${s.head}`, "", ...s.body);
+  });
+
+  return out.join("\n").replace(/\n{3,}/g, "\n\n").trim() + "\n";
 }

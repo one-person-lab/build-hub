@@ -5,8 +5,8 @@ import type { Catalog } from "@/lib/types";
 
 const CATALOGS = catalogsData as Catalog[];
 
-// 设计、原理已独立为顶级路由，不再走 /topics
-const STANDALONE = new Set(["design", "principles"]);
+// 设计、选型已独立为顶级路由，不再走 /topics
+const STANDALONE = new Set(["design", "stack"]);
 const TOPIC_CATALOGS = CATALOGS.filter((c) => !STANDALONE.has(c.key));
 
 export function generateStaticParams() {

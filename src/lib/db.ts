@@ -59,10 +59,34 @@ function migrate(d: Database.Database) {
       money TEXT NOT NULL,
       status TEXT NOT NULL DEFAULT 'pending',
       trade_no TEXT,
+      channel TEXT NOT NULL DEFAULT 'wx',
       paid_at TEXT,
       created_at TEXT NOT NULL DEFAULT (datetime('now'))
     );
+    /* 一键复刻出来的个人副本：公开档案留在静态 JSON，这里只存用户自己的那份 */
+    CREATE TABLE IF NOT EXISTS forks (
+      id TEXT PRIMARY KEY,
+      user_id INTEGER NOT NULL REFERENCES users(id),
+      playbook_id TEXT NOT NULL,
+      created_at TEXT NOT NULL DEFAULT (datetime('now')),
+      updated_at TEXT NOT NULL DEFAULT (datetime('now'))
+    );
+    CREATE INDEX IF NOT EXISTS forks_user ON forks(user_id);
+    CREATE UNIQUE INDEX IF NOT EXISTS forks_user_playbook ON forks(user_id, playbook_id);
+    CREATE TABLE IF NOT EXISTS fork_steps (
+      fork_id TEXT NOT NULL REFERENCES forks(id),
+      step_index INTEGER NOT NULL,
+      status TEXT NOT NULL DEFAULT 'todo',
+      result TEXT NOT NULL DEFAULT '',
+      blocker TEXT NOT NULL DEFAULT '',
+      updated_at TEXT NOT NULL DEFAULT (datetime('now')),
+      PRIMARY KEY (fork_id, step_index)
+    );
   `);
+  /* 老库补列：orders 原来只有微信一条渠道，人工开通的单要能被单独捞出来核对 */
+  const cols = d.prepare(`pragma table_info(orders)`).all() as { name: string }[];
+  if (!cols.some((c) => c.name === "channel"))
+    d.exec(`alter table orders add column channel text not null default 'wx'`);
 }
 
 export function getDb(): Database.Database {

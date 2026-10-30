@@ -74,6 +74,7 @@ const UI = {
     deleteCollection: "删除这个收藏夹",
     confirmDelete: "确认删除",
     exportAll: "导出为 Markdown",
+    exportPack: "导出完整资产包",
     exportCollection: "导出这个收藏夹",
     note: "写备注",
     addTo: "加入收藏夹",
@@ -124,6 +125,7 @@ const UI = {
     deleteCollection: "Delete this collection",
     confirmDelete: "Confirm delete",
     exportAll: "Export as Markdown",
+    exportPack: "Export full asset pack",
     exportCollection: "Export this collection",
     note: "Add a note",
     addTo: "Add to collection",
@@ -440,6 +442,16 @@ export default function FavoritesView({
               onNeedPro={() => setShowPro(true)}
               className="rd-btn-ghost fav-head-btn"
               label={active === "all" ? U.exportAll : U.exportCollection}
+            />
+          )}
+          {me && (
+            <ExportButton
+              locale={locale}
+              kind="pack"
+              pro={pro}
+              onNeedPro={() => setShowPro(true)}
+              className="rd-btn-ghost fav-head-btn"
+              label={U.exportPack}
             />
           )}
         </div>

@@ -29,12 +29,16 @@ type Group = {
   count: number;
   category?: string;
   subgroup?: string;
+  /** 分组决策路径：只在选型分区使用 */
+  intro?: string;
   terms: Term[];
 };
 type Catalog = {
   key: string;
   href: string;
   title: string;
+  /** 页首方法说明：只在选型分区使用 */
+  intro?: string;
   tabs?: { label: string; count: number; active: boolean }[];
   /** 独立分区的页内分类 chips；缺省时沿用概念分区的页签 */
   categories?: { key: string; label: string }[];
@@ -166,7 +170,7 @@ export default function CatalogView({
       setMotionSlug(slug);
     }
   }, [catalog.key]);
-  // 独立分区（设计、原理）按页内分类 chips 过滤，概念分区一次铺开所有分组
+  // 独立分区（设计、选型）按页内分类 chips 过滤，概念分区一次铺开所有分组
   const visibleGroups = useMemo(
     () =>
       catalog.categories
@@ -296,14 +300,6 @@ export default function CatalogView({
                       </button>
                     );
                   })}
-              <a
-                href={`${detailBase}favorites`}
-                className="catalog-filter-chip"
-                title={T.favorites}
-              >
-                ★ {T.favorites}
-                <span>{favorites.size}</span>
-              </a>
             </div>
           </div>
           {platformEnabled && (
@@ -350,6 +346,7 @@ export default function CatalogView({
         <div className="grid-wrap">
           <header className="catalog-heading">
             <h1>{catalog.title}</h1>
+            {catalog.intro ? <p className="cat-page-intro">{catalog.intro}</p> : null}
           </header>
           {visibleGroups.map((g) => {
             // 交互动画分组：普通卡片网格，点开卡片进入 ripplix 式详情弹层玩 demo
@@ -433,6 +430,7 @@ export default function CatalogView({
                     {(iconStyles ? iconStyles.length : g.count)} {T.termCount}
                   </span>
                 </h2>
+                {g.intro ? <p className="cat-intro">{g.intro}</p> : null}
                 {iconStyles ? (
                   <div className="grid">
                     {iconStyles.map((s) => (

@@ -188,3 +188,32 @@ export function assetGroups(assets: ResolvedAsset[]) {
     }))
     .filter((g) => g.items.length > 0);
 }
+
+export type CourseEntry = { id: string; title: string; chapters: number; href: string };
+
+/** 全部课程及章数；「课程」已从菜单收进路径，这里给路径页挂教材入口用 */
+export function courseList(): CourseEntry[] {
+  const raw = COURSES as unknown as Record<string, { title?: string }>;
+  const chapterKeys = Object.keys(COURSES.chapters ?? {});
+  return Object.entries(raw)
+    .filter(([id, v]) => id !== "index" && id !== "chapters" && v?.title)
+    .map(([id, v]) => ({
+      id,
+      title: cleanTitle(v.title),
+      chapters: chapterKeys.filter((k) => k.startsWith(`${id}/`)).length,
+      href: `/courses/${id}`,
+    }));
+}
+
+/** 这门课在这条路径里被当成教材引进来了吗 */
+export function pathCourses(resolved: { assets: ResolvedAsset[] }): (CourseEntry & { usedChapters: number })[] {
+  const out: (CourseEntry & { usedChapters: number })[] = [];
+  for (const c of courseList()) {
+    if (!resolved.assets.some((a) => a.type === "course" && a.href === c.href)) continue;
+    out.push({
+      ...c,
+      usedChapters: resolved.assets.filter((a) => a.type === "chapter" && a.href.startsWith(`/courses/${c.id}/`)).length,
+    });
+  }
+  return out;
+}

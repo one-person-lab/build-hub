@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "@/components/ExplainerView.css";
 import explainersData from "@/data/explainers.json";
+import { BOOKS, flatChapters } from "@/lib/drone-book";
 
 type Explainer = {
   title: string;
@@ -69,7 +70,6 @@ export default function ExplainsIndexPage() {
   );
 
   const wideId = entries.length % 2 === 1 ? entries[entries.length - 1][0] : null;
-  const hasTech = entries.some(([, e]) => e.category === "tech");
 
   return (
     <main className="exp-main exp-index">
@@ -87,6 +87,24 @@ export default function ExplainsIndexPage() {
         </div>
       </header>
 
+      <section className="exp-index-book-wrap" aria-label="技术手册">
+        {Object.entries(BOOKS).map(([id, book]) => (
+          <a className="exp-index-book" href={`/explains/${id}`} key={id}>
+            <div className="exp-index-book-main">
+              <p className="exp-index-book-kicker">
+                专题 · 技术手册 · {flatChapters(book).length} 章
+              </p>
+              <h2>
+                {book.title}
+                <span>{book.subtitle}</span>
+              </h2>
+              <p className="exp-index-book-oneline">{book.oneLiner}</p>
+            </div>
+            <span className="exp-index-book-go">翻开手册 →</span>
+          </a>
+        ))}
+      </section>
+
       <section className="exp-index-wall" aria-label="专题列表">
         {entries.map(([id, e], index) => (
           <a
@@ -99,11 +117,10 @@ export default function ExplainsIndexPage() {
                 <span className="exp-index-num">{String(index + 1).padStart(2, "0")}</span>
                 <span className="exp-index-layers">{e.nodes.length} 层</span>
               </div>
-              <p className="exp-index-quote">{e.memory?.line ?? e.oneLiner}</p>
+              <h2 className="exp-index-title">{renderTitle(e.title)}</h2>
             </div>
             <div className="exp-index-body">
               <p className="exp-index-kicker">{KICKER[id] ?? CATEGORY_LABEL[e.category]}</p>
-              <h2>{renderTitle(e.title)}</h2>
               <p className="exp-index-oneline">{e.oneLiner}</p>
               <p className="exp-index-meta">
                 {e.nodes.length} 层架构 · {e.walkthrough.steps.length} 步真实链路 ·{" "}
@@ -113,28 +130,6 @@ export default function ExplainsIndexPage() {
             </div>
           </a>
         ))}
-      </section>
-
-      <section className="exp-index-note">
-        <h2>每篇都按同一套框架写</h2>
-        <p>不是各写各的。每篇都是同一串问题、同一个顺序，所以能横向比，也能拆开照着做。</p>
-        <div className="exp-index-framework">
-          <div className="exp-index-fw">
-            <span className="exp-index-fw-n">01</span>
-            <div><b>为什么做</b><p>背景 → 问题 → 目标。先看清原来卡在哪，再动手。</p></div>
-          </div>
-          <div className="exp-index-fw">
-            <span className="exp-index-fw-n">02</span>
-            <div><b>怎么做</b><p>方案 → 架构 → 实现。一张图、一条链、每层用什么。</p></div>
-          </div>
-          <div className="exp-index-fw">
-            <span className="exp-index-fw-n">03</span>
-            <div><b>做成什么</b><p>结果 → 沉淀 → 反思。哪些数字是真的，哪些坑下回还会踩。</p></div>
-          </div>
-        </div>
-        {!hasTech && (
-          <p className="exp-index-coming"><b>技术解读</b> 这一类还在陆续补充中。</p>
-        )}
       </section>
     </main>
   );

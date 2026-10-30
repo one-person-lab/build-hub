@@ -34,6 +34,8 @@ export default function SiteFooter() {
     return () => window.removeEventListener("keydown", onKey);
   }, [qr]);
 
+    if (pathname.startsWith("/proto")) return null;
+
   return (
     <>
       <div

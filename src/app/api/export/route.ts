@@ -1,7 +1,14 @@
 import { NextResponse } from "next/server";
 import { getDb } from "@/lib/db";
 import { currentUser, isPro } from "@/lib/session";
-import { buildFavoritesMarkdown, exportFilename } from "@/lib/export-content";
+import { getPlaybook } from "@/lib/playbooks";
+import { listForks } from "@/lib/forks";
+import {
+  buildFavoritesMarkdown,
+  buildPackMarkdown,
+  exportFilename,
+  type PackInput,
+} from "@/lib/export-content";
 
 type Locale = "zh" | "en";
 
@@ -24,15 +31,64 @@ export async function GET(req: Request) {
   const locale: Locale = url.searchParams.get("locale") === "en" ? "en" : "zh";
   const kind = url.searchParams.get("kind") ?? "favorites";
 
+  const allFavorites = (
+    getDb()
+      .prepare(`select slug from favorites where user_id = ? order by added_at`)
+      .all(user.id) as { slug: string }[]
+  ).map((r) => r.slug);
+
+  if (kind === "pack") {
+    const collections = (
+      getDb()
+        .prepare(`select name, slugs from collections where user_id = ? order by created_at`)
+        .all(user.id) as { name: string; slugs: string }[]
+    ).map((c) => {
+      try {
+        const parsed = JSON.parse(c.slugs);
+        return { name: c.name, slugs: Array.isArray(parsed) ? parsed.filter((s) => typeof s === "string") : [] };
+      } catch {
+        return { name: c.name, slugs: [] };
+      }
+    });
+    const forks: PackInput["forks"] = listForks(user.id).flatMap((f) => {
+      const pb = getPlaybook(f.playbookId);
+      if (!pb) return [];
+      return [
+        {
+          playbookId: f.playbookId,
+          title: pb.title,
+          steps: pb.steps.map((s) => ({ name: s.name, done: s.done })),
+          progress: f.steps.map((s) => ({
+            stepIndex: s.index - 1,
+            status: s.status,
+            result: s.result,
+            blocker: s.blocker,
+          })),
+        },
+      ];
+    });
+
+    if (!allFavorites.length && !collections.length && !forks.length)
+      return NextResponse.json({ error: "empty" }, { status: 400 });
+
+    const markdown = buildPackMarkdown(
+      { favorites: allFavorites, notes: notesFor(user.id, allFavorites), collections, forks },
+      locale
+    );
+    return new NextResponse(markdown, {
+      headers: {
+        "content-type": "text/markdown; charset=utf-8",
+        "content-disposition": `attachment; filename="${exportFilename("pack")}"`,
+        "cache-control": "no-store",
+      },
+    });
+  }
+
   let slugs: string[] = [];
   let title: string | undefined;
 
   if (kind === "favorites") {
-    slugs = (
-      getDb()
-        .prepare(`select slug from favorites where user_id = ? order by added_at`)
-        .all(user.id) as { slug: string }[]
-    ).map((r) => r.slug);
+    slugs = allFavorites;
   } else if (kind === "collection") {
     const id = url.searchParams.get("id") ?? "";
     const row = getDb()

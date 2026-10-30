@@ -1,0 +1,57 @@
+/* 无人机 Copilot 专题与同名技术手册的配图共用的底色与零件 */
+*, *::before, *::after { box-sizing: border-box; }
+:root {
+  --bg: #080c16;
+  --ink: #e8ecf4;
+  --ink-2: #9aa6ba;
+  --ink-3: #6b7790;
+  --line: rgba(148, 163, 184, .16);
+  --line-2: rgba(148, 163, 184, .3);
+  --gold: #d4af5e;
+  --cyan: #38d3e8;
+  --violet: #a78bfa;
+  --emerald: #3ddc97;
+  --rose: #fb7185;
+  --amber: #f6c453;
+  --sky: #7cc4fb;
+  --panel: rgba(148, 163, 184, .055);
+}
+html { background: var(--bg); }
+body {
+  margin: 0;
+  padding: 26px 30px 30px;
+  background:
+    radial-gradient(1100px 380px at 46% -140px, rgba(212, 175, 94, .10), transparent 70%),
+    radial-gradient(900px 320px at 92% 118%, rgba(56, 211, 232, .07), transparent 70%),
+    var(--bg);
+  color: var(--ink);
+  font: 13.5px/1.55 -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  letter-spacing: .005em;
+  -webkit-font-smoothing: antialiased;
+}
+.k {
+  display: block;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.chips li {
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 12px;
+  color: var(--ink-2);
+  background: rgba(148, 163, 184, .07);
+  border: 1px solid var(--line);
+  white-space: nowrap;
+}
+.tone-gold { --tone: var(--gold); }
+.tone-cyan { --tone: var(--cyan); }
+.tone-violet { --tone: var(--violet); }
+.tone-emerald { --tone: var(--emerald); }
+.tone-rose { --tone: var(--rose); }
+.tone-amber { --tone: var(--amber); }
+.tone-sky { --tone: var(--sky); }
+.dot { width: 7px; height: 7px; border-radius: 50%; background: var(--tone, var(--ink-3)); flex: none; }

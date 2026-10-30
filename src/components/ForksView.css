@@ -1,0 +1,239 @@
+/* 我的复刻 ForksView —— 复用 .pbx 同一套 token 与栅格 */
+
+.fk-main {
+  min-height: calc(100dvh - var(--site-nav-height));
+  background: var(--ground, var(--bg));
+}
+.fk-wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 40px 32px 80px;
+}
+.fk-head {
+  margin-bottom: 26px;
+}
+.fk-head h1 {
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0 0 10px;
+  color: var(--text);
+}
+.fk-head p {
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--text-2);
+  margin: 0;
+  max-width: 720px;
+}
+.fk-quota {
+  margin-top: 12px !important;
+  font-size: 12.5px !important;
+  color: var(--text-2) !important;
+}
+.fk-quota-pro {
+  color: var(--theme-brand);
+  font-weight: 600;
+  text-decoration: none;
+}
+.fk-loading,
+.fk-empty {
+  font-size: 14.5px;
+  color: var(--text-2);
+  margin: 0 0 26px;
+}
+
+/* 我的复刻列表 */
+.fk-list {
+  display: grid;
+  gap: 14px;
+  margin-bottom: 40px;
+}
+.fk-card {
+  padding: 20px 22px 22px;
+  border: 1px solid var(--border-light);
+  border-radius: 14px;
+  background: var(--bg);
+}
+.fk-card-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.fk-card h2 {
+  font-size: 18px;
+  font-weight: 660;
+  margin: 0;
+  color: var(--text);
+}
+.fk-num {
+  font-size: 14px;
+  font-weight: 650;
+  color: var(--theme-brand);
+  font-variant-numeric: tabular-nums;
+}
+.fk-deliverable {
+  margin: 8px 0 0;
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--text-2);
+}
+.fk-bar {
+  margin-top: 14px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--bg-soft);
+  border: 1px solid var(--border-light);
+  overflow: hidden;
+}
+.fk-bar i {
+  display: block;
+  height: 100%;
+  background: var(--theme-brand);
+  transition: width 0.4s var(--ease);
+}
+.fk-next {
+  margin: 12px 0 0;
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--text);
+}
+.fk-next b {
+  display: inline-block;
+  margin-right: 8px;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--text-2);
+}
+.fk-next span {
+  font-weight: 650;
+}
+.fk-blocked {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--rose, #e11d48) 7%, var(--bg-soft));
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text-2);
+}
+.fk-blocked li {
+  margin-bottom: 6px;
+}
+.fk-blocked li:last-child {
+  margin-bottom: 0;
+}
+.fk-blocked b {
+  margin-right: 8px;
+  font-size: 11.5px;
+  color: var(--rose, #e11d48);
+}
+.fk-blocked span {
+  font-weight: 650;
+  color: var(--text);
+  margin-right: 6px;
+}
+.fk-card-foot {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 16px;
+}
+.fk-open {
+  font-size: 13.5px;
+  font-weight: 650;
+  color: var(--theme-brand);
+  text-decoration: none;
+}
+.fk-remove {
+  font-size: 12.5px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--text-2);
+  text-decoration: underline;
+  cursor: pointer;
+}
+.fk-open:focus-visible,
+.fk-remove:focus-visible,
+.fk-item:focus-visible {
+  outline: 2px solid var(--theme-brand);
+  outline-offset: 2px;
+}
+
+/* 还能复刻的档案 */
+.fk-catalog-title {
+  font-size: 15px;
+  font-weight: 650;
+  color: var(--text);
+  margin: 0 0 14px;
+  max-width: 720px;
+  line-height: 1.6;
+}
+.fk-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 14px;
+}
+.fk-grid:has(> .fk-item:only-child) {
+  grid-template-columns: minmax(0, 520px);
+}
+.fk-item {
+  display: block;
+  padding: 18px 20px 20px;
+  border: 1px solid var(--border-light);
+  border-radius: 14px;
+  background: var(--bg);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease),
+    border-color 0.25s;
+}
+.fk-item:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-card);
+  border-color: var(--theme-brand);
+}
+.fk-item h3 {
+  font-size: 17px;
+  font-weight: 650;
+  margin: 0 0 8px;
+  color: var(--text);
+}
+.fk-item p {
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--text-2);
+  margin: 0;
+}
+.fk-item-deliver {
+  margin-top: 8px !important;
+  font-size: 13px !important;
+  color: var(--theme-brand) !important;
+}
+.fk-item-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+  font-size: 12px;
+  color: var(--text-2);
+  font-variant-numeric: tabular-nums;
+}
+.fk-item-cta {
+  display: block;
+  margin-top: 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--theme-brand);
+}
+
+@media (max-width: 900px) {
+  .fk-wrap {
+    padding: 24px 18px 56px;
+  }
+}

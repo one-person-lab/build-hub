@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>无人机智能作业 Copilot · 产品能力图</title>
+<link rel="stylesheet" href="./drone-copilot.figure.css">
+<style>
+.cap { max-width: 1180px; margin: 0 auto; }
+
+/* 统一入口 */
+.entry {
+  position: relative;
+  display: flex; align-items: center; justify-content: space-between; gap: 20px;
+  padding: 18px 22px;
+  border-radius: 16px;
+  border: 1px solid rgba(212, 175, 94, .38);
+  background:
+    linear-gradient(100deg, rgba(212, 175, 94, .18), rgba(212, 175, 94, .05) 58%, transparent);
+  box-shadow: 0 18px 46px -30px rgba(212, 175, 94, .8);
+}
+.entry-k { font-size: 10.5px; font-weight: 800; letter-spacing: .2em; color: var(--gold); text-transform: uppercase; }
+.entry h1 { margin: 6px 0 0; font-size: 19px; font-weight: 800; letter-spacing: -.01em; }
+.entry ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; justify-content: flex-end; }
+.entry li {
+  padding: 4px 10px; border-radius: 999px; font-size: 12.5px; color: #f3e7c9;
+  background: rgba(212, 175, 94, .13); border: 1px solid rgba(212, 175, 94, .26);
+  white-space: nowrap;
+}
+
+/* 入口 → 五类能力 */
+.split { display: flex; align-items: center; gap: 10px; padding: 14px 4px 12px; color: var(--ink-3); font-size: 11px; letter-spacing: .12em; }
+.split i { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, rgba(212, 175, 94, .45), transparent); }
+.split b { font-weight: 700; color: rgba(212, 175, 94, .85); white-space: nowrap; }
+
+/* 五类能力 */
+.rows { list-style: none; margin: 0; padding: 0; }
+.row {
+  display: grid;
+  grid-template-columns: 196px minmax(0, 1fr) 26px minmax(0, 1.16fr) 26px minmax(0, 1fr);
+  align-items: center; gap: 0 12px;
+  padding: 15px 14px;
+  border-top: 1px solid var(--line);
+}
+.row:last-child { border-bottom: 1px solid var(--line); }
+.row:hover { background: rgba(148, 163, 184, .04); }
+.name { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.name-n {
+  display: grid; place-items: center; flex: none;
+  width: 24px; height: 24px; border-radius: 7px;
+  font-size: 11px; font-weight: 800; font-variant-numeric: tabular-nums;
+  color: var(--gold); background: rgba(212, 175, 94, .13); border: 1px solid rgba(212, 175, 94, .26);
+}
+.name b { font-size: 14.5px; font-weight: 700; line-height: 1.3; }
+.name em {
+  display: block; margin-top: 2px; font-style: normal;
+  font-size: 10px; font-weight: 700; letter-spacing: .1em; color: var(--emerald);
+}
+.cell { min-width: 0; }
+.cell p { margin: 3px 0 0; font-size: 13px; line-height: 1.45; color: var(--ink-2); }
+.cell.is-out p { color: #cdd6e6; }
+.arrow { text-align: center; color: rgba(212, 175, 94, .55); font-size: 14px; }
+.row[data-live] .name b { color: #fff; }
+
+/* 脚注 */
+.foot {
+  display: flex; align-items: flex-start; gap: 10px;
+  margin-top: 16px; padding: 12px 16px;
+  border-radius: 12px; border: 1px dashed var(--line-2);
+  font-size: 12.5px; color: var(--ink-2);
+}
+.foot b { color: var(--ink); font-weight: 700; }
+
+@media (max-width: 900px) {
+  body { padding: 20px 18px 22px; }
+  .entry { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .entry ul { justify-content: flex-start; }
+  .row { grid-template-columns: minmax(0, 1fr); gap: 8px; padding: 14px 10px; }
+  .arrow { display: none; }
+  .cell {
+    padding-left: 34px;
+    display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 6px; align-items: baseline;
+  }
+  .cell .k { font-size: 9.5px; letter-spacing: .08em; }
+  .cell p { margin: 0; font-size: 12.5px; }
+  .name b { font-size: 14px; }
+}
+</style>
+</head>
+<body>
+<main class="cap">
+  <section class="entry">
+    <div>
+      <div class="entry-k">统一对话入口</div>
+      <h1>无人机智能作业 Copilot</h1>
+    </div>
+    <ul>
+      <li>对话</li>
+      <li>语音</li>
+      <li>地图圈选</li>
+      <li>任务面板</li>
+    </ul>
+  </section>
+
+  <div class="split"><i></i><b>五类能力 · 同一个入口</b><i></i></div>
+
+  <ol class="rows">
+    <li class="row" data-live>
+      <div class="name">
+        <span class="name-n">01</span>
+        <div><b>智能飞行操控</b><em>第一期落地</em></div>
+      </div>
+      <div class="cell"><span class="k">输入</span><p>地点 + 目标 + 飞行与取证要求</p></div>
+      <div class="arrow">→</div>
+      <div class="cell"><span class="k">处理</span><p>理解约束 → 生成任务计划 → 校验</p></div>
+      <div class="arrow">→</div>
+      <div class="cell is-out"><span class="k">产出</span><p>确认卡 · 执行进度 · 任务结果</p></div>
+    </li>
+
+    <li class="row">
+      <div class="name">
+        <span class="name-n">02</span>
+        <div><b>智能航线规划</b></div>
+      </div>
+      <div class="cell"><span class="k">输入</span><p>自然语言 / 地图标点 / 圈选区域 / 指定点位</p></div>
+      <div class="arrow">→</div>
+      <div class="cell"><span class="k">处理</span><p>提取航线类型与缺失参数 → 生成草稿 → 校验</p></div>
+      <div class="arrow">→</div>
+      <div class="cell is-out"><span class="k">产出</span><p>航线草稿 · 地图预览 · 参数校验结果</p></div>
+    </li>
+
+    <li class="row">
+      <div class="name">
+        <span class="name-n">03</span>
+        <div><b>自动化工作流</b></div>
+      </div>
+      <div class="cell"><span class="k">输入</span><p>定时巡检或告警触发后的处置描述</p></div>
+      <div class="arrow">→</div>
+      <div class="cell"><span class="k">处理</span><p>拆成节点、参数、连线 → 生成结构化草稿</p></div>
+      <div class="arrow">→</div>
+      <div class="cell is-out"><span class="k">产出</span><p>可编辑工作流草稿（草稿 ≠ 启用）</p></div>
+    </li>
+
+    <li class="row">
+      <div class="name">
+        <span class="name-n">04</span>
+        <div><b>作业数据分析</b></div>
+      </div>
+      <div class="cell"><span class="k">输入</span><p>自然语言问指标、时间范围与维度</p></div>
+      <div class="arrow">→</div>
+      <div class="cell"><span class="k">处理</span><p>提指标 → 数据权限校验 → 受控查询</p></div>
+      <div class="arrow">→</div>
+      <div class="cell is-out"><span class="k">产出</span><p>图表 · 数据依据 · 分析说明</p></div>
+    </li>
+
+    <li class="row">
+      <div class="name">
+        <span class="name-n">05</span>
+        <div><b>多模态巡检</b></div>
+      </div>
+      <div class="cell"><span class="k">输入</span><p>目标描述 + 图片 / 视频</p></div>
+      <div class="arrow">→</div>
+      <div class="cell"><span class="k">处理</span><p>识别 → 业务判断 → 处置判定</p></div>
+      <div class="arrow">→</div>
+      <div class="cell is-out"><span class="k">产出</span><p>候选目标 · 证据材料 · 告警建议</p></div>
+    </li>
+  </ol>
+
+  <div class="foot">
+    <span class="dot tone-gold" style="margin-top:6px"></span>
+    <span><b>共享入口，各走各的流程。</b>五类能力共用一次对话、同一份上下文，但输入形式、处理步骤和交付物各不相同；只有第一类做成了闭环，其余按阶段接。</span>
+  </div>
+</main>
+
+<script>
+  (function () {
+    function send() {
+      var h = Math.ceil(document.documentElement.getBoundingClientRect().height);
+      if (h > 0) parent.postMessage({ __expFigure: true, height: h }, "*");
+    }
+    window.addEventListener("load", send);
+    window.addEventListener("resize", send);
+    if (window.ResizeObserver) new ResizeObserver(send).observe(document.body);
+    send();
+  })();
+</script>
+</body>
+</html>

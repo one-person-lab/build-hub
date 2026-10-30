@@ -53,7 +53,7 @@ export default function TermDetail({
     [flatTerms, term.slug]
   );
   const zone = entry?.zone;
-  // 独立分区（设计 / 原理）的词条跳回自己那页
+  // 独立分区（设计 / 选型）的词条跳回自己那页
   const sectionHref = standaloneCrumb(entry?.catalogKey, locale);
   const allEntries = sectionHref
     ? locale === "en"
@@ -90,8 +90,14 @@ export default function TermDetail({
           prev: "上一个条目",
           next: "下一个条目",
         };
-  const homeHref = locale === "en" ? "/en" : "/";
-  const conceptsHref = locale === "en" ? "/en/topics/frontend" : "/topics/frontend";
+  // 面包屑回词条所在分区：独立分区跳 /design、/stack，其余概念跳自己的 /topics/{key}
+  const conceptsHref =
+    sectionHref ??
+    (entry?.catalogKey
+      ? `${locale === "en" ? "/en" : ""}/topics/${entry.catalogKey}`
+      : locale === "en"
+        ? "/en/topics/frontend"
+        : "/topics/frontend");
   const detailBase = locale === "en" ? "/en/" : "/";
   const breadcrumbLabel = locale === "en" ? "Breadcrumb" : "面包屑";
 
@@ -109,13 +115,13 @@ export default function TermDetail({
               className="detail-back-button"
               aria-label={T.backAll}
               title={T.backAll}
-              onClick={() => router.push(homeHref)}
+              onClick={() => router.push(conceptsHref)}
             >
               <svg className="ui-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M19 12H5m6-6-6 6 6 6" />
               </svg>
             </button>
-            <button type="button" className="breadcrumb-link" onClick={() => router.push(sectionHref ?? conceptsHref)}>
+            <button type="button" className="breadcrumb-link" onClick={() => router.push(conceptsHref)}>
               {T.allEntries}
             </button>
             <span className="breadcrumb-separator" aria-hidden="true">

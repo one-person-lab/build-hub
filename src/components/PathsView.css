@@ -1,4 +1,4 @@
-/* 路径 / Paths —— 三条按结果组织的动手路线 */
+/* 路径 / Paths —— 按结果组织的动手路线 */
 
 .pth-main {
   width: 100%;
@@ -180,41 +180,6 @@
 
 .pth-card:hover .pth-card-go::after {
   transform: translateX(3px);
-}
-
-/* ── 索引页底部说明 ── */
-.pth-how {
-  margin-top: 64px;
-  padding-top: 36px;
-  border-top: 1px solid var(--border-light);
-}
-
-.pth-how h2 {
-  margin: 0 0 22px;
-  font-size: 20px;
-  letter-spacing: -0.015em;
-  font-weight: 660;
-}
-
-.pth-how-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 30px;
-}
-
-.pth-how-item b {
-  display: block;
-  margin-bottom: 7px;
-  font-size: 14px;
-  font-weight: 650;
-  color: var(--text);
-}
-
-.pth-how-item p {
-  margin: 0;
-  font-size: 13.5px;
-  line-height: 1.75;
-  color: var(--text-2);
 }
 
 /* ── 详情页 ── */
@@ -689,10 +654,6 @@
   .pth-card-go {
     margin-top: 0;
   }
-  .pth-how-grid {
-    grid-template-columns: 1fr;
-    gap: 22px;
-  }
   .pth-facts {
     grid-template-columns: 1fr;
     gap: 16px;
@@ -780,6 +741,158 @@
     transition: none;
   }
   .pth-card:hover {
+    transform: none;
+  }
+}
+
+/* ── 教材入口（课程已从菜单收进路径，这里是唯一入口） ── */
+.pth-textbook {
+  margin-top: 26px;
+  padding: 18px 20px 16px;
+  border: 1px solid var(--border-light);
+  border-left: 2px solid color-mix(in srgb, var(--brand) 55%, var(--border));
+  border-radius: 14px;
+  background: var(--bg-soft);
+}
+
+.pth-textbook-k {
+  margin: 0 0 12px;
+  font-size: 11.5px;
+  font-weight: 650;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.pth-textbook-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.pth-textbook-link {
+  display: grid;
+  gap: 3px;
+  min-width: 260px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  background: var(--bg);
+  text-decoration: none;
+  transition: border-color 0.2s var(--ease);
+}
+
+.pth-textbook-link:hover {
+  border-color: color-mix(in srgb, var(--brand) 45%, var(--border));
+}
+
+.pth-textbook-link:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
+.pth-textbook-link b {
+  font-size: 15px;
+  font-weight: 660;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+
+.pth-textbook-link span {
+  font-size: 12.5px;
+  color: var(--text-3);
+}
+
+.pth-textbook-link em {
+  font-size: 12.5px;
+  font-style: normal;
+  font-weight: 620;
+  color: var(--brand);
+}
+
+.pth-textbook-hint {
+  margin: 12px 0 0;
+  font-size: 12.5px;
+  line-height: 1.65;
+  color: var(--text-3);
+}
+
+.pth-textbooks {
+  margin-top: 54px;
+  padding-top: 30px;
+  border-top: 1px solid var(--border-light);
+}
+
+.pth-textbooks h2 {
+  margin: 0;
+  font-size: 20px;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.pth-textbooks-lead {
+  margin: 8px 0 20px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-2);
+}
+
+.pth-textbooks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 14px;
+}
+
+.pth-textbook-card {
+  display: grid;
+  gap: 5px;
+  padding: 20px 22px;
+  border: 1px solid var(--border-light);
+  border-radius: 16px;
+  background: var(--bg);
+  text-decoration: none;
+  transition: border-color 0.2s var(--ease), transform 0.2s var(--ease);
+}
+
+.pth-textbook-card:hover {
+  border-color: color-mix(in srgb, var(--brand) 34%, var(--border));
+  transform: translateY(-2px);
+}
+
+.pth-textbook-card:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 3px;
+}
+
+.pth-textbook-card b {
+  font-size: 17px;
+  font-weight: 670;
+  letter-spacing: -0.015em;
+  color: var(--text);
+}
+
+.pth-textbook-card span {
+  font-size: 12.5px;
+  color: var(--text-3);
+}
+
+.pth-textbook-card em {
+  margin-top: 6px;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 630;
+  color: var(--brand);
+}
+
+@media (max-width: 720px) {
+  .pth-textbook-link {
+    min-width: 0;
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pth-textbook-card:hover {
     transform: none;
   }
 }

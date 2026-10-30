@@ -12,7 +12,7 @@
       "outcomeShort": "一个能直接发给别人的官网",
       "audience": "还没上线过任何东西，或者用 AI 写过页面、但从没真正交付过的人",
       "prereq": "一台电脑，一个能跑命令的 AI 编程工具；不用会写代码",
-      "duration": "约 6–10 小时，分三次做完",
+      "duration": "约 8–12 小时，分四次做完",
       "steps": [
         {
           "title": "把想法说清楚，再动手",
@@ -78,6 +78,17 @@
             { "type": "term", "id": "responsive-design" }
           ],
           "done": "390px 宽从头滑到尾不横向滚动；表单填错有具体提示，提交成功和失败都有反馈。"
+        },
+        {
+          "title": "改乱了要能退回去",
+          "why": "AI 一次能改十几个文件，改坏了靠脑子找不回去。先把提交和撤销这两个保险用上，才敢放手让它动。",
+          "assets": [
+            { "type": "course", "id": "git-workflow", "note": "整门 6 章，这条路径只用得上头一章和最后一章" },
+            { "type": "chapter", "id": "git-workflow/01-working-tree-and-commit" },
+            { "type": "chapter", "id": "git-workflow/06-restore-and-stash" },
+            { "type": "term", "id": "git" }
+          ],
+          "done": "随便改坏一个文件，你能一步退回上一个能跑的版本，并说清自己是靠哪条命令退回去的。"
         },
         {
           "title": "上线，换成自己的域名",
@@ -297,6 +308,115 @@
         "390px 手机宽度不横向滚动",
         "键盘能走完主流程，对比度过关",
         "对照参考截图，差距能具体说出来并改掉"
+      ],
+      "next": "first-ai-app"
+    },
+    {
+      "id": "first-ai-app",
+      "order": 4,
+      "kicker": "从想法到可用",
+      "name": "做出第一个 AI 应用",
+      "tagline": "从一个具体需求出发，接上模型，让它能回答、能查你的资料，需要时还能动手，最后变成一个别人打开链接就能用的小工具。",
+      "outcome": "一个有网址的 AI 应用：提问能得到回答，问自己的资料会给出依据、查不到就直说；密钥在服务端，费用、报错和等待状态全都看得见。",
+      "outcomeShort": "一个别人能用的 AI 应用",
+      "audience": "会用 AI 编程工具，但还没独立做出过一个带模型的应用；想把身边的资料、经验或日常流程变成一个真能用的工具的人",
+      "prereq": "一台电脑，一个能跑命令的 AI 编程工具，一个你想解决的具体问题；另外要有一个能充值的模型服务账号",
+      "duration": "约 8–14 小时，分四到六次做完",
+      "steps": [
+        {
+          "title": "先定一个能做完的小应用",
+          "why": "需求一写成「万能助手」，加功能就停不下来了。先钉死一个用户、一类问题、一个能验收的结果。",
+          "assets": [
+            { "type": "term", "id": "ai-basics", "note": "先搞清它做得到什么、做不到什么" },
+            { "type": "prompt", "id": "clarify-spec" },
+            { "type": "prompt", "id": "clarify-scope" },
+            { "type": "prompt", "id": "clarify-acceptance" }
+          ],
+          "done": "一页需求说明：给谁用、输入什么、期望输出什么、三个验收场景，外加这一版明确不做的清单。"
+        },
+        {
+          "title": "选模型，接好密钥",
+          "why": "密钥一进前端，等于公开送给访问者；模型选得越花，以后越难换。先用一个账号把调用跑通。",
+          "assets": [
+            { "type": "term", "id": "api-key" },
+            { "type": "term", "id": "env-var", "note": "密钥放这里，别写进代码" },
+            { "type": "prompt", "id": "extend-integrate" }
+          ],
+          "done": "项目能从服务端读到密钥并成功调用一次模型；翻网页源码和浏览器请求，确认密钥没暴露出去。"
+        },
+        {
+          "title": "先跑通最简单的一问一答",
+          "why": "一上来就接资料、接工具、做大界面，出错时分不清是模型、接口还是逻辑的问题。先把「一句话进、一段话出」跑稳。",
+          "assets": [
+            { "type": "term", "id": "system-prompt" },
+            { "type": "prompt", "id": "generate-from-scratch" },
+            { "type": "prompt", "id": "debug-error" }
+          ],
+          "done": "输入一个问题能看到回答；换一个提问，回答跟着变；接口失败时界面上有明确提示，不是一片空白。"
+        },
+        {
+          "title": "让它能回答自己的资料",
+          "why": "只靠模型自带的知识，问它你的业务资料就开始编。把切分、检索、回答串起来，找不到依据时让它直说。",
+          "assets": [
+            { "type": "term", "id": "rag" },
+            { "type": "term", "id": "embedding" },
+            { "type": "term", "id": "ai-hallucination", "note": "资料问答最先踩的就是这个" },
+            { "type": "explainer", "id": "drone-qa-assistant", "note": "一整套资料问答怎么搭，有现成案例" }
+          ],
+          "done": "导入至少三份自己的资料，问有答案的问题能指出依据在哪一段；再问一个资料里没有答案的，它承认查不到。"
+        },
+        {
+          "title": "需要执行操作时，再接入工具",
+          "why": "模型一旦能调用工具，错回答就会变成错操作。确实要它动手才加；加之前先划清能调什么、调完怎么检查结果。",
+          "assets": [
+            { "type": "term", "id": "ai-agent" },
+            { "type": "term", "id": "agent-loop" },
+            { "type": "term", "id": "harness-engineering", "note": "能动手之后，边界怎么框住" },
+            { "type": "explainer", "id": "drone-copilot", "note": "带工具执行的助手，照这个案例起手" }
+          ],
+          "done": "至少一个工具真能跑通：提问、模型发起调用、工具返回结果走一遍；修改或删除这类操作，执行前会先让你确认。"
+        },
+        {
+          "title": "把交互做顺，让回答逐步出现",
+          "why": "模型出字要时间，界面一直空着，用户以为卡死了。先把等待、流式、失败重试这些状态补齐，再谈视觉细节。",
+          "assets": [
+            { "type": "term", "id": "streaming-response", "note": "让回答一个字一个字出来" },
+            { "type": "term", "id": "context-window" },
+            { "type": "prompt", "id": "generate-component" },
+            { "type": "skill", "id": "web-design-guidelines", "note": "上线前用它自查界面状态" }
+          ],
+          "done": "连发三个不同问题，回答都能逐步显示；生成中有状态、失败能重试；长回答不挡输入框，手机上也能操作。"
+        },
+        {
+          "title": "控制调用成本，处理真实报错",
+          "why": "开发时只调了几次，费用和用量都看不出问题。上线后一次超长输入、一个失败重试循环，就能把额度烧穿。",
+          "assets": [
+            { "type": "term", "id": "token-cost", "note": "费用是怎么算出来的" },
+            { "type": "term", "id": "api-proxy", "note": "别让前端直连模型接口" },
+            { "type": "prompt", "id": "debug-notworking" },
+            { "type": "prompt", "id": "refactor-review" }
+          ],
+          "done": "做完十次真实问答，能对上每次的用量或费用；手动造一次接口失败和一次超长输入，应用给出提示而不是无限重试。"
+        },
+        {
+          "title": "部署上线，让别人真的用一次",
+          "why": "本机能跑不等于别人能访问。线上还会碰到环境变量、跨域和权限，最后得让一个真实用户替你走完一遍。",
+          "assets": [
+            { "type": "prompt", "id": "ship-deploy" },
+            { "type": "prompt", "id": "ship-domain" },
+            { "type": "prompt", "id": "ship-prelaunch" },
+            { "type": "term", "id": "deployment" }
+          ],
+          "done": "公开网址加 HTTPS 能打开，换一台设备也完成一次问答；线上密钥没暴露，并且至少一位别人用它做成了一个真实任务。"
+        }
+      ],
+      "finish": [
+        "有一个能通过网址访问的 AI 应用，手机和电脑都能打开",
+        "提问能得到回答，回答和输入对得上",
+        "接了资料问答的：回答能指出依据，资料里没有答案时直说",
+        "接了工具调用的：至少一个工具真能执行，高风险操作有确认",
+        "有等待和流式状态，失败之后能重试",
+        "密钥保存在服务端，能查看调用用量，常见报错和异常输入都有提示"
       ],
       "next": "first-website"
     }

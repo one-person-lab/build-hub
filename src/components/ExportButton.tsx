@@ -13,7 +13,7 @@ export default function ExportButton({
   label,
 }: {
   locale: "zh" | "en";
-  kind?: "favorites" | "collection";
+  kind?: "favorites" | "collection" | "pack";
   id?: string;
   pro: boolean;
   onNeedPro: () => void;

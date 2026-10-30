@@ -1,7 +1,10 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import CardDemoThumb from "./CardDemoThumb";
+import Playground, { DEMOS } from "./Playground";
+import { track } from "@/lib/track";
 import "./PathsView.css";
 import zhCatalogsData from "@/data/catalogs.json";
 import enCatalogsData from "@/data/en-catalogs.json";
@@ -41,7 +44,7 @@ const ZONES: Record<"zh" | "en", Record<string, string>> = {
     ai: "AI",
     git: "Git",
     design: "设计",
-    principles: "原理",
+    stack: "选型",
   },
   en: {
     frontend: "Frontend",
@@ -52,7 +55,6 @@ const ZONES: Record<"zh" | "en", Record<string, string>> = {
     ai: "AI",
     git: "Git",
     design: "Design",
-    principles: "Principles",
   },
 };
 
@@ -86,6 +88,8 @@ const COPY = {
       "会讲清一件事、会跑通一套流程、会做一份模板——把这些收进来，变成随时能再用的资产。不懂前端后端、看不懂 AI 的黑话？BuildHub 用大白话把前端、后端、AI、Git 这些 Vibe Coding 高频概念讲清楚，每个词条配可视化示例；技能、产品、提示词、动效、手册都替你筛过。",
     ctaBrowse: "从零做出第一个官网",
     ctaStyle: "先逛概念",
+    ctaPlay: "随便玩一个",
+    playHint: "个能上手的小实验，不用登录",
     statTerms: "概念词条",
     statStyles: "设计风格",
     statProducts: "精选产品",
@@ -111,6 +115,8 @@ const COPY = {
     lead: "BuildHub explains the Vibe Coding concepts you keep running into in plain words, each with a visual example — plus curated skills, hands-on product reviews, ready-to-use prompts and playbooks. From your first concept to a live product.",
     ctaBrowse: "Start with the concepts",
     ctaStyle: "Where this style comes from",
+    ctaPlay: "Try a live demo",
+    playHint: "hands-on experiments, no account needed",
     statTerms: "concepts",
     statStyles: "design styles",
     statProducts: "products",
@@ -135,6 +141,7 @@ export default function HomeView({ locale = "zh" }: { locale?: "zh" | "en" }) {
   const en = locale === "en";
   const C = COPY[locale];
   const base = en ? "/en" : "";
+  const [playing, setPlaying] = useState(false);
   const catalogs = (en ? enCatalogsData : zhCatalogsData) as unknown as Catalog[];
   const productCats = (en ? enProductsData : zhProductsData) as unknown as {
     categories: { key: string; label: string; products: AnyProduct[] }[];
@@ -154,7 +161,7 @@ export default function HomeView({ locale = "zh" }: { locale?: "zh" | "en" }) {
   const styleTerms =
     catalogs
       .find((c) => c.key === "design")
-      ?.groups.filter((g) => g.category === "app-style" || g.category === "web-style")
+      ?.groups.filter((g) => g.category === "web-style")
       .flatMap((g) => g.terms) ?? [];
   const stylePicks = STYLE_PICKS.map((s) =>
     styleTerms.find((t) => t.slug === s)
@@ -177,6 +184,18 @@ export default function HomeView({ locale = "zh" }: { locale?: "zh" | "en" }) {
           </h1>
           <p className="rd-lead">{C.lead}</p>
           <div className="rd-ctas">
+            <button
+              type="button"
+              className="rd-btn-ghost rd-play"
+              title={`${DEMOS.length} ${C.playHint}`}
+              onClick={() => {
+                track("playground_open", { from: "home" });
+                setPlaying(true);
+              }}
+            >
+              {C.ctaPlay}
+              <i>{DEMOS.length}</i>
+            </button>
             <Link
               href={en ? `${base}/topics/frontend` : "/paths/first-website"}
               className="rd-btn"
@@ -299,6 +318,8 @@ export default function HomeView({ locale = "zh" }: { locale?: "zh" | "en" }) {
           </div>
         </section>
       </main>
+
+      <Playground locale={locale} open={playing} onClose={() => setPlaying(false)} />
     </div>
   );
 }

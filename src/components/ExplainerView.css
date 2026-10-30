@@ -19,7 +19,7 @@
 .exp-shell { display: grid; grid-template-columns: 156px minmax(0, 1fr); gap: 28px; align-items: start; }
 .exp-col { min-width: 0; }
 
-/* ── 左目录：三章 + 九节，滚动时高亮当前节 ────────────────── */
+/* ── 左目录：三章 + 各节，滚动时高亮当前节 ────────────────── */
 .exp-toc { position: sticky; top: 92px; }
 .exp-toc-h {
   font-size: .7rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase;
@@ -89,19 +89,20 @@
   color: var(--exp-brand); font-size: .72rem; font-weight: 800;
 }
 .exp-memory-map { margin-top: 1.2rem; container-type: inline-size; }
-/* 缩略图：架构图 iframe 固定按 1040px 渲染（这个宽度下它自己的工具栏不换行），
-   图形本体 926×463、从 y=181 开始。用「一栏」的宽度反算缩放比，任意栏宽都是「整图缩小」而不是裁一半。
-   注意 cqi 要由父级提供容器，元素自己声明 container-type 时查不到自己。
-   iframe 高度给足，避免图里冒出滚动条把内容挤到换行、把量好的 181 挪掉。 */
+/* 缩略图：图按 1040px 固定宽渲染，再整体缩到这一栏的宽度。
+   --fig-h 由图里的内容量出来（FigureThumb 写在行内），所以换一张图不用改这里。
+   cqi 要由父级提供容器，元素自己声明 container-type 时查不到自己。 */
 .exp-memory-frame {
   --exp-map-scale: tan(atan2(100cqi, 1040px));
-  position: relative; height: calc(463px * var(--exp-map-scale) + 14px);
+  --fig-h: 600px;
+  position: relative; height: calc(var(--fig-h) * var(--exp-map-scale) + 2px);
   overflow: hidden; border: 1px solid var(--exp-hair); border-radius: 10px;
+  background: #080c16;
 }
 .exp-memory-frame iframe {
-  position: absolute; left: 50%; top: 0; width: 1040px; height: 1400px;
+  position: absolute; left: 50%; top: 0; width: 1040px; height: var(--fig-h);
   border: 0; pointer-events: none; transform-origin: top center;
-  transform: translateX(-50%) scale(var(--exp-map-scale)) translateY(-181px);
+  transform: translateX(-50%) scale(var(--exp-map-scale));
 }
 .exp-memory-cap { margin: .55rem 0 0; font-size: .8rem; color: var(--exp-muted); }
 .exp-memory-cap a { color: var(--exp-brand); }
@@ -189,7 +190,6 @@
   display: flex; align-items: baseline; gap: .55rem; flex-wrap: wrap;
   font-size: 1.3rem; font-weight: 800; margin: 0 0 .5rem; letter-spacing: -.005em;
 }
-.exp-sec > h2 .exp-hint { font-size: .82rem; font-weight: 500; color: var(--exp-muted); }
 .exp-sec .exp-sec-intro { color: var(--exp-muted); margin: 0 0 1.25rem; font-size: .95rem; max-width: 68ch; }
 .exp-sub-h {
   display: flex; align-items: baseline; gap: .6rem; flex-wrap: wrap;
@@ -258,10 +258,10 @@
   width: 100%; height: 76vh; min-height: 540px;
   border: 1px solid var(--exp-hair); border-radius: 14px; background: #fff;
 }
+/* 自绘的三张图：高度由 iframe 内文回报，这里只负责边框和加载前的占位 */
+.exp-main .fig-frame { margin-bottom: 1.6rem; }
 .exp-map-open { font-size: .82rem; margin-top: .55rem; color: var(--exp-muted); }
 .exp-map-open a { color: var(--exp-brand); }
-/* 全景图有三层泳道 + 底部图例，76vh 会把最底下一层裁掉；按内容列宽量出来是 876px */
-.exp-map-panorama iframe { height: clamp(560px, 62vw, 880px); }
 
 /* 走查 stepper */
 .exp-walk-bar { display: flex; align-items: center; gap: .7rem; margin-bottom: 1rem; }
@@ -334,11 +334,6 @@
 .exp-qa details[open] summary::before { content: "−"; }
 .exp-qa details p { margin: .55rem 0 0 .1rem; color: var(--exp-muted); font-size: .93rem; max-width: 68ch; }
 
-.exp-foot {
-  margin-top: 3rem; padding-top: 1.4rem; border-top: 1px solid var(--exp-hair);
-  font-size: .85rem; color: var(--exp-muted); max-width: 68ch;
-}
-
 /* ── 讲解目录页 · 封面墙 ─────────────────────────────────── */
 .exp-main.exp-index { max-width: 1120px; padding: 54px 32px 104px; }
 
@@ -398,7 +393,6 @@
 }
 .exp-index-card.is-wide .exp-index-cover { min-height: 100%; }
 .exp-index-card.is-wide .exp-index-body { justify-content: center; padding: 30px 34px; }
-.exp-index-card.is-wide h2 { font-size: 25px; }
 .exp-index-card.is-wide .exp-index-oneline { max-width: 640px; }
 .exp-index-card.is-wide .exp-index-go { margin-top: 18px; padding-top: 0; }
 
@@ -433,12 +427,13 @@
   font-size: 10.5px; letter-spacing: .05em;
   color: rgba(244,239,228,.72); white-space: nowrap;
 }
-.exp-index-quote {
+.exp-index-title {
   margin: auto 0 22px;
-  font-size: 20px; font-weight: 620; line-height: 1.45;
-  letter-spacing: -.01em; color: #fbf7ee;
+  font-size: 23px; font-weight: 680; line-height: 1.34;
+  letter-spacing: -.02em; color: #fbf7ee;
+  text-wrap: pretty;
 }
-.exp-index-card.is-wide .exp-index-quote { font-size: 17px; }
+.exp-index-card.is-wide .exp-index-title { font-size: 21px; }
 
 .exp-index-body {
   display: flex; flex-direction: column; flex: 1;
@@ -448,11 +443,6 @@
   margin: 0 0 8px;
   font-size: 11.5px; font-weight: 620; letter-spacing: .06em;
   color: var(--exp-muted);
-}
-.exp-index-card h2 {
-  margin: 0;
-  font-size: 21px; line-height: 1.32; letter-spacing: -.02em;
-  font-weight: 680; color: var(--exp-fg);
 }
 .exp-index-oneline {
   margin: 10px 0 0;
@@ -477,60 +467,21 @@
 }
 .exp-index-card:hover .exp-index-go::after { transform: translateX(3px); }
 
-.exp-index-note {
-  margin-top: 66px; padding-top: 34px;
-  border-top: 1px solid var(--exp-hair);
-}
-.exp-index-note h2 {
-  margin: 0; font-size: 20px; font-weight: 680; letter-spacing: -.015em;
-}
-.exp-index-note > p {
-  max-width: 660px; margin: 10px 0 0;
-  font-size: 14px; line-height: 1.75; color: var(--exp-muted);
-}
-.exp-index-framework {
-  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 28px; margin-top: 26px;
-}
-.exp-index-fw {
-  display: grid; grid-template-columns: auto minmax(0, 1fr);
-  gap: 12px; align-items: start;
-}
-.exp-index-fw-n {
-  font-family: var(--font-serif);
-  font-size: 25px; line-height: 1;
-  color: color-mix(in srgb, var(--exp-brand) 45%, var(--exp-muted));
-  font-variant-numeric: lining-nums;
-}
-.exp-index-fw b { display: block; font-size: 14px; font-weight: 650; color: var(--exp-fg); }
-.exp-index-fw p { margin: 4px 0 0; font-size: 12.5px; line-height: 1.7; color: var(--exp-muted); text-wrap: pretty; }
-.exp-index-coming {
-  display: flex; align-items: baseline; gap: 10px;
-  margin: 34px 0 0; padding-top: 16px;
-  border-top: 1px solid var(--exp-hair);
-  font-size: 12.5px; color: var(--exp-muted);
-}
-.exp-index-coming b { color: var(--exp-fg); font-weight: 620; }
-
 .exp-index-nw { white-space: nowrap; }
 
-/* 两列还留得住，但封面放不下 20px 的引语 */
+/* 两列还留得住，侧栏封面窄，标题收一档 */
 @media (max-width: 980px) {
-  .exp-index-quote,
-  .exp-index-card.is-wide .exp-index-quote { font-size: 16px; }
-  .exp-index-card.is-wide h2 { font-size: 22px; }
+  .exp-index-card.is-wide .exp-index-title { font-size: 19px; }
 }
 
-/* 再窄就一列，卡片铺满，引语可以回到 20px */
+/* 再窄就一列，卡片铺满，标题回到常规字号 */
 @media (max-width: 880px) {
   .exp-index-wall { grid-template-columns: minmax(0, 1fr); gap: 16px; }
   .exp-index-card.is-wide { display: flex; flex-direction: column; }
   .exp-index-card.is-wide .exp-index-cover { min-height: 200px; }
   .exp-index-card.is-wide .exp-index-body { justify-content: flex-start; padding: 20px 22px 22px; }
   .exp-index-card.is-wide .exp-index-go { margin-top: auto; padding-top: 18px; }
-  .exp-index-quote,
-  .exp-index-card.is-wide .exp-index-quote { font-size: 20px; }
-  .exp-index-card.is-wide h2 { font-size: 21px; }
+  .exp-index-card.is-wide .exp-index-title { font-size: 21px; }
 }
 
 @media (max-width: 760px) {
@@ -541,12 +492,9 @@
   .exp-index-card.is-wide .exp-index-body { padding: 20px 22px 22px; }
   .exp-index-cover { min-height: 176px; }
   .exp-index-num { font-size: 50px; }
-  .exp-index-quote,
-  .exp-index-card.is-wide .exp-index-quote { font-size: 15px; }
-  .exp-index-card h2,
-  .exp-index-card.is-wide h2 { font-size: 18px; }
+  .exp-index-title,
+  .exp-index-card.is-wide .exp-index-title { font-size: 19px; }
   .exp-index-facts { gap: 10px 20px; font-size: 12.5px; }
-  .exp-index-framework { grid-template-columns: minmax(0, 1fr); gap: 20px; }
 }
 
 @media (max-width: 1080px) {
@@ -557,4 +505,66 @@
 }
 @media (max-width: 620px) {
   .exp-kv-row { grid-template-columns: minmax(0, 1fr); gap: .25rem; }
+}
+
+/* ── 专题索引页 · 技术手册入口 ─────────────────────────────── */
+.exp-index-book-wrap { margin-top: 38px; }
+.exp-index-book {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 36px;
+  padding: 34px 36px 32px;
+  border-radius: 18px;
+  color: #f4efe4;
+  text-decoration: none;
+  background:
+    radial-gradient(110% 130% at 88% 0%, rgba(201, 168, 90, .22), transparent 60%),
+    #1b1813;
+  transition: transform .2s var(--ease, ease), box-shadow .2s var(--ease, ease);
+}
+.exp-index-book:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 34px rgba(20, 16, 10, .18);
+}
+.exp-index-book-kicker {
+  margin: 0 0 10px;
+  font-size: .7rem;
+  font-weight: 800;
+  letter-spacing: .16em;
+  color: #c9a85a;
+}
+.exp-index-book h2 {
+  margin: 0;
+  font-size: clamp(24px, 3.2vw, 34px);
+  line-height: 1.2;
+  letter-spacing: -.03em;
+  font-weight: 720;
+}
+.exp-index-book h2 span {
+  display: block;
+  margin-top: 4px;
+  font-size: .38em;
+  font-weight: 600;
+  letter-spacing: .08em;
+  color: #b9b1a2;
+}
+.exp-index-book-oneline {
+  margin: 14px 0 0;
+  max-width: 560px;
+  font-size: .92rem;
+  line-height: 1.75;
+  color: #cfc8ba;
+}
+.exp-index-book-go {
+  flex: none;
+  padding-bottom: 4px;
+  font-size: .86rem;
+  font-weight: 700;
+  color: #e6cf95;
+  white-space: nowrap;
+}
+@media (max-width: 760px) {
+  .exp-index-book { flex-direction: column; align-items: flex-start; gap: 20px; padding: 26px 24px 24px; }
+  .exp-index-book-go { padding: 0; }
 }

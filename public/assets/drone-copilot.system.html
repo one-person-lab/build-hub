@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>无人机智能作业 Copilot · 系统架构图</title>
+<link rel="stylesheet" href="./drone-copilot.figure.css">
+<style>
+.sys { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr) 236px; gap: 18px; align-items: stretch; }
+.flow { min-width: 0; }
+
+/* 顶部输入 */
+.intake {
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  padding: 10px 14px; border-radius: 12px;
+  border: 1px solid var(--line); background: var(--panel);
+}
+.intake strong { font-size: 12.5px; font-weight: 700; color: var(--ink); white-space: nowrap; }
+.intake ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+
+/* 连接线 */
+.link { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 5px 0; }
+.link span {
+  font-size: 10.5px; letter-spacing: .06em; color: var(--ink-3);
+  padding: 1px 8px; border-radius: 999px; background: rgba(148, 163, 184, .07);
+  border: 1px solid var(--line); white-space: nowrap;
+}
+.link i { width: 1px; height: 14px; background: linear-gradient(180deg, var(--line-2), rgba(212, 175, 94, .5)); }
+.link.down { flex-direction: column; gap: 2px; }
+
+/* 新增层：外框 */
+.zone {
+  position: relative;
+  padding: 24px 14px 14px;
+  border: 1px dashed rgba(212, 175, 94, .45);
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(212, 175, 94, .05), transparent 45%);
+}
+.zone-k {
+  position: absolute; top: -9px; left: 16px;
+  padding: 0 8px; font-size: 10px; font-weight: 800; letter-spacing: .16em;
+  color: var(--gold); background: var(--bg); text-transform: uppercase;
+}
+
+/* 模块 */
+.mod {
+  --tone: var(--ink-3);
+  position: relative;
+  padding: 12px 14px 13px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: rgba(148, 163, 184, .05);
+  border-left: 2px solid var(--tone);
+}
+.mod + .mod { margin-top: 8px; }
+.mod h3 { margin: 0; display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 750; }
+.mod h3 .dot { background: var(--tone); }
+.mod .role { margin: 2px 0 8px; font-size: 11.5px; color: var(--ink-3); }
+.mod ul { margin: 0; padding-left: 14px; color: var(--ink-2); font-size: 12.5px; line-height: 1.5; }
+.mod ul li::marker { color: var(--ink-3); }
+
+/* 并排的两个模块 */
+.pair { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px; margin-top: 8px; }
+.pair .mod { margin-top: 0; }
+
+/* 既有平台 */
+.platform {
+  padding: 13px 14px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(246, 196, 83, .3);
+  background: rgba(246, 196, 83, .05);
+  border-left: 2px solid var(--amber);
+}
+.platform h3 { margin: 0; display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 750; }
+.platform h3 .dot { background: var(--amber); }
+.platform p { margin: 2px 0 9px; font-size: 11.5px; color: var(--ink-3); }
+
+/* 右侧支撑面 */
+.side { display: flex; flex-direction: column; justify-content: space-between; gap: 10px; }
+.side-card { padding: 13px 14px; border-radius: 12px; border: 1px solid var(--line); background: rgba(148, 163, 184, .04); }
+.side-card .k { margin-bottom: 8px; }
+.side-card ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 7px; }
+.side-card li { display: flex; align-items: baseline; gap: 8px; font-size: 12.5px; color: var(--ink-2); }
+.side-card li b { color: var(--ink); font-weight: 650; }
+.side-note {
+  padding: 13px 14px; border-radius: 12px;
+  border: 1px dashed rgba(251, 113, 133, .34); background: rgba(251, 113, 133, .05);
+  font-size: 12px; line-height: 1.6; color: var(--ink-2);
+}
+.side-note b { display: block; margin-bottom: 5px; color: var(--rose); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; }
+
+@media (max-width: 900px) {
+  body { padding: 20px 18px 22px; }
+  .sys { grid-template-columns: minmax(0, 1fr); }
+  .pair { grid-template-columns: minmax(0, 1fr); }
+  .side { order: 2; }
+}
+</style>
+</head>
+<body>
+<main class="sys">
+  <div class="flow">
+    <div class="intake">
+      <strong>操作员</strong>
+      <ul>
+        <li>语音</li><li>文字</li><li>地图圈选</li><li>任务面板</li>
+      </ul>
+    </div>
+
+    <div class="link down"><i></i><span>指令 · 空间数据 · 会话上下文</span><i></i></div>
+
+    <div class="zone">
+      <span class="zone-k">Copilot · 新增层</span>
+
+      <section class="mod tone-cyan">
+        <h3><span class="dot"></span>前端交互与会话管理</h3>
+        <p class="role">用户只跟这一层打交道</p>
+        <ul>
+          <li>对话、语音与地图圈选统一成结构化请求</li>
+          <li>会话上下文、确认卡、执行进度回显</li>
+        </ul>
+      </section>
+
+      <div class="link down"><i></i><span>结构化指令</span><i></i></div>
+
+      <section class="mod tone-violet">
+        <h3><span class="dot"></span>Agent 编排与意图路由</h3>
+        <p class="role">单一编排器，按任务类型选领域流程</p>
+        <ul>
+          <li>意图识别 · 任务类型判定 · 流程状态维护</li>
+          <li>装配上下文、决定调用哪个工具、解释执行结果</li>
+        </ul>
+      </section>
+
+      <div class="link down"><i></i><span>受控工具调用</span><i></i></div>
+
+      <div class="pair">
+        <section class="mod tone-emerald">
+          <h3><span class="dot"></span>工具网关与领域服务</h3>
+          <p class="role">模型能碰到的全部动作都在这里</p>
+          <ul>
+            <li>Tool 注册、参数校验、最小权限</li>
+            <li>把平台能力包成有明确契约的动作</li>
+          </ul>
+        </section>
+        <section class="mod tone-rose">
+          <h3><span class="dot"></span>安全护栏与人工确认</h3>
+          <p class="role">服务端确定性校验，不交给模型判断</p>
+          <ul>
+            <li>权限 · 设备状态 · 参数 · 空域 · 风险</li>
+            <li>计划版本绑定、一次性凭证、人工确认</li>
+          </ul>
+        </section>
+      </div>
+    </div>
+
+    <div class="link down"><i></i><span>校验通过 + 确认令牌</span><i></i></div>
+
+    <section class="platform">
+      <h3><span class="dot"></span>现有无人机业务平台</h3>
+      <p>设备与遥测 · 航线与地理 · 任务调度 · 媒体与识别 · 记录与告警 · 工作流引擎</p>
+      <ul class="chips">
+        <li>真机与机场</li>
+        <li>任务状态为准</li>
+        <li>媒体落库</li>
+        <li>既有权限体系</li>
+      </ul>
+    </section>
+  </div>
+
+  <aside class="side">
+    <div class="side-card">
+      <span class="k">支撑面</span>
+      <ul>
+        <li><b>模型服务</b>理解 · 规划 · 总结</li>
+        <li><b>知识检索</b>手册 · 规则 · 历史</li>
+        <li><b>状态与上下文</b>本轮快照</li>
+        <li><b>观测与审计</b>Trace · 回放</li>
+      </ul>
+    </div>
+    <div class="side-note">
+      <b>系统边界</b>
+      Copilot 只调用平台工具，不直接操纵设备；模型给出的是计划，能不能执行由护栏和确认决定。
+    </div>
+  </aside>
+</main>
+
+<script>
+  (function () {
+    function send() {
+      var h = Math.ceil(document.documentElement.getBoundingClientRect().height);
+      if (h > 0) parent.postMessage({ __expFigure: true, height: h }, "*");
+    }
+    window.addEventListener("load", send);
+    window.addEventListener("resize", send);
+    if (window.ResizeObserver) new ResizeObserver(send).observe(document.body);
+    send();
+  })();
+</script>
+</body>
+</html>

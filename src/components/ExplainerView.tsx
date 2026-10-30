@@ -3,6 +3,7 @@
 import { Fragment, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import Link from "next/link";
 import { writeClipboard } from "./clipboard";
+import FigureFrame, { useFigureHeight } from "./FigureFrame";
 import "./ExplainerView.css";
 
 export type Followup = { q: string; a: string };
@@ -20,25 +21,34 @@ export type Node = {
 export type Related = { id: string; label: string; note?: string };
 export type Pitfall = { title: string; text: string; fix: string };
 export type StackItem = { k: string; v: string; link?: string };
+export type Figure = { src: string; title: string; note?: string };
 export type Explainer = {
   title: string;
   oneLiner: string;
   forWhom: string;
-  memory: { line: string; note?: string };
-  diagram: string;
-  panorama?: { src: string; title?: string; note?: string };
-  overviewHint?: string;
+  memory: { line: string };
+  diagram?: string;
+  figures?: { capability?: Figure; system?: Figure; sequence?: Figure };
   walkthroughLabel?: string;
-  stackHint?: string;
   related?: Related[];
   background?: { intro: string; chain: { step: string; text: string }[] };
   problem?: { intro: string; items: { area: string; issue: string }[] };
   goal?: { intro: string; items: { area: string; issue: string }[] };
+  scope?: { intro: string; items: { area: string; issue: string }[] };
+  safety?: {
+    intro: string;
+    states?: string;
+    rows: { k: string; v: string }[];
+    confirm?: string;
+  };
+  api?: { intro: string; groups: { title: string; items: StackItem[] }[] };
+  phases?: { intro: string; items: { area: string; issue: string }[] };
   impact?: {
     intro: string;
     metrics: { k: string; v: string }[];
+    testDims?: { k: string; v: string }[];
+    indexes?: { k: string; v: string }[];
     gates?: { k: string; v: string }[];
-    gatesHint?: string;
     note?: string;
   };
   learning?: {
@@ -94,7 +104,7 @@ const KIND_LABEL: Record<string, string> = {
   shared: "公共",
 };
 
-/** 三章九节的标题与说明。页面与「复制为 Markdown」共用这一份，避免两处各写一遍。 */
+/** 三章的标题与「复制为 Markdown」共用这一份，避免两处各写一遍。 */
 type Chapter = "why" | "build" | "outcome";
 const CHAPTERS: Record<Chapter, { n: string; zh: string }> = {
   why: { n: "01", zh: "为什么做" },
@@ -102,18 +112,22 @@ const CHAPTERS: Record<Chapter, { n: string; zh: string }> = {
   outcome: { n: "03", zh: "做成什么" },
 };
 const SEC = {
-  bg: { ch: "why", title: "背景", hint: "一开始什么样，怎么就非做不可" },
-  prob: { ch: "why", title: "问题", hint: "难在哪一步，那一步会出什么事" },
-  goal: { ch: "why", title: "目标", hint: "动手前先立靶子：做到哪几条才算数" },
-  solution: { ch: "build", title: "方案", hint: "一张图看它怎么解决，再跟着走一遍" },
-  arch: { ch: "build", title: "架构", hint: "由哪几块组成，每块管什么、管到哪" },
-  eng: { ch: "build", title: "实现", hint: "用什么做的：模型、状态、动作、护栏、怎么调试" },
-  impact: { ch: "outcome", title: "结果", hint: "怎么算做成了：拿哪些数字说话" },
-  learn: { ch: "outcome", title: "沉淀", hint: "换一个项目还用得上的判断" },
-  review: { ch: "outcome", title: "反思", hint: "重来一遍，会先问哪三件事" },
+  bg: { ch: "why", title: "背景" },
+  prob: { ch: "why", title: "问题" },
+  goal: { ch: "why", title: "目标" },
+  solution: { ch: "build", title: "方案" },
+  scope: { ch: "build", title: "能力范围" },
+  arch: { ch: "build", title: "架构" },
+  safety: { ch: "build", title: "状态与安全" },
+  api: { ch: "build", title: "数据与接口" },
+  eng: { ch: "build", title: "实现" },
+  impact: { ch: "outcome", title: "结果" },
+  phases: { ch: "outcome", title: "推进" },
+  learn: { ch: "outcome", title: "沉淀" },
+  review: { ch: "outcome", title: "反思" },
 } as const;
 
-/* ── 思维导图：根 → 三章 → 九节 → 每节的短标签 ──────────────────
+/* ── 思维导图：根 → 三章 → 各节 → 每节的短标签 ──────────────────
    整棵树从专题自己的字段里长出来（链的三步、问题的三块、架构层、选型分组、
    结果三个数、沉淀三条），不额外写一份话术，所以每篇专题自动都有。 */
 type MindNode = {
@@ -289,17 +303,34 @@ function MindMap({ root }: { root: MindNode }) {
   );
 }
 
+/** 图的高度由图内文量出来，页面不再给每张图写死 vh */
+function FigureThumb({ src, title }: { src: string; title: string }) {
+  const ref = useRef<HTMLIFrameElement>(null);
+  const { h, measure } = useFigureHeight(ref);
+  return (
+    <div
+      className="exp-memory-frame"
+      style={h ? ({ "--fig-h": `${h}px` } as React.CSSProperties) : undefined}
+    >
+      <iframe ref={ref} src={src} title={title} tabIndex={-1} onLoad={measure} />
+    </div>
+  );
+}
+
 function buildExplainerMarkdown(d: Explainer): string {
   const origin = typeof window === "undefined" ? "" : window.location.origin;
   const link = (href: string) => `${origin}${href}`;
+  const capFig = d.figures?.capability;
+  const sysFig = d.figures?.system ?? (d.diagram ? { src: d.diagram, title: "系统架构图" } : undefined);
+  const seqFig = d.figures?.sequence;
   const L: string[] = [];
   let curCh: Chapter | null = null;
-  const head = (s: { ch: Chapter; title: string; hint: string }) => {
+  const head = (s: { ch: Chapter; title: string }) => {
     if (s.ch !== curCh) {
       curCh = s.ch;
       L.push("", `## ${CHAPTERS[s.ch].n} ${CHAPTERS[s.ch].zh}`, "");
     }
-    L.push("", `### ${s.title}｜${s.hint}`, "");
+    L.push("", `### ${s.title}`, "");
   };
 
   L.push(`# ${d.title}`, "", `> ${d.oneLiner}`, "", `> ${d.forWhom}`);
@@ -310,7 +341,7 @@ function buildExplainerMarkdown(d: Explainer): string {
     "",
     `- 一句话：${d.memory.line}`,
     `- 一条链：${(d.background?.chain ?? []).map((c) => c.step).join(" → ")}`,
-    `- 一张图：${link(d.diagram)}`
+    `- 一张图：${link((capFig ?? sysFig)?.src ?? "")}`
   );
 
   if (d.background) {
@@ -331,8 +362,19 @@ function buildExplainerMarkdown(d: Explainer): string {
     d.goal.items.forEach((p) => L.push(`- **${p.area}** ${p.issue}`));
   }
 
+  if (d.scope) {
+    head(SEC.scope);
+    L.push(d.scope.intro, "");
+    if (capFig) L.push(`#### ${capFig.title}`, "", `![${capFig.title}](${link(capFig.src)})`, "");
+    d.scope.items.forEach((p) => L.push(`- **${p.area}** ${p.issue}`));
+  }
+
   head(SEC.solution);
-  L.push(`![架构图](${link(d.diagram)})`, "");
+  if (seqFig) {
+    L.push(`#### ${seqFig.title}`, "", `![${seqFig.title}](${link(seqFig.src)})`, "");
+  } else if (d.diagram) {
+    L.push(`![架构图](${link(d.diagram)})`, "");
+  }
   L.push(`**${d.walkthroughLabel ?? "一条链"}：${d.walkthrough.title}**`, "", d.walkthrough.intro, "");
   d.walkthrough.steps.forEach((s, i) => {
     const node = d.nodes.find((x) => x.id === s.node);
@@ -340,8 +382,8 @@ function buildExplainerMarkdown(d: Explainer): string {
   });
 
   head(SEC.arch);
-  if (d.panorama) {
-    L.push(`#### ${d.panorama.title ?? "系统全景"}`, "", `![系统全景](${link(d.panorama.src)})`, "");
+  if (sysFig) {
+    L.push(`#### ${sysFig.title}`, "", `![${sysFig.title}](${link(sysFig.src)})`, "");
   }
   d.nodes.forEach((node) => {
     L.push(`#### ${node.label}（${node.sublabel} · ${KIND_LABEL[node.kind] ?? node.kind}）`);
@@ -358,8 +400,27 @@ function buildExplainerMarkdown(d: Explainer): string {
     L.push("");
   }
 
+  if (d.safety) {
+    head(SEC.safety);
+    L.push(d.safety.intro, "");
+    if (d.safety.states) L.push("", d.safety.states, "");
+    d.safety.rows.forEach((r) => L.push(`- ${r.k}：${r.v}`));
+    if (d.safety.confirm) L.push("", d.safety.confirm);
+    L.push("");
+  }
+
+  if (d.api) {
+    head(SEC.api);
+    L.push(d.api.intro, "");
+    d.api.groups.forEach((g) => {
+      L.push(`#### ${g.title}`, "");
+      g.items.forEach((it) => L.push(`- ${it.k}：${it.v}`));
+      L.push("");
+    });
+  }
+
   if (d.techStack || (d.pitfalls && d.pitfalls.length > 0)) {
-    head(d.stackHint ? { ...SEC.eng, hint: d.stackHint } : SEC.eng);
+    head(SEC.eng);
     if (d.techStack) {
       L.push("#### 技术选型", "", d.techStack.intro, "");
       d.techStack.groups.forEach((g) => {
@@ -388,11 +449,25 @@ function buildExplainerMarkdown(d: Explainer): string {
     L.push(d.impact.intro, "");
     d.impact.metrics.forEach((m) => L.push(`- ${m.k}：${m.v}`));
     if (d.impact.note) L.push("", d.impact.note);
+    if (d.impact.testDims && d.impact.testDims.length > 0) {
+      L.push("", "#### 怎么验", "");
+      d.impact.testDims.forEach((t) => L.push(`- ${t.k}：${t.v}`));
+    }
+    if (d.impact.indexes && d.impact.indexes.length > 0) {
+      L.push("", "#### 指标口径", "");
+      d.impact.indexes.forEach((t) => L.push(`- ${t.k}：${t.v}`));
+    }
     if (d.impact.gates && d.impact.gates.length > 0) {
       L.push("", "#### 及格线", "");
       d.impact.gates.forEach((g) => L.push(`- ${g.k}：${g.v}`));
     }
     L.push("");
+  }
+
+  if (d.phases) {
+    head(SEC.phases);
+    L.push(d.phases.intro, "");
+    d.phases.items.forEach((p, i) => L.push(`${i + 1}. **${p.area}** ${p.issue}`));
   }
 
   if (d.learning) {
@@ -438,6 +513,7 @@ export default function ExplainerView({ data }: { data: Explainer }) {
   const node = nodeById.get(selectedId) ?? data.nodes[0];
   const steps = data.walkthrough.steps;
   const currentStep = steps[step];
+  const thumbSrc = data.figures?.capability?.src ?? data.diagram;
 
   function goStep(i: number) {
     const clamped = Math.min(steps.length - 1, Math.max(0, i));
@@ -447,11 +523,10 @@ export default function ExplainerView({ data }: { data: Explainer }) {
     el?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
   }
 
-  // 三章九节：01 为什么做（背景→问题→目标）02 怎么做（方案→架构→实现）03 做成什么（结果→沉淀→反思）。
+  // 三章：01 为什么做（背景→问题→目标）02 怎么做（能力范围→方案→架构→安全→接口→实现）03 做成什么（结果→推进→沉淀→反思）。
   // 小节全靠数据字段驱动，缺字段就不出现；章带只在有内容时出现。
   const sections: {
     title: string;
-    hint: string;
     chapter: Chapter;
     body: ReactNode;
     leaves?: string[];
@@ -460,7 +535,6 @@ export default function ExplainerView({ data }: { data: Explainer }) {
   if (data.background) {
     sections.push({
       title: SEC.bg.title,
-      hint: SEC.bg.hint,
       chapter: SEC.bg.ch,
       leaves: data.background.chain.map((c) => c.step),
       body: (
@@ -499,10 +573,20 @@ export default function ExplainerView({ data }: { data: Explainer }) {
     </>
   );
 
+  const kvRows = (rows: { k: string; v: string }[]) => (
+    <div className="exp-kv">
+      {rows.map((r, i) => (
+        <div className="exp-kv-row" key={i}>
+          <span className="exp-kv-k">{r.k}</span>
+          <span className="exp-kv-v">{r.v}</span>
+        </div>
+      ))}
+    </div>
+  );
+
   if (data.problem) {
     sections.push({
       title: SEC.prob.title,
-      hint: SEC.prob.hint,
       chapter: SEC.prob.ch,
       leaves: data.problem.items.map((x) => x.area),
       body: threeList(data.problem.intro, data.problem.items),
@@ -512,31 +596,64 @@ export default function ExplainerView({ data }: { data: Explainer }) {
   if (data.goal) {
     sections.push({
       title: SEC.goal.title,
-      hint: SEC.goal.hint,
       chapter: SEC.goal.ch,
       leaves: data.goal.items.map((x) => x.area),
       body: threeList(data.goal.intro, data.goal.items),
     });
   }
 
+  if (data.scope) {
+    const capFig = data.figures?.capability;
+    sections.push({
+      title: SEC.scope.title,
+      chapter: SEC.scope.ch,
+      leaves: data.scope.items.map((x) => x.area),
+      body: (
+        <>
+          <p className="exp-sec-intro">{data.scope.intro}</p>
+          {capFig && (
+            <>
+              <h3 className="exp-sub-h">{capFig.title}</h3>
+              <FigureFrame src={capFig.src} title={`${data.title} ${capFig.title}`} />
+            </>
+          )}
+          <ol className="exp-items">
+            {data.scope.items.map((p, i) => (
+              <li className="exp-item" key={i}>
+                <span className="exp-item-n">{i + 1}</span>
+                <div className="exp-item-body">
+                  <h4>{p.area}</h4>
+                  <p>{p.issue}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </>
+      ),
+    });
+  }
+
+  const seqFig = data.figures?.sequence;
   sections.push({
     title: SEC.solution.title,
-    hint: data.overviewHint ?? SEC.solution.hint,
     chapter: SEC.solution.ch,
     body: (
       <>
-        <p className="exp-sec-intro">
-          整个讲解放在这张图上：下面每一节，你都能在图里指出它站在哪一格。
-        </p>
-        <div className="exp-map-frame">
-          <iframe src={data.diagram} title={`${data.title} 架构图`} loading="lazy" />
-          <p className="exp-map-open">
-            图太小或被限制？
-            <a href={data.diagram} target="_blank" rel="noreferrer">
-              在新窗口打开完整交互图 ↗
-            </a>
-          </p>
-        </div>
+        {seqFig ? (
+          <>
+            <h3 className="exp-sub-h">{seqFig.title}</h3>
+            <FigureFrame src={seqFig.src} title={`${data.title} ${seqFig.title}`} />
+          </>
+        ) : data.diagram ? (
+          <div className="exp-map-frame">
+            <iframe src={data.diagram} title={`${data.title} 架构图`} loading="lazy" />
+            <p className="exp-map-open">
+              <a href={data.diagram} target="_blank" rel="noreferrer">
+                在新窗口打开完整交互图 ↗
+              </a>
+            </p>
+          </div>
+        ) : null}
         <h3 className="exp-sub-h">
           {data.walkthroughLabel ?? "一条链：一句话怎么变成一次飞行"}
           <span className="exp-sub-note">{data.walkthrough.title}</span>
@@ -585,39 +702,20 @@ export default function ExplainerView({ data }: { data: Explainer }) {
     ),
   });
 
+  const sysFig = data.figures?.system;
   sections.push({
     title: SEC.arch.title,
-    hint: SEC.arch.hint,
     chapter: SEC.arch.ch,
     leaves: data.nodes.map((x) => x.label),
     body: (
       <>
-        {data.panorama && (
+        {sysFig && (
           <>
-            <h3 className="exp-sub-h">
-              {data.panorama.title ?? "系统全景"}
-              <span className="exp-sub-note">
-                {data.panorama.note ?? "先看整张图，再逐层往下看"}
-              </span>
-            </h3>
-            <div className="exp-map-frame exp-map-panorama">
-              <iframe src={data.panorama.src} title={`${data.title} 系统全景图`} loading="lazy" />
-              <p className="exp-map-open">
-                图太小或被限制？
-                <a href={data.panorama.src} target="_blank" rel="noreferrer">
-                  在新窗口打开完整交互图 ↗
-                </a>
-              </p>
-            </div>
-            <h3 className="exp-sub-h">
-              逐层拆解
-              <span className="exp-sub-note">每一层管什么、管到哪为止</span>
-            </h3>
+            <h3 className="exp-sub-h">{sysFig.title}</h3>
+            <FigureFrame src={sysFig.src} title={`${data.title} ${sysFig.title}`} />
+            <h3 className="exp-sub-h">逐层拆解</h3>
           </>
         )}
-        <p className="exp-sec-intro">
-          左边点任意一层，右边分四档：一句话、30 秒、深讲、怎么实现。前三档够你把它讲明白，最后一档连用什么做都写清楚，照着能做。
-        </p>
         <div className="exp-nodes-grid">
           <nav className="exp-rail" aria-label="架构层">
             {data.nodes.map((n) => (
@@ -685,7 +783,7 @@ export default function ExplainerView({ data }: { data: Explainer }) {
 
               {node.followups && node.followups.length > 0 && (
                 <div className="exp-followups">
-                  <p className="exp-fu-title">这一层大概率被追问</p>
+                  <p className="exp-fu-title">常见追问</p>
                   {node.followups.map((f, i) => (
                     <details key={i}>
                       <summary>{f.q}</summary>
@@ -700,10 +798,7 @@ export default function ExplainerView({ data }: { data: Explainer }) {
 
         {data.boundaries.length > 0 && (
           <>
-            <h3 className="exp-sub-h">
-              它拒绝什么、什么时候会出错
-              <span className="exp-sub-note">有些事是故意不让它做的</span>
-            </h3>
+            <h3 className="exp-sub-h">它拒绝什么、什么时候会出错</h3>
             <div className="exp-kv">
               {data.boundaries.map((b, i) => (
                 <div className="exp-kv-row" key={i}>
@@ -718,17 +813,53 @@ export default function ExplainerView({ data }: { data: Explainer }) {
     ),
   });
 
+  if (data.safety) {
+    sections.push({
+      title: SEC.safety.title,
+      chapter: SEC.safety.ch,
+      leaves: data.safety.rows.slice(0, 3).map((x) => x.k),
+      body: (
+        <>
+          <p className="exp-sec-intro">{data.safety.intro}</p>
+          {data.safety.states && <p className="exp-sec-intro">{data.safety.states}</p>}
+          <h3 className="exp-sub-h">会在哪里被拦住</h3>
+          {kvRows(data.safety.rows)}
+          {data.safety.confirm && (
+            <>
+              <h3 className="exp-sub-h">人工确认</h3>
+              <p className="exp-sec-intro">{data.safety.confirm}</p>
+            </>
+          )}
+        </>
+      ),
+    });
+  }
+
+  if (data.api) {
+    sections.push({
+      title: SEC.api.title,
+      chapter: SEC.api.ch,
+      leaves: data.api.groups.slice(0, 3).map((g) => g.title),
+      body: (
+        <>
+          <p className="exp-sec-intro">{data.api.intro}</p>
+          {data.api.groups.map((g, i) => (
+            <div className="exp-kv-group" key={i}>
+              <h3>{g.title}</h3>
+              {kvRows(g.items)}
+            </div>
+          ))}
+        </>
+      ),
+    });
+  }
+
   {
     const eng: ReactNode[] = [];
     if (data.techStack) {
       eng.push(
         <div key="eng-stack">
-          <h3 className="exp-sub-h">
-            技术选型
-            <span className="exp-sub-note">
-              {data.techStack.note ?? "每一格都写具体用了什么，不写「用了个数据库」这种大类"}
-            </span>
-          </h3>
+          <h3 className="exp-sub-h">技术选型</h3>
           <p className="exp-sec-intro">{data.techStack.intro}</p>
           {data.techStack.groups.map((g, i) => (
             <div className="exp-kv-group" key={i}>
@@ -755,10 +886,7 @@ export default function ExplainerView({ data }: { data: Explainer }) {
     if (data.pitfalls && data.pitfalls.length > 0) {
       eng.push(
         <div key="eng-pit">
-          <h3 className="exp-sub-h">
-            会踩的坑
-            <span className="exp-sub-note">每一坑写清：什么现象、为什么、怎么绕</span>
-          </h3>
+          <h3 className="exp-sub-h">会踩的坑</h3>
           <p className="exp-sec-intro">
             {data.pitfallsIntro ??
               "这些坑跟业务无关，换任何一套同类系统都会原样遇到。"}
@@ -784,7 +912,6 @@ export default function ExplainerView({ data }: { data: Explainer }) {
     if (eng.length > 0) {
       sections.push({
         title: SEC.eng.title,
-        hint: data.stackHint ?? SEC.eng.hint,
         chapter: SEC.eng.ch,
         leaves: data.techStack?.groups.map((g) => g.title),
         body: <>{eng}</>,
@@ -795,7 +922,6 @@ export default function ExplainerView({ data }: { data: Explainer }) {
   if (data.impact) {
     sections.push({
       title: SEC.impact.title,
-      hint: SEC.impact.hint,
       chapter: SEC.impact.ch,
       leaves: data.impact.metrics.map((x) => x.k),
       body: (
@@ -810,14 +936,21 @@ export default function ExplainerView({ data }: { data: Explainer }) {
               </div>
             ))}
           </div>
+          {data.impact.testDims && data.impact.testDims.length > 0 && (
+            <>
+              <h3 className="exp-sub-h">怎么验</h3>
+              {kvRows(data.impact.testDims)}
+            </>
+          )}
+          {data.impact.indexes && data.impact.indexes.length > 0 && (
+            <>
+              <h3 className="exp-sub-h">指标口径</h3>
+              {kvRows(data.impact.indexes)}
+            </>
+          )}
           {data.impact.gates && data.impact.gates.length > 0 && (
             <>
-              <h3 className="exp-sub-h">
-                及格线
-                <span className="exp-sub-note">
-                  {data.impact.gatesHint ?? "哪条不达标，先去看管它的那一层"}
-                </span>
-              </h3>
+              <h3 className="exp-sub-h">及格线</h3>
               <div className="exp-kv">
                 {data.impact.gates.map((g, i) => (
                   <div className="exp-kv-row" key={i}>
@@ -833,10 +966,18 @@ export default function ExplainerView({ data }: { data: Explainer }) {
     });
   }
 
+  if (data.phases) {
+    sections.push({
+      title: SEC.phases.title,
+      chapter: SEC.phases.ch,
+      leaves: data.phases.items.map((x) => x.area),
+      body: threeList(data.phases.intro, data.phases.items),
+    });
+  }
+
   if (data.learning) {
     sections.push({
       title: SEC.learn.title,
-      hint: SEC.learn.hint,
       chapter: SEC.learn.ch,
       leaves: data.learning.items.map((x) => x.title),
       body: (
@@ -861,7 +1002,6 @@ export default function ExplainerView({ data }: { data: Explainer }) {
   if (data.review) {
     sections.push({
       title: SEC.review.title,
-      hint: SEC.review.hint,
       chapter: SEC.review.ch,
       leaves: data.review.items.map((x) => x.area),
       body: threeList(data.review.intro, data.review.items),
@@ -1004,13 +1144,7 @@ export default function ExplainerView({ data }: { data: Explainer }) {
           </header>
 
           <section className="exp-memory" aria-label="先记住这三样">
-            <h2 className="exp-memory-h">
-              先记住这三样
-              <span className="exp-sub-note">
-                {data.memory.note ??
-                  "脱稿就照这三样讲：先用一句话给定位，再用一条链说清为什么非做不可，最后指着图讲怎么做。"}
-              </span>
-            </h2>
+            <h2 className="exp-memory-h">先记住这三样</h2>
             <div className="exp-memory-left">
               <span className="exp-memory-k">一句话</span>
               <p className="exp-memory-line">{data.memory.line}</p>
@@ -1030,27 +1164,21 @@ export default function ExplainerView({ data }: { data: Explainer }) {
             </div>
             <div className="exp-memory-map">
               <span className="exp-memory-k">一张图</span>
-              <div className="exp-memory-frame">
-                <iframe
-                  src={data.diagram}
-                  title={`${data.title} 架构图`}
-                  loading="lazy"
-                  tabIndex={-1}
-                />
-              </div>
-              <p className="exp-memory-cap">
-                就是下面「{SEC.solution.title}」那节里的图，这里先放个影子。
-                <a href={data.diagram} target="_blank" rel="noreferrer">
-                  在新窗口打开完整交互图 ↗
-                </a>
-              </p>
+              {thumbSrc && (
+                <>
+                  <FigureThumb src={thumbSrc} title={`${data.title} 缩略图`} />
+                  <p className="exp-memory-cap">
+                    <a href={thumbSrc} target="_blank" rel="noreferrer">
+                      打开大图 ↗
+                    </a>
+                  </p>
+                </>
+              )}
             </div>
           </section>
 
           <section className="exp-mind-block" aria-label="思维导图">
-            <h2 className="exp-mind-h">
-              一张导图<span className="exp-sub-note">三章九节，点任意一节直接跳过去。</span>
-            </h2>
+            <h2 className="exp-mind-h">一张导图</h2>
             <MindMap root={mindRoot} />
           </section>
 
@@ -1075,9 +1203,7 @@ export default function ExplainerView({ data }: { data: Explainer }) {
                 </div>
               ) : null}
               <section id={`sec-${i + 1}`} className="exp-sec">
-                <h2>
-                  {s.title} <span className="exp-hint">{s.hint}</span>
-                </h2>
+                <h2>{s.title}</h2>
                 {s.body}
               </section>
             </Fragment>
@@ -1085,9 +1211,7 @@ export default function ExplainerView({ data }: { data: Explainer }) {
 
           {data.questions.length > 0 && (
             <section id="sec-ask" className="exp-sec exp-qa">
-              <h2>
-                你大概率会问 <span className="exp-hint">想到这层的人都会问这几个</span>
-              </h2>
+              <h2>你大概率会问</h2>
               {data.questions.map((q, i) => (
                 <details key={i}>
                   <summary>{q.q}</summary>
@@ -1097,12 +1221,6 @@ export default function ExplainerView({ data }: { data: Explainer }) {
             </section>
           )}
 
-          <footer className="exp-foot">
-            这三章是固定的读法，换任何项目都这么读：「为什么做」说清一开始什么样、卡在哪几步、
-            动手前立的是哪几条靶子；「怎么做」给一张图带着走一遍，再逐层看每块管什么、故意不让它做什么，
-            最后落到用什么做、会踩什么坑；「做成什么」说清拿哪些数字算数，以及这次留下的判断和下次会先问的问题。
-            想自己动手，从「实现」那节开始。
-          </footer>
         </div>
       </div>
     </main>

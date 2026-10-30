@@ -3,7 +3,9 @@ import "./PathsView.css";
 import {
   allPaths,
   assetGroups,
+  courseList,
   nextPath,
+  pathCourses,
   resolvePath,
   type PathEntry,
 } from "@/lib/paths";
@@ -20,9 +22,9 @@ export function PathsIndex() {
     <main className="pth-main">
       <header className="pth-hero">
         <p className="pth-eyebrow">路径 · PATHS</p>
-        <h1>从想法到上线，走这三条</h1>
+        <h1>从想法到上线，走这四条</h1>
         <p className="pth-hero-lead">
-          站里有课程、提示词、技能和手册，但知道有什么，不等于知道先做哪一步。三条路径把顺序排好了：每条只奔一个结果，每一步都写清做完是什么样。
+          四条路径把顺序排好了：每条只奔一个结果，每一步都写清做完是什么样。
         </p>
         <div className="pth-index-rule">
           <span>{paths.length} 条路径</span>
@@ -57,23 +59,22 @@ export function PathsIndex() {
         ))}
       </div>
 
-      <section className="pth-how">
-        <h2>为什么按路径走，而不是继续逛词条</h2>
-        <div className="pth-how-grid">
-          <div className="pth-how-item">
-            <b>顺序是排过的</b>
-            <p>先定需求再做页面，先上线再打磨，每一步都踩在下一步需要的东西上。不是把链接堆在一起让你自己挑。</p>
-          </div>
-          <div className="pth-how-item">
-            <b>每步都有完成标志</b>
-            <p>做到什么程度算过，写成一句能核对的话。走完一步就知道能不能往下走，不靠「我感觉差不多了」。</p>
-          </div>
-          <div className="pth-how-item">
-            <b>点开就是能用的东西</b>
-            <p>每一步都连到站内的课程章节、提示词、技能或词条。不用再开一个搜索框，从零解释一遍背景。</p>
-          </div>
+      <section className="pth-textbooks" aria-label="全部教材">
+        <h2>想把一门课从头读完</h2>
+        <p className="pth-textbooks-lead">
+          这些课是路径的教材源：路径管顺序，课程管把一件事从头讲透。
+        </p>
+        <div className="pth-textbooks-grid">
+          {courseList().map((c) => (
+            <Link className="pth-textbook-card" href={c.href} key={c.href}>
+              <b>{c.title}</b>
+              <span>{c.chapters} 章</span>
+              <em>从第一章开始 →</em>
+            </Link>
+          ))}
         </div>
       </section>
+
     </main>
   );
 }
@@ -81,6 +82,7 @@ export function PathsIndex() {
 export function PathDetail({ path }: { path: PathEntry }) {
   const resolved = resolvePath(path);
   const groups = assetGroups(resolved.assets);
+  const courses = pathCourses(resolved);
   const next = nextPath(path);
 
   return (
@@ -112,6 +114,24 @@ export function PathDetail({ path }: { path: PathEntry }) {
             <p>{path.outcome}</p>
           </div>
         </div>
+
+        {courses.length > 0 ? (
+          <div className="pth-textbook" aria-label="完整教材">
+            <p className="pth-textbook-k">这门路径背后的完整教材</p>
+            <div className="pth-textbook-links">
+              {courses.map((c) => (
+                <Link className="pth-textbook-link" href={c.href} key={c.href}>
+                  <b>{c.title}</b>
+                  <span>{c.chapters} 章 · 这条路径点了 {c.usedChapters} 章</span>
+                  <em>整门读完 →</em>
+                </Link>
+              ))}
+            </div>
+            <p className="pth-textbook-hint">
+              不用从头读到尾。路径指到哪一章就翻哪一章；想一门课全读完，从这里进。
+            </p>
+          </div>
+        ) : null}
 
         <a className="pth-start" href="#step-1">
           从第 1 步开始 <span aria-hidden>↓</span>

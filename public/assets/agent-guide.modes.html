@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>四种做法 · 下一步由谁决定</title>
+<link rel="stylesheet" href="./agent-guide.figure.css">
+<style>
+.grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.card {
+  position: relative; padding: 14px 14px 15px; border-radius: 13px;
+  border: 1px solid var(--line); border-top: 2px solid var(--tone);
+  background: var(--panel);
+}
+.card .n {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 10px; font-weight: 800; letter-spacing: .12em; color: var(--tone);
+}
+.card h3 { margin: 8px 0 2px; font-size: 14.5px; font-weight: 700; color: var(--ink); }
+.card .who { font-size: 11px; color: var(--ink-3); margin: 0 0 9px; }
+.card .how { margin: 0; font-size: 12.5px; line-height: 1.55; color: var(--ink-2); }
+.card .lim {
+  margin-top: 11px; padding-top: 10px; border-top: 1px dashed var(--line);
+  font-size: 12px; line-height: 1.5; color: var(--ink);
+}
+.card .lim b { color: var(--tone); font-weight: 700; }
+.card:not(:last-child)::after {
+  content: "›"; position: absolute; right: -10px; top: 50%; transform: translateY(-50%);
+  font-size: 20px; color: var(--line-2); z-index: 2;
+}
+.shift { margin-top: 22px; padding: 15px 16px 16px; border: 1px solid var(--line); border-radius: 13px; background: rgba(212,175,94,.05); }
+.shift-k { font-size: 11px; font-weight: 700; letter-spacing: .1em; color: var(--gold); margin: 0 0 12px; }
+.rail { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; align-items: stretch; }
+.rail div {
+  padding: 9px 11px; border-radius: 9px; border: 1px solid var(--line); background: var(--bg);
+  font-size: 12.5px; line-height: 1.45; color: var(--ink-2);
+}
+.rail div b { display: block; color: var(--ink); font-size: 13px; font-weight: 700; margin-bottom: 3px; }
+.rail div:nth-child(3), .rail div:nth-child(4) { border-color: rgba(212,175,94,.36); }
+.narrow .ncard { padding: 12px 0; border-top: 1px solid var(--line); }
+.narrow .ncard:first-child { border-top: 0; }
+.narrow .ncard b { display: block; font-size: 13.5px; color: var(--ink); margin-bottom: 3px; }
+.narrow .ncard span { display: block; font-size: 12px; color: var(--ink-2); line-height: 1.55; }
+@media (max-width: 1040px) { .grid, .rail { grid-template-columns: repeat(2, minmax(0, 1fr)); } .card:not(:last-child)::after { display: none; } }
+</style>
+</head>
+<body>
+<div class="fig">
+  <p class="fig-kicker">架构选型 · 四种做法<i></i></p>
+  <h1 class="fig-title">下一步由谁决定，决定你要背多少责任</h1>
+  <p class="fig-sub">按「下一步由谁决定」分，常用的就这四种。编号越靠后，模型拿走的决定越多，你要补回来的控制也越多——所以够用就停在靠前的那一档。</p>
+
+  <div class="stage">
+    <div class="grid">
+      <article class="card" style="--tone:var(--sky)">
+        <span class="n"><i class="dot" style="background:var(--sky)"></i>做法一</span>
+        <h3>单次模型调用</h3>
+        <p class="who">没有下一步</p>
+        <p class="how">输入 → 提示词 → 输出。分类、摘要、文案、信息提取都够用。</p>
+        <p class="lim"><b>代价</b>：一问一答，办不了需要多步推进的事。</p>
+      </article>
+      <article class="card" style="--tone:var(--cyan)">
+        <span class="n"><i class="dot" style="background:var(--cyan)"></i>做法二</span>
+        <h3>固定工作流</h3>
+        <p class="who">代码写死顺序</p>
+        <p class="how">模型只做其中一步的理解或生成。适合审核、报告、内容流水线。</p>
+        <p class="lim"><b>代价</b>：可预测、好测试，但分支一变就得回去改代码。</p>
+      </article>
+      <article class="card" style="--tone:var(--gold)">
+        <span class="n"><i class="dot" style="background:var(--gold)"></i>做法三</span>
+        <h3>工具调用型 Agent</h3>
+        <p class="who">模型看完工具结果再定</p>
+        <p class="how">调工具 → 拿结果 → 更新上下文 → 再决定，直到完成或触发停止条件。</p>
+        <p class="lim"><b>代价</b>：必须设停止条件、次数上限，轨迹要查得到。</p>
+      </article>
+      <article class="card" style="--tone:var(--emerald)">
+        <span class="n"><i class="dot" style="background:var(--emerald)"></i>做法四</span>
+        <h3>多 Agent 协作</h3>
+        <p class="who">主 Agent 派活</p>
+        <p class="how">研究、规划、执行、审核各由一个专业 Agent 承担，能并行的并行。</p>
+        <p class="lim"><b>代价</b>：成本、调试难度、协作失败风险一起翻倍。</p>
+      </article>
+    </div>
+
+    <div class="shift">
+      <p class="shift-k">每往后挪一档，多背一份责任</p>
+      <div class="rail">
+        <div><b>做法一</b>提示词质量、输出格式</div>
+        <div><b>做法二</b>分支覆盖、每一步的回归用例</div>
+        <div><b>做法三</b>工具权限、停止条件、失败怎么回收</div>
+        <div><b>做法四</b>交接协议、成本上限、谁有最终裁量</div>
+      </div>
+      <p class="foot">选型看的是「下一步由谁决定」，不是哪个名字热门。前一档能解决干净的，就别往后挪。</p>
+    </div>
+  </div>
+
+  <div class="narrow">
+    <div class="ncard"><b>做法一 · 单次模型调用</b><span>没有下一步。适合分类、摘要、提取。办不了多步的事。</span></div>
+    <div class="ncard"><b>做法二 · 固定工作流</b><span>代码写死顺序，模型只做一步。可预测好测试，分支一变要改代码。</span></div>
+    <div class="ncard"><b>做法三 · 工具调用型 Agent</b><span>模型看完工具结果再定下一步。要设停止条件、次数上限、轨迹可查。</span></div>
+    <div class="ncard"><b>做法四 · 多 Agent 协作</b><span>主 Agent 派活，专业 Agent 各管一段。成本、调试、协作失败都翻倍。</span></div>
+    <div class="ncard"><b>往后挪一档，多背一份责任</b><span>提示词 → 分支覆盖 → 工具权限与停止条件 → 交接协议与最终裁量。</span></div>
+  </div>
+</div>
+<script>
+(function () {
+  function send() {
+    var h = Math.ceil(document.documentElement.getBoundingClientRect().height);
+    if (h > 0) parent.postMessage({ __expFigure: true, height: h }, "*");
+  }
+  window.addEventListener("resize", send);
+  window.addEventListener("load", send);
+  if (window.ResizeObserver) new ResizeObserver(send).observe(document.body);
+  setTimeout(send, 60);
+  send();
+})();
+</script>
+</body>
+</html>

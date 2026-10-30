@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 编程的四个阶段 · 你盯的东西一路往上挪</title>
+<link rel="stylesheet" href="./ai-coding-guide.figure.css">
+<style>
+.grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.card {
+  position: relative; padding: 14px 14px 15px; border-radius: 13px;
+  border: 1px solid var(--line); border-top: 2px solid var(--tone);
+  background: var(--panel);
+}
+.card .n {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 10px; font-weight: 800; letter-spacing: .12em; color: var(--tone);
+}
+.card h3 { margin: 8px 0 2px; font-size: 14.5px; font-weight: 700; color: var(--ink); }
+.card .when { font-size: 11px; color: var(--ink-3); margin: 0 0 9px; }
+.card .how { margin: 0; font-size: 12.5px; line-height: 1.55; color: var(--ink-2); }
+.card .lim {
+  margin-top: 11px; padding-top: 10px; border-top: 1px dashed var(--line);
+  font-size: 12px; line-height: 1.5; color: var(--ink);
+}
+.card .lim b { color: var(--tone); font-weight: 700; }
+.card:not(:last-child)::after {
+  content: "›"; position: absolute; right: -10px; top: 50%; transform: translateY(-50%);
+  font-size: 20px; color: var(--line-2); z-index: 2;
+}
+.shift { margin-top: 22px; padding: 15px 16px 16px; border: 1px solid var(--line); border-radius: 13px; background: rgba(212,175,94,.05); }
+.shift-k { font-size: 11px; font-weight: 700; letter-spacing: .1em; color: var(--gold); margin: 0 0 12px; }
+.rail { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; align-items: stretch; }
+.rail div {
+  padding: 9px 11px; border-radius: 9px; border: 1px solid var(--line); background: var(--bg);
+  font-size: 12.5px; line-height: 1.45; color: var(--ink-2);
+}
+.rail div b { display: block; color: var(--ink); font-size: 13px; font-weight: 700; margin-bottom: 3px; }
+.rail div:nth-child(3), .rail div:nth-child(4) { border-color: rgba(212,175,94,.36); }
+.foot { margin: 14px 0 0; font-size: 12px; line-height: 1.6; color: var(--ink-3); }
+.narrow .ncard { padding: 12px 0; border-top: 1px solid var(--line); }
+.narrow .ncard:first-child { border-top: 0; }
+.narrow .ncard b { display: block; font-size: 13.5px; color: var(--ink); margin-bottom: 3px; }
+.narrow .ncard span { display: block; font-size: 12px; color: var(--ink-2); line-height: 1.55; }
+@media (max-width: 1040px) { .grid, .rail { grid-template-columns: repeat(2, minmax(0, 1fr)); } .card:not(:last-child)::after { display: none; } }
+</style>
+</head>
+<body>
+<div class="fig">
+  <p class="fig-kicker">四个阶段 · 一层层叠上来<i></i></p>
+  <h1 class="fig-title">AI 编程的四个阶段，和你该盯的东西</h1>
+  <p class="fig-sub">补全、对话、Agent、带工程的协作，是一层层叠上来的，今天仍有人只用补全。变的是它敢接的任务范围——你要管的东西跟着往上挪了一层。</p>
+
+  <div class="stage">
+    <div class="grid" style="--tone:var(--sky)">
+      <article class="card" style="--tone:var(--sky)">
+        <span class="n"><i class="dot" style="background:var(--sky)"></i>阶段一</span>
+        <h3>代码补全</h3>
+        <p class="when">Copilot 那几年</p>
+        <p class="how">你写代码，它接下一段，少敲重复的字。</p>
+        <p class="lim"><b>卡在哪</b>：只看得到眼前几行，不知道整个需求。</p>
+      </article>
+      <article class="card" style="--tone:var(--cyan)">
+        <span class="n"><i class="dot" style="background:var(--cyan)"></i>阶段二</span>
+        <h3>对话式开发</h3>
+        <p class="when">你说需求，它给代码</p>
+        <p class="how">解释代码、写函数、看报错都行，复制粘贴归你。</p>
+        <p class="lim"><b>卡在哪</b>：上下文一断就得重讲，跨文件靠你来回搬。</p>
+      </article>
+      <article class="card" style="--tone:var(--gold)">
+        <span class="n"><i class="dot" style="background:var(--gold)"></i>阶段三</span>
+        <h3>Agent 干活</h3>
+        <p class="when">现在的主力用法</p>
+        <p class="how">你定任务和红线，它自己读项目、改文件、跑命令、来回迭代。</p>
+        <p class="lim"><b>卡在哪</b>：任务边界画不清、上下文给不够、敢改到哪一步、跑完拿什么算过。</p>
+      </article>
+      <article class="card" style="--tone:var(--emerald)">
+        <span class="n"><i class="dot" style="background:var(--emerald)"></i>阶段四</span>
+        <h3>带工程的协作</h3>
+        <p class="when">正在成形的做法</p>
+        <p class="how">Agent 进到有规范、有测试、有版本控制的流程里干活。</p>
+        <p class="lim"><b>为的是什么</b>：这次的产出来历查得到，下次不用重新赌一遍。</p>
+      </article>
+    </div>
+
+    <div class="shift">
+      <p class="shift-k">你要盯的东西，一路往上挪</p>
+      <div class="rail">
+        <div><b>这一句</b>补全质量、提示词、单次输出</div>
+        <div><b>这一个文件</b>接口对不对、报错怎么解</div>
+        <div><b>这件事</b>任务说清没有、上下文够不够</div>
+        <div><b>这套流程</b>权限、验证证据、风险控制、能不能退回</div>
+      </div>
+      <p class="foot">过去问「代码生成得快不快」，现在问「这个任务交出去能不能收回来」。前两个阶段没作废，只是不再是全部。</p>
+    </div>
+  </div>
+
+  <div class="narrow">
+    <div class="ncard"><b>阶段一 · 代码补全</b><span>你写它接下一段。卡在看不到整个需求。</span></div>
+    <div class="ncard"><b>阶段二 · 对话式开发</b><span>你说需求它给代码。卡在上下文一断就重讲。</span></div>
+    <div class="ncard"><b>阶段三 · Agent 干活</b><span>你定任务和红线。卡在边界、上下文、权限、验证。</span></div>
+    <div class="ncard"><b>阶段四 · 带工程的协作</b><span>进规范、测试、版本控制。为的是下次还能照原样跑一遍。</span></div>
+    <div class="ncard"><b>你要盯的东西往上挪</b><span>这一句 → 这一个文件 → 这件事 → 这套流程。</span></div>
+  </div>
+</div>
+<script>
+(function () {
+  function send() {
+    var h = Math.ceil(document.documentElement.getBoundingClientRect().height);
+    if (h > 0) parent.postMessage({ __expFigure: true, height: h }, "*");
+  }
+  window.addEventListener("resize", send);
+  window.addEventListener("load", send);
+  if (window.ResizeObserver) new ResizeObserver(send).observe(document.body);
+  setTimeout(send, 60);
+  send();
+})();
+</script>
+</body>
+</html>
