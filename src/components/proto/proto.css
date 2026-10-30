@@ -253,6 +253,87 @@ html[data-proto] .site-shell {
   min-width: 0;
 }
 
+/* 原型按桌面控制台排版，窄屏先给一屏指引，不假装能适配 */
+.p-gate {
+  display: none;
+}
+@media (max-width: 900px) {
+  .p-gate {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    display: grid;
+    place-items: center;
+    padding: 24px 18px;
+    background: color-mix(in srgb, var(--p-navy) 55%, transparent);
+    backdrop-filter: blur(2px);
+  }
+}
+.p-gate-card {
+  width: 100%;
+  max-width: 360px;
+  padding: 22px 20px;
+  border: 1px solid var(--p-line);
+  border-radius: var(--p-radius);
+  background: var(--p-panel);
+  box-shadow: var(--p-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.p-gate-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+.p-gate-text {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--p-text-2);
+}
+.p-gate-url {
+  padding: 9px 11px;
+  border: 1px dashed var(--p-line-2);
+  border-radius: 8px;
+  background: var(--p-panel-2);
+  color: var(--p-text);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+  line-height: 1.5;
+  word-break: break-all;
+}
+.p-gate-copy {
+  height: 40px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--p-brand);
+  color: #fff;
+  font-size: 13.5px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+}
+.p-gate-copy:hover {
+  background: var(--p-brand-2);
+}
+.p-gate-stay {
+  align-self: center;
+  padding: 4px 2px;
+  border: 0;
+  background: none;
+  color: var(--p-text-3);
+  font-size: 12.5px;
+  font-family: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.p-gate-stay:hover {
+  color: var(--p-text-2);
+}
+
 .p-topbar {
   display: flex;
   align-items: center;

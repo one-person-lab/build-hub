@@ -28,6 +28,7 @@ import {
 } from "lucide-react";
 import { ProtoProvider, useProto } from "@/lib/proto/store";
 import { EVAL_PAGES } from "@/lib/proto/eval-data";
+import { writeClipboard } from "../clipboard";
 import type { ReactNode } from "react";
 
 const HOME_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://buildhub.cn";
@@ -274,11 +275,48 @@ function DemoGuide({ open, onClose }: { open: boolean; onClose: () => void }) {
   );
 }
 
+function MobileGate({ onStay }: { onStay: () => void }) {
+  const [url, setUrl] = useState("");
+  const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    setUrl(window.location.href);
+  }, []);
+
+  return (
+    <div className="p-gate" role="dialog" aria-label="请在电脑上打开这套原型">
+      <div className="p-gate-card">
+        <h2 className="p-gate-title">这套原型是给电脑做的</h2>
+        <p className="p-gate-text">
+          左侧是控制台菜单，右侧是页面正文，50 个屏幕按桌面宽度排版。手机竖屏放不下，链路会被裁断。
+        </p>
+        <p className="p-gate-text">
+          把地址复制下来，在电脑上打开看完整的一套。
+        </p>
+        <div className="p-gate-url">{url}</div>
+        <button
+          type="button"
+          className="p-gate-copy"
+          onClick={async () => {
+            if (await writeClipboard(url)) setCopied(true);
+          }}
+        >
+          {copied ? "已复制" : "复制地址"}
+        </button>
+        <button type="button" className="p-gate-stay" onClick={onStay}>
+          就在这台设备上看
+        </button>
+      </div>
+    </div>
+  );
+}
+
 function Shell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const { state, resetDemo } = useProto();
   const [guide, setGuide] = useState(false);
   const [openGroups, setOpenGroups] = useState<Record<string, boolean>>({});
+  const [stayOnPhone, setStayOnPhone] = useState(false);
 
   useEffect(() => {
     setOpenGroups({});
@@ -288,6 +326,7 @@ function Shell({ children }: { children: ReactNode }) {
 
   return (
     <div className="p-app">
+      {!stayOnPhone && <MobileGate onStay={() => setStayOnPhone(true)} />}
       <aside className="p-side">
         <Link href="/proto" className="p-brand">
           <span className="p-brand-mark" aria-hidden>
