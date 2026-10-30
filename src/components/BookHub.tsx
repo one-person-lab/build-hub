@@ -21,6 +21,15 @@ export default function BookHub({ book, bookId }: { book: Book; bookId: string }
         <p className="book-oneLiner">{book.oneLiner}</p>
         <p className="book-intro">{book.intro}</p>
         <p className="book-forWhom">{book.forWhom}</p>
+        {book.demo && (
+          <a className="book-demo" href={book.demo}>
+            看交互原型
+            <svg className="ui-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M7 17 17 7M9 7h8v8" />
+            </svg>
+            <span>整套链路做成可点的高保真原型，50 个页面，数据是模拟的。</span>
+          </a>
+        )}
         <div className="book-stats">
           <span>
             <b>{book.volumes.length}</b> 卷

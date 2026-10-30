@@ -60,6 +60,8 @@ export type Book = {
   oneLiner: string;
   intro: string;
   forWhom: string;
+  /** 高保真交互原型的地址；有值才在页头出现入口 */
+  demo?: string;
   paths: ReadingPath[];
   volumes: Volume[];
 };

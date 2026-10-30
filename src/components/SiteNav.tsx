@@ -28,7 +28,6 @@ const SECTIONS: Record<Locale, { href: string; label: string }[]> = {
     { href: "/distill", label: "动效" },
     { href: "/explains", label: "专题" },
     { href: "/playbooks", label: "手册" },
-    { href: "/proto", label: "原型" },
   ],
   en: [
     { href: "/en/topics/frontend", label: "Concepts" },
@@ -37,7 +36,6 @@ const SECTIONS: Record<Locale, { href: string; label: string }[]> = {
     { href: "/en/prompts", label: "Prompts" },
     { href: "/en/design", label: "Design" },
     { href: "/en/distill", label: "Motion" },
-    { href: "/proto", label: "Prototype" },
   ],
 };
 

@@ -127,7 +127,8 @@
   border-color: color-mix(in srgb, var(--exp-brand) 32%, transparent);
   background-color: color-mix(in srgb, var(--exp-brand) 6%, transparent);
 }
-.exp-back .ui-icon {
+.exp-back .ui-icon,
+.exp-demo .ui-icon {
   width: 15px; height: 15px; fill: none; stroke: currentColor;
   stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
   transition: transform .18s ease;

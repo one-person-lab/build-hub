@@ -27,6 +27,8 @@ export type Explainer = {
   oneLiner: string;
   forWhom: string;
   memory: { line: string };
+  /** 高保真交互原型的地址；有值才在页头出现入口 */
+  demo?: string;
   diagram?: string;
   figures?: { capability?: Figure; system?: Figure; sequence?: Figure };
   walkthroughLabel?: string;
@@ -1104,6 +1106,14 @@ export default function ExplainerView({ data }: { data: Explainer }) {
                   </svg>
                   全部专题
                 </Link>
+                {data.demo && (
+                  <Link className="exp-chip exp-demo" href={data.demo} title="打开这套架构的交互原型">
+                    看交互原型
+                    <svg className="ui-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path d="M7 17 17 7M9 7h8v8" />
+                    </svg>
+                  </Link>
+                )}
                 <button
                   type="button"
                   className={"detail-copy-markdown" + (copyState === "ok" ? " is-copied" : "")}

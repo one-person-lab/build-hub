@@ -67,6 +67,34 @@
   font-size: .9rem;
   color: var(--book-muted);
 }
+.book-demo {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+  padding: 8px 14px;
+  border: 1px solid var(--book-hair);
+  border-radius: 9px;
+  font-size: .82rem;
+  font-weight: 700;
+  color: var(--book-fg);
+  text-decoration: none;
+  transition: color .18s ease, border-color .18s ease, background-color .18s ease;
+}
+.book-demo .ui-icon {
+  width: 14px; height: 14px; fill: none; stroke: currentColor;
+  stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+}
+.book-demo span {
+  font-weight: 400;
+  color: var(--book-muted);
+}
+.book-demo:hover {
+  color: var(--book-brand);
+  border-color: color-mix(in srgb, var(--book-brand) 32%, transparent);
+  background-color: color-mix(in srgb, var(--book-brand) 6%, transparent);
+}
 .book-stats {
   display: flex;
   flex-wrap: wrap;

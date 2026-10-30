@@ -30,6 +30,8 @@ import { ProtoProvider, useProto } from "@/lib/proto/store";
 import { EVAL_PAGES } from "@/lib/proto/eval-data";
 import type { ReactNode } from "react";
 
+const HOME_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://buildhub.cn";
+
 const FRONT = [
   { href: "/proto", label: "智能助手", icon: MessageSquare, desc: "对话 · 咨询 · 规划 · 结果" },
   { href: "/proto/map", label: "作业地图", icon: Map, desc: "地图 · 设备 · 区域圈选" },
@@ -399,10 +401,10 @@ function Shell({ children }: { children: ReactNode }) {
         <header className="p-topbar">
           <GlobalSearch />
           <div className="p-topbar-right">
-            <Link href="/" className="p-exit">
+            <a className="p-exit" href={HOME_URL}>
               返回 BuildHub
-            </Link>
-            <span className="p-env">DEV · 模拟数据</span>
+            </a>
+            <span className="p-env">演示环境 · 模拟数据</span>
             <span className="p-avatar">陈</span>
           </div>
         </header>
