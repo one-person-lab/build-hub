@@ -25,7 +25,7 @@
           "url": "https://cursor.com",
           "logo": "/assets/logos/cursor.png",
           "tags": ["AI 编程", "编辑器", "开发者工具"],
-          "related": ["superpowers"]
+          "related": ["superpowers", "system-prompts"]
         },
         {
           "id": "perplexity",
@@ -48,6 +48,29 @@
           "tags": ["搜索", "AI", "研究"]
         },
         {
+          "id": "heygen",
+          "name": "HeyGen",
+          "category": "ai",
+          "type": "both",
+          "tagline": "一张照片就能开口念稿，口型对上 175 种语言",
+          "overview": "不用架机器：挑一个现成数字人，或拿自己的照片做一个，把稿子贴进去就出一条口型对得上的讲解视频。同一条片子还能整条翻成别的语言，配音和嘴型一起改，不必重录。付费档按积分计费，文本、图片、参考视频都可以起片，团队档能拉席位、接 Zapier 和 n8n 批量产出。",
+          "highlights": [
+            "用自己的脸和声音做定制分身，之后改稿只改文字，不用重新拍",
+            "整条视频翻译并重对口型，付费档覆盖 175 种语言和口音",
+            "一张照片直接生成会说话的 Avatar IV，付费档单条最长 30 分钟",
+            "积分是全通用货币：按月发放、用不完滚存一个月，可升档或加购积分包",
+            "培训用的互动视频、随堂测验、视频分支和 SCORM 导出都在产品里",
+            "Business 档起多人共用工作区，带品牌包与 Zapier、n8n、Make、HubSpot 集成"
+          ],
+          "bestFor": "要持续出口播和讲解视频、又不想每次都布光拍摄的人，尤其是得把同一条片子铺进多个语言市场的团队。",
+          "pricing": "免费档每月 3 条带水印；Creator $29/月（年付 $24）600 积分，Pro $49/月 1000 积分起，Business $149/月 + 每席位 $20",
+          "platform": "Web / iOS",
+          "url": "https://www.heygen.com",
+          "logo": "/assets/logos/heygen.png",
+          "tags": ["AI 视频", "数字人", "视频翻译"],
+          "related": ["screen-studio", "remotion"]
+        },
+        {
           "id": "buildhub",
           "name": "BuildHub",
           "category": "ai",
@@ -64,8 +87,31 @@
           "pricing": "完全免费，开源",
           "platform": "Web",
           "url": "https://github.com/one-person-lab/build-hub",
-          "logo": "/assets/buildhub-logo.png",
+          "logo": "/assets/buildhub-mark.png",
           "tags": ["术语图鉴", "学习", "开源"]
+        },
+        {
+          "id": "betterprompt",
+          "name": "Betterprompt",
+          "category": "ai",
+          "type": "web",
+          "tagline": "提示词按次收费的市场：跑一次花多少积分，点之前就写在卡上",
+          "overview": "卖提示词的市场，但词不是给你抄走的：挑一条，填几个空，选一个模型（OpenAI、Claude、Gemini、Grok 都在列），几秒出结果。收费按次不按条——跑一次扣一次积分，卡上先标好这一跑要花多少，不必为没试过的词先掏钱。词本身跑在 Betterprompt 自己的服务器上，使用者提交输入、拿到输出，永远看不到词原文，所以创作者才敢把吃饭的家伙挂上去卖。分成比例也写在 FAQ 里：一跑的价格 = 模型成本 + 10% 平台费 + 10% 给创作者，跑失败积分退回。另外还开了一门面向 AI Agent 的技能市场，逻辑相同：SKILL.md 明文可审，生成逻辑藏在服务端。",
+          "highlights": [
+            "按次付费，词不用先买：官方原话「No $5 upfront for a prompt you haven't tried」，跑一次扣一次积分，失败自动退还",
+            "价格怎么算的写着：一跑 = 模型价 + 10% 平台费 + 10% 创作者分成，估价取自该模型近期真实运行",
+            "词是黑盒：提示词在 Betterprompt 服务器上执行，使用者只见输入和输出；连自带 API Key 都不允许（「Every prompt runs on our keys」），宁可劝退一波用户也要保住词不外泄",
+            "创作者收款接 Stripe：发布后每次运行自动分成，后台看营收、用量和评分，满 $10 起提",
+            "Agent 侧只装一个主技能：npx skills add https://github.com/betterpromptme/skills --skill betterprompt，由它在 agent 里搜索、运行市场里的技能，SKILL.md 公开可读、生成逻辑分离",
+            "你的输入不训练任何模型（官方承诺自家和上游都不训练）；团队功能还在内测，要写信到 teams@betterprompt.me 申请"
+          ],
+          "bestFor": "把自己那套提示词当产品卖、想按次收钱的人，以及不想学怎么写词、只想填两个空就拿结果的人。",
+          "pricing": "免费档每月 2,000 积分（每日上限 100，官方说约 15 张图或几百次文本）；Pro 8 $8/月 30,000 积分、Pro 20 $20/月 80,000 积分；视频生成、去水印和发布权限只在付费档",
+          "platform": "Web",
+          "url": "https://betterprompt.me",
+          "logo": "/assets/logos/betterprompt.png",
+          "tags": ["提示词市场", "按次付费", "AI Agent 技能"],
+          "related": ["buildhub", "appllama"]
         }
       ]
     },
@@ -93,6 +139,29 @@
           "logo": "/assets/logos/figma.png",
           "tags": ["UI 设计", "协作", "设计系统"],
           "related": ["framer", "appllama", "are-na"]
+        },
+        {
+          "id": "designkit",
+          "name": "美图设计室",
+          "category": "design",
+          "type": "both",
+          "tagline": "开店那套图，从抠图到详情页一站出完",
+          "overview": "美图秀秀同门的设计平台，只做生意要用的图：拍回来的商品照，抠图、换背景、AI 模特试穿一路做完，接着生成整套主图和详情页。再往下还管带货短视频、AI PPT、Logo 和海报。它把「商品套图」「详情模块图」「爆款图复刻」这些反复要做的活打包成一键的技能，官网直接管这叫 AI Agent 和技能 Skills，不用你自己调参数。AI 生成按「美豆」扣次数，会员每月送，用完再单买。",
+          "highlights": [
+            "抠图、换背景、AI 模特试衣连成一条链，商品照不用再养修图师",
+            "整套主图、详情页、爆款复刻做成一键技能，选品上架直接套",
+            "会员分个人商用授权与企业商用授权，个人授权拿去公司商用算侵权",
+            "AI 出图按美豆扣次数：标准会员每月 330 豆、高级会员 1000 豆，不够单独买",
+            "图之外还有带货视频、口播广告、AI PPT、Logo、海报，一个后台收完",
+            "Web / iOS / Android 三端都有，App Store 国区 4.9 分、9.2 万条评分"
+          ],
+          "bestFor": "开网店、做私域和跨境的人：每天要出主图、详情页和带货视频，又养不起专职设计的卖家和小团队。",
+          "pricing": "免费版能出图；标准会员连续包月 ¥30（送 330 美豆/月）、高级会员 ¥88/月（送 1000 美豆），团队版与企业商用授权另计",
+          "platform": "Web / iOS / Android",
+          "url": "https://www.designkit.cn",
+          "logo": "/assets/logos/designkit.png",
+          "tags": ["电商设计", "AI 商拍", "在线模板"],
+          "related": ["figma", "heygen"]
         },
         {
           "id": "framer",
@@ -250,6 +319,29 @@
           "url": "https://buffer.com",
           "logo": "/assets/logos/buffer.ico",
           "tags": ["社媒运营", "排程发布", "数据分析"]
+        },
+        {
+          "id": "aic",
+          "name": "即创",
+          "category": "media",
+          "type": "web",
+          "tagline": "抖音广告素材的流水线：积分不卖，按上周投放消耗发",
+          "overview": "巨量引擎（抖音的广告投放平台）官方做的创意生产后台。左边一列只有四组活：灵感广场挑别人跑出来的好素材，成片创作里做智能成片和爆款裂变，原料创作里出数字人口播、AI 视频原料和 AI 视频脚本，最后进资产库统一管理。它扣的不是钱是积分，而积分买不到——每周一按你上一周在巨量引擎的投放消耗自动发一笔，30 天后清空。所以它是给投广告的人用的生产工具，不是给所有人用的创作网站。",
+          "highlights": [
+            "积分不开放购买（官方 FAQ 原话：暂不支持直接购买积分）。基础积分每周一 00:00 按「上周投放消耗 × 即创投放值」发放，默认初始值 180 分，另设保底和封顶，30 天到期自动清除。实测账号连续七周的明细全是 +180，余额 720 分、每周都有一笔 180 即将过期",
+            "按视频秒数扣积分，模型之间差价极大：seedance 1.0 是 3–10 积分/秒，1.5 是 14（限时折扣 7），2.0 是 54（折扣 10），2.5 是 81（折扣 16）；换装 12 积分/秒、换背景 8 积分/秒",
+            "即创 Agent 自 2026-09-22 起由「按次收费」改成「按视频时长收费」，统一 2 积分/秒；预览首次生成后，前两次改脚本再生成打 1 折（0.2 积分/秒），第三次恢复原价",
+            "数字人按稿子长短算：0.17 秒/字预估音频时长，再乘 1 积分/秒或 9 积分/秒的模型档位；批量生成时把所有脚本字数并起来一次算总时长",
+            "先预扣，退得也清楚：排队中取消全额退，已经开始执行再取消不退，平台原因失败全退，排队超 24 小时自动判失败并退还；「账户中心 > 积分明细」查得到近 90 天",
+            "投放消耗还决定你排多前：官方按「过去 30 天累计投放消耗 + 素材 ROI」调度排队优先级，明说素材数量不是核心依据；积分跟着 UID 走，同账号下多组织共享，但不许转赠、合并、跨账号用"
+          ],
+          "bestFor": "本来就在巨量引擎或千川上投广告、每周要出几十条素材的电商和游戏团队。没有投放账户连门都进不去，积分也攒不起来；只做自然流量的人会被挡在登录页外面。",
+          "pricing": "不收费也不让充钱：每周一按上周投放消耗发基础积分（默认初始值 180 分，30 天有效），AI 任务按视频秒数扣积分，部分模型限时折扣中",
+          "platform": "Web",
+          "url": "https://aic.oceanengine.com",
+          "logo": "/assets/logos/aic.svg",
+          "tags": ["AI 视频", "数字人", "广告投放"],
+          "related": ["heygen", "designkit", "buffer"]
         }
       ]
     },
@@ -350,6 +442,30 @@
           "license": "MIT",
           "logo": "/assets/logos/github-lukilabs.png",
           "tags": ["Mermaid", "图表渲染", "双输出", "零 DOM 依赖"]
+        },
+        {
+          "id": "system-prompts",
+          "name": "System Prompts",
+          "category": "opensource",
+          "type": "web",
+          "tagline": "38 个 AI 产品的系统提示词原文，一个工具一页",
+          "overview": "把 Cursor、v0、Devin、Claude Code、Windsurf 这些产品线上真在跑的系统提示词全文摊在网页上的资料站，一共 38 个工具。内容不是它自己写的，逐字镜像自 GitHub 上那个 ★144K 的仓库 x1xhlol/system-prompts-and-models-of-ai-tools，它做的事只是把仓库里散在各厂商目录的 txt、md、json 排成能读的样子：一个工具一页，页内按版本分节、带锚点目录，顶上写清楚类目和官网链接。全站纯静态 HTML，没有搜索框、没有复制按钮、不用登录，就是让人从头读到尾。",
+          "highlights": [
+            "38 个工具里有中文团队的产品：Qoder、Trae（页上写 AI IDE by ByteDance）、Z.ai Code（页上写 Chinese AI coding tool）都在列，不只欧美那一圈。实测 Qoder 那页 3 节（Main Prompt / Quest Action / Quest Design），全文 58,092 字符",
+            "同一页保留历史版本，能看出提示词是怎么一步步改的：Cursor 那页 7 节（Agent Prompt v2.0、2025-09-03 那版、Agent CLI 2025-08-07、v1.2、v1.0、Chat Prompt、Agent Tools v1.0 的 JSON），7 段合计 160,152 字符",
+            "工具定义跟提示词一块儿给：每个函数叫什么、description 怎么写、什么情况该用、什么情况别用，全在原文里。给自家 Agent 设计工具时，这是能直接抄的成品。v0 那页就是 System Prompt + Tools (JSON) 两段，81,276 字符",
+            "路径干净，适合抓下来当语料：/cursor-system-prompt/、/qoder-system-prompt/ 这种直链，整站除 JSON-LD 之外没有脚本，curl 一次就拿到全文。实测首页 12.7KB、工具页 140KB 以上",
+            "维护状态：上游仓库 2026-10-12 还在推，顶层按厂商分成 34 个目录（Anthropic、Google、Open Source prompts 等）；站点关于页写明内容按合理使用原则展示、商标归原厂商，厂商要撤就走上游仓库提 issue"
+          ],
+          "bestFor": "自己在写 Agent 提示词、要给工具写 description 的人，拿它当范本查；也适合想弄明白「某个 AI 产品为什么死活不肯改口」的人，答案一般就写在那份系统提示词里。",
+          "pricing": "免费，无需注册；上游仓库 GPL-3.0",
+          "platform": "Web",
+          "url": "https://www.systemprompts.org",
+          "repo": "https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools",
+          "license": "GPL-3.0",
+          "logo": "/assets/logos/github-x1xhlol.png",
+          "tags": ["系统提示词", "Agent 设计", "提示词语料", "AI 工具"],
+          "related": ["cursor", "perplexity", "awesome-agent-skills"]
         }
       ]
     }

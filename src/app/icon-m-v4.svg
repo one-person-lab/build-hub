@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="112" fill="#0D0D0D"/>
+  <g fill="#FFFFFF">
+    <!-- 5×5 粗点阵 M：双腿(c1/c5 满高) + 中央 V(谷在中间行) -->
+    <!-- R1 -->
+    <rect x="68" y="68" width="56" height="56" rx="14" opacity="1"/>
+    <rect x="388" y="68" width="56" height="56" rx="14" opacity="1"/>
+    <!-- R2：V 两臂斜切入 -->
+    <rect x="68" y="148" width="56" height="56" rx="14" opacity="1"/>
+    <rect x="148" y="148" width="56" height="56" rx="14" opacity="1"/>
+    <rect x="308" y="148" width="56" height="56" rx="14" opacity="1"/>
+    <rect x="388" y="148" width="56" height="56" rx="14" opacity="1"/>
+    <!-- R3：V 谷底(中央) -->
+    <rect x="68" y="228" width="56" height="56" rx="14" opacity="1"/>
+    <rect x="228" y="228" width="56" height="56" rx="14" opacity="1"/>
+    <rect x="388" y="228" width="56" height="56" rx="14" opacity="1"/>
+    <!-- R4：双腿 -->
+    <rect x="68" y="308" width="56" height="56" rx="14" opacity="1"/>
+    <rect x="388" y="308" width="56" height="56" rx="14" opacity="1"/>
+    <!-- R5：双腿底 -->
+    <rect x="68" y="388" width="56" height="56" rx="14" opacity="1"/>
+    <rect x="388" y="388" width="56" height="56" rx="14" opacity="1"/>
+  </g>
+</svg>

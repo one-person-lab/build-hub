@@ -24,6 +24,8 @@ const nextConfig: NextConfig = {
       { source: "/topics/assets", destination: "/design", permanent: true },
       { source: "/en/topics/design", destination: "/en/design", permanent: true },
       { source: "/en/topics/assets", destination: "/en/design", permanent: true },
+      { source: "/vibehub-skill", destination: "/buildhub-skill", permanent: true },
+      { source: "/en/vibehub-skill", destination: "/en/buildhub-skill", permanent: true },
     ];
   },
 };

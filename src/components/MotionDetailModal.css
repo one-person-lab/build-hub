@@ -79,7 +79,8 @@
 }
 @media (max-width: 640px) {
   .mdm-backdrop {
-    padding: 3vh 10px;
+    /* 让出顶栏高度，避免弹层标签被吸顶导航压住 */
+    padding: 72px 10px 24px;
   }
   .mdm-panel {
     border-radius: 18px;

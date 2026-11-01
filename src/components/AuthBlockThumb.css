@@ -1,0 +1,30 @@
+/* block 取景框（认证页 / 页脚共用）：卡片缩略图 + 弹层大图
+   画布是固定尺寸（AuthBlockThumb 的 w/h），iframe 按容器宽度等比 scale */
+
+.auth-block-thumb {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: #0a0a0a;
+}
+.auth-block-thumb.is-live {
+  background: #0a0a0a;
+}
+.auth-block-thumb iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 0;
+  transform-origin: top left;
+  background: #0a0a0a;
+  /* 缩略图不让 iframe 抢走卡片的点击与滚轮 */
+  pointer-events: none;
+}
+.auth-block-thumb.is-live iframe {
+  pointer-events: auto;
+}
+
+/* 卡片里：撑满 .card-thumb 的取景框，只留 16:10 画布本身 */
+.card-thumb .auth-block-thumb {
+  border-radius: 0;
+}

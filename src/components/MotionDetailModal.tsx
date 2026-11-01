@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo } from "react";
 import MotionCarouselDemo from "./MotionCarouselDemo";
+import BounceCardsDemo from "./BounceCardsDemo";
 import DotIntroDemo from "./DotIntroDemo";
 import MotionDarkOnboardingDemo from "./MotionDarkOnboardingDemo";
 import "./MotionDetailModal.css";
@@ -29,6 +30,8 @@ function renderDemo(term: MotionTerm, locale: "zh" | "en") {
       return <DotIntroDemo {...common} />;
     case "motion-dark-onboarding":
       return <MotionDarkOnboardingDemo {...common} />;
+    case "motion-bounce-cards":
+      return <BounceCardsDemo {...common} />;
     default:
       return null;
   }

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>footer-1 · Four link columns over a giant wordmark</title>
+<style>
+  :root{--fg:#111;--muted:#6b6b6b;--line:#e6e6e6;--watermark:#ececec}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    background:#fff;color:var(--fg);
+    font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+    font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;
+    display:flex;flex-direction:column;overflow:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+
+  .top{
+    flex:1 1 auto;min-height:0;
+    display:grid;grid-template-columns:300px 1fr;
+    padding:44px 56px 0;
+  }
+  .brand{display:flex;flex-direction:column}
+  .logo-row{display:flex;align-items:center;gap:11px}
+  .mark{
+    width:34px;height:34px;border-radius:50%;background:#111;color:#fff;
+    display:grid;place-items:center;font-size:15px;font-weight:700;
+  }
+  .wordmark{font-size:16px;font-weight:700;letter-spacing:.06em}
+  h2{font-size:22px;font-weight:600;letter-spacing:-.02em;line-height:1.3;margin-top:26px;max-width:250px}
+  .since{margin-top:auto;padding-bottom:34px;color:var(--muted);font-size:13px}
+
+  .cols{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)}
+  .col{padding:26px 24px 30px;border-left:1px solid var(--line)}
+  .col:first-child{border-left:none;padding-left:34px}
+  .col h3{font-size:14px;font-weight:600;margin-bottom:20px}
+  .col ul{list-style:none;display:flex;flex-direction:column;gap:18px}
+  .col a{color:var(--muted);font-size:13.5px;display:inline-flex;align-items:center;gap:5px}
+  .col a:hover{color:var(--fg)}
+  .col a svg{opacity:.6}
+
+  .watermark{
+    flex:0 0 auto;height:150px;overflow:hidden;
+    padding:0 56px;margin-top:auto;
+  }
+  .watermark span{
+    display:block;font-size:186px;line-height:.82;font-weight:800;letter-spacing:-.045em;
+    color:var(--watermark);white-space:nowrap;text-transform:uppercase;
+    transform:translateY(38%);
+  }
+</style>
+</head>
+<body>
+  <div class="top">
+    <div class="brand">
+      <div class="logo-row">
+        <span class="mark">F</span>
+        <span class="wordmark">FITFORGE</span>
+      </div>
+      <h2>Transform your body, elevate your life</h2>
+      <p class="since">Premium fitness coaching since 2019</p>
+    </div>
+
+    <nav class="cols">
+      <div class="col">
+        <h3>Programs</h3>
+        <ul>
+          <li><a href="#">Personal Training</a></li>
+          <li><a href="#">Nutrition Coaching</a></li>
+          <li><a href="#">Group Classes</a></li>
+          <li><a href="#">Online Membership</a></li>
+          <li><a href="#">Strength Camp</a></li>
+          <li><a href="#">Recovery &amp; Mobility</a></li>
+          <li><a href="#">Corporate Plans</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <h3>Resources</h3>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Trainers</a></li>
+          <li><a href="#">Podcast</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Success Stories <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <h3>Support</h3>
+        <ul>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Book a trial</a></li>
+          <li><a href="#">Studio locations</a></li>
+          <li><a href="#">Member Portal <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a></li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <div class="watermark" aria-hidden="true"><span>Fitforge</span></div>
+</body>
+</html>

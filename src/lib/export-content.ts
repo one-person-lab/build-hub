@@ -8,12 +8,12 @@ import zhProducts from "@/data/products.json";
 import enProducts from "@/data/en-products.json";
 import zhAssets from "@/data/assets.json";
 import enAssets from "@/data/en-assets.json";
-import zhDistill from "@/data/distill.json";
-import enDistill from "@/data/en-distill.json";
 import paths from "@/data/paths.json";
 import playbooks from "@/data/playbooks.json";
 import explainers from "@/data/explainers.json";
 import courses from "@/data/courses.json";
+import catalogs from "@/data/catalogs.json";
+import enCatalogs from "@/data/en-catalogs.json";
 import type { Term } from "./types";
 
 type Locale = "zh" | "en";
@@ -62,11 +62,6 @@ const ASSETS: Record<Locale, AnyRecord[]> = {
   en: (enAssets as unknown as AnyRecord).categories.flatMap((c: AnyRecord) =>
     c.styles.map((s: AnyRecord) => ({ ...s, categoryLabel: c.name }))
   ),
-};
-
-const MOTION: Record<Locale, AnyRecord[]> = {
-  zh: zhDistill as AnyRecord[],
-  en: enDistill as AnyRecord[],
 };
 
 const PATHS = (paths as unknown as AnyRecord).paths as AnyRecord[];
@@ -294,12 +289,6 @@ function explainerMarkdown(e: AnyRecord, locale: Locale): string {
   return lines.filter((x) => x !== "").join("\n").replace(/\n{3,}/g, "\n\n").trim();
 }
 
-function motionMarkdown(m: AnyRecord, locale: Locale): string {
-  const lines = [`# ${m.name}${m.en ? ` (${m.en})` : ""}`, m.tagline ? `> ${m.tagline}` : ""];
-  if (m.source) lines.push("", `- ${locale === "en" ? "Source" : "出处"}: ${m.source}`);
-  return lines.filter((x) => x !== "").join("\n");
-}
-
 type Resolved = {
   title: string;
   typeLabel: string;
@@ -369,16 +358,6 @@ export function resolveEntry(
       typeLabel: locale === "en" ? "Design asset" : "设计",
       href: `${SITE}${locale === "en" ? "/en" : ""}/assets/${a.id}`,
       markdown: assetMarkdown(a, locale),
-    };
-  }
-  if (kind === "motion") {
-    const m = (MOTION[locale] ?? MOTION.zh).find((x) => x.slug === id) ?? MOTION.zh.find((x) => x.slug === id);
-    if (!m) return null;
-    return {
-      title: m.name,
-      typeLabel: locale === "en" ? "Motion" : "动效",
-      href: `${SITE}${locale === "en" ? "/en" : ""}/distill/${m.slug}`,
-      markdown: motionMarkdown(m, locale),
     };
   }
   if (kind === "path") {
@@ -563,4 +542,285 @@ export function buildPackMarkdown(input: PackInput, locale: Locale = "zh"): stri
   });
 
   return out.join("\n").replace(/\n{3,}/g, "\n\n").trim() + "\n";
+}
+
+/* ============================================================
+   PRO 资产包 / Agent Kit
+   ============================================================ */
+
+const DESIGN_CATALOG: Record<Locale, AnyRecord | undefined> = {
+  zh: (catalogs as unknown as AnyRecord[]).find((c) => c.key === "design"),
+  en: (enCatalogs as unknown as AnyRecord[]).find((c) => c.key === "design"),
+};
+
+function designRefs(locale: Locale): { web: AnyRecord[]; libs: AnyRecord[] } {
+  const c = DESIGN_CATALOG[locale] ?? DESIGN_CATALOG.zh;
+  const groups = Array.isArray(c?.groups) ? c.groups : [];
+  return {
+    web: groups
+      .filter((g: AnyRecord) => g.category === "web-style")
+      .flatMap((g: AnyRecord) => (Array.isArray(g.terms) ? g.terms : [])),
+    libs: groups
+      .filter((g: AnyRecord) => g.category === "icon-lib")
+      .flatMap((g: AnyRecord) => (Array.isArray(g.terms) ? g.terms : [])),
+  };
+}
+
+function designLink(slug: string, locale: Locale): string {
+  return `${SITE}${locale === "en" ? "/en" : ""}/design?nav=${slug}`;
+}
+
+function styleRefMarkdown(t: AnyRecord, locale: Locale): string {
+  const lines = [`# ${t.name}${t.en ? ` (${t.en})` : ""}`];
+  if (t.tagline) lines.push("", `> ${t.tagline}`);
+  if (t.slug)
+    lines.push("", `- ${locale === "en" ? "Live sample" : "可视化样张"}: ${designLink(t.slug, locale)}`);
+  return lines.join("\n").trim();
+}
+
+function iconStyles(locale: Locale): AnyRecord[] {
+  return ASSETS[locale] ?? ASSETS.zh;
+}
+
+function agentKitMarkdown(locale: Locale): string {
+  const L = (zh: string, en: string) => (locale === "en" ? en : zh);
+  const promptCount = (PROMPTS[locale] ?? PROMPTS.zh).length;
+  const skillCount = (SKILLS[locale] ?? SKILLS.zh).length;
+  const conceptCount = (TERMS[locale] ?? TERMS.zh).length;
+  const { web, libs } = designRefs(locale);
+  const icons = iconStyles(locale);
+  const lines: string[] = [
+    "---",
+    "name: buildhub",
+    `description: ${L(
+      "把想法做成可上线产品的资产索引：提示词、技能、设计参考和路径",
+      "Asset index for shipping a real product: prompts, skills, design references and paths"
+    )}`,
+    "---",
+    "",
+    "# BuildHub",
+    "",
+    L(
+      "这是 BuildHub PRO 资产包的入口文件。先读这里，再按任务去对应目录，不要一次把全部内容读进上下文。",
+      "This is the entry file for the BuildHub PRO asset pack. Read this first, then open the file for the task at hand. Do not load the whole pack into context."
+    ),
+    "",
+    `## ${L("包里有什么", "What is inside")}`,
+    "",
+    `- \`prompts/\` — ${promptCount} ${L("条可复制提示词，按任务分 7 类", "copy-ready prompts in 7 task groups")}`,
+    `- \`skills/\` — ${skillCount} ${L("个技能，覆盖元技能、工程流、设计前端、文档与浏览器自动化", "skills across meta skills, engineering, design/frontend, docs and browser automation")}`,
+    `- \`design/\` — ${web.length + icons.length + libs.length} ${L("条设计参考：网页风格、App 图标风格与图标库", "design references: web styles, app icon styles and icon libraries")}`,
+    "- `paths/` — 4 " + L("条从想法到上线的路径", "end-to-end paths from idea to launch"),
+    "- `playbooks/` — 3 " + L("本带完成标志的手册", "playbooks with definitions of done"),
+    `- \`concepts/\` — ${conceptCount} ` + L("条概念词条索引", "concept entries"),
+    "",
+    `## ${L("按任务路由", "Route by task")}`,
+    "",
+    `| ${L("你要做的事", "Task")} | ${L("先读", "Read first")} |`,
+    "| --- | --- |",
+    `| ${L("做第一个产品官网", "Ship the first product site")} | \`paths/first-website.md\` |`,
+    `| ${L("给 AI 装工作流", "Give the agent a workflow")} | \`paths/agent-workflow.md\` |`,
+    `| ${L("把界面做出质感", "Raise UI quality")} | \`paths/ui-quality.md\` |`,
+    `| ${L("做第一个 AI 应用", "Ship the first AI app")} | \`paths/first-ai-app.md\` |`,
+    `| ${L("把模糊想法说清楚", "Clarify a fuzzy idea")} | \`prompts/\` · ${L("先读「需求文档」", "start with the spec prompt")} |`,
+    `| ${L("找现成技能", "Find an existing skill")} | \`skills/find-skills.md\` |`,
+    `| ${L("定视觉方向", "Pick a visual direction")} | \`design/\` |`,
+    "",
+    `## ${L("使用约定", "Conventions")}`,
+    "",
+    `- ${L("每条提示词都是完整正文，可直接复制，不要改写占位符 {{...}} 之外的内容。", "Every prompt is the full text. Copy it as-is; only fill in the {{...}} placeholders.")}`,
+    `- ${L("每条设计参考都带样张链接；App 图标风格另有 AI 生图提示词。", "Each design reference links to a live sample; app icon styles also ship an AI image prompt.")}`,
+    `- ${L("每条路径的每一步都有「完成标志」；没达到就回到上一步。", "Every path step has a definition of done. If it is not met, go back one step.")}`,
+    `- ${L("先对齐目标，再写代码。", "Align on the goal before writing code.")}`,
+    "",
+    `## ${L("安装位置", "Where to install")}`,
+    "",
+    `- Claude Code: \`.claude/skills/buildhub/SKILL.md\``,
+    `- Cursor: \`.cursor/rules/buildhub.mdc\``,
+    `- Codex CLI / Gemini CLI: ${L("在 AGENTS.md / GEMINI.md 里引用本文件", "reference this file from AGENTS.md / GEMINI.md")}`,
+    `- Obsidian: ${L("把资产包目录当 vault 打开", "open the pack folder as a vault")}`,
+    "",
+    `## ${L("目录索引", "Index")}`,
+    "",
+    `### ${L("提示词", "Prompts")} (${promptCount})`,
+    "",
+    ...(PROMPTS[locale] ?? PROMPTS.zh).map(
+      (p: AnyRecord) => `- ${p.name}${p.tagline ? ` — ${p.tagline}` : ""}`
+    ),
+    "",
+    `### ${L("技能", "Skills")} (${skillCount})`,
+    "",
+    ...(SKILLS[locale] ?? SKILLS.zh).map(
+      (s: AnyRecord) => `- ${s.name}${s.tagline ? ` — ${s.tagline}` : ""}`
+    ),
+    "",
+    `### ${L("设计参考", "Design references")} (${web.length + icons.length + libs.length})`,
+    "",
+    ...[...web, ...icons, ...libs].map(
+      (t: AnyRecord) => `- ${t.name}${t.tagline ? ` — ${t.tagline}` : ""}`
+    ),
+    "",
+  ];
+  return lines.join("\n").replace(/\n{3,}/g, "\n\n").trim() + "\n";
+}
+
+function conceptsIndex(locale: Locale): string[] {
+  const list = TERMS[locale] ?? TERMS.zh;
+  return list.map((t) => {
+    const lead = (t.summaryLead ?? "").replace(/\s+/g, " ").trim();
+    return `- [${t.name}](${SITE}${locale === "en" ? "/en" : ""}/${t.slug})${lead ? ` — ${lead}` : ""}`;
+  });
+}
+
+export function buildLibraryMarkdown(locale: Locale = "zh"): string {
+  const L = (zh: string, en: string) => (locale === "en" ? en : zh);
+  const date = new Date().toISOString().slice(0, 10);
+  const prompts = PROMPTS[locale] ?? PROMPTS.zh;
+  const skills = SKILLS[locale] ?? SKILLS.zh;
+  const { web, libs } = designRefs(locale);
+  const icons = iconStyles(locale);
+  const terms = TERMS[locale] ?? TERMS.zh;
+
+  const parts: string[] = [
+    `# ${L("BuildHub PRO 资产包", "BuildHub PRO asset pack")} · ${date}`,
+    "",
+    L(
+      "这是 BuildHub PRO 的完整资产包：提示词、技能、设计参考、路径、手册，以及给 Agent 用的入口文件。建议先读 SKILL.md，再按任务翻对应目录。",
+      "The complete BuildHub PRO pack: prompts, skills, design references, paths, playbooks and the agent entry file. Read SKILL.md first, then open only the folder you need."
+    ),
+    "",
+    "---",
+    "",
+    "## SKILL.md",
+    "",
+    agentKitMarkdown(locale),
+    "",
+    "---",
+    "",
+    `## ${L("一、提示词", "1. Prompts")} · ${prompts.length}`,
+    "",
+  ];
+  for (const p of prompts) {
+    parts.push(promptMarkdown(p, locale), "", "---", "");
+  }
+
+  parts.push("---", "", `## ${L("二、技能", "2. Skills")} · ${skills.length}`, "");
+  for (const s of skills) {
+    parts.push(skillMarkdown(s, locale), "", "---", "");
+  }
+
+  parts.push(
+    "---",
+    "",
+    `## ${L("三、设计参考", "3. Design references")} · ${web.length + icons.length + libs.length}`,
+    "",
+    `### ${L("网页风格", "Web styles")} · ${web.length}`,
+    "",
+    ...web.map((t) => [styleRefMarkdown(t, locale), ""].join("\n")),
+    `### ${L("App 图标风格", "App icon styles")} · ${icons.length}`,
+    "",
+    ...icons.map((a) => [assetMarkdown(a, locale), ""].join("\n")),
+    `### ${L("图标库", "Icon libraries")} · ${libs.length}`,
+    "",
+    ...libs.map((t) => [styleRefMarkdown(t, locale), ""].join("\n")),
+    "---",
+    "",
+    `## ${L("四、路径", "4. Paths")} · ${PATHS.length}`,
+    "",
+    ...PATHS.map((p: AnyRecord) => [pathMarkdown(p, locale), "", "---", ""].join("\n")),
+    "",
+    `## ${L("五、手册", "5. Playbooks")} · ${Object.keys(PLAYBOOKS).length}`,
+    "",
+    ...Object.entries(PLAYBOOKS).map(([, p]) =>
+      [playbookMarkdown(p, locale), "", "---", ""].join("\n")
+    ),
+    "",
+    `## ${L("六、专题", "6. Stories")} · ${Object.keys(EXPLAINERS).length}`,
+    "",
+    ...Object.entries(EXPLAINERS).map(([, e]) =>
+      [explainerMarkdown(e, locale), "", "---", ""].join("\n")
+    ),
+    "",
+    `## ${L("七、概念索引", "7. Concept index")} · ${terms.length}`,
+    "",
+    ...conceptsIndex(locale),
+    "",
+    "---",
+    "",
+    `${L("持续更新：重新下载最新版即可，文件名带日期。", "Updates: download the latest pack again; the filename carries the date.")}`,
+    "",
+  );
+
+  return parts.join("\n").replace(/\n{4,}/g, "\n\n\n").trim() + "\n";
+}
+
+export function buildAgentKitMarkdown(locale: Locale = "zh"): string {
+  return agentKitMarkdown(locale);
+}
+
+export function buildSampleMarkdown(locale: Locale = "zh"): string {
+  const L = (zh: string, en: string) => (locale === "en" ? en : zh);
+  const date = new Date().toISOString().slice(0, 10);
+  const prompt = (PROMPTS[locale] ?? PROMPTS.zh)[0];
+  const skill = (SKILLS[locale] ?? SKILLS.zh).find((s: AnyRecord) => s.id === "find-skills") ??
+    (SKILLS[locale] ?? SKILLS.zh)[0];
+  const icon = iconStyles(locale)[0];
+  const { web } = designRefs(locale);
+  const path = PATHS[0];
+  const conceptCount = (TERMS[locale] ?? TERMS.zh).length;
+
+  return [
+    `# ${L("BuildHub PRO 资产包 · 免费样例", "BuildHub PRO asset pack · free sample")} · ${date}`,
+    "",
+    L(
+      `这是一份样例，从完整资产包里各抽了一条。完整版包含 ${conceptCount} 条概念、19 条提示词、25 个技能、40 条设计参考、4 条路径、3 本手册和一份 Agent Kit。`,
+      `A sample with one entry from each part of the full pack. The full version holds ${conceptCount} concepts, 19 prompts, 25 skills, 40 design references, 4 paths, 3 playbooks and the Agent Kit.`
+    ),
+    "",
+    `- ${SITE}${locale === "en" ? "/en" : ""}/pro`,
+    "",
+    "---",
+    "",
+    "## SKILL.md",
+    "",
+    agentKitMarkdown(locale),
+    "",
+    "---",
+    "",
+    `## ${L("样例提示词", "Sample prompt")}`,
+    "",
+    promptMarkdown(prompt, locale),
+    "",
+    "---",
+    "",
+    `## ${L("样例技能", "Sample skill")}`,
+    "",
+    skillMarkdown(skill, locale),
+    "",
+    "---",
+    "",
+    `## ${L("样例设计参考", "Sample design reference")}`,
+    "",
+    assetMarkdown(icon, locale),
+    "",
+    web[0] ? styleRefMarkdown(web[0], locale) : "",
+    "",
+    "---",
+    "",
+    `## ${L("样例路径", "Sample path")}`,
+    "",
+    pathMarkdown(path, locale),
+    "",
+    "---",
+    "",
+    L(
+      "完整资产包和 Agent Kit 在 BuildHub PRO 页面获取。",
+      "Get the full pack and Agent Kit on the BuildHub PRO page."
+    ),
+    "",
+  ]
+    .filter((x) => x !== "")
+    .join("\n")
+    .replace(/\n{4,}/g, "\n\n\n")
+    .trim() + "\n";
 }

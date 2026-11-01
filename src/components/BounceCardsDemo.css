@@ -1,0 +1,167 @@
+/* 交互动画 demo：弹跳卡片（Bounce Cards）舞台 + 右侧参数面板 */
+.bcd {
+  margin: 8px 0 24px;
+}
+
+.bcd-layout {
+  display: flex;
+  gap: 16px;
+  align-items: stretch;
+}
+@media (max-width: 900px) {
+  .bcd-layout {
+    flex-direction: column;
+  }
+}
+
+/* ---- 演示舞台 ---- */
+.bcd-stage {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 440px;
+  border-radius: 24px;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  touch-action: pan-y;
+}
+@media (max-width: 640px) {
+  .bcd-stage {
+    height: 360px;
+  }
+}
+
+.bcd-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--bcd-size, 188px);
+  height: var(--bcd-size, 188px);
+  border: 5px solid #fff;
+  border-radius: var(--bcd-corner, 25px);
+  background: #fff;
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12), 0 10px 28px -6px rgba(0, 0, 0, 0.32);
+  transform: translate(-50%, -50%) scale(0);
+  transition: box-shadow 0.3s ease;
+  will-change: transform;
+  cursor: pointer;
+  user-select: none;
+  outline-offset: 3px;
+}
+.bcd-card[data-active] {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.14), 0 22px 44px -10px rgba(0, 0, 0, 0.42);
+}
+.bcd-card:focus-visible {
+  outline: 2px solid var(--text);
+}
+.bcd-card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.bcd-hint {
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+  font-size: 12px;
+  color: var(--text-2);
+  z-index: 40;
+}
+@media (max-width: 640px) {
+  .bcd-hint {
+    display: none;
+  }
+}
+
+/* ---- 控制面板 ---- */
+.bcd-panel {
+  width: 280px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: var(--bg);
+  padding: 18px;
+}
+@media (max-width: 900px) {
+  .bcd-panel {
+    width: auto;
+  }
+}
+.bcd-panel-head h3 {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text);
+}
+.bcd-panel-head h3 span {
+  margin-left: 8px;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-2);
+}
+.bcd-panel-head p {
+  margin-top: 4px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-2);
+}
+
+/* 整行即滑杆：左标签右数值，背景填充表示当前值 */
+.bcd-params {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+.bcd-param {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 42px;
+  padding: 0 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: linear-gradient(
+    to right,
+    var(--bg-hover) 0 var(--pct, 50%),
+    var(--bg-soft) var(--pct, 50%) 100%
+  );
+}
+.bcd-param-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  pointer-events: none;
+}
+.bcd-param-value {
+  font-size: 13px;
+  color: var(--text-2);
+  font-variant-numeric: tabular-nums;
+  pointer-events: none;
+}
+.bcd-param input[type="range"] {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.bcd-actions {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState, useSyncExternalStore } from "react";
+import { requireLogin } from "@/lib/auth-modal";
 
 /** 非 PRO 用户的收藏上限；已超出这条线之前收藏的不删，只是再加要开通 */
 export const FREE_FAVORITE_LIMIT = 20;
@@ -80,14 +81,18 @@ export function useFavorites() {
 
   const toggle = useCallback(
     (slug: string) => {
-      const has = slugs.includes(slug);
-      if (!has && !pro && slugs.length >= FREE_FAVORITE_LIMIT) {
-        setLimitHit(true);
-        return;
-      }
-      writeFavorites(has ? slugs.filter((s) => s !== slug) : [...slugs, slug]);
+      const run = () => {
+        const has = slugs.includes(slug);
+        if (!has && !pro && slugs.length >= FREE_FAVORITE_LIMIT) {
+          setLimitHit(true);
+          return;
+        }
+        writeFavorites(has ? slugs.filter((s) => s !== slug) : [...slugs, slug]);
+      };
+      if (me?.user) run();
+      else requireLogin({ reason: "favorite", onDone: run });
     },
-    [pro, slugs],
+    [me, pro, slugs],
   );
 
   return { favorites, slugs, pro, toggle, limitHit, dismissLimit: () => setLimitHit(false) };

@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useFlatTerms } from "@/components/CommandPalette";
 import ExportButton from "@/components/ExportButton";
 import ProModal from "@/components/ProModal";
+import { requireLogin } from "@/lib/auth-modal";
 import {
   FREE_FAVORITE_LIMIT,
   useFavoriteSlugs,
@@ -45,7 +46,7 @@ const UI = {
     unfav: "取消收藏",
     count: "条",
     convTitle: "把要用的东西，收进自己的库",
-    convBody: "登录后收藏会存进你的账号，换设备打开还在。现在收藏只存在这台浏览器，清缓存就没了。",
+    convBody: "收藏要先登录。登录后收进来的东西存进你的账号，换设备打开还在。",
     convCta: "登录开始收藏",
     freeName: "免费",
     proName: "PRO",
@@ -96,7 +97,7 @@ const UI = {
     unfav: "Remove from favorites",
     count: "saved",
     convTitle: "Keep what you need in your own library",
-    convBody: "Sign in and your saves live on your account, ready on any device. Right now they sit in this browser only — a cache clear loses them.",
+    convBody: "Sign in before you save. Anything you collect lives on your account and is there when you open another device.",
     convCta: "Sign in to start saving",
     freeName: "Free",
     proName: "PRO",
@@ -408,14 +409,15 @@ export default function FavoritesView({
     setNoteOpen("");
   }
 
-  const signedOutEmpty = me !== null && !me.user && totalSaved === 0;
+  /** 收藏是登录后的动作：未登录一律先看登录引导，本地遗留的收藏等登录后再显示 */
+  const signedOut = me !== null && !me.user;
   const atCap = !pro && totalSaved >= FREE_FAVORITE_LIMIT;
 
   return (
     <main className="fav-page">
       <header className="fav-head">
         <h1>{U.title}</h1>
-        {totalSaved > 0 && (
+        {!signedOut && totalSaved > 0 && (
           <span className="fav-count">
             {saved} {U.count}
           </span>
@@ -433,7 +435,7 @@ export default function FavoritesView({
               {U.newCollection}
             </button>
           )}
-          {totalSaved > 0 && (
+          {!signedOut && totalSaved > 0 && (
             <ExportButton
               locale={locale}
               kind={active === "all" ? "favorites" : "collection"}
@@ -444,7 +446,7 @@ export default function FavoritesView({
               label={active === "all" ? U.exportAll : U.exportCollection}
             />
           )}
-          {me && (
+          {!!me?.user && (
             <ExportButton
               locale={locale}
               kind="pack"
@@ -457,7 +459,7 @@ export default function FavoritesView({
         </div>
       </header>
 
-      {signedOutEmpty ? (
+      {signedOut ? (
         <div className="fav-conv">
           <span className="fav-conv-glyph" aria-hidden>
             <svg viewBox="0 0 48 48">
@@ -466,9 +468,9 @@ export default function FavoritesView({
           </span>
           <h2>{U.convTitle}</h2>
           <p>{U.convBody}</p>
-          <a className="fav-conv-cta" href={`${locale === "en" ? "/en" : ""}/account`}>
+          <button type="button" className="fav-conv-cta" onClick={() => requireLogin({ reason: "favorite" })}>
             {U.convCta}
-          </a>
+          </button>
           <div className="fav-plans">
             <div className="fav-plan">
               <h3>{U.freeName}</h3>

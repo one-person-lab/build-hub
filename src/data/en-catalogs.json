@@ -41,7 +41,7 @@
       },
       {
         "label": "Design",
-        "count": 46,
+        "count": 61,
         "active": false
       },
       {
@@ -425,7 +425,7 @@
             "name": "Descriptions",
             "en": "",
             "tagline": "On the details page, list the name, date, and status clearly, one field at a time.",
-            "demoHtml": "<div class=\"card-demo-mount\"><div class=\"desc-d\">\n    <div class=\"d-row\"><span class=\"d-label\">Creator</span><span class=\"d-value\">maya-lee</span></div>\n    <div class=\"d-row\"><span class=\"d-label\">Status</span><span class=\"d-value\"><span class=\"demo-tag blue\">In progress</span></span></div>\n    <div class=\"d-row\"><span class=\"d-label\">Last updated</span><span class=\"d-value\">2026-07-20 14:32</span></div>\n  </div></div>",
+            "demoHtml": "<div class=\"card-demo-mount\"><div class=\"desc-d\">\n    <div class=\"d-row\"><span class=\"d-label\">Creator</span><span class=\"d-value\">buildhub</span></div>\n    <div class=\"d-row\"><span class=\"d-label\">Status</span><span class=\"d-value\"><span class=\"demo-tag blue\">In progress</span></span></div>\n    <div class=\"d-row\"><span class=\"d-label\">Last updated</span><span class=\"d-value\">2026-07-20 14:32</span></div>\n  </div></div>",
             "demoClass": "card-demo preview-animations-paused"
           },
           {
@@ -473,7 +473,7 @@
             "name": "Tree",
             "en": "",
             "tagline": "Make it work like folders: click the little arrow to expand the next level.",
-            "demoHtml": "<div class=\"card-demo-mount\"><div class=\"tre-live\"><div class=\"tre-item\"><input type=\"checkbox\" id=\"tre1\" checked=\"\"><label class=\"tre-node\" for=\"tre1\"><span class=\"tre-arrow\">▸</span><span class=\"tre-label on\">Design Department</span></label><div class=\"tre-kids\"><div class=\"tre-item\"><input type=\"checkbox\" id=\"tre2\"><label class=\"tre-node\" for=\"tre2\"><span class=\"tre-arrow\">▸</span><span class=\"tre-label\">UI group</span></label><div class=\"tre-kids\"><div class=\"tre-leaf\"><span class=\"tre-arrow\"></span><span class=\"tre-label\">Alex Chen</span></div><div class=\"tre-leaf\"><span class=\"tre-arrow\"></span><span class=\"tre-label\">maya-lee</span></div></div></div><div class=\"tre-item\"><input type=\"checkbox\" id=\"tre3\"><label class=\"tre-node\" for=\"tre3\"><span class=\"tre-arrow\">▸</span><span class=\"tre-label\">User Research Group</span></label><div class=\"tre-kids\"><div class=\"tre-leaf\"><span class=\"tre-arrow\"></span><span class=\"tre-label\">Amai</span></div></div></div></div></div><div class=\"tre-item\"><input type=\"checkbox\" id=\"tre4\"><label class=\"tre-node\" for=\"tre4\"><span class=\"tre-arrow\">▸</span><span class=\"tre-label\">R&amp;D Department</span></label><div class=\"tre-kids\"><div class=\"tre-leaf\"><span class=\"tre-arrow\"></span><span class=\"tre-label\">Front-end group</span></div><div class=\"tre-leaf\"><span class=\"tre-arrow\"></span><span class=\"tre-label\">Backend Group</span></div></div></div></div></div>",
+            "demoHtml": "<div class=\"card-demo-mount\"><div class=\"tre-live\"><div class=\"tre-item\"><input type=\"checkbox\" id=\"tre1\" checked=\"\"><label class=\"tre-node\" for=\"tre1\"><span class=\"tre-arrow\">▸</span><span class=\"tre-label on\">Design Department</span></label><div class=\"tre-kids\"><div class=\"tre-item\"><input type=\"checkbox\" id=\"tre2\"><label class=\"tre-node\" for=\"tre2\"><span class=\"tre-arrow\">▸</span><span class=\"tre-label\">UI group</span></label><div class=\"tre-kids\"><div class=\"tre-leaf\"><span class=\"tre-arrow\"></span><span class=\"tre-label\">Alex Chen</span></div><div class=\"tre-leaf\"><span class=\"tre-arrow\"></span><span class=\"tre-label\">buildhub</span></div></div></div><div class=\"tre-item\"><input type=\"checkbox\" id=\"tre3\"><label class=\"tre-node\" for=\"tre3\"><span class=\"tre-arrow\">▸</span><span class=\"tre-label\">User Research Group</span></label><div class=\"tre-kids\"><div class=\"tre-leaf\"><span class=\"tre-arrow\"></span><span class=\"tre-label\">Amai</span></div></div></div></div></div><div class=\"tre-item\"><input type=\"checkbox\" id=\"tre4\"><label class=\"tre-node\" for=\"tre4\"><span class=\"tre-arrow\">▸</span><span class=\"tre-label\">R&amp;D Department</span></label><div class=\"tre-kids\"><div class=\"tre-leaf\"><span class=\"tre-arrow\"></span><span class=\"tre-label\">Front-end group</span></div><div class=\"tre-leaf\"><span class=\"tre-arrow\"></span><span class=\"tre-label\">Backend Group</span></div></div></div></div></div>",
             "demoClass": "card-demo preview-animations-paused"
           },
           {
@@ -632,7 +632,7 @@
             "name": "Popover",
             "en": "",
             "tagline": "Click an avatar to show a small profile card beside it.",
-            "demoHtml": "<div class=\"card-demo-mount\"><div class=\"popover-demo\"><div class=\"popover-card\"><div class=\"popover-user\"><span class=\"popover-avatar\">Lin</span><div><div class=\"popover-title\">maya-lee</div><div class=\"popover-sub\">Product Manager · Shenzhen</div></div></div><span class=\"popover-link\">View homepage →</span></div><div class=\"popover-arrow\"></div><span class=\"popover-avatar popover-trigger\">Lin</span></div></div>",
+            "demoHtml": "<div class=\"card-demo-mount\"><div class=\"popover-demo\"><div class=\"popover-card\"><div class=\"popover-user\"><span class=\"popover-avatar\">Lin</span><div><div class=\"popover-title\">buildhub</div><div class=\"popover-sub\">Product Manager · Shenzhen</div></div></div><span class=\"popover-link\">View homepage →</span></div><div class=\"popover-arrow\"></div><span class=\"popover-avatar popover-trigger\">Lin</span></div></div>",
             "demoClass": "card-demo preview-animations-paused"
           },
           {
@@ -1297,7 +1297,7 @@
       },
       {
         "label": "Design",
-        "count": 46,
+        "count": 61,
         "active": false
       },
       {
@@ -1897,7 +1897,7 @@
       },
       {
         "label": "Design",
-        "count": 46,
+        "count": 61,
         "active": false
       },
       {
@@ -2129,7 +2129,7 @@
       },
       {
         "label": "Design",
-        "count": 46,
+        "count": 61,
         "active": false
       },
       {
@@ -2303,7 +2303,7 @@
       },
       {
         "label": "Design",
-        "count": 46,
+        "count": 61,
         "active": false
       },
       {
@@ -2535,7 +2535,7 @@
       },
       {
         "label": "Design",
-        "count": 46,
+        "count": 61,
         "active": false
       },
       {
@@ -2967,7 +2967,7 @@
       },
       {
         "label": "Design",
-        "count": 46,
+        "count": 61,
         "active": false
       },
       {
@@ -3101,8 +3101,16 @@
         "label": "Icon Libraries"
       },
       {
-        "key": "motion",
-        "label": "Motion & Interaction"
+        "key": "navigation",
+        "label": "Navigation"
+      },
+      {
+        "key": "auth",
+        "label": "Auth Pages"
+      },
+      {
+        "key": "footer",
+        "label": "Footer"
       }
     ],
     "tabs": [
@@ -3143,7 +3151,7 @@
       },
       {
         "label": "Design",
-        "count": 46,
+        "count": 61,
         "active": true
       },
       {
@@ -3206,22 +3214,6 @@
             "en": "Journal Cards",
             "tagline": "Warm paper, serif display titles and slightly tilted cards — a collection you kept yourself.",
             "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div style=\"width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#f4eee1;padding:16px\"><div style=\"background:#f4eee1;border-radius:12px;width:600px;padding:18px 20px;display:flex;flex-direction:column;gap:12px\"><div><h2 style=\"font-size:18px;color:#3a3325;font-weight:900\">Showcase<span style=\"font-size:9px;color:#b3a888;font-weight:400;letter-spacing:.18em;margin-left:8px\">FIELD NOTES</span></h2><span style=\"display:inline-block;width:52px;height:3px;background:#d9a441;border-radius:2px;margin-top:4px\"></span></div><div style=\"display:flex;gap:12px\"><div style=\"position:relative;transform:rotate(-1.6deg);background:#fffdf7;border:1px solid #e5dcc8;border-radius:6px;box-shadow:0 2px 0 rgba(120,100,60,.14);padding:12px 11px;flex:1;min-width:0\"><i style=\"position:absolute;top:-7px;left:50%;transform:translateX(-50%) rotate(-2deg);width:40px;height:12px;background:#a8c8e8;opacity:.85\"></i><span style=\"position:absolute;top:7px;right:8px;color:#d9a441;font-size:11px\">★</span><div style=\"display:flex;align-items:center;gap:7px\"><img src=\"/assets/logos/cursor.png\" alt=\"\" width=\"16\" height=\"16\" style=\"width:16px;height:16px;object-fit:contain;border-radius:4px\"/><b style=\"font-size:12px;color:#3a3325\">Cursor</b></div><p style=\"margin-top:4px;font-size:10px;color:#8a7f66;line-height:1.5\">Three months in — the Tab model really predicts my next edit.</p></div><div style=\"position:relative;transform:rotate(1.2deg);background:#fffdf7;border:1px solid #e5dcc8;border-radius:6px;box-shadow:0 2px 0 rgba(120,100,60,.14);padding:12px 11px;flex:1;min-width:0\"><i style=\"position:absolute;top:-7px;left:50%;transform:translateX(-50%) rotate(-2deg);width:40px;height:12px;background:#e8b4b4;opacity:.85\"></i><div style=\"display:flex;align-items:center;gap:7px\"><img src=\"/assets/logos/linear.ico\" alt=\"\" width=\"16\" height=\"16\" style=\"width:16px;height:16px;object-fit:contain;border-radius:4px\"/><b style=\"font-size:12px;color:#3a3325\">Linear</b></div><p style=\"margin-top:4px;font-size:10px;color:#8a7f66;line-height:1.5\">The issue list is so fast loading feels mythical.</p></div><div style=\"position:relative;transform:rotate(-0.6deg);background:#fffdf7;border:1px solid #e5dcc8;border-radius:6px;box-shadow:0 2px 0 rgba(120,100,60,.14);padding:12px 11px;flex:1;min-width:0\"><i style=\"position:absolute;top:-7px;left:50%;transform:translateX(-50%) rotate(-2deg);width:40px;height:12px;background:#b8d8b0;opacity:.85\"></i><span style=\"position:absolute;top:7px;right:8px;color:#d9a441;font-size:11px\">★</span><div style=\"display:flex;align-items:center;gap:7px\"><img src=\"/assets/logos/appllama.webp\" alt=\"\" width=\"16\" height=\"16\" style=\"width:16px;height:16px;object-fit:contain;border-radius:4px\"/><b style=\"font-size:12px;color:#3a3325\">Appllama</b></div><p style=\"margin-top:4px;font-size:10px;color:#8a7f66;line-height:1.5\">Every top app's paywall, filed for reference.</p></div></div></div></div></div>",
-            "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
-          },
-          {
-            "slug": "style-directory-nav",
-            "name": "Catalog Navbar",
-            "en": "Appllama Nav",
-            "tagline": "Sections, search and Go Pro laid flat in one bar — you get it in three seconds.",
-            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div style=\"width:100%;height:100%;background:#f7f7f8;padding:18px 20px;display:flex;flex-direction:column;justify-content:center;gap:14px;font-family:ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif\"><div style=\"font-size:9px;color:#6b6e76\">Light</div><div style=\"background:#ffffff;border:1px solid #e4e4e7;border-radius:10px;padding:7px 12px;display:flex;align-items:center;gap:12px\"><span style=\"display:flex;align-items:center;gap:6px\"><span style=\"width:18px;height:18px;display:grid;place-items:center;background:#E8C767;border-radius:5px;color:#14151a;font-size:10px;font-weight:800\">✦</span><b style=\"font-size:11px;color:#1a1b20;letter-spacing:.03em\">BUILDHUB</b></span><span style=\"display:flex;gap:11px;margin-left:6px\"><span style=\"font-size:10px;color:#1a1b20;font-weight:700\">Terms</span><span style=\"font-size:10px;color:#6b6e76;font-weight:400\">Skills</span><span style=\"font-size:10px;color:#6b6e76;font-weight:400\">Products</span><span style=\"font-size:10px;color:#6b6e76;font-weight:400\">Prompts</span></span><span style=\"font-size:9px;font-weight:700;color:#ffffff;background:#14151a;border:1px solid #14151a;padding:2.5px 9px;border-radius:999px\">Assets</span><span style=\"margin-left:auto;display:flex;align-items:center;gap:8px\"><span style=\"display:flex;align-items:center;gap:5px;background:#f4f4f5;border-radius:999px;padding:4px 8px;font-size:9px;color:#6b6e76\">⌕ Search terms, skills…<i style=\"font-style:normal;border:1px solid #e4e4e7;border-radius:4px;padding:0 4px;font-size:8px\">/</i></span><span style=\"font-size:9.5px;font-weight:700;color:#1a1b20\">Go Pro</span><span style=\"width:18px;height:18px;border-radius:50%;background:#14151a;color:#fff;display:grid;place-items:center;font-size:9px\">✦</span></span></div><div style=\"font-size:9px;color:#6b6e76\">Dark</div><div style=\"background:#14151a;border:1px solid #2c2f38;border-radius:10px;padding:7px 12px;display:flex;align-items:center;gap:12px\"><span style=\"display:flex;align-items:center;gap:6px\"><span style=\"width:18px;height:18px;display:grid;place-items:center;background:#E8C767;border-radius:5px;color:#14151a;font-size:10px;font-weight:800\">✦</span><b style=\"font-size:11px;color:#ECEEF2;letter-spacing:.03em\">BUILDHUB</b></span><span style=\"display:flex;gap:11px;margin-left:6px\"><span style=\"font-size:10px;color:#ECEEF2;font-weight:700\">Terms</span><span style=\"font-size:10px;color:#8B8E99;font-weight:400\">Skills</span><span style=\"font-size:10px;color:#8B8E99;font-weight:400\">Products</span><span style=\"font-size:10px;color:#8B8E99;font-weight:400\">Prompts</span></span><span style=\"font-size:9px;font-weight:700;color:#E8C767;background:transparent;border:1px solid #E8C767;padding:2.5px 9px;border-radius:999px\">Assets</span><span style=\"margin-left:auto;display:flex;align-items:center;gap:8px\"><span style=\"display:flex;align-items:center;gap:5px;background:#202228;border-radius:999px;padding:4px 8px;font-size:9px;color:#8B8E99\">⌕ Search terms, skills…<i style=\"font-style:normal;border:1px solid #2c2f38;border-radius:4px;padding:0 4px;font-size:8px\">/</i></span><span style=\"font-size:9.5px;font-weight:700;color:#ECEEF2\">Go Pro</span><span style=\"width:18px;height:18px;border-radius:50%;background:#E8C767;color:#14151a;display:grid;place-items:center;font-size:9px\">✦</span></span></div><div style=\"font-size:9px;color:#a1a1aa;text-align:center;margin-top:2px\">One skeleton · light & dark</div></div></div>",
-            "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
-          },
-          {
-            "slug": "style-dark-catalog",
-            "name": "Dark Library",
-            "en": "Appllama Style",
-            "tagline": "Dark ground, one gold accent, dense cards: the 'stocked library' ceremony Appllama nails.",
-            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div style=\"width:100%;height:100%;background:#14151a;padding:16px 20px;display:flex;flex-direction:column;gap:10px\"><div style=\"display:flex;align-items:baseline;gap:10px\"><b style=\"font-size:15px;color:#eceef2\">Showcase</b><span style=\"font-size:10px;color:#8b8e99\">a notebook of great products · 13 kept</span><span style=\"margin-left:auto;background:#e8c767;color:#14151a;border-radius:6px;padding:2px 8px;font-size:10px;font-weight:800\">PRO</span></div><div style=\"display:flex;gap:6px;flex-wrap:wrap\"><span style=\"border:1px solid #5a5236;border-radius:999px;padding:3px 10px;font-size:10.5px;color:#e8c767\">All 13</span><span style=\"border:1px solid #3a3d46;border-radius:999px;padding:3px 10px;font-size:10.5px;color:#9a9dab\">AI Tools</span><span style=\"border:1px solid #3a3d46;border-radius:999px;padding:3px 10px;font-size:10.5px;color:#9a9dab\">Productivity</span><span style=\"border:1px solid #3a3d46;border-radius:999px;padding:3px 10px;font-size:10.5px;color:#9a9dab\">Design</span></div><div style=\"display:flex;flex-direction:column;gap:8px\"><div style=\"display:grid;grid-template-columns:repeat(3,1fr);gap:8px\"><div style=\"background:#202228;border:1px solid #2c2f38;border-radius:10px;padding:10px 11px;display:flex;align-items:center;gap:9px\"><span style=\"width:24px;height:24px;flex:none;background:#fff;border-radius:7px;display:grid;place-items:center\"><img src=\"/assets/logos/cursor.png\" alt=\"\" width=\"18\" height=\"18\" style=\"width:18px;height:18px;object-fit:contain;border-radius:4px\"/></span><div style=\"min-width:0\"><b style=\"display:block;font-size:12px;color:#eceef2;font-weight:700\">Cursor</b><span style=\"font-size:10px;color:#8b8e99;line-height:1.4;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">The AI editor that reads your repo</span></div></div><div style=\"background:#202228;border:1px solid #2c2f38;border-radius:10px;padding:10px 11px;display:flex;align-items:center;gap:9px\"><span style=\"width:24px;height:24px;flex:none;background:#fff;border-radius:7px;display:grid;place-items:center\"><img src=\"/assets/logos/linear.ico\" alt=\"\" width=\"18\" height=\"18\" style=\"width:18px;height:18px;object-fit:contain;border-radius:4px\"/></span><div style=\"min-width:0\"><b style=\"display:block;font-size:12px;color:#eceef2;font-weight:700\">Linear</b><span style=\"font-size:10px;color:#8b8e99;line-height:1.4;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">Issue tracking built for speed</span></div></div><div style=\"background:#202228;border:1px solid #2c2f38;border-radius:10px;padding:10px 11px;display:flex;align-items:center;gap:9px\"><span style=\"width:24px;height:24px;flex:none;background:#fff;border-radius:7px;display:grid;place-items:center\"><img src=\"/assets/logos/raycast.png\" alt=\"\" width=\"18\" height=\"18\" style=\"width:18px;height:18px;object-fit:contain;border-radius:4px\"/></span><div style=\"min-width:0\"><b style=\"display:block;font-size:12px;color:#eceef2;font-weight:700\">Raycast</b><span style=\"font-size:10px;color:#8b8e99;line-height:1.4;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">A launcher whose plugins are an ecosystem</span></div></div></div><div style=\"display:grid;grid-template-columns:repeat(3,1fr);gap:8px\"><div style=\"background:#202228;border:1px solid #2c2f38;border-radius:10px;padding:10px 11px;display:flex;align-items:center;gap:9px\"><span style=\"width:24px;height:24px;flex:none;background:#fff;border-radius:7px;display:grid;place-items:center\"><img src=\"/assets/logos/buffer.ico\" alt=\"\" width=\"18\" height=\"18\" style=\"width:18px;height:18px;object-fit:contain;border-radius:4px\"/></span><div style=\"min-width:0\"><b style=\"display:block;font-size:12px;color:#eceef2;font-weight:700\">Buffer</b><span style=\"font-size:10px;color:#8b8e99;line-height:1.4;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">Steady rhythm for social media</span></div></div><div style=\"background:#202228;border:1px solid #2c2f38;border-radius:10px;padding:10px 11px;display:flex;align-items:center;gap:9px\"><span style=\"width:24px;height:24px;flex:none;background:#fff;border-radius:7px;display:grid;place-items:center\"><img src=\"/assets/logos/appllama.webp\" alt=\"\" width=\"18\" height=\"18\" style=\"width:18px;height:18px;object-fit:contain;border-radius:4px\"/></span><div style=\"min-width:0\"><b style=\"display:block;font-size:12px;color:#eceef2;font-weight:700\">Appllama</b><span style=\"font-size:10px;color:#8b8e99;line-height:1.4;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">1,200+ real paywalls of top apps</span></div></div><div style=\"background:#202228;border:1px solid #2c2f38;border-radius:10px;padding:10px 11px;display:flex;align-items:center;gap:9px\"><span style=\"width:24px;height:24px;flex:none;background:#fff;border-radius:7px;display:grid;place-items:center\"><img src=\"/assets/logos/figma.png\" alt=\"\" width=\"18\" height=\"18\" style=\"width:18px;height:18px;object-fit:contain;border-radius:4px\"/></span><div style=\"min-width:0\"><b style=\"display:block;font-size:12px;color:#eceef2;font-weight:700\">Figma</b><span style=\"font-size:10px;color:#8b8e99;line-height:1.4;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">The browser-native design canvas</span></div></div></div></div><small style=\"margin-top:auto;color:#5c5f69;font-size:9.5px\">Fictional example · real product logos</small></div></div>",
             "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
           },
           {
@@ -3451,53 +3443,6 @@
         ]
       },
       {
-        "id": "cat-interaction-motion",
-        "title": "Motion Components",
-        "category": "motion",
-        "count": 3,
-        "terms": [
-          {
-            "slug": "motion-card-carousel",
-            "name": "Card Carousel",
-            "en": "",
-            "tagline": "Three photo cards scattered in a stack: they float with the pointer, swap on click or drag, and every slider retunes the motion live.",
-            "tags": [
-              "Pointer response",
-              "Drag to swap",
-              "Tunable"
-            ],
-            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div style=\"position:relative;width:100%;height:100%;background:var(--bg-soft)\"><div style=\"position:absolute;left:50%;top:50%;width:130px;height:173px;margin:-86px 0 0 -216px;transform:rotate(-8deg);border-radius:12px;background:url(/assets/motion/citrus.png) center/cover;box-shadow:0 12px 26px rgba(0,0,0,.22)\"></div><div style=\"position:absolute;left:50%;top:50%;width:130px;height:173px;margin:-86px 0 0 86px;transform:rotate(7deg);border-radius:12px;background:url(/assets/motion/forest.png) center/cover;box-shadow:0 12px 26px rgba(0,0,0,.22)\"></div><div style=\"position:absolute;left:50%;top:50%;width:140px;height:187px;margin:-96px 0 0 -70px;transform:rotate(-3deg);border-radius:12px;background:url(/assets/motion/dune.png) center/cover;box-shadow:0 16px 34px rgba(0,0,0,.28)\"></div></div></div>",
-            "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
-          },
-          {
-            "slug": "motion-dot-intro",
-            "name": "Letter Intro",
-            "en": "",
-            "tagline": "A tilted letter card glides onto a soft gradient while serif lines fade in — tap the screen to advance, then it loops.",
-            "tags": [
-              "Entrance",
-              "Tap to advance",
-              "Auto loop"
-            ],
-            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div style=\"position:relative;width:100%;height:100%;background:linear-gradient(160deg,#f3d9c4,#f8efe7 55%,#e9e4f2)\"><div style=\"position:absolute;left:50%;top:24%;transform:translateX(-50%);font-family:Georgia,'Songti SC',serif;font-size:19px;color:#33291f\">还有一件事</div><div style=\"position:absolute;left:50%;top:66%;transform:translate(-50%,-50%) rotate(-4deg);width:150px;height:170px;background:#fffdf9;border-radius:14px;box-shadow:0 14px 30px rgba(80,50,40,.2);padding:16px;box-sizing:border-box;font-family:Georgia,'Songti SC',serif;font-size:15px;color:#2b241e\">你好，<i style=\"display:inline-block;width:2px;height:13px;background:#2b241f;vertical-align:-2px\"></i></div></div></div>",
-            "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
-          },
-          {
-            "slug": "motion-dark-onboarding",
-            "name": "Dark Onboarding",
-            "en": "",
-            "tagline": "Four onboarding scenes slide into a dark phone: staggered rows, a 3D card tilt, a stroke-drawn icon morph and per-digit number reels — tap to advance, then it loops.",
-            "tags": [
-              "Scene slide",
-              "3D card",
-              "Digit reels"
-            ],
-            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div style=\"position:relative;width:100%;height:100%;background:#0a0b0d\"><div style=\"position:absolute;left:50%;top:34%;transform:translate(-50%,-50%) rotateX(10deg) rotateY(-8deg);width:150px;height:94px;border-radius:11px;background:linear-gradient(135deg,#2c2f35,#17191d 46%,#34373e);border:1px solid #43474f;box-shadow:0 16px 32px rgba(0,0,0,.5);box-sizing:border-box\"><span style=\"position:absolute;top:11px;right:12px;font-size:10px;letter-spacing:1px;color:#e6c58a\">潮汐</span><span style=\"position:absolute;top:34px;left:12px;width:22px;height:17px;border-radius:4px;background:linear-gradient(120deg,#d8b475,#8d7040)\"></span><span style=\"position:absolute;bottom:12px;left:12px;font-size:10px;letter-spacing:1px;color:#b9bdc5\">•••• •••• •••• 4291</span></div><div style=\"position:absolute;left:20%;bottom:20%;width:92px;height:9px;border-radius:5px;background:#f2f3f5\"></div><div style=\"position:absolute;left:20%;bottom:13%;width:128px;height:6px;border-radius:4px;background:#3a3d44\"></div></div></div>",
-            "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
-          }
-        ]
-      },
-      {
         "id": "cat-texture-expression",
         "title": "Texture Expression",
         "category": "web-style",
@@ -3542,6 +3487,419 @@
             "tagline": "Learning that plays like a game: progress bars, streaks, chests and a mascot rewarding every step.",
             "platform": "ios",
             "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div style=\"width:100%;height:100%;display:flex;flex-direction:column;align-items:center;gap:12px;padding:16px;background:linear-gradient(#fff,#f7fbef);box-sizing:border-box\"><div style=\"width:70%;height:8px;border-radius:99px;background:#e5e5e5\"><i style=\"display:block;width:62%;height:100%;border-radius:99px;background:#ff9600\"></i></div><div style=\"display:flex;flex-direction:column;align-items:center;gap:10px\"><div style=\"width:44px;height:40px;border-radius:50% 50% 46% 46%;background:#58cc02;box-shadow:0 5px 0 #46a302;color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px\">★</div><div style=\"width:150px;background:#58cc02;border-radius:12px;padding:9px 10px;color:#fff;box-shadow:0 5px 0 #46a302\"><b style=\"display:block;font-size:11px\">Order food & drinks</b><span style=\"display:block;font-size:9px;opacity:.85;margin:2px 0 6px\">Lesson 3 of 4</span><i style=\"display:block;height:22px;line-height:22px;text-align:center;background:#fff;color:#46a302;border-radius:8px;font-size:9.5px;font-style:normal;font-weight:800\">START +10 XP</i></div><div style=\"display:flex;gap:14px\"><span style=\"width:36px;height:32px;border-radius:50% 50% 46% 46%;background:#e2e5db;box-shadow:0 4px 0 #cdd2c4\"></span><span style=\"width:36px;height:32px;border-radius:50% 50% 46% 46%;background:#e2e5db;box-shadow:0 4px 0 #cdd2c4\"></span></div></div></div></div>",
+            "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
+          }
+        ]
+      },
+      {
+        "id": "cat-nav-top",
+        "title": "Top Bars",
+        "category": "navigation",
+        "count": 8,
+        "terms": [
+          {
+            "slug": "nav-classic-top",
+            "name": "Classic Top Nav",
+            "en": "",
+            "tagline": "White top bar with dropdown menus, plus sign-in and trial buttons.",
+            "demoOnly": true,
+            "source": "https://pro.reactbits.dev/docs/blocks/navigation/navigation-1?variantSort=latest"
+          },
+          {
+            "slug": "nav-rounded-pill",
+            "name": "Rounded Pill Nav",
+            "en": "",
+            "tagline": "Every link is its own rounded pill sitting lightly in the top bar.",
+            "demoOnly": true,
+            "source": "https://pro.reactbits.dev/docs/blocks/navigation/navigation-7?variantSort=latest"
+          },
+          {
+            "slug": "nav-peeking-announcement",
+            "name": "Announcement Pill Nav",
+            "en": "",
+            "tagline": "A small announcement pill peeks out above the nav to surface news.",
+            "demoOnly": true,
+            "source": "https://pro.reactbits.dev/docs/blocks/navigation/navigation-9?variantSort=latest"
+          },
+          {
+            "slug": "nav-status-pill",
+            "name": "Minimal Brand Bar",
+            "en": "",
+            "tagline": "A teal N mark, four centered links, and a dark primary button on the right.",
+            "demoOnly": true,
+            "source": "https://pro.reactbits.dev/docs/blocks/navigation/navigation-10?variantSort=latest"
+          },
+          {
+            "slug": "nav-dark-mega",
+            "name": "Dark Pill Nav",
+            "en": "",
+            "tagline": "A dark pill across the top with a centered wordmark and an orange action button.",
+            "demoOnly": true,
+            "source": "https://pro.reactbits.dev/docs/blocks/navigation/navigation-11?variantSort=latest"
+          },
+          {
+            "slug": "nav-centered-wordmark",
+            "name": "Centered Wordmark Nav",
+            "en": "",
+            "tagline": "A minimal split nav: menu left, wordmark centered, contact button right.",
+            "demoOnly": true,
+            "source": "https://pro.reactbits.dev/docs/blocks/navigation/navigation-13?variantSort=latest"
+          },
+          {
+            "slug": "nav-mega-panel",
+            "name": "Mega Panel Nav",
+            "en": "",
+            "tagline": "Hovering opens a large panel with a featured card on the right.",
+            "demoOnly": true,
+            "source": "https://pro.reactbits.dev/docs/blocks/navigation/navigation-14?variantSort=latest"
+          },
+          {
+            "slug": "nav-traveling-underline",
+            "name": "Traveling Underline Nav",
+            "en": "",
+            "tagline": "A quiet top bar whose underline travels under the active link.",
+            "demoOnly": true,
+            "source": "https://pro.reactbits.dev/docs/blocks/navigation/navigation-15?variantSort=latest"
+          }
+        ]
+      },
+      {
+        "id": "cat-nav-pill",
+        "title": "Pills & Glass",
+        "category": "navigation",
+        "count": 3,
+        "terms": [
+          {
+            "slug": "nav-rounded-glass",
+            "name": "Rounded Glass Nav",
+            "en": "",
+            "tagline": "A floating rounded glass bar whose dropdown opens as a card panel.",
+            "demoOnly": true,
+            "source": "https://pro.reactbits.dev/docs/blocks/navigation/navigation-2?variantSort=latest"
+          },
+          {
+            "slug": "nav-centered-capsule",
+            "name": "Centered Capsule Nav",
+            "en": "",
+            "tagline": "Logo left, links in a centered capsule, auth actions on the right.",
+            "demoOnly": true,
+            "source": "https://pro.reactbits.dev/docs/blocks/navigation/navigation-3?variantSort=latest"
+          },
+          {
+            "slug": "nav-sliding-indicator",
+            "name": "Sliding Indicator Nav",
+            "en": "",
+            "tagline": "A glass pill nav with a sliding highlight for the current item.",
+            "demoOnly": true,
+            "source": "https://pro.reactbits.dev/docs/blocks/navigation/navigation-12?variantSort=latest"
+          }
+        ]
+      },
+      {
+        "id": "cat-nav-side",
+        "title": "Side & Bottom",
+        "category": "navigation",
+        "count": 3,
+        "terms": [
+          {
+            "slug": "nav-side-dock",
+            "name": "Side Dock",
+            "en": "",
+            "tagline": "An icon dock pinned to the screen edge; icons scale up on hover.",
+            "demoOnly": true,
+            "source": "https://pro.reactbits.dev/docs/blocks/navigation/navigation-4?variantSort=latest"
+          },
+          {
+            "slug": "nav-expanding-bottom",
+            "name": "Expanding Bottom Nav",
+            "en": "",
+            "tagline": "A bottom bar that expands into a full menu when opened.",
+            "demoOnly": true,
+            "source": "https://pro.reactbits.dev/docs/blocks/navigation/navigation-5?variantSort=latest"
+          },
+          {
+            "slug": "nav-blurred-bottom",
+            "name": "Blurred Bottom Nav",
+            "en": "",
+            "tagline": "A blurred glass dock at the bottom with image previews on hover.",
+            "demoOnly": true,
+            "source": "https://pro.reactbits.dev/docs/blocks/navigation/navigation-8?variantSort=latest"
+          }
+        ]
+      },
+      {
+        "id": "cat-nav-full",
+        "title": "Fullscreen Menu",
+        "category": "navigation",
+        "count": 1,
+        "terms": [
+          {
+            "slug": "nav-fullscreen-menu",
+            "name": "Fullscreen Menu",
+            "en": "",
+            "tagline": "A single menu button expands into a fullscreen nav with image previews.",
+            "demoOnly": true,
+            "source": "https://pro.reactbits.dev/docs/blocks/navigation/navigation-6?variantSort=latest"
+          }
+        ]
+      },
+      {
+        "id": "cat-auth-pages",
+        "title": "Auth Pages",
+        "category": "auth",
+        "count": 6,
+        "terms": [
+          {
+            "slug": "auth-split-testimonial",
+            "name": "Testimonial Split",
+            "en": "",
+            "tagline": "Sign-in on the left, a moving row of customer quotes on the right — good when trust is the first hurdle.",
+            "src": "/assets/auth-blocks/auth-1.html",
+            "source": "https://pro.reactbits.dev/docs/blocks/auth/auth-1"
+          },
+          {
+            "slug": "auth-artwork-split",
+            "name": "Artwork Split",
+            "en": "",
+            "tagline": "A full cyan halftone artwork on the left, OAuth buttons on the right — instantly premium.",
+            "src": "/assets/auth-blocks/auth-2.html",
+            "source": "https://pro.reactbits.dev/docs/blocks/auth/auth-2"
+          },
+          {
+            "slug": "auth-light-sheet",
+            "name": "Light-sheet Card",
+            "en": "",
+            "tagline": "A login card floating over a full-bleed blue light-sheet photo — made for branded landing pages.",
+            "src": "/assets/auth-blocks/auth-3.html",
+            "source": "https://pro.reactbits.dev/docs/blocks/auth/auth-3"
+          },
+          {
+            "slug": "auth-orbital-rings",
+            "name": "Orbital Rings",
+            "en": "",
+            "tagline": "Dashed orbits and three security badges on the right — says we are reliable without shouting.",
+            "src": "/assets/auth-blocks/auth-4.html",
+            "source": "https://pro.reactbits.dev/docs/blocks/auth/auth-4"
+          },
+          {
+            "slug": "auth-magic-link",
+            "name": "Magic Link",
+            "en": "",
+            "tagline": "One email field, then it flips to a check-your-inbox state — the shortest sign-up path there is.",
+            "src": "/assets/auth-blocks/auth-5.html",
+            "source": "https://pro.reactbits.dev/docs/blocks/auth/auth-5",
+            "zoom": 1.25
+          },
+          {
+            "slug": "auth-six-digit-code",
+            "name": "Six-digit Code",
+            "en": "",
+            "tagline": "Six OTP boxes that light up the button once filled — for 2FA or phone sign-in.",
+            "src": "/assets/auth-blocks/auth-6.html",
+            "source": "https://pro.reactbits.dev/docs/blocks/auth/auth-6",
+            "zoom": 1.5
+          }
+        ]
+      },
+      {
+        "id": "cat-footer-link-columns",
+        "title": "Link Columns",
+        "category": "footer",
+        "count": 4,
+        "terms": [
+          {
+            "slug": "footer-giant-wordmark",
+            "name": "Giant Wordmark",
+            "en": "",
+            "tagline": "Four link columns laid over a giant grey wordmark that gets cut off at the bottom — the usual SaaS closer.",
+            "src": "/assets/footer-blocks/footer-1.html",
+            "source": "https://pro.reactbits.dev/docs/blocks/footer/footer-1"
+          },
+          {
+            "slug": "footer-large-link-rows",
+            "name": "Large Link Rows",
+            "en": "",
+            "tagline": "The links themselves are the big type and the labels shrink instead; a solid black bar sits underneath.",
+            "src": "/assets/footer-blocks/footer-6.html",
+            "source": "https://pro.reactbits.dev/docs/blocks/footer/footer-6"
+          },
+          {
+            "slug": "footer-quiet-columns",
+            "name": "Quiet Columns",
+            "en": "",
+            "tagline": "Few columns, lots of air, one pill subscribe box in the corner — the studio-portfolio mood piece.",
+            "src": "/assets/footer-blocks/footer-7.html",
+            "source": "https://pro.reactbits.dev/docs/blocks/footer/footer-7"
+          },
+          {
+            "slug": "footer-five-column-sitemap",
+            "name": "Five-Column Sitemap",
+            "en": "",
+            "tagline": "Five columns fill the row, product links carry small outlined circles, brand line and a legal note at the tail.",
+            "src": "/assets/footer-blocks/footer-11.html",
+            "source": "https://pro.reactbits.dev/docs/blocks/footer/footer-11"
+          }
+        ]
+      },
+      {
+        "id": "cat-footer-subscribe",
+        "title": "Newsletter Forms",
+        "category": "footer",
+        "count": 3,
+        "terms": [
+          {
+            "slug": "footer-statement-newsletter",
+            "name": "Statement And Newsletter",
+            "en": "",
+            "tagline": "Two oversized lines take the top half, the email form and link columns split what is left — built for a mailing list.",
+            "src": "/assets/footer-blocks/footer-4.html",
+            "source": "https://pro.reactbits.dev/docs/blocks/footer/footer-4"
+          },
+          {
+            "slug": "footer-sitemap-signup",
+            "name": "Sitemap With Signup Card",
+            "en": "",
+            "tagline": "A signup card with artwork hangs at the end of four sitemap columns, so links and email capture finish in one pass.",
+            "src": "/assets/footer-blocks/footer-9.html",
+            "source": "https://pro.reactbits.dev/docs/blocks/footer/footer-9"
+          },
+          {
+            "slug": "footer-dark-status",
+            "name": "Dark Status Panel",
+            "en": "",
+            "tagline": "A dark subscribe panel on top, with status, version and next-issue rows; plain light links sit below.",
+            "src": "/assets/footer-blocks/footer-12.html",
+            "source": "https://pro.reactbits.dev/docs/blocks/footer/footer-12"
+          }
+        ]
+      },
+      {
+        "id": "cat-footer-brand",
+        "title": "Brand Statement",
+        "category": "footer",
+        "count": 3,
+        "terms": [
+          {
+            "slug": "footer-photo-sheet",
+            "name": "Sheet Over Photo",
+            "en": "",
+            "tagline": "A white sheet over a full-bleed photo, a rounded notch cut into each side, brand name and two buttons only.",
+            "src": "/assets/footer-blocks/footer-2.html",
+            "source": "https://pro.reactbits.dev/docs/blocks/footer/footer-2"
+          },
+          {
+            "slug": "footer-outlined-wordmark",
+            "name": "Outlined Wordmark",
+            "en": "",
+            "tagline": "The last line is an oversized wordmark drawn as outline only; square social buttons and a hiring badge sit above.",
+            "src": "/assets/footer-blocks/footer-8.html",
+            "source": "https://pro.reactbits.dev/docs/blocks/footer/footer-8"
+          },
+          {
+            "slug": "footer-grid-glass",
+            "name": "Grid Paper And Glass Card",
+            "en": "",
+            "tagline": "Graph-paper background, a headline half dark and half light, a frosted card on the right holding the main button.",
+            "src": "/assets/footer-blocks/footer-10.html",
+            "source": "https://pro.reactbits.dev/docs/blocks/footer/footer-10"
+          }
+        ]
+      },
+      {
+        "id": "cat-footer-cta",
+        "title": "Call To Action",
+        "category": "footer",
+        "count": 2,
+        "terms": [
+          {
+            "slug": "footer-cta-bar",
+            "name": "Full-width CTA Bar",
+            "en": "",
+            "tagline": "One uppercase call to action with a round arrow button across the top; link columns sink to secondary below.",
+            "src": "/assets/footer-blocks/footer-3.html",
+            "source": "https://pro.reactbits.dev/docs/blocks/footer/footer-3"
+          },
+          {
+            "slug": "footer-gradient-reveal",
+            "name": "Gradient Reveal Card",
+            "en": "",
+            "tagline": "One purple gradient card holds every link, the four columns rise in sequence, white on dark with strong contrast.",
+            "src": "/assets/footer-blocks/footer-5.html",
+            "source": "https://pro.reactbits.dev/docs/blocks/footer/footer-5"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "key": "motion",
+    "href": "/distill",
+    "title": "Motion",
+    "intro": "Four playable interaction demos: drag the cards, tap to advance, retune every parameter live — open any card to play in a modal.",
+    "categories": [
+      {
+        "key": "motion",
+        "label": "Interactive Motion"
+      }
+    ],
+    "sidebar": [],
+    "groups": [
+      {
+        "id": "cat-interaction-motion",
+        "title": "Motion Components",
+        "category": "motion",
+        "count": 4,
+        "terms": [
+          {
+            "slug": "motion-card-carousel",
+            "name": "Card Carousel",
+            "en": "",
+            "tagline": "Three photo cards scattered in a stack: they float with the pointer, swap on click or drag, and every slider retunes the motion live.",
+            "tags": [
+              "Pointer response",
+              "Drag to swap",
+              "Tunable"
+            ],
+            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div style=\"position:relative;width:100%;height:100%;background:var(--bg-soft)\"><div style=\"position:absolute;left:50%;top:50%;width:130px;height:173px;margin:-86px 0 0 -216px;transform:rotate(-8deg);border-radius:12px;background:url(/assets/motion/citrus.png) center/cover;box-shadow:0 12px 26px rgba(0,0,0,.22)\"></div><div style=\"position:absolute;left:50%;top:50%;width:130px;height:173px;margin:-86px 0 0 86px;transform:rotate(7deg);border-radius:12px;background:url(/assets/motion/forest.png) center/cover;box-shadow:0 12px 26px rgba(0,0,0,.22)\"></div><div style=\"position:absolute;left:50%;top:50%;width:140px;height:187px;margin:-96px 0 0 -70px;transform:rotate(-3deg);border-radius:12px;background:url(/assets/motion/dune.png) center/cover;box-shadow:0 16px 34px rgba(0,0,0,.28)\"></div></div></div>",
+            "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
+          },
+          {
+            "slug": "motion-dot-intro",
+            "name": "Letter Intro",
+            "en": "",
+            "tagline": "A tilted letter card glides onto a soft gradient while serif lines fade in — tap the screen to advance, then it loops.",
+            "tags": [
+              "Entrance",
+              "Tap to advance",
+              "Auto loop"
+            ],
+            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div style=\"position:relative;width:100%;height:100%;background:linear-gradient(160deg,#f3d9c4,#f8efe7 55%,#e9e4f2)\"><div style=\"position:absolute;left:50%;top:24%;transform:translateX(-50%);font-family:Georgia,'Songti SC',serif;font-size:19px;color:#33291f\">还有一件事</div><div style=\"position:absolute;left:50%;top:66%;transform:translate(-50%,-50%) rotate(-4deg);width:150px;height:170px;background:#fffdf9;border-radius:14px;box-shadow:0 14px 30px rgba(80,50,40,.2);padding:16px;box-sizing:border-box;font-family:Georgia,'Songti SC',serif;font-size:15px;color:#2b241e\">你好，<i style=\"display:inline-block;width:2px;height:13px;background:#2b241f;vertical-align:-2px\"></i></div></div></div>",
+            "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
+          },
+          {
+            "slug": "motion-dark-onboarding",
+            "name": "Dark Onboarding",
+            "en": "",
+            "tagline": "Four onboarding scenes slide into a dark phone: staggered rows, a 3D card tilt, a stroke-drawn icon morph and per-digit number reels — tap to advance, then it loops.",
+            "tags": [
+              "Scene slide",
+              "3D card",
+              "Digit reels"
+            ],
+            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div style=\"position:relative;width:100%;height:100%;background:#0a0b0d\"><div style=\"position:absolute;left:50%;top:34%;transform:translate(-50%,-50%) rotateX(10deg) rotateY(-8deg);width:150px;height:94px;border-radius:11px;background:linear-gradient(135deg,#2c2f35,#17191d 46%,#34373e);border:1px solid #43474f;box-shadow:0 16px 32px rgba(0,0,0,.5);box-sizing:border-box\"><span style=\"position:absolute;top:11px;right:12px;font-size:10px;letter-spacing:1px;color:#e6c58a\">潮汐</span><span style=\"position:absolute;top:34px;left:12px;width:22px;height:17px;border-radius:4px;background:linear-gradient(120deg,#d8b475,#8d7040)\"></span><span style=\"position:absolute;bottom:12px;left:12px;font-size:10px;letter-spacing:1px;color:#b9bdc5\">•••• •••• •••• 4291</span></div><div style=\"position:absolute;left:20%;bottom:20%;width:92px;height:9px;border-radius:5px;background:#f2f3f5\"></div><div style=\"position:absolute;left:20%;bottom:13%;width:128px;height:6px;border-radius:4px;background:#3a3d44\"></div></div></div>",
+            "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
+          },
+          {
+            "slug": "motion-bounce-cards",
+            "name": "Bounce Cards",
+            "en": "",
+            "tagline": "Five square cards fanned out: they spring in one by one, hovered cards straighten and lift while neighbours get pushed aside, and a click springs them back. Six params tune it live.",
+            "tags": [
+              "Spring entrance",
+              "Hover push",
+              "Tunable"
+            ],
+            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div style=\"position:relative;width:100%;height:100%;background:var(--bg-soft)\"><div style=\"position:absolute;left:50%;top:50%;width:118px;height:118px;margin:-59px 0 0 -59px;transform:translate(-170px,0) rotate(10deg) scale(.96);border-radius:16px;border:3px solid #fff;background:url(/assets/motion/citrus.png) center/cover;box-shadow:0 12px 26px rgba(0,0,0,.22);z-index:1\"></div><div style=\"position:absolute;left:50%;top:50%;width:118px;height:118px;margin:-59px 0 0 -59px;transform:translate(-85px,0) rotate(5deg) scale(.98);border-radius:16px;border:3px solid #fff;background:url(/assets/motion/dune.png) center/cover;box-shadow:0 12px 26px rgba(0,0,0,.22);z-index:2\"></div><div style=\"position:absolute;left:50%;top:50%;width:118px;height:118px;margin:-59px 0 0 -59px;transform:rotate(-3deg);border-radius:16px;border:3px solid #fff;background:url(/assets/motion/forest.png) center/cover;box-shadow:0 16px 34px rgba(0,0,0,.28);z-index:3\"></div><div style=\"position:absolute;left:50%;top:50%;width:118px;height:118px;margin:-59px 0 0 -59px;transform:translate(85px,0) rotate(-10deg) scale(.98);border-radius:16px;border:3px solid #fff;background:url(/assets/motion/dune.png) center/cover;box-shadow:0 12px 26px rgba(0,0,0,.22);z-index:4\"></div><div style=\"position:absolute;left:50%;top:50%;width:118px;height:118px;margin:-59px 0 0 -59px;transform:translate(170px,0) rotate(2deg) scale(.96);border-radius:16px;border:3px solid #fff;background:url(/assets/motion/citrus.png) center/cover;box-shadow:0 12px 26px rgba(0,0,0,.22);z-index:5\"></div></div></div>",
             "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
           }
         ]

@@ -5,8 +5,8 @@ import type { Catalog } from "@/lib/types";
 
 const CATALOGS = enCatalogsData as Catalog[];
 
-// 设计分区已独立为顶级 /en/design，不再走 /topics 路由
-const TOPIC_CATALOGS = CATALOGS.filter((c) => c.key !== "design");
+// 设计、动效已独立为顶级 /en 路由，不再走 /topics
+const TOPIC_CATALOGS = CATALOGS.filter((c) => c.key !== "design" && c.key !== "motion");
 
 export function generateStaticParams() {
   return TOPIC_CATALOGS.map((c) => ({ key: c.key }));

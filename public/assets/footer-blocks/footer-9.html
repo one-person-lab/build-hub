@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>footer-9 · Sitemap columns with a signup card</title>
+<style>
+  :root{--fg:#141414;--muted:#6f6f6f;--line:#e8e8e8;--pill:#f2f2f2}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    background:#fff;color:var(--fg);
+    font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+    font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;
+    display:flex;flex-direction:column;padding:34px 56px 20px;overflow:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  button,input{font-family:inherit}
+
+  .top{
+    flex:1 1 auto;min-height:0;
+    display:grid;grid-template-columns:repeat(4,150px) 1fr 330px;gap:26px;
+  }
+  .col h3{margin-bottom:20px}
+  .col h3 span{
+    display:inline-block;font-size:10px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;
+    color:#4c4c4c;background:var(--pill);border-radius:999px;padding:5px 11px;
+  }
+  .col ul{list-style:none;display:flex;flex-direction:column;gap:14px}
+  .col a{font-size:13.5px;color:#3a3a3a}
+  .col a:hover{color:#000}
+  .row{display:flex;align-items:center;gap:7px}
+  .new{font-size:9px;font-weight:700;letter-spacing:.06em;color:#fff;background:#141414;border-radius:999px;padding:2.5px 7px}
+
+  .panel{display:flex;flex-direction:column;gap:12px;min-height:0}
+  .card{
+    border:1px solid var(--line);border-radius:20px;padding:14px;
+    box-shadow:0 18px 40px -30px rgba(0,0,0,.35);
+  }
+  .art{
+    height:118px;border-radius:12px;background:#f6f6f6;position:relative;overflow:hidden;
+    display:grid;place-items:center;
+  }
+  .art::before{
+    content:"";position:absolute;inset:-40%;
+    background:
+      repeating-conic-gradient(from 0deg at 50% 60%, transparent 0 22deg, rgba(0,0,0,.045) 22deg 22.4deg, transparent 22.4deg 45deg);
+  }
+  .art svg{position:relative;color:#b6b6b6}
+  .card h4{font-size:15px;font-weight:650;margin:14px 2px 0}
+  .card p{font-size:12px;line-height:1.6;color:var(--muted);margin:7px 2px 0}
+  .sub{display:flex;gap:8px;margin:13px 0 3px}
+  .sub input{
+    flex:1 1 auto;min-width:0;height:36px;border:1px solid var(--line);border-radius:999px;
+    padding:0 14px;font-size:12.5px;outline:none;background:#fff;
+  }
+  .sub input::placeholder{color:#a3a3a3}
+  .sub input:focus{border-color:#c9c9c9}
+  .sub button{
+    flex:0 0 auto;height:36px;padding:0 17px;border:none;border-radius:999px;background:#141414;color:#fff;
+    font-size:12.5px;font-weight:600;cursor:pointer;transition:opacity .16s;
+  }
+  .sub button:hover{opacity:.85}
+
+  .follow{
+    background:#141414;color:#fff;border-radius:16px;padding:14px 18px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .follow b{font-size:13px;font-weight:600}
+  .follow .icons{display:flex;gap:15px;color:#b9b9b9}
+  .follow a:hover{color:#fff}
+
+  .wordmark{
+    flex:0 0 auto;margin-top:22px;padding-top:16px;border-top:1px solid var(--line);
+    display:flex;align-items:flex-end;justify-content:space-between;gap:30px;
+  }
+  .wordmark span{
+    font-size:60px;line-height:.9;font-weight:800;letter-spacing:-.045em;text-transform:uppercase;
+    color:#141414;
+  }
+  .wordmark nav{display:flex;gap:20px;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:#8b8b8b;padding-bottom:8px}
+  .wordmark nav a:hover{color:var(--fg)}
+  .wordmark .c{font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:#8b8b8b;padding-bottom:8px}
+</style>
+</head>
+<body>
+  <div class="top">
+    <div class="col">
+      <h3><span>Company</span></h3>
+      <ul><li><a href="#">About</a></li><li><a href="#">Journal</a></li><li><a href="#">Careers</a></li><li><a href="#">Newsroom</a></li><li><a href="#">Contact</a></li></ul>
+    </div>
+    <div class="col">
+      <h3><span>Platform</span></h3>
+      <ul>
+        <li><a href="#">Pricing</a></li><li><a href="#">Prototype tests</a></li>
+        <li class="row"><a href="#">Live interviews</a><span class="new">NEW</span></li>
+        <li><a href="#">Session replay</a></li><li><a href="#">Surveys</a></li>
+      </ul>
+    </div>
+    <div class="col">
+      <h3><span>Resources</span></h3>
+      <ul><li><a href="#">Field guides</a></li><li><a href="#">Research library</a></li><li><a href="#">Events</a></li><li><a href="#">Templates</a></li><li><a href="#">Help center</a></li></ul>
+    </div>
+    <div class="col">
+      <h3><span>Use cases</span></h3>
+      <ul><li><a href="#">Validate concepts</a></li><li><a href="#">Test navigation</a></li><li><a href="#">Measure sentiment</a></li><li><a href="#">Benchmark journeys</a></li></ul>
+    </div>
+    <div></div>
+
+    <div class="panel">
+      <div class="card">
+        <div class="art">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="4"/><circle cx="9" cy="10" r="1.6"/><path d="M4 17.5c3-3.5 6.5-3.5 9 0"/></svg>
+        </div>
+        <h4>Sign up for the field guide</h4>
+        <p>Research patterns and testing rituals from real product teams. Two issues a month, no noise.</p>
+        <form class="sub" onsubmit="event.preventDefault()">
+          <input type="email" placeholder="Enter your email" aria-label="Email address" />
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+      <div class="follow">
+        <b>Follow us</b>
+        <div class="icons">
+          <a href="#" aria-label="LinkedIn"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 0 5 8.5a2.5 2.5 0 0 0 0-5ZM3 9.75h4v11H3v-11Zm6.5 0h3.8v1.5h.06c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.77 2.5 4.77 5.75v5.7h-4v-5.05c0-1.2-.02-2.75-1.75-2.75-1.75 0-2.02 1.32-2.02 2.67v5.13h-4v-11Z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/></svg></a>
+          <a href="#" aria-label="GitHub"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.8c-2.8.6-3.4-1.3-3.4-1.3-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.6 1.1 1.6 1.1.9 1.6 2.4 1.1 3 .9.1-.7.4-1.1.7-1.4-2.2-.2-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .9-.3 2.8 1a9.4 9.4 0 0 1 5 0c1.9-1.3 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.4 4.8-4.6 5 .4.3.7 1 .7 2v2.9c0 .3.2.6.7.5A10 10 0 0 0 12 2Z"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wordmark">
+    <span>Fathom</span>
+    <nav><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Security</a><a href="#">Cookies</a></nav>
+    <span class="c">© 2026 Fathom Research</span>
+  </div>
+</body>
+</html>

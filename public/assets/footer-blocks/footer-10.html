@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>footer-10 · Two-tone statement with a glass card</title>
+<style>
+  :root{--fg:#121212;--muted:#8f8f8f;--line:#e9e9e9}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    background:#fff;color:var(--fg);
+    font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+    font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow:hidden;position:relative;
+  }
+  /* 方格纸底纹 */
+  body::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background-image:
+      linear-gradient(to right, #f0f0f0 1px, transparent 1px),
+      linear-gradient(to bottom, #f0f0f0 1px, transparent 1px);
+    background-size:74px 74px;
+    -webkit-mask-image:linear-gradient(180deg,#000 0 62%,transparent 92%);
+    mask-image:linear-gradient(180deg,#000 0 62%,transparent 92%);
+  }
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit;cursor:pointer}
+
+  .wrap{position:relative;height:100%;display:flex;flex-direction:column;padding:44px 56px 26px}
+
+  .top{flex:1 1 auto;min-height:0;display:grid;grid-template-columns:1fr 420px;gap:44px}
+  h2{font-size:47px;line-height:1.12;font-weight:700;letter-spacing:-.035em}
+  h2 em{display:block;font-style:normal;color:#a3a3a3}
+
+  .lifecycle{margin-top:34px;display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+  .lifecycle .k{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#9a9a9a}
+  .lifecycle nav{display:flex;gap:20px;font-size:13.5px;font-weight:550}
+  .lifecycle a:hover{color:#6a6a6a}
+
+  .links{margin-top:34px;display:grid;grid-template-columns:repeat(3,132px);gap:26px;font-size:13.5px}
+  .links ul{list-style:none;display:flex;flex-direction:column;gap:13px}
+  .links a{color:#3d3d3d}
+  .links a:hover{color:#000}
+
+  .glass{
+    align-self:start;height:100%;min-height:0;border-radius:26px;position:relative;overflow:hidden;
+    background:linear-gradient(180deg,rgba(255,255,255,.72),rgba(255,255,255,.42));
+    border:1px solid rgba(0,0,0,.06);
+    backdrop-filter:blur(3px);
+    display:grid;place-items:center;
+  }
+  .glass::before{
+    content:"";position:absolute;inset:-30%;
+    background:repeating-conic-gradient(from 0deg at 50% 55%, transparent 0 20deg, rgba(0,0,0,.05) 20deg 20.4deg, transparent 20.4deg 40deg);
+  }
+  .glass .icon{position:relative;color:#b0b0b0}
+
+  .bottom{
+    flex:0 0 auto;margin-top:26px;display:grid;grid-template-columns:1fr 420px;gap:44px;align-items:end;
+  }
+  .soc{display:flex;align-items:center;gap:12px;font-size:12.5px;color:var(--muted)}
+  .soc b{display:inline-flex;align-items:center;gap:7px;color:#2b2b2b;font-weight:600;font-size:13px}
+  .soc b i{width:16px;height:16px;border-radius:5px;background:#121212;display:inline-block}
+  .copy{margin-top:14px;font-size:12.5px;color:var(--muted);line-height:1.7}
+
+  .promo{
+    border:1px solid var(--line);border-radius:18px;background:#fff;padding:18px 20px;
+    display:flex;align-items:center;justify-content:space-between;gap:18px;
+    box-shadow:0 20px 44px -34px rgba(0,0,0,.4);
+  }
+  .promo h3{font-size:14px;font-weight:650}
+  .promo p{font-size:12px;color:var(--muted);margin-top:4px;max-width:250px;line-height:1.55}
+  .promo button{
+    flex:0 0 auto;height:34px;padding:0 15px;border-radius:999px;border:1px solid #121212;background:#121212;color:#fff;
+    font-size:12px;font-weight:600;transition:opacity .16s;
+  }
+  .promo button:hover{opacity:.85}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <h2>Every moving part.<em>One calm surface.</em></h2>
+
+        <div class="lifecycle">
+          <span class="k">Lifecycle</span>
+          <nav><a href="#">Start</a><a href="#">Plan</a><a href="#">Ship</a><a href="#">Measure</a></nav>
+        </div>
+
+        <div class="links">
+          <ul><li><a href="#">Home</a></li><li><a href="#">Platform</a></li><li><a href="#">Pricing</a></li></ul>
+          <ul><li><a href="#">Docs</a></li><li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li></ul>
+          <ul><li><a href="#">Contact</a></li></ul>
+        </div>
+      </div>
+
+      <div class="glass" aria-hidden="true">
+        <svg class="icon" width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="4"/><circle cx="9" cy="10" r="1.6"/><path d="M4 17.5c3-3.5 6.5-3.5 9 0"/></svg>
+      </div>
+    </div>
+
+    <div class="bottom">
+      <div>
+        <div class="soc"><b><i></i> SOC 2</b> compliant infrastructure.</div>
+        <p class="copy">© 2026 Meridian Works. All rights reserved.<br />Made in Copenhagen and New York.</p>
+      </div>
+      <div class="promo">
+        <div>
+          <h3>Meridian Inside</h3>
+          <p>An orchestration console built to run the whole operation end to end.</p>
+        </div>
+        <button type="button">Open workspace</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

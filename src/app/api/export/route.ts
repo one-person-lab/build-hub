@@ -4,13 +4,26 @@ import { currentUser, isPro } from "@/lib/session";
 import { getPlaybook } from "@/lib/playbooks";
 import { listForks } from "@/lib/forks";
 import {
+  buildAgentKitMarkdown,
   buildFavoritesMarkdown,
+  buildLibraryMarkdown,
   buildPackMarkdown,
+  buildSampleMarkdown,
   exportFilename,
   type PackInput,
 } from "@/lib/export-content";
 
 type Locale = "zh" | "en";
+
+function markdownResponse(markdown: string, filename: string) {
+  return new NextResponse(markdown, {
+    headers: {
+      "content-type": "text/markdown; charset=utf-8",
+      "content-disposition": `attachment; filename="${filename}"`,
+      "cache-control": "no-store",
+    },
+  });
+}
 
 function notesFor(userId: number, slugs: string[]): Record<string, string> {
   if (!slugs.length) return {};
@@ -23,13 +36,26 @@ function notesFor(userId: number, slugs: string[]): Record<string, string> {
 }
 
 export async function GET(req: Request) {
+  const url = new URL(req.url);
+  const locale: Locale = url.searchParams.get("locale") === "en" ? "en" : "zh";
+  const kind = url.searchParams.get("kind") ?? "favorites";
+
+  // 样例免费：先让人看到包里长什么样，再决定要不要买
+  if (kind === "sample") {
+    return markdownResponse(buildSampleMarkdown(locale), exportFilename("sample"));
+  }
+
   const user = await currentUser();
   if (!user) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   if (!isPro(user)) return NextResponse.json({ error: "pro_required" }, { status: 403 });
 
-  const url = new URL(req.url);
-  const locale: Locale = url.searchParams.get("locale") === "en" ? "en" : "zh";
-  const kind = url.searchParams.get("kind") ?? "favorites";
+  if (kind === "library") {
+    return markdownResponse(buildLibraryMarkdown(locale), exportFilename("library"));
+  }
+
+  if (kind === "agent-kit") {
+    return markdownResponse(buildAgentKitMarkdown(locale), exportFilename("agent-kit"));
+  }
 
   const allFavorites = (
     getDb()

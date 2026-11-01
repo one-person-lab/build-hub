@@ -1,13 +1,16 @@
+// 低饱和、同明度档的矿物色，避免高纯色放一起显廉价。首项即默认色，改动要同步 site-overrides.css 的静态兜底。
 export const THEME_COLORS = [
-  { name: "图鉴金", value: "#8a6a1f", hover: "#6f5518", dark: "#e8c767" },
-  { name: "靛蓝", value: "#3559d8", hover: "#2a46b4", dark: "#7b93ea" },
-  { name: "紫罗兰", value: "#7c3aed", hover: "#6d28d9", dark: "#a78bfa" },
-  { name: "黛绿", value: "#0f766e", hover: "#115e59", dark: "#2dd4bf" },
-  { name: "蜜橙", value: "#c2410c", hover: "#9a3412", dark: "#fb923c" },
-  { name: "玫红", value: "#e11d48", hover: "#be123c", dark: "#fb7185" },
-  { name: "樱粉", value: "#db2777", hover: "#be185d", dark: "#f472b6" },
-  { name: "赤金", value: "#b45309", hover: "#92400e", dark: "#fbbf24" },
-  { name: "石墨", value: "#525963", hover: "#414751", dark: "#b7bec9" },
+  { name: "夜紫", value: "#3a2a4d", hover: "#2d2040", dark: "#a97fe0" },
+  { name: "香槟金", value: "#a8833f", hover: "#8a6a2f", dark: "#d4b36a" },
+  { name: "黛蓝", value: "#3a5baf", hover: "#2e4a90", dark: "#89a3dd" },
+  { name: "鸢尾", value: "#6a52b8", hover: "#56419b", dark: "#a594de" },
+  { name: "松绿", value: "#1d6b5f", hover: "#17564d", dark: "#56b8a6" },
+  { name: "陶土", value: "#b0573a", hover: "#91442d", dark: "#de9377" },
+  { name: "石榴", value: "#a83a50", hover: "#8a2e40", dark: "#de7e93" },
+  { name: "暮粉", value: "#bc6285", hover: "#9e4e6e", dark: "#e4a0bc" },
+  { name: "焦糖", value: "#8a5a2b", hover: "#714823", dark: "#ce9a63" },
+  { name: "墨蓝", value: "#2b3a55", hover: "#212d43", dark: "#8ea6c6" },
+  { name: "石墨", value: "#4f5661", hover: "#414751", dark: "#b7bec9" },
 ];
 
 export const COLOR_MODE_KEY = "vh-color-mode";

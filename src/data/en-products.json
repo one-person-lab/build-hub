@@ -25,7 +25,7 @@
           "url": "https://cursor.com",
           "logo": "/assets/logos/cursor.png",
           "tags": ["AI coding", "Editor", "Dev tools"],
-          "related": ["superpowers"]
+          "related": ["superpowers", "system-prompts"]
         },
         {
           "id": "perplexity",
@@ -48,6 +48,29 @@
           "tags": ["Search", "AI", "Research"]
         },
         {
+          "id": "heygen",
+          "name": "HeyGen",
+          "category": "ai",
+          "type": "both",
+          "tagline": "A photo that reads your script, lip-synced in 175 languages",
+          "overview": "No camera needed: pick a stock avatar or build one from your own photo, paste in the script, and you get a talking-head video with matched lip movements. The same video can then be re-voiced into another language with the mouth shapes redrawn — no reshoot. Paid plans run on credits, videos can start from text, an image or a reference clip, and the team tiers add shared seats plus Zapier and n8n integrations.",
+          "highlights": [
+            "Build a custom avatar from your own face and voice, then just edit the script instead of reshooting",
+            "Whole-video translation with real lip-sync — 175 languages and dialects on paid plans",
+            "Photo straight to a talking Avatar IV; paid plans run 30 minutes per video",
+            "Credits are the one currency: monthly, they roll over for a month, and you can buy more",
+            "Interactive video, in-video quizzes, branching and SCORM export for training content",
+            "Business tier adds a shared workspace, brand kit and Zapier, n8n, Make and HubSpot integrations"
+          ],
+          "bestFor": "People who ship talking-head and explainer video constantly without wanting to light a studio each time, and teams pushing one video into many language markets.",
+          "pricing": "Free: 3 watermarked videos/mo; Creator $29/mo (600 credits), Pro from $49/mo (1,000 credits), Business $149/mo + $20/seat",
+          "platform": "Web / iOS",
+          "url": "https://www.heygen.com",
+          "logo": "/assets/logos/heygen.png",
+          "tags": ["AI video", "Avatar", "Video translation"],
+          "related": ["screen-studio", "remotion"]
+        },
+        {
           "id": "buildhub",
           "name": "BuildHub",
           "category": "ai",
@@ -64,8 +87,31 @@
           "pricing": "Free & open source",
           "platform": "Web",
           "url": "https://github.com/one-person-lab/build-hub",
-          "logo": "/assets/buildhub-logo.png",
+          "logo": "/assets/buildhub-mark.png",
           "tags": ["field guide", "learning", "open source"]
+        },
+        {
+          "id": "betterprompt",
+          "name": "Betterprompt",
+          "category": "ai",
+          "type": "web",
+          "tagline": "A prompt marketplace billed per run — the credit cost is on the card before you click",
+          "overview": "A marketplace that sells prompts without handing them over: pick one, fill in a few blanks, choose a model (OpenAI, Claude, Gemini, Grok are all listed) and get a result in seconds. You pay per run, not per prompt — every run spends credits, and the card shows the cost up front, so nobody has to buy a prompt they haven't tried. Prompts execute on Betterprompt's own servers: buyers submit inputs and get outputs, never the prompt itself, which is exactly why creators are willing to list their best work. The split is stated in the FAQ — a run costs the model price plus a 10% platform fee and 10% to the creator, and failed runs refund the credits. There's also an agent-skill marketplace built on the same idea: the SKILL.md is open to read, the generation logic stays server-side.",
+          "highlights": [
+            "Pay per run, no upfront purchase: their words are \"No $5 upfront for a prompt you haven't tried\" — credits are spent per run and refunded when a run fails",
+            "The price is explained: model cost + 10% platform fee + 10% creator royalty, estimated from recent real runs on that model",
+            "The prompt stays a black box — it runs on Betterprompt's servers, so users only ever see input and output. Bringing your own API key isn't allowed either (\"Every prompt runs on our keys\"): they'd rather lose those users than leak a creator's prompt",
+            "Creators get paid through Stripe: publish once, earn on every run, with a dashboard for revenue, usage and reviews; payouts unlock at $10",
+            "Agents install one master skill — npx skills add https://github.com/betterpromptme/skills --skill betterprompt — and use it to search and run skills in the marketplace, each with a readable SKILL.md and the generation logic kept separate",
+            "Your inputs never train any model (theirs or their providers'); team features are still in private beta behind teams@betterprompt.me"
+          ],
+          "bestFor": "People who want to sell the prompts they already wrote as an income stream, and people who'd rather fill in two blanks than learn prompt writing at all.",
+          "pricing": "Free plan: 2,000 credits/month (100/day cap — roughly 15 images or hundreds of text runs); Pro 8 $8/mo for 30,000 credits, Pro 20 $20/mo for 80,000; video generation, watermark-free images and publishing are paid-plan only",
+          "platform": "Web",
+          "url": "https://betterprompt.me",
+          "logo": "/assets/logos/betterprompt.png",
+          "tags": ["prompt marketplace", "pay per run", "agent skills"],
+          "related": ["buildhub", "appllama"]
         }
       ]
     },
@@ -93,6 +139,29 @@
           "logo": "/assets/logos/figma.png",
           "tags": ["UI design", "Collaboration", "Design systems"],
           "related": ["framer", "appllama", "are-na"]
+        },
+        {
+          "id": "designkit",
+          "name": "Designkit",
+          "category": "design",
+          "type": "both",
+          "tagline": "The design desk for shop owners — product shot to full listing",
+          "overview": "Meitu's commercial design platform, and it only cares about pictures that sell: cut out the product photo, swap the background, dress an AI model, then generate the whole set of store images and detail pages in one pass. Onward it covers selling videos, AI PPT, logos and posters. Recurring jobs — full image set, detail-page modules, viral-poster remake — ship as one-click skills (the site itself calls this tier AI Agent and Skills), so nothing gets dialled in by hand. AI output is metered in 美豆, the site's own credits.",
+          "highlights": [
+            "Cut-out, background swap and AI try-on run as one chain — no retoucher on standby",
+            "Image sets, detail pages and viral remakes are packaged as one-click skills",
+            "Membership splits personal from enterprise commercial licence — running a personal one for company work is infringement",
+            "AI generation spends beans: 330/month on Standard, 1,000/month on Pro, top-ups sold separately",
+            "Beyond statics: selling videos, talking-head ads, AI PPT, logo and poster work in one workspace",
+            "Web, iOS and Android; 4.9 stars across 92k ratings on the China App Store"
+          ],
+          "bestFor": "Shop owners and cross-border sellers who need main images, detail pages and selling videos daily without paying a designer.",
+          "pricing": "Priced in RMB: free tier; Standard ¥30/mo (330 beans), Pro ¥88/mo (1,000 beans); team plans and enterprise licences separate",
+          "platform": "Web / iOS / Android",
+          "url": "https://www.designkit.cn",
+          "logo": "/assets/logos/designkit.png",
+          "tags": ["E-commerce design", "AI product shots", "Templates"],
+          "related": ["figma", "heygen"]
         },
         {
           "id": "framer",
@@ -250,6 +319,29 @@
           "url": "https://buffer.com",
           "logo": "/assets/logos/buffer.ico",
           "tags": ["social media", "scheduling", "analytics"]
+        },
+        {
+          "id": "aic",
+          "name": "即创",
+          "category": "media",
+          "type": "web",
+          "tagline": "Douyin's ad-creative pipeline — credits come from ad spend, not from a checkout",
+          "overview": "Ocean Engine (Douyin's advertising platform) built its own creative workbench. The left rail is four jobs: the inspiration gallery shows formats that already performed, finished-video tools generate a spot and spin profitable variants from it, raw-material tools make digital-human presenters, AI video and AI scripts, and an asset library keeps it all organised. It charges credits instead of cash, and credits cannot be bought: every Monday the platform issues a weekly amount sized by your ad spend from the week before, and whatever is older than 30 days disappears. This is a production line for advertisers, not a creation site for everyone.",
+          "highlights": [
+            "Credits are not for sale (the official FAQ answer to \"can I buy credits\" is: not supported yet). Basic credits arrive every Monday 00:00, calculated as last week's ad spend × a platform coefficient, default starting value 180, with a guaranteed floor and a cap, expiring after 30 days. Verified live on an account: seven consecutive weeks of +180, a 720 balance, and 180 expiring every week.",
+            "Costs are per second of finished video and the spread between models is enormous: Seedance 1.0 runs 3–10 credits/sec, 1.5 is 14 (7 on promo), 2.0 is 54 (10), 2.5 is 81 (16); outfit swap 12/sec, background swap 8/sec.",
+            "The Agent moved from per-task to per-second billing on 2026-09-22 at a flat 2 credits/sec; after the first preview, the next two script revisions regenerate at 90% off (0.2 credits/sec), the third returns to full price.",
+            "Digital-human videos are priced off the script: 0.17 seconds of audio per character, multiplied by the model's 1 or 9 credits/sec. Batch jobs add every script together first.",
+            "Credits are pre-deducted and the refund rules are explicit: cancel while queuing and you get all of it back, cancel mid-run and you don't, a platform-side failure refunds in full, and anything still queued after 24 hours auto-fails with a refund. The account centre keeps 90 days of history.",
+            "Ad spend also buys your place in the queue — scheduling weighs 30-day cumulative spend and creative ROI, and the rules state outright that asset volume is not the main factor. Credits bind to your UID and are shared across organisations under it, but never transferable."
+          ],
+          "bestFor": "E-commerce and gaming teams already buying Douyin traffic through Ocean Engine or Qianchuan and shipping dozens of creatives a week. Without an advertiser account you never get past the login screen, so organic-only creators should look elsewhere.",
+          "pricing": "Nothing to pay and nothing to top up: weekly credits from last week's ad spend (default initial value 180, valid 30 days), AI tasks deduct per second of video, several models on limited-time discount",
+          "platform": "Web",
+          "url": "https://aic.oceanengine.com",
+          "logo": "/assets/logos/aic.svg",
+          "tags": ["AI video", "digital human", "ad creative"],
+          "related": ["heygen", "designkit", "buffer"]
         }
       ]
     },
@@ -350,6 +442,30 @@
           "license": "MIT",
           "logo": "/assets/logos/github-lukilabs.png",
           "tags": ["Mermaid", "Diagram rendering", "Dual output", "Zero DOM"]
+        },
+        {
+          "id": "system-prompts",
+          "name": "System Prompts",
+          "category": "opensource",
+          "type": "web",
+          "tagline": "The live system prompts of 38 AI products, one tool per page",
+          "overview": "A reference site that lays out the system prompts actually running behind Cursor, v0, Devin, Claude Code, Windsurf and 33 more tools. The text isn't written here — it mirrors, word for word, the ★144K GitHub repository x1xhlol/system-prompts-and-models-of-ai-tools. What the site adds is readability: the loose txt, md and json files in the repo's vendor folders become one page per tool, split into versioned sections with an anchor table of contents, the category and the official site at the top. It is fully static HTML — no search box, no copy button, no sign-in. It exists to be read end to end.",
+          "highlights": [
+            "Chinese-team products are in the 38 too: Qoder, Trae (the page labels it \"AI IDE by ByteDance\") and Z.ai Code (\"Chinese AI coding tool\"). Measured: the Qoder page has 3 sections — Main Prompt, Quest Action, Quest Design — 58,092 characters in total",
+            "Old versions stay on the same page, so you can watch a prompt change: the Cursor page has 7 sections (Agent Prompt v2.0, the 2025-09-03 build, Agent CLI 2025-08-07, v1.2, v1.0, Chat Prompt, and Agent Tools v1.0 as JSON), 160,152 characters between them",
+            "Tool definitions come with the prompt: every function name, its description, when to use it and when not to, all in the original wording. Designing tools for your own agent, this is a finished example to copy. The v0 page is System Prompt + Tools (JSON), 81,276 characters",
+            "Clean paths make it easy to pull in as corpus: /cursor-system-prompt/, /qoder-system-prompt/ — nothing but JSON-LD runs on the page, so one curl gets the whole text. Measured 12.7KB for the homepage, 140KB+ for a tool page",
+            "Maintenance: the upstream repo was last pushed 2026-10-12 and splits into 34 vendor folders at the top level (Anthropic, Google, Open Source prompts and so on); the About page states the content is shown under fair use, trademarks belong to the vendors, and a vendor wanting a page down files an issue upstream"
+          ],
+          "bestFor": "People writing agent prompts or tool descriptions who want real examples to study, and anyone wondering why a given AI product refuses to budge on something — the answer is usually in its system prompt.",
+          "pricing": "Free, no account; upstream repository is GPL-3.0",
+          "platform": "Web",
+          "url": "https://www.systemprompts.org",
+          "repo": "https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools",
+          "license": "GPL-3.0",
+          "logo": "/assets/logos/github-x1xhlol.png",
+          "tags": ["System prompts", "Agent design", "Prompt corpus", "AI tools"],
+          "related": ["cursor", "perplexity", "awesome-agent-skills"]
         }
       ]
     }

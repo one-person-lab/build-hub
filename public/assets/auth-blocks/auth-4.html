@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>auth-4 · Split sign-in with an orbital trust ring</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&display=swap" rel="stylesheet" />
+<style>
+  :root{--fg:#fff;--muted:#8a8a8a;--line:#282828;--input:#111111}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    background:#0a0a0a;color:var(--fg);
+    font-family:"Geist",ui-sans-serif,system-ui,-apple-system,sans-serif;
+    font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;
+    display:grid;place-items:center;padding:20px;overflow:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+
+  .card{
+    width:100%;max-width:863px;height:519px;
+    display:grid;grid-template-columns:1fr 1fr;
+    border:1px solid #1e1e1e;border-radius:18px;overflow:hidden;
+    background:#0a0a0a;
+  }
+
+  /* ---------------- left ---------------- */
+  .left{padding:30px 44px 24px 44px;display:flex;flex-direction:column}
+  .topbar{display:flex;align-items:center;justify-content:space-between}
+  .brand{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:500}
+  .mark{width:24px;height:24px;border-radius:8px;background:#fff;display:grid;place-items:center}
+  .help-link{font-size:11px;color:#9a9a9a}
+  .help-link:hover{color:#fff}
+
+  .left > *:not(.topbar){margin-left:20px;width:271px}
+  h1{font-size:21px;font-weight:600;letter-spacing:-.02em;margin-top:30px}
+  .sub{font-size:11px;color:var(--muted);margin-top:6px}
+
+  .oauth{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:22px}
+  .btn-oauth{
+    height:34px;border-radius:8px;border:1px solid #2f2f2f;background:#0d0d0d;
+    display:flex;align-items:center;justify-content:center;gap:7px;
+    font-size:11.5px;font-weight:500;color:#ededed;transition:background .15s,border-color .15s;
+  }
+  .btn-oauth:hover{background:#161616;border-color:#3d3d3d}
+  .btn-oauth svg{width:12px;height:12px}
+
+  .divider{display:flex;align-items:center;gap:10px;margin:16px 0 14px;color:#6a6a6a;font-size:9.5px;letter-spacing:.14em}
+  .divider::before,.divider::after{content:"";flex:1;height:1px;background:#242424}
+
+  .field{margin-bottom:12px}
+  .field-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+  .field-head label{font-size:10.5px;color:#c9c9c9;font-weight:500}
+  .field-head a{font-size:10px;color:#8a8a8a}
+  .field-head a:hover{color:#fff}
+  .input-wrap{position:relative}
+  input{
+    width:100%;height:33px;border-radius:8px;background:var(--input);
+    border:1px solid var(--line);color:#fff;font-family:inherit;font-size:11.5px;
+    padding:0 11px;outline:none;transition:border-color .15s,box-shadow .15s;
+  }
+  input::placeholder{color:#6d6d6d}
+  input:focus{border-color:#454545;box-shadow:0 0 0 3px rgba(255,255,255,.05)}
+  .input-wrap.has-icon input{padding-right:34px}
+  .eye{
+    position:absolute;right:7px;top:50%;transform:translateY(-50%);
+    width:22px;height:22px;display:grid;place-items:center;color:#7a7a7a;border-radius:5px;
+  }
+  .eye:hover{color:#d0d0d0}
+
+  .btn-primary{
+    width:100%;height:34px;border-radius:8px;background:#fff;color:#0a0a0a;
+    font-size:11.5px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:7px;
+  }
+  .btn-primary:hover{opacity:.9}
+  .btn-primary svg{width:13px;height:13px}
+  .signup{font-size:10.5px;color:#8c8c8c;margin-top:14px}
+  .signup a{color:#e8e8e8}
+  .signup a:hover{text-decoration:underline}
+
+  .footnote{
+    margin-top:auto;display:flex;align-items:center;gap:6px;
+    font-size:10px;color:#6d6d6d;
+  }
+  .footnote svg{width:12px;height:12px;flex:0 0 auto}
+
+  /* ---------------- right ---------------- */
+  .right{
+    position:relative;
+    background:linear-gradient(180deg,#1d1d1d 0%,#151515 55%,#111 100%);
+    border-left:1px solid #1f1f1f;
+    overflow:hidden;
+  }
+  .rings{position:absolute;top:0;left:50%;transform:translateX(-50%);width:400px;height:372px}
+  .ring{
+    position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+    border:1px dashed #333;border-radius:50%;
+  }
+  .ring:nth-child(1){width:92px;height:92px}
+  .ring:nth-child(2){width:186px;height:186px}
+  .ring:nth-child(3){width:268px;height:268px;opacity:.85}
+  .ring:nth-child(4){width:350px;height:350px;opacity:.62}
+  .core{
+    position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+    width:42px;height:42px;border-radius:13px;background:#fff;
+    display:grid;place-items:center;
+    box-shadow:0 0 0 1px rgba(255,255,255,.2), 0 12px 40px -8px rgba(0,0,0,.8);
+  }
+  .pill{
+    position:absolute;display:inline-flex;align-items:center;gap:5px;z-index:2;
+    height:22px;padding:0 9px;border-radius:999px;
+    background:rgba(20,20,20,.85);border:1px solid #353535;
+    font-size:9.5px;color:#dcdcdc;white-space:nowrap;
+    backdrop-filter:blur(4px);
+  }
+  .pill svg{width:11px;height:11px;opacity:.8}
+  .pill.p1{left:171px;top:78px}
+  .pill.p2{left:272px;top:211px}
+  .pill.p3{left:84px;top:258px}
+
+  .testimonial{position:absolute;left:24px;right:24px;bottom:26px}
+  .testimonial p{font-size:11.5px;line-height:1.55;color:#dcdcdc;max-width:330px}
+  .who{display:flex;align-items:center;gap:8px;margin-top:16px}
+  .avatar{
+    width:22px;height:22px;border-radius:50%;
+    background:radial-gradient(circle at 35% 30%,#777,#2c2c2c 72%);
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);
+  }
+  .who .n{font-size:10.5px;font-weight:500;line-height:1.3}
+  .who .r{font-size:9.5px;color:#7a7a7a;line-height:1.3}
+
+  @media (max-width:900px){
+    body{padding:0;overflow:auto;place-items:start center}
+    .card{grid-template-columns:1fr;height:auto;max-width:520px;border-radius:0;border-left:none;border-right:none}
+    .left{padding:28px 24px 24px}
+    .right{min-height:340px;border-left:none;border-top:1px solid #1f1f1f}
+    .rings{top:20px;transform:translateX(-50%) scale(.72);transform-origin:top center}
+    .testimonial{position:static;padding:0 24px 26px}
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="left">
+      <div class="topbar">
+        <div class="brand">
+          <span class="mark">
+            <svg width="12" height="12" viewBox="0 0 16 16" fill="#0a0a0a">
+              <rect x="6.4" y="1" width="3.2" height="14" rx="1.6"/>
+              <rect x="1" y="6.4" width="14" height="3.2" rx="1.6"/>
+            </svg>
+          </span>
+          Northstar
+        </div>
+        <a class="help-link" href="#">Need help?</a>
+      </div>
+
+      <h1>Sign in to Northstar</h1>
+      <p class="sub">One account for deploys, approvals, and audit trails.</p>
+
+      <div class="oauth">
+        <button class="btn-oauth" type="button">
+          <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M23.5 12.3c0-.85-.08-1.66-.22-2.44H12v4.62h6.45a5.5 5.5 0 0 1-2.38 3.6v3h3.84c2.25-2.07 3.59-5.12 3.59-8.78z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.85-3a7.2 7.2 0 0 1-4.08 1.17c-3.13 0-5.78-2.11-6.73-4.96H1.3v3.09A12 12 0 0 0 12 24z"/><path fill="#FBBC05" d="M5.27 14.3a7.2 7.2 0 0 1 0-4.6V6.6H1.3a12 12 0 0 0 0 10.8l3.97-3.1z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.7 0 3.99 2.47 1.3 6.6l3.97 3.1C6.22 6.86 8.87 4.75 12 4.75z"/></svg>
+          Google
+        </button>
+        <button class="btn-oauth" type="button">
+          <svg viewBox="0 0 24 24" fill="#fff"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.6 4.6 18.6 5 18.6 5c.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3z"/></svg>
+          GitHub
+        </button>
+      </div>
+
+      <div class="divider">OR</div>
+
+      <form onsubmit="event.preventDefault()">
+        <div class="field">
+          <div class="field-head"><label for="email">Work email</label></div>
+          <div class="input-wrap"><input id="email" type="email" placeholder="you@company.com" autocomplete="email" /></div>
+        </div>
+
+        <div class="field">
+          <div class="field-head">
+            <label for="pw">Password</label>
+            <a href="#">Forgot password?</a>
+          </div>
+          <div class="input-wrap has-icon">
+            <input id="pw" type="password" placeholder="Enter your password" autocomplete="current-password" />
+            <button class="eye" type="button" aria-label="Show password" onclick="togglePw(this)">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+                <path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/>
+                <circle cx="12" cy="12" r="2.6"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <button class="btn-primary" type="submit">
+          Sign in
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13"/><path d="M12 6l6 6-6 6"/></svg>
+        </button>
+      </form>
+
+      <p class="signup">New to Northstar? <a href="#">Create an account</a></p>
+
+      <p class="footnote">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l7.5 3v6c0 4.4-3 7.9-7.5 9-4.5-1.1-7.5-4.6-7.5-9V6L12 3z"/></svg>
+        Protected by workspace SSO policy and device checks.
+      </p>
+    </div>
+
+    <div class="right">
+      <div class="rings">
+        <span class="ring"></span>
+        <span class="ring"></span>
+        <span class="ring"></span>
+        <span class="ring"></span>
+        <span class="core">
+          <svg width="18" height="18" viewBox="0 0 16 16" fill="#0a0a0a">
+            <rect x="6.4" y="1" width="3.2" height="14" rx="1.6"/>
+            <rect x="1" y="6.4" width="14" height="3.2" rx="1.6"/>
+          </svg>
+        </span>
+      </div>
+
+      <span class="pill p1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7.5 3v6c0 4.4-3 7.9-7.5 9-4.5-1.1-7.5-4.6-7.5-9V6L12 3z"/><path d="M9 12l2 2 4-4"/></svg>
+        Device trusted
+      </span>
+      <span class="pill p2">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="11" rx="2.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+        SSO enforced
+      </span>
+      <span class="pill p3">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7.5 3v6c0 4.4-3 7.9-7.5 9-4.5-1.1-7.5-4.6-7.5-9V6L12 3z"/></svg>
+        SOC 2 Type II
+      </span>
+
+      <div class="testimonial">
+        <p>“Access reviews used to eat a week every quarter. Now policy enforces itself at sign-in and the audit trail writes itself.”</p>
+        <div class="who">
+          <span class="avatar"></span>
+          <span><span class="n">Maya Okafor</span><br><span class="r">Head of Platform, Arline</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+  function togglePw(btn){
+    const input = btn.parentElement.querySelector('input');
+    input.type = input.type === 'password' ? 'text' : 'password';
+  }
+</script>
+</body>
+</html>

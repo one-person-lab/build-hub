@@ -82,6 +82,14 @@ function migrate(d: Database.Database) {
       updated_at TEXT NOT NULL DEFAULT (datetime('now')),
       PRIMARY KEY (fork_id, step_index)
     );
+    /* 复制提示词的账：免费账号按累计次数卡额度，PRO 不限 */
+    CREATE TABLE IF NOT EXISTS prompt_copies (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      user_id INTEGER NOT NULL REFERENCES users(id),
+      source TEXT NOT NULL DEFAULT '',
+      created_at TEXT NOT NULL DEFAULT (datetime('now'))
+    );
+    CREATE INDEX IF NOT EXISTS prompt_copies_user ON prompt_copies(user_id);
   `);
   /* 老库补列：orders 原来只有微信一条渠道，人工开通的单要能被单独捞出来核对 */
   const cols = d.prepare(`pragma table_info(orders)`).all() as { name: string }[];
@@ -104,4 +112,11 @@ export function nowIso(): string {
 export function proActive(proUntil: string | null | undefined): boolean {
   if (!proUntil) return false;
   return new Date(proUntil.replace(" ", "T") + "Z").getTime() > Date.now();
+}
+
+export function userIsPro(userId: number): boolean {
+  const row = getDb()
+    .prepare(`select pro_until from users where id = ?`)
+    .get(userId) as { pro_until: string | null } | undefined;
+  return proActive(row?.pro_until);
 }

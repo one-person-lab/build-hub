@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import CopyButton from "./CopyButton";
+import { requireLogin } from "@/lib/auth-modal";
 import { track } from "@/lib/track";
 
 type PayPlan = {
@@ -21,8 +22,14 @@ type Me = {
 const UI = {
   zh: {
     title: "BuildHub PRO",
-    sub: "内容都免费看，PRO 管的是你自己攒下的东西",
-    benefits: ["无限收藏（免费只有 20 条）", "收藏跨设备自动同步", "多个收藏夹与条目备注", "复刻档案不限份数，进度跟着账号走", "收藏、收藏夹、复刻进度一键打包导出"],
+    sub: "资产包 + Agent Kit，一次开通，整套拿走",
+    benefits: [
+      "完整资产包：409 条概念、19 条提示词、25 个技能、40 条设计参考",
+      "Agent Kit：SKILL.md 路由，装进 Cursor / Claude Code / Codex",
+      "4 条路径、3 本手册，带完成标志",
+      "持续更新，重新下载就是最新版",
+      "另含无限收藏、跨设备同步与一键导出",
+    ],
     monthly: "月卡",
     yearly: "年卡",
     lifetime: "终身买断",
@@ -31,25 +38,17 @@ const UI = {
     once: "一次付费",
     cta: "开通 PRO",
     back: "返回",
-    loginTitle: "登录后继续",
-    loginSub: "验证码将发送至你的邮箱，仅用于登录",
-    emailPh: "邮箱地址",
-    sendCode: "获取验证码",
-    resendIn: "后重发",
-    resend: "重新获取",
-    codePh: "6 位验证码",
-    toPay: "去支付",
     payAmount: "支付金额",
     scan: "微信扫码支付",
     scanHint: "支付成功后自动开通，无需刷新",
     errWxOff: "微信支付暂不可用，请稍后再试",
     errGeneric: "出错了，请重试",
-    errCode: "验证码错误或已过期",
-    errMail: "邮件发送失败，请稍后重试",
-    errTooFast: "发送太快，稍后再试",
     proActive: "你已是 PRO 会员",
     proUntil: "有效期至",
     proLifetime: "终身有效",
+    dlLibrary: "下载完整资产包",
+    dlKit: "下载 Agent Kit",
+    dlPage: "在 PRO 页面查看全部内容",
     fineprint: "基础浏览永远免费",
     linkTerms: "用户协议",
     linkPrivacy: "隐私政策",
@@ -83,13 +82,13 @@ const UI = {
   },
   en: {
     title: "BuildHub PRO",
-    sub: "Everything stays free to read — PRO manages what you've saved",
+    sub: "The asset pack + Agent Kit — unlock once, take the whole thing",
     benefits: [
-      "Unlimited favorites (free plan holds 20)",
-      "Favorites sync across your devices",
-      "Multiple collections and notes",
-      "Unlimited playbook forks, progress kept on your account",
-      "Export favorites, collections and playbook progress as one Markdown pack",
+      "Full asset pack: 336 concepts, 19 prompts, 25 skills, 40 design references",
+      "Agent Kit: a SKILL.md router for Cursor / Claude Code / Codex",
+      "4 build paths and 3 playbooks with done-checks",
+      "Ongoing updates — re-download for the latest version",
+      "Plus unlimited favorites, cross-device sync and one-click export",
     ],
     monthly: "Monthly",
     yearly: "Yearly",
@@ -99,25 +98,17 @@ const UI = {
     once: "one-time",
     cta: "Go PRO",
     back: "Back",
-    loginTitle: "Sign in to continue",
-    loginSub: "A code will be emailed to you, used only for sign-in",
-    emailPh: "Email address",
-    sendCode: "Send code",
-    resendIn: " to resend",
-    resend: "Resend",
-    codePh: "6-digit code",
-    toPay: "Continue",
     payAmount: "Amount",
     scan: "Scan with WeChat",
     scanHint: "Activates automatically once paid",
     errWxOff: "WeChat Pay is unavailable right now, try again later",
     errGeneric: "Something went wrong, try again",
-    errCode: "Wrong or expired code",
-    errMail: "Failed to send email, try later",
-    errTooFast: "Too fast, wait a minute",
     proActive: "You're already a PRO member",
     proUntil: "Valid until",
     proLifetime: "Lifetime",
+    dlLibrary: "Download the full asset pack",
+    dlKit: "Download the Agent Kit",
+    dlPage: "See everything included on the PRO page",
     fineprint: "browsing stays free forever",
     linkTerms: "Terms",
     linkPrivacy: "Privacy",
@@ -169,24 +160,24 @@ export default function ProModal({
   locale,
   onClose,
   entry = "plans",
+  initialPlan,
 }: {
   locale: "zh" | "en";
   onClose: () => void;
   /** test：白名单账号专用的验证单入口，不渲染三档套餐 */
   entry?: "plans" | "test";
+  /** 从定价页带入的套餐，打开即选中 */
+  initialPlan?: string;
 }) {
   const U = UI[locale];
   const base = locale === "en" ? "/en" : "";
   const [me, setMe] = useState<Me | null>(null);
-  const [step, setStep] = useState<"plans" | "login" | "qr" | "manual">(
-    "plans"
+  const [step, setStep] = useState<"plans" | "qr" | "manual">("plans");
+  const [planKey, setPlanKey] = useState(
+    entry === "test" ? "test" : initialPlan ?? "yearly"
   );
-  const [planKey, setPlanKey] = useState(entry === "test" ? "test" : "yearly");
   const [phone, setPhone] = useState(false);
   const [siteHost, setSiteHost] = useState("");
-  const [email, setEmail] = useState("");
-  const [code, setCode] = useState("");
-  const [countdown, setCountdown] = useState(0);
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState("");
   const [note, setNote] = useState("");
@@ -201,28 +192,20 @@ export default function ProModal({
     money: string;
     name: string;
   } | null>(null);
-  const timer = useRef<ReturnType<typeof setInterval> | null>(null);
-
   useEffect(() => {
     // 触屏设备扫不了自己屏幕上的码，付费改走「电脑下单 / 微信代开」两条出口
     setPhone(window.matchMedia("(hover: none)").matches);
     setSiteHost(window.location.host);
-    fetch("/api/me")
-      .then((r) => r.json())
-      .then((d: Me) => setMe(d))
-      .catch(() => {});
-    return () => {
-      if (timer.current) clearInterval(timer.current);
-    };
+    const load = () =>
+      fetch("/api/me")
+        .then((r) => r.json())
+        .then((d: Me) => setMe(d))
+        .catch(() => {});
+    load();
+    // 登录弹窗登进来了要立刻重取套餐与 pro 状态，付款方式才选得对
+    window.addEventListener("vh-me-changed", load);
+    return () => window.removeEventListener("vh-me-changed", load);
   }, []);
-
-  useEffect(() => {
-    if (countdown <= 0) return;
-    timer.current = setInterval(() => setCountdown((s) => s - 1), 1000);
-    return () => {
-      if (timer.current) clearInterval(timer.current);
-    };
-  }, [countdown]);
 
   // 服务端没给 payTest（白名单没命中）时退回普通套餐弹窗，不做出错的死路
   const testMode = entry === "test" && !!me?.payTest;
@@ -230,49 +213,6 @@ export default function ProModal({
     ? me?.payTest ?? null
     : me?.plans.find((p) => p.key === planKey) ?? null;
   const shownPlans: PayPlan[] = testMode ? (plan ? [plan] : []) : me?.plans ?? [];
-
-  async function sendCode() {
-    setErr("");
-    setBusy(true);
-    try {
-      const r = await fetch("/api/auth/code", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ email }),
-      });
-      if (r.status === 429) setErr(U.errTooFast);
-      else if (!r.ok) setErr(U.errMail);
-      else setCountdown(60);
-    } catch {
-      setErr(U.errGeneric);
-    } finally {
-      setBusy(false);
-    }
-  }
-
-  async function verify() {
-    setErr("");
-    setBusy(true);
-    try {
-      const r = await fetch("/api/auth/verify", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ email, code }),
-      });
-      if (!r.ok) {
-        setErr(r.status === 400 ? U.errCode : U.errGeneric);
-      } else {
-        const d = await fetch("/api/me").then((x) => x.json());
-        setMe(d);
-        window.dispatchEvent(new Event("vh-me-changed"));
-        await startPay();
-      }
-    } catch {
-      setErr(U.errGeneric);
-    } finally {
-      setBusy(false);
-    }
-  }
 
   async function startPay() {
     if (!plan) return;
@@ -423,7 +363,7 @@ export default function ProModal({
     };
   }, [step, manual, plan, testMode]);
 
-  if (me?.user && me.pro && step !== "login" && (!testMode || justPaid)) {
+  if (me?.user && me.pro && (!testMode || justPaid)) {
     return (
       <Shell locale={locale} onClose={onClose}>
         <div className="rd-pro-ok">
@@ -434,6 +374,15 @@ export default function ProModal({
               ? U.proLifetime
               : me.user.proUntil?.slice(0, 10)}
           </p>
+          <a className="rd-btn rd-btn-block" href={`/api/export?kind=library&locale=${locale}`}>
+            {U.dlLibrary}
+          </a>
+          <a className="rd-btn-ghost rd-btn-block" href={`/api/export?kind=agent-kit&locale=${locale}`}>
+            {U.dlKit}
+          </a>
+          <a className="rd-pro-link" href={`${locale === "en" ? "/en" : ""}/pro`}>
+            {U.dlPage}
+          </a>
         </div>
       </Shell>
     );
@@ -479,12 +428,11 @@ export default function ProModal({
           {note && <p className="fineprint">{note}</p>}
           <button
             className="rd-btn rd-btn-block"
-            disabled={busy || !me}
+            disabled={busy}
             onClick={() => {
               setErr("");
               setNote("");
-              if (me?.user) startPay();
-              else setStep("login");
+              requireLogin({ reason: "pro", onDone: () => void startPay() });
             }}
           >
             {testMode ? U.testCta : U.cta}
@@ -507,53 +455,6 @@ export default function ProModal({
             <a href={`${base}/terms`}>{U.linkTerms}</a> ·{" "}
             <a href={`${base}/privacy`}>{U.linkPrivacy}</a>
           </p>
-        </>
-      )}
-
-      {step === "login" && (
-        <>
-          <h3>{U.loginTitle}</h3>
-          <p className="sub">{U.loginSub}</p>
-          <input
-            className="rd-field"
-            type="email"
-            placeholder={U.emailPh}
-            value={email}
-            autoComplete="email"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <div className="rd-code-row">
-            <input
-              className="rd-field"
-              inputMode="numeric"
-              maxLength={6}
-              placeholder={U.codePh}
-              value={code}
-              onChange={(e) => setCode(e.target.value.replace(/\D/g, ""))}
-            />
-            <button
-              className="rd-btn-ghost"
-              disabled={busy || countdown > 0 || !email}
-              onClick={sendCode}
-            >
-              {countdown > 0
-                ? `${countdown}s${U.resendIn}`
-                : code
-                  ? U.resend
-                  : U.sendCode}
-            </button>
-          </div>
-          {err && <p className="rd-pro-err">{err}</p>}
-          <button
-            className="rd-btn rd-btn-block"
-            disabled={busy || code.length !== 6}
-            onClick={verify}
-          >
-            {U.toPay}
-          </button>
-          <button className="rd-btn-ghost rd-btn-block" onClick={() => setStep("plans")}>
-            {U.back}
-          </button>
         </>
       )}
 

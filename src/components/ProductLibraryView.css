@@ -1,34 +1,6 @@
-/* 产品图鉴 ProductLibraryView —— 复用 .catalog-page/.grid/.card 等公共 class，
-   仅补充卡片内部与筛选区细节样式 */
+/* 产品图鉴 ProductLibraryView —— 页结构与概念页一致（.catalog-directory-layout +
+   吸顶筛选条 + 左侧实时目录），此处仅补充卡片内部细节样式 */
 
-.product-lib-head {
-  margin: 4px 0 14px;
-}
-.product-lib-head h1 {
-  font-size: 28px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  margin: 0 0 8px;
-  color: var(--text);
-}
-.product-lib-head p {
-  margin: 0;
-  color: var(--text-soft, #6b7280);
-  font-size: 15px;
-  line-height: 1.65;
-  max-width: 720px;
-}
-
-.product-lib-finder {
-  margin: 10px 0 4px;
-}
-.product-lib-chip {
-  cursor: pointer;
-}
-
-.product-lib-cat {
-  margin-top: 8px;
-}
 .product-lib-empty {
   color: var(--text-soft, #6b7280);
   font-size: 14px;
@@ -60,10 +32,12 @@
   align-items: center;
   justify-content: space-between;
   gap: 8px;
+  flex-wrap: nowrap;
 }
-.product-card-title {
-  font-size: 18px;
+.catalog-layout .product-card .card-head h3 {
+  font-size: 17px;
   font-weight: 650;
+  line-height: 1.3;
   margin: 0;
   margin-right: auto;
   color: var(--text);
@@ -123,18 +97,4 @@
   color: var(--green, #16a34a);
   border-color: color-mix(in srgb, var(--green, #16a34a) 25%, transparent);
   font-weight: 600;
-}
-
-.product-card-more {
-  margin-top: 14px;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--theme-brand);
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-}
-.product-card:hover .product-card-more {
-  gap: 8px;
-  transition: gap 0.2s var(--ease);
 }

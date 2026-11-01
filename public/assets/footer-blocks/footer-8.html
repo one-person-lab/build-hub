@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>footer-8 · Link columns over an outlined wordmark</title>
+<style>
+  :root{--fg:#141414;--muted:#6f6f6f;--line:#e6e6e6}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    background:#fff;color:var(--fg);
+    font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+    font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;
+    display:flex;flex-direction:column;padding:38px 56px 22px;overflow:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+
+  .top{
+    flex:1 1 auto;min-height:0;
+    display:grid;grid-template-columns:1fr 250px 250px 250px;gap:34px;
+  }
+  .intro{font-size:16px;line-height:1.6;letter-spacing:-.01em;max-width:280px}
+  .socials{margin-top:26px;display:flex;gap:11px}
+  .socials a{
+    width:42px;height:42px;border:1px solid var(--line);border-radius:12px;
+    display:grid;place-items:center;color:#1f1f1f;
+    transition:border-color .16s,background .16s,color .16s;
+  }
+  .socials a:hover{background:#141414;border-color:#141414;color:#fff}
+
+  .col{border-top:1px solid var(--line);padding-top:22px}
+  .col h3{font-size:16px;font-weight:650;margin-bottom:18px}
+  .col ul{list-style:none;display:flex;flex-direction:column;gap:18px}
+  .col a{font-size:13.5px;color:var(--muted)}
+  .col a:hover{color:var(--fg)}
+  .row{display:flex;align-items:center;gap:9px}
+  .badge{
+    font-size:10.5px;font-weight:600;color:#3c3c3c;background:#f1f1f1;
+    border-radius:999px;padding:3px 9px;white-space:nowrap;
+  }
+
+  .outline{
+    flex:0 0 auto;text-align:center;padding:18px 0 6px;overflow:hidden;
+  }
+  .outline span{
+    display:block;font-size:118px;line-height:1;font-weight:800;letter-spacing:-.02em;
+    color:transparent;-webkit-text-stroke:1.4px #d8d8d8;text-transform:uppercase;white-space:nowrap;
+  }
+
+  .legal{
+    flex:0 0 auto;margin-top:14px;padding-top:16px;border-top:1px solid var(--line);
+    display:flex;align-items:center;justify-content:space-between;font-size:12.5px;color:var(--muted);
+  }
+  .legal nav{display:flex;gap:24px}
+  .legal a:hover{color:var(--fg)}
+</style>
+</head>
+<body>
+  <div class="top">
+    <div>
+      <p class="intro">Howitzer is a modern and intuitive way to model and protect your business.</p>
+      <div class="socials">
+        <a href="#" aria-label="X"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 3h3.2l-7 8 7.3 10h-5.7l-4.5-6.2L5.6 21H2.4l7.5-8.6L2.6 3h5.8l4.2 5.9L17.5 3Zm-1.1 16.1h1.8L7.7 4.8H5.8l10.6 14.3Z"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="#" aria-label="YouTube"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="m10.5 9.5 5 2.5-5 2.5Z" fill="currentColor" stroke="none"/></svg></a>
+        <a href="#" aria-label="LinkedIn"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 0 5 8.5a2.5 2.5 0 0 0 0-5ZM3 9.75h4v11H3v-11Zm6.5 0h3.8v1.5h.06c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.77 2.5 4.77 5.75v5.7h-4v-5.05c0-1.2-.02-2.75-1.75-2.75-1.75 0-2.02 1.32-2.02 2.67v5.13h-4v-11Z"/></svg></a>
+      </div>
+    </div>
+
+    <div class="col">
+      <h3>Product</h3>
+      <ul>
+        <li><a href="#">Product updates</a></li>
+        <li><a href="#">Pricing</a></li>
+        <li><a href="#">Integrations</a></li>
+        <li><a href="#">Templates</a></li>
+        <li><a href="#">Changelog</a></li>
+        <li><a href="#">Status</a></li>
+        <li><a href="#">Roadmap</a></li>
+      </ul>
+    </div>
+    <div class="col">
+      <h3>Resources</h3>
+      <ul>
+        <li><a href="#">Customer stories</a></li>
+        <li><a href="#">Product docs</a></li>
+        <li><a href="#">API reference</a></li>
+        <li><a href="#">Guides</a></li>
+        <li><a href="#">Webinars</a></li>
+        <li><a href="#">Community</a></li>
+        <li><a href="#">Help center</a></li>
+      </ul>
+    </div>
+    <div class="col">
+      <h3>Company</h3>
+      <ul>
+        <li><a href="#">About</a></li>
+        <li class="row"><a href="#">Careers</a><span class="badge">We're hiring</span></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Press kit</a></li>
+        <li><a href="#">Partners</a></li>
+        <li><a href="#">Trust center</a></li>
+        <li><a href="#">Affiliates</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="outline" aria-hidden="true"><span>Howitzer</span></div>
+
+  <div class="legal">
+    <span>© 2026 Howitzer / Refuse all alternatives</span>
+    <nav><a href="#">Security</a><a href="#">Terms of service</a><a href="#">Privacy policy</a></nav>
+  </div>
+</body>
+</html>

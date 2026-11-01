@@ -6,8 +6,17 @@ import catalogsData from "@/data/catalogs.json";
 import enCatalogsData from "@/data/en-catalogs.json";
 import assetsData from "@/data/assets.json";
 import enAssetsData from "@/data/en-assets.json";
+import AuthBlockModal from "@/components/AuthBlockModal";
+import AuthBlockThumb, {
+  AUTH_BLOCK_H,
+  AUTH_BLOCK_W,
+  FOOTER_BLOCK_H,
+  FOOTER_BLOCK_W,
+} from "@/components/AuthBlockThumb";
 import CardDemoThumb from "@/components/CardDemoThumb";
+import NavDemoThumb from "@/components/NavDemoThumb";
 import MotionDetailModal from "@/components/MotionDetailModal";
+import NavStyleModal from "@/components/NavStyleModal";
 import ProModal from "@/components/ProModal";
 import { useFavorites } from "@/lib/favorites";
 import type { Platform } from "@/lib/types";
@@ -20,8 +29,13 @@ type Term = {
   tagline: string;
   platform?: Platform;
   tags?: string[];
-  demoHtml: string;
-  demoClass: string;
+  demoHtml?: string;
+  demoClass?: string;
+  /** 认证页 block：指向 /public 下的独立预览页 */
+  src?: string;
+  /** 缩略图居中放大倍数（内容只占画布一小块的窄卡片用） */
+  zoom?: number;
+  source?: string;
 };
 type Group = {
   id: string;
@@ -109,10 +123,28 @@ const MOTION_SLUG_BY_C: Record<string, string> = {
   carousel: "motion-card-carousel",
   dot: "motion-dot-intro",
   onboarding: "motion-dark-onboarding",
+  bounce: "motion-bounce-cards",
 };
 
 const STAR_PATH =
   "M23.9986 5L17.8856 17.4776L4 19.4911L14.0589 29.3251L11.6544 43L23.9986 36.4192L36.3454 43L33.9586 29.3251L44 19.4911L30.1913 17.4776L23.9986 5Z";
+
+/**
+ * 「独立预览页 + 等比缩略 + 大图弹层」的分类：认证页与页脚走同一套渲染，
+ * 只差各自的画布尺寸和深链参数。
+ */
+const BLOCK_CATS: Record<string, { param: string; w: number; h: number }> = {
+  auth: {
+    param: "auth",
+    w: AUTH_BLOCK_W,
+    h: AUTH_BLOCK_H,
+  },
+  footer: {
+    param: "footer",
+    w: FOOTER_BLOCK_W,
+    h: FOOTER_BLOCK_H,
+  },
+};
 
 export default function CatalogView({
   catalogKey,
@@ -161,14 +193,80 @@ export default function CatalogView({
 
   const [activeCat, setActiveCat] = useState<string>(catalog.categories?.[0]?.key ?? "");
   const [motionSlug, setMotionSlug] = useState<string | null>(null);
-  // demo 的 Share 链接带 ?c=carousel / ?c=dot：打开时落在「交互动画」分类并直接点开对应弹层
+  const [navSlug, setNavSlug] = useState<string | null>(null);
+  // 导航样式没有独立详情页：卡片点开大图预览，?nav=slug 可直接深链到某一条
+  const navTerms = useMemo(
+    () =>
+      catalog.groups
+        .filter((g) => g.category === "navigation")
+        .flatMap((g) => g.terms),
+    [catalog]
+  );
   useEffect(() => {
     if (catalog.key !== "design") return;
-    const slug = MOTION_SLUG_BY_C[new URLSearchParams(window.location.search).get("c") ?? ""];
-    if (slug) {
-      setActiveCat("motion");
-      setMotionSlug(slug);
+    const slug = new URLSearchParams(window.location.search).get("nav");
+    if (slug && navTerms.some((t) => t.slug === slug)) {
+      setNavSlug(slug);
+      setActiveCat("navigation");
     }
+  }, [catalog.key, navTerms]);
+  const openNav = (slug: string) => {
+    setNavSlug(slug);
+    const url = new URL(window.location.href);
+    url.searchParams.set("nav", slug);
+    window.history.replaceState(null, "", url.pathname + url.search + url.hash);
+  };
+  const closeNav = () => {
+    setNavSlug(null);
+    const url = new URL(window.location.href);
+    if (!url.searchParams.has("nav")) return;
+    url.searchParams.delete("nav");
+    window.history.replaceState(null, "", url.pathname + url.search + url.hash);
+  };
+  // block 分类（认证页 / 页脚）：卡片点开大图弹层，?<param>=slug 可深链到某一条
+  const blockTerms = useMemo(() => {
+    const m: Record<string, (Term & { src: string })[]> = {};
+    for (const g of catalog.groups) {
+      if (!g.category || !BLOCK_CATS[g.category]) continue;
+      (m[g.category] ??= []).push(
+        ...g.terms.filter((t): t is Term & { src: string } => Boolean(t.src))
+      );
+    }
+    return m;
+  }, [catalog]);
+  const [block, setBlock] = useState<{ cat: string; slug: string } | null>(null);
+  useEffect(() => {
+    if (catalog.key !== "design") return;
+    const query = new URLSearchParams(window.location.search);
+    for (const [cat, cfg] of Object.entries(BLOCK_CATS)) {
+      const slug = query.get(cfg.param);
+      if (slug && blockTerms[cat]?.some((t) => t.slug === slug)) {
+        setBlock({ cat, slug });
+        setActiveCat(cat);
+        return;
+      }
+    }
+  }, [catalog.key, blockTerms]);
+  const openBlock = (cat: string, slug: string) => {
+    setBlock({ cat, slug });
+    const url = new URL(window.location.href);
+    url.searchParams.set(BLOCK_CATS[cat].param, slug);
+    window.history.replaceState(null, "", url.pathname + url.search + url.hash);
+  };
+  const closeBlock = () => {
+    if (!block) return;
+    const param = BLOCK_CATS[block.cat].param;
+    setBlock(null);
+    const url = new URL(window.location.href);
+    if (!url.searchParams.has(param)) return;
+    url.searchParams.delete(param);
+    window.history.replaceState(null, "", url.pathname + url.search + url.hash);
+  };
+  // demo 的 Share 链接带 ?c=carousel / ?c=dot：打开动效页时直接点开对应弹层
+  useEffect(() => {
+    if (catalog.key !== "motion") return;
+    const slug = MOTION_SLUG_BY_C[new URLSearchParams(window.location.search).get("c") ?? ""];
+    if (slug) setMotionSlug(slug);
   }, [catalog.key]);
   // 独立分区（设计、选型）按页内分类 chips 过滤，概念分区一次铺开所有分组
   const visibleGroups = useMemo(
@@ -349,6 +447,134 @@ export default function CatalogView({
             {catalog.intro ? <p className="cat-page-intro">{catalog.intro}</p> : null}
           </header>
           {visibleGroups.map((g) => {
+            // 认证页 / 页脚分组：卡片是真实 block 的等比缩略（iframe），点开进入大图弹层
+            const blockCat = g.category && BLOCK_CATS[g.category] ? g.category : undefined;
+            if (blockCat) {
+              const cfg = BLOCK_CATS[blockCat];
+              return (
+                <section className="cat-section" id={g.id} key={g.id}>
+                  <h2 className="cat-title">
+                    {g.title}
+                    <span>
+                      {g.count} {T.termCount}
+                    </span>
+                  </h2>
+                  <div className="grid">
+                    {g.terms.map((t) => (
+                      <article
+                        className="card"
+                        data-id={t.slug}
+                        key={t.slug}
+                        style={{ cursor: "pointer" }}
+                        onClick={() => openBlock(blockCat, t.slug)}
+                      >
+                        <div className="card-thumb">
+                          <AuthBlockThumb
+                            src={t.src ?? ""}
+                            title={t.name}
+                            w={cfg.w}
+                            h={cfg.h}
+                            zoom={t.zoom ?? 1}
+                          />
+                        </div>
+                        <div className="card-head">
+                          <a
+                            className="card-title-group card-title-link"
+                            href={`${detailBase}design?${cfg.param}=${t.slug}`}
+                            aria-label={t.name}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              openBlock(blockCat, t.slug);
+                            }}
+                          >
+                            <h3>
+                              {t.name}
+                              {t.en ? <span>{t.en}</span> : null}
+                            </h3>
+                          </a>
+                          <button
+                            type="button"
+                            className={`favorite-button${favorites.has(t.slug) ? " is-saved" : ""}`}
+                            aria-label={T.favoriteTerm}
+                            aria-pressed={favorites.has(t.slug)}
+                            title={T.favoriteTerm}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              toggleFavorite(t.slug);
+                            }}
+                          >
+                            <svg viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+                              <path d={STAR_PATH} />
+                            </svg>
+                          </button>
+                        </div>
+                        <div className="card-tagline card-quote">{t.tagline}</div>
+                      </article>
+                    ))}
+                  </div>
+                </section>
+              );
+            }
+            // 导航样式分组：卡片点开预览弹层，可左右切换全部导航条目
+            if (g.category === "navigation") {
+              return (
+                <section className="cat-section" id={g.id} key={g.id}>
+                  <h2 className="cat-title">
+                    {g.title}
+                    <span>
+                      {g.count} {T.termCount}
+                    </span>
+                  </h2>
+                  <div className="grid">
+                    {g.terms.map((t) => (
+                      <article
+                        className="card"
+                        data-id={t.slug}
+                        key={t.slug}
+                        style={{ cursor: "pointer" }}
+                        onClick={() => openNav(t.slug)}
+                      >
+                        <NavDemoThumb slug={t.slug} className="card-thumb" />
+                        <div className="card-head">
+                          <a
+                            className="card-title-group card-title-link"
+                            href={`${detailBase}design?nav=${t.slug}`}
+                            aria-label={t.name}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              openNav(t.slug);
+                            }}
+                          >
+                            <h3>
+                              {t.name}
+                              {t.en ? <span>{t.en}</span> : null}
+                            </h3>
+                          </a>
+                          <button
+                            type="button"
+                            className={`favorite-button${favorites.has(t.slug) ? " is-saved" : ""}`}
+                            aria-label={T.favoriteTerm}
+                            aria-pressed={favorites.has(t.slug)}
+                            title={T.favoriteTerm}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              toggleFavorite(t.slug);
+                            }}
+                          >
+                            <svg viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+                              <path d={STAR_PATH} />
+                            </svg>
+                          </button>
+                        </div>
+                        <div className="card-tagline card-quote">{t.tagline}</div>
+                      </article>
+                    ))}
+                  </div>
+                </section>
+              );
+            }
             // 交互动画分组：普通卡片网格，点开卡片进入 ripplix 式详情弹层玩 demo
             if (g.category === "motion") {
               return (
@@ -525,6 +751,26 @@ export default function CatalogView({
               </section>
             );
           })}
+          {navSlug && navTerms.some((t) => t.slug === navSlug) && (
+            <NavStyleModal
+              terms={navTerms}
+              slug={navSlug}
+              onSlugChange={openNav}
+              onClose={closeNav}
+              locale={locale}
+            />
+          )}
+          {block && (
+            <AuthBlockModal
+              terms={blockTerms[block.cat]}
+              slug={block.slug}
+              onSlugChange={(slug) => openBlock(block.cat, slug)}
+              onClose={closeBlock}
+              locale={locale}
+              w={BLOCK_CATS[block.cat].w}
+              h={BLOCK_CATS[block.cat].h}
+            />
+          )}
         </div>
       </div>
     </div>

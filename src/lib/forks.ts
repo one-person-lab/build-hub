@@ -1,5 +1,5 @@
 import crypto from "node:crypto";
-import { getDb, nowIso, proActive } from "./db";
+import { getDb, nowIso, userIsPro } from "./db";
 import { playbookSteps } from "./playbooks";
 
 /** 免费账号能同时复刻几份档案；PRO 不限 */
@@ -81,16 +81,9 @@ export function countForks(userId: number): number {
   );
 }
 
-export function proOf(userId: number): boolean {
-  const row = getDb()
-    .prepare(`select pro_until from users where id = ?`)
-    .get(userId) as { pro_until: string | null } | undefined;
-  return proActive(row?.pro_until);
-}
-
 /** 未达 PRO 时的额度闸门：PRO 直接放行，免费账号按份数卡 */
 export function forkQuota(userId: number): { ok: boolean; used: number; limit: number | null } {
-  if (proOf(userId)) return { ok: true, used: countForks(userId), limit: null };
+  if (userIsPro(userId)) return { ok: true, used: countForks(userId), limit: null };
   const used = countForks(userId);
   return { ok: used < FREE_FORK_LIMIT, used, limit: FREE_FORK_LIMIT };
 }

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="112" fill="#0D0D0D"/>
+  <g fill="#FFFFFF">
+    <!-- X · Supabase 风：四段楔形臂向中心收拢，中心留空作缝合缝，180° 旋转对称 -->
+    <!-- 第1行 (y=100) -->
+    <rect x="100" y="100" width="36" height="36" rx="9" opacity="1"/>
+    <rect x="146" y="100" width="36" height="36" rx="9" opacity="0.92"/>
+    <rect x="192" y="100" width="36" height="36" rx="9" opacity="0.85"/>
+    <rect x="284" y="100" width="36" height="36" rx="9" opacity="0.69"/>
+    <rect x="330" y="100" width="36" height="36" rx="9" opacity="0.62"/>
+    <rect x="376" y="100" width="36" height="36" rx="9" opacity="0.54"/>
+    <!-- 第2行 (y=146) -->
+    <rect x="100" y="146" width="36" height="36" rx="9" opacity="0.92"/>
+    <rect x="146" y="146" width="36" height="36" rx="9" opacity="0.85"/>
+    <rect x="330" y="146" width="36" height="36" rx="9" opacity="0.54"/>
+    <rect x="376" y="146" width="36" height="36" rx="9" opacity="0.46"/>
+    <!-- 第3行 (y=192) -->
+    <rect x="100" y="192" width="36" height="36" rx="9" opacity="0.85"/>
+    <rect x="376" y="192" width="36" height="36" rx="9" opacity="0.39"/>
+    <!-- 第5行 (y=284) -->
+    <rect x="100" y="284" width="36" height="36" rx="9" opacity="0.69"/>
+    <rect x="376" y="284" width="36" height="36" rx="9" opacity="0.23"/>
+    <!-- 第6行 (y=330) -->
+    <rect x="100" y="330" width="36" height="36" rx="9" opacity="0.62"/>
+    <rect x="146" y="330" width="36" height="36" rx="9" opacity="0.54"/>
+    <rect x="330" y="330" width="36" height="36" rx="9" opacity="0.23"/>
+    <rect x="376" y="330" width="36" height="36" rx="9" opacity="0.16"/>
+    <!-- 第7行 (y=376) -->
+    <rect x="100" y="376" width="36" height="36" rx="9" opacity="0.54"/>
+    <rect x="146" y="376" width="36" height="36" rx="9" opacity="0.46"/>
+    <rect x="192" y="376" width="36" height="36" rx="9" opacity="0.39"/>
+    <rect x="284" y="376" width="36" height="36" rx="9" opacity="0.23"/>
+    <rect x="330" y="376" width="36" height="36" rx="9" opacity="0.16"/>
+    <rect x="376" y="376" width="36" height="36" rx="9" opacity="0.08"/>
+  </g>
+</svg>

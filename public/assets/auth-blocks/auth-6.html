@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>auth-6 · Six-digit code verification screen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&display=swap" rel="stylesheet" />
+<style>
+  :root{--fg:#fff;--muted:#8a8a8a}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    background:#0a0a0a;color:var(--fg);
+    font-family:"Geist",ui-sans-serif,system-ui,-apple-system,sans-serif;
+    font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;
+    display:grid;place-items:center;padding:40px;overflow:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+
+  .wrap{width:100%;max-width:288px;text-align:center}
+  .mark{
+    width:44px;height:44px;border-radius:13px;background:#1b1b1b;border:1px solid #2b2b2b;
+    display:grid;place-items:center;margin:0 auto 22px;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
+  }
+  h1{font-size:21px;font-weight:600;letter-spacing:-.02em}
+  .sub{
+    font-size:11.5px;color:var(--muted);line-height:1.6;
+    max-width:310px;margin:8px auto 0;
+  }
+  .sub b{color:#f1f1f1;font-weight:500}
+
+  .otp{display:flex;align-items:center;justify-content:center;gap:6px;margin:26px 0 0}
+  .otp .dash{width:8px;height:1px;background:#3a3a3a;margin:0 1px}
+  .cell{
+    width:38px;height:42px;border-radius:9px;
+    background:#131313;border:1px solid #272727;
+    color:#fff;font-family:inherit;font-size:15px;font-weight:500;
+    text-align:center;outline:none;
+    transition:border-color .15s,box-shadow .15s,background .15s;
+    -moz-appearance:textfield;
+  }
+  .cell::-webkit-outer-spin-button,.cell::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+  .cell:focus{border-color:#4d4d4d;background:#181818;box-shadow:0 0 0 3px rgba(255,255,255,.06)}
+  .cell.filled{border-color:#3a3a3a}
+
+  .btn{
+    width:100%;height:32px;border-radius:8px;margin-top:17px;
+    font-size:12px;font-weight:600;display:grid;place-items:center;
+    background:#1c1c1c;color:#6f6f6f;border:1px solid #262626;
+    transition:background .18s,color .18s,border-color .18s;
+    cursor:not-allowed;
+  }
+  .btn.ready{background:#fff;color:#0a0a0a;border-color:#fff;cursor:pointer}
+  .btn.ready:hover{opacity:.9}
+
+  .resend{font-size:11px;color:#8a8a8a;margin-top:16px}
+  .resend b{color:#6f6f6f;font-weight:400}
+  .resend a{color:#e8e8e8;font-weight:500;display:none}
+  .resend.done a{display:inline}
+  .resend.done b{display:none}
+  .resend a:hover{text-decoration:underline}
+
+  .back{
+    display:inline-flex;align-items:center;gap:7px;margin-top:34px;
+    font-size:11.5px;color:#9a9a9a;
+  }
+  .back:hover{color:#fff}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="mark">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="#fff">
+        <path d="M8 0l1.9 6.1L16 8l-6.1 1.9L8 16l-1.9-6.1L0 8l6.1-1.9L8 0z"/>
+      </svg>
+    </div>
+
+    <h1>Check your email</h1>
+    <p class="sub">Enter the 6-digit code we sent to <b>amara@lumen.co</b>. It expires in 10 minutes.</p>
+
+    <form onsubmit="event.preventDefault()">
+      <div class="otp" id="otp">
+        <input class="cell" inputmode="numeric" maxlength="1" aria-label="Digit 1" />
+        <input class="cell" inputmode="numeric" maxlength="1" aria-label="Digit 2" />
+        <input class="cell" inputmode="numeric" maxlength="1" aria-label="Digit 3" />
+        <span class="dash"></span>
+        <input class="cell" inputmode="numeric" maxlength="1" aria-label="Digit 4" />
+        <input class="cell" inputmode="numeric" maxlength="1" aria-label="Digit 5" />
+        <input class="cell" inputmode="numeric" maxlength="1" aria-label="Digit 6" />
+      </div>
+      <button class="btn" id="verify" type="submit" disabled>Enter all 6 digits</button>
+    </form>
+
+    <p class="resend" id="resend"><b id="timer">Didn't receive it? Resend in 15s</b><a href="#" id="resendLink">Didn't receive it? Resend code</a></p>
+
+    <a class="back" href="#">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M11 6l-6 6 6 6"/></svg>
+      Back to sign in
+    </a>
+  </div>
+
+<script>
+  const cells = [...document.querySelectorAll('.cell')];
+  const btn = document.getElementById('verify');
+
+  function sync(){
+    const filled = cells.every(c => c.value.trim().length === 1);
+    btn.classList.toggle('ready', filled);
+    btn.disabled = !filled;
+    btn.textContent = filled ? 'Verify code' : 'Enter all 6 digits';
+    cells.forEach(c => c.classList.toggle('filled', c.value.length === 1));
+  }
+
+  cells.forEach((cell, i) => {
+    cell.addEventListener('input', e => {
+      e.target.value = e.target.value.replace(/\D/g, '').slice(0, 1);
+      if (e.target.value && i < cells.length - 1) cells[i + 1].focus();
+      sync();
+    });
+    cell.addEventListener('keydown', e => {
+      if (e.key === 'Backspace' && !e.target.value && i > 0) cells[i - 1].focus();
+      if (e.key === 'ArrowLeft' && i > 0) cells[i - 1].focus();
+      if (e.key === 'ArrowRight' && i < cells.length - 1) cells[i + 1].focus();
+    });
+    cell.addEventListener('paste', e => {
+      const digits = (e.clipboardData.getData('text') || '').replace(/\D/g, '').slice(0, 6);
+      if (!digits) return;
+      e.preventDefault();
+      digits.split('').forEach((d, k) => { if (cells[k]) cells[k].value = d; });
+      cells[Math.min(digits.length, cells.length - 1)].focus();
+      sync();
+    });
+  });
+
+  /* resend countdown */
+  let left = 15;
+  const timer = document.getElementById('timer');
+  const resendBox = document.getElementById('resend');
+  const tick = setInterval(() => {
+    left--;
+    if (left <= 0){
+      clearInterval(tick);
+      resendBox.classList.add('done');
+      return;
+    }
+    timer.textContent = `Didn't receive it? Resend in ${left}s`;
+  }, 1000);
+
+  document.getElementById('resendLink').addEventListener('click', e => {
+    e.preventDefault();
+    resendBox.classList.remove('done');
+    left = 15;
+    timer.textContent = "Didn't receive it? Resend in 15s";
+    setInterval(() => {
+      left--;
+      if (left <= 0){ clearInterval(); resendBox.classList.add('done'); return; }
+      timer.textContent = `Didn't receive it? Resend in ${left}s`;
+    }, 1000);
+  });
+
+  cells[0].focus();
+</script>
+</body>
+</html>

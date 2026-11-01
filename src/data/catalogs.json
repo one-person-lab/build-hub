@@ -41,7 +41,7 @@
       },
       {
         "label": "设计",
-        "count": 46,
+        "count": 61,
         "active": false
       },
       {
@@ -425,7 +425,7 @@
             "name": "描述列表",
             "en": "Descriptions",
             "tagline": "详情页把信息列清楚就行：名称、时间、状态，一项一项的。",
-            "demoHtml": "<div class=\"card-demo-mount\"><div class=\"desc-d\">\n    <div class=\"d-row\"><span class=\"d-label\">创建人</span><span class=\"d-value\">oil-oil</span></div>\n    <div class=\"d-row\"><span class=\"d-label\">状态</span><span class=\"d-value\"><span class=\"demo-tag blue\">进行中</span></span></div>\n    <div class=\"d-row\"><span class=\"d-label\">更新时间</span><span class=\"d-value\">2026-07-20 14:32</span></div>\n  </div></div>",
+            "demoHtml": "<div class=\"card-demo-mount\"><div class=\"desc-d\">\n    <div class=\"d-row\"><span class=\"d-label\">创建人</span><span class=\"d-value\">buildhub</span></div>\n    <div class=\"d-row\"><span class=\"d-label\">状态</span><span class=\"d-value\"><span class=\"demo-tag blue\">进行中</span></span></div>\n    <div class=\"d-row\"><span class=\"d-label\">更新时间</span><span class=\"d-value\">2026-07-20 14:32</span></div>\n  </div></div>",
             "demoClass": "card-demo preview-animations-paused"
           },
           {
@@ -473,7 +473,7 @@
             "name": "树形控件",
             "en": "Tree",
             "tagline": "文件夹那种一层层展开的，点小三角展开下一级。",
-            "demoHtml": "<div class=\"card-demo-mount\"><div class=\"tre-live\"><div class=\"tre-item\"><input type=\"checkbox\" id=\"tre1\" checked=\"\"><label class=\"tre-node\" for=\"tre1\"><span class=\"tre-arrow\">▸</span><span class=\"tre-label on\">设计部</span></label><div class=\"tre-kids\"><div class=\"tre-item\"><input type=\"checkbox\" id=\"tre2\"><label class=\"tre-node\" for=\"tre2\"><span class=\"tre-arrow\">▸</span><span class=\"tre-label\">UI 组</span></label><div class=\"tre-kids\"><div class=\"tre-leaf\"><span class=\"tre-arrow\"></span><span class=\"tre-label\">林小hu</span></div><div class=\"tre-leaf\"><span class=\"tre-arrow\"></span><span class=\"tre-label\">oil-oil</span></div></div></div><div class=\"tre-item\"><input type=\"checkbox\" id=\"tre3\"><label class=\"tre-node\" for=\"tre3\"><span class=\"tre-arrow\">▸</span><span class=\"tre-label\">用研组</span></label><div class=\"tre-kids\"><div class=\"tre-leaf\"><span class=\"tre-arrow\"></span><span class=\"tre-label\">阿麦</span></div></div></div></div></div><div class=\"tre-item\"><input type=\"checkbox\" id=\"tre4\"><label class=\"tre-node\" for=\"tre4\"><span class=\"tre-arrow\">▸</span><span class=\"tre-label\">研发部</span></label><div class=\"tre-kids\"><div class=\"tre-leaf\"><span class=\"tre-arrow\"></span><span class=\"tre-label\">前端组</span></div><div class=\"tre-leaf\"><span class=\"tre-arrow\"></span><span class=\"tre-label\">后端组</span></div></div></div></div></div>",
+            "demoHtml": "<div class=\"card-demo-mount\"><div class=\"tre-live\"><div class=\"tre-item\"><input type=\"checkbox\" id=\"tre1\" checked=\"\"><label class=\"tre-node\" for=\"tre1\"><span class=\"tre-arrow\">▸</span><span class=\"tre-label on\">设计部</span></label><div class=\"tre-kids\"><div class=\"tre-item\"><input type=\"checkbox\" id=\"tre2\"><label class=\"tre-node\" for=\"tre2\"><span class=\"tre-arrow\">▸</span><span class=\"tre-label\">UI 组</span></label><div class=\"tre-kids\"><div class=\"tre-leaf\"><span class=\"tre-arrow\"></span><span class=\"tre-label\">林小hu</span></div><div class=\"tre-leaf\"><span class=\"tre-arrow\"></span><span class=\"tre-label\">buildhub</span></div></div></div><div class=\"tre-item\"><input type=\"checkbox\" id=\"tre3\"><label class=\"tre-node\" for=\"tre3\"><span class=\"tre-arrow\">▸</span><span class=\"tre-label\">用研组</span></label><div class=\"tre-kids\"><div class=\"tre-leaf\"><span class=\"tre-arrow\"></span><span class=\"tre-label\">阿麦</span></div></div></div></div></div><div class=\"tre-item\"><input type=\"checkbox\" id=\"tre4\"><label class=\"tre-node\" for=\"tre4\"><span class=\"tre-arrow\">▸</span><span class=\"tre-label\">研发部</span></label><div class=\"tre-kids\"><div class=\"tre-leaf\"><span class=\"tre-arrow\"></span><span class=\"tre-label\">前端组</span></div><div class=\"tre-leaf\"><span class=\"tre-arrow\"></span><span class=\"tre-label\">后端组</span></div></div></div></div></div>",
             "demoClass": "card-demo preview-animations-paused"
           },
           {
@@ -632,7 +632,7 @@
             "name": "气泡卡片",
             "en": "Popover",
             "tagline": "点一下头像，旁边浮出一张小卡片显示资料。",
-            "demoHtml": "<div class=\"card-demo-mount\"><div class=\"popover-demo\"><div class=\"popover-card\"><div class=\"popover-user\"><span class=\"popover-avatar\">林</span><div><div class=\"popover-title\">oil-oil</div><div class=\"popover-sub\">产品经理 · 深圳</div></div></div><span class=\"popover-link\">查看主页 →</span></div><div class=\"popover-arrow\"></div><span class=\"popover-avatar popover-trigger\">林</span></div></div>",
+            "demoHtml": "<div class=\"card-demo-mount\"><div class=\"popover-demo\"><div class=\"popover-card\"><div class=\"popover-user\"><span class=\"popover-avatar\">林</span><div><div class=\"popover-title\">buildhub</div><div class=\"popover-sub\">产品经理 · 深圳</div></div></div><span class=\"popover-link\">查看主页 →</span></div><div class=\"popover-arrow\"></div><span class=\"popover-avatar popover-trigger\">林</span></div></div>",
             "demoClass": "card-demo preview-animations-paused"
           },
           {
@@ -1297,7 +1297,7 @@
       },
       {
         "label": "设计",
-        "count": 46,
+        "count": 61,
         "active": false
       },
       {
@@ -1897,7 +1897,7 @@
       },
       {
         "label": "设计",
-        "count": 46,
+        "count": 61,
         "active": false
       },
       {
@@ -2129,7 +2129,7 @@
       },
       {
         "label": "设计",
-        "count": 46,
+        "count": 61,
         "active": false
       },
       {
@@ -2303,7 +2303,7 @@
       },
       {
         "label": "设计",
-        "count": 46,
+        "count": 61,
         "active": false
       },
       {
@@ -2535,7 +2535,7 @@
       },
       {
         "label": "设计",
-        "count": 46,
+        "count": 61,
         "active": false
       },
       {
@@ -3007,7 +3007,7 @@
       },
       {
         "label": "设计",
-        "count": 46,
+        "count": 61,
         "active": false
       },
       {
@@ -3141,8 +3141,20 @@
         "label": "Icon 图标"
       },
       {
-        "key": "motion",
-        "label": "交互动画"
+        "key": "navigation",
+        "label": "导航"
+      },
+      {
+        "key": "auth",
+        "label": "认证页"
+      },
+      {
+        "key": "footer",
+        "label": "页脚"
+      },
+      {
+        "key": "dashboard",
+        "label": "仪表盘"
       }
     ],
     "tabs": [
@@ -3183,7 +3195,7 @@
       },
       {
         "label": "设计",
-        "count": 46,
+        "count": 61,
         "active": true
       },
       {
@@ -3246,22 +3258,6 @@
             "en": "Scrapbook Journal",
             "tagline": "暖纸底、衬线大标题、微微歪着的卡片：像自己整理的收藏手账。",
             "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div style=\"width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#f4eee1;padding:16px\"><div style=\"background:#f4eee1;border-radius:12px;width:600px;padding:18px 20px;display:flex;flex-direction:column;gap:12px\"><div><h2 style=\"font-size:18px;color:#3a3325;font-weight:900\">产品手账<span style=\"font-size:9px;color:#b3a888;font-weight:400;letter-spacing:.18em;margin-left:8px\">FIELD NOTES</span></h2><span style=\"display:inline-block;width:52px;height:3px;background:#d9a441;border-radius:2px;margin-top:4px\"></span></div><div style=\"display:flex;gap:12px\"><div style=\"position:relative;transform:rotate(-1.6deg);background:#fffdf7;border:1px solid #e5dcc8;border-radius:6px;box-shadow:0 2px 0 rgba(120,100,60,.14);padding:12px 11px;flex:1;min-width:0\"><i style=\"position:absolute;top:-7px;left:50%;transform:translateX(-50%) rotate(-2deg);width:40px;height:12px;background:#a8c8e8;opacity:.85\"></i><span style=\"position:absolute;top:7px;right:8px;color:#d9a441;font-size:11px\">★</span><div style=\"display:flex;align-items:center;gap:7px\"><img src=\"/assets/logos/cursor.png\" alt=\"\" width=\"16\" height=\"16\" style=\"width:16px;height:16px;object-fit:contain;border-radius:4px\"/><b style=\"font-size:12px;color:#3a3325\">Cursor</b></div><p style=\"margin-top:4px;font-size:10px;color:#8a7f66;line-height:1.5\">试了三个月，Tab 补全真的在预测我的下一次重构。</p></div><div style=\"position:relative;transform:rotate(1.2deg);background:#fffdf7;border:1px solid #e5dcc8;border-radius:6px;box-shadow:0 2px 0 rgba(120,100,60,.14);padding:12px 11px;flex:1;min-width:0\"><i style=\"position:absolute;top:-7px;left:50%;transform:translateX(-50%) rotate(-2deg);width:40px;height:12px;background:#e8b4b4;opacity:.85\"></i><div style=\"display:flex;align-items:center;gap:7px\"><img src=\"/assets/logos/linear.ico\" alt=\"\" width=\"16\" height=\"16\" style=\"width:16px;height:16px;object-fit:contain;border-radius:4px\"/><b style=\"font-size:12px;color:#3a3325\">Linear</b></div><p style=\"margin-top:4px;font-size:10px;color:#8a7f66;line-height:1.5\">issue 列表快到像没有加载这回事。</p></div><div style=\"position:relative;transform:rotate(-0.6deg);background:#fffdf7;border:1px solid #e5dcc8;border-radius:6px;box-shadow:0 2px 0 rgba(120,100,60,.14);padding:12px 11px;flex:1;min-width:0\"><i style=\"position:absolute;top:-7px;left:50%;transform:translateX(-50%) rotate(-2deg);width:40px;height:12px;background:#b8d8b0;opacity:.85\"></i><span style=\"position:absolute;top:7px;right:8px;color:#d9a441;font-size:11px\">★</span><div style=\"display:flex;align-items:center;gap:7px\"><img src=\"/assets/logos/appllama.webp\" alt=\"\" width=\"16\" height=\"16\" style=\"width:16px;height:16px;object-fit:contain;border-radius:4px\"/><b style=\"font-size:12px;color:#3a3325\">Appllama</b></div><p style=\"margin-top:4px;font-size:10px;color:#8a7f66;line-height:1.5\">把头部 App 的付费墙全存了一遍，抄作业用。</p></div></div></div></div></div>",
-            "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
-          },
-          {
-            "slug": "style-directory-nav",
-            "name": "图鉴式导航",
-            "en": "Catalog Navbar",
-            "tagline": "分区、搜索、Go Pro 一条顶栏全摊开，三秒知道能逛什么。",
-            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div style=\"width:100%;height:100%;background:#f7f7f8;padding:18px 20px;display:flex;flex-direction:column;justify-content:center;gap:14px;font-family:ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif\"><div style=\"font-size:9px;color:#6b6e76\">浅色态</div><div style=\"background:#ffffff;border:1px solid #e4e4e7;border-radius:10px;padding:7px 12px;display:flex;align-items:center;gap:12px\"><span style=\"display:flex;align-items:center;gap:6px\"><span style=\"width:18px;height:18px;display:grid;place-items:center;background:#E8C767;border-radius:5px;color:#14151a;font-size:10px;font-weight:800\">✦</span><b style=\"font-size:11px;color:#1a1b20;letter-spacing:.03em\">BUILDHUB</b></span><span style=\"display:flex;gap:11px;margin-left:6px\"><span style=\"font-size:10px;color:#1a1b20;font-weight:700\">术语</span><span style=\"font-size:10px;color:#6b6e76;font-weight:400\">技能</span><span style=\"font-size:10px;color:#6b6e76;font-weight:400\">产品</span><span style=\"font-size:10px;color:#6b6e76;font-weight:400\">提示词</span></span><span style=\"font-size:9px;font-weight:700;color:#ffffff;background:#14151a;border:1px solid #14151a;padding:2.5px 9px;border-radius:999px\">素材库</span><span style=\"margin-left:auto;display:flex;align-items:center;gap:8px\"><span style=\"display:flex;align-items:center;gap:5px;background:#f4f4f5;border-radius:999px;padding:4px 8px;font-size:9px;color:#6b6e76\">⌕ 搜索术语、技能…<i style=\"font-style:normal;border:1px solid #e4e4e7;border-radius:4px;padding:0 4px;font-size:8px\">/</i></span><span style=\"font-size:9.5px;font-weight:700;color:#1a1b20\">Go Pro</span><span style=\"width:18px;height:18px;border-radius:50%;background:#14151a;color:#fff;display:grid;place-items:center;font-size:9px\">✦</span></span></div><div style=\"font-size:9px;color:#6b6e76\">深色态</div><div style=\"background:#14151a;border:1px solid #2c2f38;border-radius:10px;padding:7px 12px;display:flex;align-items:center;gap:12px\"><span style=\"display:flex;align-items:center;gap:6px\"><span style=\"width:18px;height:18px;display:grid;place-items:center;background:#E8C767;border-radius:5px;color:#14151a;font-size:10px;font-weight:800\">✦</span><b style=\"font-size:11px;color:#ECEEF2;letter-spacing:.03em\">BUILDHUB</b></span><span style=\"display:flex;gap:11px;margin-left:6px\"><span style=\"font-size:10px;color:#ECEEF2;font-weight:700\">术语</span><span style=\"font-size:10px;color:#8B8E99;font-weight:400\">技能</span><span style=\"font-size:10px;color:#8B8E99;font-weight:400\">产品</span><span style=\"font-size:10px;color:#8B8E99;font-weight:400\">提示词</span></span><span style=\"font-size:9px;font-weight:700;color:#E8C767;background:transparent;border:1px solid #E8C767;padding:2.5px 9px;border-radius:999px\">素材库</span><span style=\"margin-left:auto;display:flex;align-items:center;gap:8px\"><span style=\"display:flex;align-items:center;gap:5px;background:#202228;border-radius:999px;padding:4px 8px;font-size:9px;color:#8B8E99\">⌕ 搜索术语、技能…<i style=\"font-style:normal;border:1px solid #2c2f38;border-radius:4px;padding:0 4px;font-size:8px\">/</i></span><span style=\"font-size:9.5px;font-weight:700;color:#ECEEF2\">Go Pro</span><span style=\"width:18px;height:18px;border-radius:50%;background:#E8C767;color:#14151a;display:grid;place-items:center;font-size:9px\">✦</span></span></div><div style=\"font-size:9px;color:#a1a1aa;text-align:center;margin-top:2px\">同一骨架 · 深浅双态</div></div></div>",
-            "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
-          },
-          {
-            "slug": "style-dark-catalog",
-            "name": "深色图鉴风",
-            "en": "Dark Library",
-            "tagline": "深底、一点金、卡片排得密：把内容站做出 Appllama 那种「有货的库」的仪式感。",
-            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div style=\"width:100%;height:100%;background:#14151a;padding:16px 20px;display:flex;flex-direction:column;gap:10px\"><div style=\"display:flex;align-items:baseline;gap:10px\"><b style=\"font-size:15px;color:#eceef2\">产品图鉴</b><span style=\"font-size:10px;color:#8b8e99\">优秀产品的收藏 · 共 13 件</span><span style=\"margin-left:auto;background:#e8c767;color:#14151a;border-radius:6px;padding:2px 8px;font-size:10px;font-weight:800\">PRO</span></div><div style=\"display:flex;gap:6px;flex-wrap:wrap\"><span style=\"border:1px solid #5a5236;border-radius:999px;padding:3px 10px;font-size:10.5px;color:#e8c767\">全部 13</span><span style=\"border:1px solid #3a3d46;border-radius:999px;padding:3px 10px;font-size:10.5px;color:#9a9dab\">AI 工具</span><span style=\"border:1px solid #3a3d46;border-radius:999px;padding:3px 10px;font-size:10.5px;color:#9a9dab\">效率工具</span><span style=\"border:1px solid #3a3d46;border-radius:999px;padding:3px 10px;font-size:10.5px;color:#9a9dab\">设计创意</span></div><div style=\"display:flex;flex-direction:column;gap:8px\"><div style=\"display:grid;grid-template-columns:repeat(3,1fr);gap:8px\"><div style=\"background:#202228;border:1px solid #2c2f38;border-radius:10px;padding:10px 11px;display:flex;align-items:center;gap:9px\"><span style=\"width:24px;height:24px;flex:none;background:#fff;border-radius:7px;display:grid;place-items:center\"><img src=\"/assets/logos/cursor.png\" alt=\"\" width=\"18\" height=\"18\" style=\"width:18px;height:18px;object-fit:contain;border-radius:4px\"/></span><div style=\"min-width:0\"><b style=\"display:block;font-size:12px;color:#eceef2;font-weight:700\">Cursor</b><span style=\"font-size:10px;color:#8b8e99;line-height:1.4;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">真正读懂你代码库的 AI 编辑器</span></div></div><div style=\"background:#202228;border:1px solid #2c2f38;border-radius:10px;padding:10px 11px;display:flex;align-items:center;gap:9px\"><span style=\"width:24px;height:24px;flex:none;background:#fff;border-radius:7px;display:grid;place-items:center\"><img src=\"/assets/logos/linear.ico\" alt=\"\" width=\"18\" height=\"18\" style=\"width:18px;height:18px;object-fit:contain;border-radius:4px\"/></span><div style=\"min-width:0\"><b style=\"display:block;font-size:12px;color:#eceef2;font-weight:700\">Linear</b><span style=\"font-size:10px;color:#8b8e99;line-height:1.4;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">为速度而生的 issue 管理</span></div></div><div style=\"background:#202228;border:1px solid #2c2f38;border-radius:10px;padding:10px 11px;display:flex;align-items:center;gap:9px\"><span style=\"width:24px;height:24px;flex:none;background:#fff;border-radius:7px;display:grid;place-items:center\"><img src=\"/assets/logos/raycast.png\" alt=\"\" width=\"18\" height=\"18\" style=\"width:18px;height:18px;object-fit:contain;border-radius:4px\"/></span><div style=\"min-width:0\"><b style=\"display:block;font-size:12px;color:#eceef2;font-weight:700\">Raycast</b><span style=\"font-size:10px;color:#8b8e99;line-height:1.4;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">键盘启动器，扩展即生态</span></div></div></div><div style=\"display:grid;grid-template-columns:repeat(3,1fr);gap:8px\"><div style=\"background:#202228;border:1px solid #2c2f38;border-radius:10px;padding:10px 11px;display:flex;align-items:center;gap:9px\"><span style=\"width:24px;height:24px;flex:none;background:#fff;border-radius:7px;display:grid;place-items:center\"><img src=\"/assets/logos/buffer.ico\" alt=\"\" width=\"18\" height=\"18\" style=\"width:18px;height:18px;object-fit:contain;border-radius:4px\"/></span><div style=\"min-width:0\"><b style=\"display:block;font-size:12px;color:#eceef2;font-weight:700\">Buffer</b><span style=\"font-size:10px;color:#8b8e99;line-height:1.4;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">有节奏地经营自媒体矩阵</span></div></div><div style=\"background:#202228;border:1px solid #2c2f38;border-radius:10px;padding:10px 11px;display:flex;align-items:center;gap:9px\"><span style=\"width:24px;height:24px;flex:none;background:#fff;border-radius:7px;display:grid;place-items:center\"><img src=\"/assets/logos/appllama.webp\" alt=\"\" width=\"18\" height=\"18\" style=\"width:18px;height:18px;object-fit:contain;border-radius:4px\"/></span><div style=\"min-width:0\"><b style=\"display:block;font-size:12px;color:#eceef2;font-weight:700\">Appllama</b><span style=\"font-size:10px;color:#8b8e99;line-height:1.4;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">1200+ 头部 App 的付费墙库</span></div></div><div style=\"background:#202228;border:1px solid #2c2f38;border-radius:10px;padding:10px 11px;display:flex;align-items:center;gap:9px\"><span style=\"width:24px;height:24px;flex:none;background:#fff;border-radius:7px;display:grid;place-items:center\"><img src=\"/assets/logos/figma.png\" alt=\"\" width=\"18\" height=\"18\" style=\"width:18px;height:18px;object-fit:contain;border-radius:4px\"/></span><div style=\"min-width:0\"><b style=\"display:block;font-size:12px;color:#eceef2;font-weight:700\">Figma</b><span style=\"font-size:10px;color:#8b8e99;line-height:1.4;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">浏览器里的设计协作标准件</span></div></div></div></div><small style=\"margin-top:auto;color:#5c5f69;font-size:9.5px\">虚构示例 · 图标为各产品真实 logo</small></div></div>",
             "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
           },
           {
@@ -3491,53 +3487,6 @@
         ]
       },
       {
-        "id": "cat-interaction-motion",
-        "title": "动效组件",
-        "category": "motion",
-        "count": 3,
-        "terms": [
-          {
-            "slug": "motion-card-carousel",
-            "name": "卡片轮播",
-            "en": "Card Carousel",
-            "tagline": "三张照片卡散落堆叠：跟着指针浮沉，点击或拖拽换卡，参数滑杆实时改动画。",
-            "tags": [
-              "指针响应",
-              "拖拽换卡",
-              "参数可调"
-            ],
-            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div style=\"position:relative;width:100%;height:100%;background:var(--bg-soft)\"><div style=\"position:absolute;left:50%;top:50%;width:130px;height:173px;margin:-86px 0 0 -216px;transform:rotate(-8deg);border-radius:12px;background:url(/assets/motion/citrus.png) center/cover;box-shadow:0 12px 26px rgba(0,0,0,.22)\"></div><div style=\"position:absolute;left:50%;top:50%;width:130px;height:173px;margin:-86px 0 0 86px;transform:rotate(7deg);border-radius:12px;background:url(/assets/motion/forest.png) center/cover;box-shadow:0 12px 26px rgba(0,0,0,.22)\"></div><div style=\"position:absolute;left:50%;top:50%;width:140px;height:187px;margin:-96px 0 0 -70px;transform:rotate(-3deg);border-radius:12px;background:url(/assets/motion/dune.png) center/cover;box-shadow:0 16px 34px rgba(0,0,0,.28)\"></div></div></div>",
-            "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
-          },
-          {
-            "slug": "motion-dot-intro",
-            "name": "信纸开场",
-            "en": "Letter Intro",
-            "tagline": "渐变底上一张微倾斜的信纸浮入，衬线文字逐行淡进——点一下屏幕推进一步，循环重播。",
-            "tags": [
-              "入场动画",
-              "点击推进",
-              "自动循环"
-            ],
-            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div style=\"position:relative;width:100%;height:100%;background:linear-gradient(160deg,#f3d9c4,#f8efe7 55%,#e9e4f2)\"><div style=\"position:absolute;left:50%;top:24%;transform:translateX(-50%);font-family:Georgia,'Songti SC',serif;font-size:19px;color:#33291f\">还有一件事</div><div style=\"position:absolute;left:50%;top:66%;transform:translate(-50%,-50%) rotate(-4deg);width:150px;height:170px;background:#fffdf9;border-radius:14px;box-shadow:0 14px 30px rgba(80,50,40,.2);padding:16px;box-sizing:border-box;font-family:Georgia,'Songti SC',serif;font-size:15px;color:#2b241e\">你好，<i style=\"display:inline-block;width:2px;height:13px;background:#2b241f;vertical-align:-2px\"></i></div></div></div>",
-            "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
-          },
-          {
-            "slug": "motion-dark-onboarding",
-            "name": "暗场引导",
-            "en": "Dark Onboarding",
-            "tagline": "深色手机里四个引导场景横向滑入换场：条目分步进、3D 卡片翻面、图标描边形变、数字逐位滚定——点屏推进，自动循环。",
-            "tags": [
-              "横向切场",
-              "3D 卡片",
-              "数字滚轮"
-            ],
-            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div style=\"position:relative;width:100%;height:100%;background:#0a0b0d\"><div style=\"position:absolute;left:50%;top:34%;transform:translate(-50%,-50%) rotateX(10deg) rotateY(-8deg);width:150px;height:94px;border-radius:11px;background:linear-gradient(135deg,#2c2f35,#17191d 46%,#34373e);border:1px solid #43474f;box-shadow:0 16px 32px rgba(0,0,0,.5);box-sizing:border-box\"><span style=\"position:absolute;top:11px;right:12px;font-size:10px;letter-spacing:1px;color:#e6c58a\">潮汐</span><span style=\"position:absolute;top:34px;left:12px;width:22px;height:17px;border-radius:4px;background:linear-gradient(120deg,#d8b475,#8d7040)\"></span><span style=\"position:absolute;bottom:12px;left:12px;font-size:10px;letter-spacing:1px;color:#b9bdc5\">•••• •••• •••• 4291</span></div><div style=\"position:absolute;left:20%;bottom:20%;width:92px;height:9px;border-radius:5px;background:#f2f3f5\"></div><div style=\"position:absolute;left:20%;bottom:13%;width:128px;height:6px;border-radius:4px;background:#3a3d44\"></div></div></div>",
-            "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
-          }
-        ]
-      },
-      {
         "id": "cat-texture-expression",
         "title": "质感表达",
         "category": "web-style",
@@ -3582,6 +3531,438 @@
             "tagline": "把学习做成打游戏：进度条、连击、宝箱和吉祥物，每一步都有奖励反馈。",
             "platform": "ios",
             "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div style=\"width:100%;height:100%;display:flex;flex-direction:column;align-items:center;gap:12px;padding:16px;background:linear-gradient(#fff,#f7fbef);box-sizing:border-box\"><div style=\"width:70%;height:8px;border-radius:99px;background:#e5e5e5\"><i style=\"display:block;width:62%;height:100%;border-radius:99px;background:#ff9600\"></i></div><div style=\"display:flex;flex-direction:column;align-items:center;gap:10px\"><div style=\"width:44px;height:40px;border-radius:50% 50% 46% 46%;background:#58cc02;box-shadow:0 5px 0 #46a302;color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px\">★</div><div style=\"width:150px;background:#58cc02;border-radius:12px;padding:9px 10px;color:#fff;box-shadow:0 5px 0 #46a302\"><b style=\"display:block;font-size:11px\">点餐与食物</b><span style=\"display:block;font-size:9px;opacity:.85;margin:2px 0 6px\">第 3 课 · 共 4 课</span><i style=\"display:block;height:22px;line-height:22px;text-align:center;background:#fff;color:#46a302;border-radius:8px;font-size:9.5px;font-style:normal;font-weight:800\">START +10 XP</i></div><div style=\"display:flex;gap:14px\"><span style=\"width:36px;height:32px;border-radius:50% 50% 46% 46%;background:#e2e5db;box-shadow:0 4px 0 #cdd2c4\"></span><span style=\"width:36px;height:32px;border-radius:50% 50% 46% 46%;background:#e2e5db;box-shadow:0 4px 0 #cdd2c4\"></span></div></div></div></div>",
+            "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
+          }
+        ]
+      },
+      {
+        "id": "cat-nav-top",
+        "title": "顶部导航",
+        "category": "navigation",
+        "count": 8,
+        "terms": [
+          {
+            "slug": "nav-classic-top",
+            "name": "经典下拉导航",
+            "en": "Classic Top Nav",
+            "tagline": "白底顶栏，主菜单带下拉，右边是登录和试用按钮。",
+            "demoOnly": true,
+            "source": "https://pro.reactbits.dev/docs/blocks/navigation/navigation-1?variantSort=latest"
+          },
+          {
+            "slug": "nav-rounded-pill",
+            "name": "圆角药丸导航",
+            "en": "Rounded Pill Nav",
+            "tagline": "每个链接都是一颗圆角药丸，轻巧地排在顶栏里。",
+            "demoOnly": true,
+            "source": "https://pro.reactbits.dev/docs/blocks/navigation/navigation-7?variantSort=latest"
+          },
+          {
+            "slug": "nav-peeking-announcement",
+            "name": "公告胶囊导航",
+            "en": "Announcement Pill Nav",
+            "tagline": "顶栏上方探出一条公告胶囊，把新消息顶到你面前。",
+            "demoOnly": true,
+            "source": "https://pro.reactbits.dev/docs/blocks/navigation/navigation-9?variantSort=latest"
+          },
+          {
+            "slug": "nav-status-pill",
+            "name": "极简品牌顶栏",
+            "en": "Minimal Brand Bar",
+            "tagline": "青色 N 字标、居中的四个链接，右侧收一颗黑色主按钮。",
+            "demoOnly": true,
+            "source": "https://pro.reactbits.dev/docs/blocks/navigation/navigation-10?variantSort=latest"
+          },
+          {
+            "slug": "nav-dark-mega",
+            "name": "深色胶囊导航",
+            "en": "Dark Pill Nav",
+            "tagline": "深色胶囊横贯顶部，中置字标，右侧橙色按钮收尾。",
+            "demoOnly": true,
+            "source": "https://pro.reactbits.dev/docs/blocks/navigation/navigation-11?variantSort=latest"
+          },
+          {
+            "slug": "nav-centered-wordmark",
+            "name": "中置字标导航",
+            "en": "Centered Wordmark Nav",
+            "tagline": "极简三分栏：左菜单、中间字标、右边联系按钮。",
+            "demoOnly": true,
+            "source": "https://pro.reactbits.dev/docs/blocks/navigation/navigation-13?variantSort=latest"
+          },
+          {
+            "slug": "nav-mega-panel",
+            "name": "巨型面板导航",
+            "en": "Mega Panel Nav",
+            "tagline": "悬停展开大面板，右侧固定一张推荐卡片。",
+            "demoOnly": true,
+            "source": "https://pro.reactbits.dev/docs/blocks/navigation/navigation-14?variantSort=latest"
+          },
+          {
+            "slug": "nav-traveling-underline",
+            "name": "游标下划线导航",
+            "en": "Traveling Underline Nav",
+            "tagline": "很安静的顶栏，当前项下方一条会移动的下划线。",
+            "demoOnly": true,
+            "source": "https://pro.reactbits.dev/docs/blocks/navigation/navigation-15?variantSort=latest"
+          }
+        ]
+      },
+      {
+        "id": "cat-nav-pill",
+        "title": "胶囊与玻璃",
+        "category": "navigation",
+        "count": 3,
+        "terms": [
+          {
+            "slug": "nav-rounded-glass",
+            "name": "圆角玻璃导航",
+            "en": "Rounded Glass Nav",
+            "tagline": "悬浮的圆角玻璃条，下拉展开是一整张卡片。",
+            "demoOnly": true,
+            "source": "https://pro.reactbits.dev/docs/blocks/navigation/navigation-2?variantSort=latest"
+          },
+          {
+            "slug": "nav-centered-capsule",
+            "name": "胶囊中置导航",
+            "en": "Centered Capsule Nav",
+            "tagline": "Logo 在左、链接收进中央胶囊、登录注册在右。",
+            "demoOnly": true,
+            "source": "https://pro.reactbits.dev/docs/blocks/navigation/navigation-3?variantSort=latest"
+          },
+          {
+            "slug": "nav-sliding-indicator",
+            "name": "滑动指示器导航",
+            "en": "Sliding Indicator Nav",
+            "tagline": "玻璃胶囊导航，当前项带会滑动的深色指示器。",
+            "demoOnly": true,
+            "source": "https://pro.reactbits.dev/docs/blocks/navigation/navigation-12?variantSort=latest"
+          }
+        ]
+      },
+      {
+        "id": "cat-nav-side",
+        "title": "侧边与底部",
+        "category": "navigation",
+        "count": 3,
+        "terms": [
+          {
+            "slug": "nav-side-dock",
+            "name": "侧边停靠栏",
+            "en": "Side Dock",
+            "tagline": "贴在屏幕侧边的图标 dock，悬停时图标放大。",
+            "demoOnly": true,
+            "source": "https://pro.reactbits.dev/docs/blocks/navigation/navigation-4?variantSort=latest"
+          },
+          {
+            "slug": "nav-expanding-bottom",
+            "name": "底部扩展导航",
+            "en": "Expanding Bottom Nav",
+            "tagline": "底部悬浮条只露一条，点开后展开完整菜单。",
+            "demoOnly": true,
+            "source": "https://pro.reactbits.dev/docs/blocks/navigation/navigation-5?variantSort=latest"
+          },
+          {
+            "slug": "nav-blurred-bottom",
+            "name": "毛玻璃底部导航",
+            "en": "Blurred Bottom Nav",
+            "tagline": "底部毛玻璃胶囊，悬停分类时弹出图片预览。",
+            "demoOnly": true,
+            "source": "https://pro.reactbits.dev/docs/blocks/navigation/navigation-8?variantSort=latest"
+          }
+        ]
+      },
+      {
+        "id": "cat-nav-full",
+        "title": "全屏菜单",
+        "category": "navigation",
+        "count": 1,
+        "terms": [
+          {
+            "slug": "nav-fullscreen-menu",
+            "name": "全屏菜单",
+            "en": "Fullscreen Menu",
+            "tagline": "顶部只留菜单按钮，展开是带图片预览的全屏导航。",
+            "demoOnly": true,
+            "source": "https://pro.reactbits.dev/docs/blocks/navigation/navigation-6?variantSort=latest"
+          }
+        ]
+      },
+      {
+        "id": "cat-auth-pages",
+        "title": "认证页",
+        "category": "auth",
+        "count": 6,
+        "terms": [
+          {
+            "slug": "auth-split-testimonial",
+            "name": "证言分栏",
+            "en": "Testimonial Split",
+            "tagline": "左边填账号，右边一列车评不停往左滚，适合需要先建立信任感的产品。",
+            "src": "/assets/auth-blocks/auth-1.html",
+            "source": "https://pro.reactbits.dev/docs/blocks/auth/auth-1"
+          },
+          {
+            "slug": "auth-artwork-split",
+            "name": "插画分栏",
+            "en": "Artwork Split",
+            "tagline": "左半边一整块青色网点插画，右边放 Google / GitHub 一键登录，第一眼就不廉价。",
+            "src": "/assets/auth-blocks/auth-2.html",
+            "source": "https://pro.reactbits.dev/docs/blocks/auth/auth-2"
+          },
+          {
+            "slug": "auth-light-sheet",
+            "name": "光感浮层",
+            "en": "Light-sheet Card",
+            "tagline": "整屏一张蓝色光感照片，登录卡浮在上面，适合有品牌调性的落地页。",
+            "src": "/assets/auth-blocks/auth-3.html",
+            "source": "https://pro.reactbits.dev/docs/blocks/auth/auth-3"
+          },
+          {
+            "slug": "auth-orbital-rings",
+            "name": "轨道环",
+            "en": "Orbital Rings",
+            "tagline": "右边几圈虚线轨道，配三枚安全徽标，把「我们很稳」说得很含蓄。",
+            "src": "/assets/auth-blocks/auth-4.html",
+            "source": "https://pro.reactbits.dev/docs/blocks/auth/auth-4"
+          },
+          {
+            "slug": "auth-magic-link",
+            "name": "魔法链接",
+            "en": "Magic Link",
+            "tagline": "只要一个邮箱，点完直接切到「查收邮件」态，注册链路最短的写法。",
+            "src": "/assets/auth-blocks/auth-5.html",
+            "source": "https://pro.reactbits.dev/docs/blocks/auth/auth-5",
+            "zoom": 1.25
+          },
+          {
+            "slug": "auth-six-digit-code",
+            "name": "验证码",
+            "en": "Six-digit Code",
+            "tagline": "六格验证码，填满自动点亮按钮，拿来做二次验证或手机号登录都行。",
+            "src": "/assets/auth-blocks/auth-6.html",
+            "source": "https://pro.reactbits.dev/docs/blocks/auth/auth-6",
+            "zoom": 1.5
+          }
+        ]
+      },
+      {
+        "id": "cat-footer-link-columns",
+        "title": "多栏链接",
+        "category": "footer",
+        "count": 4,
+        "terms": [
+          {
+            "slug": "footer-giant-wordmark",
+            "name": "巨型字标底纹",
+            "en": "Giant Wordmark",
+            "tagline": "四栏链接压在一行被裁掉一半的灰色大字上，SaaS 站最常用的收尾。",
+            "src": "/assets/footer-blocks/footer-1.html",
+            "source": "https://pro.reactbits.dev/docs/blocks/footer/footer-1"
+          },
+          {
+            "slug": "footer-large-link-rows",
+            "name": "大字链接排",
+            "en": "Large Link Rows",
+            "tagline": "链接本身做成大字，小标题反而压小，最底下垫一条纯黑托底。",
+            "src": "/assets/footer-blocks/footer-6.html",
+            "source": "https://pro.reactbits.dev/docs/blocks/footer/footer-6"
+          },
+          {
+            "slug": "footer-quiet-columns",
+            "name": "安静四栏",
+            "en": "Quiet Columns",
+            "tagline": "栏目少、留白大，右下角一枚胶囊订阅框，工作室站点的气质款。",
+            "src": "/assets/footer-blocks/footer-7.html",
+            "source": "https://pro.reactbits.dev/docs/blocks/footer/footer-7"
+          },
+          {
+            "slug": "footer-five-column-sitemap",
+            "name": "五栏站点地图",
+            "en": "Five-Column Sitemap",
+            "tagline": "五栏链接铺满整行，产品列配圆形描边小图标，尾巴挂品牌线和一句法务说明。",
+            "src": "/assets/footer-blocks/footer-11.html",
+            "source": "https://pro.reactbits.dev/docs/blocks/footer/footer-11"
+          }
+        ]
+      },
+      {
+        "id": "cat-footer-subscribe",
+        "title": "订阅表单",
+        "category": "footer",
+        "count": 3,
+        "terms": [
+          {
+            "slug": "footer-statement-newsletter",
+            "name": "大标题订阅块",
+            "en": "Statement And Newsletter",
+            "tagline": "两行超大字占满上半屏，订阅框和链接栏一边一个，适合主推邮件列表。",
+            "src": "/assets/footer-blocks/footer-4.html",
+            "source": "https://pro.reactbits.dev/docs/blocks/footer/footer-4"
+          },
+          {
+            "slug": "footer-sitemap-signup",
+            "name": "站点地图加注册卡",
+            "en": "Sitemap With Signup Card",
+            "tagline": "四栏链接末尾挂一张带图的注册卡，链接和收邮箱一次做完。",
+            "src": "/assets/footer-blocks/footer-9.html",
+            "source": "https://pro.reactbits.dev/docs/blocks/footer/footer-9"
+          },
+          {
+            "slug": "footer-dark-status",
+            "name": "深色状态面板",
+            "en": "Dark Status Panel",
+            "tagline": "上面一块深色订阅面板，右侧列运行状态、版本号和下期时间，下面才是白底链接。",
+            "src": "/assets/footer-blocks/footer-12.html",
+            "source": "https://pro.reactbits.dev/docs/blocks/footer/footer-12"
+          }
+        ]
+      },
+      {
+        "id": "cat-footer-brand",
+        "title": "品牌大字",
+        "category": "footer",
+        "count": 3,
+        "terms": [
+          {
+            "slug": "footer-photo-sheet",
+            "name": "照片上的白卡",
+            "en": "Sheet Over Photo",
+            "tagline": "整屏照片盖一张白卡，卡片两侧各挖一个圆角缺口，只放品牌名和两枚按钮。",
+            "src": "/assets/footer-blocks/footer-2.html",
+            "source": "https://pro.reactbits.dev/docs/blocks/footer/footer-2"
+          },
+          {
+            "slug": "footer-outlined-wordmark",
+            "name": "空心字标",
+            "en": "Outlined Wordmark",
+            "tagline": "最底下一行超大字只描边不填色，上面是方形社交按钮和招聘徽标。",
+            "src": "/assets/footer-blocks/footer-8.html",
+            "source": "https://pro.reactbits.dev/docs/blocks/footer/footer-8"
+          },
+          {
+            "slug": "footer-grid-glass",
+            "name": "方格纸与玻璃卡",
+            "en": "Grid Paper And Glass Card",
+            "tagline": "背景是方格纸，标题一半深一半浅，右侧一张磨砂卡兜住主按钮。",
+            "src": "/assets/footer-blocks/footer-10.html",
+            "source": "https://pro.reactbits.dev/docs/blocks/footer/footer-10"
+          }
+        ]
+      },
+      {
+        "id": "cat-footer-cta",
+        "title": "行动号召",
+        "category": "footer",
+        "count": 2,
+        "terms": [
+          {
+            "slug": "footer-cta-bar",
+            "name": "通栏号召条",
+            "en": "Full-width CTA Bar",
+            "tagline": "顶部一句大写号召配一枚圆形箭头按钮，链接栏沉到下面当次要信息。",
+            "src": "/assets/footer-blocks/footer-3.html",
+            "source": "https://pro.reactbits.dev/docs/blocks/footer/footer-3"
+          },
+          {
+            "slug": "footer-gradient-reveal",
+            "name": "渐变浮起卡",
+            "en": "Gradient Reveal Card",
+            "tagline": "整块紫色渐变大卡包住所有链接，四列从左到右依次浮起，暗底白字对比很强。",
+            "src": "/assets/footer-blocks/footer-5.html",
+            "source": "https://pro.reactbits.dev/docs/blocks/footer/footer-5"
+          }
+        ]
+      },
+      {
+        "id": "cat-dashboard",
+        "title": "仪表盘",
+        "category": "dashboard",
+        "count": 1,
+        "terms": [
+          {
+            "slug": "dash-analytics-bento",
+            "name": "分析仪表盘",
+            "en": "Analytics Bento",
+            "tagline": "21st.dev 上的 bento 风格数据看板：网格化排布指标卡与图表，信息密度高却井井有条。",
+            "tags": [
+              "仪表盘"
+            ],
+            "source": "https://21st.dev/?q=%E4%BB%AA%E8%A1%A8%E7%9B%98&preview=%2F%40romanvasnev%2Fcomponents%2Fanalytics-bento",
+            "demoHtml": "<div class=\"scaled-preview-canvas dashboard-preview-canvas\" style=\"padding:14px;background:#0f1117;border-radius:14px;color:#e8eaed;font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;box-sizing:border-box;\">\n  <div style=\"display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;\">\n    <div style=\"font-weight:700;font-size:15px;\">数据概览</div>\n    <div style=\"font-size:11px;color:#8b93a7;\">最近 30 天</div>\n  </div>\n  <div style=\"display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:8px;\">\n    <div style=\"background:#171a21;border-radius:10px;padding:9px;\"><div style=\"font-size:10px;color:#8b93a7;\">活跃用户</div><div style=\"font-size:17px;font-weight:700;\">12.4k</div><div style=\"font-size:10px;color:#3ddc97;\">▲ 8.2%</div></div>\n    <div style=\"background:#171a21;border-radius:10px;padding:9px;\"><div style=\"font-size:10px;color:#8b93a7;\">转化率</div><div style=\"font-size:17px;font-weight:700;\">4.6%</div><div style=\"font-size:10px;color:#3ddc97;\">▲ 1.1%</div></div>\n    <div style=\"background:#171a21;border-radius:10px;padding:9px;\"><div style=\"font-size:10px;color:#8b93a7;\">客单价</div><div style=\"font-size:17px;font-weight:700;\">¥238</div><div style=\"font-size:10px;color:#ff6b6b;\">▼ 0.4%</div></div>\n    <div style=\"background:#171a21;border-radius:10px;padding:9px;\"><div style=\"font-size:10px;color:#8b93a7;\">留存</div><div style=\"font-size:17px;font-weight:700;\">63%</div><div style=\"font-size:10px;color:#3ddc97;\">▲ 2.3%</div></div>\n  </div>\n  <div style=\"display:grid;grid-template-columns:1.6fr 1fr;gap:8px;\">\n    <div style=\"background:#171a21;border-radius:10px;padding:10px;\">\n      <div style=\"font-size:11px;color:#8b93a7;margin-bottom:8px;\">周趋势</div>\n      <div style=\"display:flex;align-items:flex-end;gap:6px;height:64px;\">\n        <div style=\"flex:1;background:#4f8cff;border-radius:4px 4px 0 0;height:40%\"></div>\n        <div style=\"flex:1;background:#4f8cff;border-radius:4px 4px 0 0;height:62%\"></div>\n        <div style=\"flex:1;background:#4f8cff;border-radius:4px 4px 0 0;height:48%\"></div>\n        <div style=\"flex:1;background:#4f8cff;border-radius:4px 4px 0 0;height:78%\"></div>\n        <div style=\"flex:1;background:#4f8cff;border-radius:4px 4px 0 0;height:58%\"></div>\n        <div style=\"flex:1;background:#4f8cff;border-radius:4px 4px 0 0;height:90%\"></div>\n        <div style=\"flex:1;background:#3ddc97;border-radius:4px 4px 0 0;height:70%\"></div>\n      </div>\n    </div>\n    <div style=\"background:#171a21;border-radius:10px;padding:10px;\">\n      <div style=\"font-size:11px;color:#8b93a7;margin-bottom:8px;\">渠道占比</div>\n      <div style=\"display:flex;flex-direction:column;gap:6px;\">\n        <div style=\"font-size:11px;color:#e8eaed;\">自然流量 <span style=\"float:right;color:#8b93a7;\">42%</span></div>\n        <div style=\"height:6px;background:#4f8cff;border-radius:3px;width:42%\"></div>\n        <div style=\"font-size:11px;color:#e8eaed;\">推荐 <span style=\"float:right;color:#8b93a7;\">31%</span></div>\n        <div style=\"height:6px;background:#3ddc97;border-radius:3px;width:31%\"></div>\n        <div style=\"font-size:11px;color:#e8eaed;\">广告 <span style=\"float:right;color:#8b93a7;\">27%</span></div>\n        <div style=\"height:6px;background:#ffb454;border-radius:3px;width:27%\"></div>\n      </div>\n    </div>\n  </div>\n</div>"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "key": "motion",
+    "href": "/distill",
+    "title": "动效",
+    "intro": "4 个可点着玩的交互动效：拖动卡片、点屏推进、改参数实时重播——点开任意卡片即可进入弹层体验。",
+    "categories": [
+      {
+        "key": "motion",
+        "label": "交互动画"
+      }
+    ],
+    "sidebar": [],
+    "groups": [
+      {
+        "id": "cat-interaction-motion",
+        "title": "动效组件",
+        "category": "motion",
+        "count": 4,
+        "terms": [
+          {
+            "slug": "motion-card-carousel",
+            "name": "卡片轮播",
+            "en": "Card Carousel",
+            "tagline": "三张照片卡散落堆叠：跟着指针浮沉，点击或拖拽换卡，参数滑杆实时改动画。",
+            "tags": [
+              "指针响应",
+              "拖拽换卡",
+              "参数可调"
+            ],
+            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div style=\"position:relative;width:100%;height:100%;background:var(--bg-soft)\"><div style=\"position:absolute;left:50%;top:50%;width:130px;height:173px;margin:-86px 0 0 -216px;transform:rotate(-8deg);border-radius:12px;background:url(/assets/motion/citrus.png) center/cover;box-shadow:0 12px 26px rgba(0,0,0,.22)\"></div><div style=\"position:absolute;left:50%;top:50%;width:130px;height:173px;margin:-86px 0 0 86px;transform:rotate(7deg);border-radius:12px;background:url(/assets/motion/forest.png) center/cover;box-shadow:0 12px 26px rgba(0,0,0,.22)\"></div><div style=\"position:absolute;left:50%;top:50%;width:140px;height:187px;margin:-96px 0 0 -70px;transform:rotate(-3deg);border-radius:12px;background:url(/assets/motion/dune.png) center/cover;box-shadow:0 16px 34px rgba(0,0,0,.28)\"></div></div></div>",
+            "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
+          },
+          {
+            "slug": "motion-dot-intro",
+            "name": "信纸开场",
+            "en": "Letter Intro",
+            "tagline": "渐变底上一张微倾斜的信纸浮入，衬线文字逐行淡进——点一下屏幕推进一步，循环重播。",
+            "tags": [
+              "入场动画",
+              "点击推进",
+              "自动循环"
+            ],
+            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div style=\"position:relative;width:100%;height:100%;background:linear-gradient(160deg,#f3d9c4,#f8efe7 55%,#e9e4f2)\"><div style=\"position:absolute;left:50%;top:24%;transform:translateX(-50%);font-family:Georgia,'Songti SC',serif;font-size:19px;color:#33291f\">还有一件事</div><div style=\"position:absolute;left:50%;top:66%;transform:translate(-50%,-50%) rotate(-4deg);width:150px;height:170px;background:#fffdf9;border-radius:14px;box-shadow:0 14px 30px rgba(80,50,40,.2);padding:16px;box-sizing:border-box;font-family:Georgia,'Songti SC',serif;font-size:15px;color:#2b241e\">你好，<i style=\"display:inline-block;width:2px;height:13px;background:#2b241f;vertical-align:-2px\"></i></div></div></div>",
+            "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
+          },
+          {
+            "slug": "motion-dark-onboarding",
+            "name": "暗场引导",
+            "en": "Dark Onboarding",
+            "tagline": "深色手机里四个引导场景横向滑入换场：条目分步进、3D 卡片翻面、图标描边形变、数字逐位滚定——点屏推进，自动循环。",
+            "tags": [
+              "横向切场",
+              "3D 卡片",
+              "数字滚轮"
+            ],
+            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div style=\"position:relative;width:100%;height:100%;background:#0a0b0d\"><div style=\"position:absolute;left:50%;top:34%;transform:translate(-50%,-50%) rotateX(10deg) rotateY(-8deg);width:150px;height:94px;border-radius:11px;background:linear-gradient(135deg,#2c2f35,#17191d 46%,#34373e);border:1px solid #43474f;box-shadow:0 16px 32px rgba(0,0,0,.5);box-sizing:border-box\"><span style=\"position:absolute;top:11px;right:12px;font-size:10px;letter-spacing:1px;color:#e6c58a\">潮汐</span><span style=\"position:absolute;top:34px;left:12px;width:22px;height:17px;border-radius:4px;background:linear-gradient(120deg,#d8b475,#8d7040)\"></span><span style=\"position:absolute;bottom:12px;left:12px;font-size:10px;letter-spacing:1px;color:#b9bdc5\">•••• •••• •••• 4291</span></div><div style=\"position:absolute;left:20%;bottom:20%;width:92px;height:9px;border-radius:5px;background:#f2f3f5\"></div><div style=\"position:absolute;left:20%;bottom:13%;width:128px;height:6px;border-radius:4px;background:#3a3d44\"></div></div></div>",
+            "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
+          },
+          {
+            "slug": "motion-bounce-cards",
+            "name": "弹跳卡片",
+            "en": "Bounce Cards",
+            "tagline": "五张方卡扇形叠开：依次弹簧弹入，悬停抽正放大、邻卡被推开，点一下抖回原位——六个参数实时可调。",
+            "tags": [
+              "弹簧入场",
+              "悬停推开",
+              "参数可调"
+            ],
+            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div style=\"position:relative;width:100%;height:100%;background:var(--bg-soft)\"><div style=\"position:absolute;left:50%;top:50%;width:118px;height:118px;margin:-59px 0 0 -59px;transform:translate(-170px,0) rotate(10deg) scale(.96);border-radius:16px;border:3px solid #fff;background:url(/assets/motion/citrus.png) center/cover;box-shadow:0 12px 26px rgba(0,0,0,.22);z-index:1\"></div><div style=\"position:absolute;left:50%;top:50%;width:118px;height:118px;margin:-59px 0 0 -59px;transform:translate(-85px,0) rotate(5deg) scale(.98);border-radius:16px;border:3px solid #fff;background:url(/assets/motion/dune.png) center/cover;box-shadow:0 12px 26px rgba(0,0,0,.22);z-index:2\"></div><div style=\"position:absolute;left:50%;top:50%;width:118px;height:118px;margin:-59px 0 0 -59px;transform:rotate(-3deg);border-radius:16px;border:3px solid #fff;background:url(/assets/motion/forest.png) center/cover;box-shadow:0 16px 34px rgba(0,0,0,.28);z-index:3\"></div><div style=\"position:absolute;left:50%;top:50%;width:118px;height:118px;margin:-59px 0 0 -59px;transform:translate(85px,0) rotate(-10deg) scale(.98);border-radius:16px;border:3px solid #fff;background:url(/assets/motion/dune.png) center/cover;box-shadow:0 12px 26px rgba(0,0,0,.22);z-index:4\"></div><div style=\"position:absolute;left:50%;top:50%;width:118px;height:118px;margin:-59px 0 0 -59px;transform:translate(170px,0) rotate(2deg) scale(.96);border-radius:16px;border:3px solid #fff;background:url(/assets/motion/citrus.png) center/cover;box-shadow:0 12px 26px rgba(0,0,0,.22);z-index:5\"></div></div></div>",
             "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
           }
         ]

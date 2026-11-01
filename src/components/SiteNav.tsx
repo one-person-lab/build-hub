@@ -2,10 +2,12 @@
 
 import { useEffect, useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
+import BrandMark from "@/components/BrandMark";
 import CommandPalette from "@/components/CommandPalette";
-import ProModal from "@/components/ProModal";
 import FavoritesSync from "@/components/FavoritesSync";
+import LanguageToggle from "@/components/LanguageToggle";
 import { useFavoriteSlugs } from "@/lib/favorites";
+import { requireLogin } from "@/lib/auth-modal";
 import { track } from "@/lib/track";
 import {
   COLOR_MODE_KEY,
@@ -18,7 +20,6 @@ type Locale = "zh" | "en";
 
 const SECTIONS: Record<Locale, { href: string; label: string }[]> = {
   zh: [
-    { href: "/paths", label: "路径" },
     { href: "/topics/frontend", label: "概念" },
     { href: "/stack", label: "选型" },
     { href: "/skills", label: "技能" },
@@ -28,6 +29,7 @@ const SECTIONS: Record<Locale, { href: string; label: string }[]> = {
     { href: "/distill", label: "动效" },
     { href: "/explains", label: "专题" },
     { href: "/playbooks", label: "手册" },
+    { href: "/paths", label: "路径" },
   ],
   en: [
     { href: "/en/topics/frontend", label: "Concepts" },
@@ -51,14 +53,13 @@ const UI = {
     practice: "练习",
     skill: "BuildHub Skill",
     personalSite: "个人网站",
-    language: "语言",
     favorites: "收藏",
     account: "账号",
     menu: "菜单",
     closeMenu: "关闭菜单",
     groupSections: "内容分区",
     groupMore: "更多",
-    groupAccount: "账号与语言",
+    groupAccount: "我的",
   },
   en: {
     searchLabel: "Search everything…",
@@ -71,14 +72,13 @@ const UI = {
     practice: "Practice",
     skill: "BuildHub Skill",
     personalSite: "Website",
-    language: "Language",
     favorites: "Favorites",
     account: "Account",
     menu: "Menu",
     closeMenu: "Close menu",
     groupSections: "Sections",
     groupMore: "More",
-    groupAccount: "Account & language",
+    groupAccount: "Account",
   },
 };
 
@@ -87,7 +87,6 @@ export default function SiteNav() {
   const router = useRouter();
   const [dark, setDark] = useState(false);
   const [palette, setPalette] = useState(false);
-  const [pro, setPro] = useState(false);
   const [menu, setMenu] = useState(false);
   const [themeOpen, setThemeOpen] = useState(false);
   const [themeColor, setThemeColor] = useState<string | null>(null);
@@ -193,50 +192,24 @@ export default function SiteNav() {
     setMenu((v) => !v);
   }
 
-  // 语言：URL 前缀 /en 决定当前语言，cookie 仅作记录
-  function switchLang(next: Locale) {
-    document.cookie = `vibehub-locale=${next}; path=/; max-age=31536000`;
-    setMenu(false);
-    if (next === "en") {
-      router.push(pathname === "/" ? "/en" : `/en${pathname}`);
-    } else {
-      const stripped = pathname.replace(/^\/en(?=\/|$)/, "") || "/";
-      router.push(stripped);
-    }
-  }
-
   const isCurrent = (href: string) =>
     href === "/" || href === "/en"
       ? pathname === href
       : pathname === href || pathname.startsWith(href + "/");
 
-  const skillHref = locale === "en" ? "/en/vibehub-skill" : "/vibehub-skill";
+  const skillHref = locale === "en" ? "/en/buildhub-skill" : "/buildhub-skill";
 
   if (pathname.startsWith("/proto")) return null;
+  if (pathname === "/" || pathname === "/en") return null;
 
   return (
     <>
       <nav className="nav rd-nav">
         <a href={base || "/"} className="rd-brand" aria-label="BuildHub">
           <span className="rd-logo" aria-hidden>
-            <svg viewBox="0 0 512 512">
-              <defs>
-                <linearGradient id="bhNavLogo" x1="0" y1="0" x2="0.35" y2="1">
-                  <stop offset="0" stopColor="#EFDCAB" />
-                  <stop offset="0.35" stopColor="#D8BC80" />
-                  <stop offset="0.66" stopColor="#B6944F" />
-                  <stop offset="1" stopColor="#95733A" />
-                </linearGradient>
-              </defs>
-              <rect width="512" height="512" rx="112" fill="#3B2B1E" />
-              <path
-                fill="url(#bhNavLogo)"
-                d="M137.07 95H262.59Q280.79 95 298.52 99.32Q316.26 103.64 330.13 113.42Q344 123.2 352.65 138.66Q361.29 154.12 361.29 175.95Q361.29 203.24 345.82 220.98Q330.36 238.72 305.35 246.45V247.36Q335.82 251.45 355.37 271.01Q374.93 290.56 374.93 323.31Q374.93 349.69 364.47 367.65Q354.01 385.62 336.95 396.53Q319.9 407.45 297.84 412.22Q275.78 417 253.04 417H137.07ZM194.37 225.98H245.31Q273.96 225.98 288.97 214.61Q303.98 203.24 303.98 182.32Q303.98 160.49 288.52 151.4Q273.06 142.3 240.31 142.3H194.37ZM194.37 368.79H245.77Q256.68 368.79 269.42 367.2Q282.15 365.61 292.84 360.6Q303.53 355.6 310.58 346.05Q317.63 336.5 317.63 320.58Q317.63 295.11 300.34 285.11Q283.06 275.1 248.04 275.1H194.37Z"
-              />
-              <rect x="26" y="26" width="460" height="460" rx="92" fill="none" stroke="#C0A062" strokeOpacity="0.45" strokeWidth="5" />
-            </svg>
+            <BrandMark />
           </span>
-          BuildHub
+          <span className="rd-brand-word">BuildHub</span>
         </a>
         <div className="rd-sections" aria-label="内容分区">
           {SECTIONS[locale].map((s) => (
@@ -249,14 +222,6 @@ export default function SiteNav() {
               {s.label}
             </a>
           ))}
-          <a
-            href={`${base}/favorites`}
-            className={`rd-nav-fav${isCurrent(`${base}/favorites`) ? " is-active" : ""}`}
-            aria-current={isCurrent(`${base}/favorites`) ? "page" : undefined}
-          >
-            ★ {U.favorites}
-            {favCount > 0 && <b>{favCount}</b>}
-          </a>
         </div>
         <div className="rd-nav-right">
           <button className="rd-searchbtn" onClick={() => setPalette(true)}>
@@ -264,24 +229,35 @@ export default function SiteNav() {
             <span className="rd-searchlabel">{U.searchLabel}</span>
             <kbd>/</kbd>
           </button>
+          <a
+            href={`${base}/favorites`}
+            className={`rd-nav-fav${isCurrent(`${base}/favorites`) ? " is-active" : ""}`}
+            aria-label={U.favorites}
+            title={U.favorites}
+            aria-current={isCurrent(`${base}/favorites`) ? "page" : undefined}
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 3.8l2.43 4.93 5.44.79-3.94 3.83.93 5.42L12 16.98l-4.86 2.55.93-5.41-3.94-3.83 5.44-.79z" />
+            </svg>
+            {me?.user && favCount > 0 && <b>{favCount}</b>}
+          </a>
           {me?.user ? (
             <a
               className={`rd-gopro${me.pro ? " is-pro" : ""}`}
-              href={`${base}/account`}
+              href={me.pro ? `${base}/account` : `${base}/pro`}
             >
-              {me.pro ? "✦ PRO" : U.account}
+              {me.pro ? "✦ PRO" : U.goPro}
             </a>
           ) : (
-            <button
+            <a
               className="rd-gopro"
-              onClick={() => {
-                track("go_pro_click", { from: "nav" });
-                setPro(true);
-              }}
+              href={`${base}/pro`}
+              onClick={() => track("go_pro_click", { from: "nav" })}
             >
               {U.goPro}
-            </button>
+            </a>
           )}
+          <LanguageToggle locale={locale} className="rd-lang" />
           <div className="nav-theme" ref={themeRef}>
             <button
               className="nav-circle"
@@ -379,6 +355,22 @@ export default function SiteNav() {
                 <span className="rd-menu-sep" aria-hidden />
                 <div className="rd-menu-group">
                   <p className="rd-menu-label">{U.groupAccount}</p>
+                  {me?.user ? (
+                    <a href={`${base}/account`} role="menuitem">
+                      {U.account}
+                    </a>
+                  ) : (
+                    <button
+                      type="button"
+                      role="menuitem"
+                      onClick={() => {
+                        setMenu(false);
+                        requireLogin({ onDone: () => router.push(`${base}/account`) });
+                      }}
+                    >
+                      {U.account}
+                    </button>
+                  )}
                   <button
                     onClick={() => {
                       setMenu(false);
@@ -387,35 +379,12 @@ export default function SiteNav() {
                   >
                     {U.community}
                   </button>
-                  <a className="rd-menu-fav" href={`${base}/favorites`} role="menuitem">
-                    <span>★ {U.favorites}</span>
-                    <b>{favCount}</b>
-                  </a>
-                  <div className="rd-menu-lang">
-                    <button
-                      className={locale === "zh" ? "is-selected" : ""}
-                      role="menuitemradio"
-                      aria-checked={locale === "zh"}
-                      onClick={() => switchLang("zh")}
-                    >
-                      中文
-                    </button>
-                    <button
-                      className={locale === "en" ? "is-selected" : ""}
-                      role="menuitemradio"
-                      aria-checked={locale === "en"}
-                      onClick={() => switchLang("en")}
-                    >
-                      English
-                    </button>
-                  </div>
                 </div>
               </div>
             ) : null}
           </div>
         </div>
         {palette ? <CommandPalette locale={locale} onClose={() => setPalette(false)} /> : null}
-        {pro ? <ProModal locale={locale} onClose={() => setPro(false)} /> : null}
         <FavoritesSync />
       </nav>
       {communityOpen && (
@@ -432,16 +401,14 @@ export default function SiteNav() {
             aria-modal="true"
             aria-label={locale === "en" ? "Add me on WeChat" : "加我微信"}
           >
-            <header className="community-dialog-header">
-              <span>{locale === "en" ? "WECHAT" : "加我微信 / WECHAT"}</span>
-              <button
-                type="button"
-                aria-label={locale === "en" ? "Close community dialog" : "关闭交流群弹窗"}
-                onClick={() => setCommunityOpen(false)}
-              >
-                ×
-              </button>
-            </header>
+            <button
+              type="button"
+              className="community-dialog-close"
+              aria-label={locale === "en" ? "Close community dialog" : "关闭交流群弹窗"}
+              onClick={() => setCommunityOpen(false)}
+            >
+              ×
+            </button>
             <div className="community-dialog-body">
               <div className="community-dialog-qr-grid">
                 <div className="community-dialog-qr-item">
@@ -449,8 +416,8 @@ export default function SiteNav() {
                     <h2>{locale === "en" ? "Add me on WeChat" : "加我微信"}</h2>
                     <p>
                       {locale === "en"
-                        ? "Ask about AI tools, your projects, and GPT or Codex subscriptions."
-                        : "聊 AI 工具、项目实践，或者问 GPT、Codex 订阅，都可以直接找我。"}
+                        ? "Ask me about AI tools, your own projects, or how to use BuildHub."
+                        : "聊 AI 工具、项目实践，或者 BuildHub 怎么用，都可以直接找我。"}
                     </p>
                   </div>
                   {/* eslint-disable-next-line @next/next/no-img-element */}

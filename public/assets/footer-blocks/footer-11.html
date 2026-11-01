@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>footer-11 · Airy five-column sitemap</title>
+<style>
+  :root{--fg:#141414;--muted:#6f6f6f;--line:#ececec}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    background:#fff;color:var(--fg);
+    font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+    font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;
+    display:flex;flex-direction:column;padding:52px 56px 30px;overflow:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+
+  .cols{
+    flex:1 1 auto;min-height:0;
+    display:grid;grid-template-columns:repeat(5,1fr);gap:34px;
+  }
+  .col h3{
+    font-size:10.5px;font-weight:500;letter-spacing:.17em;text-transform:uppercase;
+    color:#9a9a9a;margin-bottom:26px;
+  }
+  .col ul{list-style:none;display:flex;flex-direction:column;gap:21px}
+  .col a{font-size:14px;color:#2a2a2a;transition:opacity .16s}
+  .col a:hover{opacity:.55}
+
+  .product{display:flex;align-items:center;gap:11px}
+  .product i{
+    width:28px;height:28px;border-radius:50%;border:1px solid #dedede;flex:0 0 auto;
+    display:grid;place-items:center;color:#4a4a4a;
+  }
+  .col li.product a{font-size:14px}
+
+  .bottom{
+    flex:0 0 auto;margin-top:44px;padding-top:26px;border-top:1px solid var(--line);
+    display:grid;grid-template-columns:1fr 2fr;gap:44px;align-items:start;
+  }
+  .brand{display:flex;align-items:center;gap:11px}
+  .brand i{
+    width:34px;height:34px;border-radius:50%;background:#141414;color:#fff;font-style:normal;
+    display:grid;place-items:center;font-size:14px;font-weight:700;
+  }
+  .brand b{font-size:18px;font-weight:650;letter-spacing:-.01em}
+  .note{font-size:11.5px;line-height:1.75;color:#9a9a9a;max-width:620px}
+</style>
+</head>
+<body>
+  <nav class="cols">
+    <div class="col">
+      <h3>Products</h3>
+      <ul>
+        <li class="product"><i><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg></i><a href="#">Aster Core</a></li>
+        <li class="product"><i><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 8v8M9 10v4M15 10v4M6 12h.01M18 12h.01"/></svg></i><a href="#">Aster Sync</a></li>
+        <li class="product"><i><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="m12 3 8 4.5-8 4.5-8-4.5L12 3Z"/><path d="m4 12.5 8 4.5 8-4.5"/></svg></i><a href="#">Aster Rooms</a></li>
+        <li class="product"><i><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><circle cx="15" cy="15" r="3"/><circle cx="8" cy="16" r="2.4"/></svg></i><a href="#">Aster Kit</a></li>
+      </ul>
+    </div>
+    <div class="col">
+      <h3>Resources</h3>
+      <ul><li><a href="#">Journal</a></li><li><a href="#">Brand kit</a></li><li><a href="#">Guides</a></li><li><a href="#">Templates</a></li><li><a href="#">Support</a></li><li><a href="#">FAQ</a></li><li><a href="#">Community</a></li></ul>
+    </div>
+    <div class="col">
+      <h3>Developers</h3>
+      <ul><li><a href="#">Documentation</a></li><li><a href="#">API reference</a></li><li><a href="#">SDKs</a></li><li><a href="#">Changelog</a></li><li><a href="#">Status</a></li><li><a href="#">Security</a></li><li><a href="#">Open source</a></li></ul>
+    </div>
+    <div class="col">
+      <h3>Legal &amp; privacy</h3>
+      <ul><li><a href="#">Privacy policy</a></li><li><a href="#">Terms of use</a></li><li><a href="#">Licenses</a></li><li><a href="#">DPA</a></li><li><a href="#">Sub-processors</a></li><li><a href="#">Accessibility</a></li><li><a href="#">Report abuse</a></li></ul>
+    </div>
+    <div class="col">
+      <h3>About</h3>
+      <ul><li><a href="#">Company</a></li><li><a href="#">Careers</a></li><li><a href="#">Press</a></li><li><a href="#">Contact</a></li><li><a href="#">Offices</a></li><li><a href="#">Investors</a></li><li><a href="#">Sustainability</a></li></ul>
+    </div>
+  </nav>
+
+  <div class="bottom">
+    <span class="brand"><i>A</i><b>Aster</b></span>
+    <p class="note">
+      Aster builds collaboration software for distributed engineering teams. Product
+      availability, pricing, and feature scope vary by region and plan; see the current
+      statement of work for the specific terms. Independent integrations are maintained by
+      their respective authors.
+    </p>
+  </div>
+</body>
+</html>

@@ -317,7 +317,6 @@ special = {
     'practice': 'practice.html',
     'anti-ai-flavor': 'anti-ai-flavor.html',
     'changelog': 'changelog.html',
-    'vibehub-skill': 'vibehub-skill.html',
 }
 pages = {}
 for key, f in special.items():

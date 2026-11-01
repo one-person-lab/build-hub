@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import ProModal from "@/components/ProModal";
 import { useFavoriteIndex } from "@/components/FavoritesView";
+import { requireLogin } from "@/lib/auth-modal";
 import { FREE_FAVORITE_LIMIT, useFavoriteSlugs, useMe } from "@/lib/favorites";
 import { track } from "@/lib/track";
 
@@ -20,16 +21,8 @@ const UI = {
     title: "账号",
     loginTitle: "登录 BuildHub",
     loginSub: "验证码将发送至你的邮箱，仅用于登录",
-    emailPh: "邮箱地址",
-    sendCode: "获取验证码",
-    resendIn: "后重发",
-    resend: "重新获取",
-    codePh: "6 位验证码",
     login: "登录",
     errGeneric: "出错了，请重试",
-    errCode: "验证码错误或已过期",
-    errMail: "邮件发送失败，请稍后重试",
-    errTooFast: "发送太快，稍后再试",
     proOn: "PRO 会员",
     proUntil: "有效期至",
     proLifetime: "终身有效",
@@ -57,21 +50,18 @@ const UI = {
     manualWhen: "下单时间",
     manualSettle: "确认到账",
     manualDone: "已开通",
+    assetsBlock: "PRO 资产",
+    assetsSub: "资产包和 Agent Kit 可随时重新下载，每次都是当前最新内容。",
+    assetsPack: "下载完整资产包",
+    assetsKit: "下载 Agent Kit",
+    assetsView: "查看 PRO 内容",
   },
   en: {
     title: "Account",
     loginTitle: "Sign in to BuildHub",
     loginSub: "A code will be emailed to you, used only for sign-in",
-    emailPh: "Email address",
-    sendCode: "Send code",
-    resendIn: " to resend",
-    resend: "Resend",
-    codePh: "6-digit code",
     login: "Sign in",
     errGeneric: "Something went wrong, try again",
-    errCode: "Wrong or expired code",
-    errMail: "Failed to send email, try later",
-    errTooFast: "Too fast, wait a minute",
     proOn: "PRO member",
     proUntil: "Valid until",
     proLifetime: "Lifetime",
@@ -98,6 +88,11 @@ const UI = {
     manualWho: "Account",
     manualWhen: "Placed",
     manualSettle: "Money received",
+    assetsBlock: "PRO assets",
+    assetsSub: "Re-download the pack and Agent Kit anytime — the file always reflects the latest content.",
+    assetsPack: "Download the asset pack",
+    assetsKit: "Download the Agent Kit",
+    assetsView: "See what is included",
     manualDone: "Activated",
   },
 };
@@ -106,9 +101,6 @@ export default function AccountView({ locale }: { locale: "zh" | "en" }) {
   const U = UI[locale];
   const base = locale === "en" ? "/en" : "";
   const me = useMe();
-  const [email, setEmail] = useState("");
-  const [code, setCode] = useState("");
-  const [countdown, setCountdown] = useState(0);
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState("");
   const [showPro, setShowPro] = useState(false);
@@ -117,8 +109,8 @@ export default function AccountView({ locale }: { locale: "zh" | "en" }) {
   const [orders, setOrders] = useState<Order[]>([]);
   const [manuals, setManuals] = useState<ManualOrder[]>([]);
   const taps = useRef({ n: 0, at: 0 });
-  const timer = useRef<ReturnType<typeof setInterval> | null>(null);
   const index = useFavoriteIndex(locale);
+  const asked = useRef(false);
 
   // 隐藏入口：连点邮箱 5 次打开验证单。非白名单账号点了没有任何反应，不留线索
   function tapEmail() {
@@ -167,50 +159,12 @@ export default function AccountView({ locale }: { locale: "zh" | "en" }) {
     }
   }
 
+  // 账号页未登录就是登录场景，直接把统一登录弹窗顶上来，不再铺一张内嵌表单
   useEffect(() => {
-    if (countdown <= 0) return;
-    timer.current = setInterval(() => setCountdown((s) => s - 1), 1000);
-    return () => {
-      if (timer.current) clearInterval(timer.current);
-    };
-  }, [countdown]);
-
-  async function sendCode() {
-    setErr("");
-    setBusy(true);
-    try {
-      const r = await fetch("/api/auth/code", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ email }),
-      });
-      if (r.status === 429) setErr(U.errTooFast);
-      else if (!r.ok) setErr(U.errMail);
-      else setCountdown(60);
-    } catch {
-      setErr(U.errGeneric);
-    } finally {
-      setBusy(false);
-    }
-  }
-
-  async function login() {
-    setErr("");
-    setBusy(true);
-    try {
-      const r = await fetch("/api/auth/verify", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ email, code }),
-      });
-      if (!r.ok) setErr(r.status === 400 ? U.errCode : U.errGeneric);
-      else window.dispatchEvent(new Event("vh-me-changed"));
-    } catch {
-      setErr(U.errGeneric);
-    } finally {
-      setBusy(false);
-    }
-  }
+    if (!me || me.user || asked.current) return;
+    asked.current = true;
+    requireLogin();
+  }, [me]);
 
   async function logout() {
     await fetch("/api/auth/logout", { method: "POST" }).catch(() => {});
@@ -235,41 +189,7 @@ export default function AccountView({ locale }: { locale: "zh" | "en" }) {
         <section className="rd-card acct-login">
           <h2>{U.loginTitle}</h2>
           <p className="sub">{U.loginSub}</p>
-          <input
-            className="rd-field"
-            type="email"
-            placeholder={U.emailPh}
-            value={email}
-            autoComplete="email"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <div className="rd-code-row">
-            <input
-              className="rd-field"
-              inputMode="numeric"
-              maxLength={6}
-              placeholder={U.codePh}
-              value={code}
-              onChange={(e) => setCode(e.target.value.replace(/\D/g, ""))}
-            />
-            <button
-              className="rd-btn-ghost"
-              disabled={busy || countdown > 0 || !email}
-              onClick={sendCode}
-            >
-              {countdown > 0
-                ? `${countdown}s${U.resendIn}`
-                : code
-                  ? U.resend
-                  : U.sendCode}
-            </button>
-          </div>
-          {err && <p className="rd-pro-err">{err}</p>}
-          <button
-            className="rd-btn rd-btn-block"
-            disabled={busy || code.length !== 6}
-            onClick={login}
-          >
+          <button className="rd-btn rd-btn-block" onClick={() => requireLogin()}>
             {U.login}
           </button>
         </section>
@@ -326,6 +246,24 @@ export default function AccountView({ locale }: { locale: "zh" | "en" }) {
                   style={{ width: `${Math.min(100, (slugs.length / FREE_FAVORITE_LIMIT) * 100)}%` }}
                 />
               </span>
+            </section>
+          )}
+
+          {me.pro && (
+            <section className="acct-block">
+              <header className="acct-block-head">
+                <h2>{U.assetsBlock}</h2>
+                <a href={`${base}/pro`}>{U.assetsView} →</a>
+              </header>
+              <p className="acct-assets-sub">{U.assetsSub}</p>
+              <div className="acct-assets-actions">
+                <a className="rd-btn" href={`/api/export?kind=library&locale=${locale}`}>
+                  {U.assetsPack}
+                </a>
+                <a className="rd-btn-ghost" href={`/api/export?kind=agent-kit&locale=${locale}`}>
+                  {U.assetsKit}
+                </a>
+              </div>
             </section>
           )}
 
@@ -395,6 +333,7 @@ export default function AccountView({ locale }: { locale: "zh" | "en" }) {
                   </tbody>
                 </table>
               )}
+              {err && <p className="rd-pro-err">{err}</p>}
             </section>
           )}
 

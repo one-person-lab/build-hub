@@ -11,11 +11,10 @@ import zhProducts from "@/data/products.json";
 import enProducts from "@/data/en-products.json";
 import playbooks from "@/data/playbooks.json";
 import explainers from "@/data/explainers.json";
-import zhDistill from "@/data/distill.json";
-import enDistill from "@/data/en-distill.json";
 import courses from "@/data/courses.json";
 import paths from "@/data/paths.json";
 import { BOOKS, flatChapters } from "@/lib/drone-book";
+import { QUICK_LINKS } from "@/lib/palette-links";
 
 type Item = {
   key: string;
@@ -24,6 +23,9 @@ type Item = {
   type: string;
   href: string;
   match: string;
+  /** 结果缩略图的归类：term / skill / prompt / product / … / go */
+  kind: string;
+  logo?: string;
   /** 正文纯文本，给全文搜索命中用；不含 HTML、链接和资源路径 */
   deep?: string;
 };
@@ -102,9 +104,11 @@ const ZONES: Record<Locale, Record<string, string>> = {
     product: "产品",
     testing: "测试",
     technology: "技术栈",
+    stack: "选型",
     ai: "AI",
     git: "Git",
     design: "设计",
+    motion: "动效",
   },
   en: {
     frontend: "Frontend",
@@ -112,15 +116,17 @@ const ZONES: Record<Locale, Record<string, string>> = {
     product: "Product",
     testing: "Testing",
     technology: "Stack",
+    stack: "Stack",
     ai: "AI",
     git: "Git",
     design: "Design",
+    motion: "Motion",
   },
 };
 
-const LABELS: Record<Locale, { skill: string; prompt: string; product: string; playbook: string; explainer: string; course: string; motion: string; path: string; entry: string }> = {
-  zh: { skill: "技能", prompt: "提示词", product: "产品", playbook: "手册", explainer: "专题", course: "课程", motion: "动效", path: "路径", entry: "入口" },
-  en: { skill: "Skill", prompt: "Prompt", product: "Showcase", playbook: "Playbook", explainer: "Story", course: "Course", motion: "Motion", path: "Path", entry: "Go" },
+const LABELS: Record<Locale, { skill: string; prompt: string; product: string; playbook: string; explainer: string; course: string; path: string; entry: string }> = {
+  zh: { skill: "技能", prompt: "提示词", product: "产品", playbook: "手册", explainer: "专题", course: "课程", path: "路径", entry: "入口" },
+  en: { skill: "Skill", prompt: "Prompt", product: "Showcase", playbook: "Playbook", explainer: "Story", course: "Course", path: "Path", entry: "Go" },
 };
 
 function makeIndex(locale: Locale): Item[] {
@@ -142,7 +148,9 @@ function makeIndex(locale: Locale): Item[] {
           title: t.name,
           subtitle: t.tagline ?? "",
           type: zone,
-          href: `${base}/${t.slug}`,
+          // 图鉴里只有预览、没有详情页的条目（导航样式）直接深链到设计页弹层
+          href: t.demoOnly ? `${base}/design?nav=${t.slug}` : `${base}/${t.slug}`,
+          kind: "term",
           match: [t.name, t.en, t.tagline, ...(t.aliases ?? []), ...(termBodies.get(t.slug)?.aliases ?? [])]
             .filter(Boolean)
             .join(" "),
@@ -161,6 +169,7 @@ function makeIndex(locale: Locale): Item[] {
         subtitle: [cat.label, s.tagline].filter(Boolean).join(" · "),
         type: L.skill,
         href: `${base}/skills/${s.id}`,
+        kind: "skill",
         match: [s.name, s.tagline, s.overview, s.platform, s.author, ...(s.tags ?? [])].filter(Boolean).join(" "),
         deep: deepText(s),
       });
@@ -176,6 +185,7 @@ function makeIndex(locale: Locale): Item[] {
         subtitle: [cat.label, p.tagline].filter(Boolean).join(" · "),
         type: L.prompt,
         href: `${base}/prompts/${p.id}`,
+        kind: "prompt",
         match: [p.name, p.tagline, ...(p.tags ?? [])].filter(Boolean).join(" "),
         deep: deepText(p),
       });
@@ -191,23 +201,12 @@ function makeIndex(locale: Locale): Item[] {
         subtitle: [cat.label, p.tagline].filter(Boolean).join(" · "),
         type: L.product,
         href: `${base}/products/${p.id}`,
+        kind: "product",
+        logo: typeof p.logo === "string" && p.logo.startsWith("/") ? p.logo : undefined,
         match: [p.name, p.tagline, p.overview, ...(p.tags ?? [])].filter(Boolean).join(" "),
         deep: deepText(p),
       });
     }
-  }
-
-  const motion = (locale === "en" ? enDistill : zhDistill) as any[];
-  for (const d of motion) {
-    items.push({
-      key: `motion:${d.slug}`,
-      title: d.name,
-      subtitle: d.tagline ?? "",
-      type: L.motion,
-      href: `${base}/distill/${d.slug}`,
-      match: [d.name, d.en, d.tagline].filter(Boolean).join(" "),
-      deep: deepText(d),
-    });
   }
 
   // 手册、专题、课程只有中文版
@@ -230,6 +229,7 @@ function makeIndex(locale: Locale): Item[] {
         subtitle: `${p.kicker} · ${p.steps.length} 步 · ${p.duration}`,
         type: L.path,
         href: `/paths/${p.id}`,
+        kind: "path",
         match: [p.name, p.tagline, p.outcome, p.audience, p.kicker].filter(Boolean).join(" "),
         deep: deepText(p),
       });
@@ -241,6 +241,7 @@ function makeIndex(locale: Locale): Item[] {
         subtitle: p.summary ?? "",
         type: L.playbook,
         href: `/playbooks/${id}`,
+        kind: "playbook",
         match: [p.title, p.summary, p.category, p.hook].filter(Boolean).join(" "),
         deep: deepText(p),
       });
@@ -252,6 +253,7 @@ function makeIndex(locale: Locale): Item[] {
         subtitle: e.oneLiner ?? "",
         type: L.explainer,
         href: `/explains/${id}`,
+        kind: "explainer",
         match: [e.title, e.oneLiner, e.category].filter(Boolean).join(" "),
         deep: deepText(e),
       });
@@ -263,6 +265,7 @@ function makeIndex(locale: Locale): Item[] {
         subtitle: book.oneLiner,
         type: L.explainer,
         href: `/explains/${id}`,
+        kind: "book",
         match: [book.title, book.subtitle, book.oneLiner, book.intro].join(" "),
         deep: deepText(book),
       });
@@ -273,6 +276,7 @@ function makeIndex(locale: Locale): Item[] {
           subtitle: `${book.title} · ${chapter.summary}`,
           type: L.explainer,
           href: `/explains/${id}/${chapter.slug}`,
+          kind: "book",
           match: [chapter.title, chapter.summary, ...Object.values(chapter.sections)].filter(Boolean).join(" "),
           deep: deepText(chapter),
         });
@@ -288,6 +292,7 @@ function makeIndex(locale: Locale): Item[] {
         subtitle: L.course,
         type: L.course,
         href: `/courses/${id}`,
+        kind: "course",
         match: [title, L.course].join(" "),
         deep: deepText(c),
       });
@@ -311,7 +316,7 @@ const SECTIONS: Record<Locale, { label: string; title: string; subtitle: string;
     { label: "产品", title: "产品图鉴", subtitle: "真实用过的工具与网站", href: "/products" },
     { label: "提示词", title: "提示词库", subtitle: "可直接复制的全流程提示词", href: "/prompts" },
     { label: "设计", title: "设计", subtitle: "可点开看的界面风格", href: "/design" },
-    { label: "动效", title: "动效", subtitle: "顶级 App 的交互动效拆解", href: "/distill" },
+    { label: "动效", title: "动效", subtitle: "4 个可点着玩的交互动效", href: "/distill" },
     { label: "专题", title: "专题", subtitle: "从 0 到 1 的完整拆解", href: "/explains" },
     { label: "手册", title: "手册", subtitle: "什么时候用、怎么做、做到什么程度算过", href: "/playbooks" },
   ],
@@ -321,7 +326,7 @@ const SECTIONS: Record<Locale, { label: string; title: string; subtitle: string;
     { label: "products", title: "Showcase", subtitle: "Tools we have actually used", href: "/en/products" },
     { label: "prompts", title: "Prompts", subtitle: "Copy-ready prompts for the whole build", href: "/en/prompts" },
     { label: "design", title: "Design", subtitle: "Interface styles you can open and compare", href: "/en/design" },
-    { label: "motion", title: "Motion", subtitle: "Interactions pulled apart from top apps", href: "/en/distill" },
+    { label: "motion", title: "Motion", subtitle: "Four playable interaction demos", href: "/en/distill" },
   ],
 };
 
@@ -335,30 +340,9 @@ function moduleLinks(locale: Locale, q: string): Item[] {
       subtitle: s.subtitle,
       type: L.entry,
       href: s.href,
+      kind: "go",
       match: "",
     }));
-}
-
-function quickLinks(locale: Locale): Item[] {
-  const base = locale === "en" ? "/en" : "";
-  const L = LABELS[locale];
-  if (locale === "en") {
-    return [
-      { key: "go:skills", title: "Skills", subtitle: "Curated agent skills with install commands", type: L.entry, href: `${base}/skills`, match: "" },
-      { key: "go:prompts", title: "Prompts", subtitle: "Copy-ready prompts for the whole build", type: L.entry, href: `${base}/prompts`, match: "" },
-      { key: "go:products", title: "Showcase", subtitle: "Tools we have actually used", type: L.entry, href: `${base}/products`, match: "" },
-      { key: "go:design", title: "Design", subtitle: "Interface styles you can open and compare", type: L.entry, href: `${base}/design`, match: "" },
-    ];
-  }
-  return [
-    { key: "go:paths", title: "四条路径", subtitle: "做出官网 / 装好工作流 / 做出质感 / 做出 AI 应用", type: L.entry, href: "/paths", match: "" },
-    { key: "go:course", title: "从零做一个产品官网", subtitle: "9 章 · 从需求到上线", type: L.course, href: "/courses/product-website", match: "" },
-    { key: "go:git", title: "Git 工作流与版本管理", subtitle: "6 章 · 从提交到协作", type: L.course, href: "/courses/git-workflow", match: "" },
-    { key: "go:skills", title: "技能库", subtitle: "精选 Agent Skills，附安装命令", type: L.entry, href: "/skills", match: "" },
-    { key: "go:prompts", title: "提示词库", subtitle: "可直接复制的全流程提示词", type: L.entry, href: "/prompts", match: "" },
-    { key: "go:playbooks", title: "手册", subtitle: "什么时候用、怎么做、做到什么程度算过", type: L.entry, href: "/playbooks", match: "" },
-    { key: "go:design", title: "设计", subtitle: "可点开看的界面风格", type: L.entry, href: "/design", match: "" },
-  ];
 }
 
 function excerpt(text: string, token: string): string {
@@ -397,11 +381,13 @@ function scoreItem(
 }
 
 function brief(items: Item[], snippets = new Map<string, string>()) {
-  return items.map(({ title, subtitle, type, href, key }) => ({
+  return items.map(({ title, subtitle, type, href, key, kind, logo }) => ({
     title,
     subtitle,
     type,
     href,
+    kind,
+    logo,
     snippet: snippets.get(key) || undefined,
   }));
 }
@@ -413,7 +399,10 @@ export async function GET(req: Request) {
   /* 全文搜索免费：内容本来就全公开，把「找得到」锁进 PRO 等于给自己造诱饵 */
   const full = url.searchParams.get("full") === "1";
 
-  if (!q) return NextResponse.json({ items: brief(quickLinks(locale)), full });
+  if (!q) {
+    const items = QUICK_LINKS[locale].map((l) => ({ ...l, match: "" }));
+    return NextResponse.json({ items: brief(items), full });
+  }
 
   const tokens = q.split(/\s+/).filter(Boolean).slice(0, 4);
   const snippets = new Map<string, string>();

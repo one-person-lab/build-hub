@@ -11,8 +11,6 @@ import assetsData from "@/data/assets.json";
 import enAssetsData from "@/data/en-assets.json";
 import promptsData from "@/data/prompts.json";
 import enPromptsData from "@/data/en-prompts.json";
-import distillData from "@/data/distill.json";
-import enDistillData from "@/data/en-distill.json";
 import explainersData from "@/data/explainers.json";
 import playbooksData from "@/data/playbooks.json";
 import coursesData from "@/data/courses.json";
@@ -23,10 +21,11 @@ const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || process.env.APP_URL || "https://buildhub.cn";
 
 // 这些路径由各自的 page.tsx 拥有，术语 slug 撞上时必须让位，否则 sitemap 会指向不存在的内容
-const STANDALONE_KEYS = ["design", "stack"];
+const STANDALONE_KEYS = ["design", "motion", "stack"];
 const RESERVED = new Set([
   "",
   "account",
+  "buildhub-skill",
   "anti-ai-flavor",
   "assets",
   "changelog",
@@ -47,7 +46,6 @@ const RESERVED = new Set([
   "stack",
   "terms",
   "topics",
-  "vibehub-skill",
 ]);
 
 type Lib = {
@@ -106,6 +104,7 @@ function zh(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/distill`, lastModified: new Date() },
     { url: `${SITE_URL}/explains`, lastModified: new Date() },
     { url: `${SITE_URL}/playbooks`, lastModified: new Date() },
+    { url: `${SITE_URL}/pro`, lastModified: new Date() },
     { url: `${SITE_URL}/courses`, lastModified: new Date() },
     { url: `${SITE_URL}/paths`, lastModified: new Date() },
     ...entries(
@@ -115,13 +114,12 @@ function zh(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/changelog`, lastModified: new Date() },
     { url: `${SITE_URL}/practice`, lastModified: new Date() },
     { url: `${SITE_URL}/anti-ai-flavor`, lastModified: new Date() },
-    { url: `${SITE_URL}/vibehub-skill`, lastModified: new Date() },
+    { url: `${SITE_URL}/buildhub-skill`, lastModified: new Date() },
     ...topics("", catalogsData),
     ...library(productsData, "/products"),
     ...library(skillsData, "/skills"),
     ...library(assetsData, "/assets"),
     ...library(promptsData, "/prompts"),
-    ...entries("/distill", (distillData as { slug: string }[]).map((d) => d.slug)),
     ...entries(
       "/explains",
       [...Object.keys(explainersData), ...Object.keys(BOOKS)],
@@ -154,13 +152,13 @@ function en(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}${base}/changelog`, lastModified: new Date() },
     { url: `${SITE_URL}${base}/practice`, lastModified: new Date() },
     { url: `${SITE_URL}${base}/anti-ai-flavor`, lastModified: new Date() },
-    { url: `${SITE_URL}${base}/vibehub-skill`, lastModified: new Date() },
+    { url: `${SITE_URL}${base}/buildhub-skill`, lastModified: new Date() },
+    { url: `${SITE_URL}${base}/pro`, lastModified: new Date() },
     ...topics(base, enCatalogsData),
     ...library(enProductsData, `${base}/products`),
     ...library(enSkillsData, `${base}/skills`),
     ...library(enAssetsData, `${base}/assets`),
     ...library(enPromptsData, `${base}/prompts`),
-    ...entries(`${base}/distill`, (enDistillData as { slug: string }[]).map((d) => d.slug)),
     ...glossary(base, enTermsData),
   ];
 }

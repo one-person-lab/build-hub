@@ -1,0 +1,433 @@
+/* BuildHub Skill 落地页 —— 用站内 token（--bg/--text/--brand/--radius），不依赖抓来的 .skill-* 那套 */
+
+.bs-main {
+  background: var(--bg);
+  color: var(--text);
+}
+
+.bs-wrap {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 44px 32px 96px;
+}
+
+.bs-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: 44px;
+  align-items: start;
+  padding-bottom: 44px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.bs-label {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brand);
+  margin-bottom: 14px;
+}
+
+.bs-hero h1 {
+  font-size: 34px;
+  line-height: 1.32;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  margin: 0 0 14px;
+}
+
+.bs-sub {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--text-2);
+  margin: 0 0 22px;
+  max-width: 46ch;
+}
+
+.bs-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 22px;
+  list-style: none;
+}
+
+.bs-facts li {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.bs-facts b {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+.bs-facts span {
+  font-size: 13px;
+  color: var(--text-3);
+}
+
+/* ── 演示：真的用 CSS tooltip，鼠标移上去或 Tab 聚焦才显形 ── */
+.bs-demo {
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  background: var(--bg-soft);
+  padding: 18px 20px 14px;
+  box-shadow: var(--shadow-card);
+}
+
+.bs-demo-you {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-2);
+  background: var(--bg);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  padding: 10px 13px;
+  margin: 0 0 12px;
+  display: inline-block;
+}
+
+.bs-demo-agent p {
+  font-size: 14px;
+  line-height: 1.75;
+  margin: 0;
+}
+
+.bs-demo-hint {
+  font-size: 12px;
+  color: var(--text-3);
+  margin: 12px 0 0;
+}
+
+.bs-tip {
+  position: relative;
+  display: inline-block;
+}
+
+.bs-tip-pop {
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 9px);
+  transform: translate(-50%, -4px);
+  width: min(280px, 78vw);
+  padding: 11px 13px;
+  border-radius: 12px;
+  background: var(--text);
+  color: var(--bg);
+  box-shadow: var(--shadow-float);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.16s var(--ease), transform 0.16s var(--ease);
+  z-index: 3;
+}
+
+.bs-tip-pop b {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.bs-tip-pop span {
+  display: block;
+  font-size: 12.5px;
+  line-height: 1.6;
+  opacity: 0.85;
+}
+
+.bs-tip-pop a {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--brand-light);
+}
+
+.bs-tip:hover .bs-tip-pop,
+.bs-tip:focus-within .bs-tip-pop {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+}
+
+/* ── 安装 ── */
+.bs-install,
+.bs-block {
+  padding: 40px 0;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.bs-kicker {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--brand);
+  margin: 0 0 8px;
+}
+
+.bs-install h2,
+.bs-block h2 {
+  font-size: 24px;
+  line-height: 1.4;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 0 0 10px;
+}
+
+.bs-desc {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--text-2);
+  margin: 0 0 20px;
+  max-width: 62ch;
+}
+
+.bs-copy-block {
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  background: var(--bg-soft);
+  padding: 14px 16px;
+  margin-bottom: 14px;
+}
+
+.bs-copy-hint {
+  font-size: 12px;
+  color: var(--text-3);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  margin: 0 0 8px;
+  word-break: break-all;
+}
+
+.bs-copy-text {
+  font-size: 13.5px;
+  line-height: 1.7;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin: 0 0 12px;
+  color: var(--text);
+}
+
+.bs-copy-btn {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 13px;
+  padding: 6px 14px;
+  transition: background 0.16s var(--ease), border-color 0.16s var(--ease), color 0.16s var(--ease);
+}
+
+.bs-copy-btn:hover {
+  border-color: var(--brand);
+  color: var(--brand);
+}
+
+.bs-copy-inline {
+  font-size: 12px;
+  padding: 4px 11px;
+}
+
+.bs-cli-lead {
+  font-size: 13px;
+  color: var(--text-3);
+  margin: 18px 0 10px;
+}
+
+/* ── 改写示例 ── */
+.bs-rewrite {
+  display: grid;
+  gap: 14px;
+}
+
+.bs-before,
+.bs-after {
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: 15px 17px;
+  background: var(--bg-soft);
+}
+
+.bs-before span,
+.bs-after-head > span {
+  display: block;
+  font-size: 12px;
+  color: var(--text-3);
+  margin-bottom: 8px;
+}
+
+.bs-before p,
+.bs-after p {
+  font-size: 15px;
+  line-height: 1.8;
+  margin: 0;
+}
+
+.bs-after {
+  border-color: var(--brand-light);
+  background: var(--bg);
+}
+
+.bs-after-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.bs-after-head > span {
+  margin: 0;
+}
+
+/* ── 对话 ── */
+.bs-dialogue {
+  display: grid;
+  gap: 12px;
+}
+
+.bs-say,
+.bs-answer {
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  border: 1px solid var(--border-light);
+}
+
+.bs-say {
+  background: var(--bg-soft);
+}
+
+.bs-answer {
+  background: var(--bg);
+  border-color: var(--brand-light);
+}
+
+.bs-say small,
+.bs-answer small {
+  display: block;
+  font-size: 12px;
+  color: var(--text-3);
+  margin-bottom: 6px;
+}
+
+.bs-say p,
+.bs-answer p {
+  font-size: 15px;
+  line-height: 1.8;
+  margin: 0;
+}
+
+.bs-rules {
+  list-style: none;
+  margin: 16px 0 0;
+  display: grid;
+  gap: 8px;
+}
+
+.bs-rules li {
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--text-2);
+  padding-left: 16px;
+  position: relative;
+}
+
+.bs-rules li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--brand);
+}
+
+/* ── 术语行内链 ── */
+.bs-term {
+  color: var(--brand);
+  text-decoration: none;
+  border-bottom: 1px solid var(--brand-light);
+  padding-bottom: 1px;
+}
+
+.bs-term:hover {
+  border-bottom-color: var(--brand);
+}
+
+.bs-how-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 22px;
+}
+
+.bs-how-grid h3 {
+  font-size: 15px;
+  font-weight: 700;
+  margin: 0 0 6px;
+}
+
+.bs-how-grid p {
+  font-size: 13.5px;
+  line-height: 1.75;
+  color: var(--text-2);
+  margin: 0;
+}
+
+.bs-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 14px;
+  font-size: 14px;
+}
+
+.bs-links-lead {
+  color: var(--text-3);
+}
+
+.bs-links a {
+  color: var(--brand);
+  text-decoration: none;
+}
+
+.bs-links a:hover {
+  text-decoration: underline;
+}
+
+.bs-block:last-child {
+  border-bottom: 0;
+}
+
+@media (max-width: 900px) {
+  .bs-hero {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .bs-hero h1 {
+    font-size: 27px;
+  }
+
+  .bs-how-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .bs-wrap {
+    padding: 32px 20px 72px;
+  }
+
+  .bs-tip-pop {
+    position: fixed;
+    left: 50%;
+    bottom: 24px;
+    transform: translate(-50%, 4px);
+    width: calc(100vw - 40px);
+    max-width: 340px;
+  }
+}

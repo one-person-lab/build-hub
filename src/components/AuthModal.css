@@ -1,0 +1,495 @@
+/* 登录弹窗 —— 1:1 对齐 21st.dev 的登录对话框：
+   940×500 双栏，左表单右滚动样张河，圆角 16、边框 white/10、底 #050505，进场淡入+缩放 200ms。 */
+
+.bam-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  background: rgba(0, 0, 0, 0.5);
+  animation: bam-fade 0.2s ease;
+}
+
+@keyframes bam-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.bam-panel {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: 121;
+  transform: translate(-50%, -50%);
+  display: grid;
+  grid-template-columns: minmax(380px, 420px) 1fr;
+  gap: 0;
+  width: 940px;
+  max-width: calc(100% - 32px);
+  min-height: 500px;
+  max-height: calc(100% - 32px);
+  margin: 0 auto;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  background: #050505;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  animation: bam-in 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+@keyframes bam-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.bam-close {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: 0;
+  border-radius: 9999px;
+  background: transparent;
+  color: #8a8a93;
+  cursor: pointer;
+  transition:
+    color 0.15s ease,
+    background 0.15s ease;
+}
+
+.bam-close:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #f5f5f5;
+}
+
+/* ---------- 左：表单栏 ---------- */
+
+.bam-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+  background: #050505;
+}
+
+.bam-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.bam-mark {
+  width: 28px;
+  height: 28px;
+  display: block;
+  border-radius: 7px;
+}
+
+.bam-title {
+  margin: 20px 0 0;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 36px;
+  letter-spacing: -0.6px;
+  text-align: center;
+  color: #f5f5f5;
+}
+
+.bam-sub {
+  margin: 10px 0 0;
+  max-width: 300px;
+  font-size: 13px;
+  line-height: 1.5;
+  text-align: center;
+  color: #8a8a93;
+}
+
+.bam-body {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  max-width: 340px;
+}
+
+.bam-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.bam-row {
+  display: flex;
+  gap: 8px;
+}
+
+.bam-input {
+  flex: 1;
+  min-width: 0;
+  height: 44px;
+  padding: 0 16px;
+  border: 1px solid #27272a;
+  border-radius: 8px;
+  background: rgba(245, 245, 245, 0.04);
+  font-family: inherit;
+  font-size: 16px;
+  color: #f5f5f5;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.bam-input::placeholder {
+  color: rgba(138, 138, 147, 0.7);
+}
+
+.bam-input:focus {
+  outline: none;
+  border-color: rgba(82, 39, 255, 0.5);
+  box-shadow: 0 0 0 3px rgba(82, 39, 255, 0.24);
+}
+
+.bam-input.is-code {
+  letter-spacing: 4px;
+  font-variant-numeric: tabular-nums;
+}
+
+.bam-go {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  flex: none;
+  height: 44px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 8px;
+  background: #f5f5f5;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  color: #0a0a0a;
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    opacity 0.15s ease;
+}
+
+.bam-go:hover:not(:disabled) {
+  background: #ffffff;
+}
+
+.bam-go:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.bam-go:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.bam-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 12px;
+  border: 1px solid #27272a;
+  border-radius: 8px;
+  background: rgba(245, 245, 245, 0.03);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(245, 245, 245, 0.7);
+  cursor: pointer;
+  transition:
+    color 0.15s ease,
+    background 0.15s ease,
+    transform 0.15s ease;
+}
+
+.bam-ghost:hover:not(:disabled) {
+  background: rgba(245, 245, 245, 0.06);
+  color: #f5f5f5;
+}
+
+.bam-ghost:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.bam-ghost:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.bam-hint {
+  margin: 0;
+  font-size: 12px;
+  line-height: 18px;
+  color: #8a8a93;
+}
+
+.bam-hint b {
+  font-variant-numeric: tabular-nums;
+  color: rgba(245, 245, 245, 0.7);
+  font-weight: 500;
+}
+
+.bam-hint button {
+  padding: 0;
+  border: 0;
+  background: none;
+  font-family: inherit;
+  font-size: 12px;
+  color: #8a8a93;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.bam-hint button:hover {
+  color: #f5f5f5;
+}
+
+.bam-err {
+  margin: 0;
+  font-size: 12px;
+  line-height: 18px;
+  color: #ff6b6b;
+}
+
+.bam-legal {
+  margin: 0;
+  font-size: 11px;
+  line-height: 16px;
+  text-align: center;
+  color: #8a8a93;
+}
+
+.bam-legal a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.bam-legal a:hover {
+  color: #f5f5f5;
+}
+
+/* ---------- 右：样张河 ---------- */
+
+.bam-show {
+  position: relative;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  padding: 24px 20px;
+  border-left: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(255, 255, 255, 0.03);
+  order: 2;
+}
+
+.bam-stage {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #050505;
+}
+
+.bam-river-wrap {
+  position: relative;
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(transparent 0px, #000 40px, #000 calc(100% - 44px), transparent 100%);
+  mask-image: linear-gradient(transparent 0px, #000 40px, #000 calc(100% - 44px), transparent 100%);
+}
+
+.bam-cols {
+  position: absolute;
+  inset: -16px 28px 0;
+  display: flex;
+  gap: 12px;
+}
+
+.bam-col {
+  flex: 1;
+  min-width: 0;
+}
+
+.bam-river {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  animation: bam-river-y 110s linear infinite;
+}
+
+.bam-river.is-slow {
+  animation-duration: 132s;
+}
+
+@keyframes bam-river-y {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+
+.bam-card {
+  margin: 0;
+  flex: none;
+  padding-bottom: 12px;
+}
+
+.bam-frame {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  border-radius: 8px;
+  background: #0f0f0f;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.bam-frame .card-thumb {
+  position: absolute;
+  inset: 0;
+}
+
+.bam-cap {
+  margin: 6px 0 0;
+  padding: 0 2px;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 16px;
+  color: #8a8a93;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bam-trust {
+  position: relative;
+  z-index: 2;
+  padding: 12px 28px 24px;
+}
+
+.bam-trust-label {
+  margin: 0;
+  font-size: 12px;
+  line-height: 18px;
+  color: #8a8a93;
+}
+
+.bam-trust-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 24px;
+  margin-top: 12px;
+}
+
+.bam-trust-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0.6;
+}
+
+.bam-trust-item img {
+  width: 20px;
+  height: 20px;
+  flex: none;
+  border-radius: 5px;
+}
+
+.bam-trust-item span {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.4px;
+  white-space: nowrap;
+  color: #f5f5f5;
+}
+
+/* ---------- 进场分层 ---------- */
+
+.bam-rise {
+  animation: bam-rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+}
+
+.bam-rise.d1 {
+  animation-delay: 0.28s;
+}
+
+.bam-rise.d2 {
+  animation-delay: 0.36s;
+}
+
+@keyframes bam-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- 窄屏：单栏，收起样张河 ---------- */
+
+@media (max-width: 767px) {
+  .bam-panel {
+    grid-template-columns: minmax(0, 1fr);
+    min-height: 0;
+    overflow-y: auto;
+  }
+
+  .bam-form {
+    padding: 48px 20px 32px;
+  }
+
+  .bam-close {
+    background: rgba(255, 255, 255, 0.06);
+  }
+}
+
+@media (min-width: 768px) {
+  .bam-show {
+    display: flex;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bam-panel,
+  .bam-backdrop,
+  .bam-rise {
+    animation: none;
+  }
+
+  .bam-river {
+    animation: none;
+  }
+}

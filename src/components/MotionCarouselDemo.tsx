@@ -29,7 +29,6 @@ const UI_TEXT = {
     play: "自动演示",
     pause: "暂停演示",
     hint: "移动指针、拖拽或点击卡片试试",
-    share: "复制链接",
     copied: "已复制",
     prompt: "复制提示词",
   },
@@ -37,7 +36,6 @@ const UI_TEXT = {
     play: "Auto demo",
     pause: "Pause",
     hint: "Move the pointer, drag or click a card",
-    share: "Copy link",
     copied: "Copied",
     prompt: "Copy prompt",
   },
@@ -101,7 +99,6 @@ export default function MotionCarouselDemo({
   const [params, setParams] = useState<Params>(initialParams);
   const [front, setFront] = useState(0);
   const [playing, setPlaying] = useState(false);
-  const [copied, setCopied] = useState(false);
 
   const stageRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -226,21 +223,6 @@ export default function MotionCarouselDemo({
     return `${window.location.origin}${window.location.pathname}?${q}`;
   };
 
-  const writeClipboard = async (text: string) => {
-    try {
-      await navigator.clipboard.writeText(text);
-    } catch {
-      const ta = document.createElement("textarea");
-      ta.value = text;
-      document.body.appendChild(ta);
-      ta.select();
-      document.execCommand("copy");
-      ta.remove();
-    }
-    setCopied(true);
-    window.setTimeout(() => setCopied(false), 1500);
-  };
-
   return (
     <div className="mcd">
       <div className="mcd-layout">
@@ -327,13 +309,6 @@ export default function MotionCarouselDemo({
             })}
           </div>
           <div className="mcd-actions">
-            <button type="button" className="mcd-share" onClick={() => writeClipboard(shareUrl())}>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true">
-                <path d="M10 14a4.5 4.5 0 0 0 6.8.5l2.7-2.7a4.5 4.5 0 0 0-6.4-6.4l-1.5 1.5" />
-                <path d="M14 10a4.5 4.5 0 0 0-6.8-.5l-2.7 2.7a4.5 4.5 0 0 0 6.4 6.4l1.5-1.5" />
-              </svg>
-              {copied ? T.copied : T.share}
-            </button>
             <MotionPromptButton
               label={T.prompt}
               copiedLabel={T.copied}

@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { writeClipboard } from "./clipboard";
 import ProModal from "./ProModal";
+import { requireLogin } from "@/lib/auth-modal";
 import { useMe } from "@/lib/favorites";
 import { track } from "@/lib/track";
 import type { Playbook } from "@/lib/playbook-types";
@@ -86,7 +87,6 @@ export default function PlaybookView({ data, slug }: { data: Playbook; slug: str
   const [forkBusy, setForkBusy] = useState(false);
   const [forkErr, setForkErr] = useState("");
   const [limitHit, setLimitHit] = useState(false);
-  const [signIn, setSignIn] = useState(false);
 
   const storageKey = `vh-playbook-${slug}`;
 
@@ -120,10 +120,14 @@ export default function PlaybookView({ data, slug }: { data: Playbook; slug: str
     setForkErr("");
     track("fork_click", { playbook: slug });
     if (!me?.user) {
-      setSignIn(true);
       track("login_started", { playbook: slug });
+      requireLogin({ reason: "playbook", onDone: () => void forkNow() });
       return;
     }
+    await forkNow();
+  }
+
+  async function forkNow() {
     setForkBusy(true);
     try {
       const r = await fetch("/api/forks", {
@@ -289,15 +293,6 @@ export default function PlaybookView({ data, slug }: { data: Playbook; slug: str
               </>
             )}
             {forkErr && <p className="pb-fork-err">{forkErr}</p>}
-            {signIn && !me?.user && (
-              <SignInPanel
-                onDone={() => {
-                  setSignIn(false);
-                  doFork();
-                }}
-                onCancel={() => setSignIn(false)}
-              />
-            )}
           </section>
 
           {data.intro?.length ? (
@@ -570,96 +565,6 @@ function ExecPanel({
         />
       </label>
       <p className="pb-exec-hint">{UI.execHint}</p>
-    </div>
-  );
-}
-
-function SignInPanel({ onDone, onCancel }: { onDone: () => void; onCancel: () => void }) {
-  const [email, setEmail] = useState("");
-  const [code, setCode] = useState("");
-  const [countdown, setCountdown] = useState(0);
-  const [busy, setBusy] = useState(false);
-  const [err, setErr] = useState("");
-  const timer = useRef<number | undefined>(undefined);
-
-  useEffect(() => {
-    if (countdown <= 0) return;
-    timer.current = window.setInterval(() => setCountdown((s) => s - 1), 1000);
-    return () => window.clearInterval(timer.current);
-  }, [countdown]);
-
-  async function send() {
-    setErr("");
-    setBusy(true);
-    try {
-      const r = await fetch("/api/auth/code", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ email }),
-      });
-      if (r.status === 429) setErr("发送太快，稍后再试");
-      else if (!r.ok) setErr("邮件发送失败，请稍后重试");
-      else setCountdown(60);
-    } catch {
-      setErr("出错了，请重试");
-    } finally {
-      setBusy(false);
-    }
-  }
-
-  async function verify() {
-    setErr("");
-    setBusy(true);
-    try {
-      const r = await fetch("/api/auth/verify", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ email, code }),
-      });
-      if (!r.ok) {
-        setErr(r.status === 400 ? "验证码错误或已过期" : "出错了，请重试");
-        return;
-      }
-      window.dispatchEvent(new Event("vh-me-changed"));
-      onDone();
-    } catch {
-      setErr("出错了，请重试");
-    } finally {
-      setBusy(false);
-    }
-  }
-
-  return (
-    <div className="pb-signin">
-      <p className="pb-signin-title">{UI.forkLoginHint}</p>
-      <input
-        className="pb-signin-field"
-        type="email"
-        placeholder="邮箱地址"
-        autoComplete="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <div className="pb-signin-row">
-        <input
-          className="pb-signin-field"
-          inputMode="numeric"
-          maxLength={6}
-          placeholder="6 位验证码"
-          value={code}
-          onChange={(e) => setCode(e.target.value.replace(/\D/g, ""))}
-        />
-        <button className="pb-signin-code" disabled={busy || countdown > 0 || !email} onClick={send}>
-          {countdown > 0 ? `${countdown}s 后重发` : code ? "重新获取" : "获取验证码"}
-        </button>
-      </div>
-      {err && <p className="pb-fork-err">{err}</p>}
-      <button className="pb-fork-cta" disabled={busy || code.length !== 6} onClick={verify}>
-        登录并复刻
-      </button>
-      <button className="pb-signin-cancel" onClick={onCancel}>
-        先不登录
-      </button>
     </div>
   );
 }

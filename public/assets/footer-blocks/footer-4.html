@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>footer-4 · Oversized statement with a newsletter block</title>
+<style>
+  :root{--fg:#111;--muted:#6f6f6f;--line:#e6e6e6}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    background:#fff;color:var(--fg);
+    font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+    font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;
+    display:flex;flex-direction:column;padding:40px 56px 26px;overflow:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+
+  h2{
+    font-size:52px;line-height:1.14;font-weight:700;letter-spacing:-.035em;
+    padding-bottom:30px;
+  }
+
+  .grid{
+    flex:1 1 auto;min-height:0;
+    display:grid;grid-template-columns:390px 1fr;gap:0;
+    border-top:1px solid var(--line);
+  }
+  .signup{padding:30px 40px 0 0}
+  .signup p.lead{font-size:17px;font-weight:600;letter-spacing:-.01em}
+  .field{display:flex;margin-top:20px;max-width:330px}
+  .field input{
+    flex:1 1 auto;min-width:0;height:46px;border:1px solid var(--line);border-right:none;
+    background:#fafafa;padding:0 14px;font-family:inherit;font-size:13.5px;color:var(--fg);outline:none;
+    transition:border-color .15s;
+  }
+  .field input::placeholder{color:#9a9a9a}
+  .field input:focus{border-color:#bdbdbd}
+  .field button{
+    width:56px;height:46px;flex:0 0 auto;border:1px solid var(--line);background:#f2f2f2;
+    display:grid;place-items:center;color:#3d3d3d;transition:background .15s,color .15s;
+  }
+  .field button:hover{background:#111;color:#fff;border-color:#111}
+  .fine{margin-top:16px;font-size:11.5px;line-height:1.6;color:#9a9a9a;max-width:320px}
+  .follow{margin-top:26px;padding-top:22px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+  .follow b{display:block;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:#9a9a9a;margin-bottom:14px}
+  .follow nav{display:flex;gap:22px}
+  .follow a{color:#2c2c2c;transition:opacity .15s}
+  .follow a:hover{opacity:.55}
+
+  .cols{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:26px;
+    padding:30px 0 0 40px;border-left:1px solid var(--line);
+  }
+  .col h3{font-size:14px;font-weight:600;margin-bottom:18px}
+  .col ul{list-style:none;display:flex;flex-direction:column;gap:18px}
+  .col a{font-size:13.5px;color:var(--muted)}
+  .col a:hover{color:var(--fg)}
+
+  .legal{
+    margin-top:auto;padding-top:24px;display:flex;align-items:center;justify-content:space-between;
+    font-size:12.5px;color:var(--muted);
+  }
+  .brand{display:flex;align-items:center;gap:9px;font-weight:650;color:var(--fg)}
+  .brand i{
+    width:19px;height:19px;display:block;
+    background:conic-gradient(from 45deg,#111 0 25%,#5b5b5b 0 50%,#111 0 75%,#5b5b5b 0);
+    clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);
+  }
+  .legal nav{display:flex;gap:9px;align-items:center}
+  .legal nav a:hover{color:var(--fg)}
+  .legal nav i{opacity:.45;font-style:normal}
+</style>
+</head>
+<body>
+  <h2>Decentralized finance.<br />One block at a time.</h2>
+
+  <div class="grid">
+    <div class="signup">
+      <p class="lead">Stay updated on protocol developments.</p>
+      <form class="field" onsubmit="event.preventDefault()">
+        <input type="email" placeholder="Enter your email address" aria-label="Email address" />
+        <button type="submit" aria-label="Subscribe">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+        </button>
+      </form>
+      <p class="fine">* By filling out this form you agree to receive our emails. You can unsubscribe at any time.</p>
+      <div class="follow">
+        <b>Follow the protocol</b>
+        <nav><a href="#">X / Twitter</a><a href="#">GitHub</a><a href="#">Discord</a><a href="#">Forum</a></nav>
+      </div>
+    </div>
+
+    <div class="cols">
+      <div class="col">
+        <h3>Support</h3>
+        <ul><li><a href="#">Documentation</a></li><li><a href="#">Help center</a></li><li><a href="#">Network status</a></li><li><a href="#">Governance</a></li><li><a href="#">Brand kit</a></li><li><a href="#">Contact</a></li></ul>
+      </div>
+      <div class="col">
+        <h3>Ecosystem</h3>
+        <ul><li><a href="#">Whitepaper</a></li><li><a href="#">Roadmap</a></li><li><a href="#">Tokenomics</a></li><li><a href="#">Grants</a></li><li><a href="#">Validators</a></li><li><a href="#">Partners</a></li></ul>
+      </div>
+      <div class="col">
+        <h3>Developers</h3>
+        <ul><li><a href="#">API access</a></li><li><a href="#">SDK</a></li><li><a href="#">Smart contracts</a></li><li><a href="#">Testnet faucet</a></li><li><a href="#">Explorer</a></li><li><a href="#">Bug bounty</a></li></ul>
+      </div>
+      <div class="col">
+        <h3>Resources</h3>
+        <ul><li><a href="#">Security audit</a></li><li><a href="#">Terms of service</a></li><li><a href="#">Privacy policy</a></li><li><a href="#">Research</a></li><li><a href="#">Press</a></li><li><a href="#">Careers</a></li></ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="legal">
+    <span class="brand"><i></i> Chainblk</span>
+    <nav>
+      <span>©2025 Chainblk Protocol</span><i>•</i>
+      <a href="#">Privacy Policy</a><i>•</i>
+      <a href="#">Terms of Service</a>
+    </nav>
+  </div>
+</body>
+</html>

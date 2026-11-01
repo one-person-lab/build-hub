@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>auth-1 · Split sign-in with a testimonial marquee</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#0a0a0a; --fg:#ffffff; --muted:#8a8a8a; --line:#212121;
+    --input:#121212; --card:#0a0a0a;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    background:var(--bg); color:var(--fg);
+    font-family:"Geist",ui-sans-serif,system-ui,-apple-system,sans-serif;
+    font-size:14px; line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    display:grid; place-items:center;
+    padding:14px 24px; overflow:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+
+  .card{
+    position:relative;
+    width:100%; height:100%;
+    border:1px solid var(--line); border-radius:24px;
+    background:var(--card);
+    padding:88px 0 56px 117px;
+    overflow:hidden;
+  }
+  .form-col{width:321px;height:100%}
+
+  /* dot-matrix decoration */
+  .dots{
+    position:absolute; top:26px; left:536px; width:300px; height:280px;
+    background-image:radial-gradient(rgba(255,255,255,.22) 1px, transparent 1.2px);
+    background-size:14px 14px;
+    -webkit-mask-image:radial-gradient(circle at 50% 100%, #000 0%, transparent 68%);
+    mask-image:radial-gradient(circle at 50% 100%, #000 0%, transparent 68%);
+    opacity:.55; pointer-events:none;
+  }
+
+  /* ---------- form column ---------- */
+  .form-col{display:flex;flex-direction:column;position:relative;z-index:2}
+  .logo{
+    width:28px;height:28px;border-radius:9px;background:#fff;
+    display:grid;place-items:center;margin-bottom:34px;
+  }
+  .logo svg{display:block}
+  h1{font-size:30px;font-weight:600;letter-spacing:-.025em;line-height:1.15}
+  .sub{color:var(--muted);font-size:13px;margin-top:8px}
+  form{margin-top:26px;display:flex;flex-direction:column;gap:16px}
+  .field{display:flex;flex-direction:column;gap:7px}
+  .field label{font-size:12.5px;font-weight:500;color:#ededed}
+  .input-wrap{position:relative}
+  .input-wrap input{
+    width:100%;height:40px;border-radius:10px;
+    background:var(--input);border:1px solid var(--line);
+    color:#fff;font-family:inherit;font-size:13px;padding:0 12px;
+    outline:none;transition:border-color .15s, box-shadow .15s;
+  }
+  .input-wrap input::placeholder{color:#6b6b6b}
+  .input-wrap input:focus{border-color:#3a3a3a;box-shadow:0 0 0 3px rgba(255,255,255,.05)}
+  .input-wrap.has-icon input{padding-right:38px}
+  .eye{
+    position:absolute;right:8px;top:50%;transform:translateY(-50%);
+    width:24px;height:24px;display:grid;place-items:center;color:#7a7a7a;border-radius:6px;
+  }
+  .eye:hover{color:#cfcfcf}
+  .btn-primary{
+    height:40px;border-radius:10px;background:#fff;color:#0a0a0a;
+    font-size:13.5px;font-weight:600;letter-spacing:-.01em;
+    display:grid;place-items:center;margin-top:4px;
+    transition:opacity .15s;
+  }
+  .btn-primary:hover{opacity:.9}
+  .back{
+    margin-top:auto;display:inline-flex;align-items:center;gap:7px;
+    font-size:12.5px;color:var(--muted);
+  }
+  .back:hover{color:#fff}
+  .back svg{opacity:.85}
+
+  /* ---------- testimonial marquee ---------- */
+  .marquee{
+    position:absolute;left:545px;right:18px;top:50%;transform:translateY(-50%);z-index:1;
+    height:176px;overflow:hidden;display:flex;align-items:center;
+    -webkit-mask-image:linear-gradient(90deg, transparent, #000 13%, #000 87%, transparent);
+    mask-image:linear-gradient(90deg, transparent, #000 13%, #000 87%, transparent);
+  }
+  .track{
+    display:flex;align-items:center;gap:12px;width:max-content;flex:0 0 auto;
+    animation:scrollX 46s linear infinite;
+  }
+  .marquee:hover .track{animation-play-state:paused}
+  @keyframes scrollX{to{transform:translateX(-50%)}}
+  .quote{
+    width:198px;height:168px;flex:0 0 auto;border-radius:10px;border:1px solid #1f1f1f;
+    background:linear-gradient(180deg,#171717,#131313);
+    padding:16px 15px 14px;display:flex;flex-direction:column;
+  }
+  .quote p{font-size:12px;line-height:1.55;color:#e6e6e6}
+  .who{display:flex;align-items:center;gap:9px;margin-top:auto}
+  .avatar{
+    width:26px;height:26px;border-radius:50%;flex:0 0 auto;
+    background:radial-gradient(circle at 35% 30%,#6f6f6f,#2a2a2a 70%);
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);
+  }
+  .who .n{font-size:11.5px;font-weight:600;line-height:1.3}
+  .who .r{font-size:10.5px;color:#777;line-height:1.3}
+
+  @media (max-width:900px){
+    body{padding:0;overflow:auto}
+    .card{grid-template-columns:1fr;gap:32px;height:auto;max-width:none;border-radius:0;border:none;padding:40px 28px;min-height:100vh}
+    .marquee{height:260px}
+    .track{animation:none}
+    .quote{width:100%}
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="dots"></div>
+
+    <div class="form-col">
+      <div class="logo">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="#0a0a0a">
+          <rect x="6.4" y="1" width="3.2" height="14" rx="1.6"/>
+          <rect x="1" y="6.4" width="14" height="3.2" rx="1.6"/>
+        </svg>
+      </div>
+
+      <h1>Welcome back</h1>
+      <p class="sub">Enter your credentials to access your account</p>
+
+      <form onsubmit="event.preventDefault()">
+        <div class="field">
+          <label for="email">Email address</label>
+          <div class="input-wrap">
+            <input id="email" type="email" placeholder="name@company.com" autocomplete="email" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="password">Password</label>
+          <div class="input-wrap has-icon">
+            <input id="password" type="password" placeholder="Enter your password" autocomplete="current-password" />
+            <button class="eye" type="button" aria-label="Show password" onclick="togglePw(this)">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+                <path d="M3 3l18 18"/>
+                <path d="M10.6 5.2A9.9 9.9 0 0 1 12 5c5 0 9 4.5 9 7 0 .9-.5 2-1.4 3.2"/>
+                <path d="M6.2 6.7C4.2 8.2 3 10.2 3 12c0 2.5 4 7 9 7 1.6 0 3-.4 4.3-1.1"/>
+                <path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <button class="btn-primary" type="submit">Sign in</button>
+      </form>
+
+      <a class="back" href="#">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M11 6l-6 6 6 6"/></svg>
+        Back to home
+      </a>
+    </div>
+
+    <div class="marquee">
+      <div class="track" id="track"></div>
+    </div>
+  </div>
+
+<script>
+  function togglePw(btn){
+    const input = btn.parentElement.querySelector('input');
+    const on = input.type === 'password';
+    input.type = on ? 'text' : 'password';
+  }
+
+  const QUOTES = [
+    {q:"We've seen a 40% increase in productivity since implementing this solution. Highly recommended!", n:"Emily Watson", r:"Operations Director"},
+    {q:"The best investment we made this year. Simple, powerful, and exactly what we needed.", n:"James Park", r:"Founder & CEO"},
+    {q:"Setup took minutes and the results speak for themselves. Our team never looked back.", n:"Sofia Reyes", r:"Product Lead"},
+    {q:"Clean, fast and endlessly flexible. It raised the bar for every page we ship.", n:"Noah Bennett", r:"Design Engineer"}
+  ];
+  const track = document.getElementById('track');
+  const html = QUOTES.map(t => `
+    <div class="quote">
+      <p>“${t.q}”</p>
+      <div class="who"><span class="avatar"></span><span><span class="n">${t.n}</span><br><span class="r">${t.r}</span></span></div>
+    </div>`).join('');
+  track.innerHTML = html + html;   /* duplicate for seamless loop */
+</script>
+</body>
+</html>

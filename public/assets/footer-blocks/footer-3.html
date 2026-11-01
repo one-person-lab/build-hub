@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>footer-3 · Full-width CTA bar above link columns</title>
+<style>
+  :root{--fg:#141414;--muted:#6f6f6f;--line:#e7e7e7}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    background:#fff;color:var(--fg);
+    font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+    font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;
+    display:flex;flex-direction:column;padding:40px 56px 30px;overflow:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+
+  .cta{
+    display:flex;align-items:center;justify-content:space-between;gap:40px;
+    padding-bottom:30px;
+  }
+  .cta h2{
+    font-size:27px;font-weight:700;letter-spacing:-.015em;text-transform:uppercase;
+    line-height:1.25;max-width:760px;
+  }
+  .arrow{
+    flex:0 0 auto;width:52px;height:52px;border-radius:50%;border:1px solid var(--line);
+    display:grid;place-items:center;transition:background .18s,color .18s,border-color .18s;
+  }
+  .arrow:hover{background:#141414;color:#fff;border-color:#141414}
+
+  hr{border:none;border-top:1px solid var(--line)}
+
+  .body{
+    flex:1 1 auto;min-height:0;
+    display:grid;grid-template-columns:1fr 300px 220px;
+    gap:56px;padding:34px 0 0;align-items:start;
+  }
+  .blurb{max-width:420px;font-size:15px;line-height:1.75;color:var(--muted)}
+  .col h3{font-size:14px;font-weight:650;margin-bottom:18px}
+  .col ul{list-style:none;display:flex;flex-direction:column;gap:16px}
+  .col a{font-size:13.5px;color:var(--muted)}
+  .col a:hover{color:var(--fg)}
+
+  .pitch{align-self:start}
+  .trust{margin-top:26px;display:flex;flex-wrap:wrap;gap:8px;width:max-content}
+  .trust span{
+    font-size:11px;letter-spacing:.04em;color:#4a4a4a;background:#f4f4f4;
+    border:1px solid var(--line);border-radius:999px;padding:5px 11px;
+  }
+  .legal{
+    margin-top:auto;padding-top:26px;border-top:1px solid var(--line);
+    display:flex;align-items:center;justify-content:space-between;gap:24px;
+    font-size:12.5px;color:var(--muted);
+  }
+  .legal nav{display:flex;gap:22px}
+  .legal a{color:var(--muted)}
+  .legal a:hover{color:var(--fg)}
+</style>
+</head>
+<body>
+  <div class="cta">
+    <h2>Schedule a security assessment for your business</h2>
+    <a class="arrow" href="#" aria-label="Book an assessment">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+
+  <hr />
+
+  <div class="body">
+    <div class="pitch">
+    <p class="blurb">
+      CyberGuard provides enterprise-grade cybersecurity solutions that protect your
+      infrastructure from emerging threats, reliably.
+    </p>
+    <div class="trust">
+      <span>SOC 2 Type II</span><span>ISO 27001</span><span>PCI DSS</span><span>24/7 SOC</span>
+    </div>
+    </div>
+    <div class="col">
+      <h3>Services &amp; Solutions</h3>
+      <ul>
+        <li><a href="#">Penetration Testing</a></li>
+        <li><a href="#">Security Audits</a></li>
+        <li><a href="#">Threat Intelligence</a></li>
+        <li><a href="#">Incident Response</a></li>
+        <li><a href="#">Compliance Services</a></li>
+        <li><a href="#">Cloud Posture</a></li>
+        <li><a href="#">Managed Detection</a></li>
+        <li><a href="#">Red Team as a Service</a></li>
+      </ul>
+    </div>
+    <div class="col">
+      <h3>Company</h3>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Book a Meeting</a></li>
+        <li><a href="#">Newsroom</a></li>
+        <li><a href="#">Case Studies</a></li>
+        <li><a href="#">Partners</a></li>
+        <li><a href="#">FAQ</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="legal">
+    <span>© 2024 CyberGuard Security. All rights reserved.</span>
+    <nav><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Responsible disclosure</a><a href="#">Status</a></nav>
+  </div>
+</body>
+</html>

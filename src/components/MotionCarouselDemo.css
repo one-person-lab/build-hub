@@ -17,7 +17,7 @@
 /* ---- 演示舞台 ---- */
 .mcd-stage {
   position: relative;
-  flex: 1;
+  flex: 1 1 auto;
   min-width: 0;
   height: 440px;
   border-radius: 24px;
@@ -191,26 +191,4 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-}
-.mcd-share {
-  width: 100%;
-  height: 42px;
-  padding: 0 18px;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  background: var(--bg);
-  color: var(--text);
-  font-size: 13px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  cursor: pointer;
-}
-.mcd-share:hover {
-  background: var(--bg-hover);
-}
-.mcd-share svg {
-  width: 15px;
-  height: 15px;
 }

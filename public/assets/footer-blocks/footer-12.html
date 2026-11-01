@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>footer-12 · Dark brief panel with live status rows</title>
+<style>
+  :root{--fg:#141414;--muted:#6f6f6f;--line:#e8e8e8}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    background:#fff;color:var(--fg);
+    font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+    font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;
+    display:flex;flex-direction:column;padding:22px 26px 20px;overflow:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  button,input{font-family:inherit}
+
+  /* ---------- dark brief panel ---------- */
+  .brief{
+    flex:0 0 auto;background:#141414;color:#fff;border-radius:22px;
+    display:grid;grid-template-columns:1fr 420px;
+    padding:34px 38px;
+  }
+  .head{display:flex;align-items:center;gap:11px}
+  .head i{
+    width:32px;height:32px;border-radius:50%;background:#fff;color:#141414;font-style:normal;
+    display:grid;place-items:center;font-size:14px;font-weight:700;
+  }
+  .head b{font-size:14px;font-weight:550;color:#d8d8d8}
+  h2{font-size:31px;line-height:1.24;font-weight:650;letter-spacing:-.03em;margin-top:22px;max-width:400px}
+  .blurb{margin-top:14px;font-size:13px;line-height:1.7;color:#9a9a9a;max-width:400px}
+
+  .field{display:flex;align-items:center;gap:8px;margin-top:26px;max-width:390px;
+    border:1px solid #2c2c2c;border-radius:999px;padding:5px 5px 5px 18px;transition:border-color .16s}
+  .field:focus-within{border-color:#4a4a4a}
+  .field input{flex:1 1 auto;min-width:0;background:none;border:none;outline:none;color:#fff;font-size:13px;height:36px}
+  .field input::placeholder{color:#7a7a7a}
+  .field button{
+    flex:0 0 auto;height:38px;padding:0 17px;border:none;border-radius:999px;background:#fff;color:#141414;
+    font-size:13px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:7px;
+    transition:opacity .16s;
+  }
+  .field button:hover{opacity:.88}
+
+  .vitals{border-left:1px solid #262626;padding-left:38px;display:flex;flex-direction:column;justify-content:center}
+  .vital{display:flex;align-items:baseline;justify-content:space-between;gap:20px;padding:15px 0;border-bottom:1px solid #232323}
+  .vital:last-child{border-bottom:none}
+  .vital .k{font-size:12px;color:#8a8a8a}
+  .vital .v{font-size:13px;font-weight:600;color:#f2f2f2;display:inline-flex;align-items:center;gap:8px}
+  .dot{width:8px;height:8px;border-radius:50%;background:#3ddc84;box-shadow:0 0 0 3px rgba(61,220,132,.16);display:inline-block}
+
+  /* ---------- sitemap below ---------- */
+  .sitemap{
+    flex:1 1 auto;min-height:0;margin-top:26px;
+    display:grid;grid-template-columns:1fr repeat(4,132px);gap:28px;
+  }
+  .intro b{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:650}
+  .intro b i{width:15px;height:15px;background:#141414;display:inline-block;clip-path:polygon(50% 0,100% 100%,0 100%)}
+  .intro p{margin-top:10px;font-size:12px;line-height:1.65;color:var(--muted);max-width:230px}
+  .col h3{font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:#9a9a9a;margin-bottom:16px}
+  .col ul{list-style:none;display:flex;flex-direction:column;gap:11px}
+  .col a{font-size:12.5px;color:#3a3a3a}
+  .col a:hover{color:#000}
+
+  .copy{flex:0 0 auto;margin-top:22px;font-size:11.5px;color:#9a9a9a}
+</style>
+</head>
+<body>
+  <div class="brief">
+    <div>
+      <div class="head"><i>N</i><b>Northline Dispatch</b></div>
+      <h2>A brief for teams shipping between meetings.</h2>
+      <p class="blurb">Release notes, field memos, and the numbers behind them. One email every other Friday.</p>
+      <form class="field" onsubmit="event.preventDefault()">
+        <input type="email" placeholder="work@email.com" aria-label="Work email" />
+        <button type="submit">Subscribe
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+        </button>
+      </form>
+    </div>
+
+    <div class="vitals">
+      <div class="vital"><span class="k">Status</span><span class="v"><i class="dot"></i> All systems operational</span></div>
+      <div class="vital"><span class="k">Uptime</span><span class="v">99.98%, last 90 days</span></div>
+      <div class="vital"><span class="k">Latest release</span><span class="v">v3.4 Route Planner</span></div>
+      <div class="vital"><span class="k">Next issue</span><span class="v">Friday, 06:00 UTC</span></div>
+    </div>
+  </div>
+
+  <div class="sitemap">
+    <div class="intro">
+      <b><i></i> Northline</b>
+      <p>Logistics software for operators who move real freight on real deadlines.</p>
+    </div>
+    <div class="col"><h3>Explore</h3><ul><li><a href="#">Overview</a></li><li><a href="#">Signals</a></li><li><a href="#">Library</a></li><li><a href="#">Changelog</a></li></ul></div>
+    <div class="col"><h3>Build</h3><ul><li><a href="#">Docs</a></li><li><a href="#">API reference</a></li><li><a href="#">Examples</a></li><li><a href="#">Status</a></li></ul></div>
+    <div class="col"><h3>Company</h3><ul><li><a href="#">About</a></li><li><a href="#">Careers</a></li><li><a href="#">Customers</a></li><li><a href="#">Contact</a></li></ul></div>
+    <div class="col"><h3>Legal</h3><ul><li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li><li><a href="#">Security</a></li><li><a href="#">Cookies</a></li></ul></div>
+  </div>
+
+  <p class="copy">© 2026 Northline Labs</p>
+</body>
+</html>
