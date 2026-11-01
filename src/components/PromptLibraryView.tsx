@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import promptsData from "@/data/prompts.json";
 import enPromptsData from "@/data/en-prompts.json";
-import { writeClipboard } from "./clipboard";
+import { copyPromptWithGate } from "@/lib/copy-gate";
 import "./AssetLibraryView.css";
 import "./PromptLibraryView.css";
 
@@ -89,14 +89,17 @@ export default function PromptLibraryView({
     window.scrollTo({ top: 0 });
   };
 
-  const onCopy = useCallback(
-    async (p: Prompt) => {
-      const ok = await writeClipboard(p.prompt);
-      setCopied(ok ? p.id : `__fail_${p.id}`);
+  const onCopy = useCallback((p: Prompt) => {
+    const flash = (id: string) => {
+      setCopied(id);
       window.setTimeout(() => setCopied(null), 1600);
-    },
-    []
-  );
+    };
+    void copyPromptWithGate(p.prompt, `prompt:${p.id}`, () => flash(p.id)).then(
+      (outcome) => {
+        if (outcome === "failed") flash(`__fail_${p.id}`);
+      }
+    );
+  }, []);
 
   const visible =
     active === "all"

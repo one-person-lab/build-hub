@@ -161,6 +161,7 @@ export default function AssetDetailView({
             </pre>
             <CopyButton
               text={style.prompt}
+              source={`asset:${style.id}`}
               label={T.copy}
               copiedLabel={T.copied}
               failLabel={T.copyFail}

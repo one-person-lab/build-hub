@@ -210,6 +210,7 @@ export default function MotionDarkOnboardingDemo({
           className="is-outline dod-prompt"
           label={T.prompt}
           copiedLabel={T.copied}
+          source="motion-onboarding"
           buildPrompt={() => {
             const url = `${window.location.origin}${window.location.pathname}?c=onboarding`;
             return locale === "en" ? PROMPT_EN(url) : PROMPT_ZH(url);

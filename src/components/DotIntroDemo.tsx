@@ -155,6 +155,7 @@ export default function DotIntroDemo({
           className="is-outline did-prompt"
           label={T.prompt}
           copiedLabel={T.copied}
+          source="motion-dot"
           buildPrompt={() => {
             const url = `${window.location.origin}${window.location.pathname}?c=dot`;
             return locale === "en" ? PROMPT_EN(url) : PROMPT_ZH(url);

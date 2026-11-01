@@ -327,6 +327,7 @@ export default function BounceCardsDemo({
             <MotionPromptButton
               label={T.prompt}
               copiedLabel={T.copied}
+              source="motion-bounce"
               buildPrompt={() => (locale === "en" ? PROMPT_EN(shareUrl(), params) : PROMPT_ZH(shareUrl(), params))}
             />
           </div>

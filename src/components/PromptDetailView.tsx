@@ -120,6 +120,7 @@ export default function PromptDetailView({
             <div className="prompt-detail-cta">
               <CopyButton
                 text={prompt.prompt}
+                source={`prompt:${prompt.id}`}
                 label={T.copy}
                 copiedLabel={T.copied}
                 failLabel={T.copyFail}
@@ -133,6 +134,7 @@ export default function PromptDetailView({
               <h2>{T.promptTitle}</h2>
               <CopyButton
                 text={prompt.prompt}
+                source={`prompt:${prompt.id}`}
                 label={T.copy}
                 copiedLabel={T.copied}
                 failLabel={T.copyFail}
@@ -207,6 +209,7 @@ export default function PromptDetailView({
           <section className="prompt-detail-links">
             <CopyButton
               text={prompt.prompt}
+              source={`prompt:${prompt.id}`}
               label={T.copy}
               copiedLabel={T.copied}
               failLabel={T.copyFail}

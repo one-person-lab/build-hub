@@ -1,36 +1,30 @@
 "use client";
 
 import { useState } from "react";
+import { copyPromptWithGate } from "@/lib/copy-gate";
 import "./MotionPromptButton.css";
 
 export default function MotionPromptButton({
   label,
   copiedLabel,
   buildPrompt,
+  source,
   className = "",
 }: {
   label: string;
   copiedLabel: string;
   buildPrompt: () => string;
+  /** 记账用的条目标识，服务端按账号累计复制次数 */
+  source: string;
   className?: string;
 }) {
   const [copied, setCopied] = useState(false);
 
-  const copy = async () => {
-    const text = buildPrompt();
-    try {
-      await navigator.clipboard.writeText(text);
-    } catch {
-      const ta = document.createElement("textarea");
-      ta.value = text;
-      document.body.appendChild(ta);
-      ta.select();
-      document.execCommand("copy");
-      ta.remove();
-    }
-    setCopied(true);
-    window.setTimeout(() => setCopied(false), 1500);
-  };
+  const copy = () =>
+    copyPromptWithGate(buildPrompt(), source, () => {
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1500);
+    });
 
   return (
     <button type="button" className={"mpb" + (copied ? " is-copied" : "") + (className ? " " + className : "")} onClick={copy}>

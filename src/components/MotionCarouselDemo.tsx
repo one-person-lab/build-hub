@@ -312,6 +312,7 @@ export default function MotionCarouselDemo({
             <MotionPromptButton
               label={T.prompt}
               copiedLabel={T.copied}
+              source="motion-carousel"
               buildPrompt={() => (locale === "en" ? PROMPT_EN(shareUrl(), params) : PROMPT_ZH(shareUrl(), params))}
             />
           </div>
