@@ -453,8 +453,8 @@ export default function HomeView({ locale = "zh" }: { locale?: Locale }) {
 
   return (
     <div ref={rootRef} className={`rb-home${isLight ? " is-light" : ""}`}>
-      {/* 点阵光带当整页背景：鼠标推着走、滚动时窜一下，没人碰也自己慢慢游。
-          钉在视口上不跟着滚，滚到哪儿都是同一层呼吸。 */}
+      {/* 点阵光带当整页背景：钉在视口上不跟着滚，鼠标推着走、滚动时窜一下，没人碰也自己慢慢游。
+          滚过一屏多就淡到只剩质感底：正文在下面读，光带不该跟着滚一路窜。 */}
       <div className="rb-field-bg" aria-hidden>
         <DotField
           baseColor={isLight ? "#cfc9da" : "#3a3446"}
@@ -463,6 +463,8 @@ export default function HomeView({ locale = "zh" }: { locale?: Locale }) {
           opacity={isLight ? 0.6 : 0.9}
           ambient={isLight ? 0.3 : 0.42}
           scrollSway={0.5}
+          scrollDim={1.15}
+          dimFloor={isLight ? 0.45 : 0.38}
         />
       </div>
 

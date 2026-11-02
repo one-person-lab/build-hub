@@ -26,6 +26,10 @@ type Props = {
   ambient?: number;
   /** 滚动把亮带推着走：往下滚加速、往上滚倒退。当整页背景层用才开 */
   scrollSway?: number;
+  /** 滚过 N 倍视口高，整层压到 dimFloor，亮带与跟手的劲一并撤掉（0=不开） */
+  scrollDim?: number;
+  /** 淡到底还剩多少 */
+  dimFloor?: number;
 };
 
 function parseColor(color: string): RGB {
@@ -73,6 +77,8 @@ export default function DotField({
   opacity = 1,
   ambient = 0,
   scrollSway = 0,
+  scrollDim = 0,
+  dimFloor = 0.4,
 }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const drawRef = useRef<(() => void) | null>(null);
@@ -85,6 +91,8 @@ export default function DotField({
     strength,
     ambient,
     scrollSway,
+    scrollDim,
+    dimFloor,
   });
 
   useEffect(() => {
@@ -107,6 +115,8 @@ export default function DotField({
       opacity,
       ambient,
       scrollSway,
+      scrollDim,
+      dimFloor,
     };
     drawRef.current?.();
   });
@@ -132,6 +142,16 @@ export default function DotField({
     const shocks: { x: number; y: number; start: number }[] = [];
     /** 环境光带：phase 走到哪一格，push 是滚动给的一脚油门 */
     const flow = { phase: 0, push: 0 };
+    /** 滚动淡出进度：0=首屏原样，1=已滚过 scrollDim 屏，整层压到底 */
+    const dim = { at: 0 };
+    const readDim = () => {
+      const span = propsRef.current.scrollDim ?? 0;
+      dim.at =
+        span > 0
+          ? Math.min(1, Math.max(0, window.scrollY / (span * (window.innerHeight || 1))))
+          : 0;
+    };
+    readDim();
     let quiet = true;
     let introStart: number | null = reduced ? null : -1;
     let visible = true;
@@ -205,6 +225,7 @@ export default function DotField({
       canvas.width = Math.round(view.width * view.ratio);
       canvas.height = Math.round(view.height * view.ratio);
       ctx.setTransform(view.ratio, 0, 0, view.ratio, 0, 0);
+      readDim();
       rebuild();
       render(performance.now());
     };
@@ -212,6 +233,8 @@ export default function DotField({
     function step(dt: number, now: number) {
       const s = propsRef.current;
       const motion = reduced ? 0 : 1;
+      // 越往下滚越「不跟手」：指针和点击的力气跟着淡出一起收掉
+      const live = 1 - dim.at;
       // 光带自己往前爬；滚动踩的那一脚油门在半秒内褪掉，不会一直窜
       flow.push *= 1 - Math.exp(-dt / 0.5);
       flow.phase += dt * (0.07 + flow.push * motion * (s.scrollSway ?? 0));
@@ -222,7 +245,9 @@ export default function DotField({
       const radius = Math.max(1, s.proximity ?? 140);
       const speed = Math.hypot(pointer.vx, pointer.vy);
       const drive =
-        !reduced && pointer.inside ? 6500 * Math.tanh(speed / 900) * (s.strength ?? 1) * motion : 0;
+        !reduced && pointer.inside
+          ? 6500 * Math.tanh(speed / 900) * (s.strength ?? 1) * motion * live
+          : 0;
       const dirX = speed > 0.001 ? pointer.vx / speed : 0;
       const dirY = speed > 0.001 ? pointer.vy / speed : 0;
       const band = grid.cell * 1.4;
@@ -233,7 +258,7 @@ export default function DotField({
         return {
           ...shock,
           front,
-          amplitude: power * (s.shockStrength ?? 5) * grid.cell * 0.24 * motion,
+          amplitude: power * (s.shockStrength ?? 5) * grid.cell * 0.24 * motion * live,
         };
       });
       const coupling = (Math.max(0, s.tension ?? 0.4) * 900) ** 2 / (grid.cell * grid.cell);
@@ -390,7 +415,9 @@ export default function DotField({
     function render(now: number) {
       const s = propsRef.current;
       buildPalette();
-      const amb = reduced ? 0 : (s.ambient ?? 0);
+      const live = 1 - dim.at;
+      const amb = reduced ? 0 : (s.ambient ?? 0) * live;
+      const dimK = 1 - dim.at * (1 - (s.dimFloor ?? 0.4));
       const radius = Math.max(1, s.proximity ?? 140);
       const size = Math.max(0.5, s.dotSize ?? 5);
       const introAge = introStart === null ? Infinity : introStart < 0 ? 0 : (now - introStart) / 1000;
@@ -409,7 +436,10 @@ export default function DotField({
         if (pointer.presence > 0.001) {
           const distance = Math.hypot(x - pointer.x, y - pointer.y);
           if (distance < radius)
-            glowing = Math.max(glowing, smootherstep(1 - distance / radius) * 0.4 * pointer.presence);
+            glowing = Math.max(
+              glowing,
+              smootherstep(1 - distance / radius) * 0.4 * pointer.presence * live
+            );
         }
         let scale = 1;
         if (introStart !== null) {
@@ -429,7 +459,7 @@ export default function DotField({
           if (a > 0 && b > 0) glowing = Math.max(glowing, amb * a ** 6 * b ** 3);
         }
 
-        let alpha = s.opacity ?? 1;
+        let alpha = (s.opacity ?? 1) * dimK;
         if ((s.fade ?? 0) > 0) {
           alpha *=
             smootherstep(Math.min(x, view.width - x) / edge) *
@@ -497,8 +527,8 @@ export default function DotField({
       last = now;
       step(dt, now);
       render(now);
-      // 开了光带就一直呼吸；没开才允许彻底停下来省电
-      if (!settled(now) || (!reduced && (propsRef.current.ambient ?? 0) > 0)) {
+      // 开了光带就一直呼吸；没开（或已淡到底）才允许彻底停下来省电
+      if (!settled(now) || (!reduced && (propsRef.current.ambient ?? 0) * (1 - dim.at) > 0)) {
         raf = requestAnimationFrame(frame);
       }
     };
@@ -517,7 +547,7 @@ export default function DotField({
     };
 
     const onMove = (event: PointerEvent) => {
-      if (reduced) return;
+      if (reduced || dim.at >= 1) return;
       const [x, y] = locate(event);
       const inside = x >= 0 && y >= 0 && x <= view.width && y <= view.height;
       const time = event.timeStamp || performance.now();
@@ -549,7 +579,7 @@ export default function DotField({
     };
 
     const onDown = (event: PointerEvent) => {
-      if (reduced) return;
+      if (reduced || dim.at >= 1) return;
       const [x, y] = locate(event);
       if (x < 0 || y < 0 || x > view.width || y > view.height) return;
       shocks.push({ x, y, start: performance.now() });
@@ -562,14 +592,18 @@ export default function DotField({
     window.addEventListener("pointerout", onOut);
     window.addEventListener("blur", onLeave);
 
-    // 滚动给光带踩一脚油门：往下滚它往前窜，往上滚它倒退，半秒内自己收住
+    // 滚动给光带踩一脚油门：往下滚它往前窜，往上滚它倒退，半秒内自己收住。
+    // 淡出斜坡走完就不再踩，光带停在原地当质感底。
     let lastScrollY = window.scrollY;
     const onScroll = () => {
       const y = window.scrollY;
       const dy = y - lastScrollY;
       lastScrollY = y;
-      if (reduced || !(propsRef.current.scrollSway ?? 0)) return;
-      flow.push = Math.max(-1.8, Math.min(1.8, flow.push + dy * 0.003));
+      const was = dim.at;
+      readDim();
+      if (dim.at !== was) wake();
+      if (reduced || dim.at >= 1 || !(propsRef.current.scrollSway ?? 0)) return;
+      flow.push = Math.max(-1.8, Math.min(1.8, flow.push + dy * 0.003 * (1 - dim.at)));
       wake();
     };
     window.addEventListener("scroll", onScroll, { passive: true });

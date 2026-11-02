@@ -193,7 +193,11 @@
   height: 100%;
 }
 
+/* 品牌字跟内页导航同一套系统字体，不用首页正文的 Geist */
 .rb-brand-word {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue",
+    "Microsoft YaHei", sans-serif;
+  font-feature-settings: normal;
   font-size: 17px;
   font-weight: 600;
   letter-spacing: -0.028em;
