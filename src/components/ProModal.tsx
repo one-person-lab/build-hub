@@ -28,7 +28,7 @@ const UI = {
       "Agent Kit：SKILL.md 路由，装进 Cursor / Claude Code / Codex",
       "4 条路径、3 本手册，带完成标志",
       "持续更新，重新下载就是最新版",
-      "另含无限收藏、跨设备同步与一键导出",
+      "另含无限收藏、提示词不限次复制、跨设备同步与一键导出",
     ],
     monthly: "月卡",
     yearly: "年卡",
@@ -50,6 +50,7 @@ const UI = {
     dlKit: "下载 Agent Kit",
     dlPage: "在 PRO 页面查看全部内容",
     fineprint: "基础浏览永远免费",
+    noteCopy: "提示词免费复制 10 条已用完，PRO 不限次。",
     linkTerms: "用户协议",
     linkPrivacy: "隐私政策",
     linkRefunds: "退款与售后",
@@ -88,7 +89,7 @@ const UI = {
       "Agent Kit: a SKILL.md router for Cursor / Claude Code / Codex",
       "4 build paths and 3 playbooks with done-checks",
       "Ongoing updates — re-download for the latest version",
-      "Plus unlimited favorites, cross-device sync and one-click export",
+      "Plus unlimited favorites, unlimited prompt copies, cross-device sync and one-click export",
     ],
     monthly: "Monthly",
     yearly: "Yearly",
@@ -110,6 +111,7 @@ const UI = {
     dlKit: "Download the Agent Kit",
     dlPage: "See everything included on the PRO page",
     fineprint: "browsing stays free forever",
+    noteCopy: "That's all 10 free prompt copies — PRO copies without a limit.",
     linkTerms: "Terms",
     linkPrivacy: "Privacy",
     linkRefunds: "Refunds",
@@ -161,6 +163,7 @@ export default function ProModal({
   onClose,
   entry = "plans",
   initialPlan,
+  reason,
 }: {
   locale: "zh" | "en";
   onClose: () => void;
@@ -168,6 +171,8 @@ export default function ProModal({
   entry?: "plans" | "test";
   /** 从定价页带入的套餐，打开即选中 */
   initialPlan?: string;
+  /** 哪一步把人推到这张卡前，用来在卡顶写清原因 */
+  reason?: "copy";
 }) {
   const U = UI[locale];
   const base = locale === "en" ? "/en" : "";
@@ -395,6 +400,7 @@ export default function ProModal({
           <div className="mark">✦</div>
           <h3>{testMode ? U.testTitle : U.title}</h3>
           <p className="sub">{testMode ? U.testSub : U.sub}</p>
+          {reason === "copy" && !testMode && <p className="sub">{U.noteCopy}</p>}
           <div className="rd-plans">
             {shownPlans.map((p) => {
               const f = FMT[p.key] ?? FMT.yearly;

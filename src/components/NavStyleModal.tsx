@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import NavDemoThumb from "./NavDemoThumb";
 import ProModal from "./ProModal";
 import { writeClipboard } from "./clipboard";
+import { copyPromptWithGate } from "@/lib/copy-gate";
 import { useMe } from "@/lib/favorites";
 import { requireLogin } from "@/lib/auth-modal";
 import { PLANS } from "@/lib/plans";
@@ -200,15 +201,19 @@ export default function NavStyleModal({
   const step = (d: number) => onSlugChange(terms[(idx + d + terms.length) % terms.length].slug);
   const { n, install, markdown, prompt } = buildCopy(term, locale);
 
-  async function copy(text: string, label: string) {
-    const ok = await writeClipboard(text);
-    setFlash(ok ? label : "—");
+  function showToast(label: string) {
+    setFlash(label);
     window.setTimeout(() => setFlash(""), 1600);
   }
 
-  function pickMenuItem(text: string, label: string) {
-    void copy(text, label);
+  async function copy(text: string, label: string) {
+    showToast((await writeClipboard(text)) ? label : "—");
+  }
+
+  function pickMenuItem(text: string, label: string, source?: string) {
     setAiOpen(false);
+    if (source) void copyPromptWithGate(text, source, () => showToast(label));
+    else void copy(text, label);
   }
 
   function openPro() {
@@ -329,7 +334,7 @@ export default function NavStyleModal({
                     </Icon>
                     {T.copyMarkdown}
                   </button>
-                  <button type="button" role="menuitem" onClick={() => pickMenuItem(prompt, T.copyPrompt)}>
+                  <button type="button" role="menuitem" onClick={() => pickMenuItem(prompt, T.copyPrompt, `design:${slug}`)}>
                     <Icon>
                       <path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2 2M16 16l2 2M18 6l-2 2M8 16l-2 2" />
                     </Icon>

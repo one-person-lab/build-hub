@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import AuthBlockThumb from "./AuthBlockThumb";
-import { writeClipboard } from "./clipboard";
+import { copyPromptWithGate } from "@/lib/copy-gate";
 import "./AuthBlockModal.css";
 
 function Icon({ children }: { children: ReactNode }) {
@@ -196,11 +196,16 @@ export default function AuthBlockModal({
               <button
                 type="button"
                 className={`abm-copy${copied ? " is-copied" : ""}`}
-                onClick={async () => {
-                  if (!(await writeClipboard(buildPrompt(term, locale)))) return;
-                  setCopied(true);
-                  window.setTimeout(() => setCopied(false), 1600);
-                }}
+                onClick={() =>
+                  void copyPromptWithGate(
+                    buildPrompt(term, locale),
+                    `design:${term.slug}`,
+                    () => {
+                      setCopied(true);
+                      window.setTimeout(() => setCopied(false), 1600);
+                    }
+                  )
+                }
               >
                 <Icon>
                   <rect x="9" y="9" width="11" height="11" rx="2.5" />

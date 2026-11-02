@@ -17,5 +17,5 @@ export function CopyLimitHost() {
   }, []);
 
   if (!open) return null;
-  return <ProModal locale={locale} onClose={() => setOpen(false)} />;
+  return <ProModal locale={locale} reason="copy" onClose={() => setOpen(false)} />;
 }

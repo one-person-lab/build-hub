@@ -23,7 +23,7 @@
         "h": "3. PRO membership",
         "p": [
           "PRO is a paid plan, currently monthly, yearly and lifetime. The price shown at checkout is the price you pay.",
-          "PRO includes unlimited favorites (free accounts hold up to 20), cross-device sync for your favorites, multiple collections with notes, playbook forks beyond the free one with their progress saved, and a one-click Markdown pack of your favorites, collections and playbook progress. Site-wide search and reading stay free for every account.",
+          "PRO includes unlimited favorites (free accounts hold up to 20), unlimited prompt copies (copying a prompt needs an account; free accounts get 10 in total), cross-device sync for your favorites, multiple collections with notes, playbook forks beyond the free one with their progress saved, and a one-click Markdown pack of your favorites, collections and playbook progress. Site-wide search and reading stay free for every account.",
           "Monthly and yearly plans simply expire. There is no auto-renewal and we never charge you again without you placing a new order.",
           "Benefits may evolve with the product. Within a period you already paid for we won't remove features you could already use; if a benefit has to shut down we compensate pro rata for the remaining time."
         ]
@@ -81,7 +81,7 @@
           "Email address — used for sign-in and for sending the code; it's also the only way to get back into your account.",
           "Verification code — we store only its hash, never the plain code. It expires in 10 minutes and allows 5 attempts.",
           "Session — one cookie named bh_session that remembers you're signed in; it dies when you sign out.",
-          "Favorites and membership state — which entries you saved, and when PRO expires.",
+          "Favorites and membership state — which entries you saved, when PRO expires, which prompts you copied and how many times.",
           "Orders — plan, amount, order number, payment status, WeChat transaction ID. These are financial records and the basis for reconciliation and refunds.",
           "Basic analytics — page views, referrer, device and browser type."
         ]
