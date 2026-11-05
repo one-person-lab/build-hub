@@ -6,7 +6,8 @@ import { useRouter } from "next/navigation";
 import BrandMark from "./BrandMark";
 import CommandPalette from "./CommandPalette";
 import LanguageToggle from "./LanguageToggle";
-import { requireLogin } from "@/lib/auth-modal";
+import { requireLogin, signOut } from "@/lib/auth-modal";
+import { useMe } from "@/lib/favorites";
 
 type Locale = "zh" | "en";
 
@@ -35,7 +36,7 @@ function getNav(locale: Locale, counts?: Counts): NavItem[] {
           label: "知识库",
           items: [
             { label: "概念总览", href: "/topics/frontend", note: c ? `${c.concepts} 个词条` : "概念总览" },
-            { label: "设计风格", href: "/design", note: c ? `${c.styles} 个样张` : "界面样张" },
+            { label: "设计风格", href: "/design", note: c ? `${c.styles} 个界面参考` : "界面参考" },
             { label: "动效", href: "/distill", note: "能玩的交互" },
             { label: "技术栈", href: "/stack", note: c ? `${c.stack} 个选型` : "技术选型" },
           ],
@@ -43,7 +44,7 @@ function getNav(locale: Locale, counts?: Counts): NavItem[] {
         {
           label: "资源",
           items: [
-            { label: "实测产品", href: "/products", note: c ? `${c.products} 个` : "实测" },
+            { label: "产品图鉴", href: "/products", note: c ? `${c.products} 个` : "跑过的产品" },
             { label: "可抄提示词", href: "/prompts", note: c ? `${c.prompts} 条` : "可抄" },
             { label: "技能", href: "/skills", note: c ? `${c.skills} 个` : "技能" },
             { label: "手册", href: "/playbooks", note: c ? `${c.playbooks} 本` : "手册" },
@@ -51,7 +52,7 @@ function getNav(locale: Locale, counts?: Counts): NavItem[] {
           ],
         },
         {
-          label: "技能",
+          label: "AI 工具",
           items: [
             { label: "BuildHub Skill", href: "/buildhub-skill", note: "装进 AI 工具" },
             { label: "练习场", href: "/practice", note: "动手做" },
@@ -65,7 +66,7 @@ function getNav(locale: Locale, counts?: Counts): NavItem[] {
           label: "Library",
           items: [
             { label: "Concepts", href: "/en/topics/frontend", note: c ? `${c.concepts} terms` : "Terms" },
-            { label: "Design styles", href: "/en/design", note: c ? `${c.styles} samples` : "Samples" },
+            { label: "Design styles", href: "/en/design", note: c ? `${c.styles} references` : "References" },
             { label: "Motion", href: "/en/distill", note: "Playable" },
           ],
         },
@@ -90,10 +91,10 @@ function getNav(locale: Locale, counts?: Counts): NavItem[] {
 
 const UI = {
   zh: {
-    badge: "免费",
     signIn: "登录",
-    cta: "免费开始",
-    ctaShort: "开始",
+    account: "账号",
+    logout: "退出登录",
+    cta: "逛概念",
     search: "搜索全站",
     menu: "菜单",
     close: "关闭",
@@ -103,10 +104,10 @@ const UI = {
     links: "导航",
   },
   en: {
-    badge: "Free",
     signIn: "Sign in",
-    cta: "Start free",
-    ctaShort: "Start",
+    account: "Account",
+    logout: "Sign out",
+    cta: "Browse concepts",
     search: "Search",
     menu: "Menu",
     close: "Close",
@@ -131,6 +132,7 @@ export default function HomeNav({
   const U = UI[locale];
   const nav = getNav(locale, counts);
   const base = locale === "en" ? "/en" : "";
+  const me = useMe();
   const [openItem, setOpenItem] = useState<string | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [palette, setPalette] = useState(false);
@@ -210,7 +212,6 @@ export default function HomeNav({
             <Link href={base || "/"} className="rb-brand" aria-label="BuildHub">
               <span className="rb-brand-mark"><BrandMark /></span>
               <span className="rb-brand-word">BuildHub</span>
-              <span className="rb-brand-tag">{U.badge}</span>
             </Link>
           </div>
 
@@ -306,9 +307,24 @@ export default function HomeNav({
             </button>
             <LanguageToggle locale={locale} className="rb-icon-btn rb-lang" />
             <span className="rb-nav-sep" aria-hidden />
-            <button type="button" className="rb-nav-signin" onClick={signIn}>
-              {U.signIn}
-            </button>
+            {me?.user ? (
+              <>
+                <button
+                  type="button"
+                  className="rb-nav-signin"
+                  onClick={() => router.push(`${base}/account`)}
+                >
+                  {U.account}
+                </button>
+                <button type="button" className="rb-nav-signin" onClick={() => signOut()}>
+                  {U.logout}
+                </button>
+              </>
+            ) : (
+              <button type="button" className="rb-nav-signin" onClick={signIn}>
+                {U.signIn}
+              </button>
+            )}
             <Link href={`${base}/topics/frontend`} className="rb-cta rb-cta-nav">
               {U.cta}
             </Link>
@@ -357,9 +373,31 @@ export default function HomeNav({
             ))}
           </div>
           <div className="rb-mobile-actions">
-            <button type="button" className="rb-cta rb-cta-ghost" onClick={signIn}>
-              {U.signIn}
-            </button>
+            {me?.user ? (
+              <>
+                <Link
+                  href={`${base}/account`}
+                  className="rb-cta rb-cta-ghost"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {U.account}
+                </Link>
+                <button
+                  type="button"
+                  className="rb-cta rb-cta-ghost"
+                  onClick={() => {
+                    setMenuOpen(false);
+                    signOut();
+                  }}
+                >
+                  {U.logout}
+                </button>
+              </>
+            ) : (
+              <button type="button" className="rb-cta rb-cta-ghost" onClick={signIn}>
+                {U.signIn}
+              </button>
+            )}
             <Link
               href={`${base}/topics/frontend`}
               className="rb-cta rb-cta-solid"

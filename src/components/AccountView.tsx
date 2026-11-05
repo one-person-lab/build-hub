@@ -3,14 +3,14 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import ProModal from "@/components/ProModal";
 import { useFavoriteIndex } from "@/components/FavoritesView";
-import { requireLogin } from "@/lib/auth-modal";
+import { requireLogin, signOut } from "@/lib/auth-modal";
 import { FREE_FAVORITE_LIMIT, useFavoriteSlugs, useMe } from "@/lib/favorites";
 import { track } from "@/lib/track";
 
 type Order = { plan: string; name: string; money: string; status: string; date: string };
 type ManualOrder = {
   outTradeNo: string;
-  email: string;
+  account: string | null;
   name: string;
   money: string;
   createdAt: string;
@@ -22,6 +22,7 @@ const UI = {
     loginTitle: "登录 BuildHub",
     loginSub: "验证码将发送至你的邮箱，仅用于登录",
     login: "登录",
+    wxUser: "微信用户",
     errGeneric: "出错了，请重试",
     proOn: "PRO 会员",
     proUntil: "有效期至",
@@ -50,10 +51,10 @@ const UI = {
     manualWhen: "下单时间",
     manualSettle: "确认到账",
     manualDone: "已开通",
-    assetsBlock: "PRO 资产",
-    assetsSub: "资产包和 Agent Kit 可随时重新下载，每次都是当前最新内容。",
-    assetsPack: "下载完整资产包",
-    assetsKit: "下载 Agent Kit",
+    assetsBlock: "PRO 下载",
+    assetsSub: "离线包和 SKILL.md 随时可以重新下载，每次都是当前最新内容。",
+    assetsPack: "下载完整离线包",
+    assetsKit: "下载 SKILL.md",
     assetsView: "查看 PRO 内容",
   },
   en: {
@@ -61,6 +62,7 @@ const UI = {
     loginTitle: "Sign in to BuildHub",
     loginSub: "A code will be emailed to you, used only for sign-in",
     login: "Sign in",
+    wxUser: "WeChat user",
     errGeneric: "Something went wrong, try again",
     proOn: "PRO member",
     proUntil: "Valid until",
@@ -88,10 +90,10 @@ const UI = {
     manualWho: "Account",
     manualWhen: "Placed",
     manualSettle: "Money received",
-    assetsBlock: "PRO assets",
-    assetsSub: "Re-download the pack and Agent Kit anytime — the file always reflects the latest content.",
-    assetsPack: "Download the asset pack",
-    assetsKit: "Download the Agent Kit",
+    assetsBlock: "PRO downloads",
+    assetsSub: "Re-download the pack and SKILL.md anytime — the file always reflects the latest content.",
+    assetsPack: "Download the full pack",
+    assetsKit: "Download SKILL.md",
     assetsView: "See what is included",
     manualDone: "Activated",
   },
@@ -111,6 +113,7 @@ export default function AccountView({ locale }: { locale: "zh" | "en" }) {
   const taps = useRef({ n: 0, at: 0 });
   const index = useFavoriteIndex(locale);
   const asked = useRef(false);
+  const signedInOnce = useRef(false);
 
   // 隐藏入口：连点邮箱 5 次打开验证单。非白名单账号点了没有任何反应，不留线索
   function tapEmail() {
@@ -122,12 +125,15 @@ export default function AccountView({ locale }: { locale: "zh" | "en" }) {
     if (me?.payTest) setShowTest(true);
   }
 
+  // 邮箱账号或微信昵称：换账号时要重拉订单
+  const accountId = me?.user?.email ?? me?.user?.nickname ?? null;
+
   useEffect(() => {
     fetch("/api/orders")
       .then((r) => (r.ok ? r.json() : { orders: [] }))
       .then((d: { orders: Order[] }) => setOrders(d.orders ?? []))
       .catch(() => {});
-  }, [me?.user?.email]);
+  }, [accountId]);
 
   // 手机端人工开通的单只有站长看得到；别人访问这个接口直接 404
   useEffect(() => {
@@ -160,16 +166,20 @@ export default function AccountView({ locale }: { locale: "zh" | "en" }) {
   }
 
   // 账号页未登录就是登录场景，直接把统一登录弹窗顶上来，不再铺一张内嵌表单
+  // 退出过的人不再被按回登录框
   useEffect(() => {
-    if (!me || me.user || asked.current) return;
+    if (!me || me.user || asked.current || signedInOnce.current) return;
     asked.current = true;
     requireLogin();
   }, [me]);
 
+  useEffect(() => {
+    if (me?.user) signedInOnce.current = true;
+  }, [me]);
+
   async function logout() {
-    await fetch("/api/auth/logout", { method: "POST" }).catch(() => {});
+    await signOut();
     setOrders([]);
-    window.dispatchEvent(new Event("vh-me-changed"));
   }
 
   const proUntilText =
@@ -198,7 +208,7 @@ export default function AccountView({ locale }: { locale: "zh" | "en" }) {
           <section className="acct-idbar">
             <div>
               <p className="acct-mail" onClick={tapEmail}>
-                {me.user.email}
+                {me.user.email ?? me.user.nickname ?? U.wxUser}
               </p>
               <p className={`acct-plan${me.pro ? " is-pro" : ""}`}>
                 {me.pro
@@ -314,7 +324,7 @@ export default function AccountView({ locale }: { locale: "zh" | "en" }) {
                   <tbody>
                     {manuals.map((o) => (
                       <tr key={o.outTradeNo}>
-                        <td>{o.email}</td>
+                        <td>{o.account ?? "—"}</td>
                         <td>{o.name.replace("BuildHub ", "")}</td>
                         <td>¥{o.money}</td>
                         <td>{o.createdAt.slice(5, 16)}</td>

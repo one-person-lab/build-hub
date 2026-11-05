@@ -46,8 +46,13 @@ export function writeFavorites(next: string[]) {
 }
 
 export type Me = {
-  user: { email: string; proUntil: string | null } | null;
+  user: {
+    email: string | null;
+    nickname?: string | null;
+    proUntil: string | null;
+  } | null;
   pro: boolean;
+  wx?: boolean;
   payTest?: { key: string } | null;
 };
 

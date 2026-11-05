@@ -915,6 +915,8 @@ a.rd-gopro.is-pro { color: var(--brand); }
 .acct-login .sub { font-size: 14px; color: var(--text-2); margin: 0 0 22px; }
 .acct-login .rd-field { padding: 12px 14px; font-size: 14.5px; margin-bottom: 12px; }
 .acct-login .rd-btn { padding: 13px 20px; font-size: 15px; border-radius: 12px; margin-top: 4px; }
+/* 微信扫码没走完那一页：按钮自带间距，段落不用再撑一次 */
+.acct-failed .sub { margin-bottom: 0; }
 
 .acct-idbar {
   display: flex; align-items: center; gap: 24px;

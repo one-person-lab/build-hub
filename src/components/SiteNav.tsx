@@ -7,7 +7,7 @@ import CommandPalette from "@/components/CommandPalette";
 import FavoritesSync from "@/components/FavoritesSync";
 import LanguageToggle from "@/components/LanguageToggle";
 import { useFavoriteSlugs } from "@/lib/favorites";
-import { requireLogin } from "@/lib/auth-modal";
+import { requireLogin, signOut } from "@/lib/auth-modal";
 import { track } from "@/lib/track";
 import {
   COLOR_MODE_KEY,
@@ -55,6 +55,7 @@ const UI = {
     personalSite: "个人网站",
     favorites: "收藏",
     account: "账号",
+    logout: "退出登录",
     menu: "菜单",
     closeMenu: "关闭菜单",
     groupSections: "内容分区",
@@ -74,6 +75,7 @@ const UI = {
     personalSite: "Website",
     favorites: "Favorites",
     account: "Account",
+    logout: "Sign out",
     menu: "Menu",
     closeMenu: "Close menu",
     groupSections: "Sections",
@@ -356,9 +358,21 @@ export default function SiteNav() {
                 <div className="rd-menu-group">
                   <p className="rd-menu-label">{U.groupAccount}</p>
                   {me?.user ? (
-                    <a href={`${base}/account`} role="menuitem">
-                      {U.account}
-                    </a>
+                    <>
+                      <a href={`${base}/account`} role="menuitem">
+                        {U.account}
+                      </a>
+                      <button
+                        type="button"
+                        role="menuitem"
+                        onClick={() => {
+                          setMenu(false);
+                          signOut();
+                        }}
+                      >
+                        {U.logout}
+                      </button>
+                    </>
                   ) : (
                     <button
                       type="button"

@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
 import ProPageView from "@/components/ProPageView";
+import { packStats } from "@/lib/export-content";
+
+const S = packStats("en");
 
 export const metadata: Metadata = {
-  title: "BuildHub PRO｜Asset pack & Agent Kit",
-  description:
-    "336 concepts, 19 prompts, 25 skills, 40 design references, 4 paths and 3 playbooks packed into one Markdown asset pack you can hand straight to an AI, plus an Agent Kit.",
+  title: "BuildHub PRO｜Offline pack & a SKILL.md for your agent",
+  description: `${S.concepts} concepts, ${S.prompts} prompts, ${S.skills} skills, ${S.designRefs} design references, ${S.paths} paths and ${S.playbooks} playbooks in one Markdown offline pack, with a SKILL.md your agent reads first.`,
   openGraph: {
     title: "BuildHub PRO",
-    description:
-      "Turn what you learn here into assets you keep. Asset pack + Agent Kit, one purchase.",
+    description: "The site's content as one Markdown pack. Pay once, keep the whole thing.",
   },
 };
 

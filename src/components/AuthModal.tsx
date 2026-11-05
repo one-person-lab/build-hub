@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { ArrowRight, X } from "lucide-react";
 import zhCatalogs from "@/data/catalogs.json";
 import enCatalogs from "@/data/en-catalogs.json";
+import { FOOTER_SOCIAL_ICONS } from "@/data/footer-icons";
 import CardDemoThumb from "./CardDemoThumb";
 import { useMe } from "@/lib/favorites";
 import { registerAuthModal, setSignedIn } from "@/lib/auth-modal";
@@ -34,8 +35,8 @@ const UI = {
   zh: {
     title: "登录",
     sub: "邮箱收 6 位验证码，不用设密码。",
-    subPro: "开通 PRO 需先登录。验证码发到你邮箱，不用设密码。",
-    subCopy: "复制提示词需先登录。验证码发到你邮箱，不用设密码。",
+    subPro: "开通 PRO 需先登录，邮箱收验证码。",
+    subCopy: "复制提示词需先登录，邮箱收验证码。",
     emailPh: "邮箱地址",
     codePh: "6 位验证码",
     send: "获取验证码",
@@ -53,12 +54,14 @@ const UI = {
     privacy: "隐私政策",
     close: "关闭",
     trust: "已收录的产品拆解",
+    wx: "微信扫码登录",
+    or: "或",
   },
   en: {
     title: "Log in",
-    sub: "A 6-digit code lands in your inbox. No password.",
-    subPro: "Sign in to continue to checkout. We email you a 6-digit code.",
-    subCopy: "Sign in to copy prompts. We email you a 6-digit code.",
+    sub: "Get a 6-digit code by email. No password.",
+    subPro: "Sign in to continue to checkout — we send a code by email.",
+    subCopy: "Sign in to copy prompts — we send a code by email.",
     emailPh: "Email address",
     codePh: "6-digit code",
     send: "Send code",
@@ -76,6 +79,8 @@ const UI = {
     privacy: "Privacy Policy",
     close: "Close",
     trust: "Products dissected inside",
+    wx: "Sign in with WeChat",
+    or: "or",
   },
 };
 
@@ -154,11 +159,13 @@ function Showcase({ locale }: { locale: Locale }) {
 function AuthModal({
   locale,
   reason,
+  wxEnabled,
   onClose,
   onDone,
 }: {
   locale: Locale;
   reason?: "pro" | "favorite" | "playbook" | "copy";
+  wxEnabled: boolean;
   onClose: () => void;
   onDone: () => void;
 }) {
@@ -243,6 +250,14 @@ function AuthModal({
 
   const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
+  /** 整页跳去微信官方扫码页，扫完由 callback 决定落点 */
+  function goWechat() {
+    const next = `${window.location.pathname}${window.location.search}`;
+    // 要跳出站点去微信的授权页，站内路由做不到，只能整页导航
+    // eslint-disable-next-line @next/next/no-location-assign-relative-destination
+    window.location.href = `/api/auth/wx/start?next=${encodeURIComponent(next)}`;
+  }
+
   return createPortal(
     <>
       <div className="bam-backdrop" onPointerDown={(e) => e.target === e.currentTarget && onClose()} />
@@ -262,6 +277,20 @@ function AuthModal({
           </div>
 
           <div className="bam-body bam-rise d1">
+            {wxEnabled && step === "email" && (
+              <div className="bam-alt">
+                <button className="bam-wx" type="button" onClick={goWechat}>
+                  <span
+                    className="bam-wx-mark"
+                    aria-hidden
+                    dangerouslySetInnerHTML={{ __html: FOOTER_SOCIAL_ICONS.wechat }}
+                  />
+                  {U.wx}
+                </button>
+                <p className="bam-split">{U.or}</p>
+              </div>
+            )}
+
             {step === "email" ? (
               <form
                 className="bam-fields"
@@ -364,7 +393,9 @@ export function AuthModalHost() {
   const me = useMe();
   const pathname = usePathname();
   const locale: Locale = pathname?.startsWith("/en") ? "en" : "zh";
-  const [pending, setPending] = useState<{ reason?: "pro" | "favorite" | "playbook" | "copy" } | null>(null);
+  const [pending, setPending] = useState<{
+    reason?: "pro" | "favorite" | "playbook" | "copy";
+  } | null>(null);
   const doneRef = useRef<(() => void) | null>(null);
 
   useEffect(() => {
@@ -385,6 +416,7 @@ export function AuthModalHost() {
     <AuthModal
       locale={locale}
       reason={pending.reason}
+      wxEnabled={!!me?.wx}
       onClose={() => {
         doneRef.current = null;
         setPending(null);

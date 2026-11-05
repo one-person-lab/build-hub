@@ -16,6 +16,7 @@ import CardDemoThumb from "./CardDemoThumb";
 import DotField from "./DotField";
 import HomeNav from "./HomeNav";
 import { getHomeData } from "@/lib/home-reactbits-data";
+import { COLOR_MODE_KEY } from "@/lib/theme";
 import "./home-reactbits.css";
 
 type Locale = "zh" | "en";
@@ -24,7 +25,6 @@ type Plan = {
   name: string;
   tagline: string;
   price: string;
-  priceNote: string;
   features: string[];
   cta: string;
   href: string;
@@ -37,71 +37,79 @@ function buildCopy(locale: Locale, counts: ReturnType<typeof getHomeData>["count
   return {
     badgeNew: zh ? "新" : "New",
     badgeText: zh
-      ? `${counts.concepts} 个概念，每个都能上手`
-      : `${counts.concepts} concepts, every one playable`,
-    h1a: zh ? "把会的东西，变成" : "Ship a product with AI —",
-    h1b: zh ? "可用的资产。" : "no code required.",
-    lead: zh ? "给非工程师的 AI 编程入门。" : "The AI-coding concepts you keep running into, in plain words.",
+      ? `${counts.concepts} 个词条，每个都能上手`
+      : `${counts.concepts} entries, every one playable`,
+    h1a: zh ? "把会的东西，变成" : "Build what you know.",
+    h1b: zh ? "可用的资产。" : "Use what you build.",
+    lead: zh
+      ? "AI 驱动的软件构建知识与数字资产平台。"
+      : "The platform for software-creation knowledge and digital assets, powered by AI.",
     ctaMain: zh ? "从零做出第一个官网" : "Start your first site",
     ctaBrowse: zh ? "先逛概念" : "Browse concepts",
     domain: "buildhub.cn",
     domainNote: zh ? "免费内容 · 无需登录" : "Free · no account",
-    tickerLabel: zh ? `${counts.concepts + counts.styles + counts.stack + counts.prompts + counts.skills} 项内容已在站内` : `${counts.concepts + counts.styles + counts.stack + counts.prompts + counts.skills} assets inside`,
+    tickerLabel: zh
+      ? `${counts.concepts + counts.prompts + counts.skills} 项内容已在站内`
+      : `${counts.concepts + counts.prompts + counts.skills} entries inside`,
     ticker: [
-      { label: zh ? "概念" : "Concepts", count: counts.concepts },
-      { label: zh ? "界面样张" : "UI samples", count: counts.styles },
+      { label: zh ? "词条" : "Entries", count: counts.concepts },
+      { label: zh ? "界面参考" : "UI references", count: counts.styles },
       { label: zh ? "技术栈" : "Stack", count: counts.stack },
       { label: zh ? "提示词" : "Prompts", count: counts.prompts },
       { label: zh ? "技能" : "Skills", count: counts.skills },
-      { label: zh ? "实测产品" : "Products", count: counts.products },
+      { label: zh ? "跑过的产品" : "Products run", count: counts.products },
     ],
-    overviewTitle: zh ? "为真正想做出东西的人准备。" : "Built for people who actually ship.",
+    overviewTitle: zh
+      ? "想做出一个网站，缺的是材料，不是教程。"
+      : "What's missing isn't a tutorial. It's the material.",
     overviewSub: zh
-      ? "高质量的内容，给会被记住的作品。"
-      : "Production-grade explanations for the work that gets remembered.",
+      ? "概念、界面参考、技术栈、提示词和技能都在站里，每条都是完整正文，人和 AI 都能直接拿去用。"
+      : "Concepts, UI references, stack picks, prompts and skills — each one the full text, usable by you and by your agent.",
     overviewCta: zh ? "逛逛概念库" : "Browse concepts",
     chipNames: zh
       ? ["概念", "设计风格", "动效", "技术栈"]
       : ["Concepts", "Design styles", "Motion", "Stack"],
-    pill: zh ? `${counts.concepts} 个概念` : `${counts.concepts} concepts`,
-    bentoTitle: zh ? "一个下午，看懂一周的量。" : "Learn a week's worth in an afternoon.",
+    pill: zh ? `${counts.concepts} 个词条` : `${counts.concepts} entries`,
+    bentoTitle: zh
+      ? `${counts.concepts} 个词条，每个都能点开玩。`
+      : `${counts.concepts} entries, each with a demo you can run.`,
     bentoSub: zh
-      ? "概念、样张、技术栈和提示词，全在一个站点里。"
-      : "Concepts, samples, stack picks and prompts. The whole library in one place.",
+      ? "分区别类、标好难度，示例就嵌在页面上，不用跳到别的站。"
+      : "Tagged by zone and level, with the example living on the page itself.",
     flowTitle: zh ? "结构清晰，不用翻教程。" : "Structured, not scattered.",
     flowSub: zh
       ? "每条都标了分区、难度和能直接抄的示例。"
       : "Every entry tagged by zone, level and a copyable example.",
     flowNodes: zh
-      ? ["400+ 个概念", "每个都能玩", "实测筛过", "0 元", "随时能查"]
-      : ["400+ concepts", "Playable demos", "Tested picks", "Free", "Always there"],
+      ? [`${counts.concepts} 个词条`, "每条配示例", "分类好找", "搜索直达", "随时能查"]
+      : [`${counts.concepts} entries`, "With demos", "Well sorted", "Searchable", "Always there"],
     mini1Title: zh ? "按主题分区" : "Tuned to your subject",
     mini1Sub: zh
       ? "前端、后端、AI、Git、设计、选型——一栏一个入口。"
       : "Frontend, backend, AI, Git, design and stack — one lane per subject.",
     mini2Title: zh ? "320px 到 4K" : "320px to 4K",
-    mini2Sub: zh ? "手机和桌面都标过样张，照着做不会错。" : "Samples built for phones and desktops alike.",
+    mini2Sub: zh ? "手机和桌面都配了界面参考，照着做不会错。" : "References built for phones and desktops alike.",
     mini3Title: zh ? "立即可用" : "Ready to use",
     mini3Sub: zh
       ? "每个概念都配示例，贴进 AI 工具就能开始。"
       : "Every concept ships with an example your agent can use.",
     insideTitle: zh ? "一个页面需要的，这里都有。" : "Everything a page needs.",
     insideSub: zh
-      ? "概念、样张、技术栈、提示词和技能，一次配齐。"
-      : "Concepts, samples, stack, prompts and skills. The site, the docs and the agent.",
+      ? "概念、界面参考、技术栈、提示词和技能，一次配齐。"
+      : "Concepts, UI references, stack, prompts and skills. The site, the docs and the agent.",
     insideCta: zh ? "打开内容总览" : "Explore the library",
     insideCells: [
       {
         count: `${counts.concepts}`,
-        label: zh ? "概念词条" : "Concepts",
+        label: zh ? "个词条" : "entries",
         desc: zh
-          ? "从 HTTP 到 React，每个词条都用大白话讲清，并配可视化示例。"
+          ? "从 HTTP 到 React，每个词条都用大白话讲清，并配能跑的示例。"
           : "From HTTP to React, every term explained in plain words with a live demo.",
         href: `${base}/topics/frontend`,
       },
       {
         count: `${counts.styles}`,
-        label: zh ? "界面样张" : "UI samples",
+        label: zh ? "界面参考" : "UI references",
         desc: zh
           ? "深色官网、目录导航、杂志卡片、付费墙——照着挑一个方向。"
           : "Dark sites, directory navs, journal cards, paywalls — pick a direction.",
@@ -132,19 +140,19 @@ function buildCopy(locale: Locale, counts: ReturnType<typeof getHomeData>["count
         href: `${base}/skills`,
       },
       {
-        count: "0",
-        label: zh ? "元" : "paywalls",
+        count: `${counts.paths}`,
+        label: zh ? "条路径" : "Paths",
         desc: zh
-          ? "没有付费墙，没有试用期。所有内容现在和以后都免费。"
-          : "No paywall, no trial. Everything is free now and later.",
-        href: `${base}/topics/frontend`,
+          ? "从想法到上线，每一步写清做什么、怎么算做完。"
+          : "Idea to live site. Every step says what to do and when it's done.",
+        href: `${base}/paths`,
       },
     ],
     templatesTitle: zh ? "先从好看的界面开始。" : "Start from something beautiful.",
     templatesSub: zh
-      ? `${counts.styles} 个界面样张，点开就是完整说明。`
-      : `${counts.styles} UI samples. Open one and it's all there.`,
-    templatesCta: zh ? "全部样张" : "View all samples",
+      ? `${counts.styles} 个界面参考，点开就是完整说明。`
+      : `${counts.styles} UI references. Open one and it's all there.`,
+    templatesCta: zh ? "全部界面参考" : "View all references",
     showcaseTitle: zh ? "每一屏，都有现成参考。" : "Skip the blank canvas.",
     showcaseSub: zh
       ? "8 个分区，每个都有能玩的示例，先看再抄。"
@@ -155,11 +163,11 @@ function buildCopy(locale: Locale, counts: ReturnType<typeof getHomeData>["count
     showcaseZone: zh ? "看整个分区" : "View the zone",
     showcaseFoot: (n: number) => (zh ? `${n} 个词条 · 一个入口` : `${n} entries · one place`),
     showcaseCaption: (name: string) => (zh ? `${name} · 实时示例` : `${name} · live sample`),
-    agentTitle: zh ? "给 AI 装上一套好用的工具。" : "Give your agent good taste.",
+    agentTitle: zh ? "给 AI 装上一套现成的做法。" : "Give your agent a working process.",
     agentSub: zh
       ? "把 BuildHub 的技能和提示词，装进 Claude Code、Cursor。"
       : "Curated skills and clear guidance, built for your agent.",
-    agentCta: zh ? "看看 Agent Kit" : "Explore the Agent Kit",
+    agentCta: zh ? "看看 BuildHub Skill" : "See the BuildHub skill",
     agentCards: [
       {
         title: zh ? `${counts.skills} 个技能` : `${counts.skills} skills`,
@@ -174,16 +182,16 @@ function buildCopy(locale: Locale, counts: ReturnType<typeof getHomeData>["count
           : "One command drops the source into your repo. No copy-paste loop.",
       },
       {
-        title: zh ? "源码可读" : "Code you own",
+        title: zh ? "全是普通文件" : "Plain files",
         desc: zh
-          ? "全部是普通文件，能读能改，没有黑盒和锁定。"
-          : "Plain readable files. No runtime, no lock-in, no black box.",
+          ? "打开就是 Markdown，能读能改，改完还是你自己的。"
+          : "Readable Markdown you can edit and keep.",
       },
     ],
-    agentTry: zh ? "免费开始" : "Try for free",
-    quotesTitle: zh ? "这些问题，你是不是也问过？" : "Don't take our word for it.",
+    agentTry: zh ? "看怎么装" : "How to install",
+    quotesTitle: zh ? "这些问题，你是不是也问过？" : "Questions people actually ask.",
     quotesSub: zh
-      ? `从 ${counts.concepts} 个概念里挑的答案，点开就是完整解释。`
+      ? `从 ${counts.concepts} 个词条里挑的答案，点开就是完整解释。`
       : `Answers pulled from ${counts.concepts} entries. Open one for the full explanation.`,
     quotesCta: zh ? "全部概念" : "Follow the concepts",
     stepsTitle: zh ? "三步，从看懂到做出来。" : "Three steps from reading to shipping.",
@@ -191,8 +199,8 @@ function buildCopy(locale: Locale, counts: ReturnType<typeof getHomeData>["count
       {
         title: zh ? "先找一个起点。" : "Find your starting point.",
         desc: zh
-          ? "从概念、样张或路径里挑一个方向，先看别人怎么做，再决定自己做什么。"
-          : "Pick a concept, a sample or a path. See how it's done before you decide what to build.",
+          ? "从概念、界面参考或路径里挑一个方向，先看别人怎么做，再决定自己做什么。"
+          : "Pick a concept, a reference or a path. See how it's done before you decide what to build.",
       },
       {
         title: zh ? "改成你自己的。" : "Make it unmistakably yours.",
@@ -207,28 +215,27 @@ function buildCopy(locale: Locale, counts: ReturnType<typeof getHomeData>["count
           : "The first page is just the start. Finish the path and you'll have a process.",
       },
     ],
-    bannerTitle: zh ? "看一遍，不如做一遍。" : "Read once. Then build.",
+    bannerTitle: zh ? "第一条路径：做出一个能上线的官网。" : "Path one: a website that goes live.",
     bannerSub: zh
-      ? "所有内容免费。从第一个官网开始，走完一条路径。"
-      : "Everything is free. Start with your first site and finish a whole path.",
+      ? "从想法到域名上线，每一步写清做什么、怎么算做完。"
+      : "Idea to live domain, with a done-check on every step.",
     bannerCta: zh ? "从第一个官网开始" : "Start your first site",
     bannerAlt: zh ? "先逛概念" : "Browse concepts first",
-    pricingTitleA: zh ? "一直" : "Pay once. Ship",
-    pricingGrad: zh ? "免费" : "forever",
-    pricingTitleB: zh ? "。随便看。" : ".",
+    pricingTitleA: zh ? "内容直接读，" : "Read it all ",
+    pricingGrad: zh ? "不要钱" : "free",
+    pricingTitleB: zh ? "。" : ".",
     pricingSub: zh
-      ? "没有付费墙，没有试用期。想做点什么，任选一个入口。"
-      : "No paywall, no trial. Pick whichever entry fits what you're doing.",
+      ? "想做点什么，任选一个入口；下面这些都不用在读之前注册。"
+      : "Pick whichever entry fits the job. None of these need an account first.",
     pricingToggle: zh ? ["按目标", "按身份"] : ["By goal", "By role"],
     plansGoal: [
       {
         name: zh ? "做出第一个官网" : "Your first website",
         tagline: zh ? "五页骨架，首屏文案，部署清单。" : "A five-page skeleton, hero copy and a deploy list.",
         price: zh ? "¥0" : "Free",
-        priceNote: zh ? "一直免费" : "forever",
         features: zh
-          ? ["5 页骨架 + 首屏文案", "每一步都配提示词", `${counts.styles} 个界面样张可选`, "部署上线检查清单"]
-          : ["Five-page skeleton + hero copy", "A prompt for every step", `${counts.styles} UI samples to pick from`, "Pre-launch checklist"],
+          ? ["5 页骨架 + 首屏文案", "每一步都配提示词", `${counts.styles} 个界面参考可选`, "部署上线检查清单"]
+          : ["Five-page skeleton + hero copy", "A prompt for every step", `${counts.styles} UI references to pick from`, "Pre-launch checklist"],
         cta: zh ? "开始这条路" : "Start this path",
         href: `${base}/paths/first-website`,
       },
@@ -236,10 +243,9 @@ function buildCopy(locale: Locale, counts: ReturnType<typeof getHomeData>["count
         name: zh ? "看懂 AI 黑话" : "Speak AI",
         tagline: zh ? "把最常撞见的概念，一次讲明白。" : "The concepts you keep hitting, explained once.",
         price: zh ? "¥0" : "Free",
-        priceNote: zh ? "一直免费" : "forever",
         features: zh
-          ? [`${counts.concepts} 个概念词条`, "每个都能上手玩", "按前端 / 后端 / AI / Git 分区", "顶部搜索，⌘K 直达"]
-          : [`${counts.concepts} concept entries`, "A playable demo for each", "Zoned by frontend, backend, AI, Git", "Search with ⌘K"],
+          ? [`${counts.concepts} 个词条`, "每条都配能玩的示例", "按前端 / 后端 / AI / Git 分区", "顶部搜索，⌘K 直达"]
+          : [`${counts.concepts} entries`, "A playable demo for each", "Zoned by frontend, backend, AI, Git", "Search with ⌘K"],
         cta: zh ? "打开概念库" : "Open the library",
         href: `${base}/topics/frontend`,
       },
@@ -247,10 +253,9 @@ function buildCopy(locale: Locale, counts: ReturnType<typeof getHomeData>["count
         name: zh ? "装进 AI 工具" : "Install the kit",
         tagline: zh ? "让 Claude Code、Cursor 会用你的做法。" : "Let Claude Code and Cursor follow your process.",
         price: zh ? "¥0" : "Free",
-        priceNote: zh ? "一直免费" : "forever",
         features: zh
-          ? [`${counts.skills} 个 BuildHub 技能`, "一条命令安装", "Claude Code / Cursor 通用", "源码可读，随便改"]
-          : [`${counts.skills} BuildHub skills`, "One-command install", "Works with Claude Code and Cursor", "Readable source, fork it"],
+          ? [`${counts.skills} 个 BuildHub 技能`, "一条命令安装", "Claude Code / Cursor 通用", "打开就是 Markdown，随便改"]
+          : [`${counts.skills} BuildHub skills`, "One-command install", "Works with Claude Code and Cursor", "Plain Markdown, edit it freely"],
         cta: zh ? "看看 Skill" : "See the Skill",
         href: `${base}/buildhub-skill`,
       },
@@ -258,12 +263,11 @@ function buildCopy(locale: Locale, counts: ReturnType<typeof getHomeData>["count
     plansRole: [
       {
         name: zh ? "非工程师" : "Non-engineers",
-        tagline: zh ? "不碰命令行，从概念和样张开始。" : "No terminal required. Start from concepts and samples.",
+        tagline: zh ? "不碰命令行，从概念和界面参考开始。" : "No terminal required. Start from concepts and references.",
         price: zh ? "¥0" : "Free",
-        priceNote: zh ? "一直免费" : "forever",
         features: zh
-          ? ["大白话概念", "可视化示例", "界面样张", "提示词直接抄"]
-          : ["Plain-word concepts", "Visual demos", "UI samples", "Copyable prompts"],
+          ? ["大白话概念", "能跑的示例", "界面参考", "提示词直接抄"]
+          : ["Plain-word concepts", "Working demos", "UI references", "Copyable prompts"],
         cta: zh ? "从概念开始" : "Start with concepts",
         href: `${base}/topics/frontend`,
       },
@@ -271,28 +275,26 @@ function buildCopy(locale: Locale, counts: ReturnType<typeof getHomeData>["count
         name: zh ? "独立开发者" : "Solo builders",
         tagline: zh ? "先找参考，再动手，省掉试错。" : "Find the reference first, then build.",
         price: zh ? "¥0" : "Free",
-        priceNote: zh ? "一直免费" : "forever",
         features: zh
-          ? ["技术栈选型", "实测产品", "完整路径", "可安装技能"]
-          : ["Stack picks", "Tested products", "Full paths", "Installable skills"],
+          ? ["技术栈选型", "跑过的产品", "完整路径", "可安装技能"]
+          : ["Stack picks", "Products we've run", "Full paths", "Installable skills"],
         cta: zh ? "看技术栈" : "Browse the stack",
         href: `${base}/stack`,
       },
       {
         name: zh ? "产品经理" : "Product teams",
-        tagline: zh ? "用同一套词条，对齐设计和开发。" : "One shared vocabulary for design and dev.",
+        tagline: zh ? "设计和开发，说同一套词。" : "One shared vocabulary for design and dev.",
         price: zh ? "¥0" : "Free",
-        priceNote: zh ? "一直免费" : "forever",
         features: zh
-          ? ["产品概念词条", "界面方向样张", "验收清单", "团队可用"]
-          : ["Product concepts", "Design directions", "Acceptance checklists", "Free for teams"],
+          ? ["产品概念词条", "界面方向参考", "验收清单", "团队可用"]
+          : ["Product concepts", "Design directions", "Acceptance checklists", "Team-ready"],
         cta: zh ? "看产品概念" : "Product concepts",
         href: `${base}/topics/product`,
       },
     ],
     pricingNote: zh
-      ? "所有内容现在和以后都免费。没有隐藏收费，也不用绑定账号。"
-      : "Everything is free, now and later. No hidden charges, no account required.",
+      ? "站内阅读不要钱，也不用绑账号。要一份能离线带走、给 AI 用的包，那是 PRO。"
+      : "Reading needs no account and no payment. The offline pack for your agent is PRO.",
     faqTitle: zh ? "常见问题。" : "Common questions.",
     faqSub: zh ? "没覆盖到的，直接问我们。" : "Not covered here? Reach out and we'll help.",
     faqContacts: [
@@ -301,33 +303,35 @@ function buildCopy(locale: Locale, counts: ReturnType<typeof getHomeData>["count
     ],
     faq: zh
       ? [
-          { q: "需要会写代码吗？", a: "不需要。概念用大白话讲，每个词条都配能直接跑的可视化示例；要动手时，提示词可以贴进任何 AI 工具。" },
-          { q: "BuildHub 和普通教程有什么区别？", a: "不堆课程。每个概念一页，讲清是什么、什么时候用、怎么验证；能玩的示例就在页面上，不用跳到别处。" },
-          { q: "内容会更新吗？", a: "会。网站、技术栈和产品评测按周更新，每次改动都会记在更新日志里。" },
-          { q: "真的全部免费吗？", a: "是。所有词条、样张、提示词和产品评测都能直接看，没有付费墙，也没有试用期。" },
+          { q: "BuildHub 是什么？", a: "一个 AI 驱动的软件构建知识与数字资产平台。站内收的是概念、界面参考、技术栈、提示词、技能和使用路径，每条都是完整正文，人和 AI 都能直接拿去用。" },
+          { q: "需要会写代码吗？", a: "不需要。概念用大白话讲，每条都配能直接跑的示例；要动手时，把提示词贴进 AI 工具就行。" },
+          { q: "和普通教程站有什么区别？", a: "不堆课程。每个概念一页，讲清是什么、什么时候用、怎么验证；示例就嵌在页面上，不用跳到别处。" },
+          { q: "内容会更新吗？", a: "会。新概念、提示词和技能会陆续补进站内，每次改动都记在更新日志里。" },
+          { q: "看内容要花钱吗？", a: "词条、界面参考、提示词和路径都能直接读，不用登录。付费的是 PRO：一份离线包，加一份给 AI 读的 SKILL.md。" },
           { q: "英文内容一样多吗？", a: `英文站目前有 ${counts.dictEn} 个词条，覆盖同样的核心主题；中文站有 ${counts.dictZh} 个，更深一些。` },
           { q: "可以把内容用在自己的项目里吗？", a: "可以。示例代码和提示词随便抄，能注明来源就更好了。" },
-          { q: "怎么把 BuildHub 装进 AI 工具？", a: "打开 BuildHub Skill 页面，复制那句话说给你的 Agent，Claude Code、Cursor 都能用。" },
+          { q: "怎么把 BuildHub 装进 AI 工具？", a: "打开 BuildHub Skill 页面，把那句话说给 Claude Code 或 Cursor，剩下的它自己装。" },
           { q: "找不到想要的概念怎么办？", a: "用顶部搜索（⌘K）直接搜；没有的话发邮件告诉我们，会补上。" },
         ]
       : [
-          { q: "Do I need to know how to code?", a: "No. Concepts are written in plain words and every entry ships with a visual demo. When you want to build, paste the prompt into any AI tool." },
+          { q: "What is BuildHub?", a: "An AI-powered platform for the knowledge and digital assets behind software products. It holds concepts, UI references, stack picks, prompts, skills and build paths — each one the full text, ready for you or your agent to use." },
+          { q: "Do I need to know how to code?", a: "No. Concepts are written in plain words and every entry ships with a demo you can run. When it's time to build, paste the prompt into any AI tool." },
           { q: "How is this different from a tutorial site?", a: "No course pile-up. One page per concept: what it is, when to use it, how to check it. The playable example is right there." },
-          { q: "Does the content get updated?", a: "Yes. Sites, stack picks and product reviews are updated weekly, and every change lands in the changelog." },
-          { q: "Is all of it really free?", a: "Yes. Every entry, sample, prompt and review is readable right now. No paywall, no trial." },
+          { q: "Does the content get updated?", a: "Yes. New concepts, prompts and skills keep landing, and every change is recorded in the changelog." },
+          { q: "Do I have to pay to read?", a: "Entries, UI references, prompts and paths are all readable without an account. PRO is the paid part: the offline pack plus a SKILL.md for your agent." },
           { q: "Is the English site as complete?", a: `English currently has ${counts.dictEn} entries covering the same core topics. The Chinese site has ${counts.dictZh}, and goes deeper.` },
           { q: "Can I use the examples in my own project?", a: "Yes. Copy the code and prompts freely. A credit is nice but not required." },
-          { q: "How do I install BuildHub into my agent?", a: "Open the BuildHub Skill page and paste the install sentence to your agent. It works with Claude Code and Cursor." },
+          { q: "How do I install BuildHub into my agent?", a: "Open the BuildHub Skill page and say the install sentence to Claude Code or Cursor. It does the rest." },
           { q: "What if I can't find a concept?", a: "Search with ⌘K first. If it's missing, email us and we'll add it." },
         ],
-    finalTitleA: zh ? "你的下一个产品，" : "Your next launch",
-    finalGrad: zh ? "值得现在动手。" : "deserves to ship now.",
+    finalTitleA: zh ? "下一版产品，" : "Your next launch",
+    finalGrad: zh ? "别从空白页开始。" : "shouldn't start blank.",
     finalSub: zh
-      ? "所有内容免费。挑一个入口，今天就做出第一屏。"
-      : "Every concept, sample, prompt and skill. Free. Pick one and build the first screen today.",
+      ? "概念、界面参考、提示词和技能都在站里。挑一个入口，今天就做出第一屏。"
+      : "Concepts, UI references, prompts and skills are already here. Pick one and build the first screen today.",
     finalCta: zh ? "从第一个官网开始" : "Start your first site",
     finalAlt: zh ? "浏览全部概念" : "Browse all concepts",
-    switchLabel: zh ? "定价方式" : "Pricing mode",
+    switchLabel: zh ? "选择起点" : "Starting point",
     faqAria: zh ? "常见问题" : "Frequently asked questions",
   };
 }
@@ -353,7 +357,7 @@ export default function HomeView({ locale = "zh" }: { locale?: Locale }) {
 
   useEffect(() => {
     try {
-      if (window.localStorage.getItem("bh-home-mode") === "light") setIsLight(true);
+      if (window.localStorage.getItem(COLOR_MODE_KEY) === "light") setIsLight(true);
     } catch {
       /* storage may be unavailable */
     }
@@ -429,15 +433,14 @@ export default function HomeView({ locale = "zh" }: { locale?: Locale }) {
   }, []);
 
   const toggleMode = () => {
-    setIsLight((cur) => {
-      const next = !cur;
-      try {
-        window.localStorage.setItem("bh-home-mode", next ? "light" : "dark");
-      } catch {
-        /* ignore */
-      }
-      return next;
-    });
+    const next = !isLight;
+    setIsLight(next);
+    document.documentElement.dataset.colorMode = next ? "light" : "dark";
+    try {
+      window.localStorage.setItem(COLOR_MODE_KEY, next ? "light" : "dark");
+    } catch {
+      /* storage may be unavailable */
+    }
   };
 
   const stepIcons = [
@@ -958,7 +961,6 @@ export default function HomeView({ locale = "zh" }: { locale?: Locale }) {
                   <p className="rb-plan-tagline">{plan.tagline}</p>
                   <div className="rb-plan-price">
                     <b>{plan.price}</b>
-                    <small>{plan.priceNote}</small>
                   </div>
                   <ul>
                     {plan.features.map((feature) => (

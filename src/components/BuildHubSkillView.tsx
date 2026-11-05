@@ -128,7 +128,7 @@ const COPY: Record<"zh" | "en", Copy> = {
     howLinks: [
       { href: "/skills", label: "技能库" },
       { href: "/prompts", label: "可抄提示词" },
-      { href: "/design", label: "界面样张" },
+      { href: "/design", label: "界面参考" },
     ],
     howLinksLead: "缺的不是名词，而是别人怎么做的时候：",
   },
@@ -197,7 +197,7 @@ const COPY: Record<"zh" | "en", Copy> = {
     howLinks: [
       { href: "/en/skills", label: "Skills" },
       { href: "/en/prompts", label: "Prompts" },
-      { href: "/en/design", label: "UI samples" },
+      { href: "/en/design", label: "UI references" },
     ],
     howLinksLead: "When what you need is a reference rather than a noun:",
   },

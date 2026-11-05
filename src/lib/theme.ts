@@ -26,11 +26,11 @@ export function applyThemeColor(value: string, hover: string, dark: string) {
 
 // 首屏前同步执行：深色样式全部挂在 :root[data-color-mode="dark"] 上，
 // 若等 React hydration 后再设置，第一帧必然渲染成浅色（闪白）。
+// 默认深色，只有用户显式选过浅色才走浅色（不再跟随系统偏好）。
 export const THEME_INIT_SCRIPT = `(function(){
 try{
 var d=document.documentElement,k=${JSON.stringify(COLOR_MODE_KEY)},c=${JSON.stringify(THEME_COLOR_KEY)};
-var s=localStorage.getItem(k);
-var m=s==="dark"||(s===null&&window.matchMedia("(prefers-color-scheme: dark)").matches);
+var m=localStorage.getItem(k)!=="light";
 d.dataset.colorMode=m?"dark":"light";
 var v=localStorage.getItem(c);
 var t=${JSON.stringify(THEME_COLORS)}.find(function(x){return x.value===v});

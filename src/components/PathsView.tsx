@@ -45,7 +45,7 @@ export function PathsIndex() {
               <h2>{path.name}</h2>
               <p className="pth-card-tagline">{path.tagline}</p>
               <p className="pth-card-meta">
-                {path.steps.length} 步 · {path.duration} · {path.assets.length} 份资产
+                {path.steps.length} 步 · {path.duration} · {path.assets.length} 份材料
               </p>
             </div>
             <div className="pth-card-side">
@@ -179,9 +179,9 @@ export function PathDetail({ path }: { path: PathEntry }) {
         </ul>
       </section>
 
-      <section className="pth-manifest" aria-label="全部资产">
+      <section className="pth-manifest" aria-label="这条路径要用的材料">
         <div className="pth-manifest-head">
-          <h2>这条路径用到的全部资产</h2>
+          <h2>这条路径要用的材料</h2>
           <span>{resolved.assets.length} 份 · 按类型分组</span>
         </div>
         {groups.map((group) => (

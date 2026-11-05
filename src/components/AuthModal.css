@@ -276,6 +276,77 @@
   color: #ff6b6b;
 }
 
+/* 微信扫码：用微信品牌绿 + 官方双话泡，识别度靠品牌本身而不是自造图标 */
+.bam-wx {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  height: 44px;
+  border: 0;
+  border-radius: 8px;
+  background: #07c160;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  color: #ffffff;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    transform 0.15s ease;
+}
+
+.bam-wx:hover {
+  background: #06ad56;
+}
+
+.bam-wx:active {
+  transform: scale(0.97);
+}
+
+.bam-wx-mark {
+  display: inline-flex;
+  width: 18px;
+  height: 18px;
+}
+
+.bam-wx-mark svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.bam-split {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: -8px 0;
+  font-size: 12px;
+  color: #8a8a93;
+}
+
+.bam-split::before,
+.bam-split::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #27272a;
+}
+
+.bam-alt {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* 手机浏览器扫不了自己这块屏，扫码入口只在桌面宽度给（断点跟右侧样张河一致） */
+@media (max-width: 767px) {
+  .bam-alt {
+    display: none;
+  }
+}
+
 .bam-legal {
   margin: 0;
   font-size: 11px;

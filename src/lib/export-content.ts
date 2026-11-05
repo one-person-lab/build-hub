@@ -478,12 +478,12 @@ export type PackInput = {
 
 const MARK: Record<string, string> = { done: "✓", doing: "→", todo: "·" };
 
-/** 资产包 = 收藏全文 + 收藏夹清单 + 复刻进度，一次拿走自己攒下的全部东西 */
+/** 收藏包 = 收藏全文 + 收藏夹清单 + 复刻进度，一次拿走自己攒下的全部东西 */
 export function buildPackMarkdown(input: PackInput, locale: Locale = "zh"): string {
   const date = new Date().toISOString().slice(0, 10);
   const L = (zh: string, en: string) => (locale === "en" ? en : zh);
   const out: string[] = [
-    `# ${L("BuildHub 资产包", "BuildHub asset pack")} · ${date}`,
+    `# ${L("BuildHub 我的收藏包", "My BuildHub pack")} · ${date}`,
     "",
     L(
       "这里面是你在这个站上攒下的全部东西：收藏的正文、自己分的收藏夹、以及每份手册走到哪一步。",
@@ -545,7 +545,7 @@ export function buildPackMarkdown(input: PackInput, locale: Locale = "zh"): stri
 }
 
 /* ============================================================
-   PRO 资产包 / Agent Kit
+   PRO 离线包 / SKILL.md
    ============================================================ */
 
 const DESIGN_CATALOG: Record<Locale, AnyRecord | undefined> = {
@@ -574,7 +574,7 @@ function styleRefMarkdown(t: AnyRecord, locale: Locale): string {
   const lines = [`# ${t.name}${t.en ? ` (${t.en})` : ""}`];
   if (t.tagline) lines.push("", `> ${t.tagline}`);
   if (t.slug)
-    lines.push("", `- ${locale === "en" ? "Live sample" : "可视化样张"}: ${designLink(t.slug, locale)}`);
+    lines.push("", `- ${locale === "en" ? "Open it on the site" : "在站里点开看"}: ${designLink(t.slug, locale)}`);
   return lines.join("\n").trim();
 }
 
@@ -584,74 +584,84 @@ function iconStyles(locale: Locale): AnyRecord[] {
 
 function agentKitMarkdown(locale: Locale): string {
   const L = (zh: string, en: string) => (locale === "en" ? en : zh);
-  const promptCount = (PROMPTS[locale] ?? PROMPTS.zh).length;
-  const skillCount = (SKILLS[locale] ?? SKILLS.zh).length;
-  const conceptCount = (TERMS[locale] ?? TERMS.zh).length;
+  const s = packStats(locale);
   const { web, libs } = designRefs(locale);
   const icons = iconStyles(locale);
+  const pathTasks: Record<string, [string, string]> = {
+    "first-website": ["上线第一个官网", "Ship the first product site"],
+    "agent-workflow": ["让 AI 按流程干活", "Give the agent a workflow"],
+    "ui-quality": ["让界面有质感", "Raise UI quality"],
+    "first-ai-app": ["上线第一个 AI 应用", "Ship the first AI app"],
+  };
+  const prompts = (PROMPTS[locale] ?? PROMPTS.zh) as AnyRecord[];
+  const skills = (SKILLS[locale] ?? SKILLS.zh) as AnyRecord[];
+  const routeRows = PATHS.map((p: AnyRecord) => {
+    const task = pathTasks[p.id] ?? [p.name, p.name];
+    return `| ${L(task[0], task[1])} | ${L("四、路径", "4. Paths")} · ${p.name} |`;
+  });
   const lines: string[] = [
     "---",
     "name: buildhub",
     `description: ${L(
-      "把想法做成可上线产品的资产索引：提示词、技能、设计参考和路径",
-      "Asset index for shipping a real product: prompts, skills, design references and paths"
+      "把想法做成可上线产品的内容索引：提示词、技能、设计参考和路径",
+      "Content index for shipping a real product: prompts, skills, design references and paths"
     )}`,
     "---",
     "",
     "# BuildHub",
     "",
     L(
-      "这是 BuildHub PRO 资产包的入口文件。先读这里，再按任务去对应目录，不要一次把全部内容读进上下文。",
-      "This is the entry file for the BuildHub PRO asset pack. Read this first, then open the file for the task at hand. Do not load the whole pack into context."
+      "这是 BuildHub PRO 离线包的入口文件。完整内容在同一个 Markdown 文件的七章里：先读这里，再按任务跳到对应章节，不要一次把全文读进上下文。",
+      "This is the entry file for the BuildHub PRO pack. The full content lives in one Markdown file split into seven chapters: read this first, then jump to the chapter the task needs. Do not load the whole file into context."
     ),
     "",
     `## ${L("包里有什么", "What is inside")}`,
     "",
-    `- \`prompts/\` — ${promptCount} ${L("条可复制提示词，按任务分 7 类", "copy-ready prompts in 7 task groups")}`,
-    `- \`skills/\` — ${skillCount} ${L("个技能，覆盖元技能、工程流、设计前端、文档与浏览器自动化", "skills across meta skills, engineering, design/frontend, docs and browser automation")}`,
-    `- \`design/\` — ${web.length + icons.length + libs.length} ${L("条设计参考：网页风格、App 图标风格与图标库", "design references: web styles, app icon styles and icon libraries")}`,
-    "- `paths/` — 4 " + L("条从想法到上线的路径", "end-to-end paths from idea to launch"),
-    "- `playbooks/` — 3 " + L("本带完成标志的手册", "playbooks with definitions of done"),
-    `- \`concepts/\` — ${conceptCount} ` + L("条概念词条索引", "concept entries"),
+    `- ${L("一、提示词", "1. Prompts")} — ${s.prompts} ${L("条可复制提示词，按任务分 7 类", "copy-ready prompts in 7 task groups")}`,
+    `- ${L("二、技能", "2. Skills")} — ${s.skills} ${L("个技能，覆盖元技能、工程流、设计前端、文档与浏览器自动化", "skills across meta skills, engineering, design/frontend, docs and browser automation")}`,
+    `- ${L("三、设计参考", "3. Design references")} — ${s.designRefs} ${L("条：网页风格、App 图标风格与图标库", "covering web styles, app icon styles and icon libraries")}`,
+    `- ${L("四、路径", "4. Paths")} — ${s.paths} ${L("条从想法到上线的路径", "end-to-end paths from idea to launch")}`,
+    `- ${L("五、手册", "5. Playbooks")} — ${s.playbooks} ${L("本带完成标志的手册", "playbooks with definitions of done")}`,
+    `- ${L("六、专题", "6. Explainers")} — ${s.explainers} ${L("篇从 0 到 1 的完整拆解", "long-form build breakdowns")}`,
+    `- ${L("七、概念索引", "7. Concept index")} — ${s.concepts} ${L("条概念词条，每条带站内链接", "concept entries, each with a link back to the site")}`,
     "",
     `## ${L("按任务路由", "Route by task")}`,
     "",
     `| ${L("你要做的事", "Task")} | ${L("先读", "Read first")} |`,
     "| --- | --- |",
-    `| ${L("做第一个产品官网", "Ship the first product site")} | \`paths/first-website.md\` |`,
-    `| ${L("给 AI 装工作流", "Give the agent a workflow")} | \`paths/agent-workflow.md\` |`,
-    `| ${L("把界面做出质感", "Raise UI quality")} | \`paths/ui-quality.md\` |`,
-    `| ${L("做第一个 AI 应用", "Ship the first AI app")} | \`paths/first-ai-app.md\` |`,
-    `| ${L("把模糊想法说清楚", "Clarify a fuzzy idea")} | \`prompts/\` · ${L("先读「需求文档」", "start with the spec prompt")} |`,
-    `| ${L("找现成技能", "Find an existing skill")} | \`skills/find-skills.md\` |`,
-    `| ${L("定视觉方向", "Pick a visual direction")} | \`design/\` |`,
+    ...routeRows,
+    `| ${L("把模糊想法说清楚", "Clarify a fuzzy idea")} | ${L("一、提示词", "1. Prompts")} · ${prompts[0]?.name ?? ""} |`,
+    `| ${L("找现成技能", "Find an existing skill")} | ${L("二、技能", "2. Skills")} · ${
+      skills.find((k: AnyRecord) => k.id === "find-skills")?.name ?? ""
+    } |`,
+    `| ${L("定视觉方向", "Pick a visual direction")} | ${L("三、设计参考", "3. Design references")} |`,
     "",
     `## ${L("使用约定", "Conventions")}`,
     "",
-    `- ${L("每条提示词都是完整正文，可直接复制，不要改写占位符 {{...}} 之外的内容。", "Every prompt is the full text. Copy it as-is; only fill in the {{...}} placeholders.")}`,
-    `- ${L("每条设计参考都带样张链接；App 图标风格另有 AI 生图提示词。", "Each design reference links to a live sample; app icon styles also ship an AI image prompt.")}`,
+    `- ${L("每条提示词都是完整正文，可直接复制，只填 {{...}} 占位符，不要改写其余部分。", "Every prompt is the full text. Copy it as-is; only fill in the {{...}} placeholders.")}`,
+    `- ${L("每条设计参考都带站内界面链接；App 图标风格另有 AI 生图提示词。", "Each design reference links back to the site; app icon styles also ship an AI image prompt.")}`,
     `- ${L("每条路径的每一步都有「完成标志」；没达到就回到上一步。", "Every path step has a definition of done. If it is not met, go back one step.")}`,
-    `- ${L("先对齐目标，再写代码。", "Align on the goal before writing code.")}`,
+    `- ${L("先把目标问清楚，再写代码。", "Get the goal straight before writing code.")}`,
     "",
     `## ${L("安装位置", "Where to install")}`,
     "",
     `- Claude Code: \`.claude/skills/buildhub/SKILL.md\``,
     `- Cursor: \`.cursor/rules/buildhub.mdc\``,
     `- Codex CLI / Gemini CLI: ${L("在 AGENTS.md / GEMINI.md 里引用本文件", "reference this file from AGENTS.md / GEMINI.md")}`,
-    `- Obsidian: ${L("把资产包目录当 vault 打开", "open the pack folder as a vault")}`,
+    `- Obsidian: ${L("把离线包那个 .md 文件放进 vault", "drop the pack's .md file into a vault")}`,
     "",
-    `## ${L("目录索引", "Index")}`,
+    `## ${L("全部条目", "Full list")}`,
     "",
-    `### ${L("提示词", "Prompts")} (${promptCount})`,
+    `### ${L("提示词", "Prompts")} (${s.prompts})`,
     "",
     ...(PROMPTS[locale] ?? PROMPTS.zh).map(
       (p: AnyRecord) => `- ${p.name}${p.tagline ? ` — ${p.tagline}` : ""}`
     ),
     "",
-    `### ${L("技能", "Skills")} (${skillCount})`,
+    `### ${L("技能", "Skills")} (${s.skills})`,
     "",
     ...(SKILLS[locale] ?? SKILLS.zh).map(
-      (s: AnyRecord) => `- ${s.name}${s.tagline ? ` — ${s.tagline}` : ""}`
+      (k: AnyRecord) => `- ${k.name}${k.tagline ? ` — ${k.tagline}` : ""}`
     ),
     "",
     `### ${L("设计参考", "Design references")} (${web.length + icons.length + libs.length})`,
@@ -672,6 +682,65 @@ function conceptsIndex(locale: Locale): string[] {
   });
 }
 
+export type PackStats = {
+  concepts: number;
+  prompts: number;
+  skills: number;
+  designRefs: number;
+  designWeb: number;
+  designIcons: number;
+  designLibs: number;
+  paths: number;
+  playbooks: number;
+  explainers: number;
+};
+
+/** 离线包里每一部分的真实条数，页面与导出正文共用同一个来源 */
+export function packStats(locale: Locale = "zh"): PackStats {
+  const { web, libs } = designRefs(locale);
+  const icons = iconStyles(locale);
+  return {
+    concepts: (TERMS[locale] ?? TERMS.zh).length,
+    prompts: (PROMPTS[locale] ?? PROMPTS.zh).length,
+    skills: (SKILLS[locale] ?? SKILLS.zh).length,
+    designRefs: web.length + icons.length + libs.length,
+    designWeb: web.length,
+    designIcons: icons.length,
+    designLibs: libs.length,
+    paths: PATHS.length,
+    playbooks: Object.keys(PLAYBOOKS).length,
+    explainers: Object.keys(EXPLAINERS).length,
+  };
+}
+
+export type DesignCounts = {
+  webStyles: number;
+  navStyles: number;
+  authBlocks: number;
+  footers: number;
+  iconStyles: number;
+  iconLibs: number;
+};
+
+/** /design 页 metadata 用：每个分类的条数都从数据里数出来 */
+export function designCounts(locale: Locale = "zh"): DesignCounts {
+  const c = DESIGN_CATALOG[locale] ?? DESIGN_CATALOG.zh;
+  const groups = Array.isArray(c?.groups) ? c.groups : [];
+  const byCategory = (category: string) =>
+    groups
+      .filter((g: AnyRecord) => g.category === category)
+      .flatMap((g: AnyRecord) => (Array.isArray(g.terms) ? g.terms : [])).length;
+  const { web, libs } = designRefs(locale);
+  return {
+    webStyles: web.length,
+    navStyles: byCategory("navigation"),
+    authBlocks: byCategory("auth"),
+    footers: byCategory("footer"),
+    iconStyles: iconStyles(locale).length,
+    iconLibs: libs.length,
+  };
+}
+
 export function buildLibraryMarkdown(locale: Locale = "zh"): string {
   const L = (zh: string, en: string) => (locale === "en" ? en : zh);
   const date = new Date().toISOString().slice(0, 10);
@@ -682,11 +751,11 @@ export function buildLibraryMarkdown(locale: Locale = "zh"): string {
   const terms = TERMS[locale] ?? TERMS.zh;
 
   const parts: string[] = [
-    `# ${L("BuildHub PRO 资产包", "BuildHub PRO asset pack")} · ${date}`,
+    `# ${L("BuildHub PRO 离线包", "BuildHub PRO pack")} · ${date}`,
     "",
     L(
-      "这是 BuildHub PRO 的完整资产包：提示词、技能、设计参考、路径、手册，以及给 Agent 用的入口文件。建议先读 SKILL.md，再按任务翻对应目录。",
-      "The complete BuildHub PRO pack: prompts, skills, design references, paths, playbooks and the agent entry file. Read SKILL.md first, then open only the folder you need."
+      "这是 BuildHub PRO 的完整离线包：提示词、技能、设计参考、路径、手册、专题，加上概念索引和给 Agent 用的入口文件。建议先读 SKILL.md，再按任务翻对应章节。",
+      "The complete BuildHub PRO pack: prompts, skills, design references, paths, playbooks, stories, the concept index and the agent entry file. Read SKILL.md first, then open only the section you need."
     ),
     "",
     "---",
@@ -767,14 +836,14 @@ export function buildSampleMarkdown(locale: Locale = "zh"): string {
   const icon = iconStyles(locale)[0];
   const { web } = designRefs(locale);
   const path = PATHS[0];
-  const conceptCount = (TERMS[locale] ?? TERMS.zh).length;
+  const s = packStats(locale);
 
   return [
-    `# ${L("BuildHub PRO 资产包 · 免费样例", "BuildHub PRO asset pack · free sample")} · ${date}`,
+    `# ${L("BuildHub PRO 离线包 · 免费样例", "BuildHub PRO pack · free sample")} · ${date}`,
     "",
     L(
-      `这是一份样例，从完整资产包里各抽了一条。完整版包含 ${conceptCount} 条概念、19 条提示词、25 个技能、40 条设计参考、4 条路径、3 本手册和一份 Agent Kit。`,
-      `A sample with one entry from each part of the full pack. The full version holds ${conceptCount} concepts, 19 prompts, 25 skills, 40 design references, 4 paths, 3 playbooks and the Agent Kit.`
+      `这是一份样例，从完整离线包里各抽了一条。完整版包含 ${s.concepts} 条概念、${s.prompts} 条提示词、${s.skills} 个技能、${s.designRefs} 条设计参考、${s.paths} 条路径、${s.playbooks} 本手册，和一份给 AI 用的入口文件 SKILL.md。`,
+      `A sample with one entry from each part of the full pack. The full version holds ${s.concepts} concepts, ${s.prompts} prompts, ${s.skills} skills, ${s.designRefs} design references, ${s.paths} paths, ${s.playbooks} playbooks, and the SKILL.md entry file for your agent.`
     ),
     "",
     `- ${SITE}${locale === "en" ? "/en" : ""}/pro`,
@@ -814,8 +883,8 @@ export function buildSampleMarkdown(locale: Locale = "zh"): string {
     "---",
     "",
     L(
-      "完整资产包和 Agent Kit 在 BuildHub PRO 页面获取。",
-      "Get the full pack and Agent Kit on the BuildHub PRO page."
+      "完整离线包和 SKILL.md 在 BuildHub PRO 页面下载。",
+      "Download the full pack and the SKILL.md on the BuildHub PRO page."
     ),
     "",
   ]

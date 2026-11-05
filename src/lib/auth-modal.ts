@@ -30,3 +30,10 @@ export function requireLogin(opts: AuthOpenOpts = {}) {
   }
   openAuthModal?.(opts);
 }
+
+/** 退出登录：吊销服务端 session，再把本地登录态立刻清干净 */
+export async function signOut() {
+  await fetch("/api/auth/logout", { method: "POST" }).catch(() => {});
+  setSignedIn(false);
+  window.dispatchEvent(new Event("vh-me-changed"));
+}

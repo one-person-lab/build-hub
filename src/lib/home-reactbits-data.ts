@@ -92,13 +92,14 @@ const HERO_SHOTS = [
 
 const QUOTE_PICKS = [
   "frontend",
-  "vibe-coding",
+  "deployment",
   "token",
   "terminal",
-  "git",
-  "user-story",
-  "acceptance-criteria",
+  "https",
+  "context-window",
+  "data-validation",
   "react",
+  "ai-agent",
 ];
 
 function uniqueTerms(catalogs: RawCatalog[]): RawTerm[] {

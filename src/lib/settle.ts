@@ -32,7 +32,8 @@ export function createOrder(input: {
 
 export type ManualOrder = {
   outTradeNo: string;
-  email: string;
+  /** 邮箱账号显示邮箱，微信扫码进来的没有邮箱，退到昵称或 openid 前缀 */
+  account: string | null;
   plan: string;
   name: string;
   money: string;
@@ -54,7 +55,9 @@ export function findOpenManualOrder(userId: number, plan: string): string | null
 export function listOpenManualOrders(): ManualOrder[] {
   return getDb()
     .prepare(
-      `select o.out_trade_no, u.email, o.plan, o.name, o.money, o.created_at
+      `select o.out_trade_no,
+              coalesce(u.email, nullif(u.wx_nickname, ''), '微信 ' || substr(u.wx_openid, 1, 8)) as account,
+              o.plan, o.name, o.money, o.created_at
        from orders o join users u on u.id = o.user_id
        where o.channel = 'manual' and o.status = 'pending'
        order by o.created_at asc`
@@ -64,7 +67,7 @@ export function listOpenManualOrders(): ManualOrder[] {
       const row = r as Record<string, string>;
       return {
         outTradeNo: row.out_trade_no,
-        email: row.email,
+        account: row.account ?? null,
         plan: row.plan,
         name: row.name,
         money: row.money,

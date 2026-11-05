@@ -37,7 +37,7 @@ const QR_IMAGES: Record<string, { src: string; altZh: string; altEn: string }> =
 const COPY = {
   zh: {
     aria: "联系方式",
-    blurb: "给非工程师的 AI 编程入门站。用大白话讲概念，用示例帮你动手，把会的东西变成可用的资产。",
+    blurb: "AI 驱动的软件构建知识与数字资产平台。概念、界面参考、技术栈、提示词、技能和使用路径都在站里，每条都是完整正文，可以直接读、直接抄走。",
     columns: [
       {
         title: "站点",
@@ -92,7 +92,7 @@ const COPY = {
   },
   en: {
     aria: "Links and contact",
-    blurb: "AI coding for non-engineers. Plain-word concepts, playable examples, and the assets to turn what you know into something you can use.",
+    blurb: "AI-powered knowledge and digital assets for building software products. We gather the knowledge, skills and creative resources a build needs, then use AI to help you find, understand, combine and apply them.",
     columns: [
       {
         title: "Site",

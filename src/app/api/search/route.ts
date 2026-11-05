@@ -307,26 +307,38 @@ const INDEX: Record<Locale, Item[]> = {
   en: makeIndex("en"),
 };
 
+const countByCatalog = (
+  catalogs: { key: string; groups: { terms?: unknown[] }[] }[],
+  key: string
+) =>
+  catalogs
+    .filter((c) => c.key === key)
+    .reduce((n, c) => n + c.groups.reduce((m, g) => m + (g.terms?.length ?? 0), 0), 0);
+
+const PATH_COUNT = (paths as { paths: unknown[] }).paths.length;
+const MOTION_ZH = countByCatalog(zhCatalogs, "motion");
+const MOTION_EN = countByCatalog(enCatalogs, "motion");
+
 const SECTIONS: Record<Locale, { label: string; title: string; subtitle: string; href: string }[]> = {
   zh: [
-    { label: "路径", title: "路径", subtitle: "四条排好顺序的动手路线", href: "/paths" },
-    { label: "概念", title: "概念", subtitle: "400+ 个词条，配可视化示例", href: "/topics/frontend" },
+    { label: "路径", title: "路径", subtitle: `${PATH_COUNT} 条排好顺序的动手路线`, href: "/paths" },
+    { label: "概念", title: "概念", subtitle: `${zhTerms.length} 个词条，每条配能跑的示例`, href: "/topics/frontend" },
     { label: "课程", title: "课程", subtitle: "成体系地走完一遍", href: "/courses" },
     { label: "技能", title: "技能库", subtitle: "精选 Agent Skills，附安装命令", href: "/skills" },
     { label: "产品", title: "产品图鉴", subtitle: "真实用过的工具与网站", href: "/products" },
     { label: "提示词", title: "提示词库", subtitle: "可直接复制的全流程提示词", href: "/prompts" },
     { label: "设计", title: "设计", subtitle: "可点开看的界面风格", href: "/design" },
-    { label: "动效", title: "动效", subtitle: "4 个可点着玩的交互动效", href: "/distill" },
+    { label: "动效", title: "动效", subtitle: `${MOTION_ZH} 个可点着玩的交互动效`, href: "/distill" },
     { label: "专题", title: "专题", subtitle: "从 0 到 1 的完整拆解", href: "/explains" },
     { label: "手册", title: "手册", subtitle: "什么时候用、怎么做、做到什么程度算过", href: "/playbooks" },
   ],
   en: [
-    { label: "concepts", title: "Concepts", subtitle: "Plain-word explanations with live demos", href: "/en/topics/frontend" },
+    { label: "concepts", title: "Concepts", subtitle: `${enTerms.length} plain-word entries, each with a demo`, href: "/en/topics/frontend" },
     { label: "skills", title: "Skills", subtitle: "Curated agent skills with install commands", href: "/en/skills" },
     { label: "products", title: "Showcase", subtitle: "Tools we have actually used", href: "/en/products" },
     { label: "prompts", title: "Prompts", subtitle: "Copy-ready prompts for the whole build", href: "/en/prompts" },
     { label: "design", title: "Design", subtitle: "Interface styles you can open and compare", href: "/en/design" },
-    { label: "motion", title: "Motion", subtitle: "Four playable interaction demos", href: "/en/distill" },
+    { label: "motion", title: "Motion", subtitle: `${MOTION_EN} playable interaction demos`, href: "/en/distill" },
   ],
 };
 
