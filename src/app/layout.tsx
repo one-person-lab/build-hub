@@ -17,9 +17,9 @@ export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL || process.env.APP_URL || "http://localhost:3000",
   ),
-  title: "BuildHub 软件构建资产平台",
+  title: "BuildHub AI 软件构建资产平台",
   description:
-    "BuildHub 收的是概念、界面参考、技术栈、提示词、技能和使用路径，每条都是完整正文：人能直接读，AI 能直接拿去用。",
+    "BuildHub 是一个 AI 驱动的软件构建资产平台，汇集软件产品构建所需的知识、技能与创作资源，并通过 AI Agent 帮助用户发现、理解、组合和应用优质资产，让软件产品构建更加高效。",
   icons: {
     icon: [{ url: "/favicon.ico", type: "image/x-icon" }, "/icon.svg"],
     apple: "/assets/buildhub-mark-180.png",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     siteName: "BuildHub",
     title: "BuildHub｜把会的东西，变成可用的资产。",
     description:
-      "AI 驱动的软件构建知识与数字资产平台。概念、界面参考、技术栈、提示词、技能和使用路径都在站里，每条都是完整正文。",
+      "BuildHub 是一个 AI 驱动的软件构建资产平台，汇集软件产品构建所需的知识、技能与创作资源，并通过 AI Agent 帮助用户发现、理解、组合和应用优质资产，让软件产品构建更加高效。",
     images: ["/assets/social-card-zh-v2.png"],
   },
 };

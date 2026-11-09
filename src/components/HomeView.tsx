@@ -303,7 +303,7 @@ function buildCopy(locale: Locale, counts: ReturnType<typeof getHomeData>["count
     ],
     faq: zh
       ? [
-          { q: "BuildHub 是什么？", a: "一个 AI 驱动的软件构建知识与数字资产平台。站内收的是概念、界面参考、技术栈、提示词、技能和使用路径，每条都是完整正文，人和 AI 都能直接拿去用。" },
+          { q: "BuildHub 是什么？", a: "一个 AI 驱动的软件构建知识与数字资产平台，收的是概念、界面参考、技术栈、提示词、技能和使用路径，每条都是完整正文，人和 AI 都能直接拿去用。核心价值是让优质构建资产不止能够被获取，更能被 AI 理解、组合和应用。使命是汇聚优秀的知识、技能与创作资源，借助 AI 让它们更容易被发现、获取和应用；愿景是成为 AI 时代软件产品构建领域值得信赖的知识与资产基础设施。" },
           { q: "需要会写代码吗？", a: "不需要。概念用大白话讲，每条都配能直接跑的示例；要动手时，把提示词贴进 AI 工具就行。" },
           { q: "和普通教程站有什么区别？", a: "不堆课程。每个概念一页，讲清是什么、什么时候用、怎么验证；示例就嵌在页面上，不用跳到别处。" },
           { q: "内容会更新吗？", a: "会。新概念、提示词和技能会陆续补进站内，每次改动都记在更新日志里。" },
@@ -314,7 +314,7 @@ function buildCopy(locale: Locale, counts: ReturnType<typeof getHomeData>["count
           { q: "找不到想要的概念怎么办？", a: "用顶部搜索（⌘K）直接搜；没有的话发邮件告诉我们，会补上。" },
         ]
       : [
-          { q: "What is BuildHub?", a: "An AI-powered platform for the knowledge and digital assets behind software products. It holds concepts, UI references, stack picks, prompts, skills and build paths — each one the full text, ready for you or your agent to use." },
+          { q: "What is BuildHub?", a: "An AI-powered platform for the knowledge and digital assets behind software products — concepts, UI references, stack picks, prompts, skills and build paths, each one the full text, ready for you or your agent. The core value: good build assets shouldn't stop at being findable — AI understands them, combines them and applies them. The mission is to gather excellent knowledge, skills and creative resources and use AI to make them easier to discover, get and apply. The vision is to become trusted knowledge and asset infrastructure for software creation in the AI era." },
           { q: "Do I need to know how to code?", a: "No. Concepts are written in plain words and every entry ships with a demo you can run. When it's time to build, paste the prompt into any AI tool." },
           { q: "How is this different from a tutorial site?", a: "No course pile-up. One page per concept: what it is, when to use it, how to check it. The playable example is right there." },
           { q: "Does the content get updated?", a: "Yes. New concepts, prompts and skills keep landing, and every change is recorded in the changelog." },
