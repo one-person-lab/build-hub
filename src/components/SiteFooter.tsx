@@ -44,8 +44,8 @@ const COPY = {
         links: [
           { label: "首页", href: "/" },
           { label: "概念", href: "/topics/frontend" },
-          { label: "设计风格", href: "/design" },
-          { label: "技术栈", href: "/stack" },
+          { label: "设计", href: "/design" },
+          { label: "技术选型", href: "/stack" },
           { label: "产品", href: "/products" },
         ],
       },
@@ -66,7 +66,7 @@ const COPY = {
           { label: "专题", href: "/explains" },
           { label: "更新日志", href: "/changelog" },
           { label: "BuildHub Skill", href: "/buildhub-skill" },
-          { label: "反 AI 味", href: "/anti-ai-flavor" },
+          { label: "AI Slop", href: "/anti-ai-flavor" },
         ],
       },
       {
@@ -111,7 +111,7 @@ const COPY = {
           { label: "Motion", href: "/en/distill" },
           { label: "Practice", href: "/en/practice" },
           { label: "BuildHub Skill", href: "/en/buildhub-skill" },
-          { label: "Anti AI-flavor", href: "/en/anti-ai-flavor" },
+          { label: "AI Slop", href: "/en/anti-ai-flavor" },
         ],
       },
       {

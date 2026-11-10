@@ -35,49 +35,49 @@ function getNav(locale: Locale, counts?: Counts): NavItem[] {
         {
           label: "知识库",
           items: [
-            { label: "概念总览", href: "/topics/frontend", note: c ? `${c.concepts} 个词条` : "概念总览" },
-            { label: "设计风格", href: "/design", note: c ? `${c.styles} 个界面参考` : "界面参考" },
-            { label: "动效", href: "/distill", note: "能玩的交互" },
-            { label: "技术栈", href: "/stack", note: c ? `${c.stack} 个选型` : "技术选型" },
+            { label: "概念", href: "/topics/frontend", note: c ? `${c.concepts} 个词条` : undefined },
+            { label: "技术选型", href: "/stack", note: c ? `${c.stack} 个选型` : undefined },
+            { label: "技能", href: "/skills", note: c ? `${c.skills} 个` : undefined },
+            { label: "架构", href: "/architecture" },
+            { label: "工程实践", href: "/engineering" },
           ],
         },
         {
           label: "资源",
           items: [
-            { label: "产品图鉴", href: "/products", note: c ? `${c.products} 个` : "跑过的产品" },
-            { label: "可抄提示词", href: "/prompts", note: c ? `${c.prompts} 条` : "可抄" },
-            { label: "技能", href: "/skills", note: c ? `${c.skills} 个` : "技能" },
-            { label: "手册", href: "/playbooks", note: c ? `${c.playbooks} 本` : "手册" },
+            { label: "产品", href: "/products", note: c ? `${c.products} 个` : undefined },
+            { label: "提示词", href: "/prompts", note: c ? `${c.prompts} 条` : undefined },
+            { label: "设计", href: "/design", note: c ? `${c.styles} 个界面参考` : undefined },
+            { label: "动效", href: "/distill", note: "能玩的交互" },
             { label: "专题", href: "/explains", note: "深度长文" },
+            { label: "手册", href: "/playbooks", note: c ? `${c.playbooks} 本` : undefined },
+            { label: "路径", href: "/paths" },
           ],
         },
         {
           label: "AI 工具",
           items: [
             { label: "BuildHub Skill", href: "/buildhub-skill", note: "装进 AI 工具" },
-            { label: "练习场", href: "/practice", note: "动手做" },
-            { label: "反 AI 味", href: "/anti-ai-flavor", note: "去套路" },
+            { label: "练习", href: "/practice", note: "动手做" },
+            { label: "AI Slop", href: "/anti-ai-flavor", note: "识别与修改" },
           ],
         },
-        { label: "架构", href: "/architecture" },
-        { label: "工程实践", href: "/engineering" },
-        { label: "路径", href: "/paths" },
       ]
     : [
         {
           label: "Library",
           items: [
-            { label: "Concepts", href: "/en/topics/frontend", note: c ? `${c.concepts} terms` : "Terms" },
-            { label: "Design styles", href: "/en/design", note: c ? `${c.styles} references` : "References" },
-            { label: "Motion", href: "/en/distill", note: "Playable" },
+            { label: "Concepts", href: "/en/topics/frontend", note: c ? `${c.concepts} terms` : undefined },
+            { label: "Skills", href: "/en/skills", note: c ? `${c.skills} skills` : undefined },
           ],
         },
         {
           label: "Resources",
           items: [
-            { label: "Products", href: "/en/products", note: c ? `${c.products} picks` : "Picks" },
-            { label: "Prompts", href: "/en/prompts", note: c ? `${c.prompts} prompts` : "Prompts" },
-            { label: "Skills", href: "/en/skills", note: c ? `${c.skills} skills` : "Skills" },
+            { label: "Showcase", href: "/en/products", note: c ? `${c.products} picks` : undefined },
+            { label: "Prompts", href: "/en/prompts", note: c ? `${c.prompts} prompts` : undefined },
+            { label: "Design", href: "/en/design", note: c ? `${c.styles} references` : undefined },
+            { label: "Motion", href: "/en/distill", note: "Playable" },
           ],
         },
         {

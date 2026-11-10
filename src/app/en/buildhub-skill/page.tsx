@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import BuildHubSkillView from "@/components/BuildHubSkillView";
 
 export const metadata: Metadata = {
-  title: "BuildHub Skill | Give your agent the right term",
+  title: "BuildHub Skill | Accurate frontend terminology for your agent",
   description:
-    "A terminology skill for Claude Code, Cursor and any agent: it turns vague wording into a request you can send, names the term you described, and links to the BuildHub entry page.",
+    "A terminology skill for Claude Code, Cursor and any agent: rewrites vague descriptions into precise requirements, surfaces relevant terms, and links to BuildHub entries with live demos. One prompt to install.",
 };
 
 export default function EnBuildHubSkillPage() {
