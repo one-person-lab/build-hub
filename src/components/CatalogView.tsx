@@ -36,6 +36,10 @@ type Term = {
   /** 缩略图居中放大倍数（内容只占画布一小块的窄卡片用） */
   zoom?: number;
   source?: string;
+  /** 收录条目的卡面预览图（本地镜像） */
+  img?: string;
+  /** 收录条目的演示视频（本地镜像，卡片进视口自动播） */
+  video?: string;
 };
 type Group = {
   id: string;
@@ -442,10 +446,12 @@ export default function CatalogView({
           </nav>
         </aside>
         <div className="grid-wrap">
-          <header className="catalog-heading">
-            <h1>{catalog.title}</h1>
-            {catalog.intro ? <p className="cat-page-intro">{catalog.intro}</p> : null}
-          </header>
+          {catalog.key === "motion" ? null : (
+            <header className="catalog-heading">
+              <h1>{catalog.title}</h1>
+              {catalog.intro ? <p className="cat-page-intro">{catalog.intro}</p> : null}
+            </header>
+          )}
           {visibleGroups.map((g) => {
             // 认证页 / 页脚分组：卡片是真实 block 的等比缩略（iframe），点开进入大图弹层
             const blockCat = g.category && BLOCK_CATS[g.category] ? g.category : undefined;
@@ -575,8 +581,8 @@ export default function CatalogView({
                 </section>
               );
             }
-            // 交互动画分组：普通卡片网格，点开卡片进入 ripplix 式详情弹层玩 demo
-            if (g.category === "motion") {
+            // 动效分区：普通卡片网格，点开卡片进入详情弹层（站内 demo 直接跑，收录的播原版视频 + 原链 + 提示词）
+            if (catalog.key === "motion") {
               return (
                 <section className="cat-section" id={g.id} key={g.id}>
                   <h2 className="cat-title">
@@ -594,7 +600,12 @@ export default function CatalogView({
                         style={{ cursor: "pointer" }}
                         onClick={() => setMotionSlug(t.slug)}
                       >
-                        <CardDemoThumb demoHtml={t.demoHtml} demoClass={t.demoClass} />
+                        <CardDemoThumb
+                          demoHtml={t.demoHtml}
+                          demoClass={t.demoClass}
+                          img={t.img}
+                          video={t.video}
+                        />
                         <div className="card-head">
                           <a
                             className="card-title-group card-title-link"

@@ -1,0 +1,132 @@
+/* ===== IcePanel 风格图画布（固定深色，不随站点明暗切换） ===== */
+/* --- 画布 --- */
+.ipd-canvas-wrap {
+  position: relative;
+  background: #1b1d21;
+  border: 1px solid #2c2f35;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.ipd-svg {
+  display: block; width: 100%; height: auto;
+  cursor: grab; touch-action: none;
+  font-family: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+}
+.ipd-svg:active { cursor: grabbing; }
+.ipd-dot { fill: #2e3138; }
+
+/* 工具栏 */
+.ipd-toolbar {
+  position: absolute; top: 12px; left: 12px; right: 12px; z-index: 5;
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 10px;
+  pointer-events: none;
+}
+.ipd-flows {
+  display: flex; gap: 2px; padding: 3px;
+  background: rgba(24, 26, 30, .88); border: 1px solid #34373e;
+  border-radius: 10px; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  pointer-events: auto; flex-wrap: wrap;
+}
+.ipd-flows button {
+  padding: 6px 11px; border: 0; border-radius: 7px; background: none;
+  color: #9ea3ad; font-family: inherit; font-size: 12px; cursor: pointer;
+  white-space: nowrap; transition: color .15s ease, background-color .15s ease;
+}
+.ipd-flows button:hover { color: #e8eaee; }
+.ipd-flows button.is-on { background: #33363e; color: #f2f3f5; font-weight: 650; }
+.ipd-zoom {
+  display: flex; gap: 2px; padding: 3px;
+  background: rgba(24, 26, 30, .88); border: 1px solid #34373e;
+  border-radius: 10px; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  pointer-events: auto;
+}
+.ipd-zoom button {
+  width: 30px; height: 30px; display: grid; place-items: center;
+  border: 0; border-radius: 7px; background: none; color: #9ea3ad; cursor: pointer;
+}
+.ipd-zoom button:hover { background: #33363e; color: #f2f3f5; }
+.ipd-zoom svg {
+  width: 15px; height: 15px; fill: none; stroke: currentColor;
+  stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+}
+.ipd-flow-note {
+  position: absolute; left: 12px; bottom: 12px; z-index: 5; max-width: 520px;
+  margin: 0; padding: 9px 13px;
+  background: rgba(24, 26, 30, .88); border: 1px solid #34373e; border-radius: 10px;
+  color: #c6cad2; font-size: 12.5px; line-height: 1.6;
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+}
+
+/* 分组容器 */
+.ipd-group-box {
+  fill: rgba(255, 255, 255, .045);
+  stroke: #45484f; stroke-width: 1.2;
+}
+.ipd-group.is-external .ipd-group-box { fill: rgba(255, 255, 255, .025); stroke: #3a3d44; }
+.ipd-group-name { fill: #d7dae0; font-size: 13px; font-weight: 700; }
+.ipd-group-sub { fill: #7d828c; font-size: 10px; }
+.ipd-group-divider { stroke: #34373e; stroke-width: 1; }
+
+/* 节点卡片 */
+.ipd-node { transition: opacity .25s ease; }
+.ipd-card {
+  fill: #17181c; stroke: #3f434b; stroke-width: 1.2;
+}
+.ipd-node:hover .ipd-card { stroke: #6b7280; }
+.ipd-name { fill: #f2f3f5; font-size: 13.5px; font-weight: 700; }
+.ipd-desc { fill: #a6abb5; font-size: 10.5px; }
+.ipd-tech { fill: #767c87; font-size: 9px; }
+.ipd-icon { color: #60a5fa; }
+.kind-app .ipd-icon { color: #34d399; }
+.kind-external .ipd-icon { color: #9ca3af; }
+.kind-external .ipd-card { fill: #2c2e33; stroke: #4a4d55; }
+.kind-store .ipd-icon { color: #a78bfa; }
+.ipd-node.tone-green .ipd-icon { color: #34d399; }
+.ipd-node.tone-blue .ipd-icon { color: #60a5fa; }
+.ipd-node.tone-cyan .ipd-icon { color: #22d3ee; }
+.ipd-node.tone-violet .ipd-icon { color: #a78bfa; }
+.ipd-node.tone-amber .ipd-icon { color: #fbbf24; }
+.ipd-node.tone-rose .ipd-icon { color: #fb7185; }
+.ipd-cylinder-lid { fill: none; stroke: #3f434b; stroke-width: 1.2; }
+.ipd-actor-head { fill: #17181c; stroke: #3f434b; stroke-width: 1.2; }
+.ipd-actor-icon { color: #e4e4e7; }
+
+/* 连线与标签 */
+.ipd-edge { transition: opacity .25s ease; }
+.ipd-edge-line {
+  fill: none; stroke: #8b909a; stroke-width: 1.4;
+}
+.ipd-edge.is-dashed .ipd-edge-line { stroke-dasharray: 5 4; stroke: #6d727c; }
+.ipd-arrowhead { fill: none; stroke: #8b909a; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.ipd-edge-pill { fill: #33363c; stroke: #42454c; stroke-width: .8; }
+.ipd-edge-label { fill: #d3d6dc; font-size: 10.5px; }
+.ipd-caption { fill: #6d727c; font-size: 10px; }
+
+/* Flow 聚焦时压暗无关节点/连线 */
+.ipd-canvas-wrap .is-dim { opacity: .18; }
+
+.ipd-static { cursor: default; pointer-events: none; }
+.ipd-lifeline { stroke: #45484f; stroke-width: 1.2; stroke-dasharray: 4 5; }
+
+/* 全屏：原生 Fullscreen 与降级 fixed 两种形态，画布占满剩余空间 */
+.ipd-canvas-wrap:fullscreen,
+.ipd-canvas-wrap.is-fullscreen {
+  border-radius: 0;
+  display: flex;
+  flex-direction: column;
+}
+.ipd-canvas-wrap.is-fullscreen {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+}
+.ipd-canvas-wrap:fullscreen .ipd-svg,
+.ipd-canvas-wrap.is-fullscreen .ipd-svg {
+  flex: 1;
+  min-height: 0;
+}
+
+@media (max-width: 900px) {
+  .ipd-toolbar { position: static; padding: 10px 10px 0; }
+  .ipd-flow-note { position: static; max-width: none; margin: 0 10px 10px; }
+}

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { copyPromptWithGate } from "@/lib/copy-gate";
+import { writeClipboard } from "./clipboard";
 import "./MotionPromptButton.css";
 
 export default function MotionPromptButton({
@@ -10,6 +11,7 @@ export default function MotionPromptButton({
   buildPrompt,
   source,
   className = "",
+  gate = true,
 }: {
   label: string;
   copiedLabel: string;
@@ -17,14 +19,23 @@ export default function MotionPromptButton({
   /** 记账用的条目标识，服务端按账号累计复制次数 */
   source: string;
   className?: string;
+  /** 收录条目的复刻提示词不拦登录，点了就直接拿走 */
+  gate?: boolean;
 }) {
   const [copied, setCopied] = useState(false);
 
-  const copy = () =>
-    copyPromptWithGate(buildPrompt(), source, () => {
-      setCopied(true);
-      window.setTimeout(() => setCopied(false), 1500);
-    });
+  const flash = () => {
+    setCopied(true);
+    window.setTimeout(() => setCopied(false), 1500);
+  };
+
+  const copy = async () => {
+    if (!gate) {
+      if (await writeClipboard(buildPrompt())) flash();
+      return;
+    }
+    copyPromptWithGate(buildPrompt(), source, flash);
+  };
 
   return (
     <button type="button" className={"mpb" + (copied ? " is-copied" : "") + (className ? " " + className : "")} onClick={copy}>

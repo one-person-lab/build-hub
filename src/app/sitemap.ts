@@ -16,6 +16,8 @@ import playbooksData from "@/data/playbooks.json";
 import coursesData from "@/data/courses.json";
 import pathsData from "@/data/paths.json";
 import { BOOKS, flatChapters } from "@/lib/drone-book";
+import { ARCHITECTURE_PLATFORMS } from "@/data/architecture-diagrams";
+import { ENGINEERING_PRACTICES } from "@/data/engineering-practices";
 
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || process.env.APP_URL || "https://buildhub.cn";
@@ -25,6 +27,7 @@ const STANDALONE_KEYS = ["design", "motion", "stack"];
 const RESERVED = new Set([
   "",
   "account",
+  "architecture",
   "buildhub-skill",
   "anti-ai-flavor",
   "assets",
@@ -33,6 +36,7 @@ const RESERVED = new Set([
   "design",
   "distill",
   "en",
+  "engineering",
   "explains",
   "practice",
   "paths",
@@ -102,6 +106,10 @@ function zh(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/design`, lastModified: new Date() },
     { url: `${SITE_URL}/stack`, lastModified: new Date() },
     { url: `${SITE_URL}/distill`, lastModified: new Date() },
+    { url: `${SITE_URL}/architecture`, lastModified: new Date() },
+    ...entries("/architecture", ARCHITECTURE_PLATFORMS.map((p) => p.id)),
+    { url: `${SITE_URL}/engineering`, lastModified: new Date() },
+    ...entries("/engineering", ENGINEERING_PRACTICES.map((p) => p.id)),
     { url: `${SITE_URL}/explains`, lastModified: new Date() },
     { url: `${SITE_URL}/playbooks`, lastModified: new Date() },
     { url: `${SITE_URL}/pro`, lastModified: new Date() },

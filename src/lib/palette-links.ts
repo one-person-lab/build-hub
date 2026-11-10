@@ -16,6 +16,7 @@ export const QUICK_LINKS: Record<"zh" | "en", QuickLink[]> = {
     { key: "go:skills", title: "技能库", subtitle: "精选 Agent Skills，附安装命令", type: "入口", href: "/skills", kind: "skill" },
     { key: "go:prompts", title: "提示词库", subtitle: "可直接复制的全流程提示词", type: "入口", href: "/prompts", kind: "prompt" },
     { key: "go:playbooks", title: "手册", subtitle: "什么时候用、怎么做、做到什么程度算过", type: "入口", href: "/playbooks", kind: "playbook" },
+    { key: "go:engineering", title: "工程实践", subtitle: "四个栏目 · 可展示的工程能力作品集", type: "入口", href: "/engineering", kind: "path" },
   ],
   en: [
     { key: "go:concepts", title: "Concepts", subtitle: "Plain-word explanations with live demos", type: "Go", href: "/en/topics/frontend", kind: "term" },
@@ -23,6 +24,6 @@ export const QUICK_LINKS: Record<"zh" | "en", QuickLink[]> = {
     { key: "go:products", title: "Showcase", subtitle: "Tools we have actually used", type: "Go", href: "/en/products", kind: "product" },
     { key: "go:prompts", title: "Prompts", subtitle: "Copy-ready prompts for the whole build", type: "Go", href: "/en/prompts", kind: "prompt" },
     { key: "go:design", title: "Design", subtitle: "Interface styles you can open and compare", type: "Go", href: "/en/design", kind: "design" },
-    { key: "go:motion", title: "Motion", subtitle: "Four playable interaction demos", type: "Go", href: "/en/distill", kind: "motion" },
+    { key: "go:motion", title: "Motion", subtitle: "161 carousels and motion components", type: "Go", href: "/en/distill", kind: "motion" },
   ],
 };

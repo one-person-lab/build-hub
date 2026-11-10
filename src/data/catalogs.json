@@ -3898,21 +3898,276 @@
     "key": "motion",
     "href": "/distill",
     "title": "动效",
-    "intro": "4 个可点着玩的交互动效：拖动卡片、点屏推进、改参数实时重播——点开任意卡片即可进入弹层体验。",
+    "intro": "161 个轮播与交互动效：157 个收录自 21st.dev，卡片上直接播放各自的原版演示，另有 4 个能在站内上手拖拽、调参。按交互形态分成 3D 透视、堆叠扇形、弧形轮盘等 9 类。点开卡片看原链与可复制的提示词。",
     "categories": [
       {
-        "key": "motion",
-        "label": "交互动画"
+        "key": "p3d",
+        "label": "3D 透视"
+      },
+      {
+        "key": "stack",
+        "label": "堆叠扇形"
+      },
+      {
+        "key": "arc",
+        "label": "弧形轮盘"
+      },
+      {
+        "key": "thumb",
+        "label": "缩略图胶片"
+      },
+      {
+        "key": "scroll",
+        "label": "滚动驱动"
+      },
+      {
+        "key": "marquee",
+        "label": "跑马灯"
+      },
+      {
+        "key": "quote",
+        "label": "推荐评价"
+      },
+      {
+        "key": "fx",
+        "label": "全屏特效"
+      },
+      {
+        "key": "basic",
+        "label": "基础滑块"
       }
     ],
     "sidebar": [],
     "groups": [
       {
-        "id": "cat-interaction-motion",
-        "title": "动效组件",
-        "category": "motion",
-        "count": 4,
+        "id": "cat-motion-p3d",
+        "title": "3D 透视",
+        "category": "p3d",
+        "count": 16,
         "terms": [
+          {
+            "slug": "cc-glassy-coverflow-carousel",
+            "name": "玻璃质感 Coverflow",
+            "en": "Glassy",
+            "tagline": "海报廊立体 Coverflow 翻动，支持滑动、键盘、自动播放与预告片弹窗。",
+            "tags": [
+              "Coverflow",
+              "3D",
+              "滑动"
+            ],
+            "source": "https://21st.dev/@troyjlorents-gh/components/glassy-coverflow-carousel",
+            "img": "/assets/motion/carousels/cc-glassy-coverflow-carousel.png",
+            "video": "/assets/motion/carousels/cc-glassy-coverflow-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-glassy-coverflow-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-journal-spread-carousel",
+            "name": "3D 手账翻页",
+            "en": "3D Journal Spread",
+            "tagline": "中间摊开一本手账，前后页立起来排成两摞，拖拽或按键翻页、下一摊转入上一摊合上。",
+            "tags": [
+              "3D",
+              "翻页",
+              "手账"
+            ],
+            "source": "https://21st.dev/@kedhareswer/components/journal-spread-carousel",
+            "img": "/assets/motion/carousels/cc-journal-spread-carousel.png",
+            "video": "/assets/motion/carousels/cc-journal-spread-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-journal-spread-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-coverflow-carousel",
+            "name": "反向 Coverflow",
+            "en": "Reverse",
+            "tagline": "方形封面架，中心卡正对观众、两侧外缘朝你翻开，整个架子朝你打开，拖拽时下方说明跟随。",
+            "tags": [
+              "Coverflow",
+              "反向透视",
+              "拖拽"
+            ],
+            "source": "https://21st.dev/@ruixen.ui/components/coverflow-carousel",
+            "img": "/assets/motion/carousels/cc-coverflow-carousel.png",
+            "video": "/assets/motion/carousels/cc-coverflow-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-coverflow-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-disc-cascade-carousel",
+            "name": "3D 唱片轮播",
+            "en": "3D CD Disc Carousel",
+            "tagline": "印刷唱片排在斜线上，拖拽或滑动时像轮子滚动，配编辑式 credits 与索引菜单。",
+            "tags": [
+              "3D",
+              "唱片",
+              "滚动"
+            ],
+            "source": "https://21st.dev/@kedhareswer/components/disc-cascade-carousel",
+            "img": "/assets/motion/carousels/cc-disc-cascade-carousel.png",
+            "video": "/assets/motion/carousels/cc-disc-cascade-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-disc-cascade-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-skiper49",
+            "name": "反透视 Coverflow",
+            "en": "Inverted",
+            "tagline": "3D Coverflow 旋转并缩小两侧幻灯片，形成反透视、强纵深效果。",
+            "tags": [
+              "Coverflow",
+              "反透视",
+              "纵深"
+            ],
+            "source": "https://21st.dev/@reuno-ui/components/skiper49",
+            "img": "/assets/motion/carousels/cc-skiper49.png",
+            "video": "/assets/motion/carousels/cc-skiper49.mp4",
+            "videoHd": "/assets/motion/carousels/cc-skiper49-hd.mp4"
+          },
+          {
+            "slug": "cc-dimensional-switch-slider",
+            "name": "3D 翻面滑块",
+            "en": "3D Flip Slider",
+            "tagline": "3D 卡片翻面轮播配方向性文字过渡，翻转轴横纵可配、自定义缓动、自动播放。",
+            "tags": [
+              "3D",
+              "翻面",
+              "自动播放"
+            ],
+            "source": "https://21st.dev/@hyperiux/components/dimensional-switch-slider",
+            "img": "/assets/motion/carousels/cc-dimensional-switch-slider.png",
+            "video": "/assets/motion/carousels/cc-dimensional-switch-slider.mp4",
+            "videoHd": "/assets/motion/carousels/cc-dimensional-switch-slider-hd.mp4"
+          },
+          {
+            "slug": "cc-specials-linear-carousel",
+            "name": "Linear 风 3D 卡片轮播",
+            "en": "3D Carousel",
+            "tagline": "横向 3D 卡片轮播，无限循环、拖拽滚动、自动播放，仿 Linear 的共享元素卡片展开。",
+            "tags": [
+              "3D",
+              "Linear 风",
+              "共享元素"
+            ],
+            "source": "https://21st.dev/@animbits/components/specials-linear-carousel",
+            "img": "/assets/motion/carousels/cc-specials-linear-carousel.png",
+            "video": "/assets/motion/carousels/cc-specials-linear-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-specials-linear-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-3d-carousel",
+            "name": "3D 图片轮播",
+            "en": "3D Carousel",
+            "tagline": "立体图片轮播组件。",
+            "tags": [
+              "3D",
+              "图片"
+            ],
+            "source": "https://21st.dev/@user_cult_ui/components/3d-carousel",
+            "img": "/assets/motion/carousels/cc-3d-carousel.png",
+            "video": "/assets/motion/carousels/cc-3d-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-3d-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-dither-helix-carousel",
+            "name": "抖动螺旋轮播",
+            "en": "Dither Helix Carousel",
+            "tagline": "卡片排成旋转的 3D 螺旋柱，卡片后退失焦时带复古抖动/半调着色。",
+            "tags": [
+              "3D",
+              "螺旋",
+              "抖动着色"
+            ],
+            "source": "https://21st.dev/@crafterui/components/dither-helix-carousel",
+            "img": "/assets/motion/carousels/cc-dither-helix-carousel.png",
+            "video": "/assets/motion/carousels/cc-dither-helix-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-dither-helix-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-gallery",
+            "name": "3D 圆柱画廊",
+            "en": "3D Cylinder Gallery",
+            "tagline": "three.js 打造的旋转 3D 圆柱图片画廊，照片绕着动画轮播。",
+            "tags": [
+              "3D",
+              "圆柱",
+              "three.js"
+            ],
+            "source": "https://21st.dev/@mengto/components/gallery",
+            "img": "/assets/motion/carousels/cc-gallery.png",
+            "video": "/assets/motion/carousels/cc-gallery.mp4",
+            "videoHd": "/assets/motion/carousels/cc-gallery-hd.mp4"
+          },
+          {
+            "slug": "cc-orbit-flip-slider",
+            "name": "翻转轨道滑块",
+            "en": "Orbit Flip Slider",
+            "tagline": "GSAP Flip 让一圈图片在四种机位间 morph：平圆、放大弧、倾斜 3D 环、coverflow 带，卡片带弹性 3D 悬停倾斜。",
+            "tags": [
+              "GSAP Flip",
+              "多机位",
+              "3D 悬停"
+            ],
+            "source": "https://21st.dev/@hyperiux/components/orbit-flip-slider",
+            "img": "/assets/motion/carousels/cc-orbit-flip-slider.png",
+            "video": "/assets/motion/carousels/cc-orbit-flip-slider.mp4",
+            "videoHd": "/assets/motion/carousels/cc-orbit-flip-slider-hd.mp4"
+          },
+          {
+            "slug": "cc-coverflow-carousel-2",
+            "name": "iTunes Coverflow",
+            "en": "",
+            "tagline": "仿苹果 iTunes coverflow 的 3D 透视轮播，卡片翻转缩放堆叠，支持拖拽、键盘、自动播放。",
+            "tags": [
+              "Coverflow",
+              "3D",
+              "自动播放"
+            ],
+            "source": "https://21st.dev/@educalvolpz/components/coverflow-carousel",
+            "img": "/assets/motion/carousels/cc-coverflow-carousel-2.png",
+            "video": "/assets/motion/carousels/cc-coverflow-carousel-2.mp4",
+            "videoHd": "/assets/motion/carousels/cc-coverflow-carousel-2-hd.mp4"
+          },
+          {
+            "slug": "cc-ring-tower",
+            "name": "环形高塔",
+            "en": "Ring Tower",
+            "tagline": "倾斜的环形带缠着你的图片叠成塔，绕着爬动、拖拽旋转、邻层随指针反向转。",
+            "tags": [
+              "环形",
+              "高塔",
+              "反向转动"
+            ],
+            "source": "https://21st.dev/@radiumcoders/components/ring-tower",
+            "img": "/assets/motion/carousels/cc-ring-tower.png",
+            "video": "/assets/motion/carousels/cc-ring-tower.mp4",
+            "videoHd": "/assets/motion/carousels/cc-ring-tower-hd.mp4"
+          },
+          {
+            "slug": "cc-viewfinder-flip-carousel",
+            "name": "取景框翻页",
+            "en": "Viewfinder Flip Carousel",
+            "tagline": "3D 翻页轮播：只有取景框内那张照片躺平，其余沿边缘在透视里折走，移动时从堆里展开、落位时微脉冲。",
+            "tags": [
+              "3D",
+              "取景框",
+              "翻页"
+            ],
+            "source": "https://21st.dev/@kedhareswer/components/viewfinder-flip-carousel",
+            "img": "/assets/motion/carousels/cc-viewfinder-flip-carousel.png",
+            "video": "/assets/motion/carousels/cc-viewfinder-flip-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-viewfinder-flip-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-flip-gallery",
+            "name": "翻转画廊",
+            "en": "Flip Gallery",
+            "tagline": "翻转动画的图片画廊。",
+            "tags": [
+              "翻转",
+              "画廊"
+            ],
+            "source": "https://21st.dev/@minhxthanh/components/flip-gallery",
+            "img": "/assets/motion/carousels/cc-flip-gallery.png",
+            "video": "/assets/motion/carousels/cc-flip-gallery.mp4",
+            "videoHd": "/assets/motion/carousels/cc-flip-gallery-hd.mp4"
+          },
           {
             "slug": "motion-card-carousel",
             "name": "卡片轮播",
@@ -3925,6 +4180,1656 @@
             ],
             "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div style=\"position:relative;width:100%;height:100%;background:var(--bg-soft)\"><div style=\"position:absolute;left:50%;top:50%;width:130px;height:173px;margin:-86px 0 0 -216px;transform:rotate(-8deg);border-radius:12px;background:url(/assets/motion/citrus.png) center/cover;box-shadow:0 12px 26px rgba(0,0,0,.22)\"></div><div style=\"position:absolute;left:50%;top:50%;width:130px;height:173px;margin:-86px 0 0 86px;transform:rotate(7deg);border-radius:12px;background:url(/assets/motion/forest.png) center/cover;box-shadow:0 12px 26px rgba(0,0,0,.22)\"></div><div style=\"position:absolute;left:50%;top:50%;width:140px;height:187px;margin:-96px 0 0 -70px;transform:rotate(-3deg);border-radius:12px;background:url(/assets/motion/dune.png) center/cover;box-shadow:0 16px 34px rgba(0,0,0,.28)\"></div></div></div>",
             "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
+          }
+        ]
+      },
+      {
+        "id": "cat-motion-stack",
+        "title": "堆叠扇形",
+        "category": "stack",
+        "count": 12,
+        "terms": [
+          {
+            "slug": "cc-card-fan-carousel",
+            "name": "扇形卡片轮播",
+            "en": "Card Fan Carousel",
+            "tagline": "照片卡扇形展开，弹性入场，悬停时向两边摊开，点一张转到正面。",
+            "tags": [
+              "扇形",
+              "弹性入场",
+              "悬停摊开"
+            ],
+            "source": "https://21st.dev/@aayush-duhan/components/card-fan-carousel",
+            "img": "/assets/motion/carousels/cc-card-fan-carousel.png",
+            "video": "/assets/motion/carousels/cc-card-fan-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-card-fan-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-card-stack",
+            "name": "3D 卡片堆叠",
+            "en": "3D Card Stack",
+            "tagline": "一摞卡片立体堆叠，拖拽或自动播放时扇形展开换卡。",
+            "tags": [
+              "堆叠",
+              "拖拽",
+              "自动播放"
+            ],
+            "source": "https://21st.dev/@ruixen.ui/components/card-stack",
+            "img": "/assets/motion/carousels/cc-card-stack.png",
+            "video": "/assets/motion/carousels/cc-card-stack.mp4",
+            "videoHd": "/assets/motion/carousels/cc-card-stack-hd.mp4"
+          },
+          {
+            "slug": "cc-card-deck-carousel",
+            "name": "甩卡堆叠轮播",
+            "en": "Card Deck Carousel",
+            "tagline": "照片像散落的相片堆叠，拖或甩顶卡任意方向飞出、再滑回堆底，支持按键与自动播放。",
+            "tags": [
+              "堆叠",
+              "甩卡飞出",
+              "自动播放"
+            ],
+            "source": "https://21st.dev/@kedhareswer/components/card-deck-carousel",
+            "img": "/assets/motion/carousels/cc-card-deck-carousel.png",
+            "video": "/assets/motion/carousels/cc-card-deck-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-card-deck-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-carousel-07",
+            "name": "扇形拖拽轮播",
+            "en": "Fan-out Carousel",
+            "tagline": "可拖拽轮播把卡片带旋转、重叠与纵深缩放扇形展开。",
+            "tags": [
+              "扇形",
+              "拖拽",
+              "纵深"
+            ],
+            "source": "https://21st.dev/@shadcnspace/components/carousel-07",
+            "img": "/assets/motion/carousels/cc-carousel-07.png",
+            "video": "/assets/motion/carousels/cc-carousel-07.mp4",
+            "videoHd": "/assets/motion/carousels/cc-carousel-07-hd.mp4"
+          },
+          {
+            "slug": "cc-matchbox-carousel",
+            "name": "火柴盒轮播",
+            "en": "Matchbox Carousel",
+            "tagline": "一排火柴盒，标题印在盒套上，抽屉滑出露出图片再合上、盒子依次挪到下一个。",
+            "tags": [
+              "创意",
+              "抽屉滑出"
+            ],
+            "source": "https://21st.dev/@neebarp/components/matchbox-carousel",
+            "img": "/assets/motion/carousels/cc-matchbox-carousel.png",
+            "video": "/assets/motion/carousels/cc-matchbox-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-matchbox-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-blur-reveal-deck",
+            "name": "模糊揭示卡堆",
+            "en": "Blur Reveal Deck",
+            "tagline": "一摞卡片，滑动或点击时顶卡平滑落下露出下一张，换卡触发文字模糊揭示。",
+            "tags": [
+              "堆叠",
+              "落下换卡",
+              "模糊揭示"
+            ],
+            "source": "https://21st.dev/@y.lamfadelpro/components/blur-reveal-deck",
+            "img": "/assets/motion/carousels/cc-blur-reveal-deck.png",
+            "video": "/assets/motion/carousels/cc-blur-reveal-deck.mp4",
+            "videoHd": "/assets/motion/carousels/cc-blur-reveal-deck-hd.mp4"
+          },
+          {
+            "slug": "cc-staircase-carousel",
+            "name": "阶梯照片轮播",
+            "en": "Staircase Carousel",
+            "tagline": "选中照片满尺寸躺平带标题，前面的逐级抬高、后面的逐级降低，整条在弹簧上阶梯间滑动。",
+            "tags": [
+              "阶梯",
+              "弹簧",
+              "标题切换"
+            ],
+            "source": "https://21st.dev/@kedhareswer/components/staircase-carousel",
+            "img": "/assets/motion/carousels/cc-staircase-carousel.png",
+            "video": "/assets/motion/carousels/cc-staircase-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-staircase-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-polaroid-line-carousel",
+            "name": "晾绳拍立得轮播",
+            "en": "Polaroid Line Carousel",
+            "tagline": "拍立得夹在下垂的绳上，拖拽时沿绳滑动、按你的速度在夹子上摆动再慢慢停稳。",
+            "tags": [
+              "拍立得",
+              "拖拽",
+              "摆动"
+            ],
+            "source": "https://21st.dev/@kedhareswer/components/polaroid-line-carousel",
+            "img": "/assets/motion/carousels/cc-polaroid-line-carousel.png",
+            "video": "/assets/motion/carousels/cc-polaroid-line-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-polaroid-line-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-tilt-cascade-carousel",
+            "name": "倾斜瀑布轮播",
+            "en": "Tilt Cascade Carousel",
+            "tagline": "方图沿斜线向下级联，每张转开缩小、随移动依次摆进正位，循环自动播放。",
+            "tags": [
+              "倾斜",
+              "级联",
+              "摆动"
+            ],
+            "source": "https://21st.dev/@kedhareswer/components/tilt-cascade-carousel",
+            "img": "/assets/motion/carousels/cc-tilt-cascade-carousel.png",
+            "video": "/assets/motion/carousels/cc-tilt-cascade-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-tilt-cascade-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-image-stack-carousel",
+            "name": "图片堆叠轮播",
+            "en": "Image Stack Carousel",
+            "tagline": "分层卡片的交互式图片堆叠，滑动流畅、过渡自然。",
+            "tags": [
+              "堆叠",
+              "滑动",
+              "分层"
+            ],
+            "source": "https://21st.dev/@ayushmxxn/components/image-stack-carousel",
+            "img": "/assets/motion/carousels/cc-image-stack-carousel.png",
+            "video": "/assets/motion/carousels/cc-image-stack-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-image-stack-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-image-fan-carousel",
+            "name": "图片扇形轮播",
+            "en": "Image Fan Carousel",
+            "tagline": "堆叠扇形布局的现代图片轮播，过渡平滑、带导航控制。",
+            "tags": [
+              "扇形",
+              "堆叠",
+              "导航"
+            ],
+            "source": "https://21st.dev/@ayushmxxn/components/image-fan-carousel",
+            "img": "/assets/motion/carousels/cc-image-fan-carousel.png",
+            "video": "/assets/motion/carousels/cc-image-fan-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-image-fan-carousel-hd.mp4"
+          },
+          {
+            "slug": "motion-bounce-cards",
+            "name": "弹跳卡片",
+            "en": "Bounce Cards",
+            "tagline": "五张方卡扇形叠开：依次弹簧弹入，悬停抽正放大、邻卡被推开，点一下抖回原位——六个参数实时可调。",
+            "tags": [
+              "弹簧入场",
+              "悬停推开",
+              "参数可调"
+            ],
+            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div style=\"position:relative;width:100%;height:100%;background:var(--bg-soft)\"><div style=\"position:absolute;left:50%;top:50%;width:118px;height:118px;margin:-59px 0 0 -59px;transform:translate(-170px,0) rotate(10deg) scale(.96);border-radius:16px;border:3px solid #fff;background:url(/assets/motion/citrus.png) center/cover;box-shadow:0 12px 26px rgba(0,0,0,.22);z-index:1\"></div><div style=\"position:absolute;left:50%;top:50%;width:118px;height:118px;margin:-59px 0 0 -59px;transform:translate(-85px,0) rotate(5deg) scale(.98);border-radius:16px;border:3px solid #fff;background:url(/assets/motion/dune.png) center/cover;box-shadow:0 12px 26px rgba(0,0,0,.22);z-index:2\"></div><div style=\"position:absolute;left:50%;top:50%;width:118px;height:118px;margin:-59px 0 0 -59px;transform:rotate(-3deg);border-radius:16px;border:3px solid #fff;background:url(/assets/motion/forest.png) center/cover;box-shadow:0 16px 34px rgba(0,0,0,.28);z-index:3\"></div><div style=\"position:absolute;left:50%;top:50%;width:118px;height:118px;margin:-59px 0 0 -59px;transform:translate(85px,0) rotate(-10deg) scale(.98);border-radius:16px;border:3px solid #fff;background:url(/assets/motion/dune.png) center/cover;box-shadow:0 12px 26px rgba(0,0,0,.22);z-index:4\"></div><div style=\"position:absolute;left:50%;top:50%;width:118px;height:118px;margin:-59px 0 0 -59px;transform:translate(170px,0) rotate(2deg) scale(.96);border-radius:16px;border:3px solid #fff;background:url(/assets/motion/citrus.png) center/cover;box-shadow:0 12px 26px rgba(0,0,0,.22);z-index:5\"></div></div></div>",
+            "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
+          }
+        ]
+      },
+      {
+        "id": "cat-motion-arc",
+        "title": "弧形轮盘",
+        "category": "arc",
+        "count": 12,
+        "terms": [
+          {
+            "slug": "cc-arc-card-carousel",
+            "name": "弧形照片轮播",
+            "en": "Arc Card Carousel",
+            "tagline": "照片卡贴着大轮边缘排成弧，赤道处那张躺平显示标题，滚动或拖拽转轮、双向循环。",
+            "tags": [
+              "弧形",
+              "轮盘",
+              "拖拽"
+            ],
+            "source": "https://21st.dev/@kedhareswer/components/arc-card-carousel",
+            "img": "/assets/motion/carousels/cc-arc-card-carousel.png",
+            "video": "/assets/motion/carousels/cc-arc-card-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-arc-card-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-works-wheel",
+            "name": "作品环轮",
+            "en": "Works Wheel",
+            "tagline": "作品围绕标题排成环，滚动或拖拽展开成 3D 鼓形轮播逐个转。",
+            "tags": [
+              "环形",
+              "3D",
+              "拖拽"
+            ],
+            "source": "https://21st.dev/@crafterui/components/works-wheel",
+            "img": "/assets/motion/carousels/cc-works-wheel.png",
+            "video": "/assets/motion/carousels/cc-works-wheel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-works-wheel-hd.mp4"
+          },
+          {
+            "slug": "cc-circular-gallery",
+            "name": "旋转环形画廊",
+            "en": "Circular Gallery",
+            "tagline": "内容排在可旋转的环形轮播里，适合作品集与沉浸展示。",
+            "tags": [
+              "环形",
+              "旋转"
+            ],
+            "source": "https://21st.dev/@ravikatiyar162/components/circular-gallery",
+            "img": "/assets/motion/carousels/cc-circular-gallery.png",
+            "video": "/assets/motion/carousels/cc-circular-gallery.mp4",
+            "videoHd": "/assets/motion/carousels/cc-circular-gallery-hd.mp4"
+          },
+          {
+            "slug": "cc-arc-flow-carousel",
+            "name": "弧轨甩动轮播",
+            "en": "Arc Flow Carousel",
+            "tagline": "卡片骑在轮弧上，可拖拽甩动带惯性、空闲漂移，支持滚轮与键盘。",
+            "tags": [
+              "弧形",
+              "惯性甩动",
+              "拖拽"
+            ],
+            "source": "https://21st.dev/@hyperiux/components/arc-flow-carousel",
+            "img": "/assets/motion/carousels/cc-arc-flow-carousel.png",
+            "video": "/assets/motion/carousels/cc-arc-flow-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-arc-flow-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-orbiting-carousel-with-animated-icons",
+            "name": "图标轨道轮播",
+            "en": "Orbiting Icons Carousel",
+            "tagline": "每项绕轨道运行的同时自带图标动画，俏皮吸睛。",
+            "tags": [
+              "轨道",
+              "图标动画"
+            ],
+            "source": "https://21st.dev/@olovajs/components/orbiting-carousel-with-animated-icons",
+            "img": "/assets/motion/carousels/cc-orbiting-carousel-with-animated-icons.png",
+            "video": "/assets/motion/carousels/cc-orbiting-carousel-with-animated-icons.mp4",
+            "videoHd": "/assets/motion/carousels/cc-orbiting-carousel-with-animated-icons-hd.mp4"
+          },
+          {
+            "slug": "cc-ferris-wheel-gallery",
+            "name": "摩天轮画廊",
+            "en": "Ferris Wheel Gallery",
+            "tagline": "照片坐摩天轮、选中的停在顶端，吊舱随轮转动始终保持竖直，摆停后放大显示。",
+            "tags": [
+              "摩天轮",
+              "环形",
+              "放大"
+            ],
+            "source": "https://21st.dev/@dhxwhy/components/ferris-wheel-gallery",
+            "img": "/assets/motion/carousels/cc-ferris-wheel-gallery.png",
+            "video": "/assets/motion/carousels/cc-ferris-wheel-gallery.mp4",
+            "videoHd": "/assets/motion/carousels/cc-ferris-wheel-gallery-hd.mp4"
+          },
+          {
+            "slug": "cc-halo-reel",
+            "name": "椭圆光环轮播",
+            "en": "Halo Reel",
+            "tagline": "图片卡骑在椭圆上，用 cosθ 定位、定大小与层级，近端大远端小，自转且可拖拽。",
+            "tags": [
+              "椭圆",
+              "三角函数",
+              "拖拽"
+            ],
+            "source": "https://21st.dev/@ruixen.ui/components/halo-reel",
+            "img": "/assets/motion/carousels/cc-halo-reel.png",
+            "video": "/assets/motion/carousels/cc-halo-reel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-halo-reel-hd.mp4"
+          },
+          {
+            "slug": "cc-carousel-circular-image-gallery",
+            "name": "环形图片画廊",
+            "en": "Circular Image Gallery",
+            "tagline": "环形排列的图片画廊轮播。",
+            "tags": [
+              "环形",
+              "画廊"
+            ],
+            "source": "https://21st.dev/@minhxthanh/components/carousel-circular-image-gallery",
+            "img": "/assets/motion/carousels/cc-carousel-circular-image-gallery.png",
+            "video": "/assets/motion/carousels/cc-carousel-circular-image-gallery.mp4",
+            "videoHd": "/assets/motion/carousels/cc-carousel-circular-image-gallery-hd.mp4"
+          },
+          {
+            "slug": "cc-wheel-carousel",
+            "name": "电影感轮盘选择器",
+            "en": "Wheel Carousel",
+            "tagline": "电影感旋转轮盘，惯性拖拽、弧形淡出标签、配图交叉淡入，适合浏览项目。",
+            "tags": [
+              "轮盘",
+              "惯性拖拽",
+              "弧形标签"
+            ],
+            "source": "https://21st.dev/@componentry/components/wheel-carousel",
+            "img": "/assets/motion/carousels/cc-wheel-carousel.png",
+            "video": "/assets/motion/carousels/cc-wheel-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-wheel-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-circular-carousel",
+            "name": "轨道轮播",
+            "en": "Orbital Carousel",
+            "tagline": "沿曲线轨道弧形排列卡片的动效轮播，平滑切换当前卡、自动播放、圆点与键盘导航。",
+            "tags": [
+              "轨道",
+              "弧形",
+              "自动播放"
+            ],
+            "source": "https://21st.dev/@nexus-ui/components/circular-carousel",
+            "img": "/assets/motion/carousels/cc-circular-carousel.png",
+            "video": "/assets/motion/carousels/cc-circular-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-circular-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-orbit-spotlight-gallery",
+            "name": "轨道聚光画廊",
+            "en": "Orbit Spotlight Gallery",
+            "tagline": "图片轨道折叠进聚焦视图，带纵深、悬停减速、圆点导航与平滑过渡。",
+            "tags": [
+              "轨道",
+              "聚光",
+              "纵深"
+            ],
+            "source": "https://21st.dev/@dhxwhy/components/orbit-spotlight-gallery",
+            "img": "/assets/motion/carousels/cc-orbit-spotlight-gallery.png",
+            "video": "/assets/motion/carousels/cc-orbit-spotlight-gallery.mp4",
+            "videoHd": "/assets/motion/carousels/cc-orbit-spotlight-gallery-hd.mp4"
+          },
+          {
+            "slug": "cc-circular-gallery-2",
+            "name": "环形画廊",
+            "en": "Circular Gallery",
+            "tagline": "环形旋转的图片画廊。",
+            "tags": [
+              "环形",
+              "画廊"
+            ],
+            "source": "https://21st.dev/@ravikatiyar162/components/circular-gallery-2",
+            "img": "/assets/motion/carousels/cc-circular-gallery-2.png",
+            "video": "/assets/motion/carousels/cc-circular-gallery-2.mp4",
+            "videoHd": "/assets/motion/carousels/cc-circular-gallery-2-hd.mp4"
+          }
+        ]
+      },
+      {
+        "id": "cat-motion-thumb",
+        "title": "缩略图胶片",
+        "category": "thumb",
+        "count": 9,
+        "terms": [
+          {
+            "slug": "cc-thumbnail-image-viewer",
+            "name": "缩略图看图器",
+            "en": "Thumbnail Image Viewer",
+            "tagline": "大图配底部缩略图条，点缩略图换大图，支持键盘左右翻。",
+            "tags": [
+              "缩略图",
+              "键盘翻页"
+            ],
+            "source": "https://21st.dev/@ibrandify/components/thumbnail-image-viewer",
+            "img": "/assets/motion/carousels/cc-thumbnail-image-viewer.png"
+          },
+          {
+            "slug": "cc-thumbnail-carousel",
+            "name": "缩略图轮播",
+            "en": "Thumbnail Carousel",
+            "tagline": "可复用的响应式缩略图轮播。",
+            "tags": [
+              "缩略图",
+              "响应式"
+            ],
+            "source": "https://21st.dev/@avanishverma4/components/thumbnail-carousel",
+            "img": "/assets/motion/carousels/cc-thumbnail-carousel.png",
+            "video": "/assets/motion/carousels/cc-thumbnail-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-thumbnail-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-framer-thumbnail-carousel",
+            "name": "Framer 缩略图轮播",
+            "en": "Thumbnail Carousel",
+            "tagline": "Motion 驱动的缩略图轮播。",
+            "tags": [
+              "缩略图",
+              "Motion"
+            ],
+            "source": "https://21st.dev/@uilayout.contact/components/framer-thumbnail-carousel",
+            "img": "/assets/motion/carousels/cc-framer-thumbnail-carousel.png",
+            "video": "/assets/motion/carousels/cc-framer-thumbnail-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-framer-thumbnail-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-framer-thumnbails",
+            "name": "可拖拽缩略图轮播",
+            "en": "Draggable Thumbnails",
+            "tagline": "可拖拽图片轮播，缩略图条会放大当前项并自动滚入视野。",
+            "tags": [
+              "缩略图",
+              "拖拽",
+              "自动滚动"
+            ],
+            "source": "https://21st.dev/@uilayout.contact/components/framer-thumnbails",
+            "img": "/assets/motion/carousels/cc-framer-thumnbails.png",
+            "video": "/assets/motion/carousels/cc-framer-thumnbails.mp4",
+            "videoHd": "/assets/motion/carousels/cc-framer-thumnbails-hd.mp4"
+          },
+          {
+            "slug": "cc-framer-moveable-thumbnails",
+            "name": "胶片缩略图轮播",
+            "en": "Moveable Thumbnails",
+            "tagline": "可拖拽图片轮播，胶片缩略图条里当前项展开成宽幅。",
+            "tags": [
+              "缩略图",
+              "胶片",
+              "拖拽"
+            ],
+            "source": "https://21st.dev/@uilayout.contact/components/framer-moveable-thumbnails",
+            "img": "/assets/motion/carousels/cc-framer-moveable-thumbnails.png",
+            "video": "/assets/motion/carousels/cc-framer-moveable-thumbnails.mp4",
+            "videoHd": "/assets/motion/carousels/cc-framer-moveable-thumbnails-hd.mp4"
+          },
+          {
+            "slug": "cc-vertical-thumbnail-autostart-slider",
+            "name": "纵向缩略图自动轮播",
+            "en": "Vertical Thumbnail Slider",
+            "tagline": "自动播放的纵向图片轮播，侧边带同步缩略图导航条。",
+            "tags": [
+              "纵向",
+              "缩略图",
+              "自动播放"
+            ],
+            "source": "https://21st.dev/@uilayout.contact/components/vertical-thumbnail-autostart-slider",
+            "img": "/assets/motion/carousels/cc-vertical-thumbnail-autostart-slider.png",
+            "video": "/assets/motion/carousels/cc-vertical-thumbnail-autostart-slider.mp4",
+            "videoHd": "/assets/motion/carousels/cc-vertical-thumbnail-autostart-slider-hd.mp4"
+          },
+          {
+            "slug": "cc-c-carousel-10",
+            "name": "底部胶片轮播",
+            "en": "Filmstrip Carousel",
+            "tagline": "图片轮播底部叠一条可点缩略图胶片，直接跳到任意一张。",
+            "tags": [
+              "缩略图",
+              "胶片",
+              "跳转"
+            ],
+            "source": "https://21st.dev/@sean0205/components/c-carousel-10",
+            "img": "/assets/motion/carousels/cc-c-carousel-10.png",
+            "video": "/assets/motion/carousels/cc-c-carousel-10.mp4",
+            "videoHd": "/assets/motion/carousels/cc-c-carousel-10-hd.mp4"
+          },
+          {
+            "slug": "cc-hero-carousel",
+            "name": "胶片主角轮播",
+            "en": "Filmstrip Hero",
+            "tagline": "全幅编辑式主角，卡片共享顶边、聚焦那张展开满高、邻卡裁到半高，背景随聚焦图整体调色。",
+            "tags": [
+              "胶片",
+              "主角",
+              "调色"
+            ],
+            "source": "https://21st.dev/@crafterui.com/components/hero-carousel",
+            "img": "/assets/motion/carousels/cc-hero-carousel.png",
+            "video": "/assets/motion/carousels/cc-hero-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-hero-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-thumbnail-carousel-2",
+            "name": "滑动缩略图轮播",
+            "en": "Swipe Thumbnail Carousel",
+            "tagline": "带滑动、弹簧动画、自动播放与可点缩略图导航的响应式图片轮播。",
+            "tags": [
+              "缩略图",
+              "滑动",
+              "弹簧"
+            ],
+            "source": "https://21st.dev/@ayushmxxn/components/thumbnail-carousel",
+            "img": "/assets/motion/carousels/cc-thumbnail-carousel-2.png",
+            "video": "/assets/motion/carousels/cc-thumbnail-carousel-2.mp4",
+            "videoHd": "/assets/motion/carousels/cc-thumbnail-carousel-2-hd.mp4"
+          }
+        ]
+      },
+      {
+        "id": "cat-motion-scroll",
+        "title": "滚动驱动",
+        "category": "scroll",
+        "count": 11,
+        "terms": [
+          {
+            "slug": "cc-dish-orbit-carousel",
+            "name": "菜品轨道轮播",
+            "en": "Dish Orbit Carousel",
+            "tagline": "滚动页面时每个餐盘沿轨道转出、下一个转进来，标题擦除重写、背景色渐变。",
+            "tags": [
+              "滚动驱动",
+              "轨道",
+              "色彩渐变"
+            ],
+            "source": "https://21st.dev/@kedhareswer/components/dish-orbit-carousel",
+            "img": "/assets/motion/carousels/cc-dish-orbit-carousel.png",
+            "video": "/assets/motion/carousels/cc-dish-orbit-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-dish-orbit-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-runway-lookbook",
+            "name": "秀场造型轮播",
+            "en": "Runway Lookbook",
+            "tagline": "造型在 T 台纵深排队，滚动把下一位模特走到焦点、其余虚化在后，带计数与单品价格栏。",
+            "tags": [
+              "滚动驱动",
+              "纵深",
+              "虚化"
+            ],
+            "source": "https://21st.dev/@kedhareswer/components/runway-lookbook",
+            "img": "/assets/motion/carousels/cc-runway-lookbook.png",
+            "video": "/assets/motion/carousels/cc-runway-lookbook.mp4",
+            "videoHd": "/assets/motion/carousels/cc-runway-lookbook-hd.mp4"
+          },
+          {
+            "slug": "cc-split-photo-slider",
+            "name": "滚动分屏滑块",
+            "en": "Split Photo Slider",
+            "tagline": "每滚一步文案逐行抬起、下一张图盖上一张并转方，吸附循环、圆形接缝缩略图。",
+            "tags": [
+              "滚动驱动",
+              "分屏",
+              "吸附"
+            ],
+            "source": "https://21st.dev/@kedhareswer/components/split-photo-slider",
+            "img": "/assets/motion/carousels/cc-split-photo-slider.png",
+            "video": "/assets/motion/carousels/cc-split-photo-slider.mp4",
+            "videoHd": "/assets/motion/carousels/cc-split-photo-slider-hd.mp4"
+          },
+          {
+            "slug": "cc-case-stack-scroll",
+            "name": "案例堆叠滚动",
+            "en": "Case Stack Scroll",
+            "tagline": "最近的网站案例卡正对你、其余像抽屉文件夹退到后面只露顶条，滚动前后翻、无限循环。",
+            "tags": [
+              "滚动驱动",
+              "堆叠",
+              "案例"
+            ],
+            "source": "https://21st.dev/@kedhareswer/components/case-stack-scroll",
+            "img": "/assets/motion/carousels/cc-case-stack-scroll.png",
+            "video": "/assets/motion/carousels/cc-case-stack-scroll.mp4",
+            "videoHd": "/assets/motion/carousels/cc-case-stack-scroll-hd.mp4"
+          },
+          {
+            "slug": "cc-rotating-flavor-slider",
+            "name": "旋转风味滑块",
+            "en": "Rotating Flavor Slider",
+            "tagline": "滚动时大幅俯拍图旋转 morph 成下一张，背景色融合、圆点绕环形名字滑、角落配料切换。",
+            "tags": [
+              "滚动驱动",
+              "旋转",
+              "色彩融合"
+            ],
+            "source": "https://21st.dev/@kedhareswer/components/rotating-flavor-slider",
+            "img": "/assets/motion/carousels/cc-rotating-flavor-slider.png",
+            "video": "/assets/motion/carousels/cc-rotating-flavor-slider.mp4",
+            "videoHd": "/assets/motion/carousels/cc-rotating-flavor-slider-hd.mp4"
+          },
+          {
+            "slug": "cc-scroll-cards",
+            "name": "滚动堆叠卡片",
+            "en": "Scroll Cards",
+            "tagline": "卡片随滚动堆叠，每张带图、标题与描述。",
+            "tags": [
+              "滚动驱动",
+              "堆叠"
+            ],
+            "source": "https://21st.dev/@ishamsu/components/scroll-cards",
+            "img": "/assets/motion/carousels/cc-scroll-cards.png",
+            "video": "/assets/motion/carousels/cc-scroll-cards.mp4",
+            "videoHd": "/assets/motion/carousels/cc-scroll-cards-hd.mp4"
+          },
+          {
+            "slug": "cc-scroll-x-carousel",
+            "name": "横向滚动变换",
+            "en": "Scroll X Carousel",
+            "tagline": "轮播随当前滚动位置在 X 方向变换。",
+            "tags": [
+              "滚动驱动",
+              "横向变换"
+            ],
+            "source": "https://21st.dev/@youcefbnm/components/scroll-x-carousel",
+            "img": "/assets/motion/carousels/cc-scroll-x-carousel.png",
+            "video": "/assets/motion/carousels/cc-scroll-x-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-scroll-x-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-animated-cards-stack",
+            "name": "滚动揭示卡堆",
+            "en": "Scroll Reveal Stack",
+            "tagline": "卡片按滚动位置带揭示动画依次出现。",
+            "tags": [
+              "滚动驱动",
+              "堆叠",
+              "揭示"
+            ],
+            "source": "https://21st.dev/@user_2sdAd21yCZlZRkVtZyf4K8ogkBh/components/animated-cards-stack",
+            "img": "/assets/motion/carousels/cc-animated-cards-stack.png",
+            "video": "/assets/motion/carousels/cc-animated-cards-stack.mp4",
+            "videoHd": "/assets/motion/carousels/cc-animated-cards-stack-hd.mp4"
+          },
+          {
+            "slug": "cc-circular-split-roll",
+            "name": "环形分屏滚动",
+            "en": "Circular Split Roll",
+            "tagline": "滚动钉住的分屏画廊：标题绕一条圆形路径、图片卡绕另一条，每项缓入中心。",
+            "tags": [
+              "滚动驱动",
+              "环形",
+              "分屏"
+            ],
+            "source": "https://21st.dev/@hyperiux/components/circular-split-roll",
+            "img": "/assets/motion/carousels/cc-circular-split-roll.png",
+            "video": "/assets/motion/carousels/cc-circular-split-roll.mp4",
+            "videoHd": "/assets/motion/carousels/cc-circular-split-roll-hd.mp4"
+          },
+          {
+            "slug": "cc-portfolio-scroll-grid",
+            "name": "钉住作品网格",
+            "en": "Portfolio Scroll Grid",
+            "tagline": "一个大名字钉在屏幕中央，后方五列错落照片网格滚动盖过它，纯 CSS sticky。",
+            "tags": [
+              "滚动驱动",
+              "钉住",
+              "纯 CSS"
+            ],
+            "source": "https://21st.dev/@ruixen.ui/components/portfolio-scroll-grid",
+            "img": "/assets/motion/carousels/cc-portfolio-scroll-grid.png",
+            "video": "/assets/motion/carousels/cc-portfolio-scroll-grid.mp4",
+            "videoHd": "/assets/motion/carousels/cc-portfolio-scroll-grid-hd.mp4"
+          },
+          {
+            "slug": "cc-scrollable-card-stack",
+            "name": "滚动堆叠卡片",
+            "en": "Scrollable Card Stack",
+            "tagline": "交互式堆叠卡轮播，卡片随滚动带视差缩放与模糊吸附进视野，支持键盘触摸与圆点。",
+            "tags": [
+              "滚动驱动",
+              "堆叠",
+              "视差"
+            ],
+            "source": "https://21st.dev/@educalvolpz/components/scrollable-card-stack",
+            "img": "/assets/motion/carousels/cc-scrollable-card-stack.png",
+            "video": "/assets/motion/carousels/cc-scrollable-card-stack.mp4",
+            "videoHd": "/assets/motion/carousels/cc-scrollable-card-stack-hd.mp4"
+          }
+        ]
+      },
+      {
+        "id": "cat-motion-marquee",
+        "title": "跑马灯",
+        "category": "marquee",
+        "count": 16,
+        "terms": [
+          {
+            "slug": "cc-tilted-grid-hero",
+            "name": "弧形图片流",
+            "en": "Tilted Grid Hero",
+            "tagline": "首屏一排图片弯向观众、两端淡出，不停横向流动。",
+            "tags": [
+              "首屏",
+              "弧形",
+              "无限流动"
+            ],
+            "source": "https://21st.dev/@ruixen.ui/components/tilted-grid-hero",
+            "img": "/assets/motion/carousels/cc-tilted-grid-hero.png",
+            "video": "/assets/motion/carousels/cc-tilted-grid-hero.mp4",
+            "videoHd": "/assets/motion/carousels/cc-tilted-grid-hero-hd.mp4"
+          },
+          {
+            "slug": "cc-marquee",
+            "name": "无障碍跑马灯",
+            "en": "Marquee",
+            "tagline": "横向或纵向无限滚动的跑马灯，悬停暂停，支持 RTL 与自动填充。",
+            "tags": [
+              "跑马灯",
+              "悬停暂停",
+              "横纵"
+            ],
+            "source": "https://21st.dev/@diceui/components/marquee",
+            "img": "/assets/motion/carousels/cc-marquee.png",
+            "video": "/assets/motion/carousels/cc-marquee.mp4",
+            "videoHd": "/assets/motion/carousels/cc-marquee-hd.mp4"
+          },
+          {
+            "slug": "cc-argent-loop-infinite-slider",
+            "name": "银色无限滑块",
+            "en": "Argent Infinite Slider",
+            "tagline": "为奢侈零售打造的高性能无缝无限滑块，无摩擦运动逻辑、银色高对比质感。",
+            "tags": [
+              "无限循环",
+              "奢侈品",
+              "高性能"
+            ],
+            "source": "https://21st.dev/@hardikkashiyani123456788/components/argent-loop-infinite-slider",
+            "img": "/assets/motion/carousels/cc-argent-loop-infinite-slider.png",
+            "video": "/assets/motion/carousels/cc-argent-loop-infinite-slider.mp4",
+            "videoHd": "/assets/motion/carousels/cc-argent-loop-infinite-slider-hd.mp4"
+          },
+          {
+            "slug": "cc-infinite-slider",
+            "name": "无限滚动滑块",
+            "en": "Infinite Slider",
+            "tagline": "平滑循环子元素的无限滑块，横纵皆可、速度与悬停速度可调。",
+            "tags": [
+              "无限循环",
+              "横纵",
+              "速度可调"
+            ],
+            "source": "https://21st.dev/@user_2rkgEMvkQ7I2oxalLXELCy8NObN/components/infinite-slider",
+            "img": "/assets/motion/carousels/cc-infinite-slider.png",
+            "video": "/assets/motion/carousels/cc-infinite-slider.mp4",
+            "videoHd": "/assets/motion/carousels/cc-infinite-slider-hd.mp4"
+          },
+          {
+            "slug": "cc-logo-cloud-3",
+            "name": "Logo 墙跑马灯",
+            "en": "Cloud Marquee",
+            "tagline": "无限自动滚动的 logo 跑马灯，边缘淡出遮罩、悬停暂停，适合「信任我们的品牌」墙。",
+            "tags": [
+              "Logo",
+              "跑马灯",
+              "边缘淡出"
+            ],
+            "source": "https://21st.dev/@7ovr/components/logo-cloud-3",
+            "img": "/assets/motion/carousels/cc-logo-cloud-3.png",
+            "video": "/assets/motion/carousels/cc-logo-cloud-3.mp4",
+            "videoHd": "/assets/motion/carousels/cc-logo-cloud-3-hd.mp4"
+          },
+          {
+            "slug": "cc-ruler-carousel",
+            "name": "刻度尺 Logo 轮播",
+            "en": "Ruler Carousel",
+            "tagline": "刻度尺风格的动效轮播，适合展示合作品牌 logo。",
+            "tags": [
+              "刻度尺",
+              "Logo"
+            ],
+            "source": "https://21st.dev/@isaiahbjork/components/ruler-carousel",
+            "img": "/assets/motion/carousels/cc-ruler-carousel.png",
+            "video": "/assets/motion/carousels/cc-ruler-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-ruler-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-image-auto-slider",
+            "name": "自动图片滑廊",
+            "en": "Image Auto Slider",
+            "tagline": "平滑循环的图片滑块，风景图从左往右缓缓流动，安静现代。",
+            "tags": [
+              "图片滑块",
+              "循环",
+              "流畅"
+            ],
+            "source": "https://21st.dev/@waleedkibhen/components/image-auto-slider",
+            "img": "/assets/motion/carousels/cc-image-auto-slider.png",
+            "video": "/assets/motion/carousels/cc-image-auto-slider.mp4",
+            "videoHd": "/assets/motion/carousels/cc-image-auto-slider-hd.mp4"
+          },
+          {
+            "slug": "cc-infinite-slider-horizontal",
+            "name": "横向图片滑块",
+            "en": "Horizontal Image Slider",
+            "tagline": "横向无限滚动的图片滑块。",
+            "tags": [
+              "横向",
+              "无限循环"
+            ],
+            "source": "https://21st.dev/@larsen66/components/infinite-slider-horizontal",
+            "img": "/assets/motion/carousels/cc-infinite-slider-horizontal.png",
+            "video": "/assets/motion/carousels/cc-infinite-slider-horizontal.mp4",
+            "videoHd": "/assets/motion/carousels/cc-infinite-slider-horizontal-hd.mp4"
+          },
+          {
+            "slug": "cc-logo-stepper",
+            "name": "Logo 步进器",
+            "en": "Stepper",
+            "tagline": "横向步进器，品牌 logo 连名字逐个滑入淡出。",
+            "tags": [
+              "Logo",
+              "步进",
+              "逐个"
+            ],
+            "source": "https://21st.dev/@scrollxui/components/logo-stepper",
+            "img": "/assets/motion/carousels/cc-logo-stepper.png",
+            "video": "/assets/motion/carousels/cc-logo-stepper.mp4",
+            "videoHd": "/assets/motion/carousels/cc-logo-stepper-hd.mp4"
+          },
+          {
+            "slug": "cc-infinite-moving-cards",
+            "name": "无限卡片跑马灯",
+            "en": "Infinite Moving Cards",
+            "tagline": "横向跑马灯卡片无缝无限循环，方向与速度可调、悬停暂停、边缘淡出。",
+            "tags": [
+              "跑马灯",
+              "无限循环",
+              "边缘淡出"
+            ],
+            "source": "https://21st.dev/@nexus-ui/components/infinite-moving-cards",
+            "img": "/assets/motion/carousels/cc-infinite-moving-cards.png",
+            "video": "/assets/motion/carousels/cc-infinite-moving-cards.mp4",
+            "videoHd": "/assets/motion/carousels/cc-infinite-moving-cards-hd.mp4"
+          },
+          {
+            "slug": "cc-great-ui-diagonal-marquee-carousel",
+            "name": "斜向跑马灯",
+            "en": "Diagonal Marquee",
+            "tagline": "斜置倾斜的无限跑马灯，图片错速、交替方向、柔和渐变。",
+            "tags": [
+              "斜向",
+              "跑马灯",
+              "错速"
+            ],
+            "source": "https://21st.dev/@larsen66/components/great-ui-diagonal-marquee-carousel",
+            "img": "/assets/motion/carousels/cc-great-ui-diagonal-marquee-carousel.png",
+            "video": "/assets/motion/carousels/cc-great-ui-diagonal-marquee-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-great-ui-diagonal-marquee-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-marquee-2",
+            "name": "跑马灯",
+            "en": "Marquee",
+            "tagline": "通用无限循环跑马灯。",
+            "tags": [
+              "跑马灯",
+              "循环"
+            ],
+            "source": "https://21st.dev/@user_2rdQLmsxuhvWx0tfvW2jDPWI7CY/components/marquee",
+            "img": "/assets/motion/carousels/cc-marquee-2.png",
+            "video": "/assets/motion/carousels/cc-marquee-2.mp4",
+            "videoHd": "/assets/motion/carousels/cc-marquee-2-hd.mp4"
+          },
+          {
+            "slug": "cc-image-stream-hero",
+            "name": "灭点图片流",
+            "en": "Image Stream Hero",
+            "tagline": "两条图片轨道从中心灭点驶出、扫向两侧边缘，透视同时完成扫动与放大、永不停止。",
+            "tags": [
+              "灭点",
+              "透视",
+              "无限流动"
+            ],
+            "source": "https://21st.dev/@ruixen.ui/components/image-stream-hero",
+            "img": "/assets/motion/carousels/cc-image-stream-hero.png",
+            "video": "/assets/motion/carousels/cc-image-stream-hero.mp4",
+            "videoHd": "/assets/motion/carousels/cc-image-stream-hero-hd.mp4"
+          },
+          {
+            "slug": "cc-logo-carousel",
+            "name": "Logo 轮播",
+            "en": "",
+            "tagline": "品牌 logo 轮播组件。",
+            "tags": [
+              "Logo",
+              "轮播"
+            ],
+            "source": "https://21st.dev/@user_cult_ui/components/logo-carousel",
+            "img": "/assets/motion/carousels/cc-logo-carousel.png",
+            "video": "/assets/motion/carousels/cc-logo-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-logo-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-marquee-3",
+            "name": "可拖拽跑马灯",
+            "en": "Draggable Marquee",
+            "tagline": "无缝无限循环的内容轨道，悬停或键盘聚焦暂停、离开隐藏即停、可指针拖拽，适合 logo 墙或 ticker。",
+            "tags": [
+              "跑马灯",
+              "可拖拽",
+              "悬停暂停"
+            ],
+            "source": "https://21st.dev/@kevingirelli/components/marquee",
+            "img": "/assets/motion/carousels/cc-marquee-3.png",
+            "video": "/assets/motion/carousels/cc-marquee-3.mp4",
+            "videoHd": "/assets/motion/carousels/cc-marquee-3-hd.mp4"
+          },
+          {
+            "slug": "cc-logo-carousel-2",
+            "name": "错位 Logo 轮播",
+            "en": "Staggered Carousel",
+            "tagline": "错位槽位的动效 logo 轮播，品牌 logo 带模糊过渡、图片预加载、槽位响应式。",
+            "tags": [
+              "Logo",
+              "错位",
+              "模糊过渡"
+            ],
+            "source": "https://21st.dev/@witharc/components/logo-carousel",
+            "img": "/assets/motion/carousels/cc-logo-carousel-2.png",
+            "video": "/assets/motion/carousels/cc-logo-carousel-2.mp4",
+            "videoHd": "/assets/motion/carousels/cc-logo-carousel-2-hd.mp4"
+          }
+        ]
+      },
+      {
+        "id": "cat-motion-quote",
+        "title": "推荐评价",
+        "category": "quote",
+        "count": 26,
+        "terms": [
+          {
+            "slug": "cc-testimonial",
+            "name": "评价卡片",
+            "en": "Testimonial",
+            "tagline": "一条用户评价配头像与引言，横向切换看下一条。",
+            "tags": [
+              "评价",
+              "引言"
+            ],
+            "source": "https://21st.dev/@larsen66/components/testimonial",
+            "img": "/assets/motion/carousels/cc-testimonial.png"
+          },
+          {
+            "slug": "cc-connected-carousel",
+            "name": "相连客户故事轮播",
+            "en": "Connected Carousel",
+            "tagline": "仿 Calendly 的客户故事卡用曲线桥接连起来，光圈展开换场、进度标签同步。",
+            "tags": [
+              "客户故事",
+              "曲线连接",
+              "进度同步"
+            ],
+            "source": "https://21st.dev/@arunachalam/components/connected-carousel",
+            "img": "/assets/motion/carousels/cc-connected-carousel.png",
+            "video": "/assets/motion/carousels/cc-connected-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-connected-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-testimonials-6",
+            "name": "三列评价跑马灯",
+            "en": "Three-column Testimonials",
+            "tagline": "三列引言卡纵向无限跑马灯滚动，悬停减速。",
+            "tags": [
+              "评价",
+              "纵向跑马灯",
+              "三列"
+            ],
+            "source": "https://21st.dev/@sshahaider/components/testimonials-6",
+            "img": "/assets/motion/carousels/cc-testimonials-6.png",
+            "video": "/assets/motion/carousels/cc-testimonials-6.mp4",
+            "videoHd": "/assets/motion/carousels/cc-testimonials-6-hd.mp4"
+          },
+          {
+            "slug": "cc-testimonial-slider-1",
+            "name": "评价滑块",
+            "en": "Testimonial Slider",
+            "tagline": "用户评价滑动展示组件。",
+            "tags": [
+              "评价",
+              "滑动"
+            ],
+            "source": "https://21st.dev/@kavikatiyar/components/testimonial-slider-1",
+            "img": "/assets/motion/carousels/cc-testimonial-slider-1.png",
+            "video": "/assets/motion/carousels/cc-testimonial-slider-1.mp4",
+            "videoHd": "/assets/motion/carousels/cc-testimonial-slider-1-hd.mp4"
+          },
+          {
+            "slug": "cc-stagger-testimonials",
+            "name": "错落评价",
+            "en": "Stagger Testimonials",
+            "tagline": "跳出无聊引言框的评价组件，支持暗色、无 framer motion。",
+            "tags": [
+              "评价",
+              "错落",
+              "暗色"
+            ],
+            "source": "https://21st.dev/@vaib215/components/stagger-testimonials",
+            "img": "/assets/motion/carousels/cc-stagger-testimonials.png",
+            "video": "/assets/motion/carousels/cc-stagger-testimonials.mp4",
+            "videoHd": "/assets/motion/carousels/cc-stagger-testimonials-hd.mp4"
+          },
+          {
+            "slug": "cc-project-showcase",
+            "name": "项目展示评价",
+            "en": "Project Showcase",
+            "tagline": "改自 Aceternity 动效评价组件的项目展示。",
+            "tags": [
+              "评价",
+              "项目展示"
+            ],
+            "source": "https://21st.dev/@maxim.bort.devel/components/project-showcase",
+            "img": "/assets/motion/carousels/cc-project-showcase.png",
+            "video": "/assets/motion/carousels/cc-project-showcase.mp4",
+            "videoHd": "/assets/motion/carousels/cc-project-showcase-hd.mp4"
+          },
+          {
+            "slug": "cc-testimonials-with-marquee",
+            "name": "多行评价跑马灯",
+            "en": "Testimonials Marquee",
+            "tagline": "横向滚动的评价区块，多行无限跑马灯展示客户与用户引言。",
+            "tags": [
+              "评价",
+              "多行跑马灯",
+              "无限"
+            ],
+            "source": "https://21st.dev/@scrollxui/components/testimonials-with-marquee",
+            "img": "/assets/motion/carousels/cc-testimonials-with-marquee.png",
+            "video": "/assets/motion/carousels/cc-testimonials-with-marquee.mp4",
+            "videoHd": "/assets/motion/carousels/cc-testimonials-with-marquee-hd.mp4"
+          },
+          {
+            "slug": "cc-scroll-reel-testimonials",
+            "name": "反向滚动评价",
+            "en": "Scroll Reel Testimonials",
+            "tagline": "中间列往一个方向滚、外侧列反向滑，肖像胶片反向旋转、文字逐字升起。",
+            "tags": [
+              "评价",
+              "反向滚动",
+              "逐字升起"
+            ],
+            "source": "https://21st.dev/@smammar100/components/scroll-reel-testimonials",
+            "img": "/assets/motion/carousels/cc-scroll-reel-testimonials.png",
+            "video": "/assets/motion/carousels/cc-scroll-reel-testimonials.mp4",
+            "videoHd": "/assets/motion/carousels/cc-scroll-reel-testimonials-hd.mp4"
+          },
+          {
+            "slug": "cc-testimonial-section-3",
+            "name": "三卡评价区",
+            "en": "Three-card Testimonial",
+            "tagline": "三卡评价区，中间引言高亮，支持键盘与前后控制。",
+            "tags": [
+              "评价",
+              "三卡",
+              "高亮"
+            ],
+            "source": "https://21st.dev/@solaceui/components/testimonial-section-3",
+            "img": "/assets/motion/carousels/cc-testimonial-section-3.png",
+            "video": "/assets/motion/carousels/cc-testimonial-section-3.mp4",
+            "videoHd": "/assets/motion/carousels/cc-testimonial-section-3-hd.mp4"
+          },
+          {
+            "slug": "cc-testimonials-13",
+            "name": "头像 Logo 评价跑马灯",
+            "en": "Testimonials Marquee",
+            "tagline": "自动播放的评价跑马灯，卡片带头像与公司 logo，悬停暂停。",
+            "tags": [
+              "评价",
+              "头像",
+              "Logo"
+            ],
+            "source": "https://21st.dev/@shadcnui-blocks/components/testimonials-13",
+            "img": "/assets/motion/carousels/cc-testimonials-13.png",
+            "video": "/assets/motion/carousels/cc-testimonials-13.mp4",
+            "videoHd": "/assets/motion/carousels/cc-testimonials-13-hd.mp4"
+          },
+          {
+            "slug": "cc-twitter-testimonial-cards",
+            "name": "推文评价卡",
+            "en": "Twitter Testimonial Cards",
+            "tagline": "改自热门卡片组件的推文式评价卡，优化悬停可看全卡、移动端与主题适配。",
+            "tags": [
+              "评价",
+              "推文",
+              "悬停"
+            ],
+            "source": "https://21st.dev/@rxxndy/components/twitter-testimonial-cards",
+            "img": "/assets/motion/carousels/cc-twitter-testimonial-cards.png",
+            "video": "/assets/motion/carousels/cc-twitter-testimonial-cards.mp4",
+            "videoHd": "/assets/motion/carousels/cc-twitter-testimonial-cards-hd.mp4"
+          },
+          {
+            "slug": "cc-design-testimonial",
+            "name": "非对称评价",
+            "en": "Asymmetric Testimonial",
+            "tagline": "非对称排版评价：左侧竖排旋转的「Testimonials」字样配动画进度条。",
+            "tags": [
+              "非对称",
+              "竖排",
+              "进度条"
+            ],
+            "source": "https://21st.dev/@jatin-yadav05/components/design-testimonial",
+            "img": "/assets/motion/carousels/cc-design-testimonial.png",
+            "video": "/assets/motion/carousels/cc-design-testimonial.mp4",
+            "videoHd": "/assets/motion/carousels/cc-design-testimonial-hd.mp4"
+          },
+          {
+            "slug": "cc-testimonial-marquee",
+            "name": "评价跑马灯",
+            "en": "Testimonial Marquee",
+            "tagline": "无限横向滚动评价跑马灯，单行、双行、堆叠与贴边等变体。",
+            "tags": [
+              "评价",
+              "跑马灯",
+              "变体"
+            ],
+            "source": "https://21st.dev/@componentry/components/testimonial-marquee",
+            "img": "/assets/motion/carousels/cc-testimonial-marquee.png",
+            "video": "/assets/motion/carousels/cc-testimonial-marquee.mp4",
+            "videoHd": "/assets/motion/carousels/cc-testimonial-marquee-hd.mp4"
+          },
+          {
+            "slug": "cc-glass-testimonial-swiper",
+            "name": "玻璃评价滑动",
+            "en": "Glass Testimonial Swiper",
+            "tagline": "玻璃质感的评价滑动组件。",
+            "tags": [
+              "评价",
+              "玻璃",
+              "滑动"
+            ],
+            "source": "https://21st.dev/@easemize/components/glass-testimonial-swiper",
+            "img": "/assets/motion/carousels/cc-glass-testimonial-swiper.png",
+            "video": "/assets/motion/carousels/cc-glass-testimonial-swiper.mp4",
+            "videoHd": "/assets/motion/carousels/cc-glass-testimonial-swiper-hd.mp4"
+          },
+          {
+            "slug": "cc-animated-testimonials",
+            "name": "动效评价",
+            "en": "Animated Testimonials",
+            "tagline": "极简评价区，图片带 3D 旋转过渡、文字逐词弹出、前后按钮与自动播放。",
+            "tags": [
+              "评价",
+              "3D 旋转",
+              "逐词"
+            ],
+            "source": "https://21st.dev/@user_aceternity/components/animated-testimonials",
+            "img": "/assets/motion/carousels/cc-animated-testimonials.png",
+            "video": "/assets/motion/carousels/cc-animated-testimonials.mp4",
+            "videoHd": "/assets/motion/carousels/cc-animated-testimonials-hd.mp4"
+          },
+          {
+            "slug": "cc-simple-animated-testimonials",
+            "name": "简洁动效评价",
+            "en": "Simple Animated Testimonials",
+            "tagline": "简洁干净的动效评价组件。",
+            "tags": [
+              "评价",
+              "简洁",
+              "动效"
+            ],
+            "source": "https://21st.dev/@user_2vDrVta4PKJEhGZOxwYiAcxSKTV/components/simple-animated-testimonials",
+            "img": "/assets/motion/carousels/cc-simple-animated-testimonials.png",
+            "video": "/assets/motion/carousels/cc-simple-animated-testimonials.mp4",
+            "videoHd": "/assets/motion/carousels/cc-simple-animated-testimonials-hd.mp4"
+          },
+          {
+            "slug": "cc-sliding-testimonial",
+            "name": "滑动评价",
+            "en": "Sliding Testimonial",
+            "tagline": "滑动动画的精美响应式评价组件。",
+            "tags": [
+              "评价",
+              "滑动",
+              "响应式"
+            ],
+            "source": "https://21st.dev/@kinfe123/components/sliding-testimonial",
+            "img": "/assets/motion/carousels/cc-sliding-testimonial.png",
+            "video": "/assets/motion/carousels/cc-sliding-testimonial.mp4",
+            "videoHd": "/assets/motion/carousels/cc-sliding-testimonial-hd.mp4"
+          },
+          {
+            "slug": "cc-profile-card-testimonial-carousel",
+            "name": "头像资料评价轮播",
+            "en": "Profile Card Testimonials",
+            "tagline": "响应式评价轮播，资料卡带头像、简介与社交链接，淡入动画、底部导航、明暗双主题。",
+            "tags": [
+              "评价",
+              "头像资料",
+              "社交链接"
+            ],
+            "source": "https://21st.dev/@arunachalam0606/components/profile-card-testimonial-carousel",
+            "img": "/assets/motion/carousels/cc-profile-card-testimonial-carousel.png",
+            "video": "/assets/motion/carousels/cc-profile-card-testimonial-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-profile-card-testimonial-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-testimonial-2",
+            "name": "可拖拉评价",
+            "en": "Draggable Testimonial",
+            "tagline": "可拖拽交换的评价组件。",
+            "tags": [
+              "评价",
+              "拖拽",
+              "交换"
+            ],
+            "source": "https://21st.dev/@user_2rdX0nxNZVHvzWonaWWUowA52VG/components/testimonial",
+            "img": "/assets/motion/carousels/cc-testimonial-2.png",
+            "video": "/assets/motion/carousels/cc-testimonial-2.mp4",
+            "videoHd": "/assets/motion/carousels/cc-testimonial-2-hd.mp4"
+          },
+          {
+            "slug": "cc-testimonial-card-1",
+            "name": "评价卡",
+            "en": "Testimonial Card",
+            "tagline": "可灵活复用的评价卡，props 传入评价、亮点、评分与头部 logo。",
+            "tags": [
+              "评价",
+              "评分",
+              "可复用"
+            ],
+            "source": "https://21st.dev/@ravikatiyar162/components/testimonial-card-1",
+            "img": "/assets/motion/carousels/cc-testimonial-card-1.png",
+            "video": "/assets/motion/carousels/cc-testimonial-card-1.mp4",
+            "videoHd": "/assets/motion/carousels/cc-testimonial-card-1-hd.mp4"
+          },
+          {
+            "slug": "cc-quote-crossfade",
+            "name": "引言交叉淡入",
+            "en": "Quote Crossfade",
+            "tagline": "手动翻页的评价面板，引言带动效交叉过渡、带明确来源署名。",
+            "tags": [
+              "评价",
+              "交叉过渡",
+              "署名"
+            ],
+            "source": "https://21st.dev/@ibrandify/components/quote-crossfade",
+            "img": "/assets/motion/carousels/cc-quote-crossfade.png",
+            "video": "/assets/motion/carousels/cc-quote-crossfade.mp4",
+            "videoHd": "/assets/motion/carousels/cc-quote-crossfade-hd.mp4"
+          },
+          {
+            "slug": "cc-ink-orbit-testimonials",
+            "name": "墨迹轨道评价",
+            "en": "Ink Orbit Testimonials",
+            "tagline": "带 logo 跑马灯的评价区：吸附滚动的引言卡带星级、手绘灰度肖像与箭头圆点翻页，底下滚动一排客户名。",
+            "tags": [
+              "评价",
+              "跑马灯",
+              "手绘肖像"
+            ],
+            "source": "https://21st.dev/@kedhareswer/components/ink-orbit-testimonials",
+            "img": "/assets/motion/carousels/cc-ink-orbit-testimonials.png",
+            "video": "/assets/motion/carousels/cc-ink-orbit-testimonials.mp4",
+            "videoHd": "/assets/motion/carousels/cc-ink-orbit-testimonials-hd.mp4"
+          },
+          {
+            "slug": "cc-testimonial-section-4",
+            "name": "三卡评价区",
+            "en": "Three-card Testimonial",
+            "tagline": "三卡评价区，中间引言卡高亮，带客户照片、公司 logo 与键盘方向键导航。",
+            "tags": [
+              "评价",
+              "三卡",
+              "高亮"
+            ],
+            "source": "https://21st.dev/@solaceui/components/testimonial-section-4",
+            "img": "/assets/motion/carousels/cc-testimonial-section-4.png",
+            "video": "/assets/motion/carousels/cc-testimonial-section-4.mp4",
+            "videoHd": "/assets/motion/carousels/cc-testimonial-section-4-hd.mp4"
+          },
+          {
+            "slug": "cc-editorial-testimonial",
+            "name": "编辑式评价",
+            "en": "Editorial Testimonial",
+            "tagline": "排版大胆的编辑式评价。",
+            "tags": [
+              "评价",
+              "编辑式",
+              "排版"
+            ],
+            "source": "https://21st.dev/@jatin-yadav05/components/editorial-testimonial",
+            "img": "/assets/motion/carousels/cc-editorial-testimonial.png",
+            "video": "/assets/motion/carousels/cc-editorial-testimonial.mp4",
+            "videoHd": "/assets/motion/carousels/cc-editorial-testimonial-hd.mp4"
+          },
+          {
+            "slug": "cc-testimonial-3",
+            "name": "左右分栏评价",
+            "en": "Split Testimonial",
+            "tagline": "左图右引言的动效评价滑块，带箭头导航与细微动画网格背景、明暗双模式。",
+            "tags": [
+              "评价",
+              "左右分栏",
+              "网格背景"
+            ],
+            "source": "https://21st.dev/@ravikatiyar162/components/testimonial",
+            "img": "/assets/motion/carousels/cc-testimonial-3.png",
+            "video": "/assets/motion/carousels/cc-testimonial-3.mp4",
+            "videoHd": "/assets/motion/carousels/cc-testimonial-3-hd.mp4"
+          },
+          {
+            "slug": "cc-testimonial-carousel",
+            "name": "公司 Logo 评价轮播",
+            "en": "Testimonial Carousel",
+            "tagline": "带公司 logo 与头像的评价轮播。",
+            "tags": [
+              "评价",
+              "Logo",
+              "头像"
+            ],
+            "source": "https://21st.dev/@user_RayMethula/components/testimonial-carousel",
+            "img": "/assets/motion/carousels/cc-testimonial-carousel.png",
+            "video": "/assets/motion/carousels/cc-testimonial-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-testimonial-carousel-hd.mp4"
+          }
+        ]
+      },
+      {
+        "id": "cat-motion-fx",
+        "title": "全屏特效",
+        "category": "fx",
+        "count": 24,
+        "terms": [
+          {
+            "slug": "cc-elegant-carousel",
+            "name": "杂志分屏轮播",
+            "en": "Elegant Carousel",
+            "tagline": "左文右图的分屏排版，交叉淡入换场，图片带缓慢放大，进度条自动推进。",
+            "tags": [
+              "分屏",
+              "交叉淡入",
+              "缓慢放大"
+            ],
+            "source": "https://21st.dev/@dev.yadhakim/components/elegant-carousel",
+            "img": "/assets/motion/carousels/cc-elegant-carousel.png",
+            "video": "/assets/motion/carousels/cc-elegant-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-elegant-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-stories-carousel",
+            "name": "故事卡片轮播",
+            "en": "Stories Carousel",
+            "tagline": "类似社交 App 的故事卡，点开逐张推进。",
+            "tags": [
+              "故事",
+              "点击推进"
+            ],
+            "source": "https://21st.dev/@larsen66/components/stories-carousel",
+            "img": "/assets/motion/carousels/cc-stories-carousel.png",
+            "video": "/assets/motion/carousels/cc-stories-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-stories-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-phone-mockups-1",
+            "name": "手机模型轮播",
+            "en": "Phone Mockups",
+            "tagline": "自动旋转的 iPhone 模型里展示 App 截图，带前后与暂停控制。",
+            "tags": [
+              "手机模型",
+              "自动旋转"
+            ],
+            "source": "https://21st.dev/@solaceui/components/phone-mockups-1",
+            "img": "/assets/motion/carousels/cc-phone-mockups-1.png",
+            "video": "/assets/motion/carousels/cc-phone-mockups-1.mp4",
+            "videoHd": "/assets/motion/carousels/cc-phone-mockups-1-hd.mp4"
+          },
+          {
+            "slug": "cc-liquid-glass-carousel",
+            "name": "液态玻璃轮播",
+            "en": "Liquid Glass Carousel",
+            "tagline": "透过 WebGL 液态玻璃透镜看无限图片轮播，边缘色散、吸附滚动、点击聚焦放大。",
+            "tags": [
+              "WebGL",
+              "液态玻璃",
+              "点击聚焦"
+            ],
+            "source": "https://21st.dev/@componentry/components/liquid-glass-carousel",
+            "img": "/assets/motion/carousels/cc-liquid-glass-carousel.png",
+            "video": "/assets/motion/carousels/cc-liquid-glass-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-liquid-glass-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-portal-carousel",
+            "name": "光标传送门轮播",
+            "en": "Portal Carousel",
+            "tagline": "全屏图片轮播，NEXT 预览跟着光标走，点击预览从光标处展开铺满屏，连点叠嵌套框。",
+            "tags": [
+              "全屏",
+              "光标跟随",
+              "展开"
+            ],
+            "source": "https://21st.dev/@hyperiux/components/portal-carousel",
+            "img": "/assets/motion/carousels/cc-portal-carousel.png",
+            "video": "/assets/motion/carousels/cc-portal-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-portal-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-morph-gallery",
+            "name": "噪声溶解画廊",
+            "en": "Morph Gallery",
+            "tagline": "WebGL 图片过渡：幻灯片通过噪声溶解而非交叉淡入，新图像碎屑烧穿旧图。",
+            "tags": [
+              "WebGL",
+              "噪声溶解",
+              "过渡"
+            ],
+            "source": "https://21st.dev/@kedhareswer/components/morph-gallery",
+            "img": "/assets/motion/carousels/cc-morph-gallery.png",
+            "video": "/assets/motion/carousels/cc-morph-gallery.mp4",
+            "videoHd": "/assets/motion/carousels/cc-morph-gallery-hd.mp4"
+          },
+          {
+            "slug": "cc-aperture-carousel",
+            "name": "光圈揭示轮播",
+            "en": "Aperture Reveal Carousel",
+            "tagline": "全屏滑块，下一张图从你点击处通过圆形光圈打开，配细环边缘、升起标题与进度线。",
+            "tags": [
+              "全屏",
+              "光圈揭示",
+              "点击"
+            ],
+            "source": "https://21st.dev/@kedhareswer/components/aperture-carousel",
+            "img": "/assets/motion/carousels/cc-aperture-carousel.png",
+            "video": "/assets/motion/carousels/cc-aperture-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-aperture-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-water-ripple-carousel",
+            "name": "水波纹轮播",
+            "en": "Water Ripple Carousel",
+            "tagline": "点照片时 WebGL 涟漪环从该点扩散，在边缘弯曲旧图、新图在环内浮现。",
+            "tags": [
+              "WebGL",
+              "水波纹",
+              "点击"
+            ],
+            "source": "https://21st.dev/@kedhareswer/components/water-ripple-carousel",
+            "img": "/assets/motion/carousels/cc-water-ripple-carousel.png",
+            "video": "/assets/motion/carousels/cc-water-ripple-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-water-ripple-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-story-viewer",
+            "name": "故事查看器",
+            "en": "Story Viewer",
+            "tagline": "社交 App 式的故事查看器。",
+            "tags": [
+              "故事",
+              "查看器"
+            ],
+            "source": "https://21st.dev/@osiris-balonga/components/story-viewer",
+            "img": "/assets/motion/carousels/cc-story-viewer.png",
+            "video": "/assets/motion/carousels/cc-story-viewer.mp4",
+            "videoHd": "/assets/motion/carousels/cc-story-viewer-hd.mp4"
+          },
+          {
+            "slug": "cc-carousel-squeeze",
+            "name": "手风琴挤压轮播",
+            "en": "Accordion Squeeze Carousel",
+            "tagline": "一块宽主面板、其余挤成细条，点击展开、悬停变宽、宽度平滑动画、自动播放。",
+            "tags": [
+              "手风琴",
+              "挤压",
+              "点击展开"
+            ],
+            "source": "https://21st.dev/@yura/components/carousel-squeeze",
+            "img": "/assets/motion/carousels/cc-carousel-squeeze.png",
+            "video": "/assets/motion/carousels/cc-carousel-squeeze.mp4",
+            "videoHd": "/assets/motion/carousels/cc-carousel-squeeze-hd.mp4"
+          },
+          {
+            "slug": "cc-focus-pull-carousel",
+            "name": "焦点拉动轮播",
+            "en": "Focus Pull Carousel",
+            "tagline": "相机式焦点拉动：中心照片清晰、邻图随滚动持续虚化缩小淡出，原生滚动吸附。",
+            "tags": [
+              "焦点虚化",
+              "滚动吸附",
+              "相机感"
+            ],
+            "source": "https://21st.dev/@kedhareswer/components/focus-pull-carousel",
+            "img": "/assets/motion/carousels/cc-focus-pull-carousel.png",
+            "video": "/assets/motion/carousels/cc-focus-pull-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-focus-pull-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-glass-carousel",
+            "name": "液态玻璃肖像廊",
+            "en": "Liquid Glass Gallery",
+            "tagline": "横向肖像面板透过 WebGL 液态玻璃透镜扭曲折射中心图，点击聚焦、键盘触摸导航。",
+            "tags": [
+              "WebGL",
+              "液态玻璃",
+              "肖像"
+            ],
+            "source": "https://21st.dev/@ham7a311/components/glass-carousel",
+            "img": "/assets/motion/carousels/cc-glass-carousel.png",
+            "demoClass": "card-demo scaled-preview style-preview preview-animations-paused",
+            "video": "/assets/motion/carousels/cc-glass-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-glass-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-story",
+            "name": "故事轮播",
+            "en": "Story",
+            "tagline": "类似 IG / Facebook 的故事，也可当自动播放轮播用。",
+            "tags": [
+              "故事",
+              "自动播放"
+            ],
+            "source": "https://21st.dev/@youcefbnm/components/story",
+            "img": "/assets/motion/carousels/cc-story.png",
+            "video": "/assets/motion/carousels/cc-story.mp4",
+            "videoHd": "/assets/motion/carousels/cc-story-hd.mp4"
+          },
+          {
+            "slug": "cc-hover-expand-gallery",
+            "name": "悬停展开画廊",
+            "en": "Hover Expand Gallery",
+            "tagline": "一排细线分隔的面板带竖排标签，悬停或点击的面板展开露出图、其余保持栏宽，窄屏转纵向手风琴。",
+            "tags": [
+              "悬停展开",
+              "手风琴",
+              "纯 CSS"
+            ],
+            "source": "https://21st.dev/@kedhareswer/components/hover-expand-gallery",
+            "img": "/assets/motion/carousels/cc-hover-expand-gallery.png",
+            "video": "/assets/motion/carousels/cc-hover-expand-gallery.mp4",
+            "videoHd": "/assets/motion/carousels/cc-hover-expand-gallery-hd.mp4"
+          },
+          {
+            "slug": "cc-paper-curl-carousel",
+            "name": "卷纸轮播",
+            "en": "Paper Curl Carousel",
+            "tagline": "WebGL 卷纸图片轮播：拖拽或点击时每张印刷幻灯片滚过圆柱、背面露出纸纹、在下一张投下阴影。",
+            "tags": [
+              "WebGL",
+              "卷纸",
+              "阴影"
+            ],
+            "source": "https://21st.dev/@kedhareswer/components/paper-curl-carousel",
+            "img": "/assets/motion/carousels/cc-paper-curl-carousel.png",
+            "video": "/assets/motion/carousels/cc-paper-curl-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-paper-curl-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-zoom-slider",
+            "name": "放大滑块",
+            "en": "Zoom Slider",
+            "tagline": "无限横向图片轮播，当前卡进入时按二次缓动放大，滚动拖拽触摸，悬停触发 SplitText 逐行动画。",
+            "tags": [
+              "放大",
+              "无限",
+              "逐行动画"
+            ],
+            "source": "https://21st.dev/@hyperiux/components/zoom-slider",
+            "img": "/assets/motion/carousels/cc-zoom-slider.png",
+            "video": "/assets/motion/carousels/cc-zoom-slider.mp4",
+            "videoHd": "/assets/motion/carousels/cc-zoom-slider-hd.mp4"
+          },
+          {
+            "slug": "cc-airplane-window-gallery",
+            "name": "舷窗画廊",
+            "en": "Airplane Window Gallery",
+            "tagline": "两个机舱舷窗显示座位号与目的地，点窗户穿过玻璃进入铺满屏的风景，Esc 或点击回到同一座位。",
+            "tags": [
+              "舷窗",
+              "穿窗入景",
+              "旅行"
+            ],
+            "source": "https://21st.dev/@dhxwhy/components/airplane-window-gallery",
+            "img": "/assets/motion/carousels/cc-airplane-window-gallery.png",
+            "video": "/assets/motion/carousels/cc-airplane-window-gallery.mp4",
+            "videoHd": "/assets/motion/carousels/cc-airplane-window-gallery-hd.mp4"
+          },
+          {
+            "slug": "cc-lens-zoom-carousel",
+            "name": "变焦拉近轮播",
+            "en": "Lens Zoom Carousel",
+            "tagline": "全屏滑块，下一张图从柔和放大的模糊里落下、拖出淡出残影，像相机快速拉焦；返回时缩回。",
+            "tags": [
+              "全屏",
+              "变焦",
+              "残影"
+            ],
+            "source": "https://21st.dev/@kedhareswer/components/lens-zoom-carousel",
+            "img": "/assets/motion/carousels/cc-lens-zoom-carousel.png",
+            "video": "/assets/motion/carousels/cc-lens-zoom-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-lens-zoom-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-particle-dissolve-carousel",
+            "name": "粒子溶解轮播",
+            "en": "Particle Dissolve Carousel",
+            "tagline": "WebGL 粒子溶解图片轮播：换张时图片碎成彩色颗粒、随流场漂浮重组为下一张，静止时飘尘、指针划过带尾迹。",
+            "tags": [
+              "WebGL",
+              "粒子",
+              "溶解"
+            ],
+            "source": "https://21st.dev/@kedhareswer/components/particle-dissolve-carousel",
+            "img": "/assets/motion/carousels/cc-particle-dissolve-carousel.png",
+            "video": "/assets/motion/carousels/cc-particle-dissolve-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-particle-dissolve-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-stepped-morph-slider",
+            "name": "阶梯遮罩轮播",
+            "en": "Stepped Morph Slider",
+            "tagline": "每张幻灯片从阶梯天际线遮罩里、逐列 morph 成下一张，配故事式分段计时条随自动播放填充。",
+            "tags": [
+              "阶梯遮罩",
+              "morph",
+              "计时条"
+            ],
+            "source": "https://21st.dev/@kedhareswer/components/stepped-morph-slider",
+            "img": "/assets/motion/carousels/cc-stepped-morph-slider.png",
+            "video": "/assets/motion/carousels/cc-stepped-morph-slider.mp4",
+            "videoHd": "/assets/motion/carousels/cc-stepped-morph-slider-hd.mp4"
+          },
+          {
+            "slug": "cc-ink-blot-carousel",
+            "name": "墨迹扩散轮播",
+            "en": "Ink Blot Carousel",
+            "tagline": "从点击处像墨汁渗纸一样扩散，破碎墨团绽开到铺满整帧露出下一张，SVG 湍流滤镜、不用 WebGL。",
+            "tags": [
+              "墨迹",
+              "SVG 遮罩",
+              "点击"
+            ],
+            "source": "https://21st.dev/@kedhareswer/components/ink-blot-carousel",
+            "img": "/assets/motion/carousels/cc-ink-blot-carousel.png",
+            "video": "/assets/motion/carousels/cc-ink-blot-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-ink-blot-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-elevator-doors-gallery",
+            "name": "电梯门画廊",
+            "en": "Elevator Doors Gallery",
+            "tagline": "拉丝钢的竖向电梯门配楼层显示屏，点门「走进」后铺满屏放大，门在照片加载完成后才打开、经过的楼层逐一计数。",
+            "tags": [
+              "电梯门",
+              "走进",
+              "楼层计数"
+            ],
+            "source": "https://21st.dev/@dhxwhy/components/elevator-doors-gallery",
+            "img": "/assets/motion/carousels/cc-elevator-doors-gallery.png",
+            "video": "/assets/motion/carousels/cc-elevator-doors-gallery.mp4",
+            "videoHd": "/assets/motion/carousels/cc-elevator-doors-gallery-hd.mp4"
           },
           {
             "slug": "motion-dot-intro",
@@ -3951,19 +5856,518 @@
             ],
             "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div style=\"position:relative;width:100%;height:100%;background:#0a0b0d\"><div style=\"position:absolute;left:50%;top:34%;transform:translate(-50%,-50%) rotateX(10deg) rotateY(-8deg);width:150px;height:94px;border-radius:11px;background:linear-gradient(135deg,#2c2f35,#17191d 46%,#34373e);border:1px solid #43474f;box-shadow:0 16px 32px rgba(0,0,0,.5);box-sizing:border-box\"><span style=\"position:absolute;top:11px;right:12px;font-size:10px;letter-spacing:1px;color:#e6c58a\">潮汐</span><span style=\"position:absolute;top:34px;left:12px;width:22px;height:17px;border-radius:4px;background:linear-gradient(120deg,#d8b475,#8d7040)\"></span><span style=\"position:absolute;bottom:12px;left:12px;font-size:10px;letter-spacing:1px;color:#b9bdc5\">•••• •••• •••• 4291</span></div><div style=\"position:absolute;left:20%;bottom:20%;width:92px;height:9px;border-radius:5px;background:#f2f3f5\"></div><div style=\"position:absolute;left:20%;bottom:13%;width:128px;height:6px;border-radius:4px;background:#3a3d44\"></div></div></div>",
             "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
+          }
+        ]
+      },
+      {
+        "id": "cat-motion-basic",
+        "title": "基础滑块",
+        "category": "basic",
+        "count": 35,
+        "terms": [
+          {
+            "slug": "cc-cards",
+            "name": "博客卡片组",
+            "en": "Blog Cards",
+            "tagline": "一排博客卡片横向排开，鼠标悬停时卡片浮起放大。",
+            "tags": [
+              "卡片",
+              "悬停浮起"
+            ],
+            "source": "https://21st.dev/@larsen66/components/cards",
+            "img": "/assets/motion/carousels/cc-cards.png",
+            "video": "/assets/motion/carousels/cc-cards.mp4",
+            "videoHd": "/assets/motion/carousels/cc-cards-hd.mp4"
           },
           {
-            "slug": "motion-bounce-cards",
-            "name": "弹跳卡片",
-            "en": "Bounce Cards",
-            "tagline": "五张方卡扇形叠开：依次弹簧弹入，悬停抽正放大、邻卡被推开，点一下抖回原位——六个参数实时可调。",
+            "slug": "cc-feature-carousel",
+            "name": "功能展示轮播",
+            "en": "Feature Carousel",
+            "tagline": "几张功能介绍卡平滑左右滑动切换。",
             "tags": [
-              "弹簧入场",
-              "悬停推开",
-              "参数可调"
+              "功能展示",
+              "平滑滑动"
             ],
-            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div style=\"position:relative;width:100%;height:100%;background:var(--bg-soft)\"><div style=\"position:absolute;left:50%;top:50%;width:118px;height:118px;margin:-59px 0 0 -59px;transform:translate(-170px,0) rotate(10deg) scale(.96);border-radius:16px;border:3px solid #fff;background:url(/assets/motion/citrus.png) center/cover;box-shadow:0 12px 26px rgba(0,0,0,.22);z-index:1\"></div><div style=\"position:absolute;left:50%;top:50%;width:118px;height:118px;margin:-59px 0 0 -59px;transform:translate(-85px,0) rotate(5deg) scale(.98);border-radius:16px;border:3px solid #fff;background:url(/assets/motion/dune.png) center/cover;box-shadow:0 12px 26px rgba(0,0,0,.22);z-index:2\"></div><div style=\"position:absolute;left:50%;top:50%;width:118px;height:118px;margin:-59px 0 0 -59px;transform:rotate(-3deg);border-radius:16px;border:3px solid #fff;background:url(/assets/motion/forest.png) center/cover;box-shadow:0 16px 34px rgba(0,0,0,.28);z-index:3\"></div><div style=\"position:absolute;left:50%;top:50%;width:118px;height:118px;margin:-59px 0 0 -59px;transform:translate(85px,0) rotate(-10deg) scale(.98);border-radius:16px;border:3px solid #fff;background:url(/assets/motion/dune.png) center/cover;box-shadow:0 12px 26px rgba(0,0,0,.22);z-index:4\"></div><div style=\"position:absolute;left:50%;top:50%;width:118px;height:118px;margin:-59px 0 0 -59px;transform:translate(170px,0) rotate(2deg) scale(.96);border-radius:16px;border:3px solid #fff;background:url(/assets/motion/citrus.png) center/cover;box-shadow:0 12px 26px rgba(0,0,0,.22);z-index:5\"></div></div></div>",
-            "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
+            "source": "https://21st.dev/@larsen66/components/feature-carousel",
+            "img": "/assets/motion/carousels/cc-feature-carousel.png",
+            "video": "/assets/motion/carousels/cc-feature-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-feature-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-offer-carousel",
+            "name": "优惠横向轮播",
+            "en": "Offer Carousel",
+            "tagline": "优惠卡片横向滚动展示，自定义箭头导航，悬停时卡片动起来。",
+            "tags": [
+              "优惠",
+              "横向滚动",
+              "悬停"
+            ],
+            "source": "https://21st.dev/@ravikatiyar162/components/offer-carousel",
+            "img": "/assets/motion/carousels/cc-offer-carousel.png",
+            "video": "/assets/motion/carousels/cc-offer-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-offer-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-gallery4",
+            "name": "案例全屏卡片廊",
+            "en": "Case Study Gallery",
+            "tagline": "满高图片卡横向轮播，卡面叠着案例文字。",
+            "tags": [
+              "满高卡片",
+              "案例"
+            ],
+            "source": "https://21st.dev/@user_2rguB0QxcSITG2Y7ivePFsKsUU6/components/gallery4",
+            "img": "/assets/motion/carousels/cc-gallery4.png",
+            "video": "/assets/motion/carousels/cc-gallery4.mp4",
+            "videoHd": "/assets/motion/carousels/cc-gallery4-hd.mp4"
+          },
+          {
+            "slug": "cc-carousel-1",
+            "name": "基础轮播",
+            "en": "Carousel",
+            "tagline": "通用图片轮播组件。",
+            "tags": [
+              "通用",
+              "轮播"
+            ],
+            "source": "https://21st.dev/@larsen66/components/carousel-1",
+            "img": "/assets/motion/carousels/cc-carousel-1.png",
+            "video": "/assets/motion/carousels/cc-carousel-1.mp4",
+            "videoHd": "/assets/motion/carousels/cc-carousel-1-hd.mp4"
+          },
+          {
+            "slug": "cc-feature-carousel-2",
+            "name": "功能滑动展示",
+            "en": "Feature Carousel",
+            "tagline": "可滑动展示多个 App 功能的现代布局。",
+            "tags": [
+              "功能展示",
+              "滑动"
+            ],
+            "source": "https://21st.dev/@ravikatiyar162/components/feature-carousel",
+            "img": "/assets/motion/carousels/cc-feature-carousel-2.png",
+            "video": "/assets/motion/carousels/cc-feature-carousel-2.mp4",
+            "videoHd": "/assets/motion/carousels/cc-feature-carousel-2-hd.mp4"
+          },
+          {
+            "slug": "cc-carousel-08",
+            "name": "苹果风卡片轮播",
+            "en": "Apple-style Card Carousel",
+            "tagline": "仿苹果卡片廊：暗色叠字标题、分类标签、圆形前后箭头。",
+            "tags": [
+              "苹果风",
+              "叠字",
+              "箭头"
+            ],
+            "source": "https://21st.dev/@shadcnspace/components/carousel-08",
+            "img": "/assets/motion/carousels/cc-carousel-08.png",
+            "video": "/assets/motion/carousels/cc-carousel-08.mp4",
+            "videoHd": "/assets/motion/carousels/cc-carousel-08-hd.mp4"
+          },
+          {
+            "slug": "cc-book-slider",
+            "name": "点击滚动书廊",
+            "en": "Book Slider",
+            "tagline": "点击即可横向滚动的书本滑廊。",
+            "tags": [
+              "点击滚动",
+              "书本"
+            ],
+            "source": "https://21st.dev/@aarispathan15/components/book-slider",
+            "img": "/assets/motion/carousels/cc-book-slider.png",
+            "video": "/assets/motion/carousels/cc-book-slider.mp4",
+            "videoHd": "/assets/motion/carousels/cc-book-slider-hd.mp4"
+          },
+          {
+            "slug": "cc-carousel",
+            "name": "通用轮播",
+            "en": "Carousel",
+            "tagline": "导航与指示器可自定义的通用轮播。",
+            "tags": [
+              "通用",
+              "可自定义"
+            ],
+            "source": "https://21st.dev/@user_2rkgEMvkQ7I2oxalLXELCy8NObN/components/carousel",
+            "img": "/assets/motion/carousels/cc-carousel.png",
+            "video": "/assets/motion/carousels/cc-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-carousel-card-1",
+            "name": "卡片轮播效果",
+            "en": "Carousel Card",
+            "tagline": "带轮播效果的卡片组件。",
+            "tags": [
+              "卡片",
+              "轮播"
+            ],
+            "source": "https://21st.dev/@user_2wnqnvX2yOglGP4CzRypdJkeHrv/components/carousel-card-1",
+            "img": "/assets/motion/carousels/cc-carousel-card-1.png",
+            "video": "/assets/motion/carousels/cc-carousel-card-1.mp4",
+            "videoHd": "/assets/motion/carousels/cc-carousel-card-1-hd.mp4"
+          },
+          {
+            "slug": "cc-progressive-carousel",
+            "name": "渐进轮播",
+            "en": "Progressive Carousel",
+            "tagline": "Motion 驱动的渐进式图片轮播。",
+            "tags": [
+              "渐进",
+              "Motion"
+            ],
+            "source": "https://21st.dev/@uilayout.contact/components/progressive-carousel",
+            "img": "/assets/motion/carousels/cc-progressive-carousel.png",
+            "video": "/assets/motion/carousels/cc-progressive-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-progressive-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-product-carousel",
+            "name": "商品横向轮播",
+            "en": "Product Carousel",
+            "tagline": "商品横向滚动列表，带标题与导航控制，内容全由 props 传入。",
+            "tags": [
+              "商品",
+              "横向滚动"
+            ],
+            "source": "https://21st.dev/@ravikatiyar162/components/product-carousel",
+            "img": "/assets/motion/carousels/cc-product-carousel.png",
+            "video": "/assets/motion/carousels/cc-product-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-product-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-carousel-2",
+            "name": "报告横向轮播",
+            "en": "Reports Carousel",
+            "tagline": "财报报告横向滚动展示，箭头按滚动位置上下文出现。",
+            "tags": [
+              "报告",
+              "横向滚动"
+            ],
+            "source": "https://21st.dev/@ravikatiyar162/components/carousel",
+            "img": "/assets/motion/carousels/cc-carousel-2.png",
+            "video": "/assets/motion/carousels/cc-carousel-2.mp4",
+            "videoHd": "/assets/motion/carousels/cc-carousel-2-hd.mp4"
+          },
+          {
+            "slug": "cc-framer-normal-carousel",
+            "name": "弹簧滑动轮播",
+            "en": "Spring Carousel",
+            "tagline": "Motion 打造的图片轮播，弹簧滑动、前后箭头、进度圆点。",
+            "tags": [
+              "弹簧",
+              "箭头",
+              "进度点"
+            ],
+            "source": "https://21st.dev/@uilayout.contact/components/framer-normal-carousel",
+            "img": "/assets/motion/carousels/cc-framer-normal-carousel.png",
+            "video": "/assets/motion/carousels/cc-framer-normal-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-framer-normal-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-carousel-3",
+            "name": "Embla 轮播",
+            "en": "",
+            "tagline": "基于 Embla 的带动效与滑动的轮播。",
+            "tags": [
+              "Embla",
+              "滑动"
+            ],
+            "source": "https://21st.dev/@sean0205/components/carousel",
+            "img": "/assets/motion/carousels/cc-carousel-3.png",
+            "video": "/assets/motion/carousels/cc-carousel-3.mp4",
+            "videoHd": "/assets/motion/carousels/cc-carousel-3-hd.mp4"
+          },
+          {
+            "slug": "cc-carousel-4",
+            "name": "微交互轮播",
+            "en": "Microinteraction Carousel",
+            "tagline": "带微交互与滑块的可自定义轮播。",
+            "tags": [
+              "微交互",
+              "可自定义"
+            ],
+            "source": "https://21st.dev/@user_aceternity/components/carousel",
+            "img": "/assets/motion/carousels/cc-carousel-4.png",
+            "video": "/assets/motion/carousels/cc-carousel-4.mp4",
+            "videoHd": "/assets/motion/carousels/cc-carousel-4-hd.mp4"
+          },
+          {
+            "slug": "cc-sparks-carousel",
+            "name": "Sparks 卡片轮播",
+            "en": "",
+            "tagline": "Framer Motion 驱动的响应式卡片轮播，平滑滚动、可用 shadcn 变量换肤。",
+            "tags": [
+              "卡片",
+              "Framer Motion",
+              "换肤"
+            ],
+            "source": "https://21st.dev/@ravikatiyar162/components/sparks-carousel",
+            "img": "/assets/motion/carousels/cc-sparks-carousel.png",
+            "video": "/assets/motion/carousels/cc-sparks-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-sparks-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-carousel-5",
+            "name": "shadcn 轮播",
+            "en": "",
+            "tagline": "基于 Embla 的 shadcn 官方轮播，带动效与滑动。",
+            "tags": [
+              "shadcn",
+              "Embla"
+            ],
+            "source": "https://21st.dev/@user_shadcn/components/carousel",
+            "img": "/assets/motion/carousels/cc-carousel-5.png",
+            "video": "/assets/motion/carousels/cc-carousel-5.mp4",
+            "videoHd": "/assets/motion/carousels/cc-carousel-5-hd.mp4"
+          },
+          {
+            "slug": "cc-framer-carousel",
+            "name": "Framer 轮播",
+            "en": "",
+            "tagline": "Motion 驱动的图片轮播。",
+            "tags": [
+              "Motion",
+              "轮播"
+            ],
+            "source": "https://21st.dev/@uilayout.contact/components/framer-carousel",
+            "img": "/assets/motion/carousels/cc-framer-carousel.png",
+            "video": "/assets/motion/carousels/cc-framer-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-framer-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-animated-feature-carousel",
+            "name": "动效功能轮播",
+            "en": "Animated Feature Carousel",
+            "tagline": "展示功能的动效轮播，平滑过渡与交互元素。",
+            "tags": [
+              "功能展示",
+              "动效"
+            ],
+            "source": "https://21st.dev/@minhxthanh/components/animated-feature-carousel",
+            "img": "/assets/motion/carousels/cc-animated-feature-carousel.png",
+            "video": "/assets/motion/carousels/cc-animated-feature-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-animated-feature-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-8bit-carousel",
+            "name": "8-bit 像素轮播",
+            "en": "",
+            "tagline": "Embla 打造的 8-bit 风轮播，像素边框幻灯片、方块像素箭头、键盘与滑动。",
+            "tags": [
+              "像素风",
+              "Embla",
+              "复古"
+            ],
+            "source": "https://21st.dev/@larsen66/components/8bit-carousel",
+            "img": "/assets/motion/carousels/cc-8bit-carousel.png",
+            "video": "/assets/motion/carousels/cc-8bit-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-8bit-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-interfaces-carousel",
+            "name": "多模式轮播",
+            "en": "Interfaces Carousel",
+            "tagline": "基于 Embla，支持横向、纵向与循环模式。",
+            "tags": [
+              "Embla",
+              "横纵",
+              "循环"
+            ],
+            "source": "https://21st.dev/@reapollo/components/interfaces-carousel",
+            "img": "/assets/motion/carousels/cc-interfaces-carousel.png",
+            "video": "/assets/motion/carousels/cc-interfaces-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-interfaces-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-offers-carousel",
+            "name": "主优惠配套轮播",
+            "en": "Offers Carousel",
+            "tagline": "一个主优惠配一排相关条目轮播，framer-motion 平滑动画。",
+            "tags": [
+              "优惠",
+              "framer-motion"
+            ],
+            "source": "https://21st.dev/@lavikatiyar/components/offers-carousel",
+            "img": "/assets/motion/carousels/cc-offers-carousel.png",
+            "video": "/assets/motion/carousels/cc-offers-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-offers-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-reshaped-carousel",
+            "name": "网格对齐轮播",
+            "en": "Grid-aligned Carousel",
+            "tagline": "子元素作为可滚动轮播项，可见数可配、间距对齐产品网格、支持事件与命令式导航。",
+            "tags": [
+              "网格对齐",
+              "可配置",
+              "事件同步"
+            ],
+            "source": "https://21st.dev/@larsen66/components/reshaped-carousel",
+            "img": "/assets/motion/carousels/cc-reshaped-carousel.png",
+            "video": "/assets/motion/carousels/cc-reshaped-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-reshaped-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-box-carousel",
+            "name": "盒子轮播",
+            "en": "Box Carousel",
+            "tagline": "盒子式图片轮播组件。",
+            "tags": [
+              "盒子",
+              "轮播"
+            ],
+            "source": "https://21st.dev/@larsen66/components/box-carousel",
+            "img": "/assets/motion/carousels/cc-box-carousel.png",
+            "video": "/assets/motion/carousels/cc-box-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-box-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-carousel-6",
+            "name": "可拖拽滑块",
+            "en": "Draggable Slider",
+            "tagline": "可拖拽、可滑动的图片/内容滑块，带箭头、圆点、缩略图、自动播放、淡入与自适应高度。",
+            "tags": [
+              "可拖拽",
+              "缩略图",
+              "自动播放"
+            ],
+            "source": "https://21st.dev/@appica-dev/components/carousel",
+            "img": "/assets/motion/carousels/cc-carousel-6.png",
+            "video": "/assets/motion/carousels/cc-carousel-6.mp4",
+            "videoHd": "/assets/motion/carousels/cc-carousel-6-hd.mp4"
+          },
+          {
+            "slug": "cc-carousel-cards",
+            "name": "体验卡片轮播",
+            "en": "Experience Cards",
+            "tagline": "横向可滚动的体验卡轮播，卡面带图、评分、价格与收藏按钮。",
+            "tags": [
+              "卡片",
+              "评分",
+              "收藏"
+            ],
+            "source": "https://21st.dev/@kokonutd/components/carousel-cards",
+            "img": "/assets/motion/carousels/cc-carousel-cards.png",
+            "video": "/assets/motion/carousels/cc-carousel-cards.mp4",
+            "videoHd": "/assets/motion/carousels/cc-carousel-cards-hd.mp4"
+          },
+          {
+            "slug": "cc-carousel4",
+            "name": "自动播放轮播",
+            "en": "Autoplay Carousel",
+            "tagline": "Embla + shadcn 打造的自动播放轮播，带动效与滑动。",
+            "tags": [
+              "Embla",
+              "自动播放"
+            ],
+            "source": "https://21st.dev/@bundui/components/carousel4",
+            "img": "/assets/motion/carousels/cc-carousel4.png",
+            "video": "/assets/motion/carousels/cc-carousel4.mp4",
+            "videoHd": "/assets/motion/carousels/cc-carousel4-hd.mp4"
+          },
+          {
+            "slug": "cc-card-carousel",
+            "name": "卡片轮播",
+            "en": "Card Carousel",
+            "tagline": "卡片式图片轮播组件。",
+            "tags": [
+              "卡片",
+              "轮播"
+            ],
+            "source": "https://21st.dev/@larsen66/components/card-carousel",
+            "img": "/assets/motion/carousels/cc-card-carousel.png",
+            "video": "/assets/motion/carousels/cc-card-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-card-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-gallery6",
+            "name": "满宽离屏画廊",
+            "en": "Off-screen Gallery",
+            "tagline": "满宽带离屏效果的画廊，用轮播组件实现。",
+            "tags": [
+              "满宽",
+              "离屏",
+              "轮播"
+            ],
+            "source": "https://21st.dev/@user_2rguB0QxcSITG2Y7ivePFsKsUU6/components/gallery6",
+            "img": "/assets/motion/carousels/cc-gallery6.png",
+            "video": "/assets/motion/carousels/cc-gallery6.mp4",
+            "videoHd": "/assets/motion/carousels/cc-gallery6-hd.mp4"
+          },
+          {
+            "slug": "cc-carousel-02",
+            "name": "多图同屏轮播",
+            "en": "Multi-slide Carousel",
+            "tagline": "一次显示多张图片幻灯片的轮播，带前后导航。",
+            "tags": [
+              "多图同屏",
+              "导航"
+            ],
+            "source": "https://21st.dev/@shadcnui-blocks/components/carousel-02",
+            "img": "/assets/motion/carousels/cc-carousel-02.png",
+            "video": "/assets/motion/carousels/cc-carousel-02.mp4",
+            "videoHd": "/assets/motion/carousels/cc-carousel-02-hd.mp4"
+          },
+          {
+            "slug": "cc-flow-hero-1",
+            "name": "动效主角轮播",
+            "en": "Animated Hero Carousel",
+            "tagline": "带动效的首屏轮播区块。",
+            "tags": [
+              "首屏",
+              "轮播",
+              "动效"
+            ],
+            "source": "https://21st.dev/@cnippet.dev/components/flow-hero-1",
+            "img": "/assets/motion/carousels/cc-flow-hero-1.png",
+            "video": "/assets/motion/carousels/cc-flow-hero-1.mp4",
+            "videoHd": "/assets/motion/carousels/cc-flow-hero-1-hd.mp4"
+          },
+          {
+            "slug": "cc-v-carousel-8",
+            "name": "分步引导轮播",
+            "en": "Onboarding Carousel",
+            "tagline": "紧凑的多步引导轮播，带进度条、步骤图标、上一步/下一步，最后一步收尾。",
+            "tags": [
+              "引导",
+              "进度条",
+              "分步"
+            ],
+            "source": "https://21st.dev/@cnippet.dev/components/v-carousel-8",
+            "img": "/assets/motion/carousels/cc-v-carousel-8.png",
+            "video": "/assets/motion/carousels/cc-v-carousel-8.mp4",
+            "videoHd": "/assets/motion/carousels/cc-v-carousel-8-hd.mp4"
+          },
+          {
+            "slug": "cc-carousel-7",
+            "name": "滑动轮播",
+            "en": "Swipe Carousel",
+            "tagline": "带箭头、圆点、自动播放与循环的可滑动轮播，适用于图片、评价、商品与引导页。",
+            "tags": [
+              "滑动",
+              "自动播放",
+              "循环"
+            ],
+            "source": "https://21st.dev/@wensity/components/carousel",
+            "img": "/assets/motion/carousels/cc-carousel-7.png",
+            "video": "/assets/motion/carousels/cc-carousel-7.mp4",
+            "videoHd": "/assets/motion/carousels/cc-carousel-7-hd.mp4"
+          },
+          {
+            "slug": "cc-image-slider-card-shadcnui",
+            "name": "无障碍图片卡",
+            "en": "Accessible Image Card",
+            "tagline": "无障碍图片轮播卡，带键盘导航、圆点、减弱动效与读屏友好标签。",
+            "tags": [
+              "无障碍",
+              "图片卡",
+              "键盘"
+            ],
+            "source": "https://21st.dev/@moumensoliman/components/image-slider-card-shadcnui",
+            "img": "/assets/motion/carousels/cc-image-slider-card-shadcnui.png",
+            "video": "/assets/motion/carousels/cc-image-slider-card-shadcnui.mp4",
+            "videoHd": "/assets/motion/carousels/cc-image-slider-card-shadcnui-hd.mp4"
           }
         ]
       }

@@ -8,7 +8,7 @@
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding: 6vh 20px 4vh;
+  padding: 4vh 20px;
   overflow-y: auto;
   animation: mdm-in 0.22s ease-out;
 }
@@ -19,6 +19,10 @@
 }
 .mdm-panel {
   width: min(920px, 100%);
+  max-height: calc(100dvh - 8vh);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: 24px;
@@ -38,6 +42,14 @@
   justify-content: space-between;
   gap: 12px;
   margin-bottom: 14px;
+  flex: 0 0 auto;
+}
+/* 内容区独立滚动：矮视口下也不再把底部按钮挡在视口外 */
+.mdm-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 .mdm-tags {
   display: flex;
@@ -85,5 +97,75 @@
   .mdm-panel {
     border-radius: 18px;
     padding: 14px;
+    max-height: calc(100vh - 96px);
+    max-height: calc(100dvh - 96px);
   }
+}
+
+/* 收录条目：预览大图 + 名称 + 一句话 + 原链/复制提示词 */
+.mdm-entry {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.mdm-preview {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: min(56vh, calc(100dvh - 360px));
+  object-fit: contain;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: #0d1117;
+}
+.mdm-entry-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.mdm-entry-name {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 680;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.mdm-entry-name > span {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-3);
+}
+.mdm-tagline {
+  margin: 0;
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: var(--text-2);
+}
+.mdm-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 2px;
+}
+.mdm-src {
+  display: inline-flex;
+  align-items: center;
+  height: 38px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 13.5px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.mdm-src:hover {
+  background: var(--bg-hover);
+}
+@media (max-width: 640px) {
+  .mdm-preview { border-radius: 12px; }
+  .mdm-entry-name { font-size: 17px; }
 }

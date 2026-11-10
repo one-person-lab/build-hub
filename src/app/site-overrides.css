@@ -488,21 +488,23 @@ a.rd-gopro.is-pro { color: var(--brand); }
   .nav.rd-nav { display: flex; grid-template: none; flex-wrap: nowrap; }
   .rd-searchbtn { width: 170px; }
 }
-/* 中文顶栏有 10 个分区（英文 6 个）：窄一档时搜索框先收成图标，再窄才交给头像菜单。
-   用 :has 只命中中文那条更长的导航，英文保持原有断点。 */
+/* 中文顶栏有 9 个分区（英文 6 个），专题/手册/路径收进头像菜单「更多」组：
+   窄一档时搜索框先收成图标，再窄才交给头像菜单。
+   用 :has + nth-child(8) 只命中中文那条更长的导航（英文只有 6 项），不是数量断言。 */
 @media (max-width: 1240px) {
-  .nav:has(.rd-sections > a:nth-child(9)) .rd-searchbtn {
+  .nav:has(.rd-sections > a:nth-child(8)) .rd-searchbtn {
     width: 44px;
     padding: 0;
     justify-content: center;
   }
-  .nav:has(.rd-sections > a:nth-child(9)) .rd-searchlabel,
-  .nav:has(.rd-sections > a:nth-child(9)) .rd-searchbtn kbd {
+  .nav:has(.rd-sections > a:nth-child(8)) .rd-searchlabel,
+  .nav:has(.rd-sections > a:nth-child(8)) .rd-searchbtn kbd {
     display: none;
   }
 }
-@media (max-width: 1000px) {
-  .rd-sections:has(> a:nth-child(9)) {
+@media (max-width: 1080px) {
+  /* 中文顶栏现有 9 个分区，比 8 个时更宽，提前一档交给头像菜单 */
+  .rd-sections:has(> a:nth-child(8)) {
     display: none;
   }
 }
@@ -1216,6 +1218,7 @@ a.catalog-filter-chip { text-decoration: none; cursor: pointer; }
 }
 .card-thumb > .card-demo { border-radius: 0; border-width: 0; min-height: 0; }
 .card-thumb > .card-demo:not(.scaled-preview) { height: 152px; overflow: hidden; }
+.card-thumb > .card-thumb-img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: #0d1117; }
 
 /* ===== 左侧安静版实时目录（样张 .rd-toc → .cat-live-toc） ===== */
 .cat-live-toc {

@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import CatalogView from "@/components/CatalogView";
 
 export const metadata: Metadata = {
-  title: "Motion｜BuildHub · Four playable interaction demos",
+  title: "Motion｜BuildHub · 161 carousels & motion components",
   description:
-    "Four playable interaction demos: card carousel, letter intro, dark onboarding and bounce cards — all built with native CSS/JS, ready to drag, tap through and retune live.",
+    "161 carousel and motion components: 157 carousels curated from 21st.dev that play their original demo videos on the cards, plus 4 you can operate in place — grouped into 9 interaction types. Open any card for the original link and a copyable prompt.",
   openGraph: {
     title: "Motion｜BuildHub",
-    description: "Four playable interaction demos, open any card and play.",
+    description: "161 carousels and motion components, grouped by interaction type.",
   },
 };
 

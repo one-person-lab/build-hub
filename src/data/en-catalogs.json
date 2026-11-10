@@ -3833,23 +3833,220 @@
   },
   {
     "key": "motion",
-    "href": "/distill",
+    "href": "/en/distill",
     "title": "Motion",
-    "intro": "Four playable interaction demos: drag the cards, tap to advance, retune every parameter live — open any card to play in a modal.",
+    "intro": "161 carousel and motion components: 157 carousels curated from 21st.dev that play their original demo videos right on the cards, plus 4 you can drag and tune in place — grouped into 9 interaction types: 3D & coverflow, stack & fan, arc & wheel and more. Open any card for the original link and a copyable prompt.",
     "categories": [
       {
-        "key": "motion",
-        "label": "Interactive Motion"
+        "key": "p3d",
+        "label": "3D & Coverflow"
+      },
+      {
+        "key": "stack",
+        "label": "Stack & Fan"
+      },
+      {
+        "key": "arc",
+        "label": "Arc & Wheel"
+      },
+      {
+        "key": "thumb",
+        "label": "Thumbnails"
+      },
+      {
+        "key": "scroll",
+        "label": "Scroll-driven"
+      },
+      {
+        "key": "marquee",
+        "label": "Marquee & Logos"
+      },
+      {
+        "key": "quote",
+        "label": "Testimonials"
+      },
+      {
+        "key": "fx",
+        "label": "Fullscreen & Effects"
+      },
+      {
+        "key": "basic",
+        "label": "Basic Sliders"
       }
     ],
     "sidebar": [],
     "groups": [
       {
-        "id": "cat-interaction-motion",
-        "title": "Motion Components",
-        "category": "motion",
-        "count": 4,
+        "id": "cat-motion-p3d",
+        "title": "3D & Coverflow",
+        "category": "p3d",
+        "count": 16,
         "terms": [
+          {
+            "slug": "cc-glassy-coverflow-carousel",
+            "name": "Glassy Coverflow",
+            "en": "",
+            "tagline": "A responsive 3D coverflow carousel for poster galleries and media collections.",
+            "tags": [],
+            "source": "https://21st.dev/@troyjlorents-gh/components/glassy-coverflow-carousel",
+            "img": "/assets/motion/carousels/cc-glassy-coverflow-carousel.png",
+            "video": "/assets/motion/carousels/cc-glassy-coverflow-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-glassy-coverflow-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-journal-spread-carousel",
+            "name": "3D Journal Spread",
+            "en": "",
+            "tagline": "3D journal page carousel: an open scrapbook spread in the middle with earlier and later pages standing edge-on in two receding stacks.",
+            "tags": [],
+            "source": "https://21st.dev/@kedhareswer/components/journal-spread-carousel",
+            "img": "/assets/motion/carousels/cc-journal-spread-carousel.png",
+            "video": "/assets/motion/carousels/cc-journal-spread-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-journal-spread-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-coverflow-carousel",
+            "name": "Reverse Coverflow",
+            "en": "",
+            "tagline": "A rack of square covers with the perspective reversed.",
+            "tags": [],
+            "source": "https://21st.dev/@ruixen.ui/components/coverflow-carousel",
+            "img": "/assets/motion/carousels/cc-coverflow-carousel.png",
+            "video": "/assets/motion/carousels/cc-coverflow-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-coverflow-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-disc-cascade-carousel",
+            "name": "3D CD Disc Carousel",
+            "en": "",
+            "tagline": "3D CD disc carousel for a music or film catalogue: printed discs sit on a slanted line, roll like wheels as you drag, swipe or use the arrows, with…",
+            "tags": [],
+            "source": "https://21st.dev/@kedhareswer/components/disc-cascade-carousel",
+            "img": "/assets/motion/carousels/cc-disc-cascade-carousel.png",
+            "video": "/assets/motion/carousels/cc-disc-cascade-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-disc-cascade-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-skiper49",
+            "name": "Inverted Coverflow",
+            "en": "",
+            "tagline": "A 3D coverflow image carousel that rotates and shrinks side slides for an inverted-perspective, depth-heavy visual effect, useful for showcasing…",
+            "tags": [],
+            "source": "https://21st.dev/@reuno-ui/components/skiper49",
+            "img": "/assets/motion/carousels/cc-skiper49.png",
+            "video": "/assets/motion/carousels/cc-skiper49.mp4",
+            "videoHd": "/assets/motion/carousels/cc-skiper49-hd.mp4"
+          },
+          {
+            "slug": "cc-dimensional-switch-slider",
+            "name": "3D Flip Slider",
+            "en": "",
+            "tagline": "3D card-flip carousel with directional text transitions, configurable horizontal or vertical flip axis, custom easing, autoplay and pagination.",
+            "tags": [],
+            "source": "https://21st.dev/@hyperiux/components/dimensional-switch-slider",
+            "img": "/assets/motion/carousels/cc-dimensional-switch-slider.png",
+            "video": "/assets/motion/carousels/cc-dimensional-switch-slider.mp4",
+            "videoHd": "/assets/motion/carousels/cc-dimensional-switch-slider-hd.mp4"
+          },
+          {
+            "slug": "cc-specials-linear-carousel",
+            "name": "Linear-style 3D Carousel",
+            "en": "",
+            "tagline": "A smooth-scrolling horizontal 3D card carousel with infinite loop, drag-to-scroll, autoplay, and shared-element card expansion inspired by Linear.",
+            "tags": [],
+            "source": "https://21st.dev/@animbits/components/specials-linear-carousel",
+            "img": "/assets/motion/carousels/cc-specials-linear-carousel.png",
+            "video": "/assets/motion/carousels/cc-specials-linear-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-specials-linear-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-3d-carousel",
+            "name": "3D Carousel",
+            "en": "",
+            "tagline": "A 3D image carousel",
+            "tags": [],
+            "source": "https://21st.dev/@user_cult_ui/components/3d-carousel",
+            "img": "/assets/motion/carousels/cc-3d-carousel.png",
+            "video": "/assets/motion/carousels/cc-3d-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-3d-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-dither-helix-carousel",
+            "name": "Dither Helix Carousel",
+            "en": "",
+            "tagline": "An image carousel that arranges cards in a spinning 3D spiral column with a retro dithered/halftone shader effect on cards as they recede or lose…",
+            "tags": [],
+            "source": "https://21st.dev/@crafterui/components/dither-helix-carousel",
+            "img": "/assets/motion/carousels/cc-dither-helix-carousel.png",
+            "video": "/assets/motion/carousels/cc-dither-helix-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-dither-helix-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-gallery",
+            "name": "3D Cylinder Gallery",
+            "en": "",
+            "tagline": "A rotating 3D cylindrical image gallery built with three.js that displays a sequence of photos wrapping around an animated carousel.",
+            "tags": [],
+            "source": "https://21st.dev/@mengto/components/gallery",
+            "img": "/assets/motion/carousels/cc-gallery.png",
+            "video": "/assets/motion/carousels/cc-gallery.mp4",
+            "videoHd": "/assets/motion/carousels/cc-gallery-hd.mp4"
+          },
+          {
+            "slug": "cc-orbit-flip-slider",
+            "name": "Orbit Flip Slider",
+            "en": "",
+            "tagline": "GSAP Flip gallery that morphs one ring of images between four camera views — flat circle, zoomed arc, tilted 3D ring, and coverflow band — with a…",
+            "tags": [],
+            "source": "https://21st.dev/@hyperiux/components/orbit-flip-slider",
+            "img": "/assets/motion/carousels/cc-orbit-flip-slider.png",
+            "video": "/assets/motion/carousels/cc-orbit-flip-slider.mp4",
+            "videoHd": "/assets/motion/carousels/cc-orbit-flip-slider-hd.mp4"
+          },
+          {
+            "slug": "cc-coverflow-carousel-2",
+            "name": "iTunes Coverflow",
+            "en": "",
+            "tagline": "A 3D perspective carousel that flips, scales and stacks cards like Apple's iTunes coverflow, with drag/swipe, keyboard navigation and optional…",
+            "tags": [],
+            "source": "https://21st.dev/@educalvolpz/components/coverflow-carousel",
+            "img": "/assets/motion/carousels/cc-coverflow-carousel-2.png",
+            "video": "/assets/motion/carousels/cc-coverflow-carousel-2.mp4",
+            "videoHd": "/assets/motion/carousels/cc-coverflow-carousel-2-hd.mp4"
+          },
+          {
+            "slug": "cc-ring-tower",
+            "name": "Ring Tower",
+            "en": "",
+            "tagline": "A tower of tilted bands wrapped in your images.",
+            "tags": [],
+            "source": "https://21st.dev/@radiumcoders/components/ring-tower",
+            "img": "/assets/motion/carousels/cc-ring-tower.png",
+            "video": "/assets/motion/carousels/cc-ring-tower.mp4",
+            "videoHd": "/assets/motion/carousels/cc-ring-tower-hd.mp4"
+          },
+          {
+            "slug": "cc-viewfinder-flip-carousel",
+            "name": "Viewfinder Flip Carousel",
+            "en": "",
+            "tagline": "3D flip image carousel for React: only the photo in the viewfinder frame lies flat while the rest fold away on their edges in perspective, opening…",
+            "tags": [],
+            "source": "https://21st.dev/@kedhareswer/components/viewfinder-flip-carousel",
+            "img": "/assets/motion/carousels/cc-viewfinder-flip-carousel.png",
+            "video": "/assets/motion/carousels/cc-viewfinder-flip-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-viewfinder-flip-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-flip-gallery",
+            "name": "Flip Gallery",
+            "en": "",
+            "tagline": "Flip animation",
+            "tags": [],
+            "source": "https://21st.dev/@minhxthanh/components/flip-gallery",
+            "img": "/assets/motion/carousels/cc-flip-gallery.png",
+            "video": "/assets/motion/carousels/cc-flip-gallery.mp4",
+            "videoHd": "/assets/motion/carousels/cc-flip-gallery-hd.mp4"
+          },
           {
             "slug": "motion-card-carousel",
             "name": "Card Carousel",
@@ -3862,6 +4059,1249 @@
             ],
             "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div style=\"position:relative;width:100%;height:100%;background:var(--bg-soft)\"><div style=\"position:absolute;left:50%;top:50%;width:130px;height:173px;margin:-86px 0 0 -216px;transform:rotate(-8deg);border-radius:12px;background:url(/assets/motion/citrus.png) center/cover;box-shadow:0 12px 26px rgba(0,0,0,.22)\"></div><div style=\"position:absolute;left:50%;top:50%;width:130px;height:173px;margin:-86px 0 0 86px;transform:rotate(7deg);border-radius:12px;background:url(/assets/motion/forest.png) center/cover;box-shadow:0 12px 26px rgba(0,0,0,.22)\"></div><div style=\"position:absolute;left:50%;top:50%;width:140px;height:187px;margin:-96px 0 0 -70px;transform:rotate(-3deg);border-radius:12px;background:url(/assets/motion/dune.png) center/cover;box-shadow:0 16px 34px rgba(0,0,0,.28)\"></div></div></div>",
             "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
+          }
+        ]
+      },
+      {
+        "id": "cat-motion-stack",
+        "title": "Stack & Fan",
+        "category": "stack",
+        "count": 12,
+        "terms": [
+          {
+            "slug": "cc-card-fan-carousel",
+            "name": "Card Fan Carousel",
+            "en": "",
+            "tagline": "Animated image card carousel with a fanned arc layout.",
+            "tags": [],
+            "source": "https://21st.dev/@aayush-duhan/components/card-fan-carousel",
+            "img": "/assets/motion/carousels/cc-card-fan-carousel.png",
+            "video": "/assets/motion/carousels/cc-card-fan-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-card-fan-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-card-stack",
+            "name": "3D Card Stack",
+            "en": "",
+            "tagline": "An interactive 3D card stack carousel with fan-out animation, drag gestures, and auto-advance support.",
+            "tags": [],
+            "source": "https://21st.dev/@ruixen.ui/components/card-stack",
+            "img": "/assets/motion/carousels/cc-card-stack.png",
+            "video": "/assets/motion/carousels/cc-card-stack.mp4",
+            "videoHd": "/assets/motion/carousels/cc-card-stack-hd.mp4"
+          },
+          {
+            "slug": "cc-card-deck-carousel",
+            "name": "Card Deck Carousel",
+            "en": "",
+            "tagline": "Stacked card image carousel for React: photos piled like loose prints; drag or flick the top card in any direction and it flies off, then slides back…",
+            "tags": [],
+            "source": "https://21st.dev/@kedhareswer/components/card-deck-carousel",
+            "img": "/assets/motion/carousels/cc-card-deck-carousel.png",
+            "video": "/assets/motion/carousels/cc-card-deck-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-card-deck-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-carousel-07",
+            "name": "Fan-out Carousel",
+            "en": "",
+            "tagline": "An interactive draggable carousel that fans out cards with rotation, overlap, and depth scaling for showcasing images or destinations.",
+            "tags": [],
+            "source": "https://21st.dev/@shadcnspace/components/carousel-07",
+            "img": "/assets/motion/carousels/cc-carousel-07.png",
+            "video": "/assets/motion/carousels/cc-carousel-07.mp4",
+            "videoHd": "/assets/motion/carousels/cc-carousel-07-hd.mp4"
+          },
+          {
+            "slug": "cc-matchbox-carousel",
+            "name": "Matchbox Carousel",
+            "en": "",
+            "tagline": "A carousel of matchboxes.",
+            "tags": [],
+            "source": "https://21st.dev/@neebarp/components/matchbox-carousel",
+            "img": "/assets/motion/carousels/cc-matchbox-carousel.png",
+            "video": "/assets/motion/carousels/cc-matchbox-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-matchbox-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-blur-reveal-deck",
+            "name": "Blur Reveal Deck",
+            "en": "",
+            "tagline": "A beautiful and interactive card deck carousel for React and Tailwind CSS.",
+            "tags": [],
+            "source": "https://21st.dev/@y.lamfadelpro/components/blur-reveal-deck",
+            "img": "/assets/motion/carousels/cc-blur-reveal-deck.png",
+            "video": "/assets/motion/carousels/cc-blur-reveal-deck.mp4",
+            "videoHd": "/assets/motion/carousels/cc-blur-reveal-deck-hd.mp4"
+          },
+          {
+            "slug": "cc-staircase-carousel",
+            "name": "Staircase Carousel",
+            "en": "",
+            "tagline": "Staircase image carousel for React: the selected photo sits level at full size with its title, earlier photos step up and later ones step down, and…",
+            "tags": [],
+            "source": "https://21st.dev/@kedhareswer/components/staircase-carousel",
+            "img": "/assets/motion/carousels/cc-staircase-carousel.png",
+            "video": "/assets/motion/carousels/cc-staircase-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-staircase-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-polaroid-line-carousel",
+            "name": "Polaroid Line Carousel",
+            "en": "",
+            "tagline": "Hanging polaroid image carousel for React: instant photos pegged to a sagging string that slide along it as you drag and swing on their pegs with…",
+            "tags": [],
+            "source": "https://21st.dev/@kedhareswer/components/polaroid-line-carousel",
+            "img": "/assets/motion/carousels/cc-polaroid-line-carousel.png",
+            "video": "/assets/motion/carousels/cc-polaroid-line-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-polaroid-line-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-tilt-cascade-carousel",
+            "name": "Tilt Cascade Carousel",
+            "en": "",
+            "tagline": "Tilted card image carousel for React: square photos cascade down a slanted line, each card turning and shrinking away from the upright front card…",
+            "tags": [],
+            "source": "https://21st.dev/@kedhareswer/components/tilt-cascade-carousel",
+            "img": "/assets/motion/carousels/cc-tilt-cascade-carousel.png",
+            "video": "/assets/motion/carousels/cc-tilt-cascade-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-tilt-cascade-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-image-stack-carousel",
+            "name": "Image Stack Carousel",
+            "en": "",
+            "tagline": "An interactive image stack carousel with layered cards, smooth swipe gestures, and fluid transitions.",
+            "tags": [],
+            "source": "https://21st.dev/@ayushmxxn/components/image-stack-carousel",
+            "img": "/assets/motion/carousels/cc-image-stack-carousel.png",
+            "video": "/assets/motion/carousels/cc-image-stack-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-image-stack-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-image-fan-carousel",
+            "name": "Image Fan Carousel",
+            "en": "",
+            "tagline": "A modern image carousel with a stacked fan layout, smooth transitions, and navigation controls.",
+            "tags": [],
+            "source": "https://21st.dev/@ayushmxxn/components/image-fan-carousel",
+            "img": "/assets/motion/carousels/cc-image-fan-carousel.png",
+            "video": "/assets/motion/carousels/cc-image-fan-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-image-fan-carousel-hd.mp4"
+          },
+          {
+            "slug": "motion-bounce-cards",
+            "name": "Bounce Cards",
+            "en": "",
+            "tagline": "Five square cards fanned out: they spring in one by one, hovered cards straighten and lift while neighbours get pushed aside, and a click springs them back. Six params tune it live.",
+            "tags": [
+              "Spring entrance",
+              "Hover push",
+              "Tunable"
+            ],
+            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div style=\"position:relative;width:100%;height:100%;background:var(--bg-soft)\"><div style=\"position:absolute;left:50%;top:50%;width:118px;height:118px;margin:-59px 0 0 -59px;transform:translate(-170px,0) rotate(10deg) scale(.96);border-radius:16px;border:3px solid #fff;background:url(/assets/motion/citrus.png) center/cover;box-shadow:0 12px 26px rgba(0,0,0,.22);z-index:1\"></div><div style=\"position:absolute;left:50%;top:50%;width:118px;height:118px;margin:-59px 0 0 -59px;transform:translate(-85px,0) rotate(5deg) scale(.98);border-radius:16px;border:3px solid #fff;background:url(/assets/motion/dune.png) center/cover;box-shadow:0 12px 26px rgba(0,0,0,.22);z-index:2\"></div><div style=\"position:absolute;left:50%;top:50%;width:118px;height:118px;margin:-59px 0 0 -59px;transform:rotate(-3deg);border-radius:16px;border:3px solid #fff;background:url(/assets/motion/forest.png) center/cover;box-shadow:0 16px 34px rgba(0,0,0,.28);z-index:3\"></div><div style=\"position:absolute;left:50%;top:50%;width:118px;height:118px;margin:-59px 0 0 -59px;transform:translate(85px,0) rotate(-10deg) scale(.98);border-radius:16px;border:3px solid #fff;background:url(/assets/motion/dune.png) center/cover;box-shadow:0 12px 26px rgba(0,0,0,.22);z-index:4\"></div><div style=\"position:absolute;left:50%;top:50%;width:118px;height:118px;margin:-59px 0 0 -59px;transform:translate(170px,0) rotate(2deg) scale(.96);border-radius:16px;border:3px solid #fff;background:url(/assets/motion/citrus.png) center/cover;box-shadow:0 12px 26px rgba(0,0,0,.22);z-index:5\"></div></div></div>",
+            "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
+          }
+        ]
+      },
+      {
+        "id": "cat-motion-arc",
+        "title": "Arc & Wheel",
+        "category": "arc",
+        "count": 12,
+        "terms": [
+          {
+            "slug": "cc-arc-card-carousel",
+            "name": "Arc Card Carousel",
+            "en": "",
+            "tagline": "Curved arc image carousel: photo cards ride the rim of a big wheel whose hub sits off the left edge, so a gentle arc of them shows and the card on…",
+            "tags": [],
+            "source": "https://21st.dev/@kedhareswer/components/arc-card-carousel",
+            "img": "/assets/motion/carousels/cc-arc-card-carousel.png",
+            "video": "/assets/motion/carousels/cc-arc-card-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-arc-card-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-works-wheel",
+            "name": "Works Wheel",
+            "en": "",
+            "tagline": "A portfolio/project index that displays items in a ring around a title and, on scroll or drag, opens into a 3D drum carousel you turn through one…",
+            "tags": [],
+            "source": "https://21st.dev/@crafterui/components/works-wheel",
+            "img": "/assets/motion/carousels/cc-works-wheel.png",
+            "video": "/assets/motion/carousels/cc-works-wheel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-works-wheel-hd.mp4"
+          },
+          {
+            "slug": "cc-circular-gallery",
+            "name": "Circular Gallery",
+            "en": "",
+            "tagline": "Showcase content in an interactive, rotating carousel that keeps users engaged.",
+            "tags": [],
+            "source": "https://21st.dev/@ravikatiyar162/components/circular-gallery",
+            "img": "/assets/motion/carousels/cc-circular-gallery.png",
+            "video": "/assets/motion/carousels/cc-circular-gallery.mp4",
+            "videoHd": "/assets/motion/carousels/cc-circular-gallery-hd.mp4"
+          },
+          {
+            "slug": "cc-arc-flow-carousel",
+            "name": "Arc Flow Carousel",
+            "en": "",
+            "tagline": "Draggable image carousel where cards ride a wheel arc, with flick momentum, idle drift, wheel and keyboard control, and reduced-motion support.",
+            "tags": [],
+            "source": "https://21st.dev/@hyperiux/components/arc-flow-carousel",
+            "img": "/assets/motion/carousels/cc-arc-flow-carousel.png",
+            "video": "/assets/motion/carousels/cc-arc-flow-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-arc-flow-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-orbiting-carousel-with-animated-icons",
+            "name": "Orbiting Icons Carousel",
+            "en": "",
+            "tagline": "This variation of the Orbiting Carousel adds a layer of interactivity with animated icons.",
+            "tags": [],
+            "source": "https://21st.dev/@olovajs/components/orbiting-carousel-with-animated-icons",
+            "img": "/assets/motion/carousels/cc-orbiting-carousel-with-animated-icons.png",
+            "video": "/assets/motion/carousels/cc-orbiting-carousel-with-animated-icons.mp4",
+            "videoHd": "/assets/motion/carousels/cc-orbiting-carousel-with-animated-icons-hd.mp4"
+          },
+          {
+            "slug": "cc-ferris-wheel-gallery",
+            "name": "Ferris Wheel Gallery",
+            "en": "",
+            "tagline": "Ferris Wheel Image Gallery for React and Tailwind CSS (shadcn/ui): photos ride a lit ferris wheel and the chosen one stops at the top.",
+            "tags": [],
+            "source": "https://21st.dev/@dhxwhy/components/ferris-wheel-gallery",
+            "img": "/assets/motion/carousels/cc-ferris-wheel-gallery.png",
+            "video": "/assets/motion/carousels/cc-ferris-wheel-gallery.mp4",
+            "videoHd": "/assets/motion/carousels/cc-ferris-wheel-gallery-hd.mp4"
+          },
+          {
+            "slug": "cc-halo-reel",
+            "name": "Halo Reel",
+            "en": "",
+            "tagline": "Image cards riding an ellipse.",
+            "tags": [],
+            "source": "https://21st.dev/@ruixen.ui/components/halo-reel",
+            "img": "/assets/motion/carousels/cc-halo-reel.png",
+            "video": "/assets/motion/carousels/cc-halo-reel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-halo-reel-hd.mp4"
+          },
+          {
+            "slug": "cc-carousel-circular-image-gallery",
+            "name": "Circular Image Gallery",
+            "en": "",
+            "tagline": "Carousel Circular Image Gallery",
+            "tags": [],
+            "source": "https://21st.dev/@minhxthanh/components/carousel-circular-image-gallery",
+            "img": "/assets/motion/carousels/cc-carousel-circular-image-gallery.png",
+            "video": "/assets/motion/carousels/cc-carousel-circular-image-gallery.mp4",
+            "videoHd": "/assets/motion/carousels/cc-carousel-circular-image-gallery-hd.mp4"
+          },
+          {
+            "slug": "cc-wheel-carousel",
+            "name": "Wheel Carousel",
+            "en": "",
+            "tagline": "A cinematic rotating-wheel picker with inertial drag, curved fading labels, and crossfading imagery, useful for browsing a list of projects or…",
+            "tags": [],
+            "source": "https://21st.dev/@componentry/components/wheel-carousel",
+            "img": "/assets/motion/carousels/cc-wheel-carousel.png",
+            "video": "/assets/motion/carousels/cc-wheel-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-wheel-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-circular-carousel",
+            "name": "Orbital Carousel",
+            "en": "",
+            "tagline": "An animated orbital carousel that arcs cards along a curved track with smooth active-card transitions, autoplay, dot indicators, and keyboard…",
+            "tags": [],
+            "source": "https://21st.dev/@nexus-ui/components/circular-carousel",
+            "img": "/assets/motion/carousels/cc-circular-carousel.png",
+            "video": "/assets/motion/carousels/cc-circular-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-circular-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-orbit-spotlight-gallery",
+            "name": "Orbit Spotlight Gallery",
+            "en": "",
+            "tagline": "Orbit Spotlight Image Gallery for React and Tailwind CSS (shadcn/ui) folds an image orbit into a focused view.",
+            "tags": [],
+            "source": "https://21st.dev/@dhxwhy/components/orbit-spotlight-gallery",
+            "img": "/assets/motion/carousels/cc-orbit-spotlight-gallery.png",
+            "video": "/assets/motion/carousels/cc-orbit-spotlight-gallery.mp4",
+            "videoHd": "/assets/motion/carousels/cc-orbit-spotlight-gallery-hd.mp4"
+          },
+          {
+            "slug": "cc-circular-gallery-2",
+            "name": "Circular Gallery",
+            "en": "",
+            "tagline": "Circular Gallery — an animated carousel component.",
+            "tags": [],
+            "source": "https://21st.dev/@ravikatiyar162/components/circular-gallery-2",
+            "img": "/assets/motion/carousels/cc-circular-gallery-2.png",
+            "video": "/assets/motion/carousels/cc-circular-gallery-2.mp4",
+            "videoHd": "/assets/motion/carousels/cc-circular-gallery-2-hd.mp4"
+          }
+        ]
+      },
+      {
+        "id": "cat-motion-thumb",
+        "title": "Thumbnails",
+        "category": "thumb",
+        "count": 9,
+        "terms": [
+          {
+            "slug": "cc-thumbnail-image-viewer",
+            "name": "Thumbnail Image Viewer",
+            "en": "",
+            "tagline": "A responsive image gallery with keyboard-navigable thumbnail strip, photo location tags, and smooth aspect-ratio staging.",
+            "tags": [],
+            "source": "https://21st.dev/@ibrandify/components/thumbnail-image-viewer",
+            "img": "/assets/motion/carousels/cc-thumbnail-image-viewer.png"
+          },
+          {
+            "slug": "cc-thumbnail-carousel",
+            "name": "Thumbnail Carousel",
+            "en": "",
+            "tagline": "A reusable and responsive thumbnail carousel",
+            "tags": [],
+            "source": "https://21st.dev/@avanishverma4/components/thumbnail-carousel",
+            "img": "/assets/motion/carousels/cc-thumbnail-carousel.png",
+            "video": "/assets/motion/carousels/cc-thumbnail-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-thumbnail-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-framer-thumbnail-carousel",
+            "name": "Framer Thumbnail Carousel",
+            "en": "",
+            "tagline": "Framer Thumbnail Carousel — an animated carousel component.",
+            "tags": [],
+            "source": "https://21st.dev/@uilayout.contact/components/framer-thumbnail-carousel",
+            "img": "/assets/motion/carousels/cc-framer-thumbnail-carousel.png",
+            "video": "/assets/motion/carousels/cc-framer-thumbnail-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-framer-thumbnail-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-framer-thumnbails",
+            "name": "Draggable Thumbnails",
+            "en": "",
+            "tagline": "A draggable image carousel with an animated thumbnail strip that expands the active thumbnail and auto-scrolls it into view.",
+            "tags": [],
+            "source": "https://21st.dev/@uilayout.contact/components/framer-thumnbails",
+            "img": "/assets/motion/carousels/cc-framer-thumnbails.png",
+            "video": "/assets/motion/carousels/cc-framer-thumnbails.mp4",
+            "videoHd": "/assets/motion/carousels/cc-framer-thumnbails-hd.mp4"
+          },
+          {
+            "slug": "cc-framer-moveable-thumbnails",
+            "name": "Moveable Thumbnails",
+            "en": "",
+            "tagline": "A draggable image carousel with an animated filmstrip of thumbnails where the active thumbnail expands to a wide aspect ratio.",
+            "tags": [],
+            "source": "https://21st.dev/@uilayout.contact/components/framer-moveable-thumbnails",
+            "img": "/assets/motion/carousels/cc-framer-moveable-thumbnails.png",
+            "video": "/assets/motion/carousels/cc-framer-moveable-thumbnails.mp4",
+            "videoHd": "/assets/motion/carousels/cc-framer-moveable-thumbnails-hd.mp4"
+          },
+          {
+            "slug": "cc-vertical-thumbnail-autostart-slider",
+            "name": "Vertical Thumbnail Slider",
+            "en": "",
+            "tagline": "An auto-playing vertical image carousel with a synced thumbnail navigation strip on the side.",
+            "tags": [],
+            "source": "https://21st.dev/@uilayout.contact/components/vertical-thumbnail-autostart-slider",
+            "img": "/assets/motion/carousels/cc-vertical-thumbnail-autostart-slider.png",
+            "video": "/assets/motion/carousels/cc-vertical-thumbnail-autostart-slider.mp4",
+            "videoHd": "/assets/motion/carousels/cc-vertical-thumbnail-autostart-slider-hd.mp4"
+          },
+          {
+            "slug": "cc-c-carousel-10",
+            "name": "Filmstrip Carousel",
+            "en": "",
+            "tagline": "An image carousel that shows a filmstrip of clickable thumbnails overlaid at the bottom, letting users jump directly to any slide.",
+            "tags": [],
+            "source": "https://21st.dev/@sean0205/components/c-carousel-10",
+            "img": "/assets/motion/carousels/cc-c-carousel-10.png",
+            "video": "/assets/motion/carousels/cc-c-carousel-10.mp4",
+            "videoHd": "/assets/motion/carousels/cc-c-carousel-10-hd.mp4"
+          },
+          {
+            "slug": "cc-hero-carousel",
+            "name": "Filmstrip Hero",
+            "en": "",
+            "tagline": "A full-bleed editorial hero driven by a filmstrip: cards share one top edge, the focused card unfurls to full height while its neighbours stay…",
+            "tags": [],
+            "source": "https://21st.dev/@crafterui.com/components/hero-carousel",
+            "img": "/assets/motion/carousels/cc-hero-carousel.png",
+            "video": "/assets/motion/carousels/cc-hero-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-hero-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-thumbnail-carousel-2",
+            "name": "Swipe Thumbnail Carousel",
+            "en": "",
+            "tagline": "A responsive image carousel with swipe gestures, smooth spring animations, autoplay, and clickable thumbnail navigation.",
+            "tags": [],
+            "source": "https://21st.dev/@ayushmxxn/components/thumbnail-carousel",
+            "img": "/assets/motion/carousels/cc-thumbnail-carousel-2.png",
+            "video": "/assets/motion/carousels/cc-thumbnail-carousel-2.mp4",
+            "videoHd": "/assets/motion/carousels/cc-thumbnail-carousel-2-hd.mp4"
+          }
+        ]
+      },
+      {
+        "id": "cat-motion-scroll",
+        "title": "Scroll-driven",
+        "category": "scroll",
+        "count": 11,
+        "terms": [
+          {
+            "slug": "cc-dish-orbit-carousel",
+            "name": "Dish Orbit Carousel",
+            "en": "",
+            "tagline": "Food menu scroll carousel: page scroll swings each plate out on an orbit as the next swings in, with a wiping two-weight title, chef card and a…",
+            "tags": [],
+            "source": "https://21st.dev/@kedhareswer/components/dish-orbit-carousel",
+            "img": "/assets/motion/carousels/cc-dish-orbit-carousel.png",
+            "video": "/assets/motion/carousels/cc-dish-orbit-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-dish-orbit-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-runway-lookbook",
+            "name": "Runway Lookbook",
+            "en": "",
+            "tagline": "Runway fashion lookbook carousel: the collection's looks queue up in depth across a catwalk, and scrolling walks the next model forward into focus…",
+            "tags": [],
+            "source": "https://21st.dev/@kedhareswer/components/runway-lookbook",
+            "img": "/assets/motion/carousels/cc-runway-lookbook.png",
+            "video": "/assets/motion/carousels/cc-runway-lookbook.mp4",
+            "videoHd": "/assets/motion/carousels/cc-runway-lookbook-hd.mp4"
+          },
+          {
+            "slug": "cc-split-photo-slider",
+            "name": "Split Photo Slider",
+            "en": "",
+            "tagline": "Scroll-driven split-screen product slider: each scroll step lifts the copy out line by line, then the next photo slides over the last and turns…",
+            "tags": [],
+            "source": "https://21st.dev/@kedhareswer/components/split-photo-slider",
+            "img": "/assets/motion/carousels/cc-split-photo-slider.png",
+            "video": "/assets/motion/carousels/cc-split-photo-slider.mp4",
+            "videoHd": "/assets/motion/carousels/cc-split-photo-slider-hd.mp4"
+          },
+          {
+            "slug": "cc-case-stack-scroll",
+            "name": "Case Stack Scroll",
+            "en": "",
+            "tagline": "3D stacked website cards scroll for an agency's case studies: the nearest site card faces you and the rest file away behind it like folders in a…",
+            "tags": [],
+            "source": "https://21st.dev/@kedhareswer/components/case-stack-scroll",
+            "img": "/assets/motion/carousels/cc-case-stack-scroll.png",
+            "video": "/assets/motion/carousels/cc-case-stack-scroll.mp4",
+            "videoHd": "/assets/motion/carousels/cc-case-stack-scroll-hd.mp4"
+          },
+          {
+            "slug": "cc-rotating-flavor-slider",
+            "name": "Rotating Flavor Slider",
+            "en": "",
+            "tagline": "Scroll rotating product slider: a big top-down photo turns and morphs into the next as the page scrolls, while the background colour blends, a dot…",
+            "tags": [],
+            "source": "https://21st.dev/@kedhareswer/components/rotating-flavor-slider",
+            "img": "/assets/motion/carousels/cc-rotating-flavor-slider.png",
+            "video": "/assets/motion/carousels/cc-rotating-flavor-slider.mp4",
+            "videoHd": "/assets/motion/carousels/cc-rotating-flavor-slider-hd.mp4"
+          },
+          {
+            "slug": "cc-scroll-cards",
+            "name": "Scroll Cards",
+            "en": "",
+            "tagline": "A smooth gallery where cards stack on scroll, each showing an image, title, and description.",
+            "tags": [],
+            "source": "https://21st.dev/@ishamsu/components/scroll-cards",
+            "img": "/assets/motion/carousels/cc-scroll-cards.png",
+            "video": "/assets/motion/carousels/cc-scroll-cards.mp4",
+            "videoHd": "/assets/motion/carousels/cc-scroll-cards-hd.mp4"
+          },
+          {
+            "slug": "cc-scroll-x-carousel",
+            "name": "Scroll X Carousel",
+            "en": "",
+            "tagline": "- Carousel transforms on x direction according to current scroll position.",
+            "tags": [],
+            "source": "https://21st.dev/@youcefbnm/components/scroll-x-carousel",
+            "img": "/assets/motion/carousels/cc-scroll-x-carousel.png",
+            "video": "/assets/motion/carousels/cc-scroll-x-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-scroll-x-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-animated-cards-stack",
+            "name": "Scroll Reveal Stack",
+            "en": "",
+            "tagline": "- Reveal card depending on scroll position with animations",
+            "tags": [],
+            "source": "https://21st.dev/@user_2sdAd21yCZlZRkVtZyf4K8ogkBh/components/animated-cards-stack",
+            "img": "/assets/motion/carousels/cc-animated-cards-stack.png",
+            "video": "/assets/motion/carousels/cc-animated-cards-stack.mp4",
+            "videoHd": "/assets/motion/carousels/cc-animated-cards-stack-hd.mp4"
+          },
+          {
+            "slug": "cc-circular-split-roll",
+            "name": "Circular Split Roll",
+            "en": "",
+            "tagline": "Scroll-pinned split gallery: titles orbit one circular path while image cards orbit another, each item easing into focus at the centre.",
+            "tags": [],
+            "source": "https://21st.dev/@hyperiux/components/circular-split-roll",
+            "img": "/assets/motion/carousels/cc-circular-split-roll.png",
+            "video": "/assets/motion/carousels/cc-circular-split-roll.mp4",
+            "videoHd": "/assets/motion/carousels/cc-circular-split-roll-hd.mp4"
+          },
+          {
+            "slug": "cc-portfolio-scroll-grid",
+            "name": "Portfolio Scroll Grid",
+            "en": "",
+            "tagline": "A portfolio overview where a big name stays pinned mid-screen, behind a staggered five-column photo grid that scrolls over it.",
+            "tags": [],
+            "source": "https://21st.dev/@ruixen.ui/components/portfolio-scroll-grid",
+            "img": "/assets/motion/carousels/cc-portfolio-scroll-grid.png",
+            "video": "/assets/motion/carousels/cc-portfolio-scroll-grid.mp4",
+            "videoHd": "/assets/motion/carousels/cc-portfolio-scroll-grid-hd.mp4"
+          },
+          {
+            "slug": "cc-scrollable-card-stack",
+            "name": "Scrollable Card Stack",
+            "en": "",
+            "tagline": "An interactive stacked card carousel where cards snap into view on scroll with parallax scale and blur, plus keyboard, touch and dot-indicator…",
+            "tags": [],
+            "source": "https://21st.dev/@educalvolpz/components/scrollable-card-stack",
+            "img": "/assets/motion/carousels/cc-scrollable-card-stack.png",
+            "video": "/assets/motion/carousels/cc-scrollable-card-stack.mp4",
+            "videoHd": "/assets/motion/carousels/cc-scrollable-card-stack-hd.mp4"
+          }
+        ]
+      },
+      {
+        "id": "cat-motion-marquee",
+        "title": "Marquee & Logos",
+        "category": "marquee",
+        "count": 16,
+        "terms": [
+          {
+            "slug": "cc-tilted-grid-hero",
+            "name": "Tilted Grid Hero",
+            "en": "",
+            "tagline": "Hero with a curved, endlessly streaming row of images that bends toward the viewer at the edges and fades out.",
+            "tags": [],
+            "source": "https://21st.dev/@ruixen.ui/components/tilted-grid-hero",
+            "img": "/assets/motion/carousels/cc-tilted-grid-hero.png",
+            "video": "/assets/motion/carousels/cc-tilted-grid-hero.mp4",
+            "videoHd": "/assets/motion/carousels/cc-tilted-grid-hero-hd.mp4"
+          },
+          {
+            "slug": "cc-marquee",
+            "name": "Marquee",
+            "en": "",
+            "tagline": "An accessible scrolling marquee component for continuously showcasing logos, testimonials, or cards horizontally or vertically with pause-on-hover…",
+            "tags": [],
+            "source": "https://21st.dev/@diceui/components/marquee",
+            "img": "/assets/motion/carousels/cc-marquee.png",
+            "video": "/assets/motion/carousels/cc-marquee.mp4",
+            "videoHd": "/assets/motion/carousels/cc-marquee-hd.mp4"
+          },
+          {
+            "slug": "cc-argent-loop-infinite-slider",
+            "name": "Argent Infinite Slider",
+            "en": "",
+            "tagline": "A high-performance, seamless infinite slider designed for luxury retail and premium product discovery.",
+            "tags": [],
+            "source": "https://21st.dev/@hardikkashiyani123456788/components/argent-loop-infinite-slider",
+            "img": "/assets/motion/carousels/cc-argent-loop-infinite-slider.png",
+            "video": "/assets/motion/carousels/cc-argent-loop-infinite-slider.mp4",
+            "videoHd": "/assets/motion/carousels/cc-argent-loop-infinite-slider-hd.mp4"
+          },
+          {
+            "slug": "cc-infinite-slider",
+            "name": "Infinite Slider",
+            "en": "",
+            "tagline": "Infinite scrolling slider component that smoothly loops through its children.",
+            "tags": [],
+            "source": "https://21st.dev/@user_2rkgEMvkQ7I2oxalLXELCy8NObN/components/infinite-slider",
+            "img": "/assets/motion/carousels/cc-infinite-slider.png",
+            "video": "/assets/motion/carousels/cc-infinite-slider.mp4",
+            "videoHd": "/assets/motion/carousels/cc-infinite-slider-hd.mp4"
+          },
+          {
+            "slug": "cc-logo-cloud-3",
+            "name": "Logo Cloud Marquee",
+            "en": "",
+            "tagline": "An infinite auto-scrolling logo marquee with an edge fade mask and pause-on-hover, ideal for a \"trusted by\" logo cloud section.",
+            "tags": [],
+            "source": "https://21st.dev/@7ovr/components/logo-cloud-3",
+            "img": "/assets/motion/carousels/cc-logo-cloud-3.png",
+            "video": "/assets/motion/carousels/cc-logo-cloud-3.mp4",
+            "videoHd": "/assets/motion/carousels/cc-logo-cloud-3-hd.mp4"
+          },
+          {
+            "slug": "cc-ruler-carousel",
+            "name": "Ruler Carousel",
+            "en": "",
+            "tagline": "An animated, interactive, customizable ruler style carousel perfect for showing off logos of brands you have worked with.",
+            "tags": [],
+            "source": "https://21st.dev/@isaiahbjork/components/ruler-carousel",
+            "img": "/assets/motion/carousels/cc-ruler-carousel.png",
+            "video": "/assets/motion/carousels/cc-ruler-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-ruler-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-image-auto-slider",
+            "name": "Image Auto Slider",
+            "en": "",
+            "tagline": "A smooth looping image slider that shows different nature scenes one after the other.",
+            "tags": [],
+            "source": "https://21st.dev/@waleedkibhen/components/image-auto-slider",
+            "img": "/assets/motion/carousels/cc-image-auto-slider.png",
+            "video": "/assets/motion/carousels/cc-image-auto-slider.mp4",
+            "videoHd": "/assets/motion/carousels/cc-image-auto-slider-hd.mp4"
+          },
+          {
+            "slug": "cc-infinite-slider-horizontal",
+            "name": "Horizontal Image Slider",
+            "en": "",
+            "tagline": "Horizontal Image Slider — an animated carousel component.",
+            "tags": [],
+            "source": "https://21st.dev/@larsen66/components/infinite-slider-horizontal",
+            "img": "/assets/motion/carousels/cc-infinite-slider-horizontal.png",
+            "video": "/assets/motion/carousels/cc-infinite-slider-horizontal.mp4",
+            "videoHd": "/assets/motion/carousels/cc-infinite-slider-horizontal-hd.mp4"
+          },
+          {
+            "slug": "cc-logo-stepper",
+            "name": "Logo Stepper",
+            "en": "",
+            "tagline": "An animated horizontal stepper that cycles through a list of brand logos with names, sliding and fading them in and out one at a time.",
+            "tags": [],
+            "source": "https://21st.dev/@scrollxui/components/logo-stepper",
+            "img": "/assets/motion/carousels/cc-logo-stepper.png",
+            "video": "/assets/motion/carousels/cc-logo-stepper.mp4",
+            "videoHd": "/assets/motion/carousels/cc-logo-stepper-hd.mp4"
+          },
+          {
+            "slug": "cc-infinite-moving-cards",
+            "name": "Infinite Moving Cards",
+            "en": "",
+            "tagline": "A horizontally scrolling marquee of cards with seamless infinite looping, direction and speed controls, pause on hover, and edge fade masks — ideal…",
+            "tags": [],
+            "source": "https://21st.dev/@nexus-ui/components/infinite-moving-cards",
+            "img": "/assets/motion/carousels/cc-infinite-moving-cards.png",
+            "video": "/assets/motion/carousels/cc-infinite-moving-cards.mp4",
+            "videoHd": "/assets/motion/carousels/cc-infinite-moving-cards-hd.mp4"
+          },
+          {
+            "slug": "cc-great-ui-diagonal-marquee-carousel",
+            "name": "Diagonal Marquee",
+            "en": "",
+            "tagline": "A premium diagonally slanted, infinitely scrolling marquee showing cards or landscapes with offset speeds, alternating directions, and soft gradients.",
+            "tags": [],
+            "source": "https://21st.dev/@larsen66/components/great-ui-diagonal-marquee-carousel",
+            "img": "/assets/motion/carousels/cc-great-ui-diagonal-marquee-carousel.png",
+            "video": "/assets/motion/carousels/cc-great-ui-diagonal-marquee-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-great-ui-diagonal-marquee-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-marquee-2",
+            "name": "Marquee",
+            "en": "",
+            "tagline": "Marquee — an animated carousel component.",
+            "tags": [],
+            "source": "https://21st.dev/@user_2rdQLmsxuhvWx0tfvW2jDPWI7CY/components/marquee",
+            "img": "/assets/motion/carousels/cc-marquee-2.png",
+            "video": "/assets/motion/carousels/cc-marquee-2.mp4",
+            "videoHd": "/assets/motion/carousels/cc-marquee-2-hd.mp4"
+          },
+          {
+            "slug": "cc-image-stream-hero",
+            "name": "Image Stream Hero",
+            "en": "",
+            "tagline": "Two rails of images ride out of the vanishing point at the centre and sweep to both edges, growing and turning as they approach.",
+            "tags": [],
+            "source": "https://21st.dev/@ruixen.ui/components/image-stream-hero",
+            "img": "/assets/motion/carousels/cc-image-stream-hero.png",
+            "video": "/assets/motion/carousels/cc-image-stream-hero.mp4",
+            "videoHd": "/assets/motion/carousels/cc-image-stream-hero-hd.mp4"
+          },
+          {
+            "slug": "cc-logo-carousel",
+            "name": "Logo Carousel",
+            "en": "",
+            "tagline": "Logo Carousel",
+            "tags": [],
+            "source": "https://21st.dev/@user_cult_ui/components/logo-carousel",
+            "img": "/assets/motion/carousels/cc-logo-carousel.png",
+            "video": "/assets/motion/carousels/cc-logo-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-logo-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-marquee-3",
+            "name": "Draggable Marquee",
+            "en": "",
+            "tagline": "A content track that scrolls in a seamless infinite loop, pausing on hover or keyboard focus and off screen, and draggable by the pointer, for logo…",
+            "tags": [],
+            "source": "https://21st.dev/@kevingirelli/components/marquee",
+            "img": "/assets/motion/carousels/cc-marquee-3.png",
+            "video": "/assets/motion/carousels/cc-marquee-3.mp4",
+            "videoHd": "/assets/motion/carousels/cc-marquee-3-hd.mp4"
+          },
+          {
+            "slug": "cc-logo-carousel-2",
+            "name": "Staggered Logo Carousel",
+            "en": "",
+            "tagline": "An animated logo carousel that cycles brand logos in staggered slots with blur transitions, image preloading, responsive slot counts, and…",
+            "tags": [],
+            "source": "https://21st.dev/@witharc/components/logo-carousel",
+            "img": "/assets/motion/carousels/cc-logo-carousel-2.png",
+            "video": "/assets/motion/carousels/cc-logo-carousel-2.mp4",
+            "videoHd": "/assets/motion/carousels/cc-logo-carousel-2-hd.mp4"
+          }
+        ]
+      },
+      {
+        "id": "cat-motion-quote",
+        "title": "Testimonials",
+        "category": "quote",
+        "count": 26,
+        "terms": [
+          {
+            "slug": "cc-testimonial",
+            "name": "Testimonial",
+            "en": "",
+            "tagline": "Testimonial — an animated carousel component.",
+            "tags": [],
+            "source": "https://21st.dev/@larsen66/components/testimonial",
+            "img": "/assets/motion/carousels/cc-testimonial.png"
+          },
+          {
+            "slug": "cc-connected-carousel",
+            "name": "Connected Carousel",
+            "en": "",
+            "tagline": "An interactive customer stories carousel inspired by Calendly, featuring organically linked squircle cards, seamless curved bridge connectors, an…",
+            "tags": [],
+            "source": "https://21st.dev/@arunachalam/components/connected-carousel",
+            "img": "/assets/motion/carousels/cc-connected-carousel.png",
+            "video": "/assets/motion/carousels/cc-connected-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-connected-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-testimonials-6",
+            "name": "Three-column Testimonials",
+            "en": "",
+            "tagline": "Testimonials section with three columns of quote cards that scroll infinitely in a vertical marquee, slowing on hover.",
+            "tags": [],
+            "source": "https://21st.dev/@sshahaider/components/testimonials-6",
+            "img": "/assets/motion/carousels/cc-testimonials-6.png",
+            "video": "/assets/motion/carousels/cc-testimonials-6.mp4",
+            "videoHd": "/assets/motion/carousels/cc-testimonials-6-hd.mp4"
+          },
+          {
+            "slug": "cc-testimonial-slider-1",
+            "name": "Testimonial Slider",
+            "en": "",
+            "tagline": "Testimonial Slider — an animated carousel component.",
+            "tags": [],
+            "source": "https://21st.dev/@kavikatiyar/components/testimonial-slider-1",
+            "img": "/assets/motion/carousels/cc-testimonial-slider-1.png",
+            "video": "/assets/motion/carousels/cc-testimonial-slider-1.mp4",
+            "videoHd": "/assets/motion/carousels/cc-testimonial-slider-1-hd.mp4"
+          },
+          {
+            "slug": "cc-stagger-testimonials",
+            "name": "Stagger Testimonials",
+            "en": "",
+            "tagline": "Testimonial Component that stands apart from the boring boxes of quotes.",
+            "tags": [],
+            "source": "https://21st.dev/@vaib215/components/stagger-testimonials",
+            "img": "/assets/motion/carousels/cc-stagger-testimonials.png",
+            "video": "/assets/motion/carousels/cc-stagger-testimonials.mp4",
+            "videoHd": "/assets/motion/carousels/cc-stagger-testimonials-hd.mp4"
+          },
+          {
+            "slug": "cc-project-showcase",
+            "name": "Project Showcase",
+            "en": "",
+            "tagline": "A customized version of the Aceternity's Animated Testimonials component.",
+            "tags": [],
+            "source": "https://21st.dev/@maxim.bort.devel/components/project-showcase",
+            "img": "/assets/motion/carousels/cc-project-showcase.png",
+            "video": "/assets/motion/carousels/cc-project-showcase.mp4",
+            "videoHd": "/assets/motion/carousels/cc-project-showcase-hd.mp4"
+          },
+          {
+            "slug": "cc-testimonials-with-marquee",
+            "name": "Testimonials Marquee",
+            "en": "",
+            "tagline": "A horizontally scrolling testimonials section with multiple infinite marquee rows for showcasing customer or user quotes.",
+            "tags": [],
+            "source": "https://21st.dev/@scrollxui/components/testimonials-with-marquee",
+            "img": "/assets/motion/carousels/cc-testimonials-with-marquee.png",
+            "video": "/assets/motion/carousels/cc-testimonials-with-marquee.mp4",
+            "videoHd": "/assets/motion/carousels/cc-testimonials-with-marquee-hd.mp4"
+          },
+          {
+            "slug": "cc-scroll-reel-testimonials",
+            "name": "Scroll Reel Testimonials",
+            "en": "",
+            "tagline": "Testimonial carousel with a counter-rotating portrait reel and per-character rising text, the middle column scrolls one way while the outer columns…",
+            "tags": [],
+            "source": "https://21st.dev/@smammar100/components/scroll-reel-testimonials",
+            "img": "/assets/motion/carousels/cc-scroll-reel-testimonials.png",
+            "video": "/assets/motion/carousels/cc-scroll-reel-testimonials.mp4",
+            "videoHd": "/assets/motion/carousels/cc-scroll-reel-testimonials-hd.mp4"
+          },
+          {
+            "slug": "cc-testimonial-section-3",
+            "name": "Three-card Testimonial",
+            "en": "",
+            "tagline": "A three-card testimonial carousel section with a highlighted center quote, keyboard navigation, and previous/next controls.",
+            "tags": [],
+            "source": "https://21st.dev/@solaceui/components/testimonial-section-3",
+            "img": "/assets/motion/carousels/cc-testimonial-section-3.png",
+            "video": "/assets/motion/carousels/cc-testimonial-section-3.mp4",
+            "videoHd": "/assets/motion/carousels/cc-testimonial-section-3-hd.mp4"
+          },
+          {
+            "slug": "cc-testimonials-13",
+            "name": "Testimonials Marquee",
+            "en": "",
+            "tagline": "A testimonials section that scrolls customer quote cards with avatars and company logos in an auto-playing marquee that pauses on hover.",
+            "tags": [],
+            "source": "https://21st.dev/@shadcnui-blocks/components/testimonials-13",
+            "img": "/assets/motion/carousels/cc-testimonials-13.png",
+            "video": "/assets/motion/carousels/cc-testimonials-13.mp4",
+            "videoHd": "/assets/motion/carousels/cc-testimonials-13-hd.mp4"
+          },
+          {
+            "slug": "cc-twitter-testimonial-cards",
+            "name": "Twitter Testimonial Cards",
+            "en": "",
+            "tagline": "These cards were imported from a very popular 21st cards component and adapted for twitter, improved hover state so user can see entire card…",
+            "tags": [],
+            "source": "https://21st.dev/@rxxndy/components/twitter-testimonial-cards",
+            "img": "/assets/motion/carousels/cc-twitter-testimonial-cards.png",
+            "video": "/assets/motion/carousels/cc-twitter-testimonial-cards.mp4",
+            "videoHd": "/assets/motion/carousels/cc-twitter-testimonial-cards-hd.mp4"
+          },
+          {
+            "slug": "cc-design-testimonial",
+            "name": "Asymmetric Testimonial",
+            "en": "",
+            "tagline": "A completely unique asymmetric layout testimonial.",
+            "tags": [],
+            "source": "https://21st.dev/@jatin-yadav05/components/design-testimonial",
+            "img": "/assets/motion/carousels/cc-design-testimonial.png",
+            "video": "/assets/motion/carousels/cc-design-testimonial.mp4",
+            "videoHd": "/assets/motion/carousels/cc-design-testimonial-hd.mp4"
+          },
+          {
+            "slug": "cc-testimonial-marquee",
+            "name": "Testimonial Marquee",
+            "en": "",
+            "tagline": "An infinite horizontally scrolling marquee for showcasing testimonials and social proof, with single-row, dual-row, stacked, and edge-to-edge flush…",
+            "tags": [],
+            "source": "https://21st.dev/@componentry/components/testimonial-marquee",
+            "img": "/assets/motion/carousels/cc-testimonial-marquee.png",
+            "video": "/assets/motion/carousels/cc-testimonial-marquee.mp4",
+            "videoHd": "/assets/motion/carousels/cc-testimonial-marquee-hd.mp4"
+          },
+          {
+            "slug": "cc-glass-testimonial-swiper",
+            "name": "Glass Testimonial Swiper",
+            "en": "",
+            "tagline": "Glass Testimonial Swiper — an animated carousel component.",
+            "tags": [],
+            "source": "https://21st.dev/@easemize/components/glass-testimonial-swiper",
+            "img": "/assets/motion/carousels/cc-glass-testimonial-swiper.png",
+            "video": "/assets/motion/carousels/cc-glass-testimonial-swiper.mp4",
+            "videoHd": "/assets/motion/carousels/cc-glass-testimonial-swiper-hd.mp4"
+          },
+          {
+            "slug": "cc-animated-testimonials",
+            "name": "Animated Testimonials",
+            "en": "",
+            "tagline": "Minimal testimonials sections with image and quote.",
+            "tags": [],
+            "source": "https://21st.dev/@user_aceternity/components/animated-testimonials",
+            "img": "/assets/motion/carousels/cc-animated-testimonials.png",
+            "video": "/assets/motion/carousels/cc-animated-testimonials.mp4",
+            "videoHd": "/assets/motion/carousels/cc-animated-testimonials-hd.mp4"
+          },
+          {
+            "slug": "cc-simple-animated-testimonials",
+            "name": "Simple Animated Testimonials",
+            "en": "",
+            "tagline": "Clean simple animated testimonials",
+            "tags": [],
+            "source": "https://21st.dev/@user_2vDrVta4PKJEhGZOxwYiAcxSKTV/components/simple-animated-testimonials",
+            "img": "/assets/motion/carousels/cc-simple-animated-testimonials.png",
+            "video": "/assets/motion/carousels/cc-simple-animated-testimonials.mp4",
+            "videoHd": "/assets/motion/carousels/cc-simple-animated-testimonials-hd.mp4"
+          },
+          {
+            "slug": "cc-sliding-testimonial",
+            "name": "Sliding Testimonial",
+            "en": "",
+            "tagline": "Beautifully designed, fully responsive, expertly crafted Testimonial with sliding animation.",
+            "tags": [],
+            "source": "https://21st.dev/@kinfe123/components/sliding-testimonial",
+            "img": "/assets/motion/carousels/cc-sliding-testimonial.png",
+            "video": "/assets/motion/carousels/cc-sliding-testimonial.mp4",
+            "videoHd": "/assets/motion/carousels/cc-sliding-testimonial-hd.mp4"
+          },
+          {
+            "slug": "cc-profile-card-testimonial-carousel",
+            "name": "Profile Card Testimonials",
+            "en": "",
+            "tagline": "A responsive testimonial carousel component featuring profile cards with avatars, descriptions, and social links.",
+            "tags": [],
+            "source": "https://21st.dev/@arunachalam0606/components/profile-card-testimonial-carousel",
+            "img": "/assets/motion/carousels/cc-profile-card-testimonial-carousel.png",
+            "video": "/assets/motion/carousels/cc-profile-card-testimonial-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-profile-card-testimonial-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-testimonial-2",
+            "name": "Draggable Testimonial",
+            "en": "",
+            "tagline": "Dragable testimonial, where user can swap to change",
+            "tags": [],
+            "source": "https://21st.dev/@user_2rdX0nxNZVHvzWonaWWUowA52VG/components/testimonial",
+            "img": "/assets/motion/carousels/cc-testimonial-2.png",
+            "video": "/assets/motion/carousels/cc-testimonial-2.mp4",
+            "videoHd": "/assets/motion/carousels/cc-testimonial-2-hd.mp4"
+          },
+          {
+            "slug": "cc-testimonial-card-1",
+            "name": "Testimonial Card",
+            "en": "",
+            "tagline": "Testimonial Card\nThis component, TestimonialCard, is designed to be a flexible and reusable element for displaying reviews and features.",
+            "tags": [],
+            "source": "https://21st.dev/@ravikatiyar162/components/testimonial-card-1",
+            "img": "/assets/motion/carousels/cc-testimonial-card-1.png",
+            "video": "/assets/motion/carousels/cc-testimonial-card-1.mp4",
+            "videoHd": "/assets/motion/carousels/cc-testimonial-card-1-hd.mp4"
+          },
+          {
+            "slug": "cc-quote-crossfade",
+            "name": "Quote Crossfade",
+            "en": "",
+            "tagline": "A manually navigated testimonial panel with animated quote transitions and explicit source attribution.",
+            "tags": [],
+            "source": "https://21st.dev/@ibrandify/components/quote-crossfade",
+            "img": "/assets/motion/carousels/cc-quote-crossfade.png",
+            "video": "/assets/motion/carousels/cc-quote-crossfade.mp4",
+            "videoHd": "/assets/motion/carousels/cc-quote-crossfade-hd.mp4"
+          },
+          {
+            "slug": "cc-ink-orbit-testimonials",
+            "name": "Ink Orbit Testimonials",
+            "en": "",
+            "tagline": "Testimonials section with logo marquee: snap-scrolling quote cards with star ratings, drawn greyscale portraits and an arrows-and-dots pager, over a…",
+            "tags": [],
+            "source": "https://21st.dev/@kedhareswer/components/ink-orbit-testimonials",
+            "img": "/assets/motion/carousels/cc-ink-orbit-testimonials.png",
+            "video": "/assets/motion/carousels/cc-ink-orbit-testimonials.mp4",
+            "videoHd": "/assets/motion/carousels/cc-ink-orbit-testimonials-hd.mp4"
+          },
+          {
+            "slug": "cc-testimonial-section-4",
+            "name": "Three-card Testimonial",
+            "en": "",
+            "tagline": "A three-card testimonial carousel with a highlighted center quote card, customer photos, company logos, and keyboard-arrow navigation.",
+            "tags": [],
+            "source": "https://21st.dev/@solaceui/components/testimonial-section-4",
+            "img": "/assets/motion/carousels/cc-testimonial-section-4.png",
+            "video": "/assets/motion/carousels/cc-testimonial-section-4.mp4",
+            "videoHd": "/assets/motion/carousels/cc-testimonial-section-4-hd.mp4"
+          },
+          {
+            "slug": "cc-editorial-testimonial",
+            "name": "Editorial Testimonial",
+            "en": "",
+            "tagline": "An editorial-style testimonial with a bold typographic.",
+            "tags": [],
+            "source": "https://21st.dev/@jatin-yadav05/components/editorial-testimonial",
+            "img": "/assets/motion/carousels/cc-editorial-testimonial.png",
+            "video": "/assets/motion/carousels/cc-editorial-testimonial.mp4",
+            "videoHd": "/assets/motion/carousels/cc-editorial-testimonial-hd.mp4"
+          },
+          {
+            "slug": "cc-testimonial-3",
+            "name": "Split Testimonial",
+            "en": "",
+            "tagline": "An animated testimonials slider, pairing a person's image on the left with their quote, name, and title on the right.",
+            "tags": [],
+            "source": "https://21st.dev/@ravikatiyar162/components/testimonial",
+            "img": "/assets/motion/carousels/cc-testimonial-3.png",
+            "video": "/assets/motion/carousels/cc-testimonial-3.mp4",
+            "videoHd": "/assets/motion/carousels/cc-testimonial-3-hd.mp4"
+          },
+          {
+            "slug": "cc-testimonial-carousel",
+            "name": "Testimonial Carousel",
+            "en": "",
+            "tagline": "Testimonial Carousel with company logo and avatar",
+            "tags": [],
+            "source": "https://21st.dev/@user_RayMethula/components/testimonial-carousel",
+            "img": "/assets/motion/carousels/cc-testimonial-carousel.png",
+            "video": "/assets/motion/carousels/cc-testimonial-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-testimonial-carousel-hd.mp4"
+          }
+        ]
+      },
+      {
+        "id": "cat-motion-fx",
+        "title": "Fullscreen & Effects",
+        "category": "fx",
+        "count": 24,
+        "terms": [
+          {
+            "slug": "cc-elegant-carousel",
+            "name": "Elegant Carousel",
+            "en": "",
+            "tagline": "An editorial-style image carousel with a split-panel layout — text content on the left, full-bleed imagery on the right.",
+            "tags": [],
+            "source": "https://21st.dev/@dev.yadhakim/components/elegant-carousel",
+            "img": "/assets/motion/carousels/cc-elegant-carousel.png",
+            "video": "/assets/motion/carousels/cc-elegant-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-elegant-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-stories-carousel",
+            "name": "Stories Carousel",
+            "en": "",
+            "tagline": "Stories Carousel — an animated carousel component.",
+            "tags": [],
+            "source": "https://21st.dev/@larsen66/components/stories-carousel",
+            "img": "/assets/motion/carousels/cc-stories-carousel.png",
+            "video": "/assets/motion/carousels/cc-stories-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-stories-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-phone-mockups-1",
+            "name": "Phone Mockups",
+            "en": "",
+            "tagline": "An auto-rotating iPhone mockup carousel that showcases app screenshots inside a realistic phone frame with previous, next and pause controls.",
+            "tags": [],
+            "source": "https://21st.dev/@solaceui/components/phone-mockups-1",
+            "img": "/assets/motion/carousels/cc-phone-mockups-1.png",
+            "video": "/assets/motion/carousels/cc-phone-mockups-1.mp4",
+            "videoHd": "/assets/motion/carousels/cc-phone-mockups-1-hd.mp4"
+          },
+          {
+            "slug": "cc-liquid-glass-carousel",
+            "name": "Liquid Glass Carousel",
+            "en": "",
+            "tagline": "An infinite image carousel viewed through a WebGL liquid-glass lens with chromatic rim dispersion, snap-scrolling, and a click-to-focus zoom on each…",
+            "tags": [],
+            "source": "https://21st.dev/@componentry/components/liquid-glass-carousel",
+            "img": "/assets/motion/carousels/cc-liquid-glass-carousel.png",
+            "video": "/assets/motion/carousels/cc-liquid-glass-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-liquid-glass-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-portal-carousel",
+            "name": "Portal Carousel",
+            "en": "",
+            "tagline": "Fullscreen image carousel with a NEXT preview that rides the cursor.",
+            "tags": [],
+            "source": "https://21st.dev/@hyperiux/components/portal-carousel",
+            "img": "/assets/motion/carousels/cc-portal-carousel.png",
+            "video": "/assets/motion/carousels/cc-portal-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-portal-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-morph-gallery",
+            "name": "Morph Gallery",
+            "en": "",
+            "tagline": "WebGL image transition gallery: slides dissolve through noise instead of cross-fading, the incoming photo burning through the outgoing one in…",
+            "tags": [],
+            "source": "https://21st.dev/@kedhareswer/components/morph-gallery",
+            "img": "/assets/motion/carousels/cc-morph-gallery.png",
+            "video": "/assets/motion/carousels/cc-morph-gallery.mp4",
+            "videoHd": "/assets/motion/carousels/cc-morph-gallery-hd.mp4"
+          },
+          {
+            "slug": "cc-aperture-carousel",
+            "name": "Aperture Reveal Carousel",
+            "en": "",
+            "tagline": "Aperture reveal image carousel for React: a full-screen slider where the next photo opens through a circular iris from wherever you click, with a…",
+            "tags": [],
+            "source": "https://21st.dev/@kedhareswer/components/aperture-carousel",
+            "img": "/assets/motion/carousels/cc-aperture-carousel.png",
+            "video": "/assets/motion/carousels/cc-aperture-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-aperture-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-water-ripple-carousel",
+            "name": "Water Ripple Carousel",
+            "en": "",
+            "tagline": "Water ripple image carousel for React: tap the photo and a WebGL ripple ring spreads from that point, bending the old photo at its edge as the next…",
+            "tags": [],
+            "source": "https://21st.dev/@kedhareswer/components/water-ripple-carousel",
+            "img": "/assets/motion/carousels/cc-water-ripple-carousel.png",
+            "video": "/assets/motion/carousels/cc-water-ripple-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-water-ripple-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-story-viewer",
+            "name": "Story Viewer",
+            "en": "",
+            "tagline": "Story Viewer — an animated carousel component.",
+            "tags": [],
+            "source": "https://21st.dev/@osiris-balonga/components/story-viewer",
+            "img": "/assets/motion/carousels/cc-story-viewer.png",
+            "video": "/assets/motion/carousels/cc-story-viewer.mp4",
+            "videoHd": "/assets/motion/carousels/cc-story-viewer-hd.mp4"
+          },
+          {
+            "slug": "cc-carousel-squeeze",
+            "name": "Accordion Squeeze Carousel",
+            "en": "",
+            "tagline": "An expanding accordion image carousel: one wide hero panel, the rest squeezed into thin clickable strips.",
+            "tags": [],
+            "source": "https://21st.dev/@yura/components/carousel-squeeze",
+            "img": "/assets/motion/carousels/cc-carousel-squeeze.png",
+            "video": "/assets/motion/carousels/cc-carousel-squeeze.mp4",
+            "videoHd": "/assets/motion/carousels/cc-carousel-squeeze-hd.mp4"
+          },
+          {
+            "slug": "cc-focus-pull-carousel",
+            "name": "Focus Pull Carousel",
+            "en": "",
+            "tagline": "Focus blur image carousel for React: a camera-style focus pull where the centred photo is sharp while its neighbours blur, shrink and fade…",
+            "tags": [],
+            "source": "https://21st.dev/@kedhareswer/components/focus-pull-carousel",
+            "img": "/assets/motion/carousels/cc-focus-pull-carousel.png",
+            "video": "/assets/motion/carousels/cc-focus-pull-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-focus-pull-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-glass-carousel",
+            "name": "Liquid Glass Gallery",
+            "en": "",
+            "tagline": "A horizontal gallery of portrait panels viewed through a WebGL liquid-glass lens that distorts and refracts the centred image, with click-to-focus…",
+            "tags": [],
+            "source": "https://21st.dev/@ham7a311/components/glass-carousel",
+            "img": "/assets/motion/carousels/cc-glass-carousel.png",
+            "demoClass": "card-demo scaled-preview style-preview preview-animations-paused",
+            "video": "/assets/motion/carousels/cc-glass-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-glass-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-story",
+            "name": "Story",
+            "en": "",
+            "tagline": "- story similar to IG and facebook, you can also use it as a autoplay carousel",
+            "tags": [],
+            "source": "https://21st.dev/@youcefbnm/components/story",
+            "img": "/assets/motion/carousels/cc-story.png",
+            "video": "/assets/motion/carousels/cc-story.mp4",
+            "videoHd": "/assets/motion/carousels/cc-story-hd.mp4"
+          },
+          {
+            "slug": "cc-hover-expand-gallery",
+            "name": "Hover Expand Gallery",
+            "en": "",
+            "tagline": "Hover expand image gallery accordion: a row of hairline-separated panels with vertical labels, where the hovered or tapped panel grows to reveal its…",
+            "tags": [],
+            "source": "https://21st.dev/@kedhareswer/components/hover-expand-gallery",
+            "img": "/assets/motion/carousels/cc-hover-expand-gallery.png",
+            "video": "/assets/motion/carousels/cc-hover-expand-gallery.mp4",
+            "videoHd": "/assets/motion/carousels/cc-hover-expand-gallery-hd.mp4"
+          },
+          {
+            "slug": "cc-paper-curl-carousel",
+            "name": "Paper Curl Carousel",
+            "en": "",
+            "tagline": "Page curl image carousel in WebGL: drag, flick or click and each printed slide rolls over a lit cylinder, shows paper stock on its back and casts a…",
+            "tags": [],
+            "source": "https://21st.dev/@kedhareswer/components/paper-curl-carousel",
+            "img": "/assets/motion/carousels/cc-paper-curl-carousel.png",
+            "video": "/assets/motion/carousels/cc-paper-curl-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-paper-curl-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-zoom-slider",
+            "name": "Zoom Slider",
+            "en": "",
+            "tagline": "Infinitely looping horizontal image carousel where the active card expands on a quadratic easing curve as it enters.",
+            "tags": [],
+            "source": "https://21st.dev/@hyperiux/components/zoom-slider",
+            "img": "/assets/motion/carousels/cc-zoom-slider.png",
+            "video": "/assets/motion/carousels/cc-zoom-slider.mp4",
+            "videoHd": "/assets/motion/carousels/cc-zoom-slider-hd.mp4"
+          },
+          {
+            "slug": "cc-airplane-window-gallery",
+            "name": "Airplane Window Gallery",
+            "en": "",
+            "tagline": "Airplane window image gallery for React and Tailwind CSS (shadcn/ui), with rising shades, changing destinations, and a full-bleed scenery zoom.",
+            "tags": [],
+            "source": "https://21st.dev/@dhxwhy/components/airplane-window-gallery",
+            "img": "/assets/motion/carousels/cc-airplane-window-gallery.png",
+            "video": "/assets/motion/carousels/cc-airplane-window-gallery.mp4",
+            "videoHd": "/assets/motion/carousels/cc-airplane-window-gallery-hd.mp4"
+          },
+          {
+            "slug": "cc-lens-zoom-carousel",
+            "name": "Lens Zoom Carousel",
+            "en": "",
+            "tagline": "Zoom blur image carousel for React: a full-screen slider where the next photo lands out of a soft magnified blur with fading ghost copies, like a…",
+            "tags": [],
+            "source": "https://21st.dev/@kedhareswer/components/lens-zoom-carousel",
+            "img": "/assets/motion/carousels/cc-lens-zoom-carousel.png",
+            "video": "/assets/motion/carousels/cc-lens-zoom-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-lens-zoom-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-particle-dissolve-carousel",
+            "name": "Particle Dissolve Carousel",
+            "en": "",
+            "tagline": "WebGL particle dissolve image carousel for React: on every slide change the picture breaks into coloured grains that ride a drifting flow field and…",
+            "tags": [],
+            "source": "https://21st.dev/@kedhareswer/components/particle-dissolve-carousel",
+            "img": "/assets/motion/carousels/cc-particle-dissolve-carousel.png",
+            "video": "/assets/motion/carousels/cc-particle-dissolve-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-particle-dissolve-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-stepped-morph-slider",
+            "name": "Stepped Morph Slider",
+            "en": "",
+            "tagline": "Stepped morph image slider for React: each slide is revealed through a stepped skyline mask that morphs column by column into the next picture, with…",
+            "tags": [],
+            "source": "https://21st.dev/@kedhareswer/components/stepped-morph-slider",
+            "img": "/assets/motion/carousels/cc-stepped-morph-slider.png",
+            "video": "/assets/motion/carousels/cc-stepped-morph-slider.mp4",
+            "videoHd": "/assets/motion/carousels/cc-stepped-morph-slider-hd.mp4"
+          },
+          {
+            "slug": "cc-ink-blot-carousel",
+            "name": "Ink Blot Carousel",
+            "en": "",
+            "tagline": "Ink blot reveal image carousel for React: the next photo spreads in like ink soaking into paper, a ragged blot blooming from where you tap until it…",
+            "tags": [],
+            "source": "https://21st.dev/@kedhareswer/components/ink-blot-carousel",
+            "img": "/assets/motion/carousels/cc-ink-blot-carousel.png",
+            "video": "/assets/motion/carousels/cc-ink-blot-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-ink-blot-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-elevator-doors-gallery",
+            "name": "Elevator Doors Gallery",
+            "en": "",
+            "tagline": "Hotel Elevator Doors Image Gallery for React and Tailwind CSS (shadcn/ui), with brushed-steel portrait doors, a lit floor display and a scene-filling…",
+            "tags": [],
+            "source": "https://21st.dev/@dhxwhy/components/elevator-doors-gallery",
+            "img": "/assets/motion/carousels/cc-elevator-doors-gallery.png",
+            "video": "/assets/motion/carousels/cc-elevator-doors-gallery.mp4",
+            "videoHd": "/assets/motion/carousels/cc-elevator-doors-gallery-hd.mp4"
           },
           {
             "slug": "motion-dot-intro",
@@ -3888,19 +5328,399 @@
             ],
             "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div style=\"position:relative;width:100%;height:100%;background:#0a0b0d\"><div style=\"position:absolute;left:50%;top:34%;transform:translate(-50%,-50%) rotateX(10deg) rotateY(-8deg);width:150px;height:94px;border-radius:11px;background:linear-gradient(135deg,#2c2f35,#17191d 46%,#34373e);border:1px solid #43474f;box-shadow:0 16px 32px rgba(0,0,0,.5);box-sizing:border-box\"><span style=\"position:absolute;top:11px;right:12px;font-size:10px;letter-spacing:1px;color:#e6c58a\">潮汐</span><span style=\"position:absolute;top:34px;left:12px;width:22px;height:17px;border-radius:4px;background:linear-gradient(120deg,#d8b475,#8d7040)\"></span><span style=\"position:absolute;bottom:12px;left:12px;font-size:10px;letter-spacing:1px;color:#b9bdc5\">•••• •••• •••• 4291</span></div><div style=\"position:absolute;left:20%;bottom:20%;width:92px;height:9px;border-radius:5px;background:#f2f3f5\"></div><div style=\"position:absolute;left:20%;bottom:13%;width:128px;height:6px;border-radius:4px;background:#3a3d44\"></div></div></div>",
             "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
+          }
+        ]
+      },
+      {
+        "id": "cat-motion-basic",
+        "title": "Basic Sliders",
+        "category": "basic",
+        "count": 35,
+        "terms": [
+          {
+            "slug": "cc-cards",
+            "name": "Blog Cards",
+            "en": "",
+            "tagline": "Blog Cards — an animated carousel component.",
+            "tags": [],
+            "source": "https://21st.dev/@larsen66/components/cards",
+            "img": "/assets/motion/carousels/cc-cards.png",
+            "video": "/assets/motion/carousels/cc-cards.mp4",
+            "videoHd": "/assets/motion/carousels/cc-cards-hd.mp4"
           },
           {
-            "slug": "motion-bounce-cards",
-            "name": "Bounce Cards",
+            "slug": "cc-feature-carousel",
+            "name": "Feature Carousel",
             "en": "",
-            "tagline": "Five square cards fanned out: they spring in one by one, hovered cards straighten and lift while neighbours get pushed aside, and a click springs them back. Six params tune it live.",
-            "tags": [
-              "Spring entrance",
-              "Hover push",
-              "Tunable"
-            ],
-            "demoHtml": "<div class=\"scaled-preview-canvas style-preview-canvas\"><div style=\"position:relative;width:100%;height:100%;background:var(--bg-soft)\"><div style=\"position:absolute;left:50%;top:50%;width:118px;height:118px;margin:-59px 0 0 -59px;transform:translate(-170px,0) rotate(10deg) scale(.96);border-radius:16px;border:3px solid #fff;background:url(/assets/motion/citrus.png) center/cover;box-shadow:0 12px 26px rgba(0,0,0,.22);z-index:1\"></div><div style=\"position:absolute;left:50%;top:50%;width:118px;height:118px;margin:-59px 0 0 -59px;transform:translate(-85px,0) rotate(5deg) scale(.98);border-radius:16px;border:3px solid #fff;background:url(/assets/motion/dune.png) center/cover;box-shadow:0 12px 26px rgba(0,0,0,.22);z-index:2\"></div><div style=\"position:absolute;left:50%;top:50%;width:118px;height:118px;margin:-59px 0 0 -59px;transform:rotate(-3deg);border-radius:16px;border:3px solid #fff;background:url(/assets/motion/forest.png) center/cover;box-shadow:0 16px 34px rgba(0,0,0,.28);z-index:3\"></div><div style=\"position:absolute;left:50%;top:50%;width:118px;height:118px;margin:-59px 0 0 -59px;transform:translate(85px,0) rotate(-10deg) scale(.98);border-radius:16px;border:3px solid #fff;background:url(/assets/motion/dune.png) center/cover;box-shadow:0 12px 26px rgba(0,0,0,.22);z-index:4\"></div><div style=\"position:absolute;left:50%;top:50%;width:118px;height:118px;margin:-59px 0 0 -59px;transform:translate(170px,0) rotate(2deg) scale(.96);border-radius:16px;border:3px solid #fff;background:url(/assets/motion/citrus.png) center/cover;box-shadow:0 12px 26px rgba(0,0,0,.22);z-index:5\"></div></div></div>",
-            "demoClass": "card-demo scaled-preview style-preview preview-animations-paused"
+            "tagline": "An animated feature carousel with smooth slide transitions.",
+            "tags": [],
+            "source": "https://21st.dev/@larsen66/components/feature-carousel",
+            "img": "/assets/motion/carousels/cc-feature-carousel.png",
+            "video": "/assets/motion/carousels/cc-feature-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-feature-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-offer-carousel",
+            "name": "Offer Carousel",
+            "en": "",
+            "tagline": "Offer Carousel\nThis component provides a sleek, horizontally scrollable display for showcasing offers or featured items.",
+            "tags": [],
+            "source": "https://21st.dev/@ravikatiyar162/components/offer-carousel",
+            "img": "/assets/motion/carousels/cc-offer-carousel.png",
+            "video": "/assets/motion/carousels/cc-offer-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-offer-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-gallery4",
+            "name": "Case Study Gallery",
+            "en": "",
+            "tagline": "A carousel gallery of full height image cards with case study text on top.",
+            "tags": [],
+            "source": "https://21st.dev/@user_2rguB0QxcSITG2Y7ivePFsKsUU6/components/gallery4",
+            "img": "/assets/motion/carousels/cc-gallery4.png",
+            "video": "/assets/motion/carousels/cc-gallery4.mp4",
+            "videoHd": "/assets/motion/carousels/cc-gallery4-hd.mp4"
+          },
+          {
+            "slug": "cc-carousel-1",
+            "name": "Carousel",
+            "en": "",
+            "tagline": "Carousel — an animated carousel component.",
+            "tags": [],
+            "source": "https://21st.dev/@larsen66/components/carousel-1",
+            "img": "/assets/motion/carousels/cc-carousel-1.png",
+            "video": "/assets/motion/carousels/cc-carousel-1.mp4",
+            "videoHd": "/assets/motion/carousels/cc-carousel-1-hd.mp4"
+          },
+          {
+            "slug": "cc-feature-carousel-2",
+            "name": "Feature Carousel",
+            "en": "",
+            "tagline": "Feature Carousel\nInteractive showcase for highlighting multiple app features in a swipeable, modern layout.",
+            "tags": [],
+            "source": "https://21st.dev/@ravikatiyar162/components/feature-carousel",
+            "img": "/assets/motion/carousels/cc-feature-carousel-2.png",
+            "video": "/assets/motion/carousels/cc-feature-carousel-2.mp4",
+            "videoHd": "/assets/motion/carousels/cc-feature-carousel-2-hd.mp4"
+          },
+          {
+            "slug": "cc-carousel-08",
+            "name": "Apple-style Card Carousel",
+            "en": "",
+            "tagline": "A drag-free image card carousel with dark overlay captions, category labels, and circular prev/next arrow controls, styled after Apple's card gallery…",
+            "tags": [],
+            "source": "https://21st.dev/@shadcnspace/components/carousel-08",
+            "img": "/assets/motion/carousels/cc-carousel-08.png",
+            "video": "/assets/motion/carousels/cc-carousel-08.mp4",
+            "videoHd": "/assets/motion/carousels/cc-carousel-08-hd.mp4"
+          },
+          {
+            "slug": "cc-book-slider",
+            "name": "Book Slider",
+            "en": "",
+            "tagline": "click to scroll",
+            "tags": [],
+            "source": "https://21st.dev/@aarispathan15/components/book-slider",
+            "img": "/assets/motion/carousels/cc-book-slider.png",
+            "video": "/assets/motion/carousels/cc-book-slider.mp4",
+            "videoHd": "/assets/motion/carousels/cc-book-slider-hd.mp4"
+          },
+          {
+            "slug": "cc-carousel",
+            "name": "Carousel",
+            "en": "",
+            "tagline": "A flexible and easy-to-use carousel with customizable navigation and indicators.",
+            "tags": [],
+            "source": "https://21st.dev/@user_2rkgEMvkQ7I2oxalLXELCy8NObN/components/carousel",
+            "img": "/assets/motion/carousels/cc-carousel.png",
+            "video": "/assets/motion/carousels/cc-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-carousel-card-1",
+            "name": "Carousel Card",
+            "en": "",
+            "tagline": "UI component for card with carousel effects",
+            "tags": [],
+            "source": "https://21st.dev/@user_2wnqnvX2yOglGP4CzRypdJkeHrv/components/carousel-card-1",
+            "img": "/assets/motion/carousels/cc-carousel-card-1.png",
+            "video": "/assets/motion/carousels/cc-carousel-card-1.mp4",
+            "videoHd": "/assets/motion/carousels/cc-carousel-card-1-hd.mp4"
+          },
+          {
+            "slug": "cc-progressive-carousel",
+            "name": "Progressive Carousel",
+            "en": "",
+            "tagline": "Progressive Carousel — an animated carousel component.",
+            "tags": [],
+            "source": "https://21st.dev/@uilayout.contact/components/progressive-carousel",
+            "img": "/assets/motion/carousels/cc-progressive-carousel.png",
+            "video": "/assets/motion/carousels/cc-progressive-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-progressive-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-product-carousel",
+            "name": "Product Carousel",
+            "en": "",
+            "tagline": "Product Carousel\nThis component displays a horizontally scrollable list of products with a title and navigation controls.",
+            "tags": [],
+            "source": "https://21st.dev/@ravikatiyar162/components/product-carousel",
+            "img": "/assets/motion/carousels/cc-product-carousel.png",
+            "video": "/assets/motion/carousels/cc-product-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-product-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-carousel-2",
+            "name": "Reports Carousel",
+            "en": "",
+            "tagline": "Shareholder Reports Carousel\nThis component displays a collection of reports in a horizontally scrollable carousel.",
+            "tags": [],
+            "source": "https://21st.dev/@ravikatiyar162/components/carousel",
+            "img": "/assets/motion/carousels/cc-carousel-2.png",
+            "video": "/assets/motion/carousels/cc-carousel-2.mp4",
+            "videoHd": "/assets/motion/carousels/cc-carousel-2-hd.mp4"
+          },
+          {
+            "slug": "cc-framer-normal-carousel",
+            "name": "Spring Carousel",
+            "en": "",
+            "tagline": "An image carousel with spring-animated sliding, prev/next arrows, and a progress dot indicator built with Motion.",
+            "tags": [],
+            "source": "https://21st.dev/@uilayout.contact/components/framer-normal-carousel",
+            "img": "/assets/motion/carousels/cc-framer-normal-carousel.png",
+            "video": "/assets/motion/carousels/cc-framer-normal-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-framer-normal-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-carousel-3",
+            "name": "Embla Carousel",
+            "en": "",
+            "tagline": "A carousel with motion and swipe built using Embla.",
+            "tags": [],
+            "source": "https://21st.dev/@sean0205/components/carousel",
+            "img": "/assets/motion/carousels/cc-carousel-3.png",
+            "video": "/assets/motion/carousels/cc-carousel-3.mp4",
+            "videoHd": "/assets/motion/carousels/cc-carousel-3-hd.mp4"
+          },
+          {
+            "slug": "cc-carousel-4",
+            "name": "Microinteraction Carousel",
+            "en": "",
+            "tagline": "A customizable carousel with microinteractions and slider.",
+            "tags": [],
+            "source": "https://21st.dev/@user_aceternity/components/carousel",
+            "img": "/assets/motion/carousels/cc-carousel-4.png",
+            "video": "/assets/motion/carousels/cc-carousel-4.mp4",
+            "videoHd": "/assets/motion/carousels/cc-carousel-4-hd.mp4"
+          },
+          {
+            "slug": "cc-sparks-carousel",
+            "name": "Sparks Carousel",
+            "en": "",
+            "tagline": "Sparks Carousel\nA responsive carousel component designed to display a collection of curated cards.",
+            "tags": [],
+            "source": "https://21st.dev/@ravikatiyar162/components/sparks-carousel",
+            "img": "/assets/motion/carousels/cc-sparks-carousel.png",
+            "video": "/assets/motion/carousels/cc-sparks-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-sparks-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-carousel-5",
+            "name": "shadcn Carousel",
+            "en": "",
+            "tagline": "A carousel with motion and swipe built using Embla.",
+            "tags": [],
+            "source": "https://21st.dev/@user_shadcn/components/carousel",
+            "img": "/assets/motion/carousels/cc-carousel-5.png",
+            "video": "/assets/motion/carousels/cc-carousel-5.mp4",
+            "videoHd": "/assets/motion/carousels/cc-carousel-5-hd.mp4"
+          },
+          {
+            "slug": "cc-framer-carousel",
+            "name": "Framer Carousel",
+            "en": "",
+            "tagline": "Framer Carousel — an animated carousel component.",
+            "tags": [],
+            "source": "https://21st.dev/@uilayout.contact/components/framer-carousel",
+            "img": "/assets/motion/carousels/cc-framer-carousel.png",
+            "video": "/assets/motion/carousels/cc-framer-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-framer-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-animated-feature-carousel",
+            "name": "Animated Feature Carousel",
+            "en": "",
+            "tagline": "An animated carousel component for showcasing features with smooth transitions and interactive elements",
+            "tags": [],
+            "source": "https://21st.dev/@minhxthanh/components/animated-feature-carousel",
+            "img": "/assets/motion/carousels/cc-animated-feature-carousel.png",
+            "video": "/assets/motion/carousels/cc-animated-feature-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-animated-feature-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-8bit-carousel",
+            "name": "8-bit Carousel",
+            "en": "",
+            "tagline": "An 8-bit styled carousel built on Embla.",
+            "tags": [],
+            "source": "https://21st.dev/@larsen66/components/8bit-carousel",
+            "img": "/assets/motion/carousels/cc-8bit-carousel.png",
+            "video": "/assets/motion/carousels/cc-8bit-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-8bit-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-interfaces-carousel",
+            "name": "Interfaces Carousel",
+            "en": "",
+            "tagline": "Carousel component with Embla, supporting horizontal, vertical, and loop modes.",
+            "tags": [],
+            "source": "https://21st.dev/@reapollo/components/interfaces-carousel",
+            "img": "/assets/motion/carousels/cc-interfaces-carousel.png",
+            "video": "/assets/motion/carousels/cc-interfaces-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-interfaces-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-offers-carousel",
+            "name": "Offers Carousel",
+            "en": "",
+            "tagline": "Offers Carousel\nThis component provides a visually polished layout to display a primary offer alongside a carousel of related items.",
+            "tags": [],
+            "source": "https://21st.dev/@lavikatiyar/components/offers-carousel",
+            "img": "/assets/motion/carousels/cc-offers-carousel.png",
+            "video": "/assets/motion/carousels/cc-offers-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-offers-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-reshaped-carousel",
+            "name": "Grid-aligned Carousel",
+            "en": "",
+            "tagline": "Displays its children as scrollable carousel items with a configurable number of visible items.",
+            "tags": [],
+            "source": "https://21st.dev/@larsen66/components/reshaped-carousel",
+            "img": "/assets/motion/carousels/cc-reshaped-carousel.png",
+            "video": "/assets/motion/carousels/cc-reshaped-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-reshaped-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-box-carousel",
+            "name": "Box Carousel",
+            "en": "",
+            "tagline": "Box Carousel — an animated carousel component.",
+            "tags": [],
+            "source": "https://21st.dev/@larsen66/components/box-carousel",
+            "img": "/assets/motion/carousels/cc-box-carousel.png",
+            "video": "/assets/motion/carousels/cc-box-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-box-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-carousel-6",
+            "name": "Draggable Slider",
+            "en": "",
+            "tagline": "A draggable, swipeable image/content slider with arrows, dot pagination, thumbnails, autoplay, fade, and auto-height, for showcasing photo galleries…",
+            "tags": [],
+            "source": "https://21st.dev/@appica-dev/components/carousel",
+            "img": "/assets/motion/carousels/cc-carousel-6.png",
+            "video": "/assets/motion/carousels/cc-carousel-6.mp4",
+            "videoHd": "/assets/motion/carousels/cc-carousel-6-hd.mp4"
+          },
+          {
+            "slug": "cc-carousel-cards",
+            "name": "Experience Cards",
+            "en": "",
+            "tagline": "A horizontally scrollable carousel of experience cards with image, rating, price, and favorite button, ideal for showcasing listings or products.",
+            "tags": [],
+            "source": "https://21st.dev/@kokonutd/components/carousel-cards",
+            "img": "/assets/motion/carousels/cc-carousel-cards.png",
+            "video": "/assets/motion/carousels/cc-carousel-cards.mp4",
+            "videoHd": "/assets/motion/carousels/cc-carousel-cards-hd.mp4"
+          },
+          {
+            "slug": "cc-carousel4",
+            "name": "Autoplay Carousel",
+            "en": "",
+            "tagline": "An image carousel that autoplays with motion and swipe support, built on Embla Carousel and shadcn's carousel primitive.",
+            "tags": [],
+            "source": "https://21st.dev/@bundui/components/carousel4",
+            "img": "/assets/motion/carousels/cc-carousel4.png",
+            "video": "/assets/motion/carousels/cc-carousel4.mp4",
+            "videoHd": "/assets/motion/carousels/cc-carousel4-hd.mp4"
+          },
+          {
+            "slug": "cc-card-carousel",
+            "name": "Card Carousel",
+            "en": "",
+            "tagline": "Card Carousel — an animated carousel component.",
+            "tags": [],
+            "source": "https://21st.dev/@larsen66/components/card-carousel",
+            "img": "/assets/motion/carousels/cc-card-carousel.png",
+            "video": "/assets/motion/carousels/cc-card-carousel.mp4",
+            "videoHd": "/assets/motion/carousels/cc-card-carousel-hd.mp4"
+          },
+          {
+            "slug": "cc-gallery6",
+            "name": "Off-screen Gallery",
+            "en": "",
+            "tagline": "A full-width, off-screen gallery with the carousel component.",
+            "tags": [],
+            "source": "https://21st.dev/@user_2rguB0QxcSITG2Y7ivePFsKsUU6/components/gallery6",
+            "img": "/assets/motion/carousels/cc-gallery6.png",
+            "video": "/assets/motion/carousels/cc-gallery6.mp4",
+            "videoHd": "/assets/motion/carousels/cc-gallery6-hd.mp4"
+          },
+          {
+            "slug": "cc-carousel-02",
+            "name": "Multi-slide Carousel",
+            "en": "",
+            "tagline": "A carousel that displays multiple image slides at once with previous/next navigation controls.",
+            "tags": [],
+            "source": "https://21st.dev/@shadcnui-blocks/components/carousel-02",
+            "img": "/assets/motion/carousels/cc-carousel-02.png",
+            "video": "/assets/motion/carousels/cc-carousel-02.mp4",
+            "videoHd": "/assets/motion/carousels/cc-carousel-02-hd.mp4"
+          },
+          {
+            "slug": "cc-flow-hero-1",
+            "name": "Animated Hero Carousel",
+            "en": "",
+            "tagline": "Animated hero section with carousel.",
+            "tags": [],
+            "source": "https://21st.dev/@cnippet.dev/components/flow-hero-1",
+            "img": "/assets/motion/carousels/cc-flow-hero-1.png",
+            "video": "/assets/motion/carousels/cc-flow-hero-1.mp4",
+            "videoHd": "/assets/motion/carousels/cc-flow-hero-1-hd.mp4"
+          },
+          {
+            "slug": "cc-v-carousel-8",
+            "name": "Onboarding Carousel",
+            "en": "",
+            "tagline": "A compact multi-step onboarding carousel with a progress bar, per-step icons, and Back/Next navigation that finishes on the last step.",
+            "tags": [],
+            "source": "https://21st.dev/@cnippet.dev/components/v-carousel-8",
+            "img": "/assets/motion/carousels/cc-v-carousel-8.png",
+            "video": "/assets/motion/carousels/cc-v-carousel-8.mp4",
+            "videoHd": "/assets/motion/carousels/cc-v-carousel-8-hd.mp4"
+          },
+          {
+            "slug": "cc-carousel-7",
+            "name": "Swipe Carousel",
+            "en": "",
+            "tagline": "A swipeable carousel with arrows, dot indicators, autoplay and looping.",
+            "tags": [],
+            "source": "https://21st.dev/@wensity/components/carousel",
+            "img": "/assets/motion/carousels/cc-carousel-7.png",
+            "video": "/assets/motion/carousels/cc-carousel-7.mp4",
+            "videoHd": "/assets/motion/carousels/cc-carousel-7-hd.mp4"
+          },
+          {
+            "slug": "cc-image-slider-card-shadcnui",
+            "name": "Accessible Image Card",
+            "en": "",
+            "tagline": "An accessible image carousel card with keyboard navigation, dot indicators, reduced-motion support, and screen-reader-friendly labels.",
+            "tags": [],
+            "source": "https://21st.dev/@moumensoliman/components/image-slider-card-shadcnui",
+            "img": "/assets/motion/carousels/cc-image-slider-card-shadcnui.png",
+            "video": "/assets/motion/carousels/cc-image-slider-card-shadcnui.mp4",
+            "videoHd": "/assets/motion/carousels/cc-image-slider-card-shadcnui-hd.mp4"
           }
         ]
       }

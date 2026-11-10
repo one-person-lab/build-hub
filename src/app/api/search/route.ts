@@ -15,6 +15,7 @@ import courses from "@/data/courses.json";
 import paths from "@/data/paths.json";
 import { BOOKS, flatChapters } from "@/lib/drone-book";
 import { QUICK_LINKS } from "@/lib/palette-links";
+import { ENGINEERING_PRACTICES } from "@/data/engineering-practices";
 
 type Item = {
   key: string;
@@ -211,6 +212,27 @@ function makeIndex(locale: Locale): Item[] {
 
   // 手册、专题、课程只有中文版
   if (locale === "zh") {
+    // 工程实践：四个栏目 × 四类内容，搜索可直达详情页
+    for (const ep of ENGINEERING_PRACTICES) {
+      items.push({
+        key: `practice:${ep.id}`,
+        title: ep.name,
+        subtitle: ep.tagline,
+        type: "工程实践",
+        href: `/engineering/${ep.id}`,
+        kind: "term",
+        match: [ep.name, ep.en, ep.tagline, ep.goal.lead, ep.focus].join(" "),
+        deep: deepText({
+          goal: ep.goal,
+          principles: ep.principles,
+          refs: ep.refs,
+          specs: ep.specs,
+          workshop: ep.workshop,
+          results: ep.results,
+          deliverables: ep.deliverables,
+        }),
+      });
+    }
     for (const p of (paths as {
       paths: {
         id: string;
@@ -328,7 +350,7 @@ const SECTIONS: Record<Locale, { label: string; title: string; subtitle: string;
     { label: "产品", title: "产品图鉴", subtitle: "真实用过的工具与网站", href: "/products" },
     { label: "提示词", title: "提示词库", subtitle: "可直接复制的全流程提示词", href: "/prompts" },
     { label: "设计", title: "设计", subtitle: "可点开看的界面风格", href: "/design" },
-    { label: "动效", title: "动效", subtitle: `${MOTION_ZH} 个可点着玩的交互动效`, href: "/distill" },
+    { label: "动效", title: "动效", subtitle: `${MOTION_ZH} 个轮播与交互动效，卡片上直接播放演示`, href: "/distill" },
     { label: "专题", title: "专题", subtitle: "从 0 到 1 的完整拆解", href: "/explains" },
     { label: "手册", title: "手册", subtitle: "什么时候用、怎么做、做到什么程度算过", href: "/playbooks" },
   ],
@@ -338,7 +360,7 @@ const SECTIONS: Record<Locale, { label: string; title: string; subtitle: string;
     { label: "products", title: "Showcase", subtitle: "Tools we have actually used", href: "/en/products" },
     { label: "prompts", title: "Prompts", subtitle: "Copy-ready prompts for the whole build", href: "/en/prompts" },
     { label: "design", title: "Design", subtitle: "Interface styles you can open and compare", href: "/en/design" },
-    { label: "motion", title: "Motion", subtitle: `${MOTION_EN} playable interaction demos`, href: "/en/distill" },
+    { label: "motion", title: "Motion", subtitle: `${MOTION_EN} carousels and motion demos`, href: "/en/distill" },
   ],
 };
 

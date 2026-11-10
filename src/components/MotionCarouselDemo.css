@@ -192,3 +192,31 @@
   flex-direction: column;
   gap: 8px;
 }
+
+/* 矮视口：压缩舞台与控制面板，让滑杆和复制按钮不必滚出弹层 */
+@media (max-height: 700px) {
+  .mcd {
+    margin-bottom: 12px;
+  }
+  .mcd-stage {
+    height: 380px;
+  }
+  .mcd-card {
+    width: 188px;
+    height: 250px;
+    margin: -125px 0 0 -94px;
+  }
+  .mcd-panel {
+    padding: 14px;
+  }
+  .mcd-params {
+    margin-top: 10px;
+    gap: 6px;
+  }
+  .mcd-param {
+    height: 36px;
+  }
+  .mcd-actions {
+    margin-top: 10px;
+  }
+}

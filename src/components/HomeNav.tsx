@@ -59,6 +59,8 @@ function getNav(locale: Locale, counts?: Counts): NavItem[] {
             { label: "反 AI 味", href: "/anti-ai-flavor", note: "去套路" },
           ],
         },
+        { label: "架构", href: "/architecture" },
+        { label: "工程实践", href: "/engineering" },
         { label: "路径", href: "/paths" },
       ]
     : [

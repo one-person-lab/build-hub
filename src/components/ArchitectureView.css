@@ -1,0 +1,71 @@
+/* ===== 架构分区：列表卡与详情页（图画布样式在 IcePanelDiagram.css） ===== */
+
+/* 列表与详情共用：目录布局里正文占满右列 */
+.arc-grid-wrap { grid-column: 2; max-width: none; width: 100%; padding: 0; }
+@media (max-width: 980px) {
+  .arc-grid-wrap { grid-column: 1; }
+}
+
+/* 平台卡：整卡是链接，缩略取景框与动效卡同高（152px），图完整缩放居中 */
+.arc-card-link { text-decoration: none; color: inherit; }
+.arc-thumb { background: #1b1d21; }
+.arc-thumb .ipd-static { display: block; width: 100%; height: 152px; }
+
+/* 平台页页头：面包屑 → 标题 → 导语，导语限宽，与首张图卡拉开距离 */
+.arc-crumb { display: flex; align-items: center; gap: 4px; font-size: 12.5px; color: var(--text-3); }
+.arc-crumb a { color: var(--text-3); text-decoration: none; }
+.arc-crumb a:hover { color: var(--text); }
+.arc-heading { margin: 0; }
+.catalog-directory-layout .arc-heading { margin: 12px 0 28px; }
+.arc-heading .arc-crumb { margin: 0 0 14px; }
+.arc-heading .arc-crumb .detail-back-button { width: 26px; height: 26px; }
+.catalog-directory-layout .arc-heading h1 {
+  font-size: clamp(24px, 1.9vw, 28px);
+  font-weight: 700;
+  letter-spacing: -.02em;
+}
+.arc-heading .cat-page-intro {
+  max-width: 62ch;
+  margin: 10px 0 0;
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--text-2);
+}
+@media (max-width: 900px) {
+  .catalog-directory-layout .arc-heading { margin: 6px 0 20px; }
+  .arc-heading .cat-page-intro { font-size: 13.5px; }
+}
+/* 架构图页：每张图一张独立卡片（题头 + 画布同边框），滚动时归属清晰 */
+.catalog-directory-layout .arc-diagram-section {
+  margin-bottom: 48px;
+  scroll-margin-top: 84px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--bg);
+}
+.arc-diagram-head { padding: 16px 20px 14px; }
+.catalog-directory-layout .arc-diagram-section .cat-title { margin: 0; font-size: 17px; }
+.arc-diagram-section .cat-title span { font-size: 12px; font-weight: 500; color: var(--text-3); }
+.arc-diagram-section .cat-intro { margin: 8px 0 0; }
+.arc-diagram-section .ipd-canvas-wrap { border: 0; border-radius: 0; }
+@media (max-width: 900px) {
+  .arc-diagram-head { padding: 14px 16px 12px; }
+}
+
+/* 架构图页左侧目录：分类是类型标签，与图名（条目）拉开层级 */
+.arc-toc-group + .arc-toc-group {
+  margin-top: 22px;
+}
+.arc-toc-cat {
+  margin: 0 0 6px; padding: 0 4px 0 14px;
+  font-size: 10.5px; font-weight: 600;
+  letter-spacing: .12em; line-height: 1.6;
+  text-transform: uppercase;
+  color: var(--text-3); opacity: .85;
+}
+.arc-toc-group .cat-live-toc-item {
+  padding: 6px 4px 6px 14px;
+  font-size: 13px;
+  color: var(--text-2);
+}

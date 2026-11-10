@@ -21,15 +21,14 @@ type Locale = "zh" | "en";
 const SECTIONS: Record<Locale, { href: string; label: string }[]> = {
   zh: [
     { href: "/topics/frontend", label: "概念" },
-    { href: "/stack", label: "选型" },
+    { href: "/stack", label: "技术选型" },
     { href: "/skills", label: "技能" },
     { href: "/products", label: "产品" },
     { href: "/prompts", label: "提示词" },
     { href: "/design", label: "设计" },
     { href: "/distill", label: "动效" },
-    { href: "/explains", label: "专题" },
-    { href: "/playbooks", label: "手册" },
-    { href: "/paths", label: "路径" },
+    { href: "/architecture", label: "架构" },
+    { href: "/engineering", label: "工程实践" },
   ],
   en: [
     { href: "/en/topics/frontend", label: "Concepts" },
@@ -40,6 +39,12 @@ const SECTIONS: Record<Locale, { href: string; label: string }[]> = {
     { href: "/en/distill", label: "Motion" },
   ],
 };
+
+const MORE_SECTIONS = [
+  { href: "/explains", label: "专题" },
+  { href: "/playbooks", label: "手册" },
+  { href: "/paths", label: "路径" },
+];
 
 const UI = {
   zh: {
@@ -347,6 +352,17 @@ export default function SiteNav() {
                 <span className="rd-menu-sep" aria-hidden />
                 <div className="rd-menu-group rd-menu-group-more">
                   <p className="rd-menu-label">{U.groupMore}</p>
+                  {locale === "zh" &&
+                    MORE_SECTIONS.map((s) => (
+                      <a
+                        key={s.href}
+                        href={s.href}
+                        role="menuitem"
+                        className={isCurrent(s.href) ? "is-active" : ""}
+                      >
+                        {s.label}
+                      </a>
+                    ))}
                   <a href={`${base}/practice`} role="menuitem">{U.practice}</a>
                   <a href={skillHref} role="menuitem">{U.skill}</a>
                   <a href="https://lab.smzsapp.com/" target="_blank" rel="noreferrer" className="rd-menu-site">
