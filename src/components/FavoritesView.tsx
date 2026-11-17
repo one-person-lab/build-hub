@@ -145,8 +145,8 @@ function priceLabel(plans: PlanCard[], locale: "zh" | "en"): string {
   const y = plans.find((p) => p.key === "yearly");
   const l = plans.find((p) => p.key === "lifetime");
   const parts: string[] = [];
-  if (m) parts.push(locale === "en" ? `${fmt(+m.money)}/mo` : `月卡 ¥${fmt(+m.money)}`);
-  if (y) parts.push(locale === "en" ? `${fmt(+y.money)}/yr` : `年卡 ¥${fmt(+y.money)}`);
+  if (m) parts.push(locale === "en" ? `${fmt(+m.money)}/mo` : `月付 ¥${fmt(+m.money)}`);
+  if (y) parts.push(locale === "en" ? `${fmt(+y.money)}/yr` : `年付 ¥${fmt(+y.money)}`);
   if (l) parts.push(locale === "en" ? `${fmt(+l.money)} once` : `终身 ¥${fmt(+l.money)}`);
   return parts.join(" / ");
 }

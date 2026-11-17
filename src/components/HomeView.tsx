@@ -235,22 +235,22 @@ function buildCopy(locale: Locale, counts: ReturnType<typeof getHomeData>["count
     pricingGrad: "",
     pricingTitleB: "",
     pricingSub: zh
-      ? "给个人用的简单定价。站内阅读免费；需要带走整理好的材料时再开通 PRO。"
-      : "Simple pricing for individuals. Reading is free; get PRO when you want the packed materials offline.",
+      ? "面向个人用户的简单定价。站内阅读免费；需要下载离线包时再开通 PRO。"
+      : "Simple pricing for individuals. Reading is free; upgrade to PRO when you need the offline pack.",
     plans: [
       {
         name: zh ? "免费" : "Free",
-        tagline: zh ? "先读、先用，不花一分。" : "Read and use first. No charge.",
+        tagline: zh ? "站内阅读与试用，无需付费。" : "Browse and try for free.",
         price: zh ? "¥0" : "$0",
         features: zh
           ? [
-              "词条、提示词、路径全文可读",
+              "概念、提示词、路径全文可读",
               "无需登录即可浏览",
-              "免费术语 Skill 可安装",
+              "可安装免费术语 Skill",
               "收藏 20 条 · 提示词复制 10 次",
             ]
           : [
-              "Full text for entries, prompts and paths",
+              "Full text for concepts, prompts, and paths",
               "No account needed to browse",
               "Free terminology skill to install",
               "20 favorites · 10 prompt copies",
@@ -261,19 +261,19 @@ function buildCopy(locale: Locale, counts: ReturnType<typeof getHomeData>["count
       {
         name: "PRO",
         tagline: zh
-          ? "一份离线包 + Agent 入口，约 ¥4.8 / 月。"
-          : "One offline pack + agent entry — about ¥4.8 / month.",
+          ? "完整离线包 + Agent 入口，约 ¥4.8 / 月。"
+          : "Full offline pack + agent entry — about ¥4.8 / month.",
         price: `¥${YEARLY.money}`,
         priceUnit: zh ? "/ 年" : "/ year",
         priceNote: zh
-          ? `月卡 ¥${MONTHLY.money} · 终身 ¥${LIFETIME.money}`
+          ? `月付 ¥${MONTHLY.money} · 终身 ¥${LIFETIME.money}`
           : `¥${MONTHLY.money}/mo · ¥${LIFETIME.money} lifetime`,
         features: zh
           ? [
               "完整 Markdown 离线包",
-              "整库 Agent 入口 SKILL.md",
+              "全库 Agent 入口 SKILL.md",
               "无限收藏与跨设备同步",
-              "提示词不限次复制与导出",
+              "提示词无限次复制与导出",
             ]
           : [
               "Full Markdown offline pack",
@@ -288,9 +288,9 @@ function buildCopy(locale: Locale, counts: ReturnType<typeof getHomeData>["count
       },
     ] satisfies Plan[],
     pricingNote: zh
-      ? "微信支付即时开通，到期不自动扣费。免费术语 Skill 与 PRO 整库包是两份不同文件。"
+      ? "微信支付成功后即时开通，到期不自动扣费。免费术语 Skill 与 PRO 全库离线包是两份不同文件。"
       : "WeChat Pay activates instantly; no auto-renew. The free terminology skill and the PRO library pack are different files.",
-    pricingFeatured: zh ? "推荐" : "Popular",
+    pricingFeatured: zh ? "推荐" : "Recommended",
     faqTitle: zh ? "常见问题" : "FAQ",
     faqSub: zh ? "还有问题，直接发邮件。" : "Still stuck? Email us.",
     faqContacts: [
@@ -313,15 +313,15 @@ function buildCopy(locale: Locale, counts: ReturnType<typeof getHomeData>["count
           },
           {
             q: "看内容要花钱吗？",
-            a: "不用。站内阅读免费、无需登录。PRO 付的是离线包下载，以及整库 Agent 入口 SKILL.md；另含无限收藏、同步与导出。",
+            a: "不用。站内阅读免费、无需登录。PRO 用于下载离线包与全库 Agent 入口 SKILL.md，并包含无限收藏、跨设备同步与导出。",
           },
           {
             q: "免费 Skill 和 PRO 的 SKILL.md 有什么区别？",
-            a: "免费 Skill（/buildhub-skill）只做术语补全。PRO 的 SKILL.md 是整库离线包的入口，指向概念、提示词、技能、路径等全部材料。",
+            a: "免费 Skill（/buildhub-skill）仅用于术语补全。PRO 的 SKILL.md 是全库离线包入口，覆盖概念、提示词、技能与路径等内容。",
           },
           {
             q: "内容会更新吗？",
-            a: "会。新内容记在更新日志里；PRO 用户重新下载离线包即可拿到最新版。",
+            a: "会。更新会记录在更新日志中；PRO 用户重新下载离线包即可获取最新版本。",
           },
           {
             q: "英文内容一样多吗？",
