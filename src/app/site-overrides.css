@@ -443,9 +443,22 @@ a.rd-gopro.is-pro { color: var(--brand); }
 .rd-avatar-wrap { position: relative; }
 .rd-avatar {
   width: 30px; height: 30px; border-radius: 50%; cursor: pointer;
-  background: var(--brand); color: var(--on-brand);
-  border: 0; display: grid; place-items: center; font-size: 13px; font-weight: 800;
+  background: var(--bg-hover); color: var(--text-2);
+  border: 1px solid var(--border); display: grid; place-items: center;
+  padding: 0; overflow: hidden;
 }
+.rd-avatar.is-guest:hover { color: var(--text); background: var(--accent-light); }
+.rd-avatar.is-user {
+  background: #0d0d0d; border-color: transparent; color: #fff;
+}
+.rd-avatar-face {
+  width: 100%; height: 100%; display: block; object-fit: cover;
+}
+.rd-avatar-face svg,
+.rd-avatar.is-guest .rd-avatar-face {
+  width: 18px; height: 18px; margin: auto;
+}
+.rd-avatar.is-user .rd-avatar-face svg { width: 100%; height: 100%; }
 .rd-menu {
   position: absolute; right: 0; top: 38px; width: 190px;
   max-height: calc(100vh - 60px); overflow: auto; overscroll-behavior: contain;
@@ -481,8 +494,8 @@ a.rd-gopro.is-pro { color: var(--brand); }
 .rd-lang:hover { color: var(--text); background: var(--bg-hover); }
 .rd-lang svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.6; }
 .rd-lang span { white-space: nowrap; }
-/* 抽屉的分组标题、关闭钮与分区网格只在手机底部抽屉里出现 */
-.rd-menu-scrim, .rd-menu-head, .rd-menu-label, .rd-menu-sections, .rd-avatar-mob { display: none; }
+/* 抽屉的分组标题、关闭钮与分区网格只在手机底部抽屉里出现；桌面点头像即登录，菜单里不必再摆一项 */
+.rd-menu-scrim, .rd-menu-head, .rd-menu-label, .rd-menu-sections, .rd-avatar-mob, .rd-menu-login-sheet { display: none; }
 @media (max-width: 1023px) {
   /* 旧版 .nav 在此断点变两行 grid：强制回归单行图鉴导航 */
   .nav.rd-nav { display: flex; grid-template: none; flex-wrap: nowrap; }
@@ -521,10 +534,15 @@ a.rd-gopro.is-pro { color: var(--brand); }
   .nav-theme .nav-circle::before { content: ""; position: absolute; inset: -8px; }
   .rd-nav-fav::before { content: ""; position: absolute; inset: -8px; }
   .rd-avatar {
-    width: auto; height: 44px; padding: 0 13px; gap: 6px;
+    width: auto; height: 44px; padding: 0 12px 0 8px; gap: 8px;
     border-radius: 999px; display: inline-flex; align-items: center; white-space: nowrap;
   }
+  .rd-avatar .rd-avatar-face {
+    width: 26px; height: 26px; flex: none; border-radius: 50%; overflow: hidden;
+  }
+  .rd-avatar.is-guest .rd-avatar-face { width: 18px; height: 18px; margin: 0; }
   .rd-avatar-mob { display: inline; font-size: 13px; font-weight: 700; }
+  .rd-menu-login-sheet { display: block; width: 100%; }
 
   /* 头像弹层 → 全宽底部抽屉：分区做成两列大按钮，其余按组排开 */
   .rd-menu-scrim {
@@ -830,18 +848,18 @@ a.rd-gopro.is-pro { color: var(--brand); }
 
 /* ---------- Go Pro 弹窗 ---------- */
 .rd-pro {
-  position: absolute; left: 50%; top: 16vh; transform: translateX(-50%);
-  width: min(380px, 92vw);
+  position: absolute; left: 50%; top: 10vh; transform: translateX(-50%);
+  width: min(520px, 92vw);
   max-height: 84vh; overflow-y: auto;
   background: var(--bg); border: 1px solid var(--border);
-  border-radius: 16px; padding: 24px; box-shadow: 0 28px 70px rgba(0,0,0,.5);
+  border-radius: 16px; padding: 26px 24px 20px; box-shadow: 0 28px 70px rgba(0,0,0,.5);
 }
 @media (max-height: 820px) {
   .rd-pro { top: 8vh; }
 }
 .rd-pro .mark { text-align: center; color: var(--brand); font-size: 20px; }
-.rd-pro h3 { text-align: center; font-size: 19px; margin: 6px 0 4px; color: var(--text); }
-.rd-pro .sub { text-align: center; font-size: 12.5px; color: var(--text-2); margin-bottom: 18px; }
+.rd-pro h3 { text-align: center; font-size: 22px; letter-spacing: -0.02em; margin: 4px 0 6px; color: var(--text); }
+.rd-pro .sub { text-align: center; font-size: 13px; line-height: 1.55; color: var(--text-2); margin: 0 0 18px; }
 .rd-prices { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
 .rd-price {
   border: 1px solid var(--border); border-radius: 11px; padding: 11px 13px;
@@ -878,16 +896,45 @@ a.rd-gopro.is-pro { color: var(--brand); }
 }
 
 /* ---------- Go Pro 购买流 ---------- */
-.rd-plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px; margin-bottom: 16px; }
+.rd-plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px; margin-bottom: 16px; padding-top: 10px; }
+.rd-plan-hot {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1px 7px;
+  border-radius: 999px;
+  background: var(--brand);
+  color: #fff;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.rd-plan.is-hot { border-color: color-mix(in srgb, var(--brand) 55%, var(--border)); }
 .rd-plan {
-  border: 1px solid var(--border); border-radius: 11px; padding: 11px 9px 10px;
+  font: inherit;
+  background: transparent;
+  width: 100%;
+  border: 1px solid var(--border); border-radius: 11px; padding: 14px 8px 11px;
   font-size: 11.5px; color: var(--text-2); cursor: pointer; position: relative;
   text-align: center;
 }
-.rd-plan.is-active { border-color: var(--brand); }
+.rd-plan.is-active {
+  border-color: var(--brand);
+  background: color-mix(in srgb, var(--brand) 10%, transparent);
+  box-shadow: 0 0 0 1px var(--brand);
+}
 .rd-plan-label { display: block; }
-.rd-plan b { display: block; font-size: 19px; color: var(--text); margin-top: 3px; }
-.rd-plan-unit { display: block; font-size: 10.5px; color: var(--text-3); margin-top: 1px; }
+.rd-plan b { display: block; font-size: 20px; color: var(--text); margin-top: 3px; letter-spacing: -0.02em; }
+.rd-plan-unit { display: block; font-size: 11px; color: var(--text-2); margin-top: 2px; }
+.rd-plan-note { display: block; font-size: 10.5px; color: var(--brand); margin-top: 4px; font-weight: 650; }
+.rd-pro-later {
+  display: block; width: 100%; margin-top: 4px; padding: 8px 0 2px;
+  border: 0; background: none; color: var(--text-3);
+  font-size: 12.5px; cursor: pointer; text-align: center;
+}
+.rd-pro-later:hover { color: var(--text-2); }
 .rd-field {
   width: 100%; box-sizing: border-box; margin-bottom: 10px;
   padding: 10px 12px; border-radius: 10px; border: 1px solid var(--border);

@@ -850,6 +850,39 @@
             "docx",
             "xlsx"
           ]
+        },
+        {
+          "id": "humanizer-zh",
+          "name": "humanizer-zh",
+          "category": "documents",
+          "tagline": "给中文稿子去掉空话、重复和模板腔",
+          "overview": "op7418 维护的 Humanizer 中文版：按 31 个检查点审阅文章、评论和文档里的空泛铺垫、公式化节奏和宣传语，只改确实妨碍理解的句子。改写先保住事实、否定、限定、归因和作者声音，再谈好不好看；不补写数据，也不把「可能」改成确定。",
+          "features": [
+            "31 个检查点分六组，含中文特有的口癖与句式",
+            "命中只作线索：句子本来就通顺就原样保留",
+            "保留否定、条件、时间范围和未完成状态，不补造来源",
+            "粘贴文本给最终稿；审阅文件时可只给建议，不写回"
+          ],
+          "useCases": [
+            "发稿前检查产品文案、课程正文和落地页",
+            "审阅同事或 Agent 写的中文稿，只标问题不动事实",
+            "技术术语按语境判断，不因命中词表就删"
+          ],
+          "bestFor": "要对外发中文稿、又不想把原意和数据改掉的人。",
+          "pricing": "开源免费（MIT）",
+          "platform": "Claude Code / WorkBuddy 等（纯提示词，无联网、无凭据）",
+          "author": "op7418",
+          "repo": "https://github.com/op7418/Humanizer-zh",
+          "install": "npx skills add https://github.com/op7418/Humanizer-zh.git",
+          "tags": [
+            "中文润色",
+            "文案审阅",
+            "去模板腔"
+          ],
+          "related": [
+            "skill-creator",
+            "pdf"
+          ]
         }
       ]
     },

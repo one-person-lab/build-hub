@@ -2,11 +2,14 @@
 
 import SkillAvatar from "./SkillAvatar";
 import SkillCover from "./SkillCover";
+import RepoStars from "./RepoStars";
+import { parseGitHubRepo } from "@/lib/github-repo";
 import CopyButton from "./CopyButton";
 import PronunciationButton from "./PronunciationButton";
 import RelatedSection from "./RelatedSection";
-import ProModal from "./ProModal";
+import { useEffect } from "react";
 import { useFavorites } from "@/lib/favorites";
+import { openProModal } from "@/lib/pro-modal";
 import type { RelatedItem } from "@/lib/related";
 import "./SkillDetailView.css";
 
@@ -51,6 +54,7 @@ const UI_TEXT = {
     bestFor: "适合谁",
     official: "访问官网",
     repo: "GitHub 仓库",
+    stars: "GitHub 星标",
     categories: "相关分类",
   },
   en: {
@@ -69,6 +73,7 @@ const UI_TEXT = {
     bestFor: "Best for",
     official: "Visit website",
     repo: "GitHub repo",
+    stars: "GitHub stars",
     categories: "Browse categories",
   },
 } as const;
@@ -95,6 +100,11 @@ export default function SkillDetailView({
   const secondary = skill.repo && skill.repo !== primary ? skill.repo : null;
   const { favorites, toggle, limitHit, dismissLimit } = useFavorites();
   const isFav = favorites.has(skill.id);
+  useEffect(() => {
+    if (!limitHit) return;
+    dismissLimit();
+    openProModal({ reason: "favorite" });
+  }, [limitHit, dismissLimit]);
 
   return (
     <main>
@@ -179,6 +189,14 @@ export default function SkillDetailView({
               <div>
                 <dt>{T.author}</dt>
                 <dd>{skill.author}</dd>
+              </div>
+            ) : null}
+            {parseGitHubRepo(skill.repo) ? (
+              <div>
+                <dt>{T.stars}</dt>
+                <dd>
+                  <RepoStars repo={skill.repo} locale={locale} variant="inline" />
+                </dd>
               </div>
             ) : null}
           </dl>
@@ -281,7 +299,6 @@ export default function SkillDetailView({
           </section>
         </div>
       </div>
-      {limitHit && <ProModal locale={locale} onClose={dismissLimit} />}
     </main>
   );
 }

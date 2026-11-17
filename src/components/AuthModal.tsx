@@ -34,9 +34,9 @@ const RIVER_SLUGS = [
 const UI = {
   zh: {
     title: "登录",
-    sub: "邮箱收 6 位验证码，不用设密码。",
-    subPro: "开通 PRO 需先登录，邮箱收验证码。",
-    subCopy: "复制提示词需先登录，邮箱收验证码。",
+    sub: "用 GitHub、微信，或邮箱验证码登录。",
+    subPro: "开通 PRO 前先登录。",
+    subCopy: "复制提示词前先登录。",
     emailPh: "邮箱地址",
     codePh: "6 位验证码",
     send: "获取验证码",
@@ -53,15 +53,18 @@ const UI = {
     terms: "服务条款",
     privacy: "隐私政策",
     close: "关闭",
-    trust: "已收录的产品拆解",
-    wx: "微信扫码登录",
-    or: "或",
+    trust: "站内界面参考",
+    github: "使用 GitHub 登录",
+    wx: "使用微信登录",
+    subWx: "电脑版微信已登录时，在框里确认即可；否则扫码。",
+    useEmail: "改用邮箱",
+    or: "或用邮箱",
   },
   en: {
     title: "Log in",
-    sub: "Get a 6-digit code by email. No password.",
-    subPro: "Sign in to continue to checkout — we send a code by email.",
-    subCopy: "Sign in to copy prompts — we send a code by email.",
+    sub: "Sign in with GitHub, WeChat, or an email code.",
+    subPro: "Sign in to continue to checkout.",
+    subCopy: "Sign in to copy prompts.",
     emailPh: "Email address",
     codePh: "6-digit code",
     send: "Send code",
@@ -78,11 +81,16 @@ const UI = {
     terms: "Terms",
     privacy: "Privacy Policy",
     close: "Close",
-    trust: "Products dissected inside",
-    wx: "Sign in with WeChat",
-    or: "or",
+    trust: "UI references inside",
+    github: "Continue with GitHub",
+    wx: "Continue with WeChat",
+    subWx: "If WeChat is open on this computer, confirm in the box. Otherwise scan.",
+    useEmail: "Use email instead",
+    or: "or email",
   },
 };
+
+const GH_MARK = `<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>`;
 
 const TRUST = [
   { name: "Figma", logo: "/assets/logos/figma.png" },
@@ -160,12 +168,14 @@ function AuthModal({
   locale,
   reason,
   wxEnabled,
+  githubEnabled,
   onClose,
   onDone,
 }: {
   locale: Locale;
   reason?: "pro" | "favorite" | "playbook" | "copy";
   wxEnabled: boolean;
+  githubEnabled: boolean;
   onClose: () => void;
   onDone: () => void;
 }) {
@@ -177,6 +187,7 @@ function AuthModal({
   const [countdown, setCountdown] = useState(0);
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState("");
+  const [wxUrl, setWxUrl] = useState("");
   const emailRef = useRef<HTMLInputElement>(null);
   const codeRef = useRef<HTMLInputElement>(null);
 
@@ -250,13 +261,38 @@ function AuthModal({
 
   const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-  /** 整页跳去微信官方扫码页，扫完由 callback 决定落点 */
-  function goWechat() {
-    const next = `${window.location.pathname}${window.location.search}`;
-    // 要跳出站点去微信的授权页，站内路由做不到，只能整页导航
-    // eslint-disable-next-line @next/next/no-location-assign-relative-destination
-    window.location.href = `/api/auth/wx/start?next=${encodeURIComponent(next)}`;
+  function nextPath() {
+    return `${window.location.pathname}${window.location.search}`;
   }
+
+  function goGithub() {
+    const next = encodeURIComponent(nextPath());
+    window.location.href = `/api/auth/github/start?next=${next}`;
+  }
+
+  /** 拉官方内嵌框：电脑微信已登录时是一键确认，否则框里仍是二维码 */
+  async function goWechat() {
+    setErr("");
+    setBusy(true);
+    try {
+      const lang = locale === "en" ? "en" : "cn";
+      const r = await fetch(
+        `/api/auth/wx/start?embed=1&lang=${lang}&next=${encodeURIComponent(nextPath())}`
+      );
+      const data = (await r.json().catch(() => null)) as { url?: string } | null;
+      if (!r.ok || !data?.url) {
+        setErr(U.errGeneric);
+        return;
+      }
+      setWxUrl(data.url);
+    } catch {
+      setErr(U.errGeneric);
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  const showSocial = (githubEnabled || wxEnabled) && step === "email" && !wxUrl;
 
   return createPortal(
     <>
@@ -272,26 +308,71 @@ function AuthModal({
             <img className="bam-mark" src="/icon.svg" alt="" width={28} height={28} />
             <h2 className="bam-title">{U.title}</h2>
             <p className="bam-sub">
-              {reason === "pro" ? U.subPro : reason === "copy" ? U.subCopy : U.sub}
+              {wxUrl
+                ? U.subWx
+                : reason === "pro"
+                  ? U.subPro
+                  : reason === "copy"
+                    ? U.subCopy
+                    : U.sub}
             </p>
           </div>
 
           <div className="bam-body bam-rise d1">
-            {wxEnabled && step === "email" && (
+            {showSocial && (
               <div className="bam-alt">
-                <button className="bam-wx" type="button" onClick={goWechat}>
-                  <span
-                    className="bam-wx-mark"
-                    aria-hidden
-                    dangerouslySetInnerHTML={{ __html: FOOTER_SOCIAL_ICONS.wechat }}
-                  />
-                  {U.wx}
-                </button>
+                {githubEnabled && (
+                  <button className="bam-gh" type="button" onClick={goGithub} disabled={busy}>
+                    <span
+                      className="bam-gh-mark"
+                      aria-hidden
+                      dangerouslySetInnerHTML={{ __html: GH_MARK }}
+                    />
+                    {U.github}
+                  </button>
+                )}
+                {wxEnabled && (
+                  <button
+                    className="bam-wx bam-wx-desktop"
+                    type="button"
+                    onClick={goWechat}
+                    disabled={busy}
+                  >
+                    <span
+                      className="bam-wx-mark"
+                      aria-hidden
+                      dangerouslySetInnerHTML={{ __html: FOOTER_SOCIAL_ICONS.wechat }}
+                    />
+                    {U.wx}
+                  </button>
+                )}
                 <p className="bam-split">{U.or}</p>
               </div>
             )}
 
-            {step === "email" ? (
+            {wxUrl ? (
+              <div className="bam-wx-box">
+                <iframe
+                  className="bam-wx-frame"
+                  title={U.wx}
+                  src={wxUrl}
+                  // 快速登录要探测本机微信；不用 wxLogin.js 时这个权限得自己写上，否则 Chrome 142+ 会拦
+                  allow="local-network-access"
+                />
+                <p className="bam-hint">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setWxUrl("");
+                      setErr("");
+                    }}
+                  >
+                    {U.useEmail}
+                  </button>
+                </p>
+                {err && <p className="bam-err">{err}</p>}
+              </div>
+            ) : step === "email" ? (
               <form
                 className="bam-fields"
                 onSubmit={(e) => {
@@ -417,6 +498,7 @@ export function AuthModalHost() {
       locale={locale}
       reason={pending.reason}
       wxEnabled={!!me?.wx}
+      githubEnabled={!!me?.github}
       onClose={() => {
         doneRef.current = null;
         setPending(null);

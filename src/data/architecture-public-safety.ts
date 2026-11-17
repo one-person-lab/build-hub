@@ -97,7 +97,7 @@ const businessFlow: DiagramSpec = {
   en: "Business Flow",
   category: "product",
   required: true,
-  desc: "一次研判任务从线索受理到结果归档：权限与数据范围校验、检索预过滤、轨迹碰撞、研判复核、处置流转与结果沉淀。",
+  desc: "一次研判任务从线索受理到结果归档：权限与数据范围校验、检索预过滤、轨迹碰撞、研判复核、处置流转。",
   vb: { w: 1600, h: 640 },
   caption: "Flow: 一次研判任务",
   nodes: [

@@ -49,10 +49,12 @@ export type Me = {
   user: {
     email: string | null;
     nickname?: string | null;
+    avatar?: string | null;
     proUntil: string | null;
   } | null;
   pro: boolean;
   wx?: boolean;
+  github?: boolean;
   payTest?: { key: string } | null;
 };
 

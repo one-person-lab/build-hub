@@ -3,8 +3,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { writeClipboard } from "./clipboard";
-import ProModal from "./ProModal";
 import { requireLogin } from "@/lib/auth-modal";
+import { openProModal } from "@/lib/pro-modal";
 import { useMe } from "@/lib/favorites";
 import { track } from "@/lib/track";
 import type { Playbook } from "@/lib/playbook-types";
@@ -87,6 +87,11 @@ export default function PlaybookView({ data, slug }: { data: Playbook; slug: str
   const [forkBusy, setForkBusy] = useState(false);
   const [forkErr, setForkErr] = useState("");
   const [limitHit, setLimitHit] = useState(false);
+  useEffect(() => {
+    if (!limitHit) return;
+    setLimitHit(false);
+    openProModal();
+  }, [limitHit]);
 
   const storageKey = `vh-playbook-${slug}`;
 
@@ -436,7 +441,6 @@ export default function PlaybookView({ data, slug }: { data: Playbook; slug: str
           </p>
         </div>
       </div>
-      {limitHit && <ProModal locale="zh" onClose={() => setLimitHit(false)} />}
     </main>
   );
 }

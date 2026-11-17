@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import BrandMark from "./BrandMark";
 import CommandPalette from "./CommandPalette";
 import LanguageToggle from "./LanguageToggle";
+import NavUserFace from "./NavUserFace";
 import { requireLogin, signOut } from "@/lib/auth-modal";
 import { useMe } from "@/lib/favorites";
 
@@ -137,11 +138,15 @@ export default function HomeNav({
   const me = useMe();
   const [openItem, setOpenItem] = useState<string | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [accountOpen, setAccountOpen] = useState(false);
   const [palette, setPalette] = useState(false);
   const [hl, setHl] = useState({ x: 0, w: 0, h: 0, on: false });
   const navRef = useRef<HTMLElement>(null);
+  const accountRef = useRef<HTMLDivElement>(null);
   const centerRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
+  const signedIn = !!me?.user;
+  const avatarUrl = me?.user?.avatar || null;
 
   function signIn() {
     requireLogin({ onDone: () => router.push(`${base}/account`) });
@@ -161,14 +166,21 @@ export default function HomeNav({
         setOpenItem(null);
         setMenuOpen(false);
       }
+      if (accountRef.current && !accountRef.current.contains(e.target as Node)) {
+        setAccountOpen(false);
+      }
     }
     function onKey(e: KeyboardEvent) {
       const inField =
         e.target instanceof HTMLElement &&
         (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA");
-      if ((e.key === "Escape" && (openItem || menuOpen)) || (e.key === "Escape" && palette)) {
+      if (
+        (e.key === "Escape" && (openItem || menuOpen || accountOpen)) ||
+        (e.key === "Escape" && palette)
+      ) {
         setOpenItem(null);
         setMenuOpen(false);
+        setAccountOpen(false);
       }
       if (!inField && ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k")) {
         e.preventDefault();
@@ -181,7 +193,7 @@ export default function HomeNav({
       window.removeEventListener("mousedown", onClick);
       window.removeEventListener("keydown", onKey);
     };
-  }, [openItem, menuOpen, palette]);
+  }, [openItem, menuOpen, accountOpen, palette]);
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
@@ -309,24 +321,52 @@ export default function HomeNav({
             </button>
             <LanguageToggle locale={locale} className="rb-icon-btn rb-lang" />
             <span className="rb-nav-sep" aria-hidden />
-            {me?.user ? (
-              <>
-                <button
-                  type="button"
-                  className="rb-nav-signin"
-                  onClick={() => router.push(`${base}/account`)}
-                >
-                  {U.account}
-                </button>
-                <button type="button" className="rb-nav-signin" onClick={() => signOut()}>
-                  {U.logout}
-                </button>
-              </>
-            ) : (
-              <button type="button" className="rb-nav-signin" onClick={signIn}>
-                {U.signIn}
+            <div className="rb-account" ref={accountRef}>
+              <button
+                type="button"
+                className={`rb-account-btn${signedIn ? " is-user" : " is-guest"}`}
+                aria-label={signedIn ? U.account : U.signIn}
+                aria-haspopup={signedIn ? "menu" : undefined}
+                aria-expanded={signedIn ? accountOpen : undefined}
+                onClick={() => {
+                  if (!signedIn) {
+                    signIn();
+                    return;
+                  }
+                  setAccountOpen((v) => !v);
+                }}
+              >
+                <NavUserFace
+                  signedIn={signedIn}
+                  avatarUrl={avatarUrl}
+                  className="rb-account-face"
+                />
               </button>
-            )}
+              {signedIn && accountOpen ? (
+                <div className="rb-account-menu" role="menu" aria-label={U.account}>
+                  <button
+                    type="button"
+                    role="menuitem"
+                    onClick={() => {
+                      setAccountOpen(false);
+                      router.push(`${base}/account`);
+                    }}
+                  >
+                    {U.account}
+                  </button>
+                  <button
+                    type="button"
+                    role="menuitem"
+                    onClick={() => {
+                      setAccountOpen(false);
+                      signOut();
+                    }}
+                  >
+                    {U.logout}
+                  </button>
+                </div>
+              ) : null}
+            </div>
             <Link href={`${base}/topics/frontend`} className="rb-cta rb-cta-nav">
               {U.cta}
             </Link>

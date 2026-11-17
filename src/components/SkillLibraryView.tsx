@@ -4,6 +4,8 @@ import { useEffect, useMemo, useState } from "react";
 import skillsData from "@/data/skills.json";
 import enSkillsData from "@/data/en-skills.json";
 import SkillAvatar from "./SkillAvatar";
+import RepoStars from "./RepoStars";
+import { parseGitHubRepo } from "@/lib/github-repo";
 import "./AssetLibraryView.css";
 import "./SkillLibraryView.css";
 
@@ -225,11 +227,6 @@ export default function SkillLibraryView({ locale = "zh" }: { locale?: "zh" | "e
                               className="skill-card-avatar"
                             />
                             <h3 className="skill-card-title">{s.name}</h3>
-                            {s.installs ? (
-                              <span className="skill-card-installs">
-                                {s.installs} {T.installs}
-                              </span>
-                            ) : null}
                             <span className="skill-card-arrow" aria-hidden="true">
                               →
                             </span>
@@ -241,6 +238,16 @@ export default function SkillLibraryView({ locale = "zh" }: { locale?: "zh" | "e
                                 <li key={tg}>{tg}</li>
                               ))}
                             </ul>
+                          ) : null}
+                          {s.installs || parseGitHubRepo(s.repo) ? (
+                            <div className="skill-card-stats">
+                              <RepoStars repo={s.repo} locale={locale} />
+                              {s.installs ? (
+                                <span className="skill-card-installs">
+                                  {s.installs} {T.installs}
+                                </span>
+                              ) : null}
+                            </div>
                           ) : null}
                         </a>
                       </article>

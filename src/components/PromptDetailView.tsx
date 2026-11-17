@@ -1,8 +1,9 @@
 "use client";
 
+import { useEffect } from "react";
 import CopyButton from "./CopyButton";
-import ProModal from "./ProModal";
 import { useFavorites } from "@/lib/favorites";
+import { openProModal } from "@/lib/pro-modal";
 import "./PromptDetailView.css";
 
 export type PromptDetail = {
@@ -82,6 +83,11 @@ export default function PromptDetailView({
 }) {
   const T = UI_TEXT[locale];
   const { favorites, toggle, limitHit, dismissLimit } = useFavorites();
+  useEffect(() => {
+    if (!limitHit) return;
+    dismissLimit();
+    openProModal({ reason: "favorite" });
+  }, [limitHit, dismissLimit]);
   const isFav = favorites.has(prompt.id);
 
   return (
@@ -218,7 +224,6 @@ export default function PromptDetailView({
           </section>
         </div>
       </div>
-      {limitHit && <ProModal locale={locale} onClose={dismissLimit} />}
     </main>
   );
 }

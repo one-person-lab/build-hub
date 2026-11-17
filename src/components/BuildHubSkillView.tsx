@@ -66,9 +66,9 @@ type Copy = {
 
 const COPY: Record<"zh" | "en", Copy> = {
   zh: {
-    label: "BuildHub Skill",
+    label: "BuildHub Skill · 免费",
     title: "为 Agent 补全准确的前端术语",
-    sub: "安装到 Claude Code、Cursor 等 Agent 后，自动把模糊描述补全为规范术语，主动提示当前任务相关的术语，并链接到带可玩示例的词条页。",
+    sub: "免费安装到 Claude Code、Cursor 等 Agent：把模糊描述改成规范术语，并链到站内词条。这和 PRO 的整库离线包 / SKILL.md 不是同一份文件。",
     facts: [
       { n: "terms", label: "个术语词条" },
       { n: "demos", label: "个带可玩示例" },
@@ -123,7 +123,7 @@ const COPY: Record<"zh" | "en", Copy> = {
     howItems: [
       { h: "先推断，再验证", p: "不直接检索原句，先从上下文推断候选术语，再批量匹配站内词条。" },
       { h: "未命中不虚构", p: "只链接 BuildHub 真实存在的词条页；未命中的候选词直接舍弃。" },
-      { h: "纯文件，无黑盒", p: "Skill 正文与脚本都是仓库中的普通文件，可读可改，无运行时依赖。" },
+      { h: "普通文件", p: "Skill 正文与脚本都是仓库里的 Markdown / 脚本，可读可改，无额外运行时。" },
     ],
     howLinks: [
       { href: "/skills", label: "技能" },
@@ -133,9 +133,9 @@ const COPY: Record<"zh" | "en", Copy> = {
     howLinksLead: "需要参考实现时：",
   },
   en: {
-    label: "BuildHub Skill",
+    label: "BuildHub Skill · free",
     title: "Accurate frontend terminology for your agent",
-    sub: "Install it in Claude Code, Cursor or any agent. It rewrites vague descriptions into precise terms, surfaces task-relevant terminology, and links to entries with live demos.",
+    sub: "Free to install in Claude Code, Cursor or any agent. Rewrites vague descriptions into precise terms and links to BuildHub entries. Separate from the PRO offline pack / SKILL.md.",
     facts: [
       { n: "terms", label: " term entries" },
       { n: "demos", label: " with a live demo" },

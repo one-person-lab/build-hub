@@ -112,7 +112,6 @@ function zh(): MetadataRoute.Sitemap {
     ...entries("/engineering", ENGINEERING_PRACTICES.map((p) => p.id)),
     { url: `${SITE_URL}/explains`, lastModified: new Date() },
     { url: `${SITE_URL}/playbooks`, lastModified: new Date() },
-    { url: `${SITE_URL}/pro`, lastModified: new Date() },
     { url: `${SITE_URL}/courses`, lastModified: new Date() },
     { url: `${SITE_URL}/paths`, lastModified: new Date() },
     ...entries(
@@ -161,7 +160,6 @@ function en(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}${base}/practice`, lastModified: new Date() },
     { url: `${SITE_URL}${base}/anti-ai-flavor`, lastModified: new Date() },
     { url: `${SITE_URL}${base}/buildhub-skill`, lastModified: new Date() },
-    { url: `${SITE_URL}${base}/pro`, lastModified: new Date() },
     ...topics(base, enCatalogsData),
     ...library(enProductsData, `${base}/products`),
     ...library(enSkillsData, `${base}/skills`),

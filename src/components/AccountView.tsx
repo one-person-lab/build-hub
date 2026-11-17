@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import ProModal from "@/components/ProModal";
 import { useFavoriteIndex } from "@/components/FavoritesView";
 import { requireLogin, signOut } from "@/lib/auth-modal";
+import { openProModal } from "@/lib/pro-modal";
 import { FREE_FAVORITE_LIMIT, useFavoriteSlugs, useMe } from "@/lib/favorites";
 import { track } from "@/lib/track";
 
@@ -20,9 +20,9 @@ const UI = {
   zh: {
     title: "账号",
     loginTitle: "登录 BuildHub",
-    loginSub: "验证码将发送至你的邮箱，仅用于登录",
+    loginSub: "可用 GitHub、微信或邮箱验证码登录",
     login: "登录",
-    wxUser: "微信用户",
+    wxUser: "已登录",
     errGeneric: "出错了，请重试",
     proOn: "PRO 会员",
     proUntil: "有效期至",
@@ -55,20 +55,19 @@ const UI = {
     assetsSub: "离线包和 SKILL.md 随时可以重新下载，每次都是当前最新内容。",
     assetsPack: "下载完整离线包",
     assetsKit: "下载 SKILL.md",
-    assetsView: "查看 PRO 内容",
   },
   en: {
     title: "Account",
     loginTitle: "Sign in to BuildHub",
-    loginSub: "A code will be emailed to you, used only for sign-in",
+    loginSub: "GitHub, WeChat, or an email code",
     login: "Sign in",
-    wxUser: "WeChat user",
+    wxUser: "Signed in",
     errGeneric: "Something went wrong, try again",
     proOn: "PRO member",
     proUntil: "Valid until",
     proLifetime: "Lifetime",
     proFree: "Free plan",
-    goPro: "Go PRO",
+    goPro: "Get PRO",
     renew: "Renew",
     logout: "Sign out",
     favBlock: "My favorites",
@@ -94,7 +93,6 @@ const UI = {
     assetsSub: "Re-download the pack and SKILL.md anytime — the file always reflects the latest content.",
     assetsPack: "Download the full pack",
     assetsKit: "Download SKILL.md",
-    assetsView: "See what is included",
     manualDone: "Activated",
   },
 };
@@ -105,8 +103,6 @@ export default function AccountView({ locale }: { locale: "zh" | "en" }) {
   const me = useMe();
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState("");
-  const [showPro, setShowPro] = useState(false);
-  const [showTest, setShowTest] = useState(false);
   const slugs = useFavoriteSlugs();
   const [orders, setOrders] = useState<Order[]>([]);
   const [manuals, setManuals] = useState<ManualOrder[]>([]);
@@ -122,7 +118,7 @@ export default function AccountView({ locale }: { locale: "zh" | "en" }) {
       now - taps.current.at > 2000 ? { n: 1, at: now } : { n: taps.current.n + 1, at: now };
     if (taps.current.n < 5) return;
     taps.current = { n: 0, at: 0 };
-    if (me?.payTest) setShowTest(true);
+    if (me?.payTest) openProModal({ entry: "test" });
   }
 
   // 邮箱账号或微信昵称：换账号时要重拉订单
@@ -221,7 +217,7 @@ export default function AccountView({ locale }: { locale: "zh" | "en" }) {
                 className="rd-btn"
                 onClick={() => {
                   track("go_pro_click", { from: "account" });
-                  setShowPro(true);
+                  openProModal();
                 }}
               >
                 {U.goPro}
@@ -232,7 +228,7 @@ export default function AccountView({ locale }: { locale: "zh" | "en" }) {
                   className="rd-btn"
                   onClick={() => {
                     track("renew_click", { from: "account" });
-                    setShowPro(true);
+                    openProModal();
                   }}
                 >
                   {U.renew}
@@ -248,7 +244,7 @@ export default function AccountView({ locale }: { locale: "zh" | "en" }) {
                 <b>{slugs.length}</b>
                 <span className="acct-usage-cap"> / {FREE_FAVORITE_LIMIT}</span>
               </span>
-              <button type="button" className="acct-usage-cta" onClick={() => setShowPro(true)}>
+              <button type="button" className="acct-usage-cta" onClick={() => openProModal({ reason: "favorite" })}>
                 {U.usageCta} →
               </button>
               <span className="acct-usage-bar" aria-hidden>
@@ -263,7 +259,6 @@ export default function AccountView({ locale }: { locale: "zh" | "en" }) {
             <section className="acct-block">
               <header className="acct-block-head">
                 <h2>{U.assetsBlock}</h2>
-                <a href={`${base}/pro`}>{U.assetsView} →</a>
               </header>
               <p className="acct-assets-sub">{U.assetsSub}</p>
               <div className="acct-assets-actions">
@@ -385,10 +380,6 @@ export default function AccountView({ locale }: { locale: "zh" | "en" }) {
             </button>
           </div>
         </>
-      )}
-      {showPro && <ProModal locale={locale} onClose={() => setShowPro(false)} />}
-      {showTest && (
-        <ProModal locale={locale} entry="test" onClose={() => setShowTest(false)} />
       )}
     </main>
   );

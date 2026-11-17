@@ -16,6 +16,10 @@ function migrate(d: Database.Database) {
       wx_openid TEXT UNIQUE,
       wx_unionid TEXT,
       wx_nickname TEXT,
+      gh_id TEXT UNIQUE,
+      gh_login TEXT,
+      gh_name TEXT,
+      avatar_url TEXT,
       pro_until TEXT,
       created_at TEXT NOT NULL DEFAULT (datetime('now'))
     );
@@ -93,6 +97,14 @@ function migrate(d: Database.Database) {
       created_at TEXT NOT NULL DEFAULT (datetime('now'))
     );
     CREATE INDEX IF NOT EXISTS prompt_copies_user ON prompt_copies(user_id);
+    /* /skills 卡片的 GitHub 星数：每天同步一次，结果落库避免重启重复拉 */
+    CREATE TABLE IF NOT EXISTS github_stars (
+      repo TEXT PRIMARY KEY,
+      stars INTEGER NOT NULL,
+      etag TEXT,
+      stars_at INTEGER NOT NULL,
+      checked_at INTEGER NOT NULL
+    );
   `);
   /* 老库补列：orders 原来只有微信一条渠道，人工开通的单要能被单独捞出来核对 */
   const cols = d.prepare(`pragma table_info(orders)`).all() as { name: string }[];
@@ -102,6 +114,25 @@ function migrate(d: Database.Database) {
   allowEmaillessUsers(d);
   /* openid 上的 UNIQUE 建表时已带索引，这里只补按 unionid 找人用的 */
   d.exec(`CREATE INDEX IF NOT EXISTS users_wx_unionid ON users(wx_unionid);`);
+  /* GitHub 登录：老库补列；新建表已带这些列 */
+  ensureGithubColumns(d);
+  ensureAvatarColumn(d);
+}
+
+function ensureGithubColumns(d: Database.Database) {
+  const cols = d.prepare(`pragma table_info(users)`).all() as { name: string }[];
+  const names = new Set(cols.map((c) => c.name));
+  if (!names.has("gh_id")) d.exec(`alter table users add column gh_id text`);
+  if (!names.has("gh_login")) d.exec(`alter table users add column gh_login text`);
+  if (!names.has("gh_name")) d.exec(`alter table users add column gh_name text`);
+  d.exec(`CREATE UNIQUE INDEX IF NOT EXISTS users_gh_id ON users(gh_id);`);
+}
+
+function ensureAvatarColumn(d: Database.Database) {
+  const cols = d.prepare(`pragma table_info(users)`).all() as { name: string }[];
+  if (!cols.some((c) => c.name === "avatar_url")) {
+    d.exec(`alter table users add column avatar_url text`);
+  }
 }
 
 /** SQLite 改不了列的 NOT NULL，只能按官方流程建新表、搬数据、换名 */
@@ -128,6 +159,9 @@ function allowEmaillessUsers(d: Database.Database) {
           wx_openid TEXT UNIQUE,
           wx_unionid TEXT,
           wx_nickname TEXT,
+          gh_id TEXT UNIQUE,
+          gh_login TEXT,
+          gh_name TEXT,
           pro_until TEXT,
           created_at TEXT NOT NULL DEFAULT (datetime('now'))
         );

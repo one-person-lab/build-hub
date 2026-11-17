@@ -17,8 +17,8 @@ import CardDemoThumb from "@/components/CardDemoThumb";
 import NavDemoThumb from "@/components/NavDemoThumb";
 import MotionDetailModal from "@/components/MotionDetailModal";
 import NavStyleModal from "@/components/NavStyleModal";
-import ProModal from "@/components/ProModal";
 import { useFavorites } from "@/lib/favorites";
+import { openProModal } from "@/lib/pro-modal";
 import type { Platform } from "@/lib/types";
 import "./AssetLibraryView.css";
 
@@ -296,6 +296,11 @@ export default function CatalogView({
 
   // 收藏：非 PRO 到 20 条时不写本地，直接弹开通卡
   const { favorites, toggle: toggleFavorite, limitHit, dismissLimit } = useFavorites();
+  useEffect(() => {
+    if (!limitHit) return;
+    dismissLimit();
+    openProModal({ reason: "favorite" });
+  }, [limitHit, dismissLimit]);
 
   // Scroll spy：根据当前进入视口的分组 section 高亮左侧实时目录
   useEffect(() => {
@@ -785,7 +790,6 @@ export default function CatalogView({
         </div>
       </div>
     </div>
-    {limitHit && <ProModal locale={locale} onClose={dismissLimit} />}
     </main>
   );
 }

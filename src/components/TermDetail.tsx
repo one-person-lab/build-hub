@@ -1,10 +1,10 @@
 "use client";
 
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import TermBody, { type Term } from "./TermBody";
-import ProModal from "@/components/ProModal";
 import { useFavorites } from "@/lib/favorites";
+import { openProModal } from "@/lib/pro-modal";
 import { standaloneCrumb, useFlatTerms } from "./CommandPalette";
 
 function buildMarkdown(t: Term, locale: "zh" | "en" = "zh"): string {
@@ -46,6 +46,11 @@ export default function TermDetail({
 }) {
   const router = useRouter();
   const { favorites, toggle, limitHit, dismissLimit } = useFavorites();
+  useEffect(() => {
+    if (!limitHit) return;
+    dismissLimit();
+    openProModal({ reason: "favorite" });
+  }, [limitHit, dismissLimit]);
   const isFav = useMemo(() => favorites.has(term.slug), [favorites, term.slug]);
   const flatTerms = useFlatTerms(locale);
   const entry = useMemo(
@@ -194,7 +199,6 @@ export default function TermDetail({
 
         <TermBody term={term} locale={locale} kicker={zone} />
       </div>
-      {limitHit && <ProModal locale={locale} onClose={dismissLimit} />}
     </main>
   );
 }

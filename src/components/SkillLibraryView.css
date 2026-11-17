@@ -113,3 +113,16 @@ html[data-color-mode="dark"] .skill-card-installs {
   color: var(--text-2);
   border: 1px solid var(--border-light);
 }
+
+/* 底部数据行：GitHub 实时星数 + 安装量。卡片本身是 flex column，
+   flex:1 + margin-top:auto 让同一行里所有卡片的数字对齐在同一水平线 */
+.skill-card-wrap > .skill-card {
+  flex: 1;
+}
+.skill-card-stats {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 14px;
+}

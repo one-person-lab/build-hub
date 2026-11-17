@@ -1,13 +1,15 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import BrandMark from "@/components/BrandMark";
 import CommandPalette from "@/components/CommandPalette";
 import FavoritesSync from "@/components/FavoritesSync";
 import LanguageToggle from "@/components/LanguageToggle";
-import { useFavoriteSlugs } from "@/lib/favorites";
+import NavUserFace from "@/components/NavUserFace";
+import { useFavoriteSlugs, useMe } from "@/lib/favorites";
 import { requireLogin, signOut } from "@/lib/auth-modal";
+import { openProModal } from "@/lib/pro-modal";
 import { track } from "@/lib/track";
 import {
   COLOR_MODE_KEY,
@@ -49,7 +51,7 @@ const MORE_SECTIONS = [
 const UI = {
   zh: {
     searchLabel: "搜索全站…",
-    goPro: "Go Pro",
+    goPro: "开通 PRO",
     toDark: "切换到黑夜模式",
     toLight: "切换到白昼模式",
     themeColor: "主题色",
@@ -60,6 +62,7 @@ const UI = {
     personalSite: "个人网站",
     favorites: "收藏",
     account: "账号",
+    login: "登录",
     logout: "退出登录",
     menu: "菜单",
     closeMenu: "关闭菜单",
@@ -69,7 +72,7 @@ const UI = {
   },
   en: {
     searchLabel: "Search everything…",
-    goPro: "Go Pro",
+    goPro: "Get PRO",
     toDark: "Switch to dark mode",
     toLight: "Switch to light mode",
     themeColor: "Theme color",
@@ -80,6 +83,7 @@ const UI = {
     personalSite: "Website",
     favorites: "Favorites",
     account: "Account",
+    login: "Sign in",
     logout: "Sign out",
     menu: "Menu",
     closeMenu: "Close menu",
@@ -91,7 +95,6 @@ const UI = {
 
 export default function SiteNav() {
   const pathname = usePathname();
-  const router = useRouter();
   const [dark, setDark] = useState(false);
   const [palette, setPalette] = useState(false);
   const [menu, setMenu] = useState(false);
@@ -99,25 +102,20 @@ export default function SiteNav() {
   const [themeColor, setThemeColor] = useState<string | null>(null);
   const [communityOpen, setCommunityOpen] = useState(false);
   const favCount = useFavoriteSlugs().length;
-  const [me, setMe] = useState<{ user: { email: string } | null; pro: boolean } | null>(null);
+  const me = useMe();
   const menuRef = useRef<HTMLDivElement>(null);
   const themeRef = useRef<HTMLDivElement>(null);
+  const menuCloseTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const signedIn = !!me?.user;
+
+  function isSheetMenu() {
+    return typeof window !== "undefined" && window.matchMedia("(max-width: 900px)").matches;
+  }
 
   const locale: Locale =
     pathname === "/en" || pathname.startsWith("/en/") ? "en" : "zh";
   const U = UI[locale];
   const base = locale === "en" ? "/en" : "";
-
-  useEffect(() => {
-    const load = () =>
-      fetch("/api/me")
-        .then((r) => r.json())
-        .then((d) => setMe(d))
-        .catch(() => {});
-    load();
-    window.addEventListener("vh-me-changed", load);
-    return () => window.removeEventListener("vh-me-changed", load);
-  }, []);
 
   useEffect(() => {
     // data-color-mode 与主题色已由 <head> 内的初始化脚本在首屏前写好，这里只同步按钮状态
@@ -154,6 +152,7 @@ export default function SiteNav() {
     return () => {
       window.removeEventListener("keydown", onKey);
       window.removeEventListener("mousedown", onClick);
+      clearMenuCloseTimer();
     };
   }, [palette]);
 
@@ -197,6 +196,36 @@ export default function SiteNav() {
 
   function openMenu() {
     setMenu((v) => !v);
+  }
+
+  function clearMenuCloseTimer() {
+    if (menuCloseTimer.current) {
+      clearTimeout(menuCloseTimer.current);
+      menuCloseTimer.current = null;
+    }
+  }
+
+  /** 桌面：悬停打开；手机仍是点开底部抽屉 */
+  function onAvatarEnter() {
+    if (isSheetMenu()) return;
+    clearMenuCloseTimer();
+    setMenu(true);
+  }
+
+  function onAvatarLeave() {
+    if (isSheetMenu()) return;
+    clearMenuCloseTimer();
+    menuCloseTimer.current = setTimeout(() => setMenu(false), 160);
+  }
+
+  /** 未登录点头像 → 登录弹窗；已登录 / 手机 → 开菜单 */
+  function onAvatarClick() {
+    if (!signedIn && !isSheetMenu()) {
+      setMenu(false);
+      requireLogin();
+      return;
+    }
+    openMenu();
   }
 
   const isCurrent = (href: string) =>
@@ -248,21 +277,21 @@ export default function SiteNav() {
             </svg>
             {me?.user && favCount > 0 && <b>{favCount}</b>}
           </a>
-          {me?.user ? (
-            <a
-              className={`rd-gopro${me.pro ? " is-pro" : ""}`}
-              href={me.pro ? `${base}/account` : `${base}/pro`}
-            >
-              {me.pro ? "✦ PRO" : U.goPro}
+          {me?.pro ? (
+            <a className="rd-gopro is-pro" href={`${base}/account`}>
+              ✦ PRO
             </a>
           ) : (
-            <a
+            <button
+              type="button"
               className="rd-gopro"
-              href={`${base}/pro`}
-              onClick={() => track("go_pro_click", { from: "nav" })}
+              onClick={() => {
+                track("go_pro_click", { from: "nav" });
+                openProModal();
+              }}
             >
               {U.goPro}
-            </a>
+            </button>
           )}
           <LanguageToggle locale={locale} className="rd-lang" />
           <div className="nav-theme" ref={themeRef}>
@@ -316,9 +345,25 @@ export default function SiteNav() {
               />
             </svg>
           </button>
-          <div ref={menuRef} className="rd-avatar-wrap">
-            <button className="rd-avatar" onClick={openMenu} aria-label={U.menu} aria-haspopup="menu" aria-expanded={menu}>
-              ✦<span className="rd-avatar-mob">{U.menu}</span>
+          <div
+            ref={menuRef}
+            className="rd-avatar-wrap"
+            onMouseEnter={onAvatarEnter}
+            onMouseLeave={onAvatarLeave}
+          >
+            <button
+              className={`rd-avatar${signedIn ? " is-user" : " is-guest"}`}
+              onClick={onAvatarClick}
+              aria-label={signedIn ? U.account : U.login}
+              aria-haspopup="menu"
+              aria-expanded={menu}
+            >
+              <NavUserFace
+                signedIn={signedIn}
+                avatarUrl={me?.user?.avatar}
+                className="rd-avatar-face"
+              />
+              <span className="rd-avatar-mob">{signedIn ? U.account : U.menu}</span>
             </button>
             {menu ? <div className="rd-menu-scrim" aria-hidden onClick={() => setMenu(false)} /> : null}
             {menu ? (
@@ -390,15 +435,17 @@ export default function SiteNav() {
                       </button>
                     </>
                   ) : (
+                    /* 桌面点头像已弹登录；这项只给手机抽屉用 */
                     <button
                       type="button"
                       role="menuitem"
+                      className="rd-menu-login-sheet"
                       onClick={() => {
                         setMenu(false);
-                        requireLogin({ onDone: () => router.push(`${base}/account`) });
+                        requireLogin();
                       }}
                     >
-                      {U.account}
+                      {U.login}
                     </button>
                   )}
                   <button

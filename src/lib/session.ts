@@ -9,6 +9,7 @@ export type AuthUser = {
   id: number;
   email: string | null;
   nickname: string | null;
+  avatar: string | null;
   proUntil: string | null;
 };
 
@@ -58,7 +59,7 @@ export async function currentUser(): Promise<AuthUser | null> {
   const db = getDb();
   const row = db
     .prepare(
-      `select s.token, u.id, u.email, u.wx_nickname, u.pro_until,
+      `select s.token, u.id, u.email, u.wx_nickname, u.gh_name, u.gh_login, u.avatar_url, u.pro_until,
               (s.expires_at > datetime('now')) as session_valid
        from sessions s join users u on u.id = s.user_id
        where s.token = ?`
@@ -69,12 +70,21 @@ export async function currentUser(): Promise<AuthUser | null> {
         id: number;
         email: string | null;
         wx_nickname: string | null;
+        gh_name: string | null;
+        gh_login: string | null;
+        avatar_url: string | null;
         pro_until: string | null;
         session_valid: number;
       }
     | undefined;
   if (!row || !row.session_valid) return null;
-  return { id: row.id, email: row.email, nickname: row.wx_nickname, proUntil: row.pro_until };
+  return {
+    id: row.id,
+    email: row.email,
+    nickname: row.wx_nickname || row.gh_name || row.gh_login,
+    avatar: row.avatar_url,
+    proUntil: row.pro_until,
+  };
 }
 
 export function isPro(user: AuthUser | null): boolean {

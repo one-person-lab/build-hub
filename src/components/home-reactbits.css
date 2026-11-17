@@ -380,23 +380,87 @@
   background: var(--rb-border);
 }
 
-.rb-nav-signin {
+.rb-account {
+  position: relative;
   display: inline-flex;
-  align-items: center;
-  padding: 8px 12px;
-  border: 0;
-  background: none;
-  font-family: inherit;
-  font-size: 13.5px;
-  font-weight: 450;
-  white-space: nowrap;
-  color: var(--rb-muted);
-  cursor: pointer;
-  transition: color 0.18s ease;
 }
 
-.rb-nav-signin:hover {
+.rb-account-btn {
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid var(--rb-border);
+  border-radius: 999px;
+  background: var(--rb-inset);
+  color: var(--rb-muted);
+  overflow: hidden;
+  cursor: pointer;
+  transition:
+    color 0.18s ease,
+    background 0.18s ease,
+    border-color 0.18s ease;
+}
+
+.rb-account-btn.is-guest:hover {
   color: var(--rb-text);
+  background: var(--rb-hover, var(--rb-inset));
+}
+
+.rb-account-btn.is-user {
+  border-color: transparent;
+  background: #0d0d0d;
+  color: #fff;
+}
+
+.rb-account-face {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.rb-account-btn.is-guest .rb-account-face {
+  width: 18px;
+  height: 18px;
+}
+
+.rb-account-btn.is-user .rb-account-face svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.rb-account-menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  z-index: 40;
+  min-width: 148px;
+  padding: 6px;
+  border: 1px solid var(--rb-border);
+  border-radius: 12px;
+  background: var(--rb-panel, var(--rb-bg));
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.28);
+}
+
+.rb-account-menu button {
+  width: 100%;
+  padding: 8px 10px;
+  border: 0;
+  border-radius: 8px;
+  background: none;
+  text-align: left;
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--rb-text);
+  cursor: pointer;
+}
+
+.rb-account-menu button:hover {
+  background: var(--rb-inset);
 }
 
 .rb-cta {
@@ -700,6 +764,10 @@
   margin-top: 14px;
 }
 
+button.rb-btn {
+  cursor: pointer;
+  font-family: inherit;
+}
 .rb-btn {
   display: inline-flex;
   align-items: center;
@@ -1975,6 +2043,11 @@
   gap: 20px;
 }
 
+.rb-plans-2 {
+  grid-template-columns: repeat(2, minmax(0, 420px));
+  justify-content: center;
+}
+
 .rb-plan {
   position: relative;
   display: flex;
@@ -2028,8 +2101,10 @@
 
 .rb-plan-price {
   display: flex;
+  flex-wrap: wrap;
   align-items: baseline;
-  gap: 10px;
+  gap: 8px 12px;
+  min-height: 76px;
   margin: 26px 0 26px;
 }
 
@@ -2039,6 +2114,20 @@
   line-height: 1;
   letter-spacing: -0.045em;
   color: var(--rb-text);
+}
+
+.rb-plan-price-unit {
+  font-size: 16px;
+  font-weight: 450;
+  letter-spacing: -0.02em;
+  color: var(--rb-muted);
+}
+
+.rb-plan-price-note {
+  flex: 1 1 100%;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--rb-muted);
 }
 
 .rb-plan ul {
@@ -2360,7 +2449,7 @@
   .rb-nav-center {
     display: none;
   }
-  .rb-nav-signin {
+  .rb-account {
     display: none;
   }
   .rb-lang {

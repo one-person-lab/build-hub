@@ -846,7 +846,7 @@ export function buildSampleMarkdown(locale: Locale = "zh"): string {
       `A sample with one entry from each part of the full pack. The full version holds ${s.concepts} concepts, ${s.prompts} prompts, ${s.skills} skills, ${s.designRefs} design references, ${s.paths} paths, ${s.playbooks} playbooks, and the SKILL.md entry file for your agent.`
     ),
     "",
-    `- ${SITE}${locale === "en" ? "/en" : ""}/pro`,
+    `- ${SITE}${locale === "en" ? "/en?pro=1" : "/?pro=1"}`,
     "",
     "---",
     "",

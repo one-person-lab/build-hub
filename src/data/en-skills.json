@@ -850,6 +850,39 @@
             "docx",
             "xlsx"
           ]
+        },
+        {
+          "id": "humanizer-zh",
+          "name": "humanizer-zh",
+          "category": "documents",
+          "tagline": "Strip filler, repetition and template-sounding phrasing from Chinese copy",
+          "overview": "op7418's Chinese port of blader/humanizer: it reviews articles, comments and docs against 31 checkpoints — filler intros, formulaic rhythm, inflated claims and Chinese-specific tics — and edits only sentences that actually get in the way. Facts, negation, hedges, attribution and the author's voice come before polish; no invented data, no turning «might» into «does».",
+          "features": [
+            "31 checkpoints in six groups, including Chinese-only patterns",
+            "A hit is only a lead: sentences that read fine stay as they are",
+            "Preserves negation, conditions, scope and unfinished status",
+            "Paste text for a final rewrite, or ask for review-only suggestions on a file"
+          ],
+          "useCases": [
+            "Check product copy, course text and landing pages before publishing",
+            "Review Chinese drafts from a colleague or an agent without changing the facts",
+            "Judge technical terms in context instead of deleting them on a word list"
+          ],
+          "bestFor": "Anyone publishing Chinese copy who cannot afford to change the meaning.",
+          "pricing": "Free & open source (MIT)",
+          "platform": "Claude Code / WorkBuddy etc. (prompt-only, no network or credentials)",
+          "author": "op7418",
+          "repo": "https://github.com/op7418/Humanizer-zh",
+          "install": "npx skills add https://github.com/op7418/Humanizer-zh.git",
+          "tags": [
+            "Chinese editing",
+            "copy review",
+            "de-slop"
+          ],
+          "related": [
+            "skill-creator",
+            "pdf"
+          ]
         }
       ]
     },

@@ -16,6 +16,9 @@ import CardDemoThumb from "./CardDemoThumb";
 import DotField from "./DotField";
 import HomeNav from "./HomeNav";
 import { getHomeData } from "@/lib/home-reactbits-data";
+import { PLANS } from "@/lib/plans";
+import { openProModal } from "@/lib/pro-modal";
+import { track } from "@/lib/track";
 import { COLOR_MODE_KEY } from "@/lib/theme";
 import "./home-reactbits.css";
 
@@ -25,11 +28,18 @@ type Plan = {
   name: string;
   tagline: string;
   price: string;
+  priceUnit?: string;
+  priceNote?: string;
   features: string[];
   cta: string;
   href: string;
   featured?: boolean;
+  openPro?: boolean;
 };
+
+const YEARLY = PLANS.find((p) => p.key === "yearly")!;
+const MONTHLY = PLANS.find((p) => p.key === "monthly")!;
+const LIFETIME = PLANS.find((p) => p.key === "lifetime")!;
 
 function buildCopy(locale: Locale, counts: ReturnType<typeof getHomeData>["counts"]) {
   const zh = locale === "zh";
@@ -40,14 +50,14 @@ function buildCopy(locale: Locale, counts: ReturnType<typeof getHomeData>["count
       ? `${counts.concepts} 个词条，每个都能上手`
       : `${counts.concepts} entries, every one playable`,
     h1a: zh ? "把会的东西，变成" : "Build what you know.",
-    h1b: zh ? "可用的资产。" : "Use what you build.",
+    h1b: zh ? "可用的材料。" : "Use what you build.",
     lead: zh
-      ? "AI 驱动的软件构建知识与数字资产平台。"
-      : "The platform for software-creation knowledge and digital assets, powered by AI.",
+      ? "概念、界面参考、提示词和路径——完整正文，人和 AI 都能直接用。"
+      : "Concepts, UI references, prompts and paths — full text, ready for you and your AI.",
     ctaMain: zh ? "从零做出第一个官网" : "Start your first site",
     ctaBrowse: zh ? "先逛概念" : "Browse concepts",
     domain: "buildhub.cn",
-    domainNote: zh ? "免费内容 · 无需登录" : "Free · no account",
+    domainNote: zh ? "阅读免费 · 无需登录" : "Free to read · no account",
     tickerLabel: zh
       ? `${counts.concepts + counts.prompts + counts.skills} 项内容已在站内`
       : `${counts.concepts + counts.prompts + counts.skills} entries inside`,
@@ -103,8 +113,8 @@ function buildCopy(locale: Locale, counts: ReturnType<typeof getHomeData>["count
         count: `${counts.concepts}`,
         label: zh ? "个词条" : "entries",
         desc: zh
-          ? "从 HTTP 到 React，每个词条都用大白话讲清，并配能跑的示例。"
-          : "From HTTP to React, every term explained in plain words with a live demo.",
+          ? "从 HTTP 到 React，每个词条讲清含义，并配可运行的示例。"
+          : "From HTTP to React — clear explanations with a live demo on each page.",
         href: `${base}/topics/frontend`,
       },
       {
@@ -125,9 +135,9 @@ function buildCopy(locale: Locale, counts: ReturnType<typeof getHomeData>["count
       },
       {
         count: `${counts.prompts}`,
-        label: zh ? "可抄提示词" : "Prompts",
+        label: zh ? "提示词" : "Prompts",
         desc: zh
-          ? "贴进 Cursor、Copilot 或 v0 就能用的完整提示词。"
+          ? "可直接粘贴到 Cursor、Copilot 或 v0 的完整提示词。"
           : "Complete prompts you can paste into Cursor, Copilot or v0.",
         href: `${base}/prompts`,
       },
@@ -155,7 +165,7 @@ function buildCopy(locale: Locale, counts: ReturnType<typeof getHomeData>["count
     templatesCta: zh ? "全部界面参考" : "View all references",
     showcaseTitle: zh ? "每一屏，都有现成参考。" : "Skip the blank canvas.",
     showcaseSub: zh
-      ? "8 个分区，每个都有能玩的示例，先看再抄。"
+      ? "8 个分区，每个都有可运行示例，先看再动手。"
       : "Eight zones with playable examples. Look first, then build.",
     showcaseCta: zh ? "全部分区" : "Browse all zones",
     showcaseBadge: zh ? "可以玩的示例" : "A playable example",
@@ -163,32 +173,32 @@ function buildCopy(locale: Locale, counts: ReturnType<typeof getHomeData>["count
     showcaseZone: zh ? "看整个分区" : "View the zone",
     showcaseFoot: (n: number) => (zh ? `${n} 个词条 · 一个入口` : `${n} entries · one place`),
     showcaseCaption: (name: string) => (zh ? `${name} · 实时示例` : `${name} · live sample`),
-    agentTitle: zh ? "给 AI 装上一套现成的做法。" : "Give your agent a working process.",
+    agentTitle: zh ? "免费术语 Skill，安装到你的 Agent。" : "A free terminology skill for your agent.",
     agentSub: zh
-      ? "把 BuildHub 的技能和提示词，装进 Claude Code、Cursor。"
-      : "Curated skills and clear guidance, built for your agent.",
-    agentCta: zh ? "看看 BuildHub Skill" : "See the BuildHub skill",
+      ? "安装后，Agent 会把模糊描述改写成规范术语，并链到站内词条。这和 PRO 的整库离线包不是同一份文件。"
+      : "It rewrites vague descriptions into precise terms and links to BuildHub entries. Separate from the PRO offline pack.",
+    agentCta: zh ? "查看安装说明" : "See how to install",
     agentCards: [
       {
-        title: zh ? `${counts.skills} 个技能` : `${counts.skills} skills`,
+        title: zh ? "术语补全" : "Term completion",
         desc: zh
-          ? "从写首屏、改文案到验收，每个技能对应一件具体的事。"
-          : "From hero copy to acceptance checks, one skill per real job.",
+          ? "把口语需求改写成带准确术语的说明，不替你选技术栈。"
+          : "Rewrites casual requests into precise language without picking your stack.",
       },
       {
-        title: zh ? "一条命令安装" : "One-command install",
+        title: zh ? "一条指令安装" : "One prompt to install",
         desc: zh
-          ? "复制一条命令，装进 Claude Code 或 Cursor，不用来回粘贴。"
-          : "One command drops the source into your repo. No copy-paste loop.",
+          ? "复制安装指令发给 Claude Code 或 Cursor 即可。"
+          : "Paste the install prompt into Claude Code or Cursor.",
       },
       {
-        title: zh ? "全是普通文件" : "Plain files",
+        title: zh ? "普通 Markdown 文件" : "Plain Markdown",
         desc: zh
-          ? "打开就是 Markdown，能读能改，改完还是你自己的。"
-          : "Readable Markdown you can edit and keep.",
+          ? "仓库里的可读文件，可检查、可修改。"
+          : "Readable files in the repo — inspect and edit freely.",
       },
     ],
-    agentTry: zh ? "看怎么装" : "How to install",
+    agentTry: zh ? "安装说明" : "Install guide",
     quotesTitle: zh ? "这些问题，你是不是也问过？" : "Questions people actually ask.",
     quotesSub: zh
       ? `从 ${counts.concepts} 个词条里挑的答案，点开就是完整解释。`
@@ -221,117 +231,156 @@ function buildCopy(locale: Locale, counts: ReturnType<typeof getHomeData>["count
       : "Idea to live domain, with a done-check on every step.",
     bannerCta: zh ? "从第一个官网开始" : "Start your first site",
     bannerAlt: zh ? "先逛概念" : "Browse concepts first",
-    pricingTitleA: zh ? "内容直接读，" : "Read it all ",
-    pricingGrad: zh ? "不要钱" : "free",
-    pricingTitleB: zh ? "。" : ".",
+    pricingTitleA: zh ? "定价" : "Pricing",
+    pricingGrad: "",
+    pricingTitleB: "",
     pricingSub: zh
-      ? "想做点什么，任选一个入口；下面这些都不用在读之前注册。"
-      : "Pick whichever entry fits the job. None of these need an account first.",
-    pricingToggle: zh ? ["按目标", "按身份"] : ["By goal", "By role"],
-    plansGoal: [
+      ? "给个人用的简单定价。站内阅读免费；需要带走整理好的材料时再开通 PRO。"
+      : "Simple pricing for individuals. Reading is free; get PRO when you want the packed materials offline.",
+    plans: [
       {
-        name: zh ? "做出第一个官网" : "Your first website",
-        tagline: zh ? "五页骨架，首屏文案，部署清单。" : "A five-page skeleton, hero copy and a deploy list.",
-        price: zh ? "¥0" : "Free",
+        name: zh ? "免费" : "Free",
+        tagline: zh ? "先读、先用，不花一分。" : "Read and use first. No charge.",
+        price: zh ? "¥0" : "$0",
         features: zh
-          ? ["5 页骨架 + 首屏文案", "每一步都配提示词", `${counts.styles} 个界面参考可选`, "部署上线检查清单"]
-          : ["Five-page skeleton + hero copy", "A prompt for every step", `${counts.styles} UI references to pick from`, "Pre-launch checklist"],
-        cta: zh ? "开始这条路" : "Start this path",
-        href: `${base}/paths/first-website`,
-      },
-      {
-        name: zh ? "看懂 AI 黑话" : "Speak AI",
-        tagline: zh ? "把最常撞见的概念，一次讲明白。" : "The concepts you keep hitting, explained once.",
-        price: zh ? "¥0" : "Free",
-        features: zh
-          ? [`${counts.concepts} 个词条`, "每条都配能玩的示例", "按前端 / 后端 / AI / Git 分区", "顶部搜索，⌘K 直达"]
-          : [`${counts.concepts} entries`, "A playable demo for each", "Zoned by frontend, backend, AI, Git", "Search with ⌘K"],
-        cta: zh ? "打开概念库" : "Open the library",
+          ? [
+              "词条、提示词、路径全文可读",
+              "无需登录即可浏览",
+              "免费术语 Skill 可安装",
+              "收藏 20 条 · 提示词复制 10 次",
+            ]
+          : [
+              "Full text for entries, prompts and paths",
+              "No account needed to browse",
+              "Free terminology skill to install",
+              "20 favorites · 10 prompt copies",
+            ],
+        cta: zh ? "开始阅读" : "Start reading",
         href: `${base}/topics/frontend`,
       },
       {
-        name: zh ? "装进 AI 工具" : "Install the kit",
-        tagline: zh ? "让 Claude Code、Cursor 会用你的做法。" : "Let Claude Code and Cursor follow your process.",
-        price: zh ? "¥0" : "Free",
+        name: "PRO",
+        tagline: zh
+          ? "一份离线包 + Agent 入口，约 ¥4.8 / 月。"
+          : "One offline pack + agent entry — about ¥4.8 / month.",
+        price: `¥${YEARLY.money}`,
+        priceUnit: zh ? "/ 年" : "/ year",
+        priceNote: zh
+          ? `月卡 ¥${MONTHLY.money} · 终身 ¥${LIFETIME.money}`
+          : `¥${MONTHLY.money}/mo · ¥${LIFETIME.money} lifetime`,
         features: zh
-          ? [`${counts.skills} 个 BuildHub 技能`, "一条命令安装", "Claude Code / Cursor 通用", "打开就是 Markdown，随便改"]
-          : [`${counts.skills} BuildHub skills`, "One-command install", "Works with Claude Code and Cursor", "Plain Markdown, edit it freely"],
-        cta: zh ? "看看 Skill" : "See the Skill",
-        href: `${base}/buildhub-skill`,
+          ? [
+              "完整 Markdown 离线包",
+              "整库 Agent 入口 SKILL.md",
+              "无限收藏与跨设备同步",
+              "提示词不限次复制与导出",
+            ]
+          : [
+              "Full Markdown offline pack",
+              "Library SKILL.md for your agent",
+              "Unlimited favorites and sync",
+              "Unlimited prompt copies and export",
+            ],
+        cta: zh ? "开通 PRO" : "Get PRO",
+        href: `${base}/pro`,
+        openPro: true,
+        featured: true,
       },
-    ],
-    plansRole: [
-      {
-        name: zh ? "非工程师" : "Non-engineers",
-        tagline: zh ? "不碰命令行，从概念和界面参考开始。" : "No terminal required. Start from concepts and references.",
-        price: zh ? "¥0" : "Free",
-        features: zh
-          ? ["大白话概念", "能跑的示例", "界面参考", "提示词直接抄"]
-          : ["Plain-word concepts", "Working demos", "UI references", "Copyable prompts"],
-        cta: zh ? "从概念开始" : "Start with concepts",
-        href: `${base}/topics/frontend`,
-      },
-      {
-        name: zh ? "独立开发者" : "Solo builders",
-        tagline: zh ? "先找参考，再动手，省掉试错。" : "Find the reference first, then build.",
-        price: zh ? "¥0" : "Free",
-        features: zh
-          ? ["技术栈选型", "跑过的产品", "完整路径", "可安装技能"]
-          : ["Stack picks", "Products we've run", "Full paths", "Installable skills"],
-        cta: zh ? "看技术栈" : "Browse the stack",
-        href: `${base}/stack`,
-      },
-      {
-        name: zh ? "产品经理" : "Product teams",
-        tagline: zh ? "设计和开发，说同一套词。" : "One shared vocabulary for design and dev.",
-        price: zh ? "¥0" : "Free",
-        features: zh
-          ? ["产品概念词条", "界面方向参考", "验收清单", "团队可用"]
-          : ["Product concepts", "Design directions", "Acceptance checklists", "Team-ready"],
-        cta: zh ? "看产品概念" : "Product concepts",
-        href: `${base}/topics/product`,
-      },
-    ],
+    ] satisfies Plan[],
     pricingNote: zh
-      ? "站内阅读不要钱，也不用绑账号。要一份能离线带走、给 AI 用的包，那是 PRO。"
-      : "Reading needs no account and no payment. The offline pack for your agent is PRO.",
-    faqTitle: zh ? "常见问题。" : "Common questions.",
-    faqSub: zh ? "没覆盖到的，直接问我们。" : "Not covered here? Reach out and we'll help.",
+      ? "微信支付即时开通，到期不自动扣费。免费术语 Skill 与 PRO 整库包是两份不同文件。"
+      : "WeChat Pay activates instantly; no auto-renew. The free terminology skill and the PRO library pack are different files.",
+    pricingFeatured: zh ? "推荐" : "Popular",
+    faqTitle: zh ? "常见问题" : "FAQ",
+    faqSub: zh ? "还有问题，直接发邮件。" : "Still stuck? Email us.",
     faqContacts: [
-      { title: zh ? "发邮件给我们" : "Email us", sub: zh ? "内容建议和问题反馈" : "Content requests and feedback", href: "mailto:hello@buildhub.cn", icon: "mail" as const },
-      { title: zh ? "查看更新日志" : "See the changelog", sub: zh ? "我们最近在补什么" : "What we're shipping next", href: `${base}/changelog`, icon: "log" as const },
+      { title: zh ? "发邮件" : "Email", sub: zh ? "内容建议与问题反馈" : "Content requests and feedback", href: "mailto:hello@buildhub.cn", icon: "mail" as const },
+      { title: zh ? "更新日志" : "Changelog", sub: zh ? "最近更新了什么" : "What shipped recently", href: `${base}/changelog`, icon: "log" as const },
     ],
     faq: zh
       ? [
-          { q: "BuildHub 是什么？", a: "一个 AI 驱动的软件构建知识与数字资产平台，收的是概念、界面参考、技术栈、提示词、技能和使用路径，每条都是完整正文，人和 AI 都能直接拿去用。核心价值是让优质构建资产不止能够被获取，更能被 AI 理解、组合和应用。使命是汇聚优秀的知识、技能与创作资源，借助 AI 让它们更容易被发现、获取和应用；愿景是成为 AI 时代软件产品构建领域值得信赖的知识与资产基础设施。" },
-          { q: "需要会写代码吗？", a: "不需要。概念用大白话讲，每条都配能直接跑的示例；要动手时，把提示词贴进 AI 工具就行。" },
-          { q: "和普通教程站有什么区别？", a: "不堆课程。每个概念一页，讲清是什么、什么时候用、怎么验证；示例就嵌在页面上，不用跳到别处。" },
-          { q: "内容会更新吗？", a: "会。新概念、提示词和技能会陆续补进站内，每次改动都记在更新日志里。" },
-          { q: "看内容要花钱吗？", a: "词条、界面参考、提示词和路径都能直接读，不用登录。付费的是 PRO：一份离线包，加一份给 AI 读的 SKILL.md。" },
-          { q: "英文内容一样多吗？", a: `英文站目前有 ${counts.dictEn} 个词条，覆盖同样的核心主题；中文站有 ${counts.dictZh} 个，更深一些。` },
-          { q: "可以把内容用在自己的项目里吗？", a: "可以。示例代码和提示词随便抄，能注明来源就更好了。" },
-          { q: "怎么把 BuildHub 装进 AI 工具？", a: "打开 BuildHub Skill 页面，把那句话说给 Claude Code 或 Cursor，剩下的它自己装。" },
-          { q: "找不到想要的概念怎么办？", a: "用顶部搜索（⌘K）直接搜；没有的话发邮件告诉我们，会补上。" },
+          {
+            q: "BuildHub 是什么？",
+            a: "软件构建用的知识库：概念、界面参考、技术栈、提示词、技能和动手路径。每条都是完整正文，人和 Agent 都能直接用。",
+          },
+          {
+            q: "需要会写代码吗？",
+            a: "不需要。概念写清楚，并配可运行示例；动手时把提示词粘贴到 AI 工具即可。",
+          },
+          {
+            q: "和普通教程站有什么区别？",
+            a: "不是课程合集。一个概念一页：是什么、何时用、怎么验证；示例嵌在页面上。",
+          },
+          {
+            q: "看内容要花钱吗？",
+            a: "不用。站内阅读免费、无需登录。PRO 付的是离线包下载，以及整库 Agent 入口 SKILL.md；另含无限收藏、同步与导出。",
+          },
+          {
+            q: "免费 Skill 和 PRO 的 SKILL.md 有什么区别？",
+            a: "免费 Skill（/buildhub-skill）只做术语补全。PRO 的 SKILL.md 是整库离线包的入口，指向概念、提示词、技能、路径等全部材料。",
+          },
+          {
+            q: "内容会更新吗？",
+            a: "会。新内容记在更新日志里；PRO 用户重新下载离线包即可拿到最新版。",
+          },
+          {
+            q: "英文内容一样多吗？",
+            a: `英文站目前有 ${counts.dictEn} 个词条；中文站有 ${counts.dictZh} 个，覆盖更深。`,
+          },
+          {
+            q: "可以把内容用在自己的项目里吗？",
+            a: "可以。示例和提示词可自由用于个人与商用项目；注明来源更好。不要整站转载或转售离线包。",
+          },
+          {
+            q: "找不到想要的概念怎么办？",
+            a: "用顶部搜索（⌘K）；没有的话发邮件告诉我们。",
+          },
         ]
       : [
-          { q: "What is BuildHub?", a: "An AI-powered platform for the knowledge and digital assets behind software products — concepts, UI references, stack picks, prompts, skills and build paths, each one the full text, ready for you or your agent. The core value: good build assets shouldn't stop at being findable — AI understands them, combines them and applies them. The mission is to gather excellent knowledge, skills and creative resources and use AI to make them easier to discover, get and apply. The vision is to become trusted knowledge and asset infrastructure for software creation in the AI era." },
-          { q: "Do I need to know how to code?", a: "No. Concepts are written in plain words and every entry ships with a demo you can run. When it's time to build, paste the prompt into any AI tool." },
-          { q: "How is this different from a tutorial site?", a: "No course pile-up. One page per concept: what it is, when to use it, how to check it. The playable example is right there." },
-          { q: "Does the content get updated?", a: "Yes. New concepts, prompts and skills keep landing, and every change is recorded in the changelog." },
-          { q: "Do I have to pay to read?", a: "Entries, UI references, prompts and paths are all readable without an account. PRO is the paid part: the offline pack plus a SKILL.md for your agent." },
-          { q: "Is the English site as complete?", a: `English currently has ${counts.dictEn} entries covering the same core topics. The Chinese site has ${counts.dictZh}, and goes deeper.` },
-          { q: "Can I use the examples in my own project?", a: "Yes. Copy the code and prompts freely. A credit is nice but not required." },
-          { q: "How do I install BuildHub into my agent?", a: "Open the BuildHub Skill page and say the install sentence to Claude Code or Cursor. It does the rest." },
-          { q: "What if I can't find a concept?", a: "Search with ⌘K first. If it's missing, email us and we'll add it." },
+          {
+            q: "What is BuildHub?",
+            a: "A library for building software: concepts, UI references, stack picks, prompts, skills and paths. Full text, ready for you and your agent.",
+          },
+          {
+            q: "Do I need to know how to code?",
+            a: "No. Concepts are clear and each page has a runnable demo. When you build, paste a prompt into any AI tool.",
+          },
+          {
+            q: "How is this different from a tutorial site?",
+            a: "Not a course pile. One page per concept: what it is, when to use it, how to check it. The demo stays on the page.",
+          },
+          {
+            q: "Do I have to pay to read?",
+            a: "No. Reading is free without an account. PRO is the offline pack plus the library SKILL.md for your agent, with unlimited favorites, sync and export.",
+          },
+          {
+            q: "Free skill vs PRO SKILL.md?",
+            a: "The free skill (/buildhub-skill) only helps with terminology. The PRO SKILL.md is the entry to the full offline library — concepts, prompts, skills and paths.",
+          },
+          {
+            q: "Does the content get updated?",
+            a: "Yes. Changes land in the changelog; PRO users re-download the pack for the latest version.",
+          },
+          {
+            q: "Is the English site as complete?",
+            a: `English has ${counts.dictEn} entries; Chinese has ${counts.dictZh} and goes deeper.`,
+          },
+          {
+            q: "Can I use the content in my projects?",
+            a: "Yes, for personal and commercial work. Crediting BuildHub is appreciated. Do not republish the site or resell the pack.",
+          },
+          {
+            q: "What if I can't find a concept?",
+            a: "Search with ⌘K. If it's missing, email us.",
+          },
         ],
     finalTitleA: zh ? "下一版产品，" : "Your next launch",
-    finalGrad: zh ? "别从空白页开始。" : "shouldn't start blank.",
+    finalGrad: zh ? "不必从空白页开始。" : "doesn't need a blank page.",
     finalSub: zh
-      ? "概念、界面参考、提示词和技能都在站里。挑一个入口，今天就做出第一屏。"
-      : "Concepts, UI references, prompts and skills are already here. Pick one and build the first screen today.",
+      ? "概念、界面参考、提示词和技能都在站里。选一个入口开始。"
+      : "Concepts, UI references, prompts and skills are here. Pick an entry and start.",
     finalCta: zh ? "从第一个官网开始" : "Start your first site",
     finalAlt: zh ? "浏览全部概念" : "Browse all concepts",
-    switchLabel: zh ? "选择起点" : "Starting point",
     faqAria: zh ? "常见问题" : "Frequently asked questions",
   };
 }
@@ -344,7 +393,6 @@ export default function HomeView({ locale = "zh" }: { locale?: Locale }) {
   const isZh = locale === "zh";
   const [isLight, setIsLight] = useState(false);
   const [activeBlock, setActiveBlock] = useState(0);
-  const [pricingMode, setPricingMode] = useState<"goal" | "role">("goal");
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   const rootRef = useRef<HTMLDivElement>(null);
@@ -353,7 +401,7 @@ export default function HomeView({ locale = "zh" }: { locale?: Locale }) {
   const zones = zoneChips.slice(0, showcase.length);
   const activeZone = zones[activeBlock] ?? zones[0];
   const block = showcase[activeBlock] ?? showcase[0];
-  const plans = pricingMode === "goal" ? C.plansGoal : C.plansRole;
+  const plans = C.plans;
 
   useEffect(() => {
     try {
@@ -914,53 +962,35 @@ export default function HomeView({ locale = "zh" }: { locale?: Locale }) {
           </div>
         </section>
 
-        {/* ============ PRICING (free) ============ */}
+        {/* ============ PRICING ============ */}
         <section className="rb-section rb-pricing-section">
           <div className="rb-container">
             <div className="rb-pricing-head rb-reveal">
               <div>
-                <h2>
-                  {C.pricingTitleA}
-                  <span className="rb-grad">{C.pricingGrad}</span>
-                  {C.pricingTitleB}
-                </h2>
+                <h2>{C.pricingTitleA}</h2>
                 <p>{C.pricingSub}</p>
-              </div>
-              <div className="rb-switch" role="group" aria-label={C.switchLabel}>
-                <button
-                  type="button"
-                  className={pricingMode === "goal" ? "is-active" : ""}
-                  aria-pressed={pricingMode === "goal"}
-                  onClick={() => setPricingMode("goal")}
-                >
-                  {C.pricingToggle[0]}
-                </button>
-                <button
-                  type="button"
-                  className={pricingMode === "role" ? "is-active" : ""}
-                  aria-pressed={pricingMode === "role"}
-                  onClick={() => setPricingMode("role")}
-                >
-                  {C.pricingToggle[1]}
-                </button>
               </div>
             </div>
 
-            <div className="rb-plans rb-reveal">
-              {plans.map((plan, i) => (
+            <div className="rb-plans rb-plans-2 rb-reveal">
+              {plans.map((plan) => (
                 <div
-                  className={`rb-plan${i === plans.length - 1 ? " is-featured" : ""}`}
-                  key={`${pricingMode}-${plan.name}`}
+                  className={`rb-plan${plan.featured ? " is-featured" : ""}`}
+                  key={plan.name}
                 >
                   <div className="rb-plan-top">
                     <h3>{plan.name}</h3>
-                    {i === plans.length - 1 ? (
-                      <span className="rb-plan-tag">{isZh ? "推荐" : "Most popular"}</span>
+                    {plan.featured ? (
+                      <span className="rb-plan-tag">{C.pricingFeatured}</span>
                     ) : null}
                   </div>
                   <p className="rb-plan-tagline">{plan.tagline}</p>
                   <div className="rb-plan-price">
                     <b>{plan.price}</b>
+                    {plan.priceUnit ? (
+                      <span className="rb-plan-price-unit">{plan.priceUnit}</span>
+                    ) : null}
+                    {plan.priceNote ? <span className="rb-plan-price-note">{plan.priceNote}</span> : null}
                   </div>
                   <ul>
                     {plan.features.map((feature) => (
@@ -970,13 +1000,27 @@ export default function HomeView({ locale = "zh" }: { locale?: Locale }) {
                       </li>
                     ))}
                   </ul>
-                  <Link
-                    className={`rb-btn rb-btn-plan${i === plans.length - 1 ? " rb-btn-solid" : " rb-btn-ghost"}`}
-                    href={plan.href}
-                  >
-                    {plan.cta}
-                    <ArrowRight size={14} strokeWidth={1.9} aria-hidden />
-                  </Link>
+                  {plan.openPro ? (
+                    <button
+                      type="button"
+                      className={`rb-btn rb-btn-plan${plan.featured ? " rb-btn-solid" : " rb-btn-ghost"}`}
+                      onClick={() => {
+                        track("go_pro_click", { from: "home" });
+                        openProModal();
+                      }}
+                    >
+                      {plan.cta}
+                      <ArrowRight size={14} strokeWidth={1.9} aria-hidden />
+                    </button>
+                  ) : (
+                    <Link
+                      className={`rb-btn rb-btn-plan${plan.featured ? " rb-btn-solid" : " rb-btn-ghost"}`}
+                      href={plan.href}
+                    >
+                      {plan.cta}
+                      <ArrowRight size={14} strokeWidth={1.9} aria-hidden />
+                    </Link>
+                  )}
                 </div>
               ))}
             </div>

@@ -3,8 +3,8 @@
 import { useEffect, useMemo, useState } from "react";
 import { useFlatTerms } from "@/components/CommandPalette";
 import ExportButton from "@/components/ExportButton";
-import ProModal from "@/components/ProModal";
 import { requireLogin } from "@/lib/auth-modal";
+import { openProModal } from "@/lib/pro-modal";
 import {
   FREE_FAVORITE_LIMIT,
   useFavoriteSlugs,
@@ -93,7 +93,7 @@ const UI = {
     empty: "Nothing saved yet",
     emptyHint: "Tap the ★ on any entry and it lands here.",
     syncOn: "PRO: syncs across your devices.",
-    goPro: "Go PRO",
+    goPro: "Get PRO",
     unfav: "Remove from favorites",
     count: "saved",
     convTitle: "Keep what you need in your own library",
@@ -251,7 +251,6 @@ export default function FavoritesView({
   const me = useMe();
   const pro = !!me?.pro;
 
-  const [showPro, setShowPro] = useState(false);
   const [collections, setCollections] = useState<Collection[]>([]);
   const [notes, setNotes] = useState<Record<string, string>>({});
   const [active, setActive] = useState("all");
@@ -441,7 +440,7 @@ export default function FavoritesView({
               kind={active === "all" ? "favorites" : "collection"}
               id={active === "all" ? undefined : active}
               pro={pro}
-              onNeedPro={() => setShowPro(true)}
+              onNeedPro={() => openProModal({ reason: "favorite" })}
               className="rd-btn-ghost fav-head-btn"
               label={active === "all" ? U.exportAll : U.exportCollection}
             />
@@ -451,7 +450,7 @@ export default function FavoritesView({
               locale={locale}
               kind="pack"
               pro={pro}
-              onNeedPro={() => setShowPro(true)}
+              onNeedPro={() => openProModal({ reason: "favorite" })}
               className="rd-btn-ghost fav-head-btn"
               label={U.exportPack}
             />
@@ -485,7 +484,7 @@ export default function FavoritesView({
             <div className="fav-plan is-pro">
               <h3>
                 {U.proName}
-                <button type="button" onClick={() => setShowPro(true)}>
+                <button type="button" onClick={() => openProModal({ reason: "favorite" })}>
                   {U.goPro}
                 </button>
               </h3>
@@ -511,7 +510,7 @@ export default function FavoritesView({
                   {U.usageUnit && <span> {U.usageUnit}</span>}
                   <span className="fav-usage-cap"> / {FREE_FAVORITE_LIMIT}</span>
                 </span>
-                <button type="button" className="fav-usage-cta" onClick={() => setShowPro(true)}>
+                <button type="button" className="fav-usage-cta" onClick={() => openProModal({ reason: "favorite" })}>
                   {U.usageCta} →
                 </button>
                 <span className="fav-usage-bar" aria-hidden>
@@ -520,7 +519,7 @@ export default function FavoritesView({
               </div>
               <p className="fav-pro-hint">
                 {U.freeHook}
-                <button type="button" onClick={() => setShowPro(true)}>
+                <button type="button" onClick={() => openProModal({ reason: "favorite" })}>
                   {U.goPro}
                 </button>
               </p>
@@ -742,7 +741,6 @@ export default function FavoritesView({
         </>
       )}
 
-      {showPro && <ProModal locale={locale} onClose={() => setShowPro(false)} />}
     </main>
   );
 }

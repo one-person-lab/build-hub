@@ -5,12 +5,17 @@ import {
   safeNext,
   siteOrigin,
   wxAuthorizeUrl,
+  wxEmbedUrl,
   wxLoginConfigured,
 } from "@/lib/wxlogin";
 
 export const dynamic = "force-dynamic";
 
-/** 浏览器跳到微信的官方扫码页；state 和登录后要回的路径一起放进一次性 cookie */
+function wxLang(req: NextRequest): "cn" | "en" {
+  return req.nextUrl.searchParams.get("lang") === "en" ? "en" : "cn";
+}
+
+/** embed=1：把官方登录框的地址交回弹窗内嵌。否则整页跳去微信。state 都放进一次性 cookie */
 export async function GET(req: NextRequest) {
   if (!wxLoginConfigured()) {
     return NextResponse.json({ error: "wx_login_not_configured" }, { status: 503 });
@@ -18,9 +23,12 @@ export async function GET(req: NextRequest) {
   const origin = siteOrigin(req);
   const state = newWxState();
   const next = safeNext(req.nextUrl.searchParams.get("next"), origin);
-  const res = NextResponse.redirect(
-    wxAuthorizeUrl(`${origin}/api/auth/wx/callback`, state)
-  );
+  const lang = wxLang(req);
+  const redirectUri = `${origin}/api/auth/wx/callback`;
+  const embed = req.nextUrl.searchParams.get("embed") === "1";
+  const res = embed
+    ? NextResponse.json({ url: wxEmbedUrl(redirectUri, state, lang) })
+    : NextResponse.redirect(wxAuthorizeUrl(redirectUri, state, lang));
   res.cookies.set(WX_STATE_COOKIE, `${state}|${encodeURIComponent(next)}`, {
     httpOnly: true,
     // 微信回跳是跨站顶层 GET，SameSite=strict 会让 cookie 不带过去，state 校验必挂
@@ -29,5 +37,6 @@ export async function GET(req: NextRequest) {
     path: "/api/auth/wx",
     maxAge: 600,
   });
+  res.headers.set("Cache-Control", "no-store");
   return res;
 }

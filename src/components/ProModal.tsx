@@ -1,8 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import CopyButton from "./CopyButton";
 import { requireLogin } from "@/lib/auth-modal";
+import { packStats } from "@/lib/export-content";
+import { FREE_FAVORITE_LIMIT } from "@/lib/favorites";
 import { track } from "@/lib/track";
 
 type PayPlan = {
@@ -21,26 +23,37 @@ type Me = {
 
 const UI = {
   zh: {
-    title: "BuildHub PRO",
-    sub: "一份离线包 + 给 AI 的入口文件，一次开通，整套拿走",
+    title: "把站里的材料，整包带走",
+    sub: (s: { concepts: number; prompts: number; skills: number }) =>
+      `${s.concepts} 条概念、${s.prompts} 条提示词、${s.skills} 个技能。付完立刻下载。`,
+    titleCopy: "免费复制次数用完了",
+    subCopy: "开通后不限次。正在看的内容，也可以整包带走。",
+    titleFav: "免费收藏到上限了",
+    subFav: `免费只能存 ${FREE_FAVORITE_LIMIT} 条。开通后不设上限，还能同步到其他设备。`,
     benefits: [
-      "完整离线包：概念、提示词、技能、设计参考，全部是正文",
-      "SKILL.md：给 AI 的入口文件，装进 Cursor / Claude Code / Codex",
-      "路径与手册，每一步都写完成标志",
-      "持续更新，重新下载就是最新版",
-      "另含无限收藏、提示词不限次复制、跨设备同步与一键导出",
+      "一份 Markdown：概念、提示词、技能、设计参考、路径",
+      "SKILL.md 丢进 Cursor / Claude Code，少重复背景",
+      "提示词不限次复制，收藏不设上限",
+      "有效期内重新下载，就是最新版",
     ],
     monthly: "月卡",
     yearly: "年卡",
-    lifetime: "终身买断",
+    lifetime: "终身",
     perMonth: "/ 月",
-    perYear: "/ 年",
-    once: "一次付费",
-    cta: "开通 PRO",
+    once: "一次买断",
+    tryMonth: "先用一个月",
+    noRenew: "以后不用再续",
+    perMonthEq: (n: string) => `≈ ¥${n} / 月`,
+    saveVsMonth: (n: number) => `比月付省 ¥${n}`,
+    best: "最划算",
+    cta: "微信支付开通",
+    payCta: (money: string) => `微信支付 ¥${money}`,
+    later: "继续免费阅读",
+    done: "完成",
     back: "返回",
     payAmount: "支付金额",
     scan: "微信扫码支付",
-    scanHint: "支付成功后自动开通，无需刷新",
+    scanHint: "付完自动开通，不用刷新",
     errWxOff: "微信支付暂不可用，请稍后再试",
     errGeneric: "出错了，请重试",
     proActive: "你已是 PRO 会员",
@@ -48,9 +61,7 @@ const UI = {
     proLifetime: "终身有效",
     dlLibrary: "下载完整离线包",
     dlKit: "下载 SKILL.md",
-    dlPage: "在 PRO 页面查看全部内容",
-    fineprint: "站内阅读不要钱",
-    noteCopy: "提示词免费复制 10 条已用完，PRO 不限次。",
+    fineprint: "站内阅读免费 · 到期不自动续费 · 付完不用刷新",
     linkTerms: "用户协议",
     linkPrivacy: "隐私政策",
     linkRefunds: "退款与售后",
@@ -82,22 +93,33 @@ const UI = {
     testRevoked: "已撤销，这个号回到免费用户",
   },
   en: {
-    title: "BuildHub PRO",
-    sub: "One offline pack + a SKILL.md for your agent — unlock once, take the whole thing",
+    title: "Take the library with you",
+    sub: (s: { concepts: number; prompts: number; skills: number }) =>
+      `${s.concepts} concepts, ${s.prompts} prompts, ${s.skills} skills. Download starts right after payment.`,
+    titleCopy: "Free copies are used up",
+    subCopy: "PRO has no copy limit. The page you're on comes with the pack.",
+    titleFav: "Free saves are full",
+    subFav: `Free accounts keep ${FREE_FAVORITE_LIMIT}. PRO has no cap, and syncs across devices.`,
     benefits: [
-      "Full pack: concepts, prompts, skills and design references, as finished text",
-      "SKILL.md: the entry file for Cursor / Claude Code / Codex",
-      "Build paths and playbooks, each step with a done-check",
-      "Ongoing updates — re-download for the latest version",
-      "Plus unlimited favorites, unlimited prompt copies, cross-device sync and one-click export",
+      "One Markdown file: concepts, prompts, skills, design refs, paths",
+      "SKILL.md for Cursor / Claude Code — less repeated briefing",
+      "Unlimited prompt copies and favorites",
+      "Re-download anytime while the plan is active",
     ],
     monthly: "Monthly",
     yearly: "Yearly",
     lifetime: "Lifetime",
     perMonth: "/ mo",
-    perYear: "/ yr",
     once: "one-time",
-    cta: "Go PRO",
+    tryMonth: "Try one month",
+    noRenew: "No renewals",
+    perMonthEq: (n: string) => `≈ ¥${n} / mo`,
+    saveVsMonth: (n: number) => `Save ¥${n} vs monthly`,
+    best: "Best value",
+    cta: "Get PRO",
+    payCta: (money: string) => `Pay ¥${money} with WeChat`,
+    later: "Keep reading for free",
+    done: "Done",
     back: "Back",
     payAmount: "Amount",
     scan: "Scan with WeChat",
@@ -109,9 +131,7 @@ const UI = {
     proLifetime: "Lifetime",
     dlLibrary: "Download the full pack",
     dlKit: "Download SKILL.md",
-    dlPage: "See everything included on the PRO page",
-    fineprint: "reading everything on the site stays free",
-    noteCopy: "That's all 10 free prompt copies — PRO copies without a limit.",
+    fineprint: "Reading stays free · no auto-renew · activates when paid",
     linkTerms: "Terms",
     linkPrivacy: "Privacy",
     linkRefunds: "Refunds",
@@ -127,7 +147,7 @@ const UI = {
     manualWait: "Order placed. It waits here until you send me the number.",
     manualCancel: "Drop this order",
     manualPc: "Or pay by scanning on a computer",
-    manualPcBody: "Open the address below on a computer, sign in, click Go PRO, then scan the screen with your phone.",
+    manualPcBody: "Open the address below on a computer, sign in, click Get PRO, then scan the screen with your phone.",
     copySite: "Copy address",
     copied: "Copied",
     copyFail: "Copy failed, type it in",
@@ -144,14 +164,21 @@ const UI = {
   },
 };
 
-const FMT: Record<string, { label: keyof typeof UI.zh; unit: keyof typeof UI.zh }> = {
-  monthly: { label: "perMonth", unit: "monthly" },
-  yearly: { label: "perYear", unit: "yearly" },
-  lifetime: { label: "once", unit: "lifetime" },
-};
+const STATS = { zh: packStats("zh"), en: packStats("en") };
 
 function fmtMoney(m: string): string {
   return m.replace(/\.00$/, "").replace(/(\.\d)0$/, "$1");
+}
+
+/** 年卡相对「月卡 × 12」的差价。价格改了这里跟着变，不写死省多少。 */
+function yearlyDeal(plans: PayPlan[]): { perMonth: string; save: number } | null {
+  const monthly = plans.find((p) => p.key === "monthly");
+  const yearly = plans.find((p) => p.key === "yearly");
+  if (!monthly || !yearly) return null;
+  const per = Number(yearly.money) / 12;
+  const save = Math.round(Number(monthly.money) * 12 - Number(yearly.money));
+  if (!(per > 0) || !(save > 0)) return null;
+  return { perMonth: per.toFixed(1).replace(/\.0$/, ""), save };
 }
 
 function lifetimeShown(proUntil: string | null): boolean {
@@ -171,8 +198,8 @@ export default function ProModal({
   entry?: "plans" | "test";
   /** 从定价页带入的套餐，打开即选中 */
   initialPlan?: string;
-  /** 哪一步把人推到这张卡前，用来在卡顶写清原因 */
-  reason?: "copy";
+  /** 哪一步把人推到这张卡前，用来改标题 */
+  reason?: "copy" | "favorite";
 }) {
   const U = UI[locale];
   const base = locale === "en" ? "/en" : "";
@@ -368,11 +395,27 @@ export default function ProModal({
     };
   }, [step, manual, plan, testMode]);
 
+  const deal = yearlyDeal(shownPlans);
+  const headline = testMode
+    ? U.testTitle
+    : reason === "copy"
+      ? U.titleCopy
+      : reason === "favorite"
+        ? U.titleFav
+        : U.title;
+  const lede = testMode
+    ? U.testSub
+    : reason === "copy"
+      ? U.subCopy
+      : reason === "favorite"
+        ? U.subFav
+        : U.sub(STATS[locale]);
+
   if (me?.user && me.pro && (!testMode || justPaid)) {
     return (
       <Shell locale={locale} onClose={onClose}>
         <div className="rd-pro-ok">
-          <p>{U.proActive}</p>
+          <p id="rd-pro-title">{U.proActive}</p>
           <p className="fineprint">
             {U.proUntil}{" "}
             {lifetimeShown(me.user.proUntil)
@@ -385,9 +428,9 @@ export default function ProModal({
           <a className="rd-btn-ghost rd-btn-block" href={`/api/export?kind=agent-kit&locale=${locale}`}>
             {U.dlKit}
           </a>
-          <a className="rd-pro-link" href={`${locale === "en" ? "/en" : ""}/pro`}>
-            {U.dlPage}
-          </a>
+          <button type="button" className="rd-pro-later" onClick={onClose}>
+            {U.done}
+          </button>
         </div>
       </Shell>
     );
@@ -398,26 +441,49 @@ export default function ProModal({
       {step === "plans" && (
         <>
           <div className="mark">✦</div>
-          <h3>{testMode ? U.testTitle : U.title}</h3>
-          <p className="sub">{testMode ? U.testSub : U.sub}</p>
-          {reason === "copy" && !testMode && <p className="sub">{U.noteCopy}</p>}
+          <h3 id="rd-pro-title">{headline}</h3>
+          <p className="sub">{lede}</p>
           <div className="rd-plans">
             {shownPlans.map((p) => {
-              const f = FMT[p.key] ?? FMT.yearly;
+              const hot = !testMode && p.key === "yearly";
+              const unit = testMode
+                ? U.testDays
+                : p.key === "yearly" && deal
+                  ? U.perMonthEq(deal.perMonth)
+                  : p.key === "lifetime"
+                    ? U.once
+                    : U.perMonth;
+              const note = testMode
+                ? ""
+                : p.key === "yearly" && deal
+                  ? U.saveVsMonth(deal.save)
+                  : p.key === "monthly"
+                    ? U.tryMonth
+                    : p.key === "lifetime"
+                      ? U.noRenew
+                      : "";
               return (
-                <div
+                <button
+                  type="button"
                   key={p.key}
-                  className={`rd-plan${planKey === p.key ? " is-active" : ""}`}
+                  className={`rd-plan${planKey === p.key ? " is-active" : ""}${hot ? " is-hot" : ""}`}
+                  aria-pressed={planKey === p.key}
                   onClick={() => setPlanKey(p.key)}
                 >
+                  {hot ? <em className="rd-plan-hot">{U.best}</em> : null}
                   <span className="rd-plan-label">
-                    {testMode ? U.testName : U[f.unit]}
+                    {testMode
+                      ? U.testName
+                      : p.key === "yearly"
+                        ? U.yearly
+                        : p.key === "lifetime"
+                          ? U.lifetime
+                          : U.monthly}
                   </span>
                   <b>¥{fmtMoney(p.money)}</b>
-                  <span className="rd-plan-unit">
-                    {testMode ? U.testDays : U[f.label]}
-                  </span>
-                </div>
+                  <span className="rd-plan-unit">{unit}</span>
+                  {note ? <span className="rd-plan-note">{note}</span> : null}
+                </button>
               );
             })}
           </div>
@@ -441,7 +507,7 @@ export default function ProModal({
               requireLogin({ reason: "pro", onDone: () => void startPay() });
             }}
           >
-            {testMode ? U.testCta : U.cta}
+            {testMode ? U.testCta : plan ? U.payCta(fmtMoney(plan.money)) : U.cta}
           </button>
           {testMode && me?.payTest?.revable && (
             <button
@@ -452,8 +518,8 @@ export default function ProModal({
               {U.testRevoke}
             </button>
           )}
-          <button className="rd-btn-ghost rd-btn-block" onClick={onClose}>
-            {testMode ? U.testCancel : locale === "zh" ? "暂不订阅" : "Not now"}
+          <button type="button" className="rd-pro-later" onClick={onClose}>
+            {testMode ? U.testCancel : U.later}
           </button>
           <p className="fineprint rd-fine-links">
             {U.fineprint} ·{" "}
@@ -466,7 +532,7 @@ export default function ProModal({
 
       {step === "qr" && qr && (
         <>
-          <h3>{U.scan}</h3>
+          <h3 id="rd-pro-title">{U.scan}</h3>
           {plan && (
             <p className="sub">
               {U.payAmount} <b className="rd-pay-amount">¥{fmtMoney(plan.money)}</b>
@@ -501,7 +567,7 @@ export default function ProModal({
 
       {step === "manual" && manual && (
         <>
-          <h3>{U.manualTitle}</h3>
+          <h3 id="rd-pro-title">{U.manualTitle}</h3>
           <p className="sub">
             {U.payAmount} <b className="rd-pay-amount">¥{fmtMoney(manual.money)}</b> · {manual.name}
           </p>
@@ -594,9 +660,29 @@ function Shell({
   onClose: () => void;
   children: React.ReactNode;
 }) {
+  const closeRef = useRef(onClose);
+  closeRef.current = onClose;
+  useEffect(() => {
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeRef.current();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = prev;
+      window.removeEventListener("keydown", onKey);
+    };
+  }, []);
   return (
     <div className="rd-overlay" onClick={onClose}>
-      <div className="rd-pro" onClick={(e) => e.stopPropagation()}>
+      <div
+        className="rd-pro"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="rd-pro-title"
+        onClick={(e) => e.stopPropagation()}
+      >
         <button
           className="close"
           onClick={onClose}

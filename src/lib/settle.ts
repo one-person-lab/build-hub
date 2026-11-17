@@ -56,7 +56,13 @@ export function listOpenManualOrders(): ManualOrder[] {
   return getDb()
     .prepare(
       `select o.out_trade_no,
-              coalesce(u.email, nullif(u.wx_nickname, ''), '微信 ' || substr(u.wx_openid, 1, 8)) as account,
+              coalesce(
+                u.email,
+                nullif(u.wx_nickname, ''),
+                nullif(u.gh_login, ''),
+                case when u.wx_openid is not null then '微信 ' || substr(u.wx_openid, 1, 8) end,
+                case when u.gh_id is not null then 'GitHub ' || u.gh_id end
+              ) as account,
               o.plan, o.name, o.money, o.created_at
        from orders o join users u on u.id = o.user_id
        where o.channel = 'manual' and o.status = 'pending'

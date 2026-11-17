@@ -3,6 +3,9 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   /* config options here */
   output: "standalone",
+  // 开发模式默认只放行 localhost。用 127.0.0.1 或局域网 IP 打开时，
+  // /_next 脚本会被 403，页面能看但登录这类点击不会执行。
+  allowedDevOrigins: ["127.0.0.1", "192.168.*.*"],
   async headers() {
     return [
       {
@@ -26,6 +29,8 @@ const nextConfig: NextConfig = {
       { source: "/en/topics/assets", destination: "/en/design", permanent: true },
       { source: "/vibehub-skill", destination: "/buildhub-skill", permanent: true },
       { source: "/en/vibehub-skill", destination: "/en/buildhub-skill", permanent: true },
+      { source: "/pro", destination: "/?pro=1", permanent: true },
+      { source: "/en/pro", destination: "/en?pro=1", permanent: true },
     ];
   },
 };

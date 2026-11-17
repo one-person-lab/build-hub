@@ -2,28 +2,54 @@ import type { Metadata } from "next";
 import { safeNext } from "@/lib/wxlogin";
 
 export const metadata: Metadata = {
-  title: "微信登录没走完 · BuildHub",
+  title: "登录未完成 · BuildHub",
   robots: { index: false, follow: false },
 };
 
 const UI = {
   zh: {
-    title: "微信登录没走完",
-    sub: "二维码可能过期了，也可能是你在微信里点了取消。重新扫一次就行。",
-    retry: "重新扫码",
+    github: {
+      title: "GitHub 登录没走完",
+      sub: "可能是点了取消，也可能授权过期。再试一次，或改用邮箱。",
+      retry: "再用 GitHub 登录",
+      retryHref: (next: string) =>
+        `/api/auth/github/start?next=${encodeURIComponent(next)}`,
+    },
+    wechat: {
+      title: "微信登录没走完",
+      sub: "可能是点了取消，也可能是二维码过期。再试一次：电脑版微信已登录时可以直接确认。",
+      retry: "再用微信登录",
+      retryHref: (next: string) =>
+        `/api/auth/wx/start?next=${encodeURIComponent(next)}${
+          next.startsWith("/en") ? "&lang=en" : ""
+        }`,
+    },
     mail: "用邮箱登录",
     account: "/account",
   },
   en: {
-    title: "WeChat sign-in didn't finish",
-    sub: "The code may have expired, or you tapped Cancel in WeChat. Scan it once more.",
-    retry: "Scan again",
+    github: {
+      title: "GitHub sign-in didn't finish",
+      sub: "You may have cancelled, or the session expired. Try again, or use email.",
+      retry: "Try GitHub again",
+      retryHref: (next: string) =>
+        `/api/auth/github/start?next=${encodeURIComponent(next)}`,
+    },
+    wechat: {
+      title: "WeChat sign-in didn't finish",
+      sub: "You may have cancelled, or the code expired. Try again — if WeChat is open on this computer, you can confirm directly.",
+      retry: "Try WeChat again",
+      retryHref: (next: string) =>
+        `/api/auth/wx/start?next=${encodeURIComponent(next)}${
+          next.startsWith("/en") ? "&lang=en" : ""
+        }`,
+    },
     mail: "Sign in with email",
     account: "/en/account",
   },
 };
 
-/** 微信扫码回来的落点：不弹任何东西，直接把「没成」和下一步摆在这一页 */
+/** OAuth 回跳失败落点：不弹窗，直接给出下一步 */
 export default async function SignInFailedPage({
   searchParams,
 }: {
@@ -35,7 +61,9 @@ export default async function SignInFailedPage({
     typeof params.next === "string" ? params.next : null,
     origin
   );
-  const U = next.startsWith("/en") ? UI.en : UI.zh;
+  const via = typeof params.via === "string" ? params.via : "wechat";
+  const pack = next.startsWith("/en") ? UI.en : UI.zh;
+  const U = via === "github" ? pack.github : pack.wechat;
 
   return (
     <main className="rd-account">
@@ -43,14 +71,11 @@ export default async function SignInFailedPage({
       <section className="rd-card acct-login acct-failed">
         <p className="sub">{U.sub}</p>
         <div className="rd-ctas">
-          <a
-            className="rd-btn"
-            href={`/api/auth/wx/start?next=${encodeURIComponent(next)}`}
-          >
+          <a className="rd-btn" href={U.retryHref(next)}>
             {U.retry}
           </a>
-          <a className="rd-btn-ghost" href={U.account}>
-            {U.mail}
+          <a className="rd-btn-ghost" href={pack.account}>
+            {pack.mail}
           </a>
         </div>
       </section>

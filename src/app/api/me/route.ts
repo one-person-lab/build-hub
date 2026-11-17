@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { currentUser, isPro } from "@/lib/session";
 import { PLANS, TEST_PLAN, isOwner } from "@/lib/plans";
+import { ghLoginConfigured } from "@/lib/ghlogin";
 import { wxLoginConfigured } from "@/lib/wxlogin";
 import { getDb } from "@/lib/db";
 
@@ -9,10 +10,16 @@ export async function GET() {
   const owner = !!user && isOwner(user.email);
   return NextResponse.json({
     user: user
-      ? { email: user.email, nickname: user.nickname, proUntil: user.proUntil }
+      ? {
+          email: user.email,
+          nickname: user.nickname,
+          avatar: user.avatar,
+          proUntil: user.proUntil,
+        }
       : null,
-    // 登录弹窗只在服务端配好微信时才亮「微信登录」，不留点不动的按钮
+    // 登录弹窗只在服务端配好对应渠道时才亮按钮，不留点不动的入口
     wx: wxLoginConfigured(),
+    github: ghLoginConfigured(),
     pro: isPro(user),
     plans: PLANS.map(({ key, name, money, days }) => ({ key, name, money, days })),
     // 验证单不进 plans，白名单另走一个字段，付费弹窗永远不会渲染它

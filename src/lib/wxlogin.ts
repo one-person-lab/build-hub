@@ -35,21 +35,53 @@ export function safeNext(path: string | null, origin: string): string {
   }
 }
 
-export function wxAuthorizeUrl(redirectUri: string, state: string): string {
+export function wxAuthorizeUrl(
+  redirectUri: string,
+  state: string,
+  lang: "cn" | "en" = "cn"
+): string {
   const q = new URLSearchParams({
     appid: process.env.WX_APPID!,
     redirect_uri: redirectUri,
     response_type: "code",
     scope: "snsapi_login",
     state,
+    // 旧版扫码页没有「快速登录」；stylelite=1 才会在电脑微信已登录时给出一键确认
+    stylelite: "1",
   });
+  if (lang === "en") q.set("lang", "en");
   return `${OPEN_HOST}/connect/qrconnect?${q.toString()}#wechat_redirect`;
+}
+
+/**
+ * 登录弹窗里内嵌的官方框，参数与 wxLogin.js 一致。
+ * 不传 fast_login 就是默认开启；self_redirect=false 让确认后顶层窗口回到本站 callback，会话 cookie 才写得上。
+ */
+export function wxEmbedUrl(
+  redirectUri: string,
+  state: string,
+  lang: "cn" | "en" = "cn"
+): string {
+  const q = new URLSearchParams({
+    appid: process.env.WX_APPID!,
+    scope: "snsapi_login",
+    redirect_uri: redirectUri,
+    state,
+    login_type: "jssdk",
+    self_redirect: "false",
+    stylelite: "1",
+    color_scheme: "dark",
+    ts: String(Date.now()),
+  });
+  if (lang === "en") q.set("lang", "en");
+  return `${OPEN_HOST}/connect/qrconnect?${q.toString()}`;
 }
 
 export type WxProfile = {
   openid: string;
   unionid: string | null;
   nickname: string | null;
+  avatar: string | null;
 };
 
 type WxError = { errcode?: number; errmsg?: string };
@@ -72,7 +104,7 @@ export async function wxProfileByCode(code: string): Promise<WxProfile> {
         grant_type: "authorization_code",
       })
   );
-  const info = await wxGet<{ nickname?: string; unionid?: string }>(
+  const info = await wxGet<{ nickname?: string; unionid?: string; headimgurl?: string }>(
     `${API_HOST}/sns/userinfo?` +
       new URLSearchParams({
         access_token: token.access_token,
@@ -84,6 +116,7 @@ export async function wxProfileByCode(code: string): Promise<WxProfile> {
     openid: token.openid,
     unionid: info.unionid ?? token.unionid ?? null,
     nickname: info.nickname ?? null,
+    avatar: info.headimgurl?.replace(/^http:\/\//, "https://") || null,
   };
 }
 
@@ -97,9 +130,10 @@ export function upsertWxUser(p: WxProfile): number {
     db.prepare(
       `update users
        set wx_nickname = coalesce(?, wx_nickname),
-           wx_unionid = coalesce(?, wx_unionid)
+           wx_unionid = coalesce(?, wx_unionid),
+           avatar_url = coalesce(?, avatar_url)
        where id = ?`
-    ).run(p.nickname, p.unionid, byOpenid.id);
+    ).run(p.nickname, p.unionid, p.avatar, byOpenid.id);
     return byOpenid.id;
   }
   if (p.unionid) {
@@ -107,19 +141,21 @@ export function upsertWxUser(p: WxProfile): number {
       .prepare(`select id from users where wx_unionid = ? and wx_openid is null`)
       .get(p.unionid) as { id: number } | undefined;
     if (byUnionid) {
-      db.prepare(`update users set wx_openid = ?, wx_nickname = coalesce(?, wx_nickname) where id = ?`).run(
-        p.openid,
-        p.nickname,
-        byUnionid.id
-      );
+      db.prepare(
+        `update users
+         set wx_openid = ?,
+             wx_nickname = coalesce(?, wx_nickname),
+             avatar_url = coalesce(?, avatar_url)
+         where id = ?`
+      ).run(p.openid, p.nickname, p.avatar, byUnionid.id);
       return byUnionid.id;
     }
   }
   const row = db
     .prepare(
-      `insert into users (email, wx_openid, wx_unionid, wx_nickname)
-       values (null, ?, ?, ?) returning id`
+      `insert into users (email, wx_openid, wx_unionid, wx_nickname, avatar_url)
+       values (null, ?, ?, ?, ?) returning id`
     )
-    .get(p.openid, p.unionid, p.nickname) as { id: number };
+    .get(p.openid, p.unionid, p.nickname, p.avatar) as { id: number };
   return row.id;
 }

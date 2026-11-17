@@ -1,0 +1,78 @@
+/* GitHub 星数徽章：与 .skill-card-installs 同一套药丸，星标用 GitHub 惯用的金色 */
+
+.repo-stars {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  min-height: 21px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--border-light, var(--border));
+  background: color-mix(in srgb, var(--text) 6%, transparent);
+  color: var(--text-soft, #6b7280);
+  font-size: 11.5px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+.repo-stars-icon {
+  color: #c8901a;
+  font-size: 12px;
+  line-height: 1;
+}
+.repo-stars-value {
+  color: var(--text-2, var(--text));
+}
+html[data-color-mode="dark"] .repo-stars {
+  background: var(--bg-soft);
+}
+html[data-color-mode="dark"] .repo-stars-icon {
+  color: #e8b341;
+}
+
+/* 详情页 meta 里的裸文字版，不套药丸 */
+.repo-stars.is-inline {
+  padding: 0;
+  border: 0;
+  background: none;
+  font-size: 14px;
+  color: var(--text);
+}
+html[data-color-mode="dark"] .repo-stars.is-inline {
+  background: none;
+}
+.repo-stars.is-inline .repo-stars-value {
+  color: var(--text);
+}
+
+/* 首屏还没拿到数据时留固定宽度的骨架，避免 26 张卡片一起跳动 */
+.repo-stars.is-loading {
+  min-width: 58px;
+  justify-content: center;
+  border-color: transparent;
+  background: color-mix(in srgb, var(--text) 10%, transparent);
+  animation: repo-stars-pulse 1.2s ease-in-out infinite;
+}
+.repo-stars.is-loading .repo-stars-icon {
+  visibility: hidden;
+}
+.repo-stars.is-inline.is-loading {
+  min-height: 18px;
+  background: none;
+}
+@keyframes repo-stars-pulse {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .repo-stars.is-loading {
+    animation: none;
+  }
+}

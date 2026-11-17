@@ -3,11 +3,11 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import NavDemoThumb from "./NavDemoThumb";
-import ProModal from "./ProModal";
 import { writeClipboard } from "./clipboard";
 import { copyPromptWithGate } from "@/lib/copy-gate";
 import { useMe } from "@/lib/favorites";
 import { requireLogin } from "@/lib/auth-modal";
+import { openProModal } from "@/lib/pro-modal";
 import { PLANS } from "@/lib/plans";
 import { NAV_CODE } from "@/data/navCode";
 import "./NavStyleModal.css";
@@ -152,7 +152,6 @@ export default function NavStyleModal({
   const [tab, setTab] = useState<"preview" | "code">("preview");
   const [aiOpen, setAiOpen] = useState(false);
   const [flash, setFlash] = useState("");
-  const [showPro, setShowPro] = useState(false);
   const aiRef = useRef<HTMLDivElement>(null);
 
   // Reset the view when navigating to a different block (adjust during render).
@@ -167,11 +166,10 @@ export default function NavStyleModal({
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         if (aiOpen) setAiOpen(false);
-        else if (showPro) setShowPro(false);
         else onClose();
         return;
       }
-      if (aiOpen || showPro) return;
+      if (aiOpen) return;
       if (e.key === "ArrowLeft" && terms.length > 1) {
         onSlugChange(terms[(idx - 1 + terms.length) % terms.length].slug);
       }
@@ -186,7 +184,7 @@ export default function NavStyleModal({
       window.removeEventListener("keydown", onKey);
       document.body.style.overflow = prev;
     };
-  }, [aiOpen, showPro, idx, onClose, onSlugChange, terms]);
+  }, [aiOpen, idx, onClose, onSlugChange, terms]);
 
   useEffect(() => {
     if (!aiOpen) return;
@@ -217,7 +215,7 @@ export default function NavStyleModal({
   }
 
   function openPro() {
-    requireLogin({ reason: "pro", onDone: () => setShowPro(true) });
+    requireLogin({ reason: "pro", onDone: () => openProModal() });
   }
 
   const code = NAV_CODE[slug] || "";
@@ -414,7 +412,15 @@ export default function NavStyleModal({
               </button>
               <p className="nsm-pay-fine">
                 {T.memberHint}{" "}
-                <a href={`${locale === "en" ? "/en" : ""}/pro`}>{T.login}</a>
+                <a
+                  href={`${locale === "en" ? "/en" : ""}/account`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    requireLogin();
+                  }}
+                >
+                  {T.login}
+                </a>
               </p>
             </div>
           )}
@@ -423,8 +429,6 @@ export default function NavStyleModal({
 
       {flash ? <div className="nsm-toast">{flash}</div> : null}
 
-      {showPro &&
-        createPortal(<ProModal locale={locale} onClose={() => setShowPro(false)} />, document.body)}
     </div>,
     document.body
   );

@@ -5,6 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import BrandMark from "./BrandMark";
 import { requireLogin } from "@/lib/auth-modal";
+import { openProModal } from "@/lib/pro-modal";
 import { FOOTER_SOCIAL_ICONS } from "@/data/footer-icons";
 
 type Locale = "zh" | "en";
@@ -37,7 +38,7 @@ const QR_IMAGES: Record<string, { src: string; altZh: string; altEn: string }> =
 const COPY = {
   zh: {
     aria: "联系方式",
-    blurb: "AI 驱动的软件构建知识与数字资产平台。概念、界面参考、技术栈、提示词、技能和使用路径都在站里，每条都是完整正文，可以直接读、直接抄走。",
+    blurb: "概念、界面参考、技术栈、提示词、技能和路径都在站里。每条都是完整正文，可以直接读、直接用。",
     columns: [
       {
         title: "站点",
@@ -72,6 +73,7 @@ const COPY = {
       {
         title: "账号与法律",
         links: [
+          { label: "PRO", href: "/pro" },
           { label: "登录", href: "/account" },
           { label: "收藏", href: "/favorites" },
           { label: "隐私", href: "/privacy" },
@@ -92,7 +94,7 @@ const COPY = {
   },
   en: {
     aria: "Links and contact",
-    blurb: "AI-powered knowledge and digital assets for building software products. We gather the knowledge, skills and creative resources a build needs, then use AI to help you find, understand, combine and apply them.",
+    blurb: "Concepts, UI references, stack picks, prompts, skills and paths — full text you can read and use right away.",
     columns: [
       {
         title: "Site",
@@ -117,6 +119,7 @@ const COPY = {
       {
         title: "Resources",
         links: [
+          { label: "PRO", href: "/en/pro" },
           { label: "Changelog", href: "/en/changelog" },
           { label: "Favorites", href: "/en/favorites" },
           { label: "Account", href: "/en/account" },
@@ -190,6 +193,10 @@ export default function SiteFooter() {
                   {col.links.map((l) =>
                     l.href === `${base}/account` ? (
                       <button type="button" key={l.label} onClick={signIn}>
+                        {l.label}
+                      </button>
+                    ) : l.href === "/pro" || l.href === "/en/pro" ? (
+                      <button type="button" key={l.label} onClick={() => openProModal()}>
                         {l.label}
                       </button>
                     ) : (
