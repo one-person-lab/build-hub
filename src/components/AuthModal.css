@@ -278,6 +278,42 @@
   color: #ff6b6b;
 }
 
+/* 仅 next dev：跳过邮件 / OAuth */
+.bam-dev {
+  display: grid;
+  gap: 6px;
+  margin: 0 0 14px;
+}
+.bam-dev-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 44px;
+  border: 1px dashed color-mix(in srgb, var(--brand) 55%, var(--border));
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--brand) 12%, transparent);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--brand);
+  cursor: pointer;
+}
+.bam-dev-btn:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--brand) 18%, transparent);
+}
+.bam-dev-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.bam-dev-hint {
+  margin: 0;
+  font-size: 11.5px;
+  line-height: 1.4;
+  color: var(--text-3);
+  text-align: center;
+}
+
 /* GitHub：黑底白标，跟主流 OAuth 按钮一致 */
 .bam-gh {
   display: inline-flex;

@@ -33,6 +33,14 @@ export function planDays(plan: Plan): number {
 
 const DEFAULT_OWNER = "136267719@qq.com";
 
+/** 白名单第一个邮箱；本地一键登录也用这个 */
+export function ownerEmail(): string {
+  return (process.env.OWNER_EMAIL || DEFAULT_OWNER)
+    .split(",")
+    .map((e) => e.trim().toLowerCase())
+    .find(Boolean) || DEFAULT_OWNER;
+}
+
 /** 白名单账号：逗号分隔，写在这里的邮箱才能下验证单 */
 export function isOwner(email: string | null | undefined): boolean {
   if (!email) return false;

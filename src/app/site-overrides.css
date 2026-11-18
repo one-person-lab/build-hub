@@ -857,7 +857,12 @@ a.rd-gopro.is-pro { color: var(--brand); }
 @media (max-height: 820px) {
   .rd-pro { top: 8vh; }
 }
-.rd-pro .mark { text-align: center; color: var(--brand); font-size: 20px; }
+.rd-pro .mark {
+  display: grid; place-items: center; margin: 0 auto 2px;
+  width: 40px; height: 40px; padding: 0; border: 0; background: transparent;
+  border-radius: 10px; cursor: pointer; color: inherit;
+}
+.rd-pro .mark svg { width: 40px; height: 40px; display: block; border-radius: 10px; }
 .rd-pro h3 { text-align: center; font-size: 22px; letter-spacing: -0.02em; margin: 4px 0 6px; color: var(--text); }
 .rd-pro .sub { text-align: center; font-size: 13px; line-height: 1.55; color: var(--text-2); margin: 0 0 18px; }
 .rd-prices { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }

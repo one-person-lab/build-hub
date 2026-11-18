@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import BrandMark from "./BrandMark";
 import CopyButton from "./CopyButton";
 import { requireLogin } from "@/lib/auth-modal";
 import { packStats } from "@/lib/export-content";
@@ -208,6 +209,9 @@ export default function ProModal({
   const [planKey, setPlanKey] = useState(
     entry === "test" ? "test" : initialPlan ?? "yearly"
   );
+  // 弹窗内连点 logo 解锁验证单（账号页邮箱连点仍可用）
+  const [logoUnlocked, setLogoUnlocked] = useState(entry === "test");
+  const logoTaps = useRef({ n: 0, at: 0 });
   const [phone, setPhone] = useState(false);
   const [siteHost, setSiteHost] = useState("");
   const [busy, setBusy] = useState(false);
@@ -240,11 +244,28 @@ export default function ProModal({
   }, []);
 
   // 服务端没给 payTest（白名单没命中）时退回普通套餐弹窗，不做出错的死路
-  const testMode = entry === "test" && !!me?.payTest;
+  const testMode = logoUnlocked && !!me?.payTest;
   const plan: PayPlan | null = testMode
     ? me?.payTest ?? null
     : me?.plans.find((p) => p.key === planKey) ?? null;
   const shownPlans: PayPlan[] = testMode ? (plan ? [plan] : []) : me?.plans ?? [];
+
+  // 隐藏入口：连点 logo 5 次切入验证单。非白名单点了没有任何反应
+  function tapLogo() {
+    if (testMode) return;
+    const now = Date.now();
+    logoTaps.current =
+      now - logoTaps.current.at > 2000
+        ? { n: 1, at: now }
+        : { n: logoTaps.current.n + 1, at: now };
+    if (logoTaps.current.n < 5) return;
+    logoTaps.current = { n: 0, at: 0 };
+    if (!me?.payTest) return;
+    setLogoUnlocked(true);
+    setPlanKey("test");
+    setErr("");
+    setNote("");
+  }
 
   async function startPay() {
     if (!plan) return;
@@ -440,7 +461,9 @@ export default function ProModal({
     <Shell locale={locale} onClose={onClose}>
       {step === "plans" && (
         <>
-          <div className="mark">✦</div>
+          <div className="mark" onClick={tapLogo} aria-hidden>
+            <BrandMark />
+          </div>
           <h3 id="rd-pro-title">{headline}</h3>
           <p className="sub">{lede}</p>
           <div className="rd-plans">
