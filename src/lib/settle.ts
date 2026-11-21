@@ -210,18 +210,53 @@ export function revokeTestOrder(userId: number): { ok: boolean; days: number } {
     .get(userId, TEST_PLAN.key) as { out_trade_no: string } | undefined;
   if (!order) return { ok: false, days: 0 };
 
-  const back = `-${planDays(TEST_PLAN)} days`;
+  const r = revokePaidOrder(order.out_trade_no);
+  if (!r.ok) return { ok: false, days: 0 };
+  return { ok: true, days: r.days };
+}
+
+export type RevokePaidResult =
+  | { ok: true; days: number; userId: number; plan: string }
+  | {
+      ok: false;
+      reason: "order_not_found" | "not_paid" | "unknown_plan";
+    };
+
+/**
+ * 标记已支付订单为 revoked，并按套餐天数从 pro_until 扣回。
+ * 不走微信原路退款；只做权益回滚，供 Ops 客服使用。
+ */
+export function revokePaidOrder(outTradeNo: string): RevokePaidResult {
+  const db = getDb();
+  const order = db
+    .prepare(
+      `select out_trade_no, user_id, plan, status from orders where out_trade_no = ?`,
+    )
+    .get(outTradeNo) as
+    | { out_trade_no: string; user_id: number; plan: string; status: string }
+    | undefined;
+  if (!order) return { ok: false, reason: "order_not_found" };
+  if (order.status !== "paid") return { ok: false, reason: "not_paid" };
+  const plan = getPlan(order.plan);
+  if (!plan) return { ok: false, reason: "unknown_plan" };
+
+  const days = planDays(plan);
+  const back = `-${days} days`;
   db.transaction(() => {
-    db.prepare(
-      `update orders set status = 'revoked' where out_trade_no = ? and status = 'paid'`
-    ).run(order.out_trade_no);
+    const upd = db
+      .prepare(
+        `update orders set status = 'revoked' where out_trade_no = ? and status = 'paid'`,
+      )
+      .run(order.out_trade_no);
+    if (upd.changes === 0) return;
     db.prepare(
       `update users set pro_until = case
+         when pro_until is null then null
          when datetime(pro_until, ?) <= datetime('now') then null
          else datetime(pro_until, ?)
-       end where id = ?`
-    ).run(back, back, userId);
+       end where id = ?`,
+    ).run(back, back, order.user_id);
   }).immediate();
 
-  return { ok: true, days: planDays(TEST_PLAN) };
+  return { ok: true, days, userId: order.user_id, plan: order.plan };
 }

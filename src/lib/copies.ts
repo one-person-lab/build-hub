@@ -29,3 +29,9 @@ export function recordCopy(userId: number, source: string): CopyQuota {
     .run(userId, source.slice(0, 80), nowIso());
   return { ...quota, used: quota.used + 1 };
 }
+
+/** Ops 客服重置免费额度：清空该用户全部复制记账 */
+export function resetCopies(userId: number): CopyQuota {
+  getDb().prepare(`delete from prompt_copies where user_id = ?`).run(userId);
+  return copyQuota(userId);
+}
